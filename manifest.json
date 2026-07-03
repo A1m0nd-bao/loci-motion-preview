@@ -1,6 +1,20 @@
 {
   "items": [
     {
+      "name": "礼花",
+      "file": "./lotties/未分类/booom2-b19ee9e8.json",
+      "category": "未分类",
+      "tags": [],
+      "updatedAt": "2026-07-03T09:43:31.079Z"
+    },
+    {
+      "name": "合成 1",
+      "file": "./lotties/未分类/booom-66705abe.json",
+      "category": "未分类",
+      "tags": [],
+      "updatedAt": "2026-07-03T09:43:30.391Z"
+    },
+    {
       "name": "星星交互",
       "file": "./lotties/星星交互/lottie-12866bf5.json",
       "category": "星星交互",
