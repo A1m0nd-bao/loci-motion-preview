@@ -1,6 +1,15 @@
 {
   "items": [
     {
+      "name": "iPhone mixed normal and burst speed lines",
+      "file": "./lotties/未分类/light-rays-burst-detail-current-20260707-8d662e75.json",
+      "category": "未分类",
+      "tags": [
+        "创建成功"
+      ],
+      "updatedAt": "2026-07-07T05:13:32.612Z"
+    },
+    {
       "name": "phone-ratio-transparent-composite",
       "file": "./lotties/未分类/combined-phone-transparent-1707b4ab.json",
       "category": "未分类",
@@ -8,15 +17,6 @@
         "发布成功"
       ],
       "updatedAt": "2026-07-07T05:08:18.565Z"
-    },
-    {
-      "name": "phone-ratio-transparent-composite",
-      "file": "./lotties/未分类/combined-phone-transparent-910800df.json",
-      "category": "未分类",
-      "tags": [
-        "创建成功"
-      ],
-      "updatedAt": "2026-07-07T05:08:18.001Z"
     },
     {
       "name": "合成 1",
