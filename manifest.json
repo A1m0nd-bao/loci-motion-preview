@@ -1,27 +1,49 @@
 {
   "items": [
     {
-      "name": "礼花",
-      "file": "./lotties/未分类/booom2-b19ee9e8.json",
+      "name": "phone-ratio-transparent-composite",
+      "file": "./lotties/未分类/combined-phone-transparent-1707b4ab.json",
       "category": "未分类",
-      "tags": [],
-      "updatedAt": "2026-07-03T09:43:31.079Z"
+      "tags": [
+        "发布成功"
+      ],
+      "updatedAt": "2026-07-07T05:08:18.565Z"
+    },
+    {
+      "name": "phone-ratio-transparent-composite",
+      "file": "./lotties/未分类/combined-phone-transparent-910800df.json",
+      "category": "未分类",
+      "tags": [
+        "创建成功"
+      ],
+      "updatedAt": "2026-07-07T05:08:18.001Z"
     },
     {
       "name": "合成 1",
       "file": "./lotties/未分类/booom-66705abe.json",
       "category": "未分类",
-      "tags": [],
-      "updatedAt": "2026-07-03T09:43:30.391Z"
+      "tags": [
+        "礼花1"
+      ],
+      "updatedAt": "2026-07-07T05:08:17.476Z"
+    },
+    {
+      "name": "礼花",
+      "file": "./lotties/未分类/booom2-b19ee9e8.json",
+      "category": "未分类",
+      "tags": [
+        "礼花2"
+      ],
+      "updatedAt": "2026-07-07T05:08:17.476Z"
     },
     {
       "name": "星星交互",
-      "file": "./lotties/星星交互/lottie-12866bf5.json",
+      "file": "./lotties/星星交互/lottie-12866bf5-transparent-9a3db469.json",
       "category": "星星交互",
       "tags": [
         "星星交互"
       ],
-      "updatedAt": "2026-07-02T05:14:59.179Z"
+      "updatedAt": "2026-07-07T05:08:17.476Z"
     },
     {
       "name": "星星旋转",
