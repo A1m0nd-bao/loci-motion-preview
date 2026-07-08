@@ -1,6 +1,33 @@
 {
   "items": [
     {
+      "name": "phone-ratio-transparent-composite",
+      "file": "./lotties/未分类/combined-phone-transparent-bb6ad0d7.json",
+      "category": "未分类",
+      "tags": [
+        "发布成功"
+      ],
+      "updatedAt": "2026-07-08T06:07:10.291Z"
+    },
+    {
+      "name": "phone-ratio-transparent-composite",
+      "file": "./lotties/未分类/combined-phone-transparent-with-bottom-2234af49.json",
+      "category": "未分类",
+      "tags": [
+        "发布成功"
+      ],
+      "updatedAt": "2026-07-08T06:07:09.421Z"
+    },
+    {
+      "name": "iPhone mixed normal and burst speed lines - 390x844 fewer tiny featured",
+      "file": "./lotties/未分类/light-rays-burst-detail-final-390x844-20260708-5926df3a.json",
+      "category": "未分类",
+      "tags": [
+        "创建成功"
+      ],
+      "updatedAt": "2026-07-08T06:07:08.608Z"
+    },
+    {
       "name": "iPhone mixed normal and burst speed lines - 390x844 inner featured",
       "file": "./lotties/未分类/light-rays-burst-detail-vortex-dots-390x844-inner-featured-38f7ab0a.json",
       "category": "未分类",
@@ -8,24 +35,6 @@
         "创建成功"
       ],
       "updatedAt": "2026-07-07T07:57:01.868Z"
-    },
-    {
-      "name": "phone-ratio-transparent-composite",
-      "file": "./lotties/未分类/combined-phone-transparent-5e3adfba.json",
-      "category": "未分类",
-      "tags": [
-        "发布成功"
-      ],
-      "updatedAt": "2026-07-07T07:50:54.206Z"
-    },
-    {
-      "name": "phone-ratio-transparent-composite",
-      "file": "./lotties/未分类/combined-phone-transparent-with-bottom-b8f0aaab.json",
-      "category": "未分类",
-      "tags": [
-        "发布成功"
-      ],
-      "updatedAt": "2026-07-07T07:50:53.436Z"
     },
     {
       "name": "Angry Avatar Transition Variant",
