@@ -1,6 +1,20 @@
 {
   "items": [
     {
+      "name": "Angry Avatar Transition Variant",
+      "file": "./lotties/未分类/calm-to-angry-transition-vector-only-abf9b4f6.json",
+      "category": "未分类",
+      "tags": [],
+      "updatedAt": "2026-07-09T07:28:03.086Z"
+    },
+    {
+      "name": "Angry Avatar Loop",
+      "file": "./lotties/未分类/angry-shake-loop-vector-only-326acf97.json",
+      "category": "未分类",
+      "tags": [],
+      "updatedAt": "2026-07-09T07:28:02.505Z"
+    },
+    {
       "name": "Swipe Slide Right Gesture",
       "file": "./lotties/未分类/swipe-slide-right-hand-07a0bf46.json",
       "category": "未分类",
@@ -60,13 +74,6 @@
       "updatedAt": "2026-07-07T07:57:01.868Z"
     },
     {
-      "name": "Angry Avatar Transition Variant",
-      "file": "./lotties/未分类/calm-to-angry-transition-left-mirrors-right-eye-icon-1d6f80b6.json",
-      "category": "未分类",
-      "tags": [],
-      "updatedAt": "2026-07-07T07:11:44.218Z"
-    },
-    {
       "name": "iPhone mixed normal and burst speed lines",
       "file": "./lotties/未分类/light-rays-burst-detail-vortex-dots-20260707-5f798bf2.json",
       "category": "未分类",
@@ -74,13 +81,6 @@
         "创建成功"
       ],
       "updatedAt": "2026-07-07T07:11:42.417Z"
-    },
-    {
-      "name": "Angry Avatar Loop",
-      "file": "./lotties/未分类/angry-shake-loop-left-mirrors-right-eye-icon-9720fa01.json",
-      "category": "未分类",
-      "tags": [],
-      "updatedAt": "2026-07-07T06:29:36.649Z"
     },
     {
       "name": "合成 1",
