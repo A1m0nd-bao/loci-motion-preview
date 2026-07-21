@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>动效资产预览库</title>
-    <link rel="stylesheet" href="./styles.css?v=motion-hub-20260721-home-gradient-object" />
+    <link rel="stylesheet" href="./styles.css?v=motion-hub-20260721-home-redesign" />
     <script src="https://unpkg.com/@lottiefiles/lottie-player@2.0.8/dist/lottie-player.js"></script>
     <script src="https://unpkg.com/@rive-app/canvas@2.24.0/rive.js"></script>
   </head>
@@ -23,12 +23,17 @@
     <nav id="formatNav" class="format-nav" aria-label="格式分支"></nav>
 
     <section id="homeView" class="home-view" aria-label="格式模块主页">
-      <div id="homeBlinds" class="home-blinds" aria-hidden="true"></div>
-      <div class="home-heading">
-        <p class="eyebrow">Format Modules</p>
-        <h2>选择一个格式进入预览模块</h2>
+      <div class="home-copy">
+        <div class="home-heading">
+          <p class="eyebrow">Format Modules</p>
+          <h2>选择一个格式进入预览模块</h2>
+          <p>集中查看 Lottie、HEVC、GIF、Rive 和实践型动效，快速进入对应格式的预览与检查流程。</p>
+        </div>
+        <div id="homeModules" class="module-grid"></div>
       </div>
-      <div id="homeModules" class="module-grid"></div>
+      <div class="home-visual" aria-hidden="true">
+        <div id="homeBlinds" class="home-blinds"></div>
+      </div>
     </section>
 
     <section id="quickSection" class="quick-section" aria-label="快速预览" hidden>
@@ -221,6 +226,6 @@
     </dialog>
 
     <script src="./app.js?v=motion-hub-20260721-fit" type="module"></script>
-    <script src="./scripts/gradient-blinds-static.mjs?v=20260721g" type="module"></script>
+    <script src="./scripts/gradient-blinds-static.mjs?v=20260721h" type="module"></script>
   </body>
 </html>
