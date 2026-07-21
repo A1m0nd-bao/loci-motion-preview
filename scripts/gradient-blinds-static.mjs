@@ -53,8 +53,8 @@ function initGradientBlinds(target) {
   const program = new Program(gl, { vertex, fragment, uniforms });
   const mesh = new Mesh(gl, { geometry: new Triangle(gl), program });
   let frame = 0;
-  let lastPointer = [0.52, 0.6];
-  let smoothPointer = [0.52, 0.6];
+  let lastPointer = [-1.5, -1.5];
+  let smoothPointer = [-1.5, -1.5];
 
   const resize = () => {
     const rect = target.getBoundingClientRect();
@@ -175,19 +175,16 @@ void main() {
 
   mat2 rot = mat2(cos(uAngle), -sin(uAngle), sin(uAngle), cos(uAngle));
   vec2 tilted = rot * centered;
-  float t = tilted.x * 0.42 + 0.52;
+  float t = uv.x;
   if (uMirrorGradient > 0.5) {
     t = 1.0 - abs(1.0 - 2.0 * fract(t));
   }
   vec3 base = gradientColor(clamp(t, 0.0, 1.0));
 
-  float verticalMask = smoothstep(1.26, 0.08, abs(centered.y));
-  float horizontalMask = smoothstep(aspect + 0.12, 0.18, abs(centered.x));
-  float centerLift = smoothstep(1.08, 0.0, length(vec2(tilted.x * 0.48, tilted.y * 1.12)));
-  float mask = clamp((verticalMask * horizontalMask) * (0.2 + centerLift * 0.8), 0.0, 1.0);
+  float mask = 1.0;
 
   float blindCount = max(1.0, uBlindCount);
-  float stripe = fract((tilted.x + 1.4) * blindCount + sin(iTime * 0.18) * 0.08);
+  float stripe = fract(uv.x * blindCount + sin(iTime * 0.18) * 0.08);
   float blade = smoothstep(0.02, 0.18, stripe) * (1.0 - smoothstep(0.72, 0.98, stripe));
   float bladeShade = smoothstep(0.08, 0.72, stripe);
   float shineBase = uShineDirection < 0.0 ? 1.0 - stripe : stripe;
@@ -198,17 +195,17 @@ void main() {
   float radius = max(0.001, uSpotlightRadius);
   float softness = max(0.001, uSpotlightSoftness);
   float spotlight = smoothstep(radius + softness * 0.42, radius * 0.12, distance(uv, mouse)) * uSpotlightOpacity;
-  float coreGlow = smoothstep(0.76, 0.0, length(vec2(tilted.x * 0.72, tilted.y * 1.1)));
   float noise = (rand(gl_FragCoord.xy + iTime) - 0.5) * uNoise * 0.16;
 
   vec3 glowColor = mix(uColor0, uColor1, clamp(t, 0.0, 1.0));
-  vec3 color = base * (0.12 + blade * (0.42 + bladeShade * 0.36));
-  color += glowColor * shine * blade * 0.72;
-  color += glowColor * edgeGlow * 0.36;
-  color += spotlight * glowColor * 1.15;
-  color += coreGlow * glowColor * 0.46;
-  color += noise * 0.6;
-  gl_FragColor = vec4(color * mask, mask);
+  vec3 background = vec3(0.055, 0.052, 0.075);
+  vec3 color = background;
+  color += base * blade * (0.06 + bladeShade * 0.08);
+  color += glowColor * shine * blade * 0.16;
+  color += glowColor * edgeGlow * 0.06;
+  color += spotlight * glowColor * (0.62 + blade * 0.58);
+  color += noise * 0.3;
+  gl_FragColor = vec4(color, 1.0);
 }
 `;
 
