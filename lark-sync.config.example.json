@@ -10,10 +10,13 @@
   "pollSeconds": 30,
   "columns": {
     "name": "名称",
+    "kind": "格式分支",
     "category": "分类",
+    "interactionType": "交互类型/场景",
     "tags": "标签",
-    "file": ["JSON文件", "附件1", "附件2"]
+    "file": ["动效文件", "附件1", "附件2"]
   },
-  "outputDir": "lotties",
+  "outputDir": "motions",
+  "legacyLottieDir": "lotties",
   "stateFile": ".sync/lark-state.json"
 }

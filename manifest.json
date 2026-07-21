@@ -1,359 +1,526 @@
 {
   "items": [
     {
-      "name": "Designed Celebration Fireworks - Bold Multicolor Variant",
-      "file": "./lotties/未分类/celebration-fireworks-animation2-spray-bold-variant-d890b6ca.json",
-      "category": "未分类",
-      "tags": [],
-      "updatedAt": "2026-07-14T12:15:55.559Z"
-    },
-    {
-      "name": "Designed Celebration Fireworks - Celebrate Launch",
-      "file": "./lotties/未分类/celebration-fireworks-animation2-spray-celebratory-81039722.json",
-      "category": "未分类",
-      "tags": [],
-      "updatedAt": "2026-07-14T02:43:12.950Z"
-    },
-    {
-      "name": "Angry Avatar Transition Variant",
-      "file": "./lotties/未分类/calm-to-angry-transition-vector-only-abf9b4f6.json",
-      "category": "未分类",
-      "tags": [],
-      "updatedAt": "2026-07-09T07:28:03.086Z"
-    },
-    {
-      "name": "Angry Avatar Loop",
-      "file": "./lotties/未分类/angry-shake-loop-vector-only-326acf97.json",
-      "category": "未分类",
-      "tags": [],
-      "updatedAt": "2026-07-09T07:28:02.505Z"
-    },
-    {
-      "name": "Swipe Slide Right Gesture",
-      "file": "./lotties/未分类/swipe-slide-right-hand-07a0bf46.json",
-      "category": "未分类",
-      "tags": [],
-      "updatedAt": "2026-07-08T12:17:42.925Z"
-    },
-    {
-      "name": "Swipe Slide Gesture",
-      "file": "./lotties/未分类/swipe-slide-hand-c364b914.json",
-      "category": "未分类",
-      "tags": [],
-      "updatedAt": "2026-07-08T11:57:34.920Z"
-    },
-    {
-      "name": "Tap Ripple Hand",
-      "file": "./lotties/未分类/tap-ripple-hand-feca155c.json",
-      "category": "未分类",
+      "name": "发布按钮",
+      "file": "./lotties/放置完成-发布Loci/observation-mode-success-burst-lottie-3182a276.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "放置完成-发布Loci",
+      "interactionType": "",
       "tags": [
-        "点击引导"
+        "发布成功动效（较重）"
       ],
-      "updatedAt": "2026-07-08T09:09:34.495Z"
-    },
-    {
-      "name": "phone-ratio-transparent-composite",
-      "file": "./lotties/未分类/combined-phone-transparent-bb6ad0d7.json",
-      "category": "未分类",
-      "tags": [
-        "发布成功"
-      ],
-      "updatedAt": "2026-07-08T06:07:10.291Z"
-    },
-    {
-      "name": "phone-ratio-transparent-composite",
-      "file": "./lotties/未分类/combined-phone-transparent-with-bottom-2234af49.json",
-      "category": "未分类",
-      "tags": [
-        "发布成功"
-      ],
-      "updatedAt": "2026-07-08T06:07:09.421Z"
-    },
-    {
-      "name": "iPhone mixed normal and burst speed lines - 390x844 fewer tiny featured",
-      "file": "./lotties/未分类/light-rays-burst-detail-final-390x844-20260708-5926df3a.json",
-      "category": "未分类",
-      "tags": [
-        "创建成功"
-      ],
-      "updatedAt": "2026-07-08T06:07:08.608Z"
-    },
-    {
-      "name": "iPhone mixed normal and burst speed lines - 390x844 inner featured",
-      "file": "./lotties/未分类/light-rays-burst-detail-vortex-dots-390x844-inner-featured-38f7ab0a.json",
-      "category": "未分类",
-      "tags": [
-        "创建成功"
-      ],
-      "updatedAt": "2026-07-07T07:57:01.868Z"
-    },
-    {
-      "name": "iPhone mixed normal and burst speed lines",
-      "file": "./lotties/未分类/light-rays-burst-detail-vortex-dots-20260707-5f798bf2.json",
-      "category": "未分类",
-      "tags": [
-        "创建成功"
-      ],
-      "updatedAt": "2026-07-07T07:11:42.417Z"
-    },
-    {
-      "name": "合成 1",
-      "file": "./lotties/未分类/booom-66705abe.json",
-      "category": "未分类",
-      "tags": [
-        "礼花1"
-      ],
-      "updatedAt": "2026-07-07T05:08:17.476Z"
-    },
-    {
-      "name": "礼花",
-      "file": "./lotties/未分类/booom2-b19ee9e8.json",
-      "category": "未分类",
-      "tags": [
-        "礼花2"
-      ],
-      "updatedAt": "2026-07-07T05:08:17.476Z"
-    },
-    {
-      "name": "星星交互",
-      "file": "./lotties/星星交互/lottie-12866bf5-transparent-9a3db469.json",
-      "category": "星星交互",
-      "tags": [
-        "星星交互"
-      ],
-      "updatedAt": "2026-07-07T05:08:17.476Z"
-    },
-    {
-      "name": "星星旋转",
-      "file": "./lotties/星星旋转/star-loader-lottie-536f4511.json",
-      "category": "星星旋转",
-      "tags": [
-        "星星旋转"
-      ],
-      "updatedAt": "2026-07-02T05:14:58.512Z"
-    },
-    {
-      "name": "扫描周围",
-      "file": "./lotties/扫描周围/topia-fixed-dot-scanner-22b38971.json",
-      "category": "扫描周围",
-      "tags": [
-        "扫描周围"
-      ],
-      "updatedAt": "2026-06-26T12:26:23.186Z"
-    },
-    {
-      "name": "引导组合",
-      "file": "./lotties/未分类/combined-gestures-lottie-98b580bd.json",
-      "category": "引导组合",
-      "tags": [
-        "引导组合"
-      ],
-      "updatedAt": "2026-06-26T06:47:18.827Z"
+      "mimeType": "application/json",
+      "updatedAt": "2026-07-21T08:56:25.929Z"
     },
     {
       "name": "点赞按钮/点赞后状态",
       "file": "./lotties/近景观察模式/like-heart-float-248724bd.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
       "category": "近景观察模式",
+      "interactionType": "",
       "tags": [
         "点击反馈"
       ],
-      "updatedAt": "2026-06-26T06:47:17.989Z"
+      "mimeType": "application/json",
+      "updatedAt": "2026-07-21T08:56:25.929Z"
     },
     {
-      "name": "Loci Found Light Confetti",
-      "file": "./lotties/未分类/loci-found-light-confetti-lottie-a751e6a9.json",
-      "category": "未分类",
+      "name": "Topia Fixed Dot Scanner",
+      "file": "./lotties/扫描周围/topia-fixed-dot-scanner-22b38971.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "扫描周围",
+      "interactionType": "",
       "tags": [
-        "成功动效（轻）"
+        "扫描周围"
       ],
-      "updatedAt": "2026-06-26T06:47:17.352Z"
-    },
-    {
-      "name": "发布按钮",
-      "file": "./lotties/放置完成-发布Loci/observation-mode-success-burst-lottie-3182a276.json",
-      "category": "放置完成-发布Loci",
-      "tags": [
-        "发布成功动效（较重）"
-      ],
-      "updatedAt": "2026-06-26T06:47:16.641Z"
-    },
-    {
-      "name": "Loci本体",
-      "file": "./lotties/主界面-信息收集成功/xhs-transparent-burst-lottie-de9974f5.json",
-      "category": "主界面-信息收集成功",
-      "tags": [
-        "成功动效（轻）"
-      ],
-      "updatedAt": "2026-06-26T06:47:15.935Z"
-    },
-    {
-      "name": "Angry Avatar Transition Variant",
-      "file": "./lotties/未分类/calm-to-angry-transition-ef530190.json",
-      "category": "未分类",
-      "tags": [
-        "错误提示"
-      ],
-      "updatedAt": "2026-06-26T06:47:15.353Z"
+      "mimeType": "application/json",
+      "updatedAt": "2026-07-21T08:56:25.929Z"
     },
     {
       "name": "Angry Avatar Loop",
       "file": "./lotties/未分类/angry-shake-loop-84db7466.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
       "category": "未分类",
+      "interactionType": "",
       "tags": [
         "错误提示"
       ],
-      "updatedAt": "2026-06-26T06:47:14.555Z"
+      "mimeType": "application/json",
+      "updatedAt": "2026-07-21T08:56:25.929Z"
+    },
+    {
+      "name": "Angry Avatar Loop",
+      "file": "./lotties/未分类/angry-shake-loop-vector-only-326acf97.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [],
+      "mimeType": "application/json",
+      "updatedAt": "2026-07-21T08:56:25.929Z"
+    },
+    {
+      "name": "合成 1",
+      "file": "./lotties/未分类/booom-66705abe.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [
+        "礼花1"
+      ],
+      "mimeType": "application/json",
+      "updatedAt": "2026-07-21T08:56:25.929Z"
+    },
+    {
+      "name": "礼花",
+      "file": "./lotties/未分类/booom2-b19ee9e8.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [
+        "礼花2"
+      ],
+      "mimeType": "application/json",
+      "updatedAt": "2026-07-21T08:56:25.929Z"
+    },
+    {
+      "name": "Angry Avatar Transition Variant",
+      "file": "./lotties/未分类/calm-to-angry-transition-ef530190.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [
+        "错误提示"
+      ],
+      "mimeType": "application/json",
+      "updatedAt": "2026-07-21T08:56:25.929Z"
+    },
+    {
+      "name": "Angry Avatar Transition Variant",
+      "file": "./lotties/未分类/calm-to-angry-transition-vector-only-abf9b4f6.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [],
+      "mimeType": "application/json",
+      "updatedAt": "2026-07-21T08:56:25.929Z"
+    },
+    {
+      "name": "Designed Celebration Fireworks - Bold Multicolor Variant",
+      "file": "./lotties/未分类/celebration-fireworks-animation2-spray-bold-variant-d890b6ca.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [],
+      "mimeType": "application/json",
+      "updatedAt": "2026-07-21T08:56:25.929Z"
+    },
+    {
+      "name": "Designed Celebration Fireworks - Celebrate Launch",
+      "file": "./lotties/未分类/celebration-fireworks-animation2-spray-celebratory-81039722.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [],
+      "mimeType": "application/json",
+      "updatedAt": "2026-07-21T08:56:25.929Z"
+    },
+    {
+      "name": "Combined Gesture Animations",
+      "file": "./lotties/未分类/combined-gestures-lottie-98b580bd.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "引导组合",
+      "interactionType": "",
+      "tags": [
+        "引导组合"
+      ],
+      "mimeType": "application/json",
+      "updatedAt": "2026-07-21T08:56:25.929Z"
+    },
+    {
+      "name": "phone-ratio-transparent-composite",
+      "file": "./lotties/未分类/combined-phone-transparent-bb6ad0d7.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [
+        "发布成功"
+      ],
+      "mimeType": "application/json",
+      "updatedAt": "2026-07-21T08:56:25.929Z"
+    },
+    {
+      "name": "phone-ratio-transparent-composite",
+      "file": "./lotties/未分类/combined-phone-transparent-with-bottom-2234af49.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [
+        "发布成功"
+      ],
+      "mimeType": "application/json",
+      "updatedAt": "2026-07-21T08:56:25.929Z"
+    },
+    {
+      "name": "iPhone mixed normal and burst speed lines - 390x844 fewer tiny featured",
+      "file": "./lotties/未分类/light-rays-burst-detail-final-390x844-20260708-5926df3a.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [
+        "创建成功"
+      ],
+      "mimeType": "application/json",
+      "updatedAt": "2026-07-21T08:56:25.929Z"
+    },
+    {
+      "name": "iPhone mixed normal and burst speed lines",
+      "file": "./lotties/未分类/light-rays-burst-detail-vortex-dots-20260707-5f798bf2.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [
+        "创建成功"
+      ],
+      "mimeType": "application/json",
+      "updatedAt": "2026-07-21T08:56:25.929Z"
+    },
+    {
+      "name": "iPhone mixed normal and burst speed lines - 390x844 inner featured",
+      "file": "./lotties/未分类/light-rays-burst-detail-vortex-dots-390x844-inner-featured-38f7ab0a.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [
+        "创建成功"
+      ],
+      "mimeType": "application/json",
+      "updatedAt": "2026-07-21T08:56:25.929Z"
+    },
+    {
+      "name": "Loci Found Light Confetti",
+      "file": "./lotties/未分类/loci-found-light-confetti-lottie-a751e6a9.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [
+        "成功动效（轻）"
+      ],
+      "mimeType": "application/json",
+      "updatedAt": "2026-07-21T08:56:25.929Z"
+    },
+    {
+      "name": "Swipe Slide Gesture",
+      "file": "./lotties/未分类/swipe-slide-hand-c364b914.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [],
+      "mimeType": "application/json",
+      "updatedAt": "2026-07-21T08:56:25.929Z"
+    },
+    {
+      "name": "Swipe Slide Right Gesture",
+      "file": "./lotties/未分类/swipe-slide-right-hand-07a0bf46.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [],
+      "mimeType": "application/json",
+      "updatedAt": "2026-07-21T08:56:25.929Z"
+    },
+    {
+      "name": "Tap Ripple Hand",
+      "file": "./lotties/未分类/tap-ripple-hand-feca155c.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [
+        "点击引导"
+      ],
+      "mimeType": "application/json",
+      "updatedAt": "2026-07-21T08:56:25.929Z"
+    },
+    {
+      "name": "XHS Video Particle Opening",
+      "file": "./lotties/星星交互/lottie-12866bf5-transparent-9a3db469.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "星星交互",
+      "interactionType": "",
+      "tags": [
+        "星星交互"
+      ],
+      "mimeType": "application/json",
+      "updatedAt": "2026-07-21T08:56:25.929Z"
+    },
+    {
+      "name": "Star Look Blink Spin Loader",
+      "file": "./lotties/星星旋转/star-loader-lottie-536f4511.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "星星旋转",
+      "interactionType": "",
+      "tags": [
+        "星星旋转"
+      ],
+      "mimeType": "application/json",
+      "updatedAt": "2026-07-21T08:56:25.929Z"
+    },
+    {
+      "name": "Loci本体",
+      "file": "./lotties/主界面-信息收集成功/xhs-transparent-burst-lottie-de9974f5.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "主界面-信息收集成功",
+      "interactionType": "",
+      "tags": [
+        "成功动效（轻）"
+      ],
+      "mimeType": "application/json",
+      "updatedAt": "2026-07-21T08:56:25.929Z"
     },
     {
       "name": "Loci 本体",
       "file": "./lotties/Loci-形象交互/finger-arc-swipe-lottie-d68e76cf.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
       "category": "Loci 形象交互",
+      "interactionType": "",
       "tags": [
         "手势引导与反馈"
       ],
-      "updatedAt": "2026-06-26T06:47:13.946Z"
-    },
-    {
-      "name": "Loci 本体",
-      "file": "./lotties/Loci-形象交互/pinch-zoom-e2b981da.json",
-      "category": "Loci 形象交互",
-      "tags": [
-        "手势引导与反馈"
-      ],
-      "updatedAt": "2026-06-26T06:47:13.270Z"
-    },
-    {
-      "name": "Loci 本体",
-      "file": "./lotties/Loci-形象交互/pinch-close-gesture-lottie-57855346.json",
-      "category": "Loci 形象交互",
-      "tags": [
-        "手势引导与反馈"
-      ],
-      "updatedAt": "2026-06-26T06:47:12.478Z"
-    },
-    {
-      "name": "形象加载区域",
-      "file": "./lotties/Loci-形象更换加载/ripple-loader-transparent-lottie-85954e72.json",
-      "category": "Loci 形象更换加载",
-      "tags": [
-        "波动加载"
-      ],
-      "updatedAt": "2026-06-26T06:47:11.562Z"
-    },
-    {
-      "name": "新 Loci 形象、完成提示",
-      "file": "./lotties/Loci-生成完成/celebration-fireworks-floating-loop-lottie-4be803b9.json",
-      "category": "Loci 生成完成",
-      "tags": [
-        "生成完成动效（重",
-        "强视觉）"
-      ],
-      "updatedAt": "2026-06-26T06:47:09.311Z"
-    },
-    {
-      "name": "新 Loci 形象、完成提示",
-      "file": "./lotties/Loci-生成完成/celebration-fireworks-floating-hold-lottie-80707e2b.json",
-      "category": "Loci 生成完成",
-      "tags": [
-        "生成完成动效（重",
-        "强视觉）"
-      ],
-      "updatedAt": "2026-06-26T06:47:08.201Z"
-    },
-    {
-      "name": "新 Loci 形象、完成提示",
-      "file": "./lotties/Loci-生成完成/celebration-fireworks-designed-lottie-e129597b.json",
-      "category": "Loci 生成完成",
-      "tags": [
-        "生成完成动效（重",
-        "强视觉）"
-      ],
-      "updatedAt": "2026-06-26T06:47:07.020Z"
-    },
-    {
-      "name": "地球、小人、飞机",
-      "file": "./lotties/Loci-生成中/dxxr-b9e9d9f2.json",
-      "category": "Loci 生成中",
-      "tags": [
-        "循环动效"
-      ],
-      "updatedAt": "2026-06-26T06:47:06.099Z"
-    },
-    {
-      "name": "地球、小人、飞机",
-      "file": "./lotties/Loci-生成中/dx2-bd45dcc7.json",
-      "category": "Loci 生成中",
-      "tags": [
-        "循环动效"
-      ],
-      "updatedAt": "2026-06-26T06:47:02.638Z"
-    },
-    {
-      "name": "开始创作引导",
-      "file": "./lotties/未分类/heartbeat-plus-icon-10636c64.json",
-      "category": "未分类",
-      "tags": [
-        "功能启动邀请"
-      ],
-      "updatedAt": "2026-06-26T06:46:58.601Z"
-    },
-    {
-      "name": "创作功能引导",
-      "file": "./lotties/New-Loci-生成完成后主页/teal-hollow-glow-506d1d3e.json",
-      "category": "主界面-功能指导",
-      "tags": [
-        "突出功能",
-        "原理相同",
-        "做一个就可以"
-      ],
-      "updatedAt": "2026-06-26T06:46:57.846Z"
-    },
-    {
-      "name": "创作功能引导",
-      "file": "./lotties/New-Loci-生成完成后主页/teal-hollow-glow-soft-embedded-3e547de1.json",
-      "category": "主界面-功能指导",
-      "tags": [
-        "突出功能",
-        "原理相同",
-        "做一个就可以"
-      ],
-      "updatedAt": "2026-06-26T06:46:57.147Z"
+      "mimeType": "application/json",
+      "updatedAt": "2026-07-21T08:56:25.929Z"
     },
     {
       "name": "开启相机权限",
       "file": "./lotties/未分类/crt-glitch-black-fog-exit-c71014b9.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
       "category": "未分类",
+      "interactionType": "",
       "tags": [
         "权限开启反馈"
       ],
-      "updatedAt": "2026-06-26T06:46:56.188Z"
+      "mimeType": "application/json",
+      "updatedAt": "2026-07-21T08:56:25.928Z"
     },
     {
-      "name": "引导开启相机权限",
-      "file": "./lotties/主界面-权限开启/pixel-glitch-tv-static-af7fa028.json",
-      "category": "主界面-权限开启",
+      "name": "开始创作引导",
+      "file": "./lotties/未分类/heartbeat-plus-icon-10636c64.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
       "tags": [
-        "未知状态反馈"
+        "功能启动邀请"
       ],
-      "updatedAt": "2026-06-26T06:46:54.023Z"
+      "mimeType": "application/json",
+      "updatedAt": "2026-07-21T08:56:25.928Z"
     },
     {
       "name": "引导开启相机权限",
       "file": "./lotties/主界面-权限开启/crt-glitch-black-fog-static-a92ccf8e.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
       "category": "主界面-权限开启",
+      "interactionType": "",
       "tags": [
         "未知状态反馈"
       ],
-      "updatedAt": "2026-06-26T06:46:53.120Z"
+      "mimeType": "application/json",
+      "updatedAt": "2026-07-21T08:56:25.928Z"
+    },
+    {
+      "name": "引导开启相机权限",
+      "file": "./lotties/主界面-权限开启/pixel-glitch-tv-static-af7fa028.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "主界面-权限开启",
+      "interactionType": "",
+      "tags": [
+        "未知状态反馈"
+      ],
+      "mimeType": "application/json",
+      "updatedAt": "2026-07-21T08:56:25.928Z"
+    },
+    {
+      "name": "新 Loci 形象、完成提示",
+      "file": "./lotties/Loci-生成完成/celebration-fireworks-designed-lottie-e129597b.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "Loci 生成完成",
+      "interactionType": "",
+      "tags": [
+        "生成完成动效（重",
+        "强视觉）"
+      ],
+      "mimeType": "application/json",
+      "updatedAt": "2026-07-21T08:56:25.928Z"
+    },
+    {
+      "name": "新 Loci 形象、完成提示",
+      "file": "./lotties/Loci-生成完成/celebration-fireworks-floating-hold-lottie-80707e2b.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "Loci 生成完成",
+      "interactionType": "",
+      "tags": [
+        "生成完成动效（重",
+        "强视觉）"
+      ],
+      "mimeType": "application/json",
+      "updatedAt": "2026-07-21T08:56:25.928Z"
+    },
+    {
+      "name": "新 Loci 形象、完成提示",
+      "file": "./lotties/Loci-生成完成/celebration-fireworks-floating-loop-lottie-4be803b9.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "Loci 生成完成",
+      "interactionType": "",
+      "tags": [
+        "生成完成动效（重",
+        "强视觉）"
+      ],
+      "mimeType": "application/json",
+      "updatedAt": "2026-07-21T08:56:25.928Z"
+    },
+    {
+      "name": "地球、小人、飞机",
+      "file": "./lotties/Loci-生成中/dx2-bd45dcc7.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "Loci 生成中",
+      "interactionType": "",
+      "tags": [
+        "循环动效"
+      ],
+      "mimeType": "application/json",
+      "updatedAt": "2026-07-21T08:56:25.928Z"
+    },
+    {
+      "name": "地球、小人、飞机",
+      "file": "./lotties/Loci-生成中/dxxr-b9e9d9f2.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "Loci 生成中",
+      "interactionType": "",
+      "tags": [
+        "循环动效"
+      ],
+      "mimeType": "application/json",
+      "updatedAt": "2026-07-21T08:56:25.928Z"
+    },
+    {
+      "name": "形象加载区域",
+      "file": "./lotties/Loci-形象更换加载/ripple-loader-transparent-lottie-85954e72.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "Loci 形象更换加载",
+      "interactionType": "",
+      "tags": [
+        "波动加载"
+      ],
+      "mimeType": "application/json",
+      "updatedAt": "2026-07-21T08:56:25.928Z"
+    },
+    {
+      "name": "Loci 本体",
+      "file": "./lotties/Loci-形象交互/pinch-close-gesture-lottie-57855346.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "Loci 形象交互",
+      "interactionType": "",
+      "tags": [
+        "手势引导与反馈"
+      ],
+      "mimeType": "application/json",
+      "updatedAt": "2026-07-21T08:56:25.928Z"
+    },
+    {
+      "name": "Loci 本体",
+      "file": "./lotties/Loci-形象交互/pinch-zoom-e2b981da.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "Loci 形象交互",
+      "interactionType": "",
+      "tags": [
+        "手势引导与反馈"
+      ],
+      "mimeType": "application/json",
+      "updatedAt": "2026-07-21T08:56:25.928Z"
+    },
+    {
+      "name": "创作功能引导",
+      "file": "./lotties/New-Loci-生成完成后主页/teal-hollow-glow-506d1d3e.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "主界面-功能指导",
+      "interactionType": "",
+      "tags": [
+        "突出功能",
+        "原理相同",
+        "做一个就可以"
+      ],
+      "mimeType": "application/json",
+      "updatedAt": "2026-07-21T08:56:25.928Z"
+    },
+    {
+      "name": "创作功能引导",
+      "file": "./lotties/New-Loci-生成完成后主页/teal-hollow-glow-soft-embedded-3e547de1.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "主界面-功能指导",
+      "interactionType": "",
+      "tags": [
+        "突出功能",
+        "原理相同",
+        "做一个就可以"
+      ],
+      "mimeType": "application/json",
+      "updatedAt": "2026-07-21T08:56:25.928Z"
     },
     {
       "name": "引导开启相机权限",
       "file": "./lotties/主界面-权限开启/crt-glitch-black-fog-reveal-552ebb5a.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
       "category": "主界面-权限开启",
+      "interactionType": "",
       "tags": [
         "未知状态反馈"
       ],
-      "updatedAt": "2026-06-26T06:46:52.315Z"
+      "mimeType": "application/json",
+      "updatedAt": "2026-07-21T08:56:25.927Z"
     }
-  ]
+  ],
+  "kindLabels": {
+    "lottie": "Lottie",
+    "hevc": "HEVC with Alpha",
+    "gif": "GIF",
+    "rive": "Rive",
+    "practice": "实践型动效"
+  }
 }

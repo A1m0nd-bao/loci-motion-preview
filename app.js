@@ -1,9 +1,11 @@
 const gallery = document.querySelector("#gallery");
 const quickRail = document.querySelector("#quickRail");
+const formatNav = document.querySelector("#formatNav");
 const sidebar = document.querySelector(".sidebar");
 const empty = document.querySelector("#empty");
 const count = document.querySelector("#count");
 const search = document.querySelector("#search");
+const kindSelect = document.querySelector("#kind");
 const category = document.querySelector("#category");
 const speed = document.querySelector("#speed");
 const speedLabel = document.querySelector("#speedLabel");
@@ -19,7 +21,7 @@ const quickTemplate = document.querySelector("#quickCard");
 const detailDialog = document.querySelector("#detailDialog");
 const detailTitle = document.querySelector("#detailTitle");
 const detailPath = document.querySelector("#detailPath");
-const detailPlayer = document.querySelector("#detailPlayer");
+const detailHost = document.querySelector("#detailPlayer");
 const detailClose = document.querySelector("#detailClose");
 const detailPlay = document.querySelector("#detailPlay");
 const detailPause = document.querySelector("#detailPause");
@@ -43,15 +45,26 @@ let motions = [];
 let visibleMotions = [];
 let activeMotion = null;
 let activeMotionInfo = null;
-let detailAnimationItem = null;
+let detailController = null;
 let timelineRaf = 0;
+
 const motionInfoCache = new Map();
-const previewBackgroundKey = "lottie-preview-bg";
+const previewBackgroundKey = "motion-preview-bg";
 const defaultPreviewBackground = "#0a0c10";
 const previewPosterFrameRatio = 0.35;
-const lazyPlayerObserver =
+const kindLabels = {
+  all: "全部格式",
+  lottie: "Lottie",
+  hevc: "HEVC with Alpha",
+  gif: "GIF",
+  rive: "Rive",
+  practice: "实践型动效",
+  video: "视频",
+};
+const previewControllers = new WeakMap();
+const lazyHostObserver =
   "IntersectionObserver" in window
-    ? new IntersectionObserver(handlePlayerVisibility, {
+    ? new IntersectionObserver(handleHostVisibility, {
         root: null,
         rootMargin: "360px",
         threshold: 0.01,
@@ -71,18 +84,74 @@ async function loadManifest() {
     const response = await fetch(`./manifest.json?time=${Date.now()}`);
     if (!response.ok) throw new Error("manifest not found");
     const data = await response.json();
-    motions = Array.isArray(data.items) ? data.items : [];
+    const remoteLabels = data.kindLabels && typeof data.kindLabels === "object" ? data.kindLabels : {};
+    Object.assign(kindLabels, remoteLabels);
+    motions = Array.isArray(data.items) ? data.items.map(normalizeMotion) : [];
   } catch {
     motions = [];
   }
 
+  populateKinds();
   populateCategories();
   render();
 }
 
+function normalizeMotion(item) {
+  const kind = normalizeKind(item.kind || item.format || item.kindLabel || item.file);
+  return {
+    ...item,
+    kind,
+    kindLabel: item.kindLabel || kindLabels[kind] || kind,
+    category: item.category || "未分类",
+    tags: Array.isArray(item.tags) ? item.tags : [],
+  };
+}
+
+function populateKinds() {
+  const selected = kindSelect.value || "all";
+  const counts = countBy(motions, (item) => item.kind || "practice");
+  const kinds = Object.keys(counts).sort((a, b) => labelForKind(a).localeCompare(labelForKind(b), "zh-Hans-CN"));
+
+  kindSelect.innerHTML = '<option value="all">全部格式</option>';
+  for (const kind of kinds) {
+    const option = document.createElement("option");
+    option.value = kind;
+    option.textContent = `${labelForKind(kind)} (${counts[kind]})`;
+    kindSelect.append(option);
+  }
+  kindSelect.value = kinds.includes(selected) ? selected : "all";
+
+  formatNav.replaceChildren();
+  formatNav.append(createFormatButton("all", "全部格式", motions.length, "总览所有动效资产"));
+  for (const kind of kinds) {
+    formatNav.append(createFormatButton(kind, labelForKind(kind), counts[kind], formatDescription(kind)));
+  }
+}
+
+function createFormatButton(kind, label, amount, description) {
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = `format-button${kindSelect.value === kind ? " active" : ""}`;
+  button.dataset.kind = kind;
+  button.innerHTML = `<strong></strong><span class="format-count"></span><span></span>`;
+  button.querySelector("strong").textContent = label;
+  button.querySelector(".format-count").textContent = String(amount);
+  button.querySelector("span:last-child").textContent = description;
+  button.addEventListener("click", () => {
+    kindSelect.value = kind;
+    populateCategories();
+    render();
+  });
+  return button;
+}
+
 function populateCategories() {
   const selected = category.value || "all";
-  const categories = [...new Set(motions.map((item) => item.category || "未分类"))].sort();
+  const selectedKind = kindSelect.value;
+  const source = selectedKind === "all" ? motions : motions.filter((item) => item.kind === selectedKind);
+  const categories = [...new Set(source.map((item) => item.category || "未分类"))].sort((a, b) =>
+    a.localeCompare(b, "zh-Hans-CN"),
+  );
   category.innerHTML = '<option value="all">全部分类</option>';
 
   for (const item of categories) {
@@ -97,18 +166,20 @@ function populateCategories() {
 
 function render() {
   const query = search.value.trim().toLowerCase();
+  const selectedKind = kindSelect.value;
   const selectedCategory = category.value;
 
   visibleMotions = motions.filter((item) => {
-    const haystack = [item.name, item.file, item.category, ...(item.tags || [])]
+    const haystack = [item.name, item.file, item.kindLabel, item.category, item.interactionType, ...(item.tags || [])]
       .join(" ")
       .toLowerCase();
     const matchesSearch = !query || haystack.includes(query);
+    const matchesKind = selectedKind === "all" || item.kind === selectedKind;
     const matchesCategory = selectedCategory === "all" || item.category === selectedCategory;
-    return matchesSearch && matchesCategory;
+    return matchesSearch && matchesKind && matchesCategory;
   });
 
-  lazyPlayerObserver?.disconnect();
+  lazyHostObserver?.disconnect();
   gallery.replaceChildren();
   quickRail.replaceChildren();
   count.textContent = String(visibleMotions.length);
@@ -119,17 +190,18 @@ function render() {
     quickRail.append(createQuickCard(motion));
   }
 
-  syncPlayers();
+  updateFormatActiveState();
+  syncPreviewHosts();
 }
 
 function createQuickCard(motion) {
   const node = quickTemplate.content.firstElementChild.cloneNode(true);
-  const player = node.querySelector("lottie-player");
+  const host = node.querySelector(".media-host");
   const label = node.querySelector("span");
 
-  setupPreviewPlayer(player, motion.file);
+  setupPreviewHost(host, motion);
   label.textContent = motion.name || filenameToName(motion.file);
-  node.title = `${label.textContent} - ${motion.category || "未分类"}`;
+  node.title = `${label.textContent} - ${motion.kindLabel} - ${motion.category || "未分类"}`;
   node.addEventListener("click", () => openDetail(motion));
 
   return node;
@@ -137,7 +209,7 @@ function createQuickCard(motion) {
 
 function createCard(motion) {
   const node = template.content.firstElementChild.cloneNode(true);
-  const player = node.querySelector("lottie-player");
+  const host = node.querySelector(".media-host");
   const title = node.querySelector("h2");
   const path = node.querySelector(".path");
   const resolution = node.querySelector(".resolution");
@@ -146,18 +218,19 @@ function createCard(motion) {
   const openLink = node.querySelector("a");
   const downloadLink = node.querySelector(".download-link");
 
-  setupPreviewPlayer(player, motion.file);
+  setupPreviewHost(host, motion);
 
   title.textContent = motion.name || filenameToName(motion.file);
   path.textContent = motion.file;
   path.title = motion.file;
-  resolution.textContent = "分辨率 --";
-  badge.textContent = motion.category || "未分类";
+  resolution.textContent = "规格 --";
+  badge.textContent = motion.kindLabel || labelForKind(motion.kind);
   openLink.href = motion.file;
   downloadLink.href = motion.file;
   downloadLink.download = getDownloadName(motion);
 
-  for (const tag of motion.tags || []) {
+  const tagValues = [motion.category, motion.interactionType, ...(motion.tags || [])].filter(Boolean);
+  for (const tag of tagValues) {
     const tagNode = document.createElement("span");
     tagNode.textContent = tag;
     tags.append(tagNode);
@@ -171,11 +244,9 @@ function createCard(motion) {
       return;
     }
 
-    if (action === "play") {
-      loadPreviewPlayer(player);
-      player.play();
-    }
-    if (action === "pause") player.pause();
+    const controller = ensurePreviewController(host, motion);
+    if (action === "play") controller.play?.();
+    if (action === "pause") controller.pause?.();
     if (action === "detail") openDetail(motion);
     if (action === "copy") {
       await navigator.clipboard.writeText(motion.file);
@@ -189,114 +260,63 @@ function createCard(motion) {
   return node;
 }
 
-function syncPlayers() {
-  const players = document.querySelectorAll(".gallery lottie-player, .quick-rail lottie-player");
-  for (const player of players) {
-    syncPreviewPlayer(player);
-  }
-}
+function setupPreviewHost(host, motion) {
+  host.dataset.loaded = "false";
+  host.dataset.visible = "false";
+  host.dataset.kind = motion.kind;
+  host.dataset.src = motion.file;
 
-function setupPreviewPlayer(player, file) {
-  player.dataset.src = file;
-  player.dataset.loaded = "false";
-  player.dataset.visible = "false";
-  player.dataset.posterReady = "false";
-  player.removeAttribute("src");
-  player.removeAttribute("autoplay");
-  player.setAttribute("loading", "lazy");
-  player.setSpeed?.(Number(speed.value));
-  player.toggleAttribute("loop", loop.checked);
-  player.addEventListener("ready", () => showPreviewPoster(player));
-  player.addEventListener("load", () => showPreviewPoster(player));
-
-  if (lazyPlayerObserver) {
-    lazyPlayerObserver.observe(player);
+  if (lazyHostObserver) {
+    lazyHostObserver.observe(host);
     return;
   }
 
-  player.dataset.visible = "true";
-  loadPreviewPlayer(player);
-  syncPreviewPlayer(player);
-  updateVisibleCardResolution(player);
+  host.dataset.visible = "true";
+  ensurePreviewController(host, motion);
+  syncPreviewHost(host);
+  updateVisibleCardResolution(host, motion);
 }
 
-function handlePlayerVisibility(entries) {
+function handleHostVisibility(entries) {
   for (const entry of entries) {
-    const player = entry.target;
-    player.dataset.visible = entry.isIntersecting ? "true" : "false";
+    const host = entry.target;
+    const motion = motions.find((item) => item.file === host.dataset.src);
+    host.dataset.visible = entry.isIntersecting ? "true" : "false";
 
-    if (entry.isIntersecting) {
-      loadPreviewPlayer(player);
-      syncPreviewPlayer(player);
-      updateVisibleCardResolution(player);
+    if (entry.isIntersecting && motion) {
+      ensurePreviewController(host, motion);
+      syncPreviewHost(host);
+      updateVisibleCardResolution(host, motion);
     } else {
-      player.pause?.();
+      previewControllers.get(host)?.pause?.();
     }
   }
 }
 
-function loadPreviewPlayer(player) {
-  if (player.dataset.loaded === "true") return;
-  const src = player.dataset.src;
-  if (!src) return;
+function ensurePreviewController(host, motion) {
+  if (previewControllers.has(host)) return previewControllers.get(host);
+  const controller = createMediaController(host, motion, { detail: false });
+  previewControllers.set(host, controller);
+  host.dataset.loaded = "true";
+  return controller;
+}
 
-  player.setAttribute("src", src);
-  player.dataset.loaded = "true";
-
-  if (typeof player.load === "function") {
-    Promise.resolve(player.load(src))
-      .then(() => {
-        showPreviewPoster(player);
-        syncPreviewPlayer(player);
-      })
-      .catch(() => {
-        player.setAttribute("src", src);
-      });
+function syncPreviewHosts() {
+  for (const host of document.querySelectorAll(".gallery .media-host, .quick-rail .media-host")) {
+    syncPreviewHost(host);
   }
 }
 
-function syncPreviewPlayer(player) {
-  if (player.dataset.loaded !== "true" && autoplay.checked && player.dataset.visible === "true") {
-    loadPreviewPlayer(player);
-  }
+function syncPreviewHost(host) {
+  const controller = previewControllers.get(host);
+  if (!controller) return;
 
-  if (player.dataset.loaded === "true") {
-    player.setSpeed(Number(speed.value));
-    player.toggleAttribute("loop", loop.checked);
-  }
+  controller.setSpeed?.(Number(speed.value));
+  controller.setLoop?.(loop.checked);
 
-  const shouldPlay = autoplay.checked && player.dataset.visible === "true";
-  if (shouldPlay) player.play?.();
-  if (!shouldPlay) {
-    player.pause?.();
-    showPreviewPoster(player);
-  }
-}
-
-async function showPreviewPoster(player) {
-  if (player.dataset.loaded !== "true" || player.dataset.posterReady === "true") return;
-  if (autoplay.checked && player.dataset.visible === "true") return;
-  if (typeof player.getLottie !== "function") return;
-
-  try {
-    const animation = await player.getLottie();
-    const totalFrames = Number(animation?.totalFrames) || Number(animation?.animationData?.op) || 0;
-    if (!totalFrames || player.dataset.posterReady === "true") return;
-
-    const frame = Math.max(1, Math.floor(totalFrames * previewPosterFrameRatio));
-    animation.goToAndStop(frame, true);
-    player.dataset.posterReady = "true";
-  } catch {
-    // Some custom-element load paths report readiness before the animation object exists.
-    window.setTimeout(() => showPreviewPoster(player), 120);
-  }
-}
-
-function updateVisibleCardResolution(player) {
-  const resolution = player.closest(".motion-card")?.querySelector(".resolution");
-  if (!resolution || resolution.dataset.loaded === "true") return;
-  resolution.dataset.loaded = "true";
-  updateResolution(player.dataset.src, resolution);
+  const shouldPlay = autoplay.checked && host.dataset.visible === "true";
+  if (shouldPlay) controller.play?.();
+  if (!shouldPlay) controller.pause?.();
 }
 
 async function openDetail(motion) {
@@ -308,17 +328,15 @@ async function openDetail(motion) {
   stopTimelineLoop();
   resetTimeline();
   detailResolution.textContent = "--";
-  detailAnimationItem = null;
-  detailPlayer.pause();
-  detailPlayer.removeAttribute("src");
-  detailPlayer.setSpeed(Number(detailSpeed.value));
-  detailPlayer.toggleAttribute("loop", detailLoop.checked);
+  detailController?.destroy?.();
+  detailController = null;
+  detailHost.replaceChildren();
   detailOpen.href = motion.file;
   detailDownload.href = motion.file;
   detailDownload.download = getDownloadName(motion);
   detailTags.replaceChildren();
 
-  const tags = motion.tags?.length ? motion.tags : [motion.category || "未分类"];
+  const tags = [motion.kindLabel || labelForKind(motion.kind), motion.category, motion.interactionType, ...(motion.tags || [])].filter(Boolean);
   for (const tag of tags) {
     const node = document.createElement("span");
     node.textContent = tag;
@@ -326,17 +344,172 @@ async function openDetail(motion) {
   }
 
   detailDialog.showModal();
-  updateDetailInfo(motion.file);
+  updateDetailInfo(motion);
   await nextFrame();
-  await loadDetailAnimation(motion.file);
-  detailPlayer.play();
+  detailController = createMediaController(detailHost, motion, { detail: true });
+  syncDetailPlayer();
+  await detailController.ready?.();
+  await updateDetailInfo(motion);
+  detailController.play?.();
   startTimelineLoop();
+}
+
+function createMediaController(host, motion, options = {}) {
+  host.replaceChildren();
+  if (motion.kind === "lottie") return createLottieController(host, motion, options);
+  if (motion.kind === "gif") return createImageController(host, motion);
+  if (motion.kind === "hevc" || motion.kind === "video") return createVideoController(host, motion);
+  if (motion.kind === "rive") return createRiveController(host, motion);
+  return createFallbackController(host, motion);
+}
+
+function createLottieController(host, motion, options = {}) {
+  const player = document.createElement("lottie-player");
+  player.setAttribute("background", "transparent");
+  player.setAttribute("loading", "lazy");
+  player.setAttribute("src", motion.file);
+  host.append(player);
+  let animationItem = null;
+
+  const ready = async () => {
+    if (typeof player.load === "function") {
+      try {
+        await player.load(motion.file);
+      } catch {
+        player.setAttribute("src", motion.file);
+      }
+    }
+
+    try {
+      if (typeof player.getLottie === "function") animationItem = await player.getLottie();
+      if (!options.detail && animationItem) {
+        const totalFrames = Number(animationItem.totalFrames) || Number(animationItem.animationData?.op) || 0;
+        const frame = Math.max(1, Math.floor(totalFrames * previewPosterFrameRatio));
+        animationItem.goToAndStop(frame, true);
+      }
+    } catch {
+      animationItem = null;
+    }
+  };
+
+  const readyPromise = ready();
+  return {
+    element: player,
+    ready: () => readyPromise,
+    play: () => player.play?.(),
+    pause: () => player.pause?.(),
+    setLoop: (value) => player.toggleAttribute("loop", value),
+    setSpeed: (value) => player.setSpeed?.(value),
+    seek: (frame) => animationItem?.goToAndStop?.(frame, true) || player.seek?.(frame),
+    getFrame: () => Number(animationItem?.currentFrame || 0),
+    destroy: () => player.pause?.(),
+  };
+}
+
+function createImageController(host, motion) {
+  const image = document.createElement("img");
+  image.src = motion.file;
+  image.alt = motion.name || filenameToName(motion.file);
+  image.loading = "lazy";
+  host.append(image);
+  return {
+    element: image,
+    play: () => {},
+    pause: () => {},
+    setLoop: () => {},
+    setSpeed: () => {},
+    destroy: () => {},
+  };
+}
+
+function createVideoController(host, motion) {
+  const video = document.createElement("video");
+  video.src = motion.file;
+  video.muted = true;
+  video.playsInline = true;
+  video.preload = "metadata";
+  video.controls = false;
+  host.append(video);
+  return {
+    element: video,
+    ready: () =>
+      new Promise((resolve) => {
+        if (Number.isFinite(video.duration) && video.duration > 0) resolve();
+        else video.addEventListener("loadedmetadata", resolve, { once: true });
+      }),
+    play: () => video.play().catch(() => {}),
+    pause: () => video.pause(),
+    setLoop: (value) => {
+      video.loop = value;
+    },
+    setSpeed: (value) => {
+      video.playbackRate = value;
+    },
+    seek: (frame) => {
+      if (!activeMotionInfo?.frameRate) return;
+      video.currentTime = Number(frame) / activeMotionInfo.frameRate;
+    },
+    getFrame: () => (activeMotionInfo?.frameRate ? video.currentTime * activeMotionInfo.frameRate : 0),
+    destroy: () => video.pause(),
+  };
+}
+
+function createRiveController(host, motion) {
+  const canvas = document.createElement("canvas");
+  canvas.width = 640;
+  canvas.height = 640;
+  host.append(canvas);
+  let riveInstance = null;
+
+  if (window.rive?.Rive) {
+    riveInstance = new window.rive.Rive({
+      src: motion.file,
+      canvas,
+      autoplay: false,
+      fit: window.rive.Fit?.Contain,
+    });
+  } else {
+    host.replaceChildren(createFallbackNode("Rive 预览器加载失败", "可以打开文件下载查看"));
+  }
+
+  return {
+    element: canvas,
+    play: () => riveInstance?.play?.(),
+    pause: () => riveInstance?.pause?.(),
+    setLoop: () => {},
+    setSpeed: () => {},
+    destroy: () => riveInstance?.cleanup?.(),
+  };
+}
+
+function createFallbackController(host, motion) {
+  const node = createFallbackNode(motion.kindLabel || labelForKind(motion.kind), "点击查看可打开完整文件");
+  host.append(node);
+  return {
+    element: node,
+    play: () => {},
+    pause: () => {},
+    setLoop: () => {},
+    setSpeed: () => {},
+    destroy: () => {},
+  };
+}
+
+function createFallbackNode(title, subtitle) {
+  const node = document.createElement("div");
+  node.className = "fallback-preview";
+  const strong = document.createElement("strong");
+  const span = document.createElement("span");
+  strong.textContent = title;
+  span.textContent = subtitle;
+  node.append(strong, span);
+  return node;
 }
 
 function syncDetailPlayer() {
   detailSpeedLabel.textContent = `${detailSpeed.value}x`;
-  detailPlayer.setSpeed(Number(detailSpeed.value));
-  detailPlayer.toggleAttribute("loop", detailLoop.checked);
+  detailController?.setSpeed?.(Number(detailSpeed.value));
+  detailController?.setLoop?.(detailLoop.checked);
 }
 
 function applyPreviewBackground(value, options = {}) {
@@ -362,65 +535,43 @@ function normalizeHexColor(value) {
   return "";
 }
 
-async function loadDetailAnimation(file) {
-  detailPlayer.setAttribute("src", file);
-
-  if (typeof detailPlayer.load === "function") {
-    try {
-      await detailPlayer.load(file);
-      await captureDetailAnimationItem();
-      return;
-    } catch {
-      detailPlayer.setAttribute("src", file);
-    }
-  }
-
-  await nextFrame();
-  await captureDetailAnimationItem();
-}
-
-async function captureDetailAnimationItem() {
-  if (typeof detailPlayer.getLottie !== "function") {
-    detailAnimationItem = null;
-    return;
-  }
-
+async function updateVisibleCardResolution(host, motion) {
+  const resolution = host.closest(".motion-card")?.querySelector(".resolution");
+  if (!resolution || resolution.dataset.loaded === "true") return;
+  resolution.dataset.loaded = "true";
   try {
-    detailAnimationItem = await detailPlayer.getLottie();
+    const info = await getMotionInfo(motion);
+    resolution.textContent = `规格 ${formatInfoSummary(info, motion)}`;
   } catch {
-    detailAnimationItem = null;
+    resolution.textContent = "规格 未知";
   }
 }
 
-function nextFrame() {
-  return new Promise((resolve) => window.requestAnimationFrame(resolve));
-}
-
-async function updateDetailInfo(file) {
+async function updateDetailInfo(motion) {
   try {
-    const info = await getMotionInfo(file);
-    if (activeMotion?.file !== file) return;
-    applyMotionInfo(info);
+    const info = await getMotionInfo(motion);
+    if (activeMotion?.file !== motion.file) return;
+    applyMotionInfo(info, motion);
     detailResolution.textContent = formatResolution(info);
   } catch {
-    if (activeMotion?.file !== file) return;
+    if (activeMotion?.file !== motion.file) return;
     resetTimeline("未知");
     detailResolution.textContent = "未知";
   }
 }
 
-async function updateResolution(file, node) {
-  try {
-    const info = await getMotionInfo(file);
-    node.textContent = `分辨率 ${formatResolution(info)}`;
-  } catch {
-    node.textContent = "分辨率 未知";
-  }
+async function getMotionInfo(motion) {
+  if (motionInfoCache.has(motion.file)) return motionInfoCache.get(motion.file);
+  let info;
+  if (motion.kind === "lottie") info = await getLottieInfo(motion.file);
+  else if (motion.kind === "hevc" || motion.kind === "video") info = await getVideoInfo(motion.file);
+  else if (motion.kind === "gif") info = await getImageInfo(motion.file);
+  else info = { width: 0, height: 0, frames: 0, duration: 0, frameRate: 0 };
+  motionInfoCache.set(motion.file, info);
+  return info;
 }
 
-async function getMotionInfo(file) {
-  if (motionInfoCache.has(file)) return motionInfoCache.get(file);
-
+async function getLottieInfo(file) {
   const response = await fetch(file);
   if (!response.ok) throw new Error("Unable to read lottie json");
   const data = await response.json();
@@ -431,9 +582,50 @@ async function getMotionInfo(file) {
   const height = Number(data.h) || 0;
   const frames = Math.max(0, Math.round(outPoint - inPoint));
   const duration = frameRate > 0 ? frames / frameRate : 0;
-  const info = { frameRate, inPoint, outPoint, width, height, frames, duration };
-  motionInfoCache.set(file, info);
-  return info;
+  return { frameRate, inPoint, outPoint, width, height, frames, duration };
+}
+
+function getVideoInfo(file) {
+  return new Promise((resolve, reject) => {
+    const video = document.createElement("video");
+    video.preload = "metadata";
+    video.onloadedmetadata = () => {
+      const duration = Number(video.duration) || 0;
+      const frameRate = 30;
+      resolve({
+        width: video.videoWidth || 0,
+        height: video.videoHeight || 0,
+        frameRate,
+        frames: Math.round(duration * frameRate),
+        duration,
+      });
+    };
+    video.onerror = reject;
+    video.src = file;
+  });
+}
+
+function getImageInfo(file) {
+  return new Promise((resolve, reject) => {
+    const image = new Image();
+    image.onload = () =>
+      resolve({
+        width: image.naturalWidth || 0,
+        height: image.naturalHeight || 0,
+        frames: 0,
+        duration: 0,
+        frameRate: 0,
+      });
+    image.onerror = reject;
+    image.src = file;
+  });
+}
+
+function formatInfoSummary(info, motion) {
+  const resolution = formatResolution(info);
+  if (motion.kind === "lottie" && info.frames) return `${resolution} / ${info.frames.toLocaleString()}帧`;
+  if ((motion.kind === "hevc" || motion.kind === "video") && info.duration) return `${resolution} / ${formatSeconds(info.duration)}s`;
+  return resolution;
 }
 
 function formatResolution(info) {
@@ -453,23 +645,24 @@ function resetTimeline(label = "--") {
   detailTotalDuration.textContent = label;
 }
 
-function applyMotionInfo(info) {
+function applyMotionInfo(info, motion) {
   activeMotionInfo = info;
-  detailTimeline.disabled = info.frames <= 0;
+  const hasTimeline = (motion.kind === "lottie" || motion.kind === "hevc" || motion.kind === "video") && info.frames > 0;
+  detailTimeline.disabled = !hasTimeline;
   detailTimeline.min = "0";
-  detailTimeline.max = String(info.frames);
+  detailTimeline.max = String(info.frames || 0);
   detailTimeline.value = "0";
-  detailTotalFrames.textContent = info.frames.toLocaleString();
-  detailTotalDuration.textContent = `${formatSeconds(info.duration)}s`;
+  detailTotalFrames.textContent = info.frames ? info.frames.toLocaleString() : "--";
+  detailTotalDuration.textContent = info.duration ? `${formatSeconds(info.duration)}s` : "--";
   updateTimelineLabels(0);
 }
 
 function updateTimelineLabels(frame) {
   if (!activeMotionInfo) return;
-  const safeFrame = Math.min(activeMotionInfo.frames, Math.max(0, Math.round(frame)));
+  const safeFrame = Math.min(activeMotionInfo.frames || 0, Math.max(0, Math.round(frame)));
   const currentSeconds = activeMotionInfo.frameRate > 0 ? safeFrame / activeMotionInfo.frameRate : 0;
-  detailCurrentFrame.textContent = safeFrame.toLocaleString();
-  detailCurrentTime.textContent = `${formatSeconds(currentSeconds)}s`;
+  detailCurrentFrame.textContent = activeMotionInfo.frames ? safeFrame.toLocaleString() : "--";
+  detailCurrentTime.textContent = activeMotionInfo.duration ? `${formatSeconds(currentSeconds)}s` : "--";
   detailTimeline.value = String(safeFrame);
 }
 
@@ -477,15 +670,9 @@ function seekDetailFrame(frame) {
   const targetFrame = Number(frame);
   if (!Number.isFinite(targetFrame)) return;
 
-  detailPlayer.pause();
+  detailController?.pause?.();
   stopTimelineLoop();
-
-  if (detailAnimationItem && typeof detailAnimationItem.goToAndStop === "function") {
-    detailAnimationItem.goToAndStop(targetFrame, true);
-  } else if (typeof detailPlayer.seek === "function") {
-    detailPlayer.seek(targetFrame);
-  }
-
+  detailController?.seek?.(targetFrame);
   updateTimelineLabels(targetFrame);
 }
 
@@ -493,9 +680,8 @@ function startTimelineLoop() {
   stopTimelineLoop();
 
   const tick = () => {
-    if (activeMotionInfo) {
-      const frame = Number(detailAnimationItem?.currentFrame ?? detailTimeline.value);
-      updateTimelineLabels(frame);
+    if (activeMotionInfo && detailController?.getFrame) {
+      updateTimelineLabels(detailController.getFrame());
     }
 
     timelineRaf = window.requestAnimationFrame(tick);
@@ -510,6 +696,10 @@ function stopTimelineLoop() {
   timelineRaf = 0;
 }
 
+function nextFrame() {
+  return new Promise((resolve) => window.requestAnimationFrame(resolve));
+}
+
 function formatSeconds(value) {
   if (!Number.isFinite(value)) return "0.00";
   return value >= 10 ? value.toFixed(1) : value.toFixed(2);
@@ -519,7 +709,7 @@ function filenameToName(file) {
   return file
     .split("/")
     .pop()
-    .replace(/\.json$/i, "")
+    .replace(/\.[^.]+$/i, "")
     .replace(/[-_]+/g, " ");
 }
 
@@ -528,63 +718,123 @@ function getDownloadName(motion) {
 
   try {
     const url = new URL(motion.file, window.location.href);
-    const fileName = decodeURIComponent(url.pathname.split("/").pop() || "");
-    if (fileName.toLowerCase().endsWith(".json")) return fileName;
+    return decodeURIComponent(url.pathname.split("/").pop() || "") || `${slugifyFileName(motion.name || "motion")}.json`;
   } catch {
-    const fileName = String(motion.file || "").split("/").pop() || "";
-    if (fileName.toLowerCase().endsWith(".json")) return fileName;
+    return String(motion.file || "").split("/").pop() || `${slugifyFileName(motion.name || "motion")}.json`;
   }
-
-  return `${slugifyFileName(motion.name || "lottie-animation")}.json`;
 }
 
 function slugifyFileName(value) {
-  return String(value)
-    .trim()
-    .replace(/\.json$/i, "")
-    .replace(/[\\/:*?"<>|]+/g, "-")
-    .replace(/\s+/g, "-")
-    .replace(/-+/g, "-")
-    .replace(/^-|-$/g, "")
-    .slice(0, 80) || "lottie-animation";
+  return (
+    String(value)
+      .trim()
+      .replace(/\.[^.]+$/i, "")
+      .replace(/[\\/:*?"<>|]+/g, "-")
+      .replace(/\s+/g, "-")
+      .replace(/-+/g, "-")
+      .replace(/^-|-$/g, "")
+      .slice(0, 80) || "motion"
+  );
 }
 
 function addLocalFiles(files) {
-  const jsonFiles = [...files].filter((file) => file.name.toLowerCase().endsWith(".json"));
-  const localItems = jsonFiles.map((file) => ({
-    name: filenameToName(file.name),
-    file: URL.createObjectURL(file),
-    downloadName: file.name,
-    category: "临时预览",
-    tags: ["local"],
-  }));
+  const localItems = [...files]
+    .filter((file) => inferKindFromFile(file.name, file.type))
+    .map((file) => {
+      const kind = inferKindFromFile(file.name, file.type);
+      return {
+        name: filenameToName(file.name),
+        file: URL.createObjectURL(file),
+        downloadName: file.name,
+        kind,
+        kindLabel: labelForKind(kind),
+        category: "临时预览",
+        tags: ["local"],
+        mimeType: file.type,
+      };
+    });
 
   motions = [...localItems, ...motions.filter((item) => item.category !== "临时预览")];
+  populateKinds();
   populateCategories();
   category.value = "临时预览";
   render();
 }
 
+function normalizeKind(value) {
+  const text = String(value || "").trim().toLowerCase();
+  if (text.includes("lottie") || text.includes("json") || text.endsWith(".lottie")) return "lottie";
+  if (text.includes("hevc") || text.includes("alpha") || text.includes("透明视频")) return "hevc";
+  if (text.includes("gif") || text.endsWith(".gif")) return "gif";
+  if (text.includes("riv") || text.includes("rive") || text.endsWith(".riv")) return "rive";
+  if (text.includes("实践") || text.includes("app") || text.includes("交互") || /\.html?$/i.test(text)) return "practice";
+  if (/\.(mov|mp4|m4v|webm)$/i.test(text)) return "hevc";
+  return "practice";
+}
+
+function inferKindFromFile(name, type = "") {
+  const text = `${name} ${type}`.toLowerCase();
+  if (text.includes("application/json") || /\.json$/i.test(name) || /\.lottie$/i.test(name)) return "lottie";
+  if (text.includes("image/gif") || /\.gif$/i.test(name)) return "gif";
+  if (/\.riv$/i.test(name)) return "rive";
+  if (/\.html?$/i.test(name)) return "practice";
+  if (text.includes("video/") || /\.(mov|mp4|m4v|webm)$/i.test(name)) return "hevc";
+  return "";
+}
+
+function labelForKind(kind) {
+  return kindLabels[kind] || kind || "实践型动效";
+}
+
+function formatDescription(kind) {
+  return {
+    lottie: "JSON / dotLottie",
+    hevc: "透明视频或短片",
+    gif: "轻量循环图",
+    rive: "状态机与交互动画",
+    practice: "App 内交互原型",
+    video: "普通视频预览",
+  }[kind] || "自定义格式";
+}
+
+function countBy(list, getter) {
+  return list.reduce((result, item) => {
+    const key = getter(item);
+    result[key] = (result[key] || 0) + 1;
+    return result;
+  }, {});
+}
+
+function updateFormatActiveState() {
+  for (const button of formatNav.querySelectorAll(".format-button")) {
+    button.classList.toggle("active", button.dataset.kind === kindSelect.value);
+  }
+}
+
 search.addEventListener("input", render);
+kindSelect.addEventListener("change", () => {
+  populateCategories();
+  render();
+});
 category.addEventListener("change", render);
 refresh.addEventListener("click", loadManifest);
 
 speed.addEventListener("input", () => {
   speedLabel.textContent = `${speed.value}x`;
-  syncPlayers();
+  syncPreviewHosts();
 });
 
 previewBg.addEventListener("input", (event) => applyPreviewBackground(event.target.value));
-autoplay.addEventListener("change", syncPlayers);
-loop.addEventListener("change", syncPlayers);
+autoplay.addEventListener("change", syncPreviewHosts);
+loop.addEventListener("change", syncPreviewHosts);
 fileInput.addEventListener("change", (event) => addLocalFiles(event.target.files));
 detailClose.addEventListener("click", () => detailDialog.close());
 detailPlay.addEventListener("click", () => {
-  detailPlayer.play();
+  detailController?.play?.();
   startTimelineLoop();
 });
 detailPause.addEventListener("click", () => {
-  detailPlayer.pause();
+  detailController?.pause?.();
   stopTimelineLoop();
 });
 detailSpeed.addEventListener("input", syncDetailPlayer);
@@ -606,7 +856,9 @@ detailDialog.addEventListener("click", (event) => {
 });
 
 detailDialog.addEventListener("close", () => {
-  detailPlayer.pause();
+  detailController?.pause?.();
+  detailController?.destroy?.();
+  detailController = null;
   stopTimelineLoop();
 });
 

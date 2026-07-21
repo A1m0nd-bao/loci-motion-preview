@@ -51,14 +51,13 @@ async function syncOnce(config, options = {}) {
 
       if (!existing) {
         const fileName = buildFileName(entry, fileRef, token);
-        const categoryDir = slugify(entry.category) || "未分类";
-        const outputPath = join(root, config.outputDir, categoryDir, fileName);
-        await downloadJson(token, outputPath, config.identity);
+        const outputPath = buildOutputPath(config, entry, fileName);
+        await downloadAsset(token, outputPath, config.identity, entry.kind);
         output = relativePath(outputPath);
         console.log(`[lark-sync] Synced ${output}`);
       } else if (hasRemoteFileChanged(existing, fileRef)) {
         const outputPath = join(root, output);
-        await downloadJson(token, outputPath, config.identity);
+        await downloadAsset(token, outputPath, config.identity, entry.kind);
         console.log(`[lark-sync] Updated file content for row ${entry.rowNumber}: ${output}`);
       }
 
@@ -68,8 +67,12 @@ async function syncOnce(config, options = {}) {
         slot: fileRef.slot,
         rowNumber: entry.rowNumber,
         name: entry.name,
+        kind: entry.kind,
+        format: entry.format,
         category: entry.category,
+        interactionType: entry.interactionType,
         tags: entry.tags,
+        mimeType: fileRef.mimeType || "",
         fileName: fileRef.name || "",
         fileSize: fileRef.size || 0,
         syncedAt: existing?.syncedAt || new Date().toISOString(),
@@ -99,7 +102,7 @@ async function syncOnce(config, options = {}) {
       console.log(`[lark-sync] Removed stale attachment: ${item.output || sourceId}`);
 
       if (item.output && !activeOutputs.has(item.output)) {
-        await removeSyncedFile(item.output, config.outputDir);
+        await removeSyncedFile(item.output, [config.outputDir, config.legacyLottieDir]);
       }
     }
   }
@@ -109,7 +112,7 @@ async function syncOnce(config, options = {}) {
     await run("node", ["./scripts/generate-manifest.mjs"], { cwd: root });
     if (options.publish) await publishChanges();
   } else {
-    console.log("[lark-sync] No new JSON files.");
+    console.log("[lark-sync] No new motion assets.");
     if (options.publish) await pushPendingCommits();
   }
 }
@@ -121,7 +124,11 @@ function hasStateChanged(current, next) {
     current.slot !== next.slot ||
     current.rowNumber !== next.rowNumber ||
     current.name !== next.name ||
+    current.kind !== next.kind ||
+    current.format !== next.format ||
     current.category !== next.category ||
+    current.interactionType !== next.interactionType ||
+    current.mimeType !== next.mimeType ||
     current.fileName !== next.fileName ||
     Number(current.fileSize || 0) !== Number(next.fileSize || 0) ||
     JSON.stringify(current.tags || []) !== JSON.stringify(next.tags || [])
@@ -135,8 +142,8 @@ function hasRemoteFileChanged(existing, fileRef) {
 }
 
 async function publishChanges() {
-  await run("git", ["add", "lotties", "manifest.json"], { cwd: root });
-  const status = await run("git", ["status", "--short", "lotties", "manifest.json"], { cwd: root });
+  await run("git", ["add", "lotties", "motions", "manifest.json"], { cwd: root });
+  const status = await run("git", ["status", "--short", "lotties", "motions", "manifest.json"], { cwd: root });
   if (!status.trim()) {
     console.log("[lark-sync] Nothing to publish.");
     await pushPendingCommits();
@@ -144,7 +151,7 @@ async function publishChanges() {
   }
 
   const stamp = new Date().toISOString().replace(/\.\d{3}Z$/, "Z");
-  await run("git", ["commit", "-m", `Sync Lottie files ${stamp}`], { cwd: root });
+  await run("git", ["commit", "-m", `Sync motion assets ${stamp}`], { cwd: root });
   await run("git", ["push"], { cwd: root });
   console.log("[lark-sync] Published changes to GitHub Pages.");
 }
@@ -184,7 +191,8 @@ async function loadConfig() {
   if (!config.identity) config.identity = "user";
   if (!config.pollSeconds) config.pollSeconds = 30;
   if (config.pruneMissing == null) config.pruneMissing = true;
-  if (!config.outputDir) config.outputDir = "lotties";
+  if (!config.outputDir) config.outputDir = "motions";
+  if (!config.legacyLottieDir) config.legacyLottieDir = "lotties";
   if (!config.stateFile) config.stateFile = ".sync/lark-state.json";
   if (!config.columns?.file) {
     throw new Error('Config needs columns.file, for example "JSON文件" or ["JSON文件", "附件1"].');
@@ -210,7 +218,9 @@ function parseRows(rows, config) {
   const headers = rows[headerIndex].map((cell) => normalizeCellText(cell));
   const columnIndex = {
     name: findColumn(headers, config.columns.name),
+    kind: findColumn(headers, config.columns.kind || config.columns.format),
     category: findColumn(headers, config.columns.category),
+    interactionType: findColumn(headers, config.columns.interactionType),
     tags: findColumn(headers, config.columns.tags),
     files: findColumns(headers, config.columns.file),
   };
@@ -235,7 +245,10 @@ function parseRows(rows, config) {
     return {
       rowNumber,
       name: readCell(row, columnIndex.name),
+      kind: resolveKind(readCell(row, columnIndex.kind), files),
+      format: resolveKindLabel(readCell(row, columnIndex.kind), files),
       category: readCell(row, columnIndex.category) || "未分类",
+      interactionType: readCell(row, columnIndex.interactionType),
       tags: splitTags(readCell(row, columnIndex.tags)),
       files,
     };
@@ -305,7 +318,8 @@ function extractFileRefs(cell) {
       const url = value.url || value.link;
       const name = value.name || value.file_name || value.text;
       const size = Number(value.size || value.file_size || 0);
-      if (token || url) refs.push({ token, url, name, size });
+      const mimeType = value.mimeType || value.mime_type || "";
+      if (token || url) refs.push({ token, url, name, size, mimeType });
       Object.values(value).forEach(visit);
     }
   };
@@ -331,7 +345,7 @@ async function inspectUrl(url, identity) {
   return data.token || data.file_token || data.obj_token || "";
 }
 
-async function downloadJson(token, outputPath, identity) {
+async function downloadAsset(token, outputPath, identity, kind) {
   await mkdir(dirname(outputPath), { recursive: true });
   const tempPath = `${outputPath}.download`;
   await removeIfExists(tempPath);
@@ -348,7 +362,7 @@ async function downloadJson(token, outputPath, identity) {
     ],
     { cwd: root },
   );
-  await ensureJsonFile(tempPath);
+  if (kind === "lottie") await ensureJsonFile(tempPath);
   await rename(tempPath, outputPath);
 }
 
@@ -360,9 +374,11 @@ async function removeIfExists(filePath) {
   }
 }
 
-async function removeSyncedFile(output, outputDir) {
+async function removeSyncedFile(output, outputDirs) {
   const normalized = output.replaceAll("\\", "/");
-  if (!normalized.startsWith(`${outputDir.replaceAll("\\", "/")}/`)) return;
+  const dirs = Array.isArray(outputDirs) ? outputDirs : [outputDirs];
+  const inManagedDir = dirs.filter(Boolean).some((dir) => normalized.startsWith(`${dir.replaceAll("\\", "/")}/`));
+  if (!inManagedDir) return;
   await removeIfExists(join(root, normalized));
 }
 
@@ -418,9 +434,80 @@ async function extractLottieJson(filePath) {
 
 function buildFileName(entry, fileRef, token) {
   const base = fileRef.name || entry.name || token;
-  const stem = slugify(base.replace(/\.json$/i, ""));
+  const extension = resolveExtension(base, fileRef.mimeType, entry.kind);
+  const stem = slugify(base.replace(extname(base), ""));
   const hash = createHash("sha1").update(token).digest("hex").slice(0, 8);
-  return `${stem || "motion"}-${hash}.json`;
+  return `${stem || "motion"}-${hash}${extension}`;
+}
+
+function buildOutputPath(config, entry, fileName) {
+  const categoryDir = slugify(entry.category) || "未分类";
+  if (entry.kind === "lottie" && config.legacyLottieDir) {
+    return join(root, config.legacyLottieDir, categoryDir, fileName);
+  }
+
+  const kindDir = slugify(entry.format || entry.kind) || "motion";
+  return join(root, config.outputDir, kindDir, categoryDir, fileName);
+}
+
+function resolveKind(value, files = []) {
+  const explicit = normalizeKind(value);
+  if (explicit) return explicit;
+  for (const file of files) {
+    const inferred = inferKindFromFile(file.name || file.url || "", file.mimeType || "");
+    if (inferred) return inferred;
+  }
+  return "lottie";
+}
+
+function resolveKindLabel(value, files = []) {
+  const text = String(value || "").trim();
+  if (text) return text;
+  const kind = resolveKind("", files);
+  return {
+    lottie: "Lottie",
+    hevc: "HEVC with Alpha",
+    gif: "GIF",
+    rive: "Rive",
+    practice: "实践型动效",
+  }[kind] || kind;
+}
+
+function normalizeKind(value) {
+  const text = String(value || "").trim().toLowerCase();
+  if (!text) return "";
+  if (text.includes("lottie") || text.includes("json")) return "lottie";
+  if (text.includes("hevc") || text.includes("alpha") || text.includes("透明视频")) return "hevc";
+  if (text.includes("gif")) return "gif";
+  if (text.includes("riv") || text.includes("rive")) return "rive";
+  if (text.includes("实践") || text.includes("app") || text.includes("交互")) return "practice";
+  return "";
+}
+
+function inferKindFromFile(name, mimeType = "") {
+  const lower = `${name} ${mimeType}`.toLowerCase();
+  if (lower.includes("application/json") || lower.endsWith(".json") || lower.endsWith(".lottie")) return "lottie";
+  if (lower.includes("image/gif") || lower.endsWith(".gif")) return "gif";
+  if (lower.endsWith(".riv")) return "rive";
+  if (lower.endsWith(".html") || lower.endsWith(".htm")) return "practice";
+  if (lower.includes("video/") || /\.(mov|mp4|m4v|webm)$/i.test(name)) {
+    return lower.includes("hevc") || lower.includes("alpha") || lower.endsWith(".mov") ? "hevc" : "video";
+  }
+  return "";
+}
+
+function resolveExtension(name, mimeType = "", kind = "") {
+  const current = extname(name || "").toLowerCase();
+  if (current) return current;
+  if (kind === "lottie") return ".json";
+  if (kind === "gif") return ".gif";
+  if (kind === "rive") return ".riv";
+  if (kind === "practice") return ".html";
+  if (String(mimeType).includes("quicktime")) return ".mov";
+  if (String(mimeType).includes("webm")) return ".webm";
+  if (String(mimeType).includes("gif")) return ".gif";
+  if (String(mimeType).includes("json")) return ".json";
+  return ".mp4";
 }
 
 function slugify(value) {
