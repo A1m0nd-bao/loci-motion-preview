@@ -180,10 +180,14 @@ h1 {
 
 .home-blinds {
   position: absolute;
-  inset: 0;
+  top: 50%;
+  left: 50%;
   z-index: -2;
-  opacity: 0.78;
+  width: min(1080px, calc(100vw - 24px));
+  height: min(1080px, calc(100vw - 24px));
+  opacity: 0.9;
   pointer-events: none;
+  transform: translate(-50%, -47%);
 }
 
 .home-view::after {
