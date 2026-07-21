@@ -6,8 +6,8 @@ const gradientConfig = {
   gradientColors: ["#6ef8a4", "#1f8ffd"],
   angle: 0,
   noise: 0.3,
-  blindCount: 30,
-  blindMinWidth: 60,
+  blindCount: 14,
+  blindMinWidth: 96,
   mouseDampening: 0.2,
   mirrorGradient: false,
   spotlightRadius: 0.4,
@@ -63,7 +63,7 @@ function initGradientBlinds(target) {
     uniforms.uBlindCount.value =
       rect.width >= gradientConfig.blindCount * gradientConfig.blindMinWidth
         ? gradientConfig.blindCount
-        : Math.max(12, Math.min(gradientConfig.blindCount, Math.floor(rect.width / 36)));
+        : Math.max(8, Math.min(gradientConfig.blindCount, Math.floor(rect.width / 88)));
   };
 
   const resizeObserver = new ResizeObserver(resize);
@@ -78,6 +78,7 @@ function initGradientBlinds(target) {
     ];
   };
   window.addEventListener("pointermove", onPointerMove, { passive: true });
+  window.addEventListener("mousemove", onPointerMove, { passive: true });
 
   const render = (time) => {
     frame = window.requestAnimationFrame(render);
@@ -94,6 +95,7 @@ function initGradientBlinds(target) {
     () => {
       window.cancelAnimationFrame(frame);
       window.removeEventListener("pointermove", onPointerMove);
+      window.removeEventListener("mousemove", onPointerMove);
       resizeObserver.disconnect();
     },
     { once: true },
@@ -179,10 +181,10 @@ void main() {
   }
   vec3 base = gradientColor(clamp(t, 0.0, 1.0));
 
-  float verticalMask = smoothstep(1.18, 0.12, abs(centered.y));
+  float verticalMask = smoothstep(1.26, 0.08, abs(centered.y));
   float horizontalMask = smoothstep(aspect + 0.12, 0.18, abs(centered.x));
   float centerLift = smoothstep(1.08, 0.0, length(vec2(tilted.x * 0.48, tilted.y * 1.12)));
-  float mask = clamp((verticalMask * horizontalMask) * (0.34 + centerLift * 0.66), 0.0, 1.0);
+  float mask = clamp((verticalMask * horizontalMask) * (0.2 + centerLift * 0.8), 0.0, 1.0);
 
   float blindCount = max(1.0, uBlindCount);
   float stripe = fract((tilted.x + 1.4) * blindCount + sin(iTime * 0.18) * 0.08);
@@ -195,7 +197,7 @@ void main() {
   vec2 mouse = vec2(iMouse.x, iMouse.y);
   float radius = max(0.001, uSpotlightRadius);
   float softness = max(0.001, uSpotlightSoftness);
-  float spotlight = smoothstep(radius + softness * 0.35, radius * 0.16, distance(uv, mouse)) * uSpotlightOpacity;
+  float spotlight = smoothstep(radius + softness * 0.42, radius * 0.12, distance(uv, mouse)) * uSpotlightOpacity;
   float coreGlow = smoothstep(0.76, 0.0, length(vec2(tilted.x * 0.72, tilted.y * 1.1)));
   float noise = (rand(gl_FragCoord.xy + iTime) - 0.5) * uNoise * 0.16;
 
@@ -203,7 +205,7 @@ void main() {
   vec3 color = base * (0.12 + blade * (0.42 + bladeShade * 0.36));
   color += glowColor * shine * blade * 0.72;
   color += glowColor * edgeGlow * 0.36;
-  color += spotlight * glowColor * 0.38;
+  color += spotlight * glowColor * 1.15;
   color += coreGlow * glowColor * 0.46;
   color += noise * 0.6;
   gl_FragColor = vec4(color * mask, mask);
