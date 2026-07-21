@@ -2,6 +2,20 @@ import { Renderer, Program, Mesh, Triangle } from "https://esm.sh/ogl@1.0.11";
 
 const container = document.querySelector("#homeBlinds");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const gradientConfig = {
+  gradientColors: ["#6ef8a4", "#1f8ffd"],
+  angle: 0,
+  noise: 0.3,
+  blindCount: 30,
+  blindMinWidth: 60,
+  mouseDampening: 0.2,
+  mirrorGradient: false,
+  spotlightRadius: 0.4,
+  spotlightSoftness: 1,
+  spotlightOpacity: 1,
+  distortAmount: 0,
+  shineDirection: "left",
+};
 
 function initGradientBlinds(target) {
   const renderer = new Renderer({
@@ -16,7 +30,7 @@ function initGradientBlinds(target) {
   canvas.style.display = "block";
   target.append(canvas);
 
-  const colors = ["#0a0c10", "#48d6c6", "#f5c66a", "#161b23"].map(hexToRgb);
+  const colors = normalizeColors(gradientConfig.gradientColors).map(hexToRgb);
   const uniforms = {
     iResolution: { value: [1, 1, 1] },
     iMouse: { value: [0.5, 0.5] },
@@ -25,6 +39,15 @@ function initGradientBlinds(target) {
     uColor1: { value: colors[1] },
     uColor2: { value: colors[2] },
     uColor3: { value: colors[3] },
+    uAngle: { value: gradientConfig.angle },
+    uNoise: { value: gradientConfig.noise },
+    uBlindCount: { value: gradientConfig.blindCount },
+    uSpotlightRadius: { value: gradientConfig.spotlightRadius },
+    uSpotlightSoftness: { value: gradientConfig.spotlightSoftness },
+    uSpotlightOpacity: { value: gradientConfig.spotlightOpacity },
+    uMirrorGradient: { value: gradientConfig.mirrorGradient ? 1 : 0 },
+    uDistortAmount: { value: gradientConfig.distortAmount },
+    uShineDirection: { value: gradientConfig.shineDirection === "right" ? 1 : -1 },
   };
 
   const program = new Program(gl, { vertex, fragment, uniforms });
@@ -37,6 +60,10 @@ function initGradientBlinds(target) {
     const rect = target.getBoundingClientRect();
     renderer.setSize(Math.max(1, rect.width), Math.max(1, rect.height));
     uniforms.iResolution.value = [gl.drawingBufferWidth, gl.drawingBufferHeight, 1];
+    uniforms.uBlindCount.value = Math.min(
+      gradientConfig.blindCount,
+      Math.max(1, Math.floor(rect.width / gradientConfig.blindMinWidth)),
+    );
   };
 
   const resizeObserver = new ResizeObserver(resize);
@@ -54,8 +81,8 @@ function initGradientBlinds(target) {
 
   const render = (time) => {
     frame = window.requestAnimationFrame(render);
-    smoothPointer[0] += (lastPointer[0] - smoothPointer[0]) * 0.08;
-    smoothPointer[1] += (lastPointer[1] - smoothPointer[1]) * 0.08;
+    smoothPointer[0] += (lastPointer[0] - smoothPointer[0]) * gradientConfig.mouseDampening;
+    smoothPointer[1] += (lastPointer[1] - smoothPointer[1]) * gradientConfig.mouseDampening;
     uniforms.iMouse.value = smoothPointer;
     uniforms.iTime.value = time * 0.001;
     renderer.render({ scene: mesh });
@@ -71,6 +98,13 @@ function initGradientBlinds(target) {
     },
     { once: true },
   );
+}
+
+function normalizeColors(input) {
+  const fallback = ["#6ef8a4", "#1f8ffd"];
+  const colors = Array.isArray(input) && input.length ? input : fallback;
+  while (colors.length < 4) colors.push(colors[colors.length - 1]);
+  return colors.slice(0, 4);
 }
 
 function hexToRgb(hex) {
@@ -105,6 +139,15 @@ uniform vec3 uColor0;
 uniform vec3 uColor1;
 uniform vec3 uColor2;
 uniform vec3 uColor3;
+uniform float uAngle;
+uniform float uNoise;
+uniform float uBlindCount;
+uniform float uSpotlightRadius;
+uniform float uSpotlightSoftness;
+uniform float uSpotlightOpacity;
+uniform float uMirrorGradient;
+uniform float uDistortAmount;
+uniform float uShineDirection;
 varying vec2 vUv;
 
 float rand(vec2 p) {
@@ -123,20 +166,30 @@ void main() {
   vec2 centered = uv * 2.0 - 1.0;
   centered.x *= aspect;
 
-  float angle = -0.38;
-  mat2 rot = mat2(cos(angle), -sin(angle), sin(angle), cos(angle));
+  centered += vec2(
+    sin(centered.y * 5.0 + iTime * 0.24),
+    cos(centered.x * 4.0 + iTime * 0.2)
+  ) * uDistortAmount * 0.08;
+
+  mat2 rot = mat2(cos(uAngle), -sin(uAngle), sin(uAngle), cos(uAngle));
   vec2 tilted = rot * centered;
   float t = tilted.x * 0.34 + 0.52;
+  if (uMirrorGradient > 0.5) {
+    t = 1.0 - abs(1.0 - 2.0 * fract(t));
+  }
   vec3 base = gradientColor(clamp(t, 0.0, 1.0));
 
-  float blindCount = max(8.0, iResolution.x / 92.0);
+  float blindCount = max(1.0, uBlindCount);
   float stripe = fract((tilted.x + 1.4) * blindCount + sin(iTime * 0.18) * 0.08);
   float blinds = smoothstep(0.16, 0.86, stripe);
-  float shine = pow(1.0 - abs(stripe - 0.5) * 2.0, 3.0);
+  float shineBase = uShineDirection < 0.0 ? 1.0 - stripe : stripe;
+  float shine = pow(1.0 - abs(shineBase - 0.5) * 2.0, 3.0);
 
   vec2 mouse = vec2(iMouse.x, iMouse.y);
-  float spotlight = smoothstep(0.72, 0.0, distance(uv, mouse));
-  float noise = (rand(gl_FragCoord.xy + iTime) - 0.5) * 0.05;
+  float radius = max(0.001, uSpotlightRadius);
+  float softness = max(0.001, uSpotlightSoftness);
+  float spotlight = smoothstep(radius + softness * 0.35, radius * 0.16, distance(uv, mouse)) * uSpotlightOpacity;
+  float noise = (rand(gl_FragCoord.xy + iTime) - 0.5) * uNoise * 0.16;
 
   vec3 color = base * (0.32 + blinds * 0.42) + shine * vec3(0.12, 0.22, 0.2);
   color += spotlight * vec3(0.16, 0.18, 0.12);
