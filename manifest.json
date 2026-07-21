@@ -1,6 +1,150 @@
 {
   "items": [
     {
+      "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
+      "file": "./motions/GIF/风格选择页-q版/7月20日-3-1-q版-559038c6.gif",
+      "kind": "gif",
+      "kindLabel": "GIF",
+      "category": "风格选择页-q版",
+      "interactionType": "按钮反馈",
+      "tags": [
+        "状态反馈"
+      ],
+      "mimeType": "image/gif",
+      "width": 0,
+      "height": 0,
+      "frameRate": 0,
+      "frames": 0,
+      "duration": 0,
+      "updatedAt": "2026-07-21T12:18:04.911Z"
+    },
+    {
+      "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
+      "file": "./motions/GIF/风格选择页-mc/7月20日-3-mc-0400bf4c.gif",
+      "kind": "gif",
+      "kindLabel": "GIF",
+      "category": "风格选择页-mc",
+      "interactionType": "按钮反馈",
+      "tags": [
+        "状态反馈"
+      ],
+      "mimeType": "image/gif",
+      "width": 0,
+      "height": 0,
+      "frameRate": 0,
+      "frames": 0,
+      "duration": 0,
+      "updatedAt": "2026-07-21T12:18:04.305Z"
+    },
+    {
+      "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
+      "file": "./motions/GIF/风格选择页-豆豆眼/7月20日-3-豆豆眼-4bb1f014.gif",
+      "kind": "gif",
+      "kindLabel": "GIF",
+      "category": "风格选择页-豆豆眼",
+      "interactionType": "按钮反馈",
+      "tags": [
+        "状态反馈"
+      ],
+      "mimeType": "image/gif",
+      "width": 0,
+      "height": 0,
+      "frameRate": 0,
+      "frames": 0,
+      "duration": 0,
+      "updatedAt": "2026-07-21T12:18:03.636Z"
+    },
+    {
+      "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
+      "file": "./motions/GIF/风格选择页-牛仔/7月20日-3-1-牛仔-aeeb1f0d.gif",
+      "kind": "gif",
+      "kindLabel": "GIF",
+      "category": "风格选择页-牛仔",
+      "interactionType": "按钮反馈",
+      "tags": [
+        "状态反馈"
+      ],
+      "mimeType": "image/gif",
+      "width": 0,
+      "height": 0,
+      "frameRate": 0,
+      "frames": 0,
+      "duration": 0,
+      "updatedAt": "2026-07-21T12:18:02.999Z"
+    },
+    {
+      "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
+      "file": "./motions/HEVC-with-Alpha/风格选择页-q版/7月20日-3-1-q版-8e00a579.mov",
+      "kind": "hevc",
+      "kindLabel": "HEVC with Alpha",
+      "category": "风格选择页-q版",
+      "interactionType": "按钮反馈",
+      "tags": [
+        "状态反馈"
+      ],
+      "mimeType": "video/quicktime",
+      "width": 0,
+      "height": 0,
+      "frameRate": 0,
+      "frames": 0,
+      "duration": 0,
+      "updatedAt": "2026-07-21T12:18:02.409Z"
+    },
+    {
+      "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
+      "file": "./motions/HEVC-with-Alpha/风格选择页-mc/7月20日-3-8271d608.mov",
+      "kind": "hevc",
+      "kindLabel": "HEVC with Alpha",
+      "category": "风格选择页-mc",
+      "interactionType": "按钮反馈",
+      "tags": [
+        "状态反馈"
+      ],
+      "mimeType": "video/quicktime",
+      "width": 0,
+      "height": 0,
+      "frameRate": 0,
+      "frames": 0,
+      "duration": 0,
+      "updatedAt": "2026-07-21T12:18:01.586Z"
+    },
+    {
+      "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
+      "file": "./motions/HEVC-with-Alpha/风格选择页-豆豆眼/7月20日-3-豆豆眼-75909e80.mov",
+      "kind": "hevc",
+      "kindLabel": "HEVC with Alpha",
+      "category": "风格选择页-豆豆眼",
+      "interactionType": "按钮反馈",
+      "tags": [
+        "状态反馈"
+      ],
+      "mimeType": "video/quicktime",
+      "width": 0,
+      "height": 0,
+      "frameRate": 0,
+      "frames": 0,
+      "duration": 0,
+      "updatedAt": "2026-07-21T12:18:00.884Z"
+    },
+    {
+      "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
+      "file": "./motions/HEVC-with-Alpha/风格选择页-牛仔/7月20日-3-1-d0485996.mov",
+      "kind": "hevc",
+      "kindLabel": "HEVC with Alpha",
+      "category": "风格选择页-牛仔",
+      "interactionType": "按钮反馈",
+      "tags": [
+        "状态反馈"
+      ],
+      "mimeType": "video/quicktime",
+      "width": 0,
+      "height": 0,
+      "frameRate": 0,
+      "frames": 0,
+      "duration": 0,
+      "updatedAt": "2026-07-21T12:18:00.163Z"
+    },
+    {
       "name": "发布按钮",
       "file": "./lotties/放置完成-发布Loci/observation-mode-success-burst-lottie-3182a276.json",
       "kind": "lottie",
