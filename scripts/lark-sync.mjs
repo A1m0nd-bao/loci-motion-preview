@@ -28,8 +28,16 @@ async function main() {
 
 async function syncOnce(config, options = {}) {
   const state = await loadState(config.stateFile);
-  const rows = await readSheet(config);
-  const entries = parseRows(rows, config);
+  const sources = config.sources?.length ? config.sources : [config];
+  const entries = (
+    await Promise.all(
+      sources.map(async (source) => {
+        const sourceConfig = { ...config, ...source, columns: { ...config.columns, ...(source.columns || {}) } };
+        const rows = await readSheet(sourceConfig);
+        return parseRows(rows, sourceConfig);
+      }),
+    )
+  ).flat();
   const activeSourceIds = new Set(
     entries.flatMap((entry) => entry.files.map((fileRef) => fileRef.token || fileRef.url).filter(Boolean)),
   );
@@ -197,6 +205,12 @@ async function loadConfig() {
   if (!config.columns?.file) {
     throw new Error('Config needs columns.file, for example "JSON文件" or ["JSON文件", "附件1"].');
   }
+  if (Array.isArray(config.sources)) {
+    config.sources = config.sources.map((source) => ({
+      ...source,
+      columns: { ...config.columns, ...(source.columns || {}) },
+    }));
+  }
   return config;
 }
 
@@ -245,8 +259,8 @@ function parseRows(rows, config) {
     return {
       rowNumber,
       name: readCell(row, columnIndex.name),
-      kind: resolveKind(readCell(row, columnIndex.kind), files),
-      format: resolveKindLabel(readCell(row, columnIndex.kind), files),
+      kind: resolveKind(readCell(row, columnIndex.kind) || config.defaultKind, files),
+      format: resolveKindLabel(readCell(row, columnIndex.kind) || config.defaultKind, files),
       category: readCell(row, columnIndex.category) || "未分类",
       interactionType: readCell(row, columnIndex.interactionType),
       tags: splitTags(readCell(row, columnIndex.tags)),

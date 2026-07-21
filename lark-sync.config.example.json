@@ -16,6 +16,32 @@
     "tags": "标签",
     "file": ["动效文件", "附件1", "附件2"]
   },
+  "sources": [
+    {
+      "title": "总表",
+      "sheetId": "",
+      "range": "A1:N200",
+      "headerRow": 2,
+      "rowStart": 3,
+      "rowEnd": 200
+    },
+    {
+      "title": "Lottie",
+      "sheetId": "",
+      "range": "A1:I100",
+      "headerRow": 1,
+      "rowStart": 2,
+      "rowEnd": 100,
+      "defaultKind": "Lottie",
+      "columns": {
+        "name": "动效需求对象",
+        "category": "页面名称",
+        "tags": "动效类型",
+        "interactionType": "交互类型/场景",
+        "file": ["动效文件", "附件1", "附件2"]
+      }
+    }
+  ],
   "outputDir": "motions",
   "legacyLottieDir": "lotties",
   "stateFile": ".sync/lark-state.json"
