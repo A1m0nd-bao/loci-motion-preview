@@ -60,10 +60,10 @@ function initGradientBlinds(target) {
     const rect = target.getBoundingClientRect();
     renderer.setSize(Math.max(1, rect.width), Math.max(1, rect.height));
     uniforms.iResolution.value = [gl.drawingBufferWidth, gl.drawingBufferHeight, 1];
-    uniforms.uBlindCount.value = Math.min(
-      gradientConfig.blindCount,
-      Math.max(1, Math.floor(rect.width / gradientConfig.blindMinWidth)),
-    );
+    uniforms.uBlindCount.value =
+      rect.width >= gradientConfig.blindCount * gradientConfig.blindMinWidth
+        ? gradientConfig.blindCount
+        : Math.max(12, Math.min(gradientConfig.blindCount, Math.floor(rect.width / 36)));
   };
 
   const resizeObserver = new ResizeObserver(resize);
@@ -191,9 +191,9 @@ void main() {
   float spotlight = smoothstep(radius + softness * 0.35, radius * 0.16, distance(uv, mouse)) * uSpotlightOpacity;
   float noise = (rand(gl_FragCoord.xy + iTime) - 0.5) * uNoise * 0.16;
 
-  vec3 color = base * (0.32 + blinds * 0.42) + shine * vec3(0.12, 0.22, 0.2);
-  color += spotlight * vec3(0.16, 0.18, 0.12);
-  color += noise;
+  vec3 color = base * (0.18 + blinds * 0.3) + shine * vec3(0.06, 0.12, 0.12);
+  color += spotlight * vec3(0.08, 0.12, 0.1);
+  color += noise * 0.7;
   gl_FragColor = vec4(color, 1.0);
 }
 `;
