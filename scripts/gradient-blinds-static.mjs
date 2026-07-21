@@ -181,19 +181,25 @@ void main() {
 
   float blindCount = max(1.0, uBlindCount);
   float stripe = fract((tilted.x + 1.4) * blindCount + sin(iTime * 0.18) * 0.08);
-  float blinds = smoothstep(0.16, 0.86, stripe);
+  float blinds = smoothstep(0.12, 0.78, stripe);
   float shineBase = uShineDirection < 0.0 ? 1.0 - stripe : stripe;
-  float shine = pow(1.0 - abs(shineBase - 0.5) * 2.0, 3.0);
+  float shine = pow(1.0 - abs(shineBase - 0.5) * 2.0, 2.2);
+  float edgeGlow = pow(1.0 - abs(fract(stripe + 0.08) - 0.5) * 2.0, 5.0);
 
   vec2 mouse = vec2(iMouse.x, iMouse.y);
   float radius = max(0.001, uSpotlightRadius);
   float softness = max(0.001, uSpotlightSoftness);
   float spotlight = smoothstep(radius + softness * 0.35, radius * 0.16, distance(uv, mouse)) * uSpotlightOpacity;
+  float coreGlow = smoothstep(0.94, 0.0, distance(uv, vec2(0.58, 0.42)));
   float noise = (rand(gl_FragCoord.xy + iTime) - 0.5) * uNoise * 0.16;
 
-  vec3 color = base * (0.18 + blinds * 0.3) + shine * vec3(0.06, 0.12, 0.12);
-  color += spotlight * vec3(0.08, 0.12, 0.1);
-  color += noise * 0.7;
+  vec3 glowColor = mix(uColor0, uColor1, clamp(t, 0.0, 1.0));
+  vec3 color = base * (0.22 + blinds * 0.48);
+  color += glowColor * shine * 0.5;
+  color += glowColor * edgeGlow * 0.32;
+  color += spotlight * glowColor * 0.42;
+  color += coreGlow * glowColor * 0.18;
+  color += noise * 0.6;
   gl_FragColor = vec4(color, 1.0);
 }
 `;
