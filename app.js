@@ -213,6 +213,7 @@ function render() {
   const selectedKind = kindSelect.value;
   const selectedCategory = category.value;
 
+  document.body.classList.toggle("is-home-view", isHome);
   visibleMotions = isHome ? motions : motions.filter((item) => {
     const haystack = [item.name, item.file, item.kindLabel, item.category, item.interactionType, ...(item.tags || [])]
       .join(" ")
