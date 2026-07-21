@@ -56,13 +56,24 @@ function titleize(file) {
   return basename(file, extname(file)).replace(/[-_]+/g, " ");
 }
 
-async function getLottieName(file) {
+async function getLottieMeta(file) {
   try {
     const content = await readFile(file, "utf8");
     const data = JSON.parse(content);
-    return data.nm || titleize(file);
+    const frameRate = Number(data.fr) || 0;
+    const inPoint = Number(data.ip) || 0;
+    const outPoint = Number(data.op) || 0;
+    const frames = Math.max(0, Math.round(outPoint - inPoint));
+    return {
+      name: data.nm || titleize(file),
+      width: Number(data.w) || 0,
+      height: Number(data.h) || 0,
+      frameRate,
+      frames,
+      duration: frameRate > 0 ? frames / frameRate : 0,
+    };
   } catch {
-    return titleize(file);
+    return { name: titleize(file), width: 0, height: 0, frameRate: 0, frames: 0, duration: 0 };
   }
 }
 
@@ -118,7 +129,8 @@ const items = await Promise.all(
     const meta = syncMeta[rel.replace(/^\.\//, "")] || syncMeta[rel] || {};
     const kind = inferKind(file, meta);
     const category = inferCategory(file, meta);
-    const fallbackName = kind === "lottie" ? await getLottieName(file) : titleize(file);
+    const lottieMeta = kind === "lottie" ? await getLottieMeta(file) : {};
+    const fallbackName = kind === "lottie" ? lottieMeta.name : titleize(file);
 
     return {
       name: meta.name || fallbackName,
@@ -129,6 +141,11 @@ const items = await Promise.all(
       interactionType: meta.interactionType || "",
       tags: meta.tags || [],
       mimeType: meta.mimeType || inferMime(file, kind),
+      width: lottieMeta.width || 0,
+      height: lottieMeta.height || 0,
+      frameRate: lottieMeta.frameRate || 0,
+      frames: lottieMeta.frames || 0,
+      duration: lottieMeta.duration || 0,
       updatedAt: meta.updatedAt || meta.syncedAt || "",
     };
   }),

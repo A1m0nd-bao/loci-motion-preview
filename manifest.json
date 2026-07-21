@@ -11,6 +11,11 @@
         "发布成功动效（较重）"
       ],
       "mimeType": "application/json",
+      "width": 1440,
+      "height": 900,
+      "frameRate": 24,
+      "frames": 64,
+      "duration": 2.6666666666666665,
       "updatedAt": "2026-07-21T08:56:25.929Z"
     },
     {
@@ -24,6 +29,11 @@
         "点击反馈"
       ],
       "mimeType": "application/json",
+      "width": 64,
+      "height": 112,
+      "frameRate": 60,
+      "frames": 80,
+      "duration": 1.3333333333333333,
       "updatedAt": "2026-07-21T08:56:25.929Z"
     },
     {
@@ -37,6 +47,11 @@
         "扫描周围"
       ],
       "mimeType": "application/json",
+      "width": 343,
+      "height": 227,
+      "frameRate": 60,
+      "frames": 180,
+      "duration": 3,
       "updatedAt": "2026-07-21T08:56:25.929Z"
     },
     {
@@ -50,6 +65,11 @@
         "错误提示"
       ],
       "mimeType": "application/json",
+      "width": 416,
+      "height": 384,
+      "frameRate": 12,
+      "frames": 19,
+      "duration": 1.5833333333333333,
       "updatedAt": "2026-07-21T08:56:25.929Z"
     },
     {
@@ -61,6 +81,11 @@
       "interactionType": "",
       "tags": [],
       "mimeType": "application/json",
+      "width": 416,
+      "height": 384,
+      "frameRate": 12,
+      "frames": 19,
+      "duration": 1.5833333333333333,
       "updatedAt": "2026-07-21T08:56:25.929Z"
     },
     {
@@ -74,6 +99,11 @@
         "礼花1"
       ],
       "mimeType": "application/json",
+      "width": 812,
+      "height": 375,
+      "frameRate": 25,
+      "frames": 100,
+      "duration": 4,
       "updatedAt": "2026-07-21T08:56:25.929Z"
     },
     {
@@ -87,6 +117,11 @@
         "礼花2"
       ],
       "mimeType": "application/json",
+      "width": 800,
+      "height": 800,
+      "frameRate": 25,
+      "frames": 49,
+      "duration": 1.96,
       "updatedAt": "2026-07-21T08:56:25.929Z"
     },
     {
@@ -100,6 +135,11 @@
         "错误提示"
       ],
       "mimeType": "application/json",
+      "width": 416,
+      "height": 384,
+      "frameRate": 12,
+      "frames": 23,
+      "duration": 1.9166666666666667,
       "updatedAt": "2026-07-21T08:56:25.929Z"
     },
     {
@@ -111,6 +151,11 @@
       "interactionType": "",
       "tags": [],
       "mimeType": "application/json",
+      "width": 416,
+      "height": 384,
+      "frameRate": 12,
+      "frames": 23,
+      "duration": 1.9166666666666667,
       "updatedAt": "2026-07-21T08:56:25.929Z"
     },
     {
@@ -122,6 +167,11 @@
       "interactionType": "",
       "tags": [],
       "mimeType": "application/json",
+      "width": 750,
+      "height": 1624,
+      "frameRate": 30,
+      "frames": 144,
+      "duration": 4.8,
       "updatedAt": "2026-07-21T08:56:25.929Z"
     },
     {
@@ -133,6 +183,11 @@
       "interactionType": "",
       "tags": [],
       "mimeType": "application/json",
+      "width": 750,
+      "height": 1624,
+      "frameRate": 30,
+      "frames": 118,
+      "duration": 3.933333333333333,
       "updatedAt": "2026-07-21T08:56:25.929Z"
     },
     {
@@ -146,6 +201,11 @@
         "引导组合"
       ],
       "mimeType": "application/json",
+      "width": 272,
+      "height": 211,
+      "frameRate": 30,
+      "frames": 144,
+      "duration": 4.8,
       "updatedAt": "2026-07-21T08:56:25.929Z"
     },
     {
@@ -159,6 +219,11 @@
         "发布成功"
       ],
       "mimeType": "application/json",
+      "width": 390,
+      "height": 844,
+      "frameRate": 25,
+      "frames": 75,
+      "duration": 3,
       "updatedAt": "2026-07-21T08:56:25.929Z"
     },
     {
@@ -172,6 +237,11 @@
         "发布成功"
       ],
       "mimeType": "application/json",
+      "width": 390,
+      "height": 844,
+      "frameRate": 25,
+      "frames": 75,
+      "duration": 3,
       "updatedAt": "2026-07-21T08:56:25.929Z"
     },
     {
@@ -185,6 +255,11 @@
         "创建成功"
       ],
       "mimeType": "application/json",
+      "width": 390,
+      "height": 844,
+      "frameRate": 30,
+      "frames": 132,
+      "duration": 4.4,
       "updatedAt": "2026-07-21T08:56:25.929Z"
     },
     {
@@ -198,6 +273,11 @@
         "创建成功"
       ],
       "mimeType": "application/json",
+      "width": 1080,
+      "height": 1920,
+      "frameRate": 30,
+      "frames": 132,
+      "duration": 4.4,
       "updatedAt": "2026-07-21T08:56:25.929Z"
     },
     {
@@ -211,6 +291,11 @@
         "创建成功"
       ],
       "mimeType": "application/json",
+      "width": 390,
+      "height": 844,
+      "frameRate": 30,
+      "frames": 132,
+      "duration": 4.4,
       "updatedAt": "2026-07-21T08:56:25.929Z"
     },
     {
@@ -224,6 +309,11 @@
         "成功动效（轻）"
       ],
       "mimeType": "application/json",
+      "width": 1440,
+      "height": 900,
+      "frameRate": 24,
+      "frames": 38,
+      "duration": 1.5833333333333333,
       "updatedAt": "2026-07-21T08:56:25.929Z"
     },
     {
@@ -235,6 +325,11 @@
       "interactionType": "",
       "tags": [],
       "mimeType": "application/json",
+      "width": 336,
+      "height": 178,
+      "frameRate": 60,
+      "frames": 96,
+      "duration": 1.6,
       "updatedAt": "2026-07-21T08:56:25.929Z"
     },
     {
@@ -246,6 +341,11 @@
       "interactionType": "",
       "tags": [],
       "mimeType": "application/json",
+      "width": 336,
+      "height": 178,
+      "frameRate": 60,
+      "frames": 96,
+      "duration": 1.6,
       "updatedAt": "2026-07-21T08:56:25.929Z"
     },
     {
@@ -259,6 +359,11 @@
         "点击引导"
       ],
       "mimeType": "application/json",
+      "width": 204,
+      "height": 208,
+      "frameRate": 60,
+      "frames": 90,
+      "duration": 1.5,
       "updatedAt": "2026-07-21T08:56:25.929Z"
     },
     {
@@ -272,6 +377,11 @@
         "星星交互"
       ],
       "mimeType": "application/json",
+      "width": 1080,
+      "height": 1080,
+      "frameRate": 60,
+      "frames": 300,
+      "duration": 5,
       "updatedAt": "2026-07-21T08:56:25.929Z"
     },
     {
@@ -285,6 +395,11 @@
         "星星旋转"
       ],
       "mimeType": "application/json",
+      "width": 512,
+      "height": 512,
+      "frameRate": 60,
+      "frames": 144,
+      "duration": 2.4,
       "updatedAt": "2026-07-21T08:56:25.929Z"
     },
     {
@@ -298,6 +413,11 @@
         "成功动效（轻）"
       ],
       "mimeType": "application/json",
+      "width": 1280,
+      "height": 720,
+      "frameRate": 24,
+      "frames": 48,
+      "duration": 2,
       "updatedAt": "2026-07-21T08:56:25.929Z"
     },
     {
@@ -311,6 +431,11 @@
         "手势引导与反馈"
       ],
       "mimeType": "application/json",
+      "width": 272,
+      "height": 209,
+      "frameRate": 30,
+      "frames": 48,
+      "duration": 1.6,
       "updatedAt": "2026-07-21T08:56:25.929Z"
     },
     {
@@ -324,6 +449,11 @@
         "权限开启反馈"
       ],
       "mimeType": "application/json",
+      "width": 750,
+      "height": 1624,
+      "frameRate": 30,
+      "frames": 120,
+      "duration": 4,
       "updatedAt": "2026-07-21T08:56:25.928Z"
     },
     {
@@ -337,6 +467,11 @@
         "功能启动邀请"
       ],
       "mimeType": "application/json",
+      "width": 256,
+      "height": 256,
+      "frameRate": 60,
+      "frames": 180,
+      "duration": 3,
       "updatedAt": "2026-07-21T08:56:25.928Z"
     },
     {
@@ -350,6 +485,11 @@
         "未知状态反馈"
       ],
       "mimeType": "application/json",
+      "width": 750,
+      "height": 1624,
+      "frameRate": 30,
+      "frames": 120,
+      "duration": 4,
       "updatedAt": "2026-07-21T08:56:25.928Z"
     },
     {
@@ -363,6 +503,11 @@
         "未知状态反馈"
       ],
       "mimeType": "application/json",
+      "width": 750,
+      "height": 1624,
+      "frameRate": 30,
+      "frames": 90,
+      "duration": 3,
       "updatedAt": "2026-07-21T08:56:25.928Z"
     },
     {
@@ -377,6 +522,11 @@
         "强视觉）"
       ],
       "mimeType": "application/json",
+      "width": 750,
+      "height": 1624,
+      "frameRate": 30,
+      "frames": 118,
+      "duration": 3.933333333333333,
       "updatedAt": "2026-07-21T08:56:25.928Z"
     },
     {
@@ -391,6 +541,11 @@
         "强视觉）"
       ],
       "mimeType": "application/json",
+      "width": 750,
+      "height": 1624,
+      "frameRate": 30,
+      "frames": 140,
+      "duration": 4.666666666666667,
       "updatedAt": "2026-07-21T08:56:25.928Z"
     },
     {
@@ -405,6 +560,11 @@
         "强视觉）"
       ],
       "mimeType": "application/json",
+      "width": 750,
+      "height": 1624,
+      "frameRate": 30,
+      "frames": 100,
+      "duration": 3.3333333333333335,
       "updatedAt": "2026-07-21T08:56:25.928Z"
     },
     {
@@ -418,6 +578,11 @@
         "循环动效"
       ],
       "mimeType": "application/json",
+      "width": 1179,
+      "height": 2556,
+      "frameRate": 60,
+      "frames": 2160,
+      "duration": 36,
       "updatedAt": "2026-07-21T08:56:25.928Z"
     },
     {
@@ -431,6 +596,11 @@
         "循环动效"
       ],
       "mimeType": "application/json",
+      "width": 1179,
+      "height": 2556,
+      "frameRate": 60,
+      "frames": 1080,
+      "duration": 18,
       "updatedAt": "2026-07-21T08:56:25.928Z"
     },
     {
@@ -444,6 +614,11 @@
         "波动加载"
       ],
       "mimeType": "application/json",
+      "width": 512,
+      "height": 512,
+      "frameRate": 30,
+      "frames": 96,
+      "duration": 3.2,
       "updatedAt": "2026-07-21T08:56:25.928Z"
     },
     {
@@ -457,6 +632,11 @@
         "手势引导与反馈"
       ],
       "mimeType": "application/json",
+      "width": 164,
+      "height": 211,
+      "frameRate": 30,
+      "frames": 48,
+      "duration": 1.6,
       "updatedAt": "2026-07-21T08:56:25.928Z"
     },
     {
@@ -470,6 +650,11 @@
         "手势引导与反馈"
       ],
       "mimeType": "application/json",
+      "width": 240,
+      "height": 300,
+      "frameRate": 30,
+      "frames": 48,
+      "duration": 1.6,
       "updatedAt": "2026-07-21T08:56:25.928Z"
     },
     {
@@ -485,6 +670,11 @@
         "做一个就可以"
       ],
       "mimeType": "application/json",
+      "width": 512,
+      "height": 512,
+      "frameRate": 60,
+      "frames": 300,
+      "duration": 5,
       "updatedAt": "2026-07-21T08:56:25.928Z"
     },
     {
@@ -500,6 +690,11 @@
         "做一个就可以"
       ],
       "mimeType": "application/json",
+      "width": 512,
+      "height": 512,
+      "frameRate": 60,
+      "frames": 300,
+      "duration": 5,
       "updatedAt": "2026-07-21T08:56:25.928Z"
     },
     {
@@ -513,6 +708,11 @@
         "未知状态反馈"
       ],
       "mimeType": "application/json",
+      "width": 750,
+      "height": 1624,
+      "frameRate": 30,
+      "frames": 120,
+      "duration": 4,
       "updatedAt": "2026-07-21T08:56:25.927Z"
     }
   ],

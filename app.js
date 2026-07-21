@@ -318,6 +318,7 @@ function setupPreviewHost(host, motion) {
   host.dataset.visible = "false";
   host.dataset.kind = motion.kind;
   host.dataset.src = motion.file;
+  applyMediaSizing(host, motion);
 
   if (lazyHostObserver) {
     lazyHostObserver.observe(host);
@@ -327,7 +328,7 @@ function setupPreviewHost(host, motion) {
   host.dataset.visible = "true";
   ensurePreviewController(host, motion);
   syncPreviewHost(host);
-  updateVisibleCardResolution(host, motion);
+  updateVisibleHostInfo(host, motion);
 }
 
 function handleHostVisibility(entries) {
@@ -339,7 +340,7 @@ function handleHostVisibility(entries) {
     if (entry.isIntersecting && motion) {
       ensurePreviewController(host, motion);
       syncPreviewHost(host);
-      updateVisibleCardResolution(host, motion);
+      updateVisibleHostInfo(host, motion);
     } else {
       previewControllers.get(host)?.pause?.();
     }
@@ -589,13 +590,24 @@ function normalizeHexColor(value) {
 }
 
 async function updateVisibleCardResolution(host, motion) {
+  return updateVisibleHostInfo(host, motion);
+}
+
+async function updateVisibleHostInfo(host, motion) {
+  let info = null;
+  try {
+    info = await getMotionInfo(motion);
+    applyMediaSizing(host, info);
+  } catch {
+    info = null;
+  }
+
   const resolution = host.closest(".motion-card")?.querySelector(".resolution");
   if (!resolution || resolution.dataset.loaded === "true") return;
   resolution.dataset.loaded = "true";
-  try {
-    const info = await getMotionInfo(motion);
+  if (info) {
     resolution.textContent = `规格 ${formatInfoSummary(info, motion)}`;
-  } catch {
+  } else {
     resolution.textContent = "规格 未知";
   }
 }
@@ -604,6 +616,7 @@ async function updateDetailInfo(motion) {
   try {
     const info = await getMotionInfo(motion);
     if (activeMotion?.file !== motion.file) return;
+    applyMediaSizing(detailHost, info);
     applyMotionInfo(info, motion);
     detailResolution.textContent = formatResolution(info);
   } catch {
@@ -611,6 +624,50 @@ async function updateDetailInfo(motion) {
     resetTimeline("未知");
     detailResolution.textContent = "未知";
   }
+}
+
+function applyMediaSizing(host, info) {
+  if (!host || !info?.width || !info?.height) return;
+  const bounds = getMediaBounds(host);
+  const fitted = fitWithin(info.width, info.height, bounds.width, bounds.height);
+  host.style.width = `${fitted.width}px`;
+  host.style.height = `${fitted.height}px`;
+  host.style.setProperty("--media-aspect", `${info.width} / ${info.height}`);
+}
+
+function getMediaBounds(host) {
+  const detailStage = host.closest(".detail-preview");
+  if (detailStage) {
+    const rect = detailStage.getBoundingClientRect();
+    return {
+      width: Math.max(220, Math.min(760, rect.width * 0.94)),
+      height: Math.max(220, Math.min(760, rect.height * 0.94)),
+    };
+  }
+
+  const quickStage = host.closest(".quick-card");
+  if (quickStage) {
+    const rect = host.getBoundingClientRect();
+    return {
+      width: Math.max(80, rect.width || 148),
+      height: Math.max(70, rect.height || 116),
+    };
+  }
+
+  const previewStage = host.closest(".preview");
+  const rect = previewStage?.getBoundingClientRect();
+  return {
+    width: Math.max(120, Math.min(230, (rect?.width || 295) * 0.78)),
+    height: Math.max(120, Math.min(200, (rect?.height || 214) * 0.78)),
+  };
+}
+
+function fitWithin(width, height, maxWidth, maxHeight) {
+  const scale = Math.min(maxWidth / width, maxHeight / height);
+  return {
+    width: Math.max(1, Math.round(width * scale)),
+    height: Math.max(1, Math.round(height * scale)),
+  };
 }
 
 async function getMotionInfo(motion) {
