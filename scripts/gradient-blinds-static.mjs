@@ -179,12 +179,10 @@ void main() {
   }
   vec3 base = gradientColor(clamp(t, 0.0, 1.0));
 
-  float xNorm = abs(tilted.x) / 1.34;
-  float yLimit = 0.1 + 0.86 * sqrt(max(0.0, 1.0 - xNorm * xNorm));
-  float verticalMask = smoothstep(yLimit, yLimit - 0.22, abs(tilted.y));
-  float horizontalMask = smoothstep(1.38, 0.18, abs(tilted.x));
-  float ovalMask = smoothstep(1.2, 0.1, length(vec2(tilted.x * 0.74, tilted.y * 1.2)));
-  float mask = clamp(verticalMask * horizontalMask * ovalMask, 0.0, 1.0);
+  float verticalMask = smoothstep(1.18, 0.12, abs(centered.y));
+  float horizontalMask = smoothstep(aspect + 0.12, 0.18, abs(centered.x));
+  float centerLift = smoothstep(1.08, 0.0, length(vec2(tilted.x * 0.48, tilted.y * 1.12)));
+  float mask = clamp((verticalMask * horizontalMask) * (0.34 + centerLift * 0.66), 0.0, 1.0);
 
   float blindCount = max(1.0, uBlindCount);
   float stripe = fract((tilted.x + 1.4) * blindCount + sin(iTime * 0.18) * 0.08);
