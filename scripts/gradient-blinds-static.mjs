@@ -8,7 +8,7 @@ const gradientConfig = {
   angle: 0,
   noise: 0.3,
   blindCount: 30,
-  blindMinWidth: 60,
+  blindMinWidth: 0,
   mouseDampening: 0.2,
   mirrorGradient: false,
   spotlightRadius: 0.4,
@@ -20,9 +20,9 @@ const gradientConfig = {
 
 function initGradientBlinds(target) {
   const renderer = new Renderer({
-    dpr: Math.min(window.devicePixelRatio || 1, 1.5),
+    dpr: Math.min(window.devicePixelRatio || 1, 2),
     alpha: true,
-    antialias: false,
+    antialias: true,
   });
   const gl = renderer.gl;
   const canvas = gl.canvas;
@@ -69,12 +69,7 @@ function initGradientBlinds(target) {
     targetPointer[0] = gl.drawingBufferWidth / 2;
     targetPointer[1] = gl.drawingBufferHeight / 2;
     uniforms.iMouse.value = [targetPointer[0], targetPointer[1]];
-    if (gradientConfig.blindMinWidth > 0) {
-      uniforms.uBlindCount.value = Math.max(
-        1,
-        Math.min(gradientConfig.blindCount, Math.floor(rect.width / gradientConfig.blindMinWidth)),
-      );
-    }
+    uniforms.uBlindCount.value = Math.max(1, gradientConfig.blindCount);
   };
 
   const resizeObserver = new ResizeObserver(resize);
@@ -235,7 +230,7 @@ void main() {
   float d = length(uv0 - mouse);
   float dn = d / radius;
   float spotlight = (1.0 - 2.0 * pow(dn, uSpotlightSoftness)) * uSpotlightOpacity;
-  float noise = (rand(gl_FragCoord.xy + iTime) - 0.5) * uNoise * 0.16;
+  float noise = (rand(gl_FragCoord.xy + iTime) - 0.5) * uNoise;
 
   float stripe = fract(uvMod.x * max(uBlindCount, 1.0));
   if (uShineFlip > 0.5) stripe = 1.0 - stripe;
