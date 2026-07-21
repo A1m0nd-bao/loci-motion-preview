@@ -180,14 +180,19 @@ h1 {
 
 .home-blinds {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 48%;
+  left: min(76vw, 980px);
   z-index: -2;
   width: min(1080px, calc(100vw - 24px));
   height: min(1080px, calc(100vw - 24px));
-  opacity: 0.9;
+  opacity: 0.38;
   pointer-events: none;
-  transform: translate(-50%, -47%);
+  transform: translate(-50%, -50%);
+  filter: saturate(0.84) brightness(0.82);
+  mask-image:
+    radial-gradient(circle at 58% 44%, #000 0 30%, rgba(0, 0, 0, 0.62) 48%, transparent 72%),
+    linear-gradient(90deg, transparent 0, rgba(0, 0, 0, 0.4) 34%, #000 100%);
+  mask-composite: intersect;
 }
 
 .home-view::after {
@@ -196,8 +201,9 @@ h1 {
   z-index: -1;
   content: "";
   background:
-    linear-gradient(180deg, rgba(7, 8, 11, 0.22), rgba(7, 8, 11, 0.88) 72%),
-    radial-gradient(circle at 48% 18%, transparent 0 16rem, rgba(7, 8, 11, 0.58) 34rem);
+    linear-gradient(180deg, rgba(7, 8, 11, 0.36), rgba(7, 8, 11, 0.9) 72%),
+    linear-gradient(90deg, rgba(7, 8, 11, 0.92) 0 28%, rgba(7, 8, 11, 0.46) 58%, rgba(7, 8, 11, 0.82) 100%),
+    radial-gradient(circle at 74% 26%, transparent 0 11rem, rgba(7, 8, 11, 0.7) 31rem);
   pointer-events: none;
 }
 
