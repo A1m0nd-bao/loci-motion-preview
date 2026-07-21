@@ -211,9 +211,9 @@ h1 {
   z-index: 1;
   width: 100%;
   height: 100%;
-  opacity: 0.9;
+  opacity: 0.98;
   pointer-events: none;
-  filter: saturate(1.34) brightness(1.18) drop-shadow(0 0 64px rgba(31, 143, 253, 0.28));
+  filter: saturate(1.28) brightness(1.26) drop-shadow(0 0 58px rgba(31, 143, 253, 0.26));
 }
 
 .home-blinds::after {
@@ -235,8 +235,8 @@ h1 {
   z-index: 1;
   content: "";
   background:
-    linear-gradient(180deg, rgba(7, 8, 11, 0.18), rgba(7, 8, 11, 0.84) 92%),
-    linear-gradient(90deg, rgba(7, 8, 11, 0.84) 0 32%, rgba(7, 8, 11, 0.28) 62%, rgba(7, 8, 11, 0.64) 100%);
+    linear-gradient(180deg, rgba(7, 8, 11, 0.08), rgba(7, 8, 11, 0.34) 100%),
+    linear-gradient(90deg, rgba(7, 8, 11, 0.78) 0 30%, rgba(7, 8, 11, 0.22) 54%, rgba(7, 8, 11, 0.18) 100%);
   pointer-events: none;
 }
 
@@ -275,7 +275,7 @@ h1 {
   padding: 18px;
   color: var(--ink);
   text-align: left;
-  background: rgba(12, 16, 22, 0.76);
+  background: rgba(12, 16, 22, 0.68);
   border: 1px solid var(--line);
   border-radius: 8px;
   box-shadow: var(--shadow);
