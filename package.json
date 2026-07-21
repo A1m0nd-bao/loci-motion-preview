@@ -6,5 +6,8 @@
     "sync:watch": "node ./scripts/lark-sync.mjs --watch",
     "sync:watch:publish": "node ./scripts/lark-sync.mjs --watch --publish",
     "start": "python3 -m http.server 4173"
+  },
+  "dependencies": {
+    "ogl": "^1.0.11"
   }
 }
