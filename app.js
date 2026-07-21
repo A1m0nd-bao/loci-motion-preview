@@ -1,6 +1,11 @@
 const gallery = document.querySelector("#gallery");
 const quickRail = document.querySelector("#quickRail");
 const formatNav = document.querySelector("#formatNav");
+const homeView = document.querySelector("#homeView");
+const homeModules = document.querySelector("#homeModules");
+const quickSection = document.querySelector("#quickSection");
+const libraryView = document.querySelector("#libraryView");
+const homeTrigger = document.querySelector("#homeTrigger");
 const sidebar = document.querySelector(".sidebar");
 const empty = document.querySelector("#empty");
 const count = document.querySelector("#count");
@@ -18,6 +23,7 @@ const fileInput = document.querySelector("#fileInput");
 const dropzone = document.querySelector("#dropzone");
 const template = document.querySelector("#motionCard");
 const quickTemplate = document.querySelector("#quickCard");
+const moduleTemplate = document.querySelector("#moduleCard");
 const detailDialog = document.querySelector("#detailDialog");
 const detailTitle = document.querySelector("#detailTitle");
 const detailPath = document.querySelector("#detailPath");
@@ -47,6 +53,7 @@ let activeMotion = null;
 let activeMotionInfo = null;
 let detailController = null;
 let timelineRaf = 0;
+let currentView = "home";
 
 const motionInfoCache = new Map();
 const previewBackgroundKey = "motion-preview-bg";
@@ -110,7 +117,7 @@ function normalizeMotion(item) {
 function populateKinds() {
   const selected = kindSelect.value || "all";
   const counts = countBy(motions, (item) => item.kind || "practice");
-  const kinds = Object.keys(counts).sort((a, b) => labelForKind(a).localeCompare(labelForKind(b), "zh-Hans-CN"));
+  const kinds = getOrderedKinds(counts);
 
   kindSelect.innerHTML = '<option value="all">全部格式</option>';
   for (const kind of kinds) {
@@ -126,6 +133,8 @@ function populateKinds() {
   for (const kind of kinds) {
     formatNav.append(createFormatButton(kind, labelForKind(kind), counts[kind], formatDescription(kind)));
   }
+
+  renderHomeModules(kinds, counts);
 }
 
 function createFormatButton(kind, label, amount, description) {
@@ -138,11 +147,45 @@ function createFormatButton(kind, label, amount, description) {
   button.querySelector(".format-count").textContent = String(amount);
   button.querySelector("span:last-child").textContent = description;
   button.addEventListener("click", () => {
-    kindSelect.value = kind;
-    populateCategories();
-    render();
+    enterModule(kind);
   });
   return button;
+}
+
+function renderHomeModules(kinds, counts) {
+  homeModules.replaceChildren();
+  for (const kind of kinds) {
+    homeModules.append(createModuleCard(kind, counts[kind] || 0));
+  }
+
+  for (const kind of ["hevc", "gif", "rive", "practice"]) {
+    if (counts[kind]) continue;
+    homeModules.append(createModuleCard(kind, 0));
+  }
+}
+
+function createModuleCard(kind, amount) {
+  const node = moduleTemplate.content.firstElementChild.cloneNode(true);
+  node.dataset.kind = kind;
+  node.querySelector(".module-icon").textContent = moduleIcon(kind);
+  node.querySelector("strong").textContent = labelForKind(kind);
+  node.querySelector(".module-meta").textContent = `${amount} 个资产 / ${formatDescription(kind)}`;
+  node.addEventListener("click", () => enterModule(kind));
+  return node;
+}
+
+function enterModule(kind) {
+  currentView = "library";
+  kindSelect.value = kind;
+  populateCategories();
+  render();
+}
+
+function showHome() {
+  currentView = "home";
+  kindSelect.value = "all";
+  populateCategories();
+  render();
 }
 
 function populateCategories() {
@@ -165,11 +208,12 @@ function populateCategories() {
 }
 
 function render() {
+  const isHome = currentView === "home";
   const query = search.value.trim().toLowerCase();
   const selectedKind = kindSelect.value;
   const selectedCategory = category.value;
 
-  visibleMotions = motions.filter((item) => {
+  visibleMotions = isHome ? motions : motions.filter((item) => {
     const haystack = [item.name, item.file, item.kindLabel, item.category, item.interactionType, ...(item.tags || [])]
       .join(" ")
       .toLowerCase();
@@ -184,6 +228,14 @@ function render() {
   quickRail.replaceChildren();
   count.textContent = String(visibleMotions.length);
   empty.hidden = visibleMotions.length > 0;
+  homeView.hidden = !isHome;
+  quickSection.hidden = isHome;
+  libraryView.hidden = isHome;
+
+  if (isHome) {
+    updateFormatActiveState();
+    return;
+  }
 
   for (const motion of visibleMotions) {
     gallery.append(createCard(motion));
@@ -261,6 +313,7 @@ function createCard(motion) {
 }
 
 function setupPreviewHost(host, motion) {
+  host.classList.toggle("is-lottie", motion.kind === "lottie");
   host.dataset.loaded = "false";
   host.dataset.visible = "false";
   host.dataset.kind = motion.kind;
@@ -797,6 +850,27 @@ function formatDescription(kind) {
   }[kind] || "自定义格式";
 }
 
+function moduleIcon(kind) {
+  return {
+    lottie: "L",
+    hevc: "A",
+    gif: "G",
+    rive: "R",
+    practice: "P",
+    video: "V",
+  }[kind] || "M";
+}
+
+function getOrderedKinds(counts) {
+  const order = ["lottie", "hevc", "gif", "rive", "practice", "video"];
+  return Object.keys(counts).sort((a, b) => {
+    const left = order.indexOf(a);
+    const right = order.indexOf(b);
+    if (left !== -1 || right !== -1) return (left === -1 ? 999 : left) - (right === -1 ? 999 : right);
+    return labelForKind(a).localeCompare(labelForKind(b), "zh-Hans-CN");
+  });
+}
+
 function countBy(list, getter) {
   return list.reduce((result, item) => {
     const key = getter(item);
@@ -812,9 +886,9 @@ function updateFormatActiveState() {
 }
 
 search.addEventListener("input", render);
+homeTrigger.addEventListener("click", showHome);
 kindSelect.addEventListener("change", () => {
-  populateCategories();
-  render();
+  enterModule(kindSelect.value);
 });
 category.addEventListener("change", render);
 refresh.addEventListener("click", loadManifest);

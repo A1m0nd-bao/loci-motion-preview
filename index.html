@@ -4,16 +4,16 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>动效资产预览库</title>
-    <link rel="stylesheet" href="./styles.css?v=motion-hub-20260721" />
+    <link rel="stylesheet" href="./styles.css?v=motion-hub-20260721-home" />
     <script src="https://unpkg.com/@lottiefiles/lottie-player@2.0.8/dist/lottie-player.js"></script>
     <script src="https://unpkg.com/@rive-app/canvas@2.24.0/rive.js"></script>
   </head>
   <body>
     <header class="topbar">
-      <div>
+      <button id="homeTrigger" class="brand-button" type="button" aria-label="返回格式主页">
         <p class="eyebrow">Motion Library</p>
         <h1>动效资产预览库</h1>
-      </div>
+      </button>
       <div class="stats" aria-live="polite">
         <span id="count">0</span>
         <span>个动效</span>
@@ -22,7 +22,15 @@
 
     <nav id="formatNav" class="format-nav" aria-label="格式分支"></nav>
 
-    <section class="quick-section" aria-label="快速预览">
+    <section id="homeView" class="home-view" aria-label="格式模块主页">
+      <div class="home-heading">
+        <p class="eyebrow">Format Modules</p>
+        <h2>选择一个格式进入预览模块</h2>
+      </div>
+      <div id="homeModules" class="module-grid"></div>
+    </section>
+
+    <section id="quickSection" class="quick-section" aria-label="快速预览" hidden>
       <div class="section-heading">
         <div>
           <p class="eyebrow">Quick Preview</p>
@@ -33,7 +41,7 @@
       <div id="quickRail" class="quick-rail"></div>
     </section>
 
-    <main class="layout">
+    <main id="libraryView" class="layout" hidden>
       <details class="sidebar" aria-label="筛选和导入" open>
         <summary>筛选与播放设置</summary>
         <label class="field">
@@ -138,6 +146,14 @@
       </button>
     </template>
 
+    <template id="moduleCard">
+      <button class="module-card" type="button">
+        <span class="module-icon"></span>
+        <strong></strong>
+        <span class="module-meta"></span>
+      </button>
+    </template>
+
     <dialog id="detailDialog" class="detail-dialog" aria-labelledby="detailTitle">
       <div class="detail-shell">
         <header class="detail-header">
@@ -203,6 +219,6 @@
       </div>
     </dialog>
 
-    <script src="./app.js?v=motion-hub-20260721" type="module"></script>
+    <script src="./app.js?v=motion-hub-20260721-home" type="module"></script>
   </body>
 </html>
