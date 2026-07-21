@@ -173,34 +173,42 @@ void main() {
 
   mat2 rot = mat2(cos(uAngle), -sin(uAngle), sin(uAngle), cos(uAngle));
   vec2 tilted = rot * centered;
-  float t = tilted.x * 0.34 + 0.52;
+  float t = tilted.x * 0.42 + 0.52;
   if (uMirrorGradient > 0.5) {
     t = 1.0 - abs(1.0 - 2.0 * fract(t));
   }
   vec3 base = gradientColor(clamp(t, 0.0, 1.0));
 
+  float xNorm = abs(tilted.x) / 1.34;
+  float yLimit = 0.1 + 0.86 * sqrt(max(0.0, 1.0 - xNorm * xNorm));
+  float verticalMask = smoothstep(yLimit, yLimit - 0.22, abs(tilted.y));
+  float horizontalMask = smoothstep(1.38, 0.18, abs(tilted.x));
+  float ovalMask = smoothstep(1.2, 0.1, length(vec2(tilted.x * 0.74, tilted.y * 1.2)));
+  float mask = clamp(verticalMask * horizontalMask * ovalMask, 0.0, 1.0);
+
   float blindCount = max(1.0, uBlindCount);
   float stripe = fract((tilted.x + 1.4) * blindCount + sin(iTime * 0.18) * 0.08);
-  float blinds = smoothstep(0.12, 0.78, stripe);
+  float blade = smoothstep(0.02, 0.18, stripe) * (1.0 - smoothstep(0.72, 0.98, stripe));
+  float bladeShade = smoothstep(0.08, 0.72, stripe);
   float shineBase = uShineDirection < 0.0 ? 1.0 - stripe : stripe;
-  float shine = pow(1.0 - abs(shineBase - 0.5) * 2.0, 2.2);
+  float shine = pow(1.0 - abs(shineBase - 0.46) * 2.0, 2.0);
   float edgeGlow = pow(1.0 - abs(fract(stripe + 0.08) - 0.5) * 2.0, 5.0);
 
   vec2 mouse = vec2(iMouse.x, iMouse.y);
   float radius = max(0.001, uSpotlightRadius);
   float softness = max(0.001, uSpotlightSoftness);
   float spotlight = smoothstep(radius + softness * 0.35, radius * 0.16, distance(uv, mouse)) * uSpotlightOpacity;
-  float coreGlow = smoothstep(0.94, 0.0, distance(uv, vec2(0.58, 0.42)));
+  float coreGlow = smoothstep(0.76, 0.0, length(vec2(tilted.x * 0.72, tilted.y * 1.1)));
   float noise = (rand(gl_FragCoord.xy + iTime) - 0.5) * uNoise * 0.16;
 
   vec3 glowColor = mix(uColor0, uColor1, clamp(t, 0.0, 1.0));
-  vec3 color = base * (0.22 + blinds * 0.48);
-  color += glowColor * shine * 0.5;
-  color += glowColor * edgeGlow * 0.32;
-  color += spotlight * glowColor * 0.42;
-  color += coreGlow * glowColor * 0.18;
+  vec3 color = base * (0.12 + blade * (0.42 + bladeShade * 0.36));
+  color += glowColor * shine * blade * 0.72;
+  color += glowColor * edgeGlow * 0.36;
+  color += spotlight * glowColor * 0.38;
+  color += coreGlow * glowColor * 0.46;
   color += noise * 0.6;
-  gl_FragColor = vec4(color, 1.0);
+  gl_FragColor = vec4(color * mask, mask);
 }
 `;
 
