@@ -4,11 +4,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>动效资产预览库</title>
-    <link rel="stylesheet" href="./styles.css?v=motion-hub-20260722-react-bits-blinds-2" />
+    <link rel="stylesheet" href="./styles.css?v=motion-hub-20260722-fullscreen-blinds" />
     <script src="https://unpkg.com/@lottiefiles/lottie-player@2.0.8/dist/lottie-player.js"></script>
     <script src="https://unpkg.com/@rive-app/canvas@2.24.0/rive.js"></script>
   </head>
   <body>
+    <div class="home-visual" aria-hidden="true">
+      <div id="homeBlinds" class="home-blinds"></div>
+    </div>
+
     <header class="topbar">
       <button id="homeTrigger" class="brand-button" type="button" aria-label="返回格式主页">
         <p class="eyebrow">Motion Library</p>
@@ -30,9 +34,6 @@
           <p>集中查看 Lottie、HEVC、GIF、Rive 和实践型动效，快速进入对应格式的预览与检查流程。</p>
         </div>
         <div id="homeModules" class="module-grid"></div>
-      </div>
-      <div class="home-visual" aria-hidden="true">
-        <div id="homeBlinds" class="home-blinds"></div>
       </div>
     </section>
 
@@ -226,6 +227,6 @@
     </dialog>
 
     <script src="./app.js?v=motion-hub-20260721-fit" type="module"></script>
-    <script src="./scripts/gradient-blinds-static.mjs?v=20260722h" type="module"></script>
+    <script src="./scripts/gradient-blinds-static.mjs?v=20260722i" type="module"></script>
   </body>
 </html>
