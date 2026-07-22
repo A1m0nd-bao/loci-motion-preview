@@ -271,13 +271,25 @@ function render() {
     return;
   }
 
+  const quickMotions = [...visibleMotions]
+    .sort((a, b) => getUpdatedTime(b) - getUpdatedTime(a))
+    .slice(0, 8);
+
   for (const motion of visibleMotions) {
     gallery.append(createCard(motion));
+  }
+
+  for (const motion of quickMotions) {
     quickRail.append(createQuickCard(motion));
   }
 
   updateFormatActiveState();
   syncPreviewHosts();
+}
+
+function getUpdatedTime(motion) {
+  const time = Date.parse(motion.updatedAt || motion.createdAt || "");
+  return Number.isFinite(time) ? time : 0;
 }
 
 function createQuickCard(motion) {
