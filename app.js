@@ -362,9 +362,11 @@ function setupPreviewHost(host, motion) {
   host.classList.toggle("is-lottie", motion.kind === "lottie");
   host.dataset.loaded = "false";
   host.dataset.visible = "false";
+  host.dataset.previewActive = "false";
   host.dataset.kind = motion.kind;
   host.dataset.src = motion.file;
   applyMediaSizing(host, motion);
+  bindPreviewFocusPlayback(host, motion);
 
   if (lazyHostObserver) {
     lazyHostObserver.observe(host);
@@ -398,6 +400,7 @@ function ensurePreviewController(host, motion) {
   const controller = createMediaController(host, motion, { detail: false });
   previewControllers.set(host, controller);
   host.dataset.loaded = "true";
+  controller.ready?.().then(() => syncPreviewHost(host)).catch(() => {});
   return controller;
 }
 
@@ -414,9 +417,30 @@ function syncPreviewHost(host) {
   controller.setSpeed?.(Number(speed.value));
   controller.setLoop?.(loop.checked);
 
-  const shouldPlay = autoplay.checked && host.dataset.visible === "true";
+  const shouldPlay = autoplay.checked && host.dataset.previewActive === "true" && host.dataset.visible === "true";
   if (shouldPlay) controller.play?.();
-  if (!shouldPlay) controller.pause?.();
+  if (!shouldPlay) {
+    controller.pause?.();
+    controller.showPoster?.();
+  }
+}
+
+function bindPreviewFocusPlayback(host, motion) {
+  const target = host.closest(".preview") || host.closest(".quick-card") || host;
+  const activate = () => {
+    host.dataset.previewActive = "true";
+    ensurePreviewController(host, motion);
+    syncPreviewHost(host);
+  };
+  const deactivate = () => {
+    host.dataset.previewActive = "false";
+    syncPreviewHost(host);
+  };
+
+  target.addEventListener("pointerenter", activate);
+  target.addEventListener("pointerleave", deactivate);
+  target.addEventListener("focusin", activate);
+  target.addEventListener("focusout", deactivate);
 }
 
 async function openDetail(motion) {
@@ -458,7 +482,7 @@ function createMediaController(host, motion, options = {}) {
   host.replaceChildren();
   if (motion.kind === "lottie") return createLottieController(host, motion, options);
   if (motion.kind === "gif") return createImageController(host, motion);
-  if (motion.kind === "hevc" || motion.kind === "video") return createVideoController(host, motion);
+  if (motion.kind === "hevc" || motion.kind === "video") return createVideoController(host, motion, options);
   if (motion.kind === "rive") return createRiveController(host, motion);
   return createFallbackController(host, motion);
 }
@@ -471,6 +495,13 @@ function createLottieController(host, motion, options = {}) {
   host.append(player);
   let animationItem = null;
 
+  const showPoster = () => {
+    if (!animationItem || options.detail) return;
+    const totalFrames = Number(animationItem.totalFrames) || Number(animationItem.animationData?.op) || 0;
+    const frame = Math.max(1, Math.floor(totalFrames * previewPosterFrameRatio));
+    animationItem.goToAndStop(frame, true);
+  };
+
   const ready = async () => {
     if (typeof player.load === "function") {
       try {
@@ -482,11 +513,7 @@ function createLottieController(host, motion, options = {}) {
 
     try {
       if (typeof player.getLottie === "function") animationItem = await player.getLottie();
-      if (!options.detail && animationItem) {
-        const totalFrames = Number(animationItem.totalFrames) || Number(animationItem.animationData?.op) || 0;
-        const frame = Math.max(1, Math.floor(totalFrames * previewPosterFrameRatio));
-        animationItem.goToAndStop(frame, true);
-      }
+      showPoster();
     } catch {
       animationItem = null;
     }
@@ -498,6 +525,7 @@ function createLottieController(host, motion, options = {}) {
     ready: () => readyPromise,
     play: () => player.play?.(),
     pause: () => player.pause?.(),
+    showPoster,
     setLoop: (value) => player.toggleAttribute("loop", value),
     setSpeed: (value) => player.setSpeed?.(value),
     seek: (frame) => animationItem?.goToAndStop?.(frame, true) || player.seek?.(frame),
@@ -516,13 +544,14 @@ function createImageController(host, motion) {
     element: image,
     play: () => {},
     pause: () => {},
+    showPoster: () => {},
     setLoop: () => {},
     setSpeed: () => {},
     destroy: () => {},
   };
 }
 
-function createVideoController(host, motion) {
+function createVideoController(host, motion, options = {}) {
   const video = document.createElement("video");
   video.src = motion.file;
   video.muted = true;
@@ -530,6 +559,13 @@ function createVideoController(host, motion) {
   video.preload = "metadata";
   video.controls = false;
   host.append(video);
+  const showPoster = () => {
+    if (!Number.isFinite(video.duration) || options.detail) return;
+    video.currentTime = Math.max(0, video.duration * previewPosterFrameRatio);
+  };
+
+  video.addEventListener("loadedmetadata", showPoster, { once: true });
+
   return {
     element: video,
     ready: () =>
@@ -539,6 +575,7 @@ function createVideoController(host, motion) {
       }),
     play: () => video.play().catch(() => {}),
     pause: () => video.pause(),
+    showPoster,
     setLoop: (value) => {
       video.loop = value;
     },
