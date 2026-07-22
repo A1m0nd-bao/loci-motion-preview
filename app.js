@@ -3,6 +3,13 @@ const quickRail = document.querySelector("#quickRail");
 const formatNav = document.querySelector("#formatNav");
 const homeView = document.querySelector("#homeView");
 const homeModules = document.querySelector("#homeModules");
+const homePrimaryCta = document.querySelector("#homePrimaryCta");
+const homeSecondaryCta = document.querySelector("#homeSecondaryCta");
+const homeTotal = document.querySelector("#homeTotal");
+const homeFormats = document.querySelector("#homeFormats");
+const homeCategories = document.querySelector("#homeCategories");
+const homePanelTotal = document.querySelector("#homePanelTotal");
+const homeBreakdown = document.querySelector("#homeBreakdown");
 const quickSection = document.querySelector("#quickSection");
 const libraryView = document.querySelector("#libraryView");
 const homeTrigger = document.querySelector("#homeTrigger");
@@ -135,6 +142,7 @@ function populateKinds() {
   }
 
   renderHomeModules(kinds, counts);
+  renderHomeIndex(kinds, counts);
 }
 
 function createFormatButton(kind, label, amount, description) {
@@ -161,6 +169,31 @@ function renderHomeModules(kinds, counts) {
   for (const kind of ["hevc", "gif", "rive", "practice"]) {
     if (counts[kind]) continue;
     homeModules.append(createModuleCard(kind, 0));
+  }
+}
+
+function renderHomeIndex(kinds, counts) {
+  const categories = new Set(motions.map((item) => item.category || "未分类"));
+  homeTotal.textContent = String(motions.length);
+  homeFormats.textContent = String(kinds.length);
+  homeCategories.textContent = String(categories.size);
+  homePanelTotal.textContent = String(motions.length);
+
+  homeBreakdown.replaceChildren();
+  const total = Math.max(1, motions.length);
+  const rows = kinds.length ? kinds : ["lottie"];
+  for (const kind of rows.slice(0, 5)) {
+    const amount = counts[kind] || 0;
+    const row = document.createElement("div");
+    row.className = "home-breakdown-row";
+    row.innerHTML = `
+      <span><strong></strong><em></em></span>
+      <div class="home-breakdown-bar"><i></i></div>
+    `;
+    row.querySelector("strong").textContent = labelForKind(kind);
+    row.querySelector("em").textContent = String(amount);
+    row.querySelector("i").style.width = `${Math.max(4, (amount / total) * 100)}%`;
+    homeBreakdown.append(row);
   }
 }
 
@@ -945,6 +978,8 @@ function updateFormatActiveState() {
 
 search.addEventListener("input", render);
 homeTrigger.addEventListener("click", showHome);
+homePrimaryCta.addEventListener("click", () => enterModule("all"));
+homeSecondaryCta.addEventListener("click", () => enterModule("lottie"));
 kindSelect.addEventListener("change", () => {
   enterModule(kindSelect.value);
 });
