@@ -1,6 +1,60 @@
 {
   "items": [
     {
+      "name": "ARGrowthPrototype universal portal 20260722 125754 3535b85c",
+      "file": "./motions/实践型动效/角色drop放置动效/ARGrowthPrototype-universal-portal-20260722-125754-3535b85c.zip",
+      "kind": "practice",
+      "kindLabel": "实践型动效",
+      "category": "角色drop放置动效",
+      "interactionType": "App内交互原型",
+      "tags": [
+        "入场动效"
+      ],
+      "mimeType": "application/zip",
+      "width": 0,
+      "height": 0,
+      "frameRate": 0,
+      "frames": 0,
+      "duration": 0,
+      "updatedAt": "2026-07-22T18:57:02.436Z"
+    },
+    {
+      "name": "ios ar scan effect cc649428",
+      "file": "./motions/实践型动效/全息扫描占位符/ios-ar-scan-effect-cc649428.zip",
+      "kind": "practice",
+      "kindLabel": "实践型动效",
+      "category": "全息扫描占位符",
+      "interactionType": "加载/等待",
+      "tags": [
+        "加载动效"
+      ],
+      "mimeType": "application/zip",
+      "width": 0,
+      "height": 0,
+      "frameRate": 0,
+      "frames": 0,
+      "duration": 0,
+      "updatedAt": "2026-07-22T18:56:59.391Z"
+    },
+    {
+      "name": "StarMotion iOS Handoff d6527647",
+      "file": "./motions/实践型动效/星星扫描交互动画/StarMotion-iOS-Handoff-d6527647.zip",
+      "kind": "practice",
+      "kindLabel": "实践型动效",
+      "category": "星星扫描交互动画",
+      "interactionType": "App内交互原型",
+      "tags": [
+        "状态反馈"
+      ],
+      "mimeType": "application/zip",
+      "width": 0,
+      "height": 0,
+      "frameRate": 0,
+      "frames": 0,
+      "duration": 0,
+      "updatedAt": "2026-07-22T18:56:57.856Z"
+    },
+    {
       "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
       "file": "./motions/GIF/风格选择页-q版/7月20日-3-1-q版-559038c6.gif",
       "kind": "gif",

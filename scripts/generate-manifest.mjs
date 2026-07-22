@@ -26,6 +26,7 @@ const supportedExtensions = new Set([
   ".webm",
   ".html",
   ".htm",
+  ".zip",
 ]);
 
 async function collectFiles(dir) {
@@ -86,7 +87,7 @@ function inferKind(file, meta = {}) {
   if (ext === ".json" || ext === ".lottie") return "lottie";
   if (ext === ".gif") return "gif";
   if (ext === ".riv") return "rive";
-  if (ext === ".html" || ext === ".htm") return "practice";
+  if (ext === ".html" || ext === ".htm" || ext === ".zip") return "practice";
   if ([".mov", ".mp4", ".m4v", ".webm"].includes(ext)) return lower.includes("hevc") || lower.includes("alpha") ? "hevc" : "video";
   return "practice";
 }
@@ -118,6 +119,7 @@ function inferMime(file, kind) {
   if (ext === ".mov") return "video/quicktime";
   if (ext === ".webm") return "video/webm";
   if (ext === ".html" || ext === ".htm") return "text/html";
+  if (ext === ".zip") return "application/zip";
   return "video/mp4";
 }
 
