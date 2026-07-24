@@ -238,7 +238,7 @@ function startHomeOpening({ returning = false } = {}) {
 
   document.body.classList.add("home-opening");
   document.body.classList.toggle("is-returning-home", returning);
-  homeOpeningTimer = window.setTimeout(finishHomeOpening, returning ? 820 : 2350);
+  homeOpeningTimer = window.setTimeout(finishHomeOpening, returning ? 820 : 3050);
   markHomeOpeningSeen();
 }
 
