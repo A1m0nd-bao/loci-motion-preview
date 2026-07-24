@@ -61,9 +61,11 @@ let activeMotionInfo = null;
 let detailController = null;
 let timelineRaf = 0;
 let currentView = "home";
+let homeOpeningTimer = 0;
 
 const motionInfoCache = new Map();
 const previewBackgroundKey = "motion-preview-bg";
+const homeOpeningSeenKey = "motion-home-opening-seen";
 const defaultPreviewBackground = "#0a0c10";
 const previewPosterFrameRatio = 0.35;
 const kindLabels = {
@@ -92,6 +94,7 @@ if (window.matchMedia("(max-width: 820px)").matches) {
 applyPreviewBackground(localStorage.getItem(previewBackgroundKey) || defaultPreviewBackground, {
   persist: false,
 });
+startHomeOpening({ returning: hasSeenHomeOpening() });
 
 async function loadManifest() {
   try {
@@ -208,6 +211,7 @@ function createModuleCard(kind, amount) {
 }
 
 function enterModule(kind) {
+  finishHomeOpening();
   currentView = "library";
   kindSelect.value = kind;
   populateCategories();
@@ -218,7 +222,43 @@ function showHome() {
   currentView = "home";
   kindSelect.value = "all";
   populateCategories();
+  startHomeOpening({ returning: true });
   render();
+}
+
+function startHomeOpening({ returning = false } = {}) {
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  window.clearTimeout(homeOpeningTimer);
+
+  if (reduceMotion) {
+    finishHomeOpening();
+    markHomeOpeningSeen();
+    return;
+  }
+
+  document.body.classList.add("home-opening");
+  document.body.classList.toggle("is-returning-home", returning);
+  homeOpeningTimer = window.setTimeout(finishHomeOpening, returning ? 820 : 2350);
+  markHomeOpeningSeen();
+}
+
+function finishHomeOpening() {
+  window.clearTimeout(homeOpeningTimer);
+  document.body.classList.remove("home-opening", "is-returning-home");
+}
+
+function hasSeenHomeOpening() {
+  try {
+    return sessionStorage.getItem(homeOpeningSeenKey) === "true";
+  } catch {
+    return false;
+  }
+}
+
+function markHomeOpeningSeen() {
+  try {
+    sessionStorage.setItem(homeOpeningSeenKey, "true");
+  } catch {}
 }
 
 function populateCategories() {
