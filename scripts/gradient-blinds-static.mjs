@@ -11,7 +11,7 @@ const gradientConfig = {
   gradientColors: ["#6ef8a4", "#1f8ffd"],
   angle: 0,
   noise: 0.3,
-  blindCount: 30,
+  blindCount: 38,
   blindMinWidth: 0,
   mouseDampening: 0.2,
   mirrorGradient: false,
