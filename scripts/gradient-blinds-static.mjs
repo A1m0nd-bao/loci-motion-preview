@@ -1,8 +1,12 @@
-import { Renderer, Program, Mesh, Triangle } from "https://esm.sh/ogl@1.0.11";
-
 const container = document.querySelector("#homeBlinds");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const MAX_COLORS = 8;
+let Renderer;
+let Program;
+let Mesh;
+let Triangle;
+let initPromise = null;
+let controller = null;
 const gradientConfig = {
   gradientColors: ["#6ef8a4", "#1f8ffd"],
   angle: 0,
@@ -18,11 +22,23 @@ const gradientConfig = {
   shineDirection: "left",
 };
 
-function initGradientBlinds(target) {
+async function loadOgl() {
+  if (Renderer) return;
+  const ogl = await import("https://esm.sh/ogl@1.0.11");
+  Renderer = ogl.Renderer;
+  Program = ogl.Program;
+  Mesh = ogl.Mesh;
+  Triangle = ogl.Triangle;
+}
+
+async function initGradientBlinds(target) {
+  await loadOgl();
+
   const renderer = new Renderer({
-    dpr: Math.min(window.devicePixelRatio || 1, 2),
+    dpr: Math.min(window.devicePixelRatio || 1, 1.5),
     alpha: true,
-    antialias: true,
+    antialias: false,
+    powerPreference: "high-performance",
   });
   const gl = renderer.gl;
   const canvas = gl.canvas;
@@ -60,6 +76,7 @@ function initGradientBlinds(target) {
   const mesh = new Mesh(gl, { geometry: new Triangle(gl), program });
   let frame = 0;
   let lastTime = 0;
+  let running = false;
   const targetPointer = [0, 0];
 
   const resize = () => {
@@ -87,6 +104,7 @@ function initGradientBlinds(target) {
   window.addEventListener("mousemove", onPointerMove, { passive: true });
 
   const render = (time) => {
+    if (!running) return;
     frame = window.requestAnimationFrame(render);
     const dt = lastTime ? (time - lastTime) / 1000 : 0;
     lastTime = time;
@@ -98,13 +116,30 @@ function initGradientBlinds(target) {
     uniforms.iMouse.value[1] += (targetPointer[1] - uniforms.iMouse.value[1]) * factor;
     uniforms.iTime.value = time * 0.001;
     renderer.render({ scene: mesh });
+    target.classList.add("is-ready");
   };
-  frame = window.requestAnimationFrame(render);
+
+  const start = () => {
+    if (running) return;
+    running = true;
+    lastTime = 0;
+    frame = window.requestAnimationFrame(render);
+  };
+
+  const stop = () => {
+    running = false;
+    window.cancelAnimationFrame(frame);
+  };
+
+  controller = { start, stop };
+  if (document.body.classList.contains("is-home-view")) {
+    start();
+  }
 
   window.addEventListener(
     "pagehide",
     () => {
-      window.cancelAnimationFrame(frame);
+      stop();
       window.removeEventListener("pointermove", onPointerMove);
       window.removeEventListener("mousemove", onPointerMove);
       resizeObserver.disconnect();
@@ -241,6 +276,24 @@ void main() {
 }
 `;
 
+function wakeHomeVisual() {
+  if (!container || prefersReducedMotion) return;
+  if (controller) {
+    controller.start();
+    return;
+  }
+  if (!initPromise) {
+    initPromise = initGradientBlinds(container).catch(() => {
+      initPromise = null;
+    });
+  }
+}
+
+function sleepHomeVisual() {
+  controller?.stop();
+}
+
 if (container && !prefersReducedMotion) {
-  initGradientBlinds(container);
+  window.addEventListener("motion-home-visual-wake", wakeHomeVisual);
+  window.addEventListener("motion-home-visual-sleep", sleepHomeVisual);
 }
