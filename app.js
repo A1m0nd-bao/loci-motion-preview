@@ -240,7 +240,7 @@ function startHomeOpening({ returning = false } = {}) {
   document.body.classList.add("home-opening");
   document.body.classList.toggle("is-returning-home", returning);
   scheduleHomeVisualWake(returning);
-  homeOpeningTimer = window.setTimeout(finishHomeOpening, returning ? 820 : 3850);
+  homeOpeningTimer = window.setTimeout(finishHomeOpening, returning ? 820 : 4650);
 }
 
 function finishHomeOpening() {
@@ -252,7 +252,7 @@ function finishHomeOpening() {
 function scheduleHomeVisualWake(returning) {
   homeVisualWakeTimer = window.setTimeout(
     () => window.dispatchEvent(new CustomEvent("motion-home-visual-wake")),
-    returning ? 120 : 1500,
+    returning ? 120 : 2750,
   );
 }
 
