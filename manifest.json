@@ -1,6 +1,42 @@
 {
   "items": [
     {
+      "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
+      "file": "./motions/GIF/风格选择页-mc/mc-9c1b6c04.gif",
+      "kind": "gif",
+      "kindLabel": "GIF",
+      "category": "风格选择页-mc",
+      "interactionType": "按钮反馈",
+      "tags": [
+        "状态反馈"
+      ],
+      "mimeType": "image/gif",
+      "width": 0,
+      "height": 0,
+      "frameRate": 0,
+      "frames": 0,
+      "duration": 0,
+      "updatedAt": "2026-07-27T09:44:58.503Z"
+    },
+    {
+      "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
+      "file": "./motions/HEVC-with-Alpha/风格选择页-mc/mc-11fa66e3.mov",
+      "kind": "hevc",
+      "kindLabel": "HEVC with Alpha",
+      "category": "风格选择页-mc",
+      "interactionType": "按钮反馈",
+      "tags": [
+        "状态反馈"
+      ],
+      "mimeType": "video/quicktime",
+      "width": 0,
+      "height": 0,
+      "frameRate": 0,
+      "frames": 0,
+      "duration": 0,
+      "updatedAt": "2026-07-27T09:44:57.823Z"
+    },
+    {
       "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0013s_d6ef2e8e-9317-45a0-90b8-ac6d15accc1g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
       "file": "./motions/HEVC-with-Alpha/app开屏页/LociWorldLottie-hevc-alpha-under-1mb-befb3fac.mov",
       "kind": "hevc",
@@ -16,7 +52,7 @@
       "frameRate": 0,
       "frames": 0,
       "duration": 0,
-      "updatedAt": "2026-07-27T06:54:31.294Z"
+      "updatedAt": "2026-07-27T09:44:57.823Z"
     },
     {
       "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0013s_d6ef2e8e-9317-45a0-90b8-ac6d15accc1g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
@@ -34,7 +70,7 @@
       "frameRate": 0,
       "frames": 0,
       "duration": 0,
-      "updatedAt": "2026-07-27T06:54:31.294Z"
+      "updatedAt": "2026-07-27T09:44:57.823Z"
     },
     {
       "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0013s_d6ef2e8e-9317-45a0-90b8-ac6d15accc1g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
@@ -200,24 +236,6 @@
     },
     {
       "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
-      "file": "./motions/GIF/风格选择页-mc/7月20日-3-mc-0400bf4c.gif",
-      "kind": "gif",
-      "kindLabel": "GIF",
-      "category": "风格选择页-mc",
-      "interactionType": "按钮反馈",
-      "tags": [
-        "状态反馈"
-      ],
-      "mimeType": "image/gif",
-      "width": 0,
-      "height": 0,
-      "frameRate": 0,
-      "frames": 0,
-      "duration": 0,
-      "updatedAt": "2026-07-21T12:18:04.305Z"
-    },
-    {
-      "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
       "file": "./motions/GIF/风格选择页-豆豆眼/7月20日-3-豆豆眼-4bb1f014.gif",
       "kind": "gif",
       "kindLabel": "GIF",
@@ -269,24 +287,6 @@
       "frames": 0,
       "duration": 0,
       "updatedAt": "2026-07-21T12:18:02.409Z"
-    },
-    {
-      "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
-      "file": "./motions/HEVC-with-Alpha/风格选择页-mc/7月20日-3-8271d608.mov",
-      "kind": "hevc",
-      "kindLabel": "HEVC with Alpha",
-      "category": "风格选择页-mc",
-      "interactionType": "按钮反馈",
-      "tags": [
-        "状态反馈"
-      ],
-      "mimeType": "video/quicktime",
-      "width": 0,
-      "height": 0,
-      "frameRate": 0,
-      "frames": 0,
-      "duration": 0,
-      "updatedAt": "2026-07-21T12:18:01.586Z"
     },
     {
       "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
