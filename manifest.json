@@ -1,6 +1,96 @@
 {
   "items": [
     {
+      "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0013s_d6ef2e8e-9317-45a0-90b8-ac6d15accc1g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
+      "file": "./motions/HEVC-with-Alpha/loci生长动画/LogoMascotScaleIntro-hevc-alpha-under-1mb-458dc4e5.mov",
+      "kind": "hevc",
+      "kindLabel": "HEVC with Alpha",
+      "category": "loci生长动画",
+      "interactionType": "转场",
+      "tags": [
+        "入场动效"
+      ],
+      "mimeType": "video/quicktime",
+      "width": 0,
+      "height": 0,
+      "frameRate": 0,
+      "frames": 0,
+      "duration": 0,
+      "updatedAt": "2026-07-27T04:47:00.554Z"
+    },
+    {
+      "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0013s_d6ef2e8e-9317-45a0-90b8-ac6d15accc1g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
+      "file": "./motions/HEVC-with-Alpha/loci生长动画/LogoMascotIntro-hevc-alpha-under-1mb-d50df632.mov",
+      "kind": "hevc",
+      "kindLabel": "HEVC with Alpha",
+      "category": "loci生长动画",
+      "interactionType": "转场",
+      "tags": [
+        "入场动效"
+      ],
+      "mimeType": "video/quicktime",
+      "width": 0,
+      "height": 0,
+      "frameRate": 0,
+      "frames": 0,
+      "duration": 0,
+      "updatedAt": "2026-07-27T04:46:59.971Z"
+    },
+    {
+      "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0013s_d6ef2e8e-9317-45a0-90b8-ac6d15accc1g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
+      "file": "./motions/HEVC-with-Alpha/loci生长动画/LogoMascot-hevc-alpha-under-1mb-c3dc4eb8.mov",
+      "kind": "hevc",
+      "kindLabel": "HEVC with Alpha",
+      "category": "loci生长动画",
+      "interactionType": "转场",
+      "tags": [
+        "入场动效"
+      ],
+      "mimeType": "video/quicktime",
+      "width": 0,
+      "height": 0,
+      "frameRate": 0,
+      "frames": 0,
+      "duration": 0,
+      "updatedAt": "2026-07-27T04:46:59.250Z"
+    },
+    {
+      "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0013s_d6ef2e8e-9317-45a0-90b8-ac6d15accc1g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
+      "file": "./motions/HEVC-with-Alpha/app开屏页/LociWorldLottieLoading-hevc-alpha-under-1mb-cd1d6fec.mov",
+      "kind": "hevc",
+      "kindLabel": "HEVC with Alpha",
+      "category": "app开屏页",
+      "interactionType": "转场",
+      "tags": [
+        "入场动效"
+      ],
+      "mimeType": "video/quicktime",
+      "width": 0,
+      "height": 0,
+      "frameRate": 0,
+      "frames": 0,
+      "duration": 0,
+      "updatedAt": "2026-07-27T04:46:58.685Z"
+    },
+    {
+      "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0013s_d6ef2e8e-9317-45a0-90b8-ac6d15accc1g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
+      "file": "./motions/HEVC-with-Alpha/app开屏页/LociWorldLottie-hevc-alpha-under-1mb-befb3fac.mov",
+      "kind": "hevc",
+      "kindLabel": "HEVC with Alpha",
+      "category": "app开屏页",
+      "interactionType": "转场",
+      "tags": [
+        "入场动效"
+      ],
+      "mimeType": "video/quicktime",
+      "width": 0,
+      "height": 0,
+      "frameRate": 0,
+      "frames": 0,
+      "duration": 0,
+      "updatedAt": "2026-07-27T04:46:58.129Z"
+    },
+    {
       "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
       "file": "./motions/GIF/风格选择页-哥特/7月20日-3-4f266861.gif",
       "kind": "gif",
