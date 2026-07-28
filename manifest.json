@@ -1,20 +1,22 @@
 {
   "items": [
     {
-      "name": "合成 2",
-      "file": "./lotties/未分类/data-around-1mb-bda10205.json",
+      "name": "Drop按钮",
+      "file": "./lotties/创建模式-Drop-Loci/camera-shake-flash-top-expanded-74x84-embedded-dc19089e.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
-      "category": "未分类",
+      "category": "创建模式-Drop Loci",
       "interactionType": "",
-      "tags": [],
+      "tags": [
+        "有待讨论"
+      ],
       "mimeType": "application/json",
-      "width": 1179,
-      "height": 2556,
+      "width": 74,
+      "height": 84,
       "frameRate": 60,
-      "frames": 1080,
-      "duration": 18,
-      "updatedAt": "2026-07-28T08:30:42.919Z"
+      "frames": 90,
+      "duration": 1.5,
+      "updatedAt": "2026-07-28T08:57:41.878Z"
     },
     {
       "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0013s_d6ef2e8e-9317-45a0-90b8-ac6d15accc1g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
@@ -32,7 +34,7 @@
       "frameRate": 0,
       "frames": 0,
       "duration": 0,
-      "updatedAt": "2026-07-28T08:30:42.919Z"
+      "updatedAt": "2026-07-28T08:57:41.878Z"
     },
     {
       "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0013s_d6ef2e8e-9317-45a0-90b8-ac6d15accc1g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
@@ -50,6 +52,22 @@
       "frameRate": 0,
       "frames": 0,
       "duration": 0,
+      "updatedAt": "2026-07-28T08:57:41.878Z"
+    },
+    {
+      "name": "合成 2",
+      "file": "./lotties/未分类/data-around-1mb-bda10205.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [],
+      "mimeType": "application/json",
+      "width": 1179,
+      "height": 2556,
+      "frameRate": 60,
+      "frames": 1080,
+      "duration": 18,
       "updatedAt": "2026-07-28T08:30:42.919Z"
     },
     {
