@@ -1,38 +1,20 @@
 {
   "items": [
     {
-      "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0013s_d6ef2e8e-9317-45a0-90b8-ac6d15accc1g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
-      "file": "./motions/HEVC-with-Alpha/app开屏页/LociWorldLottieLoading-hevc-alpha-under-1mb-cd1d6fec.mov",
-      "kind": "hevc",
-      "kindLabel": "HEVC with Alpha",
-      "category": "app开屏页",
-      "interactionType": "转场",
-      "tags": [
-        "入场动效"
-      ],
-      "mimeType": "video/quicktime",
-      "width": 0,
-      "height": 0,
-      "frameRate": 0,
-      "frames": 0,
-      "duration": 0,
-      "updatedAt": "2026-07-27T10:43:45.264Z"
-    },
-    {
       "name": "合成 2",
-      "file": "./lotties/未分类/dxxr-b9e9d9f2-375x812-svg-rings-under-earth-pulse-compressed-subtle-clean-earth--851efe1e.json",
+      "file": "./lotties/未分类/data-2ac78a6b.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
       "category": "未分类",
       "interactionType": "",
       "tags": [],
       "mimeType": "application/json",
-      "width": 375,
-      "height": 812,
+      "width": 1179,
+      "height": 2556,
       "frameRate": 60,
       "frames": 1080,
       "duration": 18,
-      "updatedAt": "2026-07-27T10:43:45.263Z"
+      "updatedAt": "2026-07-28T08:28:03.478Z"
     },
     {
       "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0013s_d6ef2e8e-9317-45a0-90b8-ac6d15accc1g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
@@ -50,6 +32,40 @@
       "frameRate": 0,
       "frames": 0,
       "duration": 0,
+      "updatedAt": "2026-07-28T08:28:03.478Z"
+    },
+    {
+      "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0013s_d6ef2e8e-9317-45a0-90b8-ac6d15accc1g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
+      "file": "./motions/HEVC-with-Alpha/app开屏页/LociWorldLottieLoading-hevc-alpha-under-1mb-cd1d6fec.mov",
+      "kind": "hevc",
+      "kindLabel": "HEVC with Alpha",
+      "category": "app开屏页",
+      "interactionType": "转场",
+      "tags": [
+        "入场动效"
+      ],
+      "mimeType": "video/quicktime",
+      "width": 0,
+      "height": 0,
+      "frameRate": 0,
+      "frames": 0,
+      "duration": 0,
+      "updatedAt": "2026-07-28T08:28:03.478Z"
+    },
+    {
+      "name": "合成 2",
+      "file": "./lotties/未分类/dxxr-b9e9d9f2-375x812-svg-rings-under-earth-pulse-compressed-subtle-clean-earth--851efe1e.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [],
+      "mimeType": "application/json",
+      "width": 375,
+      "height": 812,
+      "frameRate": 60,
+      "frames": 1080,
+      "duration": 18,
       "updatedAt": "2026-07-27T10:43:45.263Z"
     },
     {
