@@ -1,23 +1,42 @@
 {
   "items": [
     {
-      "name": "Loci主体",
-      "file": "./lotties/未分类/combined-gestures-purple-solid-5e0cbf98.json",
-      "kind": "lottie",
-      "kindLabel": "Lottie",
-      "category": "未分类",
-      "interactionType": "",
+      "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
+      "file": "./motions/GIF/风格选择页-哥特/7月20日-3-94b2d657.gif",
+      "kind": "gif",
+      "kindLabel": "GIF",
+      "category": "风格选择页-哥特",
+      "interactionType": "按钮反馈",
       "tags": [
-        "有待讨论"
+        "状态反馈"
       ],
-      "mimeType": "application/json",
-      "width": 272,
-      "height": 211,
-      "frameRate": 30,
-      "frames": 144,
-      "duration": 4.8,
-      "firstSeenAt": "2026-07-29T12:07:11+08:00",
-      "updatedAt": "2026-07-29T04:06:12.820Z"
+      "mimeType": "image/gif",
+      "width": 0,
+      "height": 0,
+      "frameRate": 0,
+      "frames": 0,
+      "duration": 0,
+      "firstSeenAt": "",
+      "updatedAt": "2026-07-29T08:04:03.982Z"
+    },
+    {
+      "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
+      "file": "./motions/HEVC-with-Alpha/风格选择页-哥特/7月20日-3-f78f7b4f.mov",
+      "kind": "hevc",
+      "kindLabel": "HEVC with Alpha",
+      "category": "风格选择页-哥特",
+      "interactionType": "按钮反馈",
+      "tags": [
+        "状态反馈"
+      ],
+      "mimeType": "video/quicktime",
+      "width": 0,
+      "height": 0,
+      "frameRate": 0,
+      "frames": 0,
+      "duration": 0,
+      "firstSeenAt": "",
+      "updatedAt": "2026-07-29T08:04:03.233Z"
     },
     {
       "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0013s_d6ef2e8e-9317-45a0-90b8-ac6d15accc1g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
@@ -36,7 +55,7 @@
       "frames": 0,
       "duration": 0,
       "firstSeenAt": "2026-07-27T12:47:00+08:00",
-      "updatedAt": "2026-07-29T04:06:12.820Z"
+      "updatedAt": "2026-07-29T08:04:03.233Z"
     },
     {
       "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0013s_d6ef2e8e-9317-45a0-90b8-ac6d15accc1g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
@@ -55,6 +74,25 @@
       "frames": 0,
       "duration": 0,
       "firstSeenAt": "2026-07-27T12:47:00+08:00",
+      "updatedAt": "2026-07-29T08:04:03.233Z"
+    },
+    {
+      "name": "Loci主体",
+      "file": "./lotties/未分类/combined-gestures-purple-solid-5e0cbf98.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [
+        "有待讨论"
+      ],
+      "mimeType": "application/json",
+      "width": 272,
+      "height": 211,
+      "frameRate": 30,
+      "frames": 144,
+      "duration": 4.8,
+      "firstSeenAt": "2026-07-29T12:07:11+08:00",
       "updatedAt": "2026-07-29T04:06:12.820Z"
     },
     {
@@ -259,44 +297,6 @@
       "duration": 0,
       "firstSeenAt": "2026-07-27T12:47:00+08:00",
       "updatedAt": "2026-07-27T04:46:59.250Z"
-    },
-    {
-      "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
-      "file": "./motions/GIF/风格选择页-哥特/7月20日-3-4f266861.gif",
-      "kind": "gif",
-      "kindLabel": "GIF",
-      "category": "风格选择页-哥特",
-      "interactionType": "按钮反馈",
-      "tags": [
-        "状态反馈"
-      ],
-      "mimeType": "image/gif",
-      "width": 0,
-      "height": 0,
-      "frameRate": 0,
-      "frames": 0,
-      "duration": 0,
-      "firstSeenAt": "2026-07-23T19:25:30+08:00",
-      "updatedAt": "2026-07-23T11:25:13.303Z"
-    },
-    {
-      "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
-      "file": "./motions/HEVC-with-Alpha/风格选择页-q版/7月20日-3-db37c2aa.mov",
-      "kind": "hevc",
-      "kindLabel": "HEVC with Alpha",
-      "category": "风格选择页-q版",
-      "interactionType": "按钮反馈",
-      "tags": [
-        "状态反馈"
-      ],
-      "mimeType": "video/quicktime",
-      "width": 0,
-      "height": 0,
-      "frameRate": 0,
-      "frames": 0,
-      "duration": 0,
-      "firstSeenAt": "2026-07-23T19:25:30+08:00",
-      "updatedAt": "2026-07-23T11:25:12.636Z"
     },
     {
       "name": "ARGrowthPrototype universal portal 20260722 125754 3535b85c",
