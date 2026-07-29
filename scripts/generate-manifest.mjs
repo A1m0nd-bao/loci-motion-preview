@@ -1,11 +1,14 @@
 import { readdir, readFile, stat, writeFile } from "node:fs/promises";
+import { execFile } from "node:child_process";
 import { basename, extname, join, relative } from "node:path";
 import process from "node:process";
+import { promisify } from "node:util";
 
 const root = process.cwd();
 const sourceDirs = ["lotties", "motions"];
 const manifestPath = join(root, "manifest.json");
 const syncStatePath = join(root, ".sync", "lark-state.json");
+const execFileAsync = promisify(execFile);
 
 const kindLabels = {
   lottie: "Lottie",
@@ -148,6 +151,7 @@ const items = await Promise.all(
       frameRate: lottieMeta.frameRate || 0,
       frames: lottieMeta.frames || 0,
       duration: lottieMeta.duration || 0,
+      firstSeenAt: await getFirstSeenAt(rel),
       updatedAt: meta.updatedAt || meta.syncedAt || "",
     };
   }),
@@ -172,5 +176,24 @@ async function loadSyncMeta() {
     return meta;
   } catch {
     return {};
+  }
+}
+
+async function getFirstSeenAt(rel) {
+  const file = rel.replace(/^\.\//, "");
+  try {
+    const { stdout } = await execFileAsync(
+      "git",
+      ["log", "--follow", "--diff-filter=A", "--date=iso-strict", "--pretty=format:%ad", "--", file],
+      { cwd: root, maxBuffer: 1024 * 1024 },
+    );
+    const times = stdout
+      .trim()
+      .split("\n")
+      .map((line) => line.trim())
+      .filter(Boolean);
+    return times.at(-1) || "";
+  } catch {
+    return "";
   }
 }

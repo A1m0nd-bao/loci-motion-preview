@@ -121,6 +121,7 @@ function normalizeMotion(item) {
     kindLabel: item.kindLabel || kindLabels[kind] || kind,
     category: item.category || "未分类",
     tags: Array.isArray(item.tags) ? item.tags : [],
+    firstSeenAt: item.firstSeenAt || "",
   };
 }
 
@@ -310,9 +311,7 @@ function render() {
     .sort((a, b) => getUpdatedTime(b) - getUpdatedTime(a))
     .slice(0, 8);
 
-  for (const motion of visibleMotions) {
-    gallery.append(createCard(motion));
-  }
+  renderGalleryCards(visibleMotions, selectedKind);
 
   for (const motion of quickMotions) {
     quickRail.append(createQuickCard(motion));
@@ -325,6 +324,42 @@ function render() {
 function getUpdatedTime(motion) {
   const time = Date.parse(motion.updatedAt || motion.createdAt || "");
   return Number.isFinite(time) ? time : 0;
+}
+
+function renderGalleryCards(items, selectedKind) {
+  if (selectedKind !== "lottie") {
+    for (const motion of items) gallery.append(createCard(motion));
+    return;
+  }
+
+  const recentItems = [];
+  const historicalItems = [];
+  for (const motion of items) {
+    if (isHistoricalLottie(motion)) historicalItems.push(motion);
+    else recentItems.push(motion);
+  }
+
+  for (const motion of recentItems) gallery.append(createCard(motion));
+
+  if (!historicalItems.length) return;
+  gallery.append(createHistoryDivider(historicalItems.length));
+  for (const motion of historicalItems) gallery.append(createCard(motion));
+}
+
+function isHistoricalLottie(motion) {
+  if (motion.kind !== "lottie") return false;
+  const time = Date.parse(motion.firstSeenAt || motion.createdAt || motion.updatedAt || "");
+  return Number.isFinite(time) && time < Date.parse("2026-07-01T00:00:00+08:00");
+}
+
+function createHistoryDivider(amount) {
+  const divider = document.createElement("div");
+  divider.className = "history-divider";
+  divider.innerHTML = `
+    <strong>历史上传动效</strong>
+    <em>${amount} 个 / 7 月前上传</em>
+  `;
+  return divider;
 }
 
 function createQuickCard(motion) {

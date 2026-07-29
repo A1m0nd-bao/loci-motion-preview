@@ -1072,6 +1072,39 @@ output {
   grid-template-columns: 1fr;
 }
 
+.history-divider {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(42px, 1fr) auto auto minmax(42px, 1fr);
+  align-items: center;
+  gap: 14px;
+  margin: 26px 0 12px;
+  color: var(--muted);
+}
+
+.history-divider::before,
+.history-divider::after {
+  height: 1px;
+  content: "";
+  background: linear-gradient(90deg, transparent, rgba(110, 248, 164, 0.34), rgba(31, 143, 253, 0.22));
+}
+
+.history-divider::after {
+  background: linear-gradient(90deg, rgba(31, 143, 253, 0.22), rgba(110, 248, 164, 0.34), transparent);
+}
+
+.history-divider strong {
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 820;
+}
+
+.history-divider em {
+  color: rgba(156, 171, 185, 0.82);
+  font-style: normal;
+  font-size: 12px;
+}
+
 .motion-card {
   min-width: 0;
   position: relative;
