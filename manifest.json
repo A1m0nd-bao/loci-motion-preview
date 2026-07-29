@@ -1,22 +1,22 @@
 {
   "items": [
     {
-      "name": "Drop按钮",
-      "file": "./lotties/创建模式-Drop-Loci/camera-shake-flash-top-expanded-74x84-embedded-dc19089e.json",
+      "name": "Loci主体",
+      "file": "./lotties/未分类/combined-gestures-purple-solid-5e0cbf98.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
-      "category": "创建模式-Drop Loci",
+      "category": "未分类",
       "interactionType": "",
       "tags": [
         "有待讨论"
       ],
       "mimeType": "application/json",
-      "width": 74,
-      "height": 84,
-      "frameRate": 60,
-      "frames": 90,
-      "duration": 1.5,
-      "updatedAt": "2026-07-28T08:57:41.878Z"
+      "width": 272,
+      "height": 211,
+      "frameRate": 30,
+      "frames": 144,
+      "duration": 4.8,
+      "updatedAt": "2026-07-29T04:06:12.820Z"
     },
     {
       "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0013s_d6ef2e8e-9317-45a0-90b8-ac6d15accc1g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
@@ -34,7 +34,7 @@
       "frameRate": 0,
       "frames": 0,
       "duration": 0,
-      "updatedAt": "2026-07-28T08:57:41.878Z"
+      "updatedAt": "2026-07-29T04:06:12.820Z"
     },
     {
       "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0013s_d6ef2e8e-9317-45a0-90b8-ac6d15accc1g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
@@ -52,6 +52,60 @@
       "frameRate": 0,
       "frames": 0,
       "duration": 0,
+      "updatedAt": "2026-07-29T04:06:12.820Z"
+    },
+    {
+      "name": "右侧 MAX/MIN 提示条",
+      "file": "./lotties/Loci缩放交互范围提示/teal-hollow-glow-purple-with-deep-5c1bdc5b.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "Loci缩放交互范围提示",
+      "interactionType": "",
+      "tags": [
+        "出现/消失"
+      ],
+      "mimeType": "application/json",
+      "width": 512,
+      "height": 512,
+      "frameRate": 60,
+      "frames": 300,
+      "duration": 5,
+      "updatedAt": "2026-07-29T04:06:12.127Z"
+    },
+    {
+      "name": "右侧 MAX/MIN 提示条",
+      "file": "./lotties/Loci缩放交互范围提示/teal-hollow-glow-soft-embedded-purple-5657280c.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "Loci缩放交互范围提示",
+      "interactionType": "",
+      "tags": [
+        "出现/消失"
+      ],
+      "mimeType": "application/json",
+      "width": 512,
+      "height": 512,
+      "frameRate": 60,
+      "frames": 300,
+      "duration": 5,
+      "updatedAt": "2026-07-29T04:06:11.525Z"
+    },
+    {
+      "name": "Drop按钮",
+      "file": "./lotties/创建模式-Drop-Loci/camera-shake-flash-top-expanded-74x84-embedded-dc19089e.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "创建模式-Drop Loci",
+      "interactionType": "",
+      "tags": [
+        "有待讨论"
+      ],
+      "mimeType": "application/json",
+      "width": 74,
+      "height": 84,
+      "frameRate": 60,
+      "frames": 90,
+      "duration": 1.5,
       "updatedAt": "2026-07-28T08:57:41.878Z"
     },
     {
