@@ -1,23 +1,23 @@
 {
   "items": [
     {
-      "name": "Publish按钮",
-      "file": "./lotties/创建模式-Publish-Loci/LociWorldLottieLoading-c8771a12.json",
+      "name": "Loci主体",
+      "file": "./lotties/未分类/dxxr-b9e9d9f2-375x812-airplane-reference-motion-site-ready-1574382d.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
-      "category": "创建模式-Publish Loci",
+      "category": "未分类",
       "interactionType": "",
       "tags": [
         "有待讨论"
       ],
       "mimeType": "application/json",
-      "width": 750,
-      "height": 1624,
+      "width": 375,
+      "height": 812,
       "frameRate": 60,
-      "frames": 120,
-      "duration": 2,
+      "frames": 1080,
+      "duration": 18,
       "firstSeenAt": "",
-      "updatedAt": "2026-07-31T08:27:31.271Z"
+      "updatedAt": "2026-08-05T08:26:55.427Z"
     },
     {
       "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0013s_d6ef2e8e-9317-45a0-90b8-ac6d15accc1g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
@@ -36,7 +36,7 @@
       "frames": 0,
       "duration": 0,
       "firstSeenAt": "2026-07-27T12:47:00+08:00",
-      "updatedAt": "2026-07-31T08:27:31.271Z"
+      "updatedAt": "2026-08-05T08:26:55.427Z"
     },
     {
       "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0013s_d6ef2e8e-9317-45a0-90b8-ac6d15accc1g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
@@ -55,6 +55,25 @@
       "frames": 0,
       "duration": 0,
       "firstSeenAt": "2026-07-27T12:47:00+08:00",
+      "updatedAt": "2026-08-05T08:26:55.427Z"
+    },
+    {
+      "name": "Publish按钮",
+      "file": "./lotties/创建模式-Publish-Loci/LociWorldLottieLoading-c8771a12.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "创建模式-Publish Loci",
+      "interactionType": "",
+      "tags": [
+        "有待讨论"
+      ],
+      "mimeType": "application/json",
+      "width": 750,
+      "height": 1624,
+      "frameRate": 60,
+      "frames": 120,
+      "duration": 2,
+      "firstSeenAt": "2026-07-31T16:28:01+08:00",
       "updatedAt": "2026-07-31T08:27:31.271Z"
     },
     {
@@ -73,7 +92,7 @@
       "frameRate": 60,
       "frames": 300,
       "duration": 5,
-      "firstSeenAt": "",
+      "firstSeenAt": "2026-07-31T16:28:01+08:00",
       "updatedAt": "2026-07-31T08:27:30.576Z"
     },
     {
@@ -90,7 +109,7 @@
       "frameRate": 60,
       "frames": 1080,
       "duration": 18,
-      "firstSeenAt": "",
+      "firstSeenAt": "2026-07-31T16:28:01+08:00",
       "updatedAt": "2026-07-31T08:27:29.345Z"
     },
     {
@@ -107,7 +126,7 @@
       "frameRate": 60,
       "frames": 1080,
       "duration": 18,
-      "firstSeenAt": "",
+      "firstSeenAt": "2026-07-28T16:31:01+08:00",
       "updatedAt": "2026-07-31T08:27:28.584Z"
     },
     {
@@ -126,7 +145,7 @@
       "frameRate": 60,
       "frames": 300,
       "duration": 5,
-      "firstSeenAt": "",
+      "firstSeenAt": "2026-07-31T16:28:01+08:00",
       "updatedAt": "2026-07-31T08:27:27.507Z"
     },
     {
