@@ -1,6 +1,133 @@
 {
   "items": [
     {
+      "name": "Camera Tilt Shake Local Flash Loop - 74x84",
+      "file": "./lotties/创建模式-Drop-Loci/camera-shake-flash-top-expanded-74x84-embedded-dc19089e.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [],
+      "mimeType": "application/json",
+      "width": 74,
+      "height": 84,
+      "frameRate": 60,
+      "frames": 90,
+      "duration": 1.5,
+      "firstSeenAt": "2026-07-28T16:58:19+08:00",
+      "updatedAt": "2026-08-06T03:46:21.484Z"
+    },
+    {
+      "name": "Loci主体",
+      "file": "./lotties/创建模式-Publish-Loci/LociWorldLottie-3e7388a1.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [
+        "有待讨论"
+      ],
+      "mimeType": "application/json",
+      "width": 750,
+      "height": 1624,
+      "frameRate": 60,
+      "frames": 300,
+      "duration": 5,
+      "firstSeenAt": "2026-07-31T16:28:01+08:00",
+      "updatedAt": "2026-08-06T03:46:21.484Z"
+    },
+    {
+      "name": "Loci主体",
+      "file": "./lotties/创建模式-Publish-Loci/LociWorldLottieLoading-c8771a12.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [
+        "有待讨论"
+      ],
+      "mimeType": "application/json",
+      "width": 750,
+      "height": 1624,
+      "frameRate": 60,
+      "frames": 120,
+      "duration": 2,
+      "firstSeenAt": "2026-07-31T16:28:01+08:00",
+      "updatedAt": "2026-08-06T03:46:21.484Z"
+    },
+    {
+      "name": "Angry Avatar Loop",
+      "file": "./lotties/未分类/angry-shake-loop-vector-only-326acf97.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [],
+      "mimeType": "application/json",
+      "width": 416,
+      "height": 384,
+      "frameRate": 12,
+      "frames": 19,
+      "duration": 1.5833333333333333,
+      "firstSeenAt": "2026-07-09T15:28:03+08:00",
+      "updatedAt": "2026-08-06T03:46:21.484Z"
+    },
+    {
+      "name": "Angry Avatar Transition Variant",
+      "file": "./lotties/未分类/calm-to-angry-transition-vector-only-abf9b4f6.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [],
+      "mimeType": "application/json",
+      "width": 416,
+      "height": 384,
+      "frameRate": 12,
+      "frames": 23,
+      "duration": 1.9166666666666667,
+      "firstSeenAt": "2026-07-09T15:28:03+08:00",
+      "updatedAt": "2026-08-06T03:46:21.484Z"
+    },
+    {
+      "name": "Drop按钮",
+      "file": "./lotties/未分类/combined-gestures-purple-solid-5e0cbf98.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "创建模式-Drop Loci",
+      "interactionType": "",
+      "tags": [
+        "有待讨论"
+      ],
+      "mimeType": "application/json",
+      "width": 272,
+      "height": 211,
+      "frameRate": 30,
+      "frames": 144,
+      "duration": 4.8,
+      "firstSeenAt": "2026-07-29T12:07:11+08:00",
+      "updatedAt": "2026-08-06T03:46:21.484Z"
+    },
+    {
+      "name": "Publish按钮",
+      "file": "./lotties/未分类/dxxr-b9e9d9f2-375x812-airplane-up40-fade-scaled-soft-halo-594d0db5.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "创建模式-Publish Loci",
+      "interactionType": "",
+      "tags": [
+        "有待讨论"
+      ],
+      "mimeType": "application/json",
+      "width": 375,
+      "height": 812,
+      "frameRate": 60,
+      "frames": 1080,
+      "duration": 18,
+      "firstSeenAt": "2026-08-05T16:27:48+08:00",
+      "updatedAt": "2026-08-06T03:46:21.484Z"
+    },
+    {
       "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0013s_d6ef2e8e-9317-45a0-90b8-ac6d15accc1g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
       "file": "./motions/HEVC-with-Alpha/app开屏页/LociWorldLottie-hevc-alpha-under-1mb-befb3fac.mov",
       "kind": "hevc",
@@ -17,7 +144,7 @@
       "frames": 0,
       "duration": 0,
       "firstSeenAt": "2026-07-27T12:47:00+08:00",
-      "updatedAt": "2026-08-05T08:36:51.047Z"
+      "updatedAt": "2026-08-06T03:46:21.484Z"
     },
     {
       "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0013s_d6ef2e8e-9317-45a0-90b8-ac6d15accc1g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
@@ -36,98 +163,7 @@
       "frames": 0,
       "duration": 0,
       "firstSeenAt": "2026-07-27T12:47:00+08:00",
-      "updatedAt": "2026-08-05T08:36:51.047Z"
-    },
-    {
-      "name": "Loci主体",
-      "file": "./lotties/未分类/dxxr-b9e9d9f2-375x812-airplane-up40-fade-scaled-soft-halo-594d0db5.json",
-      "kind": "lottie",
-      "kindLabel": "Lottie",
-      "category": "未分类",
-      "interactionType": "",
-      "tags": [
-        "有待讨论"
-      ],
-      "mimeType": "application/json",
-      "width": 375,
-      "height": 812,
-      "frameRate": 60,
-      "frames": 1080,
-      "duration": 18,
-      "firstSeenAt": "",
-      "updatedAt": "2026-08-05T08:36:51.046Z"
-    },
-    {
-      "name": "Publish按钮",
-      "file": "./lotties/创建模式-Publish-Loci/LociWorldLottieLoading-c8771a12.json",
-      "kind": "lottie",
-      "kindLabel": "Lottie",
-      "category": "创建模式-Publish Loci",
-      "interactionType": "",
-      "tags": [
-        "有待讨论"
-      ],
-      "mimeType": "application/json",
-      "width": 750,
-      "height": 1624,
-      "frameRate": 60,
-      "frames": 120,
-      "duration": 2,
-      "firstSeenAt": "2026-07-31T16:28:01+08:00",
-      "updatedAt": "2026-07-31T08:27:31.271Z"
-    },
-    {
-      "name": "Publish按钮",
-      "file": "./lotties/创建模式-Publish-Loci/LociWorldLottie-3e7388a1.json",
-      "kind": "lottie",
-      "kindLabel": "Lottie",
-      "category": "创建模式-Publish Loci",
-      "interactionType": "",
-      "tags": [
-        "有待讨论"
-      ],
-      "mimeType": "application/json",
-      "width": 750,
-      "height": 1624,
-      "frameRate": 60,
-      "frames": 300,
-      "duration": 5,
-      "firstSeenAt": "2026-07-31T16:28:01+08:00",
-      "updatedAt": "2026-07-31T08:27:30.576Z"
-    },
-    {
-      "name": "合成 2",
-      "file": "./lotties/未分类/data-earth-one-rotation-under-1mb-v3-b84f056c.json",
-      "kind": "lottie",
-      "kindLabel": "Lottie",
-      "category": "未分类",
-      "interactionType": "",
-      "tags": [],
-      "mimeType": "application/json",
-      "width": 1179,
-      "height": 2556,
-      "frameRate": 60,
-      "frames": 1080,
-      "duration": 18,
-      "firstSeenAt": "2026-07-31T16:28:01+08:00",
-      "updatedAt": "2026-07-31T08:27:29.345Z"
-    },
-    {
-      "name": "合成 2",
-      "file": "./lotties/未分类/data-earth-one-rotation-under-3mb-6185307e.json",
-      "kind": "lottie",
-      "kindLabel": "Lottie",
-      "category": "未分类",
-      "interactionType": "",
-      "tags": [],
-      "mimeType": "application/json",
-      "width": 1179,
-      "height": 2556,
-      "frameRate": 60,
-      "frames": 1080,
-      "duration": 18,
-      "firstSeenAt": "2026-07-28T16:31:01+08:00",
-      "updatedAt": "2026-07-31T08:27:28.584Z"
+      "updatedAt": "2026-08-06T03:46:21.484Z"
     },
     {
       "name": "右侧 MAX/MIN 提示条",
@@ -187,25 +223,6 @@
       "updatedAt": "2026-07-29T08:04:03.233Z"
     },
     {
-      "name": "Loci主体",
-      "file": "./lotties/未分类/combined-gestures-purple-solid-5e0cbf98.json",
-      "kind": "lottie",
-      "kindLabel": "Lottie",
-      "category": "未分类",
-      "interactionType": "",
-      "tags": [
-        "有待讨论"
-      ],
-      "mimeType": "application/json",
-      "width": 272,
-      "height": 211,
-      "frameRate": 30,
-      "frames": 144,
-      "duration": 4.8,
-      "firstSeenAt": "2026-07-29T12:07:11+08:00",
-      "updatedAt": "2026-07-29T04:06:12.820Z"
-    },
-    {
       "name": "右侧 MAX/MIN 提示条",
       "file": "./lotties/Loci缩放交互范围提示/teal-hollow-glow-soft-embedded-purple-5657280c.json",
       "kind": "lottie",
@@ -223,25 +240,6 @@
       "duration": 5,
       "firstSeenAt": "2026-07-29T12:07:11+08:00",
       "updatedAt": "2026-07-29T04:06:11.525Z"
-    },
-    {
-      "name": "Drop按钮",
-      "file": "./lotties/创建模式-Drop-Loci/camera-shake-flash-top-expanded-74x84-embedded-dc19089e.json",
-      "kind": "lottie",
-      "kindLabel": "Lottie",
-      "category": "创建模式-Drop Loci",
-      "interactionType": "",
-      "tags": [
-        "有待讨论"
-      ],
-      "mimeType": "application/json",
-      "width": 74,
-      "height": 84,
-      "frameRate": 60,
-      "frames": 90,
-      "duration": 1.5,
-      "firstSeenAt": "2026-07-28T16:58:19+08:00",
-      "updatedAt": "2026-07-28T08:57:41.878Z"
     },
     {
       "name": "合成 2",
@@ -603,23 +601,6 @@
       "updatedAt": "2026-07-21T08:56:25.929Z"
     },
     {
-      "name": "Angry Avatar Loop",
-      "file": "./lotties/未分类/angry-shake-loop-vector-only-326acf97.json",
-      "kind": "lottie",
-      "kindLabel": "Lottie",
-      "category": "未分类",
-      "interactionType": "",
-      "tags": [],
-      "mimeType": "application/json",
-      "width": 416,
-      "height": 384,
-      "frameRate": 12,
-      "frames": 19,
-      "duration": 1.5833333333333333,
-      "firstSeenAt": "2026-07-09T15:28:03+08:00",
-      "updatedAt": "2026-07-21T08:56:25.929Z"
-    },
-    {
       "name": "合成 1",
       "file": "./lotties/未分类/booom-66705abe.json",
       "kind": "lottie",
@@ -674,23 +655,6 @@
       "frames": 23,
       "duration": 1.9166666666666667,
       "firstSeenAt": "2026-06-17T18:11:18+08:00",
-      "updatedAt": "2026-07-21T08:56:25.929Z"
-    },
-    {
-      "name": "Angry Avatar Transition Variant",
-      "file": "./lotties/未分类/calm-to-angry-transition-vector-only-abf9b4f6.json",
-      "kind": "lottie",
-      "kindLabel": "Lottie",
-      "category": "未分类",
-      "interactionType": "",
-      "tags": [],
-      "mimeType": "application/json",
-      "width": 416,
-      "height": 384,
-      "frameRate": 12,
-      "frames": 23,
-      "duration": 1.9166666666666667,
-      "firstSeenAt": "2026-07-09T15:28:03+08:00",
       "updatedAt": "2026-07-21T08:56:25.929Z"
     },
     {
