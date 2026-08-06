@@ -1,6 +1,82 @@
 {
   "items": [
     {
+      "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
+      "file": "./motions/GIF/风格选择页-黑哥们/黑哥们豆豆眼-6bc6340c.gif",
+      "kind": "gif",
+      "kindLabel": "GIF",
+      "category": "风格选择页-黑哥们",
+      "interactionType": "按钮反馈",
+      "tags": [
+        "状态反馈"
+      ],
+      "mimeType": "image/gif",
+      "width": 0,
+      "height": 0,
+      "frameRate": 0,
+      "frames": 0,
+      "duration": 0,
+      "firstSeenAt": "",
+      "updatedAt": "2026-08-06T06:20:52.699Z"
+    },
+    {
+      "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
+      "file": "./motions/HEVC-with-Alpha/风格选择页-黑哥们/黑哥们豆豆眼-113dd6f0.mov",
+      "kind": "hevc",
+      "kindLabel": "HEVC with Alpha",
+      "category": "风格选择页-黑哥们",
+      "interactionType": "按钮反馈",
+      "tags": [
+        "状态反馈"
+      ],
+      "mimeType": "video/quicktime",
+      "width": 0,
+      "height": 0,
+      "frameRate": 0,
+      "frames": 0,
+      "duration": 0,
+      "firstSeenAt": "",
+      "updatedAt": "2026-08-06T06:20:52.021Z"
+    },
+    {
+      "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0013s_d6ef2e8e-9317-45a0-90b8-ac6d15accc1g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
+      "file": "./motions/HEVC-with-Alpha/app开屏页/LociWorldLottie-hevc-alpha-under-1mb-befb3fac.mov",
+      "kind": "hevc",
+      "kindLabel": "HEVC with Alpha",
+      "category": "app开屏页",
+      "interactionType": "转场",
+      "tags": [
+        "入场动效"
+      ],
+      "mimeType": "video/quicktime",
+      "width": 0,
+      "height": 0,
+      "frameRate": 0,
+      "frames": 0,
+      "duration": 0,
+      "firstSeenAt": "2026-07-27T12:47:00+08:00",
+      "updatedAt": "2026-08-06T06:20:52.021Z"
+    },
+    {
+      "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0013s_d6ef2e8e-9317-45a0-90b8-ac6d15accc1g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
+      "file": "./motions/HEVC-with-Alpha/app开屏页/LociWorldLottieLoading-hevc-alpha-under-1mb-cd1d6fec.mov",
+      "kind": "hevc",
+      "kindLabel": "HEVC with Alpha",
+      "category": "app开屏页",
+      "interactionType": "转场",
+      "tags": [
+        "入场动效"
+      ],
+      "mimeType": "video/quicktime",
+      "width": 0,
+      "height": 0,
+      "frameRate": 0,
+      "frames": 0,
+      "duration": 0,
+      "firstSeenAt": "2026-07-27T12:47:00+08:00",
+      "updatedAt": "2026-08-06T06:20:52.021Z"
+    },
+    {
       "name": "Camera Tilt Shake Local Flash Loop - 74x84",
       "file": "./lotties/创建模式-Drop-Loci/camera-shake-flash-top-expanded-74x84-embedded-dc19089e.json",
       "kind": "lottie",
@@ -125,44 +201,6 @@
       "frames": 1080,
       "duration": 18,
       "firstSeenAt": "2026-08-05T16:27:48+08:00",
-      "updatedAt": "2026-08-06T03:46:21.484Z"
-    },
-    {
-      "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0013s_d6ef2e8e-9317-45a0-90b8-ac6d15accc1g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
-      "file": "./motions/HEVC-with-Alpha/app开屏页/LociWorldLottie-hevc-alpha-under-1mb-befb3fac.mov",
-      "kind": "hevc",
-      "kindLabel": "HEVC with Alpha",
-      "category": "app开屏页",
-      "interactionType": "转场",
-      "tags": [
-        "入场动效"
-      ],
-      "mimeType": "video/quicktime",
-      "width": 0,
-      "height": 0,
-      "frameRate": 0,
-      "frames": 0,
-      "duration": 0,
-      "firstSeenAt": "2026-07-27T12:47:00+08:00",
-      "updatedAt": "2026-08-06T03:46:21.484Z"
-    },
-    {
-      "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0013s_d6ef2e8e-9317-45a0-90b8-ac6d15accc1g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
-      "file": "./motions/HEVC-with-Alpha/app开屏页/LociWorldLottieLoading-hevc-alpha-under-1mb-cd1d6fec.mov",
-      "kind": "hevc",
-      "kindLabel": "HEVC with Alpha",
-      "category": "app开屏页",
-      "interactionType": "转场",
-      "tags": [
-        "入场动效"
-      ],
-      "mimeType": "video/quicktime",
-      "width": 0,
-      "height": 0,
-      "frameRate": 0,
-      "frames": 0,
-      "duration": 0,
-      "firstSeenAt": "2026-07-27T12:47:00+08:00",
       "updatedAt": "2026-08-06T03:46:21.484Z"
     },
     {
