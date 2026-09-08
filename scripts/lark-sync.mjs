@@ -531,7 +531,12 @@ function buildOutputPath(config, entry, fileName) {
     return join(root, config.legacyLottieDir, categoryDir, fileName);
   }
 
-  const kindDir = slugify(entry.format || entry.kind) || "motion";
+  const kindDir = {
+    video: "video",
+    gif: "gif",
+    rive: "rive",
+    practice: "practice",
+  }[entry.kind] || slugify(entry.format || entry.kind) || "motion";
   return join(root, config.outputDir, kindDir, categoryDir, fileName);
 }
 
