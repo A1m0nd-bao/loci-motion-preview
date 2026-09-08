@@ -139,6 +139,7 @@ const items = await Promise.all(
 
     return {
       name: meta.name || fallbackName,
+      fileName: meta.fileName || basename(file),
       file: rel,
       ...(kind === "video" && meta.previewOutput ? { previewFile: `./${meta.previewOutput.replace(/^\.\//, "")}` } : {}),
       kind,
