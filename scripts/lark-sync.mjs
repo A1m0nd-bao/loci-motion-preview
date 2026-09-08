@@ -48,6 +48,13 @@ async function syncOnce(config, options = {}) {
       const sourceId = fileRef.token || fileRef.url;
       if (!sourceId) continue;
 
+      const assetKind = resolveAssetKind(entry.kind, fileRef);
+      const assetEntry = {
+        ...entry,
+        kind: assetKind,
+        format: resolveKindLabel(assetKind, [fileRef]),
+      };
+
       const token = fileRef.token || (await inspectUrl(fileRef.url, config.identity));
       if (!token) {
         console.warn(`[lark-sync] Skipped row ${entry.rowNumber}: no file token found.`);
@@ -58,14 +65,14 @@ async function syncOnce(config, options = {}) {
       let output = existing?.output;
 
       if (!existing) {
-        const fileName = buildFileName(entry, fileRef, token);
-        const outputPath = buildOutputPath(config, entry, fileName);
-        await downloadAsset(token, outputPath, config.identity, entry.kind);
+        const fileName = buildFileName(assetEntry, fileRef, token);
+        const outputPath = buildOutputPath(config, assetEntry, fileName);
+        await downloadAsset(token, outputPath, config.identity, assetKind);
         output = relativePath(outputPath);
         console.log(`[lark-sync] Synced ${output}`);
       } else if (hasRemoteFileChanged(existing, fileRef)) {
         const outputPath = join(root, output);
-        await downloadAsset(token, outputPath, config.identity, entry.kind);
+        await downloadAsset(token, outputPath, config.identity, assetKind);
         console.log(`[lark-sync] Updated file content for row ${entry.rowNumber}: ${output}`);
       }
 
@@ -75,8 +82,8 @@ async function syncOnce(config, options = {}) {
         slot: fileRef.slot,
         rowNumber: entry.rowNumber,
         name: entry.name,
-        kind: entry.kind,
-        format: entry.format,
+        kind: assetKind,
+        format: assetEntry.format,
         category: entry.category,
         interactionType: entry.interactionType,
         tags: entry.tags,
@@ -84,8 +91,12 @@ async function syncOnce(config, options = {}) {
         fileName: fileRef.name || "",
         fileSize: fileRef.size || 0,
         syncedAt: existing?.syncedAt || new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
+        updatedAt: existing?.updatedAt || new Date().toISOString(),
       };
+
+      if (!existing || hasRemoteFileChanged(existing, fileRef)) {
+        nextState.updatedAt = new Date().toISOString();
+      }
 
       if (!existing || hasStateChanged(existing, nextState)) {
         state.synced[sourceId] = nextState;
@@ -472,6 +483,12 @@ function resolveKind(value, files = []) {
     if (inferred) return inferred;
   }
   return "lottie";
+}
+
+function resolveAssetKind(entryKind, fileRef) {
+  const inferred = inferKindFromFile(fileRef.name || fileRef.url || "", fileRef.mimeType || "");
+  if (entryKind === "lottie" && inferred && inferred !== "lottie") return inferred;
+  return entryKind || inferred || "lottie";
 }
 
 function resolveKindLabel(value, files = []) {
