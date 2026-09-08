@@ -1,4 +1,4 @@
-import { mkdir, readFile, rename, rm, writeFile } from "node:fs/promises";
+import { mkdir, readFile, rename, rm, stat, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { basename, dirname, extname, join } from "node:path";
 import { spawn } from "node:child_process";
@@ -76,6 +76,8 @@ async function syncOnce(config, options = {}) {
         console.log(`[lark-sync] Updated file content for row ${entry.rowNumber}: ${output}`);
       }
 
+      const previewOutput = output && assetKind === "video" ? await ensureBrowserVideoPreview(join(root, output)) : "";
+
       const nextState = {
         token,
         output,
@@ -90,6 +92,7 @@ async function syncOnce(config, options = {}) {
         mimeType: fileRef.mimeType || "",
         fileName: fileRef.name || "",
         fileSize: fileRef.size || 0,
+        previewOutput,
         syncedAt: existing?.syncedAt || new Date().toISOString(),
         updatedAt: existing?.updatedAt || new Date().toISOString(),
       };
@@ -145,6 +148,7 @@ function hasStateChanged(current, next) {
     current.name !== next.name ||
     current.kind !== next.kind ||
     current.format !== next.format ||
+    current.previewOutput !== next.previewOutput ||
     current.category !== next.category ||
     current.interactionType !== next.interactionType ||
     current.mimeType !== next.mimeType ||
@@ -405,6 +409,62 @@ async function removeSyncedFile(output, outputDirs) {
   const inManagedDir = dirs.filter(Boolean).some((dir) => normalized.startsWith(`${dir.replaceAll("\\", "/")}/`));
   if (!inManagedDir) return;
   await removeIfExists(join(root, normalized));
+  await removeIfExists(join(root, `${normalized}.preview.mp4`));
+}
+
+async function ensureBrowserVideoPreview(filePath) {
+  const previewPath = `${filePath}.preview.mp4`;
+  let codec = "";
+  try {
+    codec = await run(
+      "ffprobe",
+      ["-v", "error", "-select_streams", "v:0", "-show_entries", "stream=codec_name", "-of", "default=noprint_wrappers=1:nokey=1", filePath],
+      { cwd: root },
+    );
+  } catch {
+    return "";
+  }
+
+  if (codec.trim().toLowerCase() !== "hevc") {
+    await removeIfExists(previewPath);
+    return "";
+  }
+
+  try {
+    const [sourceInfo, previewInfo] = await Promise.all([stat(filePath), stat(previewPath)]);
+    if (previewInfo.mtimeMs >= sourceInfo.mtimeMs) return relativePath(previewPath);
+  } catch {
+    // Generate a missing or stale compatibility preview below.
+  }
+
+  await run(
+    "ffmpeg",
+    [
+      "-hide_banner",
+      "-loglevel",
+      "error",
+      "-y",
+      "-i",
+      filePath,
+      "-map",
+      "0:v:0",
+      "-an",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "medium",
+      "-crf",
+      "22",
+      "-pix_fmt",
+      "yuv420p",
+      "-movflags",
+      "+faststart",
+      previewPath,
+    ],
+    { cwd: root },
+  );
+  console.log(`[lark-sync] Generated browser preview: ${relativePath(previewPath)}`);
+  return relativePath(previewPath);
 }
 
 async function ensureJsonFile(filePath) {
@@ -493,22 +553,22 @@ function resolveAssetKind(entryKind, fileRef) {
 
 function resolveKindLabel(value, files = []) {
   const text = String(value || "").trim();
-  if (text) return text;
-  const kind = resolveKind("", files);
-  return {
+  const kind = resolveKind(value, files);
+  const standardLabel = {
     lottie: "Lottie",
-    hevc: "HEVC with Alpha",
+    video: "视频动效",
     gif: "GIF",
     rive: "Rive",
     practice: "实践型动效",
-  }[kind] || kind;
+  }[kind];
+  return standardLabel || text || kind;
 }
 
 function normalizeKind(value) {
   const text = String(value || "").trim().toLowerCase();
   if (!text) return "";
   if (text.includes("lottie") || text.includes("json")) return "lottie";
-  if (text.includes("hevc") || text.includes("alpha") || text.includes("透明视频")) return "hevc";
+  if (text.includes("hevc") || text.includes("alpha") || text.includes("透明视频") || text.includes("视频动效") || text === "video") return "video";
   if (text.includes("gif")) return "gif";
   if (text.includes("riv") || text.includes("rive")) return "rive";
   if (text.includes("实践") || text.includes("app") || text.includes("交互")) return "practice";
@@ -522,7 +582,7 @@ function inferKindFromFile(name, mimeType = "") {
   if (lower.endsWith(".riv")) return "rive";
   if (lower.endsWith(".html") || lower.endsWith(".htm")) return "practice";
   if (lower.includes("video/") || /\.(mov|mp4|m4v|webm)$/i.test(name)) {
-    return lower.includes("hevc") || lower.includes("alpha") || lower.endsWith(".mov") ? "hevc" : "video";
+    return "video";
   }
   return "";
 }
