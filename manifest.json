@@ -1,14 +1,14 @@
 {
   "items": [
     {
-      "name": "sipplay2 original quality 85d869d0",
-      "file": "./motions/video/开屏动效/sipplay2-original-quality-85d869d0.mp4",
+      "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0015b_8a5fb370-8f27-4176-bbba-6859757455ag~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
+      "file": "./motions/视频动效/开屏动效/sipplay2-original-quality-180e6071.mp4",
       "kind": "video",
-      "kindLabel": "video",
+      "kindLabel": "视频动效",
       "category": "开屏动效",
-      "interactionType": "",
+      "interactionType": "转场",
       "tags": [
-        "开屏动效"
+        "入场动效"
       ],
       "mimeType": "video/mp4",
       "width": 0,
@@ -17,17 +17,17 @@
       "frames": 0,
       "duration": 0,
       "firstSeenAt": "",
-      "updatedAt": "2026-09-08T08:48:23.000Z"
+      "updatedAt": "2026-09-08T09:05:41.118Z"
     },
     {
-      "name": "飞书20260908 163817 original quality d29f6b3b",
+      "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0015b_8a5fb370-8f27-4176-bbba-6859757455ag~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
       "file": "./motions/video/开屏动效/飞书20260908-163817-original-quality-d29f6b3b.mp4",
       "kind": "video",
-      "kindLabel": "video",
+      "kindLabel": "视频动效",
       "category": "开屏动效",
-      "interactionType": "",
+      "interactionType": "转场",
       "tags": [
-        "开屏动效"
+        "入场动效"
       ],
       "mimeType": "video/mp4",
       "width": 0,
@@ -35,14 +35,15 @@
       "frameRate": 0,
       "frames": 0,
       "duration": 0,
-      "firstSeenAt": "",
+      "firstSeenAt": "2026-09-08T16:49:05+08:00",
       "updatedAt": "2026-09-08T08:48:21.445Z"
     },
     {
       "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0013s_d6ef2e8e-9317-45a0-90b8-ac6d15accc1g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
       "file": "./motions/HEVC-with-Alpha/app开屏页/LociWorldLottie-hevc-alpha-under-1mb-befb3fac.mov",
-      "kind": "hevc",
-      "kindLabel": "HEVC with Alpha",
+      "previewFile": "./motions/HEVC-with-Alpha/app开屏页/LociWorldLottie-hevc-alpha-under-1mb-befb3fac.mov.preview.mp4",
+      "kind": "video",
+      "kindLabel": "视频动效",
       "category": "app开屏页",
       "interactionType": "转场",
       "tags": [
@@ -60,8 +61,9 @@
     {
       "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0013s_d6ef2e8e-9317-45a0-90b8-ac6d15accc1g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
       "file": "./motions/HEVC-with-Alpha/app开屏页/LociWorldLottieLoading-hevc-alpha-under-1mb-cd1d6fec.mov",
-      "kind": "hevc",
-      "kindLabel": "HEVC with Alpha",
+      "previewFile": "./motions/HEVC-with-Alpha/app开屏页/LociWorldLottieLoading-hevc-alpha-under-1mb-cd1d6fec.mov.preview.mp4",
+      "kind": "video",
+      "kindLabel": "视频动效",
       "category": "app开屏页",
       "interactionType": "转场",
       "tags": [
@@ -331,8 +333,9 @@
     {
       "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
       "file": "./motions/HEVC-with-Alpha/风格选择页-黑哥们/黑哥们豆豆眼-113dd6f0.mov",
-      "kind": "hevc",
-      "kindLabel": "HEVC with Alpha",
+      "previewFile": "./motions/HEVC-with-Alpha/风格选择页-黑哥们/黑哥们豆豆眼-113dd6f0.mov.preview.mp4",
+      "kind": "video",
+      "kindLabel": "视频动效",
       "category": "风格选择页-黑哥们",
       "interactionType": "按钮反馈",
       "tags": [
@@ -439,8 +442,9 @@
     {
       "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
       "file": "./motions/HEVC-with-Alpha/风格选择页-哥特/7月20日-3-f78f7b4f.mov",
-      "kind": "hevc",
-      "kindLabel": "HEVC with Alpha",
+      "previewFile": "./motions/HEVC-with-Alpha/风格选择页-哥特/7月20日-3-f78f7b4f.mov.preview.mp4",
+      "kind": "video",
+      "kindLabel": "视频动效",
       "category": "风格选择页-哥特",
       "interactionType": "按钮反馈",
       "tags": [
@@ -513,8 +517,9 @@
     {
       "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
       "file": "./motions/HEVC-with-Alpha/风格选择页-mc/mc-11fa66e3.mov",
-      "kind": "hevc",
-      "kindLabel": "HEVC with Alpha",
+      "previewFile": "./motions/HEVC-with-Alpha/风格选择页-mc/mc-11fa66e3.mov.preview.mp4",
+      "kind": "video",
+      "kindLabel": "视频动效",
       "category": "风格选择页-mc",
       "interactionType": "按钮反馈",
       "tags": [
@@ -532,8 +537,9 @@
     {
       "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0013s_d6ef2e8e-9317-45a0-90b8-ac6d15accc1g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
       "file": "./motions/HEVC-with-Alpha/loci生长动画/LogoMascotScaleIntro-hevc-alpha-under-1mb-458dc4e5.mov",
-      "kind": "hevc",
-      "kindLabel": "HEVC with Alpha",
+      "previewFile": "./motions/HEVC-with-Alpha/loci生长动画/LogoMascotScaleIntro-hevc-alpha-under-1mb-458dc4e5.mov.preview.mp4",
+      "kind": "video",
+      "kindLabel": "视频动效",
       "category": "loci生长动画",
       "interactionType": "转场",
       "tags": [
@@ -551,8 +557,9 @@
     {
       "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0013s_d6ef2e8e-9317-45a0-90b8-ac6d15accc1g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
       "file": "./motions/HEVC-with-Alpha/loci生长动画/LogoMascotIntro-hevc-alpha-under-1mb-d50df632.mov",
-      "kind": "hevc",
-      "kindLabel": "HEVC with Alpha",
+      "previewFile": "./motions/HEVC-with-Alpha/loci生长动画/LogoMascotIntro-hevc-alpha-under-1mb-d50df632.mov.preview.mp4",
+      "kind": "video",
+      "kindLabel": "视频动效",
       "category": "loci生长动画",
       "interactionType": "转场",
       "tags": [
@@ -570,8 +577,9 @@
     {
       "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0013s_d6ef2e8e-9317-45a0-90b8-ac6d15accc1g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
       "file": "./motions/HEVC-with-Alpha/loci生长动画/LogoMascot-hevc-alpha-under-1mb-c3dc4eb8.mov",
-      "kind": "hevc",
-      "kindLabel": "HEVC with Alpha",
+      "previewFile": "./motions/HEVC-with-Alpha/loci生长动画/LogoMascot-hevc-alpha-under-1mb-c3dc4eb8.mov.preview.mp4",
+      "kind": "video",
+      "kindLabel": "视频动效",
       "category": "loci生长动画",
       "interactionType": "转场",
       "tags": [
@@ -703,8 +711,9 @@
     {
       "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
       "file": "./motions/HEVC-with-Alpha/风格选择页-q版/7月20日-3-1-q版-8e00a579.mov",
-      "kind": "hevc",
-      "kindLabel": "HEVC with Alpha",
+      "previewFile": "./motions/HEVC-with-Alpha/风格选择页-q版/7月20日-3-1-q版-8e00a579.mov.preview.mp4",
+      "kind": "video",
+      "kindLabel": "视频动效",
       "category": "风格选择页-q版",
       "interactionType": "按钮反馈",
       "tags": [
@@ -722,8 +731,9 @@
     {
       "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
       "file": "./motions/HEVC-with-Alpha/风格选择页-豆豆眼/7月20日-3-豆豆眼-75909e80.mov",
-      "kind": "hevc",
-      "kindLabel": "HEVC with Alpha",
+      "previewFile": "./motions/HEVC-with-Alpha/风格选择页-豆豆眼/7月20日-3-豆豆眼-75909e80.mov.preview.mp4",
+      "kind": "video",
+      "kindLabel": "视频动效",
       "category": "风格选择页-豆豆眼",
       "interactionType": "按钮反馈",
       "tags": [
@@ -741,8 +751,9 @@
     {
       "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
       "file": "./motions/HEVC-with-Alpha/风格选择页-牛仔/7月20日-3-1-d0485996.mov",
-      "kind": "hevc",
-      "kindLabel": "HEVC with Alpha",
+      "previewFile": "./motions/HEVC-with-Alpha/风格选择页-牛仔/7月20日-3-1-d0485996.mov.preview.mp4",
+      "kind": "video",
+      "kindLabel": "视频动效",
       "category": "风格选择页-牛仔",
       "interactionType": "按钮反馈",
       "tags": [
@@ -1447,7 +1458,7 @@
   ],
   "kindLabels": {
     "lottie": "Lottie",
-    "hevc": "HEVC with Alpha",
+    "video": "视频动效",
     "gif": "GIF",
     "rive": "Rive",
     "practice": "实践型动效"
