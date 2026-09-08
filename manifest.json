@@ -1,42 +1,23 @@
 {
   "items": [
     {
-      "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
-      "file": "./motions/GIF/风格选择页-黑哥们/黑哥们豆豆眼-6bc6340c.gif",
-      "kind": "gif",
-      "kindLabel": "GIF",
-      "category": "风格选择页-黑哥们",
-      "interactionType": "按钮反馈",
+      "name": "Shaker Loader — Standard",
+      "file": "./lotties/雪克杯摇晃加载态/shaker-loader-standard-4653fa27.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "雪克杯摇晃加载态",
+      "interactionType": "",
       "tags": [
-        "状态反馈"
+        "雪克杯摇晃加载态"
       ],
-      "mimeType": "image/gif",
-      "width": 0,
-      "height": 0,
-      "frameRate": 0,
-      "frames": 0,
-      "duration": 0,
+      "mimeType": "application/json",
+      "width": 128,
+      "height": 128,
+      "frameRate": 60,
+      "frames": 144,
+      "duration": 2.4,
       "firstSeenAt": "",
-      "updatedAt": "2026-08-06T06:20:52.699Z"
-    },
-    {
-      "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
-      "file": "./motions/HEVC-with-Alpha/风格选择页-黑哥们/黑哥们豆豆眼-113dd6f0.mov",
-      "kind": "hevc",
-      "kindLabel": "HEVC with Alpha",
-      "category": "风格选择页-黑哥们",
-      "interactionType": "按钮反馈",
-      "tags": [
-        "状态反馈"
-      ],
-      "mimeType": "video/quicktime",
-      "width": 0,
-      "height": 0,
-      "frameRate": 0,
-      "frames": 0,
-      "duration": 0,
-      "firstSeenAt": "",
-      "updatedAt": "2026-08-06T06:20:52.021Z"
+      "updatedAt": "2026-09-08T05:19:09.578Z"
     },
     {
       "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0013s_d6ef2e8e-9317-45a0-90b8-ac6d15accc1g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
@@ -55,7 +36,7 @@
       "frames": 0,
       "duration": 0,
       "firstSeenAt": "2026-07-27T12:47:00+08:00",
-      "updatedAt": "2026-08-06T06:20:52.021Z"
+      "updatedAt": "2026-09-08T05:19:09.578Z"
     },
     {
       "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0013s_d6ef2e8e-9317-45a0-90b8-ac6d15accc1g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
@@ -74,6 +55,182 @@
       "frames": 0,
       "duration": 0,
       "firstSeenAt": "2026-07-27T12:47:00+08:00",
+      "updatedAt": "2026-09-08T05:19:09.578Z"
+    },
+    {
+      "name": "Shaker Loader — Energetic",
+      "file": "./lotties/雪克杯摇晃加载态/shaker-loader-energetic-6d523539.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "雪克杯摇晃加载态",
+      "interactionType": "",
+      "tags": [
+        "雪克杯摇晃加载态"
+      ],
+      "mimeType": "application/json",
+      "width": 128,
+      "height": 128,
+      "frameRate": 60,
+      "frames": 144,
+      "duration": 2.4,
+      "firstSeenAt": "",
+      "updatedAt": "2026-09-08T05:19:08.950Z"
+    },
+    {
+      "name": "合成 2",
+      "file": "./lotties/未分类/dxxr-b9e9d9f2-375x812-airplane-up40-fade-scaled-soft-halo-594d0db5.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [],
+      "mimeType": "application/json",
+      "width": 375,
+      "height": 812,
+      "frameRate": 60,
+      "frames": 1080,
+      "duration": 18,
+      "firstSeenAt": "2026-08-05T16:27:48+08:00",
+      "updatedAt": "2026-09-08T05:19:08.230Z"
+    },
+    {
+      "name": "Loci World Entry",
+      "file": "./lotties/创建模式-Publish-Loci/LociWorldLottie-3e7388a1.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [],
+      "mimeType": "application/json",
+      "width": 750,
+      "height": 1624,
+      "frameRate": 60,
+      "frames": 300,
+      "duration": 5,
+      "firstSeenAt": "2026-07-31T16:28:01+08:00",
+      "updatedAt": "2026-09-08T05:19:08.229Z"
+    },
+    {
+      "name": "Loci World Loading Loop",
+      "file": "./lotties/创建模式-Publish-Loci/LociWorldLottieLoading-c8771a12.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [],
+      "mimeType": "application/json",
+      "width": 750,
+      "height": 1624,
+      "frameRate": 60,
+      "frames": 120,
+      "duration": 2,
+      "firstSeenAt": "2026-07-31T16:28:01+08:00",
+      "updatedAt": "2026-09-08T05:19:08.229Z"
+    },
+    {
+      "name": "Combined Gesture Animations",
+      "file": "./lotties/未分类/combined-gestures-purple-solid-5e0cbf98.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [],
+      "mimeType": "application/json",
+      "width": 272,
+      "height": 211,
+      "frameRate": 30,
+      "frames": 144,
+      "duration": 4.8,
+      "firstSeenAt": "2026-07-29T12:07:11+08:00",
+      "updatedAt": "2026-09-08T05:19:08.229Z"
+    },
+    {
+      "name": "Tap Ripple Hand",
+      "file": "./lotties/未分类/tap-ripple-hand-feca155c-replaced-228f015c.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [],
+      "mimeType": "application/json",
+      "width": 204,
+      "height": 208,
+      "frameRate": 60,
+      "frames": 90,
+      "duration": 1.5,
+      "firstSeenAt": "",
+      "updatedAt": "2026-09-08T05:19:08.229Z"
+    },
+    {
+      "name": "Swipe Slide Right Gesture",
+      "file": "./lotties/未分类/swipe-slide-right-hand-07a0bf46-replaced-20a52724.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [],
+      "mimeType": "application/json",
+      "width": 336,
+      "height": 178,
+      "frameRate": 60,
+      "frames": 96,
+      "duration": 1.6,
+      "firstSeenAt": "",
+      "updatedAt": "2026-09-08T05:19:07.507Z"
+    },
+    {
+      "name": "Swipe Slide Gesture",
+      "file": "./lotties/未分类/swipe-slide-hand-c364b914-replaced-7336c0da.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [],
+      "mimeType": "application/json",
+      "width": 336,
+      "height": 178,
+      "frameRate": 60,
+      "frames": 96,
+      "duration": 1.6,
+      "firstSeenAt": "",
+      "updatedAt": "2026-09-08T05:19:06.891Z"
+    },
+    {
+      "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
+      "file": "./motions/GIF/风格选择页-黑哥们/黑哥们豆豆眼-6bc6340c.gif",
+      "kind": "gif",
+      "kindLabel": "GIF",
+      "category": "风格选择页-黑哥们",
+      "interactionType": "按钮反馈",
+      "tags": [
+        "状态反馈"
+      ],
+      "mimeType": "image/gif",
+      "width": 0,
+      "height": 0,
+      "frameRate": 0,
+      "frames": 0,
+      "duration": 0,
+      "firstSeenAt": "2026-08-06T14:21:35+08:00",
+      "updatedAt": "2026-08-06T06:20:52.699Z"
+    },
+    {
+      "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
+      "file": "./motions/HEVC-with-Alpha/风格选择页-黑哥们/黑哥们豆豆眼-113dd6f0.mov",
+      "kind": "hevc",
+      "kindLabel": "HEVC with Alpha",
+      "category": "风格选择页-黑哥们",
+      "interactionType": "按钮反馈",
+      "tags": [
+        "状态反馈"
+      ],
+      "mimeType": "video/quicktime",
+      "width": 0,
+      "height": 0,
+      "frameRate": 0,
+      "frames": 0,
+      "duration": 0,
+      "firstSeenAt": "2026-08-06T14:21:35+08:00",
       "updatedAt": "2026-08-06T06:20:52.021Z"
     },
     {
@@ -91,44 +248,6 @@
       "frames": 90,
       "duration": 1.5,
       "firstSeenAt": "2026-07-28T16:58:19+08:00",
-      "updatedAt": "2026-08-06T03:46:21.484Z"
-    },
-    {
-      "name": "Loci主体",
-      "file": "./lotties/创建模式-Publish-Loci/LociWorldLottie-3e7388a1.json",
-      "kind": "lottie",
-      "kindLabel": "Lottie",
-      "category": "未分类",
-      "interactionType": "",
-      "tags": [
-        "有待讨论"
-      ],
-      "mimeType": "application/json",
-      "width": 750,
-      "height": 1624,
-      "frameRate": 60,
-      "frames": 300,
-      "duration": 5,
-      "firstSeenAt": "2026-07-31T16:28:01+08:00",
-      "updatedAt": "2026-08-06T03:46:21.484Z"
-    },
-    {
-      "name": "Loci主体",
-      "file": "./lotties/创建模式-Publish-Loci/LociWorldLottieLoading-c8771a12.json",
-      "kind": "lottie",
-      "kindLabel": "Lottie",
-      "category": "未分类",
-      "interactionType": "",
-      "tags": [
-        "有待讨论"
-      ],
-      "mimeType": "application/json",
-      "width": 750,
-      "height": 1624,
-      "frameRate": 60,
-      "frames": 120,
-      "duration": 2,
-      "firstSeenAt": "2026-07-31T16:28:01+08:00",
       "updatedAt": "2026-08-06T03:46:21.484Z"
     },
     {
@@ -163,44 +282,6 @@
       "frames": 23,
       "duration": 1.9166666666666667,
       "firstSeenAt": "2026-07-09T15:28:03+08:00",
-      "updatedAt": "2026-08-06T03:46:21.484Z"
-    },
-    {
-      "name": "Drop按钮",
-      "file": "./lotties/未分类/combined-gestures-purple-solid-5e0cbf98.json",
-      "kind": "lottie",
-      "kindLabel": "Lottie",
-      "category": "创建模式-Drop Loci",
-      "interactionType": "",
-      "tags": [
-        "有待讨论"
-      ],
-      "mimeType": "application/json",
-      "width": 272,
-      "height": 211,
-      "frameRate": 30,
-      "frames": 144,
-      "duration": 4.8,
-      "firstSeenAt": "2026-07-29T12:07:11+08:00",
-      "updatedAt": "2026-08-06T03:46:21.484Z"
-    },
-    {
-      "name": "Publish按钮",
-      "file": "./lotties/未分类/dxxr-b9e9d9f2-375x812-airplane-up40-fade-scaled-soft-halo-594d0db5.json",
-      "kind": "lottie",
-      "kindLabel": "Lottie",
-      "category": "创建模式-Publish Loci",
-      "interactionType": "",
-      "tags": [
-        "有待讨论"
-      ],
-      "mimeType": "application/json",
-      "width": 375,
-      "height": 812,
-      "frameRate": 60,
-      "frames": 1080,
-      "duration": 18,
-      "firstSeenAt": "2026-08-05T16:27:48+08:00",
       "updatedAt": "2026-08-06T03:46:21.484Z"
     },
     {
@@ -860,40 +941,6 @@
       "frames": 38,
       "duration": 1.5833333333333333,
       "firstSeenAt": "2026-06-18T14:14:29+08:00",
-      "updatedAt": "2026-07-21T08:56:25.929Z"
-    },
-    {
-      "name": "Swipe Slide Gesture",
-      "file": "./lotties/未分类/swipe-slide-hand-c364b914.json",
-      "kind": "lottie",
-      "kindLabel": "Lottie",
-      "category": "未分类",
-      "interactionType": "",
-      "tags": [],
-      "mimeType": "application/json",
-      "width": 336,
-      "height": 178,
-      "frameRate": 60,
-      "frames": 96,
-      "duration": 1.6,
-      "firstSeenAt": "2026-07-08T19:57:35+08:00",
-      "updatedAt": "2026-07-21T08:56:25.929Z"
-    },
-    {
-      "name": "Swipe Slide Right Gesture",
-      "file": "./lotties/未分类/swipe-slide-right-hand-07a0bf46.json",
-      "kind": "lottie",
-      "kindLabel": "Lottie",
-      "category": "未分类",
-      "interactionType": "",
-      "tags": [],
-      "mimeType": "application/json",
-      "width": 336,
-      "height": 178,
-      "frameRate": 60,
-      "frames": 96,
-      "duration": 1.6,
-      "firstSeenAt": "2026-07-08T19:57:35+08:00",
       "updatedAt": "2026-07-21T08:56:25.929Z"
     },
     {
