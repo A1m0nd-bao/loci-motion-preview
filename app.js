@@ -71,7 +71,7 @@ const previewPosterFrameRatio = 0.35;
 const kindLabels = {
   all: "全部格式",
   lottie: "Lottie",
-  hevc: "HEVC with Alpha",
+  video: "视频动效",
   gif: "GIF",
   rive: "Rive",
   practice: "实践型动效",
@@ -118,7 +118,7 @@ function normalizeMotion(item) {
   return {
     ...item,
     kind,
-    kindLabel: item.kindLabel || kindLabels[kind] || kind,
+    kindLabel: kindLabels[kind] || item.kindLabel || kind,
     category: item.category || "未分类",
     tags: Array.isArray(item.tags) ? item.tags : [],
     firstSeenAt: item.firstSeenAt || "",
@@ -170,7 +170,7 @@ function renderHomeModules(kinds, counts) {
     homeModules.append(createModuleCard(kind, counts[kind] || 0));
   }
 
-  for (const kind of ["hevc", "gif", "rive", "practice"]) {
+  for (const kind of ["video", "gif", "rive", "practice"]) {
     if (counts[kind]) continue;
     homeModules.append(createModuleCard(kind, 0));
   }
@@ -623,25 +623,38 @@ function createImageController(host, motion) {
 
 function createVideoController(host, motion, options = {}) {
   const video = document.createElement("video");
-  video.src = motion.file;
+  video.src = canPlayOriginalVideo(video, motion) ? motion.file : motion.previewFile || motion.file;
   video.muted = true;
   video.playsInline = true;
+  video.setAttribute("playsinline", "");
   video.preload = "metadata";
   video.controls = false;
   host.append(video);
+  let unsupported = false;
   const showPoster = () => {
     if (!Number.isFinite(video.duration) || options.detail) return;
     video.currentTime = Math.max(0, video.duration * previewPosterFrameRatio);
   };
 
+  const showUnsupported = () => {
+    if (unsupported) return;
+    unsupported = true;
+    host.classList.add("media-error");
+    host.append(createFallbackNode("浏览器暂不支持此视频编码", "可尝试 Safari / iOS，或下载原文件"));
+  };
+
   video.addEventListener("loadedmetadata", showPoster, { once: true });
+  video.addEventListener("error", showUnsupported);
 
   return {
     element: video,
     ready: () =>
       new Promise((resolve) => {
         if (Number.isFinite(video.duration) && video.duration > 0) resolve();
-        else video.addEventListener("loadedmetadata", resolve, { once: true });
+        else {
+          video.addEventListener("loadedmetadata", resolve, { once: true });
+          video.addEventListener("error", resolve, { once: true });
+        }
       }),
     play: () => video.play().catch(() => {}),
     pause: () => video.pause(),
@@ -659,6 +672,14 @@ function createVideoController(host, motion, options = {}) {
     getFrame: () => (activeMotionInfo?.frameRate ? video.currentTime * activeMotionInfo.frameRate : 0),
     destroy: () => video.pause(),
   };
+}
+
+function canPlayOriginalVideo(video, motion) {
+  if (!motion.previewFile) return true;
+  return [
+    video.canPlayType('video/mp4; codecs="hvc1"'),
+    video.canPlayType("video/quicktime"),
+  ].some((result) => result === "probably" || result === "maybe");
 }
 
 function createRiveController(host, motion) {
@@ -827,7 +848,7 @@ async function getMotionInfo(motion) {
   if (motionInfoCache.has(motion.file)) return motionInfoCache.get(motion.file);
   let info;
   if (motion.kind === "lottie") info = await getLottieInfo(motion.file);
-  else if (motion.kind === "hevc" || motion.kind === "video") info = await getVideoInfo(motion.file);
+  else if (motion.kind === "hevc" || motion.kind === "video") info = await getVideoInfo(motion.previewFile || motion.file);
   else if (motion.kind === "gif") info = await getImageInfo(motion.file);
   else info = { width: 0, height: 0, frames: 0, duration: 0, frameRate: 0 };
   motionInfoCache.set(motion.file, info);
@@ -1027,11 +1048,11 @@ function addLocalFiles(files) {
 function normalizeKind(value) {
   const text = String(value || "").trim().toLowerCase();
   if (text.includes("lottie") || text.includes("json") || text.endsWith(".lottie")) return "lottie";
-  if (text.includes("hevc") || text.includes("alpha") || text.includes("透明视频")) return "hevc";
+  if (text.includes("hevc") || text.includes("alpha") || text.includes("透明视频") || text.includes("视频动效") || text === "video") return "video";
   if (text.includes("gif") || text.endsWith(".gif")) return "gif";
   if (text.includes("riv") || text.includes("rive") || text.endsWith(".riv")) return "rive";
   if (text.includes("实践") || text.includes("app") || text.includes("交互") || /\.html?$/i.test(text)) return "practice";
-  if (/\.(mov|mp4|m4v|webm)$/i.test(text)) return "hevc";
+  if (/\.(mov|mp4|m4v|webm)$/i.test(text)) return "video";
   return "practice";
 }
 
@@ -1041,7 +1062,7 @@ function inferKindFromFile(name, type = "") {
   if (text.includes("image/gif") || /\.gif$/i.test(name)) return "gif";
   if (/\.riv$/i.test(name)) return "rive";
   if (/\.html?$/i.test(name)) return "practice";
-  if (text.includes("video/") || /\.(mov|mp4|m4v|webm)$/i.test(name)) return "hevc";
+  if (text.includes("video/") || /\.(mov|mp4|m4v|webm)$/i.test(name)) return "video";
   return "";
 }
 
@@ -1052,18 +1073,16 @@ function labelForKind(kind) {
 function formatDescription(kind) {
   return {
     lottie: "JSON / dotLottie",
-    hevc: "透明视频或短片",
+    video: "MOV / MP4 / HEVC / Alpha",
     gif: "轻量循环图",
     rive: "状态机与交互动画",
     practice: "App 内交互原型",
-    video: "普通视频预览",
   }[kind] || "自定义格式";
 }
 
 function moduleIcon(kind) {
   return {
     lottie: "L",
-    hevc: "A",
     gif: "G",
     rive: "R",
     practice: "P",
@@ -1072,7 +1091,7 @@ function moduleIcon(kind) {
 }
 
 function getOrderedKinds(counts) {
-  const order = ["lottie", "hevc", "gif", "rive", "practice", "video"];
+  const order = ["lottie", "video", "gif", "rive", "practice"];
   return Object.keys(counts).sort((a, b) => {
     const left = order.indexOf(a);
     const right = order.indexOf(b);
