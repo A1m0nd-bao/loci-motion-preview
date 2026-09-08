@@ -1,6 +1,44 @@
 {
   "items": [
     {
+      "name": "sipplay2 original quality 85d869d0",
+      "file": "./motions/video/开屏动效/sipplay2-original-quality-85d869d0.mp4",
+      "kind": "video",
+      "kindLabel": "video",
+      "category": "开屏动效",
+      "interactionType": "",
+      "tags": [
+        "开屏动效"
+      ],
+      "mimeType": "video/mp4",
+      "width": 0,
+      "height": 0,
+      "frameRate": 0,
+      "frames": 0,
+      "duration": 0,
+      "firstSeenAt": "",
+      "updatedAt": "2026-09-08T08:48:23.000Z"
+    },
+    {
+      "name": "飞书20260908 163817 original quality d29f6b3b",
+      "file": "./motions/video/开屏动效/飞书20260908-163817-original-quality-d29f6b3b.mp4",
+      "kind": "video",
+      "kindLabel": "video",
+      "category": "开屏动效",
+      "interactionType": "",
+      "tags": [
+        "开屏动效"
+      ],
+      "mimeType": "video/mp4",
+      "width": 0,
+      "height": 0,
+      "frameRate": 0,
+      "frames": 0,
+      "duration": 0,
+      "firstSeenAt": "",
+      "updatedAt": "2026-09-08T08:48:21.445Z"
+    },
+    {
       "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0013s_d6ef2e8e-9317-45a0-90b8-ac6d15accc1g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
       "file": "./motions/HEVC-with-Alpha/app开屏页/LociWorldLottie-hevc-alpha-under-1mb-befb3fac.mov",
       "kind": "hevc",
@@ -54,7 +92,7 @@
       "frameRate": 60,
       "frames": 120,
       "duration": 2,
-      "firstSeenAt": "",
+      "firstSeenAt": "2026-09-08T16:36:54+08:00",
       "updatedAt": "2026-09-08T08:36:29.768Z"
     },
     {
@@ -73,7 +111,7 @@
       "frameRate": 60,
       "frames": 120,
       "duration": 2,
-      "firstSeenAt": "",
+      "firstSeenAt": "2026-09-08T16:36:54+08:00",
       "updatedAt": "2026-09-08T08:36:28.941Z"
     },
     {
@@ -92,7 +130,7 @@
       "frameRate": 60,
       "frames": 120,
       "duration": 2,
-      "firstSeenAt": "",
+      "firstSeenAt": "2026-09-08T16:36:54+08:00",
       "updatedAt": "2026-09-08T08:36:28.177Z"
     },
     {
@@ -111,7 +149,7 @@
       "frameRate": 60,
       "frames": 120,
       "duration": 2,
-      "firstSeenAt": "",
+      "firstSeenAt": "2026-09-08T16:07:49+08:00",
       "updatedAt": "2026-09-08T08:36:27.316Z"
     },
     {
@@ -130,7 +168,7 @@
       "frameRate": 60,
       "frames": 120,
       "duration": 2,
-      "firstSeenAt": "",
+      "firstSeenAt": "2026-09-08T16:07:49+08:00",
       "updatedAt": "2026-09-08T08:36:26.414Z"
     },
     {
@@ -149,7 +187,7 @@
       "frameRate": 60,
       "frames": 120,
       "duration": 2,
-      "firstSeenAt": "",
+      "firstSeenAt": "2026-09-08T16:07:49+08:00",
       "updatedAt": "2026-09-08T08:36:25.747Z"
     },
     {
