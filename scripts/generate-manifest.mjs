@@ -32,6 +32,8 @@ const supportedExtensions = new Set([
   ".zip",
 ]);
 
+const hiddenMotionFilePattern = /^shaker-loader-(?:purple-)?(?:standard|energetic)-web-safe-[a-f0-9]{8}\.json$/i;
+
 async function collectFiles(dir) {
   const fullDir = join(root, dir);
   try {
@@ -48,7 +50,12 @@ async function collectFiles(dir) {
     if (entry.isDirectory()) {
       files.push(...(await collectFiles(relative(root, fullPath))));
     }
-    if (entry.isFile() && !entry.name.endsWith(".preview.mp4") && supportedExtensions.has(extname(entry.name).toLowerCase())) {
+    if (
+      entry.isFile() &&
+      !hiddenMotionFilePattern.test(entry.name) &&
+      !entry.name.endsWith(".preview.mp4") &&
+      supportedExtensions.has(extname(entry.name).toLowerCase())
+    ) {
       files.push(fullPath);
     }
   }
