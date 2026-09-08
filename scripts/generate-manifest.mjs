@@ -12,7 +12,7 @@ const execFileAsync = promisify(execFile);
 
 const kindLabels = {
   lottie: "Lottie",
-  hevc: "HEVC with Alpha",
+  video: "视频动效",
   gif: "GIF",
   rive: "Rive",
   practice: "实践型动效",
@@ -48,7 +48,7 @@ async function collectFiles(dir) {
     if (entry.isDirectory()) {
       files.push(...(await collectFiles(relative(root, fullPath))));
     }
-    if (entry.isFile() && supportedExtensions.has(extname(entry.name).toLowerCase())) {
+    if (entry.isFile() && !entry.name.endsWith(".preview.mp4") && supportedExtensions.has(extname(entry.name).toLowerCase())) {
       files.push(fullPath);
     }
   }
@@ -91,7 +91,7 @@ function inferKind(file, meta = {}) {
   if (ext === ".gif") return "gif";
   if (ext === ".riv") return "rive";
   if (ext === ".html" || ext === ".htm" || ext === ".zip") return "practice";
-  if ([".mov", ".mp4", ".m4v", ".webm"].includes(ext)) return lower.includes("hevc") || lower.includes("alpha") ? "hevc" : "video";
+  if ([".mov", ".mp4", ".m4v", ".webm"].includes(ext)) return "video";
   return "practice";
 }
 
@@ -99,7 +99,7 @@ function normalizeKind(value) {
   const text = String(value || "").trim().toLowerCase();
   if (!text) return "";
   if (text.includes("lottie") || text.includes("json")) return "lottie";
-  if (text.includes("hevc") || text.includes("alpha") || text.includes("透明视频")) return "hevc";
+  if (text.includes("hevc") || text.includes("alpha") || text.includes("透明视频") || text.includes("视频动效") || text === "video") return "video";
   if (text.includes("gif")) return "gif";
   if (text.includes("riv") || text.includes("rive")) return "rive";
   if (text.includes("实践") || text.includes("app") || text.includes("交互")) return "practice";
@@ -140,6 +140,7 @@ const items = await Promise.all(
     return {
       name: meta.name || fallbackName,
       file: rel,
+      ...(kind === "video" && meta.previewOutput ? { previewFile: `./${meta.previewOutput.replace(/^\.\//, "")}` } : {}),
       kind,
       kindLabel: kindLabels[kind] || meta.format || kind,
       category,
