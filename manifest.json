@@ -1,8 +1,8 @@
 {
   "items": [
     {
-      "name": "Shaker Loader — Standard",
-      "file": "./lotties/雪克杯摇晃加载态/shaker-loader-standard-4653fa27.json",
+      "name": "Shaker Loader — Energetic (web-safe)",
+      "file": "./lotties/雪克杯摇晃加载态/shaker-loader-energetic-web-safe-6ee5f842.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
       "category": "雪克杯摇晃加载态",
@@ -17,7 +17,7 @@
       "frames": 144,
       "duration": 2.4,
       "firstSeenAt": "",
-      "updatedAt": "2026-09-08T05:19:09.578Z"
+      "updatedAt": "2026-09-08T06:21:01.944Z"
     },
     {
       "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0013s_d6ef2e8e-9317-45a0-90b8-ac6d15accc1g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
@@ -36,7 +36,7 @@
       "frames": 0,
       "duration": 0,
       "firstSeenAt": "2026-07-27T12:47:00+08:00",
-      "updatedAt": "2026-09-08T05:19:09.578Z"
+      "updatedAt": "2026-09-08T06:21:01.944Z"
     },
     {
       "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0013s_d6ef2e8e-9317-45a0-90b8-ac6d15accc1g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
@@ -55,11 +55,11 @@
       "frames": 0,
       "duration": 0,
       "firstSeenAt": "2026-07-27T12:47:00+08:00",
-      "updatedAt": "2026-09-08T05:19:09.578Z"
+      "updatedAt": "2026-09-08T06:21:01.944Z"
     },
     {
-      "name": "Shaker Loader — Energetic",
-      "file": "./lotties/雪克杯摇晃加载态/shaker-loader-energetic-6d523539.json",
+      "name": "Shaker Loader — Standard (web-safe)",
+      "file": "./lotties/雪克杯摇晃加载态/shaker-loader-standard-web-safe-fb8e29cc.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
       "category": "雪克杯摇晃加载态",
@@ -74,7 +74,7 @@
       "frames": 144,
       "duration": 2.4,
       "firstSeenAt": "",
-      "updatedAt": "2026-09-08T05:19:08.950Z"
+      "updatedAt": "2026-09-08T06:21:00.896Z"
     },
     {
       "name": "合成 2",
@@ -158,7 +158,7 @@
       "frameRate": 60,
       "frames": 90,
       "duration": 1.5,
-      "firstSeenAt": "",
+      "firstSeenAt": "2026-09-08T13:20:10+08:00",
       "updatedAt": "2026-09-08T05:19:08.229Z"
     },
     {
@@ -175,7 +175,7 @@
       "frameRate": 60,
       "frames": 96,
       "duration": 1.6,
-      "firstSeenAt": "",
+      "firstSeenAt": "2026-09-08T13:20:10+08:00",
       "updatedAt": "2026-09-08T05:19:07.507Z"
     },
     {
@@ -192,7 +192,7 @@
       "frameRate": 60,
       "frames": 96,
       "duration": 1.6,
-      "firstSeenAt": "",
+      "firstSeenAt": "2026-09-08T13:20:10+08:00",
       "updatedAt": "2026-09-08T05:19:06.891Z"
     },
     {
