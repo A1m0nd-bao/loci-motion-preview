@@ -2,7 +2,7 @@
   "items": [
     {
       "name": "Shaker Loader — Energetic (web-safe)",
-      "file": "./lotties/雪克杯摇晃加载态/shaker-loader-energetic-web-safe-512bf7dd.json",
+      "file": "./lotties/雪克杯摇晃加载态/shaker-loader-energetic-web-safe-78ac6b08.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
       "category": "雪克杯摇晃加载态",
@@ -14,10 +14,10 @@
       "width": 128,
       "height": 128,
       "frameRate": 60,
-      "frames": 144,
-      "duration": 2.4,
+      "frames": 120,
+      "duration": 2,
       "firstSeenAt": "",
-      "updatedAt": "2026-09-08T07:58:00.611Z"
+      "updatedAt": "2026-09-08T08:07:28.071Z"
     },
     {
       "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0013s_d6ef2e8e-9317-45a0-90b8-ac6d15accc1g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
@@ -36,7 +36,7 @@
       "frames": 0,
       "duration": 0,
       "firstSeenAt": "2026-07-27T12:47:00+08:00",
-      "updatedAt": "2026-09-08T07:58:00.611Z"
+      "updatedAt": "2026-09-08T08:07:28.071Z"
     },
     {
       "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0013s_d6ef2e8e-9317-45a0-90b8-ac6d15accc1g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
@@ -55,11 +55,11 @@
       "frames": 0,
       "duration": 0,
       "firstSeenAt": "2026-07-27T12:47:00+08:00",
-      "updatedAt": "2026-09-08T07:58:00.611Z"
+      "updatedAt": "2026-09-08T08:07:28.071Z"
     },
     {
       "name": "Shaker Loader — Standard (web-safe)",
-      "file": "./lotties/雪克杯摇晃加载态/shaker-loader-standard-web-safe-3f17993d.json",
+      "file": "./lotties/雪克杯摇晃加载态/shaker-loader-standard-web-safe-3d9a0c6c.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
       "category": "雪克杯摇晃加载态",
@@ -71,14 +71,14 @@
       "width": 128,
       "height": 128,
       "frameRate": 60,
-      "frames": 144,
-      "duration": 2.4,
+      "frames": 120,
+      "duration": 2,
       "firstSeenAt": "",
-      "updatedAt": "2026-09-08T07:57:59.532Z"
+      "updatedAt": "2026-09-08T08:07:27.196Z"
     },
     {
       "name": "Shaker Loader — Wide Swing (web-safe)",
-      "file": "./lotties/雪克杯摇晃加载态/shaker-loader-wide-swing-web-safe-1fa23ec2.json",
+      "file": "./lotties/雪克杯摇晃加载态/shaker-loader-wide-swing-web-safe-d86eb6e3.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
       "category": "雪克杯摇晃加载态",
@@ -90,10 +90,10 @@
       "width": 128,
       "height": 128,
       "frameRate": 60,
-      "frames": 144,
-      "duration": 2.4,
+      "frames": 120,
+      "duration": 2,
       "firstSeenAt": "",
-      "updatedAt": "2026-09-08T07:57:58.549Z"
+      "updatedAt": "2026-09-08T08:07:26.328Z"
     },
     {
       "name": "合成 2",
