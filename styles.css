@@ -1022,6 +1022,82 @@ output {
   margin-bottom: 14px;
 }
 
+.video-spotlight {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 280px);
+  gap: 18px;
+  align-items: stretch;
+  margin: 0 0 18px;
+  padding: 14px;
+  background: linear-gradient(135deg, rgba(252, 209, 197, 0.09), rgba(200, 183, 254, 0.06) 58%, rgba(10, 13, 18, 0.96));
+  border: 1px solid rgba(252, 209, 197, 0.2);
+  border-radius: 8px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.32);
+}
+
+.video-spotlight-stage {
+  position: relative;
+  min-width: 0;
+  min-height: min(58vh, 520px);
+  padding: 0;
+  overflow: hidden;
+  background: var(--preview-bg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.video-spotlight-stage .media-host {
+  width: 100%;
+  height: 100%;
+}
+
+.video-spotlight-stage .media-host > video {
+  object-fit: contain;
+}
+
+.video-spotlight-stage:hover,
+.video-spotlight-stage:focus-visible {
+  border-color: rgba(252, 209, 197, 0.72);
+  outline: none;
+  box-shadow: 0 0 0 1px rgba(200, 183, 254, 0.32), 0 18px 54px rgba(0, 0, 0, 0.42);
+}
+
+.video-spotlight-hint {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  padding: 7px 10px;
+  color: var(--ink);
+  background: rgba(7, 8, 11, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 720;
+  pointer-events: none;
+}
+
+.video-spotlight-copy {
+  display: grid;
+  align-content: center;
+  gap: 10px;
+  min-width: 0;
+  padding: 12px 8px;
+}
+
+.video-spotlight-copy h2 {
+  overflow: hidden;
+  font-size: clamp(20px, 2.4vw, 32px);
+  line-height: 1.08;
+  text-overflow: ellipsis;
+}
+
+.video-spotlight-copy p:last-child {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
 .tabs {
   display: inline-flex;
   padding: 4px;
@@ -1758,6 +1834,18 @@ code {
 
   .quick-section {
     padding-top: 14px;
+  }
+
+  .video-spotlight {
+    grid-template-columns: 1fr;
+  }
+
+  .video-spotlight-stage {
+    min-height: min(64vh, 520px);
+  }
+
+  .video-spotlight-copy {
+    padding: 4px 2px 8px;
   }
 
   .quick-rail {

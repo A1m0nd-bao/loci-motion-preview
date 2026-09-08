@@ -26,6 +26,11 @@ const previewBgLabel = document.querySelector("#previewBgLabel");
 const autoplay = document.querySelector("#autoplay");
 const loop = document.querySelector("#loop");
 const refresh = document.querySelector("#refresh");
+const videoSpotlight = document.querySelector("#videoSpotlight");
+const videoSpotlightStage = document.querySelector("#videoSpotlightStage");
+const videoSpotlightPlayer = document.querySelector("#videoSpotlightPlayer");
+const videoSpotlightTitle = document.querySelector("#videoSpotlightTitle");
+const videoSpotlightMeta = document.querySelector("#videoSpotlightMeta");
 const fileInput = document.querySelector("#fileInput");
 const dropzone = document.querySelector("#dropzone");
 const template = document.querySelector("#motionCard");
@@ -75,7 +80,6 @@ const kindLabels = {
   gif: "GIF",
   rive: "Rive",
   practice: "实践型动效",
-  video: "视频",
 };
 const previewControllers = new WeakMap();
 const lazyHostObserver =
@@ -121,6 +125,7 @@ function normalizeMotion(item) {
     kindLabel: kindLabels[kind] || item.kindLabel || kind,
     category: item.category || "未分类",
     tags: Array.isArray(item.tags) ? item.tags : [],
+    fileName: item.fileName || filenameToName(item.file),
     firstSeenAt: item.firstSeenAt || "",
   };
 }
@@ -296,6 +301,10 @@ function render() {
   lazyHostObserver?.disconnect();
   gallery.replaceChildren();
   quickRail.replaceChildren();
+  previewControllers.get(videoSpotlightPlayer)?.destroy?.();
+  previewControllers.delete(videoSpotlightPlayer);
+  videoSpotlight.hidden = isHome || selectedKind !== "video" || visibleMotions.length === 0;
+  videoSpotlightPlayer.replaceChildren();
   count.textContent = String(visibleMotions.length);
   empty.hidden = visibleMotions.length > 0;
   homeView.hidden = !isHome;
@@ -305,6 +314,10 @@ function render() {
   if (isHome) {
     updateFormatActiveState();
     return;
+  }
+
+  if (selectedKind === "video" && visibleMotions.length) {
+    renderVideoSpotlight(visibleMotions[0]);
   }
 
   const quickMotions = [...visibleMotions]
@@ -319,6 +332,15 @@ function render() {
 
   updateFormatActiveState();
   syncPreviewHosts();
+}
+
+function renderVideoSpotlight(motion) {
+  videoSpotlightTitle.textContent = motion.fileName || motion.name || filenameToName(motion.file);
+  videoSpotlightMeta.textContent = [motion.category, motion.interactionType, "MOV / MP4 / HEVC / Alpha"]
+    .filter(Boolean)
+    .join("  /  ");
+  setupPreviewHost(videoSpotlightPlayer, motion);
+  videoSpotlightStage.onclick = () => openDetail(motion);
 }
 
 function getUpdatedTime(motion) {
@@ -368,7 +390,7 @@ function createQuickCard(motion) {
   const label = node.querySelector("span");
 
   setupPreviewHost(host, motion);
-  label.textContent = motion.name || filenameToName(motion.file);
+  label.textContent = getMotionTitle(motion);
   node.title = `${label.textContent} - ${motion.kindLabel} - ${motion.category || "未分类"}`;
   node.addEventListener("click", () => openDetail(motion));
 
@@ -388,7 +410,7 @@ function createCard(motion) {
 
   setupPreviewHost(host, motion);
 
-  title.textContent = motion.name || filenameToName(motion.file);
+  title.textContent = getMotionTitle(motion);
   path.textContent = motion.file;
   path.title = motion.file;
   resolution.textContent = "规格 --";
@@ -475,7 +497,7 @@ function ensurePreviewController(host, motion) {
 }
 
 function syncPreviewHosts() {
-  for (const host of document.querySelectorAll(".gallery .media-host, .quick-rail .media-host")) {
+  for (const host of document.querySelectorAll(".gallery .media-host, .quick-rail .media-host, #videoSpotlightPlayer")) {
     syncPreviewHost(host);
   }
 }
@@ -515,7 +537,7 @@ function bindPreviewFocusPlayback(host, motion) {
 
 async function openDetail(motion) {
   activeMotion = motion;
-  const title = motion.name || filenameToName(motion.file);
+  const title = getMotionTitle(motion);
   detailTitle.textContent = title;
   detailPath.textContent = motion.file;
   detailPath.title = motion.file;
@@ -676,6 +698,9 @@ function createVideoController(host, motion, options = {}) {
 
 function canPlayOriginalVideo(video, motion) {
   if (!motion.previewFile) return true;
+  const userAgent = navigator.userAgent || "";
+  const isSafari = /Safari/i.test(userAgent) && !/Chrome|Chromium|CriOS|Android/i.test(userAgent);
+  if (!isSafari) return false;
   return [
     video.canPlayType('video/mp4; codecs="hvc1"'),
     video.canPlayType("video/quicktime"),
@@ -987,6 +1012,12 @@ function nextFrame() {
 function formatSeconds(value) {
   if (!Number.isFinite(value)) return "0.00";
   return value >= 10 ? value.toFixed(1) : value.toFixed(2);
+}
+
+function getMotionTitle(motion) {
+  const name = String(motion?.name || "").trim();
+  if (name && !name.startsWith("@") && !name.includes("feishucdn.com") && !/^\d+$/.test(name)) return name;
+  return motion?.fileName || filenameToName(motion?.file || "motion");
 }
 
 function filenameToName(file) {

@@ -2,6 +2,7 @@
   "items": [
     {
       "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0015b_8a5fb370-8f27-4176-bbba-6859757455ag~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
+      "fileName": "sipplay2-original-quality.mp4",
       "file": "./motions/视频动效/开屏动效/sipplay2-original-quality-180e6071.mp4",
       "kind": "video",
       "kindLabel": "视频动效",
@@ -16,11 +17,12 @@
       "frameRate": 0,
       "frames": 0,
       "duration": 0,
-      "firstSeenAt": "",
+      "firstSeenAt": "2026-09-08T16:49:05+08:00",
       "updatedAt": "2026-09-08T09:05:41.118Z"
     },
     {
       "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0015b_8a5fb370-8f27-4176-bbba-6859757455ag~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
+      "fileName": "飞书20260908-163817-original-quality.mp4",
       "file": "./motions/video/开屏动效/飞书20260908-163817-original-quality-d29f6b3b.mp4",
       "kind": "video",
       "kindLabel": "视频动效",
@@ -40,6 +42,7 @@
     },
     {
       "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0013s_d6ef2e8e-9317-45a0-90b8-ac6d15accc1g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
+      "fileName": "LociWorldLottie-hevc-alpha-under-1mb.mov",
       "file": "./motions/HEVC-with-Alpha/app开屏页/LociWorldLottie-hevc-alpha-under-1mb-befb3fac.mov",
       "previewFile": "./motions/HEVC-with-Alpha/app开屏页/LociWorldLottie-hevc-alpha-under-1mb-befb3fac.mov.preview.mp4",
       "kind": "video",
@@ -60,6 +63,7 @@
     },
     {
       "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0013s_d6ef2e8e-9317-45a0-90b8-ac6d15accc1g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
+      "fileName": "LociWorldLottieLoading-hevc-alpha-under-1mb.mov",
       "file": "./motions/HEVC-with-Alpha/app开屏页/LociWorldLottieLoading-hevc-alpha-under-1mb-cd1d6fec.mov",
       "previewFile": "./motions/HEVC-with-Alpha/app开屏页/LociWorldLottieLoading-hevc-alpha-under-1mb-cd1d6fec.mov.preview.mp4",
       "kind": "video",
@@ -80,6 +84,7 @@
     },
     {
       "name": "Shaker Loader — Purple Wide Swing (web-safe)",
+      "fileName": "shaker-loader-purple-wide-swing-web-safe.json",
       "file": "./lotties/雪克杯摇晃加载态/shaker-loader-purple-wide-swing-web-safe-4fb14b30.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -99,6 +104,7 @@
     },
     {
       "name": "Shaker Loader — Purple Standard (web-safe)",
+      "fileName": "shaker-loader-purple-standard-web-safe.json",
       "file": "./lotties/雪克杯摇晃加载态/shaker-loader-purple-standard-web-safe-c75a3224.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -118,6 +124,7 @@
     },
     {
       "name": "Shaker Loader — Purple Energetic (web-safe)",
+      "fileName": "shaker-loader-purple-energetic-web-safe.json",
       "file": "./lotties/雪克杯摇晃加载态/shaker-loader-purple-energetic-web-safe-b2d56aee.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -137,6 +144,7 @@
     },
     {
       "name": "Shaker Loader — Wide Swing (web-safe)",
+      "fileName": "shaker-loader-wide-swing-web-safe.json",
       "file": "./lotties/雪克杯摇晃加载态/shaker-loader-wide-swing-web-safe-33393b81.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -156,6 +164,7 @@
     },
     {
       "name": "Shaker Loader — Standard (web-safe)",
+      "fileName": "shaker-loader-standard-web-safe.json",
       "file": "./lotties/雪克杯摇晃加载态/shaker-loader-standard-web-safe-321ef299.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -175,6 +184,7 @@
     },
     {
       "name": "Shaker Loader — Energetic (web-safe)",
+      "fileName": "shaker-loader-energetic-web-safe.json",
       "file": "./lotties/雪克杯摇晃加载态/shaker-loader-energetic-web-safe-aa3ca9e6.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -194,6 +204,7 @@
     },
     {
       "name": "合成 2",
+      "fileName": "dxxr-b9e9d9f2-375x812-airplane-up40-fade-scaled-soft-halo.json",
       "file": "./lotties/未分类/dxxr-b9e9d9f2-375x812-airplane-up40-fade-scaled-soft-halo-594d0db5.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -211,6 +222,7 @@
     },
     {
       "name": "Loci World Entry",
+      "fileName": "LociWorldLottie.json",
       "file": "./lotties/创建模式-Publish-Loci/LociWorldLottie-3e7388a1.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -228,6 +240,7 @@
     },
     {
       "name": "Loci World Loading Loop",
+      "fileName": "LociWorldLottieLoading.json",
       "file": "./lotties/创建模式-Publish-Loci/LociWorldLottieLoading-c8771a12.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -245,6 +258,7 @@
     },
     {
       "name": "Combined Gesture Animations",
+      "fileName": "combined-gestures-purple-solid.json",
       "file": "./lotties/未分类/combined-gestures-purple-solid-5e0cbf98.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -262,6 +276,7 @@
     },
     {
       "name": "Tap Ripple Hand",
+      "fileName": "tap-ripple-hand-feca155c-replaced.json",
       "file": "./lotties/未分类/tap-ripple-hand-feca155c-replaced-228f015c.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -279,6 +294,7 @@
     },
     {
       "name": "Swipe Slide Right Gesture",
+      "fileName": "swipe-slide-right-hand-07a0bf46-replaced.json",
       "file": "./lotties/未分类/swipe-slide-right-hand-07a0bf46-replaced-20a52724.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -296,6 +312,7 @@
     },
     {
       "name": "Swipe Slide Gesture",
+      "fileName": "swipe-slide-hand-c364b914-replaced.json",
       "file": "./lotties/未分类/swipe-slide-hand-c364b914-replaced-7336c0da.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -313,6 +330,7 @@
     },
     {
       "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
+      "fileName": "黑哥们豆豆眼.gif",
       "file": "./motions/GIF/风格选择页-黑哥们/黑哥们豆豆眼-6bc6340c.gif",
       "kind": "gif",
       "kindLabel": "GIF",
@@ -332,6 +350,7 @@
     },
     {
       "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
+      "fileName": "黑哥们豆豆眼.mov",
       "file": "./motions/HEVC-with-Alpha/风格选择页-黑哥们/黑哥们豆豆眼-113dd6f0.mov",
       "previewFile": "./motions/HEVC-with-Alpha/风格选择页-黑哥们/黑哥们豆豆眼-113dd6f0.mov.preview.mp4",
       "kind": "video",
@@ -352,6 +371,7 @@
     },
     {
       "name": "Camera Tilt Shake Local Flash Loop - 74x84",
+      "fileName": "camera-shake-flash-top-expanded-74x84.embedded.lottie.json",
       "file": "./lotties/创建模式-Drop-Loci/camera-shake-flash-top-expanded-74x84-embedded-dc19089e.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -369,6 +389,7 @@
     },
     {
       "name": "Angry Avatar Loop",
+      "fileName": "angry-shake-loop-vector-only.json",
       "file": "./lotties/未分类/angry-shake-loop-vector-only-326acf97.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -386,6 +407,7 @@
     },
     {
       "name": "Angry Avatar Transition Variant",
+      "fileName": "calm-to-angry-transition-vector-only.json",
       "file": "./lotties/未分类/calm-to-angry-transition-vector-only-abf9b4f6.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -403,6 +425,7 @@
     },
     {
       "name": "右侧 MAX/MIN 提示条",
+      "fileName": "teal-hollow-glow-purple-with-deep-no-outer-halo.json",
       "file": "./lotties/Loci缩放交互范围提示/teal-hollow-glow-purple-with-deep-no-outer-halo-0bd492ae.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -422,6 +445,7 @@
     },
     {
       "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
+      "fileName": "7月20日 (3).gif",
       "file": "./motions/GIF/风格选择页-哥特/7月20日-3-94b2d657.gif",
       "kind": "gif",
       "kindLabel": "GIF",
@@ -441,6 +465,7 @@
     },
     {
       "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
+      "fileName": "7月20日 (3).mov",
       "file": "./motions/HEVC-with-Alpha/风格选择页-哥特/7月20日-3-f78f7b4f.mov",
       "previewFile": "./motions/HEVC-with-Alpha/风格选择页-哥特/7月20日-3-f78f7b4f.mov.preview.mp4",
       "kind": "video",
@@ -461,6 +486,7 @@
     },
     {
       "name": "右侧 MAX/MIN 提示条",
+      "fileName": "teal-hollow-glow-soft-embedded-purple.json",
       "file": "./lotties/Loci缩放交互范围提示/teal-hollow-glow-soft-embedded-purple-5657280c.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -480,6 +506,7 @@
     },
     {
       "name": "合成 2",
+      "fileName": "dxxr-b9e9d9f2-375x812-svg-rings-under-earth-pulse-compressed-subtle-clean-earth-r770.json",
       "file": "./lotties/未分类/dxxr-b9e9d9f2-375x812-svg-rings-under-earth-pulse-compressed-subtle-clean-earth--851efe1e.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -497,6 +524,7 @@
     },
     {
       "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
+      "fileName": "mc.gif",
       "file": "./motions/GIF/风格选择页-mc/mc-9c1b6c04.gif",
       "kind": "gif",
       "kindLabel": "GIF",
@@ -516,6 +544,7 @@
     },
     {
       "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
+      "fileName": "mc.mov",
       "file": "./motions/HEVC-with-Alpha/风格选择页-mc/mc-11fa66e3.mov",
       "previewFile": "./motions/HEVC-with-Alpha/风格选择页-mc/mc-11fa66e3.mov.preview.mp4",
       "kind": "video",
@@ -536,6 +565,7 @@
     },
     {
       "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0013s_d6ef2e8e-9317-45a0-90b8-ac6d15accc1g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
+      "fileName": "LogoMascotScaleIntro-hevc-alpha-under-1mb.mov",
       "file": "./motions/HEVC-with-Alpha/loci生长动画/LogoMascotScaleIntro-hevc-alpha-under-1mb-458dc4e5.mov",
       "previewFile": "./motions/HEVC-with-Alpha/loci生长动画/LogoMascotScaleIntro-hevc-alpha-under-1mb-458dc4e5.mov.preview.mp4",
       "kind": "video",
@@ -556,6 +586,7 @@
     },
     {
       "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0013s_d6ef2e8e-9317-45a0-90b8-ac6d15accc1g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
+      "fileName": "LogoMascotIntro-hevc-alpha-under-1mb.mov",
       "file": "./motions/HEVC-with-Alpha/loci生长动画/LogoMascotIntro-hevc-alpha-under-1mb-d50df632.mov",
       "previewFile": "./motions/HEVC-with-Alpha/loci生长动画/LogoMascotIntro-hevc-alpha-under-1mb-d50df632.mov.preview.mp4",
       "kind": "video",
@@ -576,6 +607,7 @@
     },
     {
       "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0013s_d6ef2e8e-9317-45a0-90b8-ac6d15accc1g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
+      "fileName": "LogoMascot-hevc-alpha-under-1mb.mov",
       "file": "./motions/HEVC-with-Alpha/loci生长动画/LogoMascot-hevc-alpha-under-1mb-c3dc4eb8.mov",
       "previewFile": "./motions/HEVC-with-Alpha/loci生长动画/LogoMascot-hevc-alpha-under-1mb-c3dc4eb8.mov.preview.mp4",
       "kind": "video",
@@ -596,6 +628,7 @@
     },
     {
       "name": "ARGrowthPrototype universal portal 20260722 125754 3535b85c",
+      "fileName": "ARGrowthPrototype_universal_portal_20260722-125754.zip",
       "file": "./motions/实践型动效/角色drop放置动效/ARGrowthPrototype-universal-portal-20260722-125754-3535b85c.zip",
       "kind": "practice",
       "kindLabel": "实践型动效",
@@ -615,6 +648,7 @@
     },
     {
       "name": "ios ar scan effect cc649428",
+      "fileName": "ios_ar_scan_effect.zip",
       "file": "./motions/实践型动效/全息扫描占位符/ios-ar-scan-effect-cc649428.zip",
       "kind": "practice",
       "kindLabel": "实践型动效",
@@ -634,6 +668,7 @@
     },
     {
       "name": "StarMotion iOS Handoff d6527647",
+      "fileName": "StarMotion_iOS_Handoff.zip",
       "file": "./motions/实践型动效/星星扫描交互动画/StarMotion-iOS-Handoff-d6527647.zip",
       "kind": "practice",
       "kindLabel": "实践型动效",
@@ -653,6 +688,7 @@
     },
     {
       "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
+      "fileName": "7月20日 (3)(1)q版.gif",
       "file": "./motions/GIF/风格选择页-q版/7月20日-3-1-q版-559038c6.gif",
       "kind": "gif",
       "kindLabel": "GIF",
@@ -672,6 +708,7 @@
     },
     {
       "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
+      "fileName": "7月20日 (3)豆豆眼.gif",
       "file": "./motions/GIF/风格选择页-豆豆眼/7月20日-3-豆豆眼-4bb1f014.gif",
       "kind": "gif",
       "kindLabel": "GIF",
@@ -691,6 +728,7 @@
     },
     {
       "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
+      "fileName": "7月20日 (3)(1)牛仔.gif",
       "file": "./motions/GIF/风格选择页-牛仔/7月20日-3-1-牛仔-aeeb1f0d.gif",
       "kind": "gif",
       "kindLabel": "GIF",
@@ -710,6 +748,7 @@
     },
     {
       "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
+      "fileName": "7月20日 (3)(1)q版.mov",
       "file": "./motions/HEVC-with-Alpha/风格选择页-q版/7月20日-3-1-q版-8e00a579.mov",
       "previewFile": "./motions/HEVC-with-Alpha/风格选择页-q版/7月20日-3-1-q版-8e00a579.mov.preview.mp4",
       "kind": "video",
@@ -730,6 +769,7 @@
     },
     {
       "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
+      "fileName": "7月20日 (3)豆豆眼.mov",
       "file": "./motions/HEVC-with-Alpha/风格选择页-豆豆眼/7月20日-3-豆豆眼-75909e80.mov",
       "previewFile": "./motions/HEVC-with-Alpha/风格选择页-豆豆眼/7月20日-3-豆豆眼-75909e80.mov.preview.mp4",
       "kind": "video",
@@ -750,6 +790,7 @@
     },
     {
       "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
+      "fileName": "7月20日 (3)(1).mov",
       "file": "./motions/HEVC-with-Alpha/风格选择页-牛仔/7月20日-3-1-d0485996.mov",
       "previewFile": "./motions/HEVC-with-Alpha/风格选择页-牛仔/7月20日-3-1-d0485996.mov.preview.mp4",
       "kind": "video",
@@ -770,6 +811,7 @@
     },
     {
       "name": "发布按钮",
+      "fileName": "observation-mode-success-burst-lottie.json",
       "file": "./lotties/放置完成-发布Loci/observation-mode-success-burst-lottie-3182a276.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -789,6 +831,7 @@
     },
     {
       "name": "点赞按钮/点赞后状态",
+      "fileName": "like-heart-float.lottie.json",
       "file": "./lotties/近景观察模式/like-heart-float-248724bd.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -808,6 +851,7 @@
     },
     {
       "name": "Topia Fixed Dot Scanner",
+      "fileName": "topia-fixed-dot-scanner.json",
       "file": "./lotties/扫描周围/topia-fixed-dot-scanner-22b38971.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -827,6 +871,7 @@
     },
     {
       "name": "Angry Avatar Loop",
+      "fileName": "angry_shake_loop.json",
       "file": "./lotties/未分类/angry-shake-loop-84db7466.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -846,6 +891,7 @@
     },
     {
       "name": "合成 1",
+      "fileName": "booom.json",
       "file": "./lotties/未分类/booom-66705abe.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -865,6 +911,7 @@
     },
     {
       "name": "礼花",
+      "fileName": "booom2.json",
       "file": "./lotties/未分类/booom2-b19ee9e8.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -884,6 +931,7 @@
     },
     {
       "name": "Angry Avatar Transition Variant",
+      "fileName": "calm_to_angry_transition.json",
       "file": "./lotties/未分类/calm-to-angry-transition-ef530190.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -903,6 +951,7 @@
     },
     {
       "name": "Designed Celebration Fireworks - Bold Multicolor Variant",
+      "fileName": "celebration-fireworks-animation2-spray-bold-variant.json",
       "file": "./lotties/未分类/celebration-fireworks-animation2-spray-bold-variant-d890b6ca.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -920,6 +969,7 @@
     },
     {
       "name": "Designed Celebration Fireworks - Celebrate Launch",
+      "fileName": "celebration-fireworks-animation2-spray-celebratory.json",
       "file": "./lotties/未分类/celebration-fireworks-animation2-spray-celebratory-81039722.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -937,6 +987,7 @@
     },
     {
       "name": "Combined Gesture Animations",
+      "fileName": "combined-gestures-lottie.json",
       "file": "./lotties/未分类/combined-gestures-lottie-98b580bd.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -956,6 +1007,7 @@
     },
     {
       "name": "phone-ratio-transparent-composite",
+      "fileName": "combined-phone-transparent.json",
       "file": "./lotties/未分类/combined-phone-transparent-bb6ad0d7.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -975,6 +1027,7 @@
     },
     {
       "name": "phone-ratio-transparent-composite",
+      "fileName": "combined-phone-transparent-with-bottom.json",
       "file": "./lotties/未分类/combined-phone-transparent-with-bottom-2234af49.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -994,6 +1047,7 @@
     },
     {
       "name": "iPhone mixed normal and burst speed lines - 390x844 fewer tiny featured",
+      "fileName": "light-rays-burst-detail-final-390x844-20260708.json",
       "file": "./lotties/未分类/light-rays-burst-detail-final-390x844-20260708-5926df3a.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -1013,6 +1067,7 @@
     },
     {
       "name": "iPhone mixed normal and burst speed lines",
+      "fileName": "light-rays-burst-detail-vortex-dots-20260707.json",
       "file": "./lotties/未分类/light-rays-burst-detail-vortex-dots-20260707-5f798bf2.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -1032,6 +1087,7 @@
     },
     {
       "name": "iPhone mixed normal and burst speed lines - 390x844 inner featured",
+      "fileName": "light-rays-burst-detail-vortex-dots-390x844-inner-featured.json",
       "file": "./lotties/未分类/light-rays-burst-detail-vortex-dots-390x844-inner-featured-38f7ab0a.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -1051,6 +1107,7 @@
     },
     {
       "name": "Loci Found Light Confetti",
+      "fileName": "loci-found-light-confetti-lottie.json",
       "file": "./lotties/未分类/loci-found-light-confetti-lottie-a751e6a9.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -1070,6 +1127,7 @@
     },
     {
       "name": "Tap Ripple Hand",
+      "fileName": "tap-ripple-hand.json",
       "file": "./lotties/未分类/tap-ripple-hand-feca155c.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -1089,6 +1147,7 @@
     },
     {
       "name": "XHS Video Particle Opening",
+      "fileName": "lottie-12866bf5-transparent.json",
       "file": "./lotties/星星交互/lottie-12866bf5-transparent-9a3db469.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -1108,6 +1167,7 @@
     },
     {
       "name": "Star Look Blink Spin Loader",
+      "fileName": "star-loader-lottie.json",
       "file": "./lotties/星星旋转/star-loader-lottie-536f4511.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -1127,6 +1187,7 @@
     },
     {
       "name": "Loci本体",
+      "fileName": "xhs-transparent-burst-lottie.json",
       "file": "./lotties/主界面-信息收集成功/xhs-transparent-burst-lottie-de9974f5.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -1146,6 +1207,7 @@
     },
     {
       "name": "Loci 本体",
+      "fileName": "finger-arc-swipe-lottie.json",
       "file": "./lotties/Loci-形象交互/finger-arc-swipe-lottie-d68e76cf.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -1165,6 +1227,7 @@
     },
     {
       "name": "开启相机权限",
+      "fileName": "crt-glitch-black-fog-exit.lottie.json",
       "file": "./lotties/未分类/crt-glitch-black-fog-exit-c71014b9.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -1184,6 +1247,7 @@
     },
     {
       "name": "开始创作引导",
+      "fileName": "heartbeat-plus-icon.lottie.json",
       "file": "./lotties/未分类/heartbeat-plus-icon-10636c64.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -1203,6 +1267,7 @@
     },
     {
       "name": "引导开启相机权限",
+      "fileName": "crt-glitch-black-fog-static.lottie.json",
       "file": "./lotties/主界面-权限开启/crt-glitch-black-fog-static-a92ccf8e.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -1222,6 +1287,7 @@
     },
     {
       "name": "引导开启相机权限",
+      "fileName": "pixel-glitch-tv-static.lottie.json",
       "file": "./lotties/主界面-权限开启/pixel-glitch-tv-static-af7fa028.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -1241,6 +1307,7 @@
     },
     {
       "name": "新 Loci 形象、完成提示",
+      "fileName": "celebration-fireworks-designed-lottie.json",
       "file": "./lotties/Loci-生成完成/celebration-fireworks-designed-lottie-e129597b.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -1261,6 +1328,7 @@
     },
     {
       "name": "新 Loci 形象、完成提示",
+      "fileName": "celebration-fireworks-floating-hold-lottie.json",
       "file": "./lotties/Loci-生成完成/celebration-fireworks-floating-hold-lottie-80707e2b.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -1281,6 +1349,7 @@
     },
     {
       "name": "新 Loci 形象、完成提示",
+      "fileName": "celebration-fireworks-floating-loop-lottie.json",
       "file": "./lotties/Loci-生成完成/celebration-fireworks-floating-loop-lottie-4be803b9.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -1301,6 +1370,7 @@
     },
     {
       "name": "地球、小人、飞机",
+      "fileName": "dx2.json",
       "file": "./lotties/Loci-生成中/dx2-bd45dcc7.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -1320,6 +1390,7 @@
     },
     {
       "name": "地球、小人、飞机",
+      "fileName": "dxxr.json",
       "file": "./lotties/Loci-生成中/dxxr-b9e9d9f2.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -1339,6 +1410,7 @@
     },
     {
       "name": "形象加载区域",
+      "fileName": "ripple-loader-transparent-lottie.json",
       "file": "./lotties/Loci-形象更换加载/ripple-loader-transparent-lottie-85954e72.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -1358,6 +1430,7 @@
     },
     {
       "name": "Loci 本体",
+      "fileName": "pinch-close-gesture-lottie.json",
       "file": "./lotties/Loci-形象交互/pinch-close-gesture-lottie-57855346.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -1377,6 +1450,7 @@
     },
     {
       "name": "Loci 本体",
+      "fileName": "pinch-zoom .json",
       "file": "./lotties/Loci-形象交互/pinch-zoom-e2b981da.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -1396,6 +1470,7 @@
     },
     {
       "name": "创作功能引导",
+      "fileName": "teal-hollow-glow.lottie.json",
       "file": "./lotties/New-Loci-生成完成后主页/teal-hollow-glow-506d1d3e.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -1417,6 +1492,7 @@
     },
     {
       "name": "创作功能引导",
+      "fileName": "teal-hollow-glow-soft.embedded.lottie.json",
       "file": "./lotties/New-Loci-生成完成后主页/teal-hollow-glow-soft-embedded-3e547de1.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
@@ -1438,6 +1514,7 @@
     },
     {
       "name": "引导开启相机权限",
+      "fileName": "crt-glitch-black-fog-reveal.lottie.json",
       "file": "./lotties/主界面-权限开启/crt-glitch-black-fog-reveal-552ebb5a.json",
       "kind": "lottie",
       "kindLabel": "Lottie",

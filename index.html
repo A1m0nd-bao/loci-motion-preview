@@ -149,6 +149,18 @@
           <button id="refresh" class="icon-button" type="button" title="重新读取清单" aria-label="重新读取清单">↻</button>
         </div>
 
+        <section id="videoSpotlight" class="video-spotlight" aria-label="视频动效大预览" hidden>
+          <button id="videoSpotlightStage" class="video-spotlight-stage" type="button">
+            <div id="videoSpotlightPlayer" class="media-host"></div>
+            <span class="video-spotlight-hint">点击打开详情</span>
+          </button>
+          <div class="video-spotlight-copy">
+            <p class="eyebrow">Video Motion</p>
+            <h2 id="videoSpotlightTitle"></h2>
+            <p id="videoSpotlightMeta"></p>
+          </div>
+        </section>
+
         <div id="empty" class="empty" hidden>
           <h2>还没有找到动效文件</h2>
           <p>把文件放进 <code>lotties/</code> 或 <code>motions/</code>，运行 <code>npm run manifest</code> 后刷新页面。</p>
