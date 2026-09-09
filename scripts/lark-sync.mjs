@@ -414,6 +414,7 @@ async function removeSyncedFile(output, outputDirs) {
 
 async function ensureBrowserVideoPreview(filePath) {
   const previewPath = `${filePath}.preview.mp4`;
+  const extension = extname(filePath).toLowerCase();
   let codec = "";
   try {
     codec = await run(
@@ -425,7 +426,8 @@ async function ensureBrowserVideoPreview(filePath) {
     return "";
   }
 
-  if (codec.trim().toLowerCase() !== "hevc") {
+  const needsPreview = codec.trim().toLowerCase() === "hevc" || extension === ".mov";
+  if (!needsPreview) {
     await removeIfExists(previewPath);
     return "";
   }
@@ -437,32 +439,14 @@ async function ensureBrowserVideoPreview(filePath) {
     // Generate a missing or stale compatibility preview below.
   }
 
-  await run(
-    "ffmpeg",
-    [
-      "-hide_banner",
-      "-loglevel",
-      "error",
-      "-y",
-      "-i",
-      filePath,
-      "-map",
-      "0:v:0",
-      "-an",
-      "-c:v",
-      "libx264",
-      "-preset",
-      "medium",
-      "-crf",
-      "22",
-      "-pix_fmt",
-      "yuv420p",
-      "-movflags",
-      "+faststart",
-      previewPath,
-    ],
-    { cwd: root },
-  );
+  const args = ["-hide_banner", "-loglevel", "error", "-y", "-i", filePath, "-map", "0:v:0", "-an"];
+  if (codec.trim().toLowerCase() === "hevc") {
+    args.push("-c:v", "libx264", "-preset", "medium", "-crf", "22", "-pix_fmt", "yuv420p");
+  } else {
+    args.push("-c:v", "copy");
+  }
+  args.push("-movflags", "+faststart", previewPath);
+  await run("ffmpeg", args, { cwd: root });
   console.log(`[lark-sync] Generated browser preview: ${relativePath(previewPath)}`);
   return relativePath(previewPath);
 }
