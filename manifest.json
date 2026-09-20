@@ -1,6 +1,60 @@
 {
   "items": [
     {
+      "name": "Treasure · chest + wide upward gold light",
+      "fileName": "treasure-glow-with-chest (1).lottie",
+      "file": "./lotties/未分类/treasure-glow-with-chest-1-2f076d25.lottie",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [],
+      "mimeType": "application/json",
+      "width": 640,
+      "height": 560,
+      "frameRate": 60,
+      "frames": 1080,
+      "duration": 18,
+      "firstSeenAt": "",
+      "updatedAt": "2026-09-20T08:44:14.548Z"
+    },
+    {
+      "name": "Treasure · chest + wide upward gold light",
+      "fileName": "treasure-glow-with-chest.json",
+      "file": "./lotties/未分类/treasure-glow-with-chest-9a046b62.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [],
+      "mimeType": "application/json",
+      "width": 640,
+      "height": 560,
+      "frameRate": 60,
+      "frames": 1080,
+      "duration": 18,
+      "firstSeenAt": "",
+      "updatedAt": "2026-09-20T08:42:01.402Z"
+    },
+    {
+      "name": "合成 3",
+      "fileName": "new cheers.json",
+      "file": "./lotties/未分类/new-cheers-19fabc6a.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [],
+      "mimeType": "application/json",
+      "width": 445,
+      "height": 429,
+      "frameRate": 60,
+      "frames": 240,
+      "duration": 4,
+      "firstSeenAt": "",
+      "updatedAt": "2026-09-20T08:42:00.519Z"
+    },
+    {
       "name": "new sip1 c3a77539",
       "fileName": "new sip1.mov",
       "file": "./motions/video/未分类/new-sip1-c3a77539.mov",
@@ -16,7 +70,7 @@
       "frameRate": 0,
       "frames": 0,
       "duration": 0,
-      "firstSeenAt": "",
+      "firstSeenAt": "2026-09-09T20:13:44+08:00",
       "updatedAt": "2026-09-09T12:12:34.969Z"
     },
     {
@@ -35,7 +89,7 @@
       "frameRate": 0,
       "frames": 0,
       "duration": 0,
-      "firstSeenAt": "",
+      "firstSeenAt": "2026-09-09T20:13:44+08:00",
       "updatedAt": "2026-09-09T12:12:34.104Z"
     },
     {
