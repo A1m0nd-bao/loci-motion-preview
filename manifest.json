@@ -1,6 +1,24 @@
 {
   "items": [
     {
+      "name": "合成 1 — half resolution",
+      "fileName": "Invitation code.half-resolution.json",
+      "file": "./lotties/未分类/Invitation-code-66b53e89.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [],
+      "mimeType": "application/json",
+      "width": 375,
+      "height": 812,
+      "frameRate": 60,
+      "frames": 240,
+      "duration": 4,
+      "firstSeenAt": "",
+      "updatedAt": "2026-09-21T09:11:59.494Z"
+    },
+    {
       "name": "合成 1",
       "fileName": "Invitation code.compressed.json",
       "file": "./lotties/未分类/Invitation-code-5c5f694f.json",
@@ -15,7 +33,7 @@
       "frameRate": 60,
       "frames": 240,
       "duration": 4,
-      "firstSeenAt": "",
+      "firstSeenAt": "2026-09-21T14:47:53+08:00",
       "updatedAt": "2026-09-21T06:47:01.997Z"
     },
     {
