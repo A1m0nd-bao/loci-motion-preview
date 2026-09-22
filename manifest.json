@@ -1,6 +1,78 @@
 {
   "items": [
     {
+      "name": "素材4 • 短杯轻晃",
+      "fileName": "cup-4.json",
+      "file": "./lotties/未分类/cup-4-c7dbaff9.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [],
+      "mimeType": "application/json",
+      "width": 59,
+      "height": 55,
+      "frameRate": 60,
+      "frames": 100,
+      "duration": 1.6666666666666667,
+      "firstSeenAt": "",
+      "updatedAt": "2026-09-22T07:24:09.405Z"
+    },
+    {
+      "name": "素材3 • 冰块漂动",
+      "fileName": "cup-3.json",
+      "file": "./lotties/未分类/cup-3-8c770208.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [],
+      "mimeType": "application/json",
+      "width": 273,
+      "height": 159,
+      "frameRate": 60,
+      "frames": 100,
+      "duration": 1.6666666666666667,
+      "firstSeenAt": "",
+      "updatedAt": "2026-09-22T07:24:08.398Z"
+    },
+    {
+      "name": "素材2 • 冰杯轻摇",
+      "fileName": "cup-2.json",
+      "file": "./lotties/未分类/cup-2-e8394150.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [],
+      "mimeType": "application/json",
+      "width": 273,
+      "height": 159,
+      "frameRate": 60,
+      "frames": 100,
+      "duration": 1.6666666666666667,
+      "firstSeenAt": "",
+      "updatedAt": "2026-09-22T07:24:07.502Z"
+    },
+    {
+      "name": "素材1 • 摇酒",
+      "fileName": "cup-1.json",
+      "file": "./lotties/未分类/cup-1-02a5a257.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [],
+      "mimeType": "application/json",
+      "width": 79,
+      "height": 103,
+      "frameRate": 60,
+      "frames": 100,
+      "duration": 1.6666666666666667,
+      "firstSeenAt": "",
+      "updatedAt": "2026-09-22T07:24:06.500Z"
+    },
+    {
       "name": "D · Fine fluted tumbler",
       "fileName": "D-fluted-transparent.json",
       "file": "./lotties/未分类/D-fluted-transparent-92cb056b.json",
@@ -15,7 +87,7 @@
       "frameRate": 60,
       "frames": 50,
       "duration": 0.8333333333333334,
-      "firstSeenAt": "",
+      "firstSeenAt": "2026-09-22T15:19:45+08:00",
       "updatedAt": "2026-09-22T07:19:25.003Z"
     },
     {
@@ -33,7 +105,7 @@
       "frameRate": 60,
       "frames": 50,
       "duration": 0.8333333333333334,
-      "firstSeenAt": "",
+      "firstSeenAt": "2026-09-22T15:19:45+08:00",
       "updatedAt": "2026-09-22T07:19:23.650Z"
     },
     {
@@ -51,7 +123,7 @@
       "frameRate": 60,
       "frames": 50,
       "duration": 0.8333333333333334,
-      "firstSeenAt": "",
+      "firstSeenAt": "2026-09-22T15:19:45+08:00",
       "updatedAt": "2026-09-22T07:19:22.740Z"
     },
     {
@@ -69,7 +141,7 @@
       "frameRate": 60,
       "frames": 50,
       "duration": 0.8333333333333334,
-      "firstSeenAt": "",
+      "firstSeenAt": "2026-09-22T15:19:45+08:00",
       "updatedAt": "2026-09-22T07:19:21.796Z"
     },
     {
@@ -87,7 +159,7 @@
       "frameRate": 60,
       "frames": 50,
       "duration": 0.8333333333333334,
-      "firstSeenAt": "",
+      "firstSeenAt": "2026-09-22T15:19:45+08:00",
       "updatedAt": "2026-09-22T07:19:20.583Z"
     },
     {
