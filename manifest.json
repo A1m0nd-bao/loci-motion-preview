@@ -1,6 +1,24 @@
 {
   "items": [
     {
+      "name": "合成 1",
+      "fileName": "Invitation code.json",
+      "file": "./lotties/未分类/Invitation-code-5150662e.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [],
+      "mimeType": "application/json",
+      "width": 750,
+      "height": 1624,
+      "frameRate": 60,
+      "frames": 240,
+      "duration": 4,
+      "firstSeenAt": "",
+      "updatedAt": "2026-09-24T08:29:22.677Z"
+    },
+    {
       "name": "Wine glass — continuous slosh, four whole images, no seams or frame sequence",
       "fileName": "wine-continuous-rig.json",
       "file": "./lotties/未分类/wine-continuous-rig-c46a06d6.json",
@@ -15,7 +33,7 @@
       "frameRate": 30,
       "frames": 80,
       "duration": 2.6666666666666665,
-      "firstSeenAt": "",
+      "firstSeenAt": "2026-09-24T15:23:44+08:00",
       "updatedAt": "2026-09-24T07:23:10.984Z"
     },
     {
