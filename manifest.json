@@ -1,6 +1,24 @@
 {
   "items": [
     {
+      "name": "Wine glass — continuous slosh, four whole images, no seams or frame sequence",
+      "fileName": "wine-continuous-rig.json",
+      "file": "./lotties/未分类/wine-continuous-rig-c46a06d6.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [],
+      "mimeType": "application/json",
+      "width": 1086,
+      "height": 1448,
+      "frameRate": 30,
+      "frames": 80,
+      "duration": 2.6666666666666665,
+      "firstSeenAt": "",
+      "updatedAt": "2026-09-24T07:23:10.984Z"
+    },
+    {
       "name": "素材4 • 短杯轻晃",
       "fileName": "cup-4.json",
       "file": "./lotties/未分类/cup-4-c7dbaff9.json",
@@ -15,7 +33,7 @@
       "frameRate": 60,
       "frames": 100,
       "duration": 1.6666666666666667,
-      "firstSeenAt": "",
+      "firstSeenAt": "2026-09-22T15:24:26+08:00",
       "updatedAt": "2026-09-22T07:24:09.405Z"
     },
     {
@@ -33,7 +51,7 @@
       "frameRate": 60,
       "frames": 100,
       "duration": 1.6666666666666667,
-      "firstSeenAt": "",
+      "firstSeenAt": "2026-09-22T15:24:26+08:00",
       "updatedAt": "2026-09-22T07:24:08.398Z"
     },
     {
@@ -51,7 +69,7 @@
       "frameRate": 60,
       "frames": 100,
       "duration": 1.6666666666666667,
-      "firstSeenAt": "",
+      "firstSeenAt": "2026-09-22T15:24:26+08:00",
       "updatedAt": "2026-09-22T07:24:07.502Z"
     },
     {
@@ -69,7 +87,7 @@
       "frameRate": 60,
       "frames": 100,
       "duration": 1.6666666666666667,
-      "firstSeenAt": "",
+      "firstSeenAt": "2026-09-22T15:24:26+08:00",
       "updatedAt": "2026-09-22T07:24:06.500Z"
     },
     {
