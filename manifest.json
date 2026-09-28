@@ -1,6 +1,24 @@
 {
   "items": [
     {
+      "name": "Treasure · chest + wide upward gold light",
+      "fileName": "treasure-glow-with-chest.json",
+      "file": "./lotties/未分类/treasure-glow-with-chest-f235bfad.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [],
+      "mimeType": "application/json",
+      "width": 640,
+      "height": 560,
+      "frameRate": 60,
+      "frames": 1080,
+      "duration": 18,
+      "firstSeenAt": "",
+      "updatedAt": "2026-09-28T09:21:13.386Z"
+    },
+    {
       "name": "合成 1",
       "fileName": "Invitation code.json",
       "file": "./lotties/未分类/Invitation-code-5150662e.json",
@@ -15,7 +33,7 @@
       "frameRate": 60,
       "frames": 240,
       "duration": 4,
-      "firstSeenAt": "",
+      "firstSeenAt": "2026-09-24T16:35:01+08:00",
       "updatedAt": "2026-09-24T08:29:22.677Z"
     },
     {
@@ -251,24 +269,6 @@
       "duration": 18,
       "firstSeenAt": "2026-09-20T16:44:16+08:00",
       "updatedAt": "2026-09-20T08:44:14.548Z"
-    },
-    {
-      "name": "Treasure · chest + wide upward gold light",
-      "fileName": "treasure-glow-with-chest.json",
-      "file": "./lotties/未分类/treasure-glow-with-chest-9a046b62.json",
-      "kind": "lottie",
-      "kindLabel": "Lottie",
-      "category": "未分类",
-      "interactionType": "",
-      "tags": [],
-      "mimeType": "application/json",
-      "width": 640,
-      "height": 560,
-      "frameRate": 60,
-      "frames": 1080,
-      "duration": 18,
-      "firstSeenAt": "2026-09-20T16:44:16+08:00",
-      "updatedAt": "2026-09-20T08:42:01.402Z"
     },
     {
       "name": "合成 3",
