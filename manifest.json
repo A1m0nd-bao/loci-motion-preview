@@ -1,9 +1,9 @@
 {
   "items": [
     {
-      "name": "Treasure · chest + wide upward gold light",
-      "fileName": "treasure-glow-with-chest.json",
-      "file": "./lotties/未分类/treasure-glow-with-chest-f235bfad.json",
+      "name": "Treasure · flowing light + sustained peak · 9s",
+      "fileName": "treasure-glow-with-chest.lottie",
+      "file": "./lotties/未分类/treasure-glow-with-chest-84df99b1.lottie",
       "kind": "lottie",
       "kindLabel": "Lottie",
       "category": "未分类",
@@ -13,10 +13,28 @@
       "width": 640,
       "height": 560,
       "frameRate": 60,
-      "frames": 1080,
-      "duration": 18,
+      "frames": 540,
+      "duration": 9,
       "firstSeenAt": "",
-      "updatedAt": "2026-09-28T09:21:13.386Z"
+      "updatedAt": "2026-09-30T05:49:17.685Z"
+    },
+    {
+      "name": "Treasure · flowing light + sustained peak · 9s",
+      "fileName": "treasure-glow-with-chest.json",
+      "file": "./lotties/未分类/treasure-glow-with-chest-7e700506.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [],
+      "mimeType": "application/json",
+      "width": 640,
+      "height": 560,
+      "frameRate": 60,
+      "frames": 540,
+      "duration": 9,
+      "firstSeenAt": "",
+      "updatedAt": "2026-09-30T05:49:16.987Z"
     },
     {
       "name": "合成 1",
@@ -251,24 +269,6 @@
       "duration": 4,
       "firstSeenAt": "2026-09-21T14:47:53+08:00",
       "updatedAt": "2026-09-21T06:47:01.997Z"
-    },
-    {
-      "name": "Treasure · chest + wide upward gold light",
-      "fileName": "treasure-glow-with-chest (1).lottie",
-      "file": "./lotties/未分类/treasure-glow-with-chest-1-2f076d25.lottie",
-      "kind": "lottie",
-      "kindLabel": "Lottie",
-      "category": "未分类",
-      "interactionType": "",
-      "tags": [],
-      "mimeType": "application/json",
-      "width": 640,
-      "height": 560,
-      "frameRate": 60,
-      "frames": 1080,
-      "duration": 18,
-      "firstSeenAt": "2026-09-20T16:44:16+08:00",
-      "updatedAt": "2026-09-20T08:44:14.548Z"
     },
     {
       "name": "合成 3",
