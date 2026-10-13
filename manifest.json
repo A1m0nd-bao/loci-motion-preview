@@ -1,6 +1,42 @@
 {
   "items": [
     {
+      "name": "合成 2",
+      "fileName": "常态.json",
+      "file": "./lotties/未分类/常态-83d45213.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [],
+      "mimeType": "application/json",
+      "width": 948,
+      "height": 600,
+      "frameRate": 60,
+      "frames": 180,
+      "duration": 3,
+      "firstSeenAt": "",
+      "updatedAt": "2026-10-13T10:11:14.461Z"
+    },
+    {
+      "name": "合成 1",
+      "fileName": "亮起.json",
+      "file": "./lotties/未分类/亮起-298385e9.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [],
+      "mimeType": "application/json",
+      "width": 948,
+      "height": 600,
+      "frameRate": 60,
+      "frames": 240,
+      "duration": 4,
+      "firstSeenAt": "",
+      "updatedAt": "2026-10-13T10:11:13.660Z"
+    },
+    {
       "name": "Treasure · flowing light + sustained peak · 9s",
       "fileName": "treasure-glow-with-chest.lottie",
       "file": "./lotties/未分类/treasure-glow-with-chest-84df99b1.lottie",
@@ -15,7 +51,7 @@
       "frameRate": 60,
       "frames": 540,
       "duration": 9,
-      "firstSeenAt": "",
+      "firstSeenAt": "2026-09-30T13:49:38+08:00",
       "updatedAt": "2026-09-30T05:49:17.685Z"
     },
     {
@@ -33,7 +69,7 @@
       "frameRate": 60,
       "frames": 540,
       "duration": 9,
-      "firstSeenAt": "",
+      "firstSeenAt": "2026-09-30T13:49:38+08:00",
       "updatedAt": "2026-09-30T05:49:16.987Z"
     },
     {
