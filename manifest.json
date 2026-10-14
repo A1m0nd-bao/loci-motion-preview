@@ -1,6 +1,42 @@
 {
   "items": [
     {
+      "name": "蓝宝石高脚杯 · 简约快节奏掉落与滚落",
+      "fileName": "蓝宝石高脚杯-掉落滚落_压缩版.json",
+      "file": "./lotties/未分类/蓝宝石高脚杯-掉落滚落-压缩版-53f202e8.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [],
+      "mimeType": "application/json",
+      "width": 1216,
+      "height": 1293,
+      "frameRate": 60,
+      "frames": 108,
+      "duration": 1.8,
+      "firstSeenAt": "",
+      "updatedAt": "2026-10-14T12:15:44.506Z"
+    },
+    {
+      "name": "蓝宝石高脚杯 · 简约快节奏掉落与滚落 2",
+      "fileName": "蓝宝石掉落_压缩版.json",
+      "file": "./lotties/未分类/蓝宝石掉落-压缩版-b99445b5.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [],
+      "mimeType": "application/json",
+      "width": 1216,
+      "height": 1293,
+      "frameRate": 60,
+      "frames": 65,
+      "duration": 1.0833333333333333,
+      "firstSeenAt": "",
+      "updatedAt": "2026-10-14T12:15:43.922Z"
+    },
+    {
       "name": "Cheers · Original Gradient · Gravity Surface",
       "fileName": "cheers-reference-web.json",
       "file": "./lotties/未分类/cheers-reference-web-5b7ff2df.json",
@@ -15,7 +51,7 @@
       "frameRate": 60,
       "frames": 240,
       "duration": 4,
-      "firstSeenAt": "",
+      "firstSeenAt": "2026-10-14T13:47:58+08:00",
       "updatedAt": "2026-10-14T05:47:29.475Z"
     },
     {
@@ -33,7 +69,7 @@
       "frameRate": 60,
       "frames": 240,
       "duration": 4,
-      "firstSeenAt": "",
+      "firstSeenAt": "2026-10-14T13:47:58+08:00",
       "updatedAt": "2026-10-14T05:47:24.469Z"
     },
     {
