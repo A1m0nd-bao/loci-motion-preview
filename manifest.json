@@ -2,8 +2,8 @@
   "items": [
     {
       "name": "Cheers · Original Gradient · Gravity Surface",
-      "fileName": "cheers-reference-physics.json",
-      "file": "./lotties/未分类/cheers-reference-physics-8e6011a8.json",
+      "fileName": "cheers-reference-web.json",
+      "file": "./lotties/未分类/cheers-reference-web-5b7ff2df.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
       "category": "未分类",
@@ -16,7 +16,25 @@
       "frames": 240,
       "duration": 4,
       "firstSeenAt": "",
-      "updatedAt": "2026-10-14T03:00:09.595Z"
+      "updatedAt": "2026-10-14T05:47:29.475Z"
+    },
+    {
+      "name": "Cheers · Gentle Clink · Fuller Liquid Wave",
+      "fileName": "cheers-gentle-wave-web.json",
+      "file": "./lotties/未分类/cheers-gentle-wave-web-5204e709.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [],
+      "mimeType": "application/json",
+      "width": 445,
+      "height": 429,
+      "frameRate": 60,
+      "frames": 240,
+      "duration": 4,
+      "firstSeenAt": "",
+      "updatedAt": "2026-10-14T05:47:24.469Z"
     },
     {
       "name": "宝石奖励 · 光线爆开与盒子淡出",
