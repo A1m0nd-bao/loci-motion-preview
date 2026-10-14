@@ -1,6 +1,24 @@
 {
   "items": [
     {
+      "name": "Cheers · Gentle Clink · 80 Frames",
+      "fileName": "cheers-gentle-wave-80f.json",
+      "file": "./lotties/未分类/cheers-gentle-wave-80f-cc7349dd.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [],
+      "mimeType": "application/json",
+      "width": 445,
+      "height": 429,
+      "frameRate": 60,
+      "frames": 80,
+      "duration": 1.3333333333333333,
+      "firstSeenAt": "",
+      "updatedAt": "2026-10-14T13:04:54.435Z"
+    },
+    {
       "name": "蓝宝石高脚杯 · 简约快节奏掉落与滚落",
       "fileName": "蓝宝石高脚杯-掉落滚落_压缩版.json",
       "file": "./lotties/未分类/蓝宝石高脚杯-掉落滚落-压缩版-53f202e8.json",
@@ -15,7 +33,7 @@
       "frameRate": 60,
       "frames": 108,
       "duration": 1.8,
-      "firstSeenAt": "",
+      "firstSeenAt": "2026-10-14T20:15:56+08:00",
       "updatedAt": "2026-10-14T12:15:44.506Z"
     },
     {
@@ -33,7 +51,7 @@
       "frameRate": 60,
       "frames": 65,
       "duration": 1.0833333333333333,
-      "firstSeenAt": "",
+      "firstSeenAt": "2026-10-14T20:15:56+08:00",
       "updatedAt": "2026-10-14T12:15:43.922Z"
     },
     {
@@ -53,24 +71,6 @@
       "duration": 4,
       "firstSeenAt": "2026-10-14T13:47:58+08:00",
       "updatedAt": "2026-10-14T05:47:29.475Z"
-    },
-    {
-      "name": "Cheers · Gentle Clink · Fuller Liquid Wave",
-      "fileName": "cheers-gentle-wave-web.json",
-      "file": "./lotties/未分类/cheers-gentle-wave-web-5204e709.json",
-      "kind": "lottie",
-      "kindLabel": "Lottie",
-      "category": "未分类",
-      "interactionType": "",
-      "tags": [],
-      "mimeType": "application/json",
-      "width": 445,
-      "height": 429,
-      "frameRate": 60,
-      "frames": 240,
-      "duration": 4,
-      "firstSeenAt": "2026-10-14T13:47:58+08:00",
-      "updatedAt": "2026-10-14T05:47:24.469Z"
     },
     {
       "name": "宝石奖励 · 光线爆开与盒子淡出",
