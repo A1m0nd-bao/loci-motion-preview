@@ -81,6 +81,11 @@ const kindLabels = {
   rive: "Rive",
   practice: "实践型动效",
 };
+const live2dModule = {
+  label: "Live2D",
+  description: "角色模型与交互预览",
+  href: "https://a1m0nd-bao.github.io/loci-live2d-preview/",
+};
 const previewControllers = new WeakMap();
 const lazyHostObserver =
   "IntersectionObserver" in window
@@ -149,6 +154,7 @@ function populateKinds() {
   for (const kind of kinds) {
     formatNav.append(createFormatButton(kind, labelForKind(kind), counts[kind], formatDescription(kind)));
   }
+  formatNav.append(createExternalFormatLink(live2dModule));
 
   renderHomeModules(kinds, counts);
   renderHomeIndex(kinds, counts);
@@ -169,6 +175,19 @@ function createFormatButton(kind, label, amount, description) {
   return button;
 }
 
+function createExternalFormatLink({ label, description, href }) {
+  const link = document.createElement("a");
+  link.className = "format-button format-button-external";
+  link.href = href;
+  link.target = "_blank";
+  link.rel = "noreferrer noopener";
+  link.innerHTML = `<strong></strong><span class="format-count">↗</span><span></span>`;
+  link.querySelector("strong").textContent = label;
+  link.querySelector("span:last-child").textContent = description;
+  link.setAttribute("aria-label", `打开 ${label} 预览站`);
+  return link;
+}
+
 function renderHomeModules(kinds, counts) {
   homeModules.replaceChildren();
   for (const kind of kinds) {
@@ -179,6 +198,8 @@ function renderHomeModules(kinds, counts) {
     if (counts[kind]) continue;
     homeModules.append(createModuleCard(kind, 0));
   }
+
+  homeModules.append(createExternalModuleCard(live2dModule));
 }
 
 function renderHomeIndex(kinds, counts) {
@@ -214,6 +235,24 @@ function createModuleCard(kind, amount) {
   node.querySelector(".module-meta").textContent = `${amount} 个资产 / ${formatDescription(kind)}`;
   node.addEventListener("click", () => enterModule(kind));
   return node;
+}
+
+function createExternalModuleCard({ label, description, href }) {
+  const link = document.createElement("a");
+  link.className = "module-card module-card-external";
+  link.href = href;
+  link.target = "_blank";
+  link.rel = "noreferrer noopener";
+  link.innerHTML = `
+    <span class="module-icon">2D</span>
+    <strong></strong>
+    <span class="module-meta"></span>
+    <span class="module-link-label">打开预览站 ↗</span>
+  `;
+  link.querySelector("strong").textContent = label;
+  link.querySelector(".module-meta").textContent = description;
+  link.setAttribute("aria-label", `打开 ${label} 预览站`);
+  return link;
 }
 
 function enterModule(kind) {

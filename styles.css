@@ -160,6 +160,7 @@ body.is-home-view .format-nav {
   padding: 13px 14px;
   color: var(--ink);
   text-align: left;
+  text-decoration: none;
   background: linear-gradient(180deg, #171c24, #0d1016);
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -207,6 +208,14 @@ body.is-home-view .format-button .format-count {
 .format-button.active,
 .format-button:hover {
   border-color: rgba(232, 185, 229, 0.82);
+}
+
+.format-button-external {
+  background: linear-gradient(135deg, rgba(252, 209, 197, 0.08), rgba(200, 183, 254, 0.12));
+}
+
+.format-button-external .format-count {
+  color: var(--ink);
 }
 
 .home-view {
@@ -556,6 +565,11 @@ body.is-home-view.home-opening.is-returning-home .home-waves {
   cursor: pointer;
 }
 
+.module-card-external {
+  text-decoration: none;
+  background: linear-gradient(135deg, rgba(252, 209, 197, 0.1), rgba(200, 183, 254, 0.13));
+}
+
 .module-card::after {
   position: absolute;
   inset: auto 14px 12px;
@@ -610,6 +624,15 @@ body.is-home-view.home-opening.is-returning-home .home-waves {
   color: var(--muted);
   font-size: 13px;
   line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.module-link-label {
+  overflow: hidden;
+  color: var(--accent-strong);
+  font-size: 12px;
+  font-weight: 760;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
