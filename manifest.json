@@ -1,6 +1,42 @@
 {
   "items": [
     {
+      "name": "Ice Drop · 2.2s / Quick Bottle 0.3s",
+      "fileName": "ice-drop-snappy-bottle.json",
+      "file": "./lotties/未分类/ice-drop-snappy-bottle-89f018a9.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [],
+      "mimeType": "application/json",
+      "width": 218,
+      "height": 150,
+      "frameRate": 60,
+      "frames": 132,
+      "duration": 2.2,
+      "firstSeenAt": "",
+      "updatedAt": "2026-10-15T10:18:13.909Z"
+    },
+    {
+      "name": "Sapphire Fall · Soft Entry · Compact",
+      "fileName": "sapphire-fall-soft-entry.json",
+      "file": "./lotties/未分类/sapphire-fall-soft-entry-f9cdcd70.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [],
+      "mimeType": "application/json",
+      "width": 1216,
+      "height": 1653,
+      "frameRate": 60,
+      "frames": 102,
+      "duration": 1.7,
+      "firstSeenAt": "",
+      "updatedAt": "2026-10-15T10:18:13.259Z"
+    },
+    {
       "name": "Cheers · Gentle Clink · 80 Frames",
       "fileName": "cheers-gentle-wave-80f.json",
       "file": "./lotties/未分类/cheers-gentle-wave-80f-cc7349dd.json",
@@ -35,24 +71,6 @@
       "duration": 1.8,
       "firstSeenAt": "2026-10-14T20:15:56+08:00",
       "updatedAt": "2026-10-14T12:15:44.506Z"
-    },
-    {
-      "name": "蓝宝石高脚杯 · 简约快节奏掉落与滚落 2",
-      "fileName": "蓝宝石掉落_压缩版.json",
-      "file": "./lotties/未分类/蓝宝石掉落-压缩版-b99445b5.json",
-      "kind": "lottie",
-      "kindLabel": "Lottie",
-      "category": "未分类",
-      "interactionType": "",
-      "tags": [],
-      "mimeType": "application/json",
-      "width": 1216,
-      "height": 1293,
-      "frameRate": 60,
-      "frames": 65,
-      "duration": 1.0833333333333333,
-      "firstSeenAt": "2026-10-14T20:15:56+08:00",
-      "updatedAt": "2026-10-14T12:15:43.922Z"
     },
     {
       "name": "Cheers · Original Gradient · Gravity Surface",
