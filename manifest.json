@@ -1,6 +1,24 @@
 {
   "items": [
     {
+      "name": "Ruby Fall · Soft Entry · Compact",
+      "fileName": "ruby-fall-soft-entry.json",
+      "file": "./lotties/未分类/ruby-fall-soft-entry-c1f625d4.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [],
+      "mimeType": "application/json",
+      "width": 1216,
+      "height": 1653,
+      "frameRate": 60,
+      "frames": 102,
+      "duration": 1.7,
+      "firstSeenAt": "",
+      "updatedAt": "2026-10-15T13:40:12.174Z"
+    },
+    {
       "name": "Ice Drop · 2.2s / Quick Bottle 0.3s",
       "fileName": "ice-drop-snappy-bottle.json",
       "file": "./lotties/未分类/ice-drop-snappy-bottle-89f018a9.json",
