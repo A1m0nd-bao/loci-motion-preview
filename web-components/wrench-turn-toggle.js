@@ -36,8 +36,8 @@ export function defineWrenchTurnToggle(animate) {
             button{display:grid;place-items:center;width:44px;height:44px;margin:0;padding:12px;border:0;border-radius:10px;background:transparent;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
             button:focus-visible{outline:1px solid #d4d4d8;outline-offset:-8px;border-radius:50%}
             svg{display:block;width:20px;height:20px;overflow:visible;pointer-events:none;color:#71717a}
-            /* Keep the icon center fixed when Motion normalizes SVG styles. */
-            .wrench{transform-box:view-box!important;transform-origin:10px 10px!important}
+            /* Keep the jaw fixed when Motion normalizes SVG transform styles. */
+            .wrench{transform-box:view-box!important;transform-origin:14px 5.7px!important}
           </style>
           <button type="button" aria-pressed="false">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -85,21 +85,12 @@ export function defineWrenchTurnToggle(animate) {
       const duration = this.duration;
       this.controls = [
         animate(this.svg, { color: on ? "#ffffff" : "#71717a" }, { duration: instant ? 0 : duration * 0.18 }),
-        // Shrink before turning, hold through the rebound, restore only at rest.
-        // 0.965 keeps the original path and its stroke within the 20px square.
-        animate(this.wrench, turning ? {
-          rotate: [0, 0, -360 - 18 * this.bounce, -360, -360],
-          scale: [1, 0.965, 0.965, 1],
-        } : { rotate: 0, scale: 1 }, turning
+        // Grip at the jaw: wind up, turn twice, then release the small recoil.
+        animate(this.wrench, { rotate: turning ? [0, -14, 36, 3, 26, -16 * this.bounce, 0] : 0 }, turning
           ? {
-              rotate: {
-                duration, times: [0, 0.07, 0.7252, 0.85, 1],
-                ease: ["linear", [0.3, 0.05, 0.2, 1], "easeOut", "linear"],
-              },
-              scale: {
-                duration, times: [0, 0.07, 0.85, 1],
-                ease: ["easeOut", "linear", "easeOut"],
-              },
+              duration,
+              times: [0, 0.12, 0.36, 0.55, 0.73, 0.88, 1],
+              ease: ["easeOut", [0.2, 0.75, 0.25, 1], "easeInOut", [0.2, 0.75, 0.25, 1], "easeInOut", "easeOut"],
             }
           : { duration: 0 }),
       ];
@@ -129,7 +120,7 @@ export function defineWrenchTurnToggle(animate) {
 
 export const wrenchTurnDemoMarkup = `
   <div class="selection-demo wrench-turn-demo">
-    <p class="selection-demo-hint">点击扳手，查看逆时针旋转回弹</p>
+    <p class="selection-demo-hint">点击扳手，查看拧动与回弹</p>
     <div class="selection-demo-zoom">
       <sipplay-wrench-turn-toggle data-motion duration="0.84" bounce="0.28" label="切换工具选中状态（放大预览）"></sipplay-wrench-turn-toggle>
     </div>
