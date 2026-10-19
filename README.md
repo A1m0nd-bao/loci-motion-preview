@@ -22,6 +22,28 @@
 - 修改依赖后，运行 `pnpm install --frozen-lockfile` 和 `pnpm build:web-components`，再提交 `web-components/vendor/` 中的构建产物。
 - 原项目：[tgomilar/motion-components](https://github.com/tgomilar/motion-components)，作者 Tanja Gomilar。MIT 及依赖许可完整保存在 `web-components/vendor/THIRD-PARTY-NOTICES.txt`；Inter 字体使用 SIL OFL。
 
+## Motion 原生示例与 Studio
+
+主站新增独立的 `/#motion` 分支，收录 6 个基于免费 Motion API 制作的原生 JavaScript 示例：弹簧切换、错峰入场、悬停按压、时间线编排、SVG 路径绘制、滚动关联进度。支持交互、参数调整、复制完整 HTML 与下载；原有 `/#web` 的 56 个组件保持独立。
+
+Motion 固定为 13.5.1，与已有自定义图标使用的版本一致。修改 `motion/demos.js` 后运行 `pnpm build:motion`：生成公开站使用的本地运行文件与独立导出源码，避免开发期 Studio 插桩进入下载的 HTML。开源许可见 `web-components/vendor/THIRD-PARTY-NOTICES.txt`。
+
+本地 Studio（Node.js 22.13+）：
+
+```bash
+pnpm install --frozen-lockfile
+cp .env.example .env.local
+pnpm dev:studio
+```
+
+打开 `http://127.0.0.1:4180/motion/studio.html`，可直接在时间线上预览、移动关键帧和调整曲线。按 Alt+T 开关编辑器。`MOTION_STUDIO_AGENT_PROVIDER=codex` 已配置于本机 `.env.local`；Codex SDK 使用现有 `codex login` 登录，不需要把凭据写入项目。`.env.local` 不提交。
+
+Studio 仅运行在 Vite 本地开发环境；线上 GitHub Pages 继续使用静态文件，保留 Python 静态预览方式。免费模式可检查、编辑并预览；Studio 的自动写回和 AI 编辑属于另行订阅的功能，本次未启用。
+
+本机 Codex 已安装 Motion 官方技能，并接入免费文档 MCP：`https://mcp.motion.dev`。新会话可使用该技能查询文档、编写和调整 Motion 动效。此配置独立于平台源码，Motion+ 服务未启用。
+
+官方说明：[AI Kit 安装](https://motion.dev/docs/ai-kit-install) · [Studio 配置](https://motion.dev/docs/studio)。
+
 ## 使用方式
 
 1. 把 Lottie JSON 放进 `lotties/`，可以按目录分组，例如 `lotties/Login/success.json`。

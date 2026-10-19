@@ -1,5 +1,5 @@
-import { exampleDocument } from "./examples.js?v=20261019-voice-v2";
-import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261019-voice-v2";
+import { exampleDocument } from "./examples.js?v=20261019-motion";
+import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261019-motion";
 
 const controllers = new Set();
 
@@ -106,7 +106,7 @@ export function setupWebDetail(entry, getController) {
   const panel = document.querySelector("#webCodePanel");
   const controls = document.querySelector("#webParameters");
   const docs = document.querySelector("#webDocs");
-  const isWeb = entry.kind === "web";
+  const isWeb = entry.kind === "web" || entry.kind === "motion";
   panel.hidden = controls.hidden = docs.hidden = !isWeb;
   docs.hidden = !isWeb || !entry.docs;
   document.querySelectorAll("#detailDialog [data-media-only]").forEach((el) => { el.hidden = isWeb; });
@@ -123,6 +123,10 @@ export function setupWebDetail(entry, getController) {
   document.querySelector("#webDescription").textContent = entry.description;
   const code = document.querySelector("#webCode");
   const updateCode = () => {
+    if (entry.kind === "motion") {
+      code.textContent = exampleDocument(entry, currentValues);
+      return;
+    }
     const setup = entry.custom ? "<!-- 自定义 SVG 状态组件；复制 / 下载 HTML 包含完整实现。 -->" : `// npm install motion-components@1.3.0\nimport 'motion-components/${entry.id}';\nimport 'motion-components/preload.css';`;
     code.textContent = `${setup}\n\n${exampleMarkup(entry, currentValues).replace(/ data-motion/g, "")}`;
   };

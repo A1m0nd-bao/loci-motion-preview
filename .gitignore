@@ -3,3 +3,7 @@
 .sync/
 lark-sync.config.json
 node_modules/
+
+.env.local
+.motion-studio/
+dist/
