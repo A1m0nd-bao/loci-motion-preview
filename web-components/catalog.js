@@ -1,9 +1,9 @@
-import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261019-pin";
-import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261019-pin";
-import { selectionDemoMarkup } from "./selection-toggle.js?v=20261019-pin";
-import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261019-pin";
-import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261019-pin";
-import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261019-pin";
+import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261019-pin-v2";
+import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261019-pin-v2";
+import { selectionDemoMarkup } from "./selection-toggle.js?v=20261019-pin-v2";
+import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261019-pin-v2";
+import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261019-pin-v2";
+import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261019-pin-v2";
 
 export const upstreamVersion = "1.3.0";
 export const upstreamURL = "https://github.com/tgomilar/motion-components";

@@ -4,6 +4,8 @@ export function bindDemoActions(root) {
   const primaryToggle = toggles[0];
   for (const toggle of toggles.slice(1)) {
     for (const attribute of ["duration", "bounce"]) toggle.setAttribute(attribute, primaryToggle.getAttribute(attribute));
+    // This example starts on connection: replay after inheriting edited parameters.
+    if (toggle.localName === "sipplay-pin-reveal" && toggle.active) toggle.apply(toggle.reducedMotion.matches);
   }
   const onSelectionChange = (event) => {
     if (!toggles.includes(event.target)) return;

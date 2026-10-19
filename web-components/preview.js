@@ -1,12 +1,12 @@
-import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261019-pin";
-import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261019-pin";
-import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261019-pin";
-import { demoCSS } from "./demo-styles.js?v=20261019-pin";
-import { bindDemoActions } from "./demo-actions.js?v=20261019-pin";
-import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261019-pin";
-import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261019-pin";
-import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261019-pin";
-import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261019-pin";
+import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261019-pin-v2";
+import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261019-pin-v2";
+import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261019-pin-v2";
+import { demoCSS } from "./demo-styles.js?v=20261019-pin-v2";
+import { bindDemoActions } from "./demo-actions.js?v=20261019-pin-v2";
+import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261019-pin-v2";
+import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261019-pin-v2";
+import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261019-pin-v2";
+import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261019-pin-v2";
 
 const params = new URLSearchParams(location.search);
 const entry = webMotions.find((item) => item.id === params.get("id"));
@@ -98,7 +98,7 @@ document.addEventListener("visibilitychange", () => { if (document.hidden) { run
 
 try {
   if (!entry) throw new Error("未找到此组件，请从动效库重新选择。");
-  runtime = await import("./vendor/motion-components.js?v=20261019-pin");
+  runtime = await import("./vendor/motion-components.js?v=20261019-pin-v2");
   definePinToggle(runtime.animate);
   definePinReveal(runtime.animate);
   defineSelectionToggle(runtime.animate);

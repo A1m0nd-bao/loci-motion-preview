@@ -1,5 +1,5 @@
-import { webMotions } from "./web-components/catalog.js?v=20261019-pin";
-import { createWebController, copyExample, downloadExample, setupWebDetail, getWebValues, syncWebBackgrounds } from "./web-components/integration.js?v=20261019-pin";
+import { webMotions } from "./web-components/catalog.js?v=20261019-pin-v2";
+import { createWebController, copyExample, downloadExample, setupWebDetail, getWebValues, syncWebBackgrounds } from "./web-components/integration.js?v=20261019-pin-v2";
 
 const gallery = document.querySelector("#gallery");
 const quickRail = document.querySelector("#quickRail");
