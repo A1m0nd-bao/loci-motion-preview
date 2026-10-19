@@ -208,7 +208,7 @@ function renderHomeModules(kinds, counts) {
     homeModules.append(createModuleCard(kind, counts[kind] || 0));
   }
 
-  for (const kind of ["video", "gif", "rive", "practice"]) {
+  for (const kind of ["video", "gif", "practice"]) {
     if (counts[kind]) continue;
     homeModules.append(createModuleCard(kind, 0));
   }
