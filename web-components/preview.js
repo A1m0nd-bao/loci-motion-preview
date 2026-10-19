@@ -1,24 +1,25 @@
-import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261019-pin-slash";
-import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261019-pin-slash";
-import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261019-pin-slash";
-import { demoCSS } from "./demo-styles.js?v=20261019-pin-slash";
-import { bindDemoActions } from "./demo-actions.js?v=20261019-pin-slash";
-import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261019-pin-slash";
-import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261019-pin-slash";
-import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261019-pin-slash";
-import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261019-pin-slash";
+import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261019-voice";
+import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261019-voice";
+import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261019-voice";
+import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261019-voice";
+import { demoCSS } from "./demo-styles.js?v=20261019-voice";
+import { bindDemoActions } from "./demo-actions.js?v=20261019-voice";
+import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261019-voice";
+import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261019-voice";
+import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261019-voice";
+import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261019-voice";
 
 const params = new URLSearchParams(location.search);
 const entry = webMotions.find((item) => item.id === params.get("id"));
 const root = document.querySelector("#demo");
 const style = document.createElement("style");
-style.textContent = demoCSS + selectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS + wrenchTurnDemoCSS + pinToggleDemoCSS + pinRevealDemoCSS;
+style.textContent = demoCSS + selectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS + wrenchTurnDemoCSS + pinToggleDemoCSS + pinRevealDemoCSS + voiceWaveDemoCSS;
 document.head.append(style);
 let runtime;
 let values = {};
 let isPaused = false;
 let cleanupDemo;
-const customElementsInDemo = () => [...root.querySelectorAll("sipplay-selection-toggle,sipplay-layer-stack-toggle,sipplay-profile-rise-toggle,sipplay-wrench-turn-toggle,sipplay-pin-toggle,sipplay-pin-reveal")];
+const customElementsInDemo = () => [...root.querySelectorAll("sipplay-selection-toggle,sipplay-layer-stack-toggle,sipplay-profile-rise-toggle,sipplay-wrench-turn-toggle,sipplay-pin-toggle,sipplay-pin-reveal,sipplay-voice-wave")];
 
 function notify(status, message = "") {
   parent.postMessage({ type: "sipplay-web-preview", id: entry?.id, status, message }, location.origin);
@@ -98,7 +99,8 @@ document.addEventListener("visibilitychange", () => { if (document.hidden) { run
 
 try {
   if (!entry) throw new Error("未找到此组件，请从动效库重新选择。");
-  runtime = await import("./vendor/motion-components.js?v=20261019-pin-slash");
+  runtime = await import("./vendor/motion-components.js?v=20261019-voice");
+  defineVoiceWave(runtime.animate);
   definePinToggle(runtime.animate);
   definePinReveal(runtime.animate);
   defineSelectionToggle(runtime.animate);

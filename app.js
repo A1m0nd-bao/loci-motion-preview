@@ -1,5 +1,5 @@
-import { webMotions } from "./web-components/catalog.js?v=20261019-pin-slash";
-import { createWebController, copyExample, downloadExample, setupWebDetail, getWebValues, syncWebBackgrounds } from "./web-components/integration.js?v=20261019-pin-slash";
+import { webMotions } from "./web-components/catalog.js?v=20261019-voice";
+import { createWebController, copyExample, downloadExample, setupWebDetail, getWebValues, syncWebBackgrounds } from "./web-components/integration.js?v=20261019-voice";
 
 const gallery = document.querySelector("#gallery");
 const quickRail = document.querySelector("#quickRail");

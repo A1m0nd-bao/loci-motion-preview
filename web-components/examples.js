@@ -1,17 +1,19 @@
-import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261019-pin-slash";
-import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261019-pin-slash";
-import { exampleMarkup, upstreamURL, upstreamVersion } from "./catalog.js?v=20261019-pin-slash";
-import { demoCSS } from "./demo-styles.js?v=20261019-pin-slash";
-import { bindDemoActions } from "./demo-actions.js?v=20261019-pin-slash";
-import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261019-pin-slash";
-import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261019-pin-slash";
-import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261019-pin-slash";
-import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261019-pin-slash";
+import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261019-voice";
+import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261019-voice";
+import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261019-voice";
+import { exampleMarkup, upstreamURL, upstreamVersion } from "./catalog.js?v=20261019-voice";
+import { demoCSS } from "./demo-styles.js?v=20261019-voice";
+import { bindDemoActions } from "./demo-actions.js?v=20261019-voice";
+import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261019-voice";
+import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261019-voice";
+import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261019-voice";
+import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261019-voice";
 
 export function exampleDocument(entry, values = {}) {
   const font = "https://cdn.jsdelivr.net/npm/@fontsource-variable/inter@5.3.0/files/inter-latin-wght-normal.woff2";
-  const styles = (demoCSS + (entry.custom ? selectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS + wrenchTurnDemoCSS + pinToggleDemoCSS + pinRevealDemoCSS : "")).replace('./vendor/inter-latin-wght-normal.woff2', font);
+  const styles = (demoCSS + (entry.custom ? selectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS + wrenchTurnDemoCSS + pinToggleDemoCSS + pinRevealDemoCSS + voiceWaveDemoCSS : "")).replace('./vendor/inter-latin-wght-normal.woff2', font);
   const defineCustom = {
+    "sipplay-voice-wave": defineVoiceWave,
     "sipplay-pin-toggle": definePinToggle,
     "sipplay-pin-reveal": definePinReveal,
     "sipplay-selection-toggle": defineSelectionToggle,

@@ -1,9 +1,10 @@
-import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261019-pin-slash";
-import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261019-pin-slash";
-import { selectionDemoMarkup } from "./selection-toggle.js?v=20261019-pin-slash";
-import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261019-pin-slash";
-import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261019-pin-slash";
-import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261019-pin-slash";
+import { voiceWaveDemoMarkup } from "./voice-wave.js?v=20261019-voice";
+import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261019-voice";
+import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261019-voice";
+import { selectionDemoMarkup } from "./selection-toggle.js?v=20261019-voice";
+import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261019-voice";
+import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261019-voice";
+import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261019-voice";
 
 export const upstreamVersion = "1.3.0";
 export const upstreamURL = "https://github.com/tgomilar/motion-components";
@@ -94,6 +95,13 @@ const upstreamMotions = entries.map(([id, name, category, description, markup, c
 }));
 
 export const webMotions = [{
+  id: "sipplay-voice-wave", name: "灵动语音条", category: "动态图标",
+  description: "保留原始 58 × 28 气泡和五根圆头声纹。默认静止；点击选中后，错落的音节、重音和换气组成循环节奏，取消选中后平滑收稳。此示例为声纹动效，不包含音频。",
+  markup: voiceWaveDemoMarkup, controls: [number("duration", "节奏周期（秒）", 4.8, 2.4, 8, 0.2), number("strength", "声纹幅度", 1, 0.35, 1.4, 0.05)],
+  kind: "web", kindLabel: "Web 组件", fileName: "sipplay-voice-wave",
+  file: "./web-components/preview.html?id=sipplay-voice-wave", docs: null, custom: true,
+  tags: ["自定义 SVG", "语音", "声纹", "音频", "发声", "播放", "气泡"], interactionType: "选中发声",
+}, {
   id: "sipplay-pin-toggle", name: "图钉选中切换", category: "动态图标",
   description: "原始 18 × 18 双态图钉：选中时斜杠收起、实心图钉轻落回弹；取消选中时空心图钉与斜杠依次出现。保留原始路径及 60% / 40% 透明度。",
   markup: pinToggleDemoMarkup, controls: [number("duration", "时长（秒）", 0.52, 0.24, 1.8, 0.04), number("bounce", "回弹程度", 0.28, 0, 0.5, 0.02)],
