@@ -91,9 +91,9 @@ export function defineSelectionToggle(animate) {
             opacity: { duration: duration * 0.28, ease: "easeOut" },
           }
         : { ...spring, delay: duration * 0.2 };
-      // Match motion-icon's stroke draw: a spring with no overshoot.
+      // Pause briefly after the fill settles, then draw with a spring and no overshoot.
       const checkTiming = on
-        ? { type: "spring", duration: duration * 0.35, bounce: 0, delay: instant ? 0 : duration * 0.65 }
+        ? { type: "spring", duration: duration * 0.35, bounce: 0, delay: instant ? 0 : duration * 0.85 }
         : { duration: duration * 0.7, ease: "easeIn" };
       this.controls = [
         animate(this.fill, { opacity: on ? 1 : 0, scale: fillScale }, fillTiming),

@@ -1,4 +1,4 @@
-import { selectionDemoMarkup } from "./selection-toggle.js?v=20261019-selection-fill";
+import { selectionDemoMarkup } from "./selection-toggle.js?v=20261019-selection-pause";
 
 export const upstreamVersion = "1.3.0";
 export const upstreamURL = "https://github.com/tgomilar/motion-components";
