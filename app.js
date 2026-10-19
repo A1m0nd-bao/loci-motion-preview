@@ -1,3 +1,6 @@
+import { webMotions } from "./web-components/catalog.js";
+import { createWebController, copyExample, downloadExample, setupWebDetail, getWebValues, syncWebBackgrounds } from "./web-components/integration.js";
+
 const gallery = document.querySelector("#gallery");
 const quickRail = document.querySelector("#quickRail");
 const formatNav = document.querySelector("#formatNav");
@@ -66,8 +69,10 @@ let activeMotionInfo = null;
 let detailController = null;
 let timelineRaf = 0;
 let currentView = "home";
+let activeKind = "all";
 let homeOpeningTimer = 0;
 let homeVisualWakeTimer = 0;
+let manifestSignature = "";
 
 const motionInfoCache = new Map();
 const previewBackgroundKey = "motion-preview-bg";
@@ -80,6 +85,7 @@ const kindLabels = {
   gif: "GIF",
   rive: "Rive",
   practice: "实践型动效",
+  web: "Web 组件",
 };
 const live2dModule = {
   label: "Live2D",
@@ -112,10 +118,18 @@ async function loadManifest() {
     const data = await response.json();
     const remoteLabels = data.kindLabels && typeof data.kindLabels === "object" ? data.kindLabels : {};
     Object.assign(kindLabels, remoteLabels);
-    motions = Array.isArray(data.items) ? data.items.map(normalizeMotion) : [];
+    const items = Array.isArray(data.items) ? data.items : [];
+    const signature = JSON.stringify([items, remoteLabels]);
+    if (signature === manifestSignature) return;
+    manifestSignature = signature;
+    motions = items.map(normalizeMotion);
   } catch {
+    if (motions.length) return;
     motions = [];
   }
+
+  // Kept separate from the generated asset manifest so sync jobs cannot prune the catalog.
+  motions.push(...webMotions.map(normalizeMotion));
 
   populateKinds();
   populateCategories();
@@ -259,13 +273,21 @@ function enterModule(kind) {
   finishHomeOpening();
   window.dispatchEvent(new CustomEvent("motion-home-visual-sleep"));
   currentView = "library";
+  if (activeKind !== kind) {
+    search.value = "";
+    category.value = "all";
+  }
+  activeKind = kind;
   kindSelect.value = kind;
+  history.replaceState(null, "", `${location.pathname}${location.search}${kind === "web" ? "#web" : ""}`);
   populateCategories();
   render();
 }
 
 function showHome() {
+  history.replaceState(null, "", `${location.pathname}${location.search}`);
   currentView = "home";
+  activeKind = "all";
   kindSelect.value = "all";
   populateCategories();
   startHomeOpening({ returning: true });
@@ -337,6 +359,8 @@ function render() {
     return matchesSearch && matchesKind && matchesCategory;
   });
 
+  // Embedded component runtimes must be torn down when filters replace their cards.
+  for (const host of gallery.querySelectorAll('[data-kind="web"]')) previewControllers.get(host)?.destroy?.();
   lazyHostObserver?.disconnect();
   gallery.replaceChildren();
   quickRail.replaceChildren();
@@ -347,7 +371,9 @@ function render() {
   count.textContent = String(visibleMotions.length);
   empty.hidden = visibleMotions.length > 0;
   homeView.hidden = !isHome;
-  quickSection.hidden = isHome;
+  quickSection.hidden = isHome || selectedKind === "web";
+  document.querySelector("#webLibraryIntro").hidden = isHome || selectedKind !== "web";
+  document.querySelectorAll("[data-library-media-only]").forEach((el) => { el.hidden = selectedKind === "web"; });
   libraryView.hidden = isHome;
 
   if (isHome) {
@@ -365,7 +391,7 @@ function render() {
 
   renderGalleryCards(visibleMotions, selectedKind);
 
-  for (const motion of quickMotions) {
+  for (const motion of quickMotions.filter((item) => item.kind !== "web")) {
     quickRail.append(createQuickCard(motion));
   }
 
@@ -458,6 +484,21 @@ function createCard(motion) {
   downloadLink.href = motion.file;
   downloadLink.download = getDownloadName(motion);
 
+  if (motion.kind === "web") {
+    node.classList.add("web-motion-card");
+    path.textContent = motion.id;
+    resolution.textContent = motion.description;
+    resolution.dataset.loaded = "true";
+    node.querySelector('[data-action="detail"]').textContent = "体验 / 代码";
+    node.querySelector('[data-action="copy"]').textContent = "复制 HTML";
+    openLink.textContent = "独立体验";
+    downloadLink.textContent = "下载 HTML";
+    downloadLink.addEventListener("click", (event) => {
+      event.preventDefault();
+      downloadExample(motion);
+    });
+  }
+
   const tagValues = [motion.category, motion.interactionType, ...(motion.tags || [])].filter(Boolean);
   for (const tag of tagValues) {
     const tagNode = document.createElement("span");
@@ -478,6 +519,10 @@ function createCard(motion) {
     if (action === "pause") controller.pause?.();
     if (action === "detail") openDetail(motion);
     if (action === "copy") {
+      if (motion.kind === "web") {
+        await copyExample(event.target, motion);
+        return;
+      }
       await navigator.clipboard.writeText(motion.file);
       event.target.textContent = "已复制";
       window.setTimeout(() => {
@@ -520,6 +565,11 @@ function handleHostVisibility(entries) {
       ensurePreviewController(host, motion);
       syncPreviewHost(host);
       updateVisibleHostInfo(host, motion);
+    } else if (host.dataset.kind === "web") {
+      previewControllers.get(host)?.destroy?.();
+      previewControllers.delete(host);
+      host.replaceChildren();
+      host.dataset.loaded = "false";
     } else {
       previewControllers.get(host)?.pause?.();
     }
@@ -589,9 +639,11 @@ async function openDetail(motion) {
   detailOpen.href = motion.file;
   detailDownload.href = motion.file;
   detailDownload.download = getDownloadName(motion);
+  detailHost.dataset.kind = motion.kind;
+  setupWebDetail(motion, () => detailController);
   detailTags.replaceChildren();
 
-  const tags = [motion.kindLabel || labelForKind(motion.kind), motion.category, motion.interactionType, ...(motion.tags || [])].filter(Boolean);
+  const tags = (motion.kind === "web" ? [motion.category, motion.interactionType] : [motion.kindLabel || labelForKind(motion.kind), motion.category, motion.interactionType, ...(motion.tags || [])]).filter(Boolean);
   for (const tag of tags) {
     const node = document.createElement("span");
     node.textContent = tag;
@@ -601,16 +653,20 @@ async function openDetail(motion) {
   detailDialog.showModal();
   updateDetailInfo(motion);
   await nextFrame();
+  if (!detailDialog.open || activeMotion !== motion) return;
   detailController = createMediaController(detailHost, motion, { detail: true });
+  const controller = detailController;
   syncDetailPlayer();
-  await detailController.ready?.();
+  await controller.ready?.();
+  if (!detailDialog.open || activeMotion !== motion || detailController !== controller) return;
   await updateDetailInfo(motion);
   detailController.play?.();
-  startTimelineLoop();
+  if (motion.kind !== "web") startTimelineLoop();
 }
 
 function createMediaController(host, motion, options = {}) {
   host.replaceChildren();
+  if (motion.kind === "web") return createWebController(host, motion, options);
   if (motion.kind === "lottie") return createLottieController(host, motion, options);
   if (motion.kind === "gif") return createImageController(host, motion);
   if (motion.kind === "hevc" || motion.kind === "video") return createVideoController(host, motion, options);
@@ -808,6 +864,7 @@ function applyPreviewBackground(value, options = {}) {
   const color = normalizeHexColor(value) || defaultPreviewBackground;
   const label = color.toUpperCase();
   document.documentElement.style.setProperty("--preview-bg", color);
+  syncWebBackgrounds();
   previewBg.value = color;
   detailPreviewBg.value = color;
   previewBgLabel.textContent = label;
@@ -851,6 +908,7 @@ async function updateVisibleHostInfo(host, motion) {
 }
 
 async function updateDetailInfo(motion) {
+  if (motion.kind === "web") return;
   try {
     const info = await getMotionInfo(motion);
     if (activeMotion?.file !== motion.file) return;
@@ -1117,6 +1175,7 @@ function addLocalFiles(files) {
 
 function normalizeKind(value) {
   const text = String(value || "").trim().toLowerCase();
+  if (text === "web") return "web";
   if (text.includes("lottie") || text.includes("json") || text.endsWith(".lottie")) return "lottie";
   if (text.includes("hevc") || text.includes("alpha") || text.includes("透明视频") || text.includes("视频动效") || text === "video") return "video";
   if (text.includes("gif") || text.endsWith(".gif")) return "gif";
@@ -1147,6 +1206,7 @@ function formatDescription(kind) {
     gif: "轻量循环图",
     rive: "状态机与交互动画",
     practice: "App 内交互原型",
+    web: "可交互 / 调参 / 复制代码",
   }[kind] || "自定义格式";
 }
 
@@ -1157,11 +1217,12 @@ function moduleIcon(kind) {
     rive: "R",
     practice: "P",
     video: "V",
+    web: "W",
   }[kind] || "M";
 }
 
 function getOrderedKinds(counts) {
-  const order = ["lottie", "video", "gif", "rive", "practice"];
+  const order = ["lottie", "video", "gif", "rive", "practice", "web"];
   return Object.keys(counts).sort((a, b) => {
     const left = order.indexOf(a);
     const right = order.indexOf(b);
@@ -1205,6 +1266,7 @@ loop.addEventListener("change", syncPreviewHosts);
 fileInput.addEventListener("change", (event) => addLocalFiles(event.target.files));
 detailClose.addEventListener("click", () => detailDialog.close());
 detailPlay.addEventListener("click", () => {
+  if (activeMotion?.kind === "web") { detailController?.replay?.(); return; }
   detailController?.play?.();
   startTimelineLoop();
 });
@@ -1219,11 +1281,18 @@ detailTimeline.addEventListener("input", (event) => seekDetailFrame(event.target
 
 detailCopy.addEventListener("click", async () => {
   if (!activeMotion) return;
+  if (activeMotion.kind === "web") { await copyExample(detailCopy, activeMotion, getWebValues()); return; }
   await navigator.clipboard.writeText(activeMotion.file);
   detailCopy.textContent = "已复制";
   window.setTimeout(() => {
     detailCopy.textContent = "复制路径";
   }, 1100);
+});
+
+detailDownload.addEventListener("click", (event) => {
+  if (activeMotion?.kind !== "web") return;
+  event.preventDefault();
+  downloadExample(activeMotion, getWebValues());
 });
 
 detailDialog.addEventListener("click", (event) => {
@@ -1258,5 +1327,5 @@ document.querySelectorAll(".tab").forEach((button) => {
   });
 });
 
-loadManifest();
+loadManifest().then(() => { if (location.hash === "#web") enterModule("web"); });
 window.setInterval(loadManifest, 30000);

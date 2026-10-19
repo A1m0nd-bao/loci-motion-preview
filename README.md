@@ -1,5 +1,15 @@
 # Lottie 动效预览库
 
+## Web 动效组件库
+
+网站的「Web 组件」分支收录 motion-components 1.3.0 的 49 个现行组件，支持中文搜索、分类、交互预览、数值参数调节、复制完整 HTML 和下载独立示例。可通过 `/#web` 直接进入。
+
+- 目录与示例：`web-components/catalog.js`。组件数据独立于自动生成的 `manifest.json`，飞书同步不会覆盖它们。
+- 预览运行在独立 iframe 中；离开可视区域或切换筛选时会清理实例。缩略预览默认静止，悬停时播放。
+- 主站使用已提交的本地运行文件与可变字体，GitHub Pages 无需额外构建。下载的独立 HTML 通过固定版本的 jsDelivr CDN 加载依赖，需要联网。
+- 修改依赖后，运行 `pnpm install --frozen-lockfile` 和 `pnpm build:web-components`，再提交 `web-components/vendor/` 中的构建产物。
+- 原项目：[tgomilar/motion-components](https://github.com/tgomilar/motion-components)，作者 Tanja Gomilar。MIT 及依赖许可完整保存在 `web-components/vendor/THIRD-PARTY-NOTICES.txt`；Inter 字体使用 SIL OFL。
+
 ## 使用方式
 
 1. 把 Lottie JSON 放进 `lotties/`，可以按目录分组，例如 `lotties/Login/success.json`。
