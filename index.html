@@ -2,9 +2,10 @@
 <html lang="zh-CN">
   <head>
     <meta charset="utf-8" />
+    <link rel="icon" href="data:," />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>SipPlay Motion Library</title>
-    <link rel="stylesheet" href="./styles.css?v=sipplay-motion-20261014" />
+    <link rel="stylesheet" href="./styles.css?v=sipplay-motion-20261019" />
     <script src="https://unpkg.com/@lottiefiles/lottie-player@2.0.8/dist/lottie-player.js"></script>
     <script src="https://unpkg.com/@rive-app/canvas@2.24.0/rive.js"></script>
   </head>
@@ -107,7 +108,7 @@
           </select>
         </label>
 
-        <div class="field">
+        <div class="field" data-library-media-only>
           <span>播放速度</span>
           <div class="speed-row">
             <input id="speed" type="range" min="0.25" max="3" step="0.25" value="1" />
@@ -128,7 +129,7 @@
           <span>悬停播放</span>
         </label>
 
-        <label class="toggle">
+        <label class="toggle" data-library-media-only>
           <input id="loop" type="checkbox" checked />
           <span>循环播放</span>
         </label>
@@ -141,6 +142,13 @@
       </details>
 
       <section class="content">
+        <section id="webLibraryIntro" class="web-library-intro" aria-label="Web 组件库介绍" hidden>
+          <div>
+            <h2>让界面动起来。</h2>
+            <p>49 个 Web 动效组件。悬停预览，打开详情体验交互、调整参数，复制 HTML 即可使用。</p>
+          </div>
+          <p class="web-attribution">基于 <a href="https://github.com/tgomilar/motion-components" target="_blank" rel="noopener noreferrer">motion-components 1.3.0 ↗</a><br>作者 Tanja Gomilar · <a href="./web-components/vendor/THIRD-PARTY-NOTICES.txt" target="_blank" rel="noopener noreferrer">MIT 与第三方许可</a></p>
+        </section>
         <div class="toolbar">
           <div class="tabs" role="tablist" aria-label="显示模式">
             <button class="tab active" type="button" data-view="grid">网格</button>
@@ -227,20 +235,27 @@
               <div id="detailPlayer" class="media-host"></div>
             </div>
 
-            <div class="detail-timeline" aria-label="动效时间轴">
+            <div class="detail-timeline" aria-label="动效时间轴" data-media-only>
               <div class="timeline-readout">
                 <span><strong id="detailCurrentFrame">--</strong>/<span id="detailTotalFrames">--</span> 帧</span>
                 <span><strong id="detailCurrentTime">--</strong>/<span id="detailTotalDuration">--</span></span>
               </div>
               <input id="detailTimeline" type="range" min="0" max="0" step="1" value="0" aria-label="时间轴" disabled />
             </div>
+
+            <section id="webCodePanel" class="web-code-panel" aria-label="组件代码与用法" hidden>
+              <div class="web-code-heading"><h3>组件代码</h3><button id="webReset" type="button">重置参数</button></div>
+              <p id="webDescription"></p>
+              <pre tabindex="0" aria-label="组件接入代码"><code id="webCode"></code></pre>
+              <p class="web-code-note">「复制 HTML」包含示例样式与初始化脚本；下载的 HTML 联网即可运行。Web 组件用于网页，不是 Lottie JSON。</p>
+            </section>
           </div>
 
           <aside class="detail-controls" aria-label="详情控制">
             <button id="detailPlay" type="button">播放</button>
             <button id="detailPause" type="button">暂停</button>
 
-            <label class="field">
+            <label class="field" data-media-only>
               <span>播放速度</span>
               <div class="speed-row">
                 <input id="detailSpeed" type="range" min="0.25" max="3" step="0.25" value="1" />
@@ -248,7 +263,7 @@
               </div>
             </label>
 
-            <label class="toggle">
+            <label class="toggle" data-media-only>
               <input id="detailLoop" type="checkbox" checked />
               <span>循环播放</span>
             </label>
@@ -261,21 +276,24 @@
               </div>
             </label>
 
-            <div class="detail-info" aria-label="动效信息">
+            <div class="detail-info" aria-label="动效信息" data-media-only>
               <span>分辨率</span>
               <strong id="detailResolution">--</strong>
             </div>
+
+            <div id="webParameters" class="web-parameters" hidden></div>
 
             <div id="detailTags" class="tags"></div>
             <button id="detailCopy" type="button">复制路径</button>
             <a id="detailOpen" target="_blank" rel="noreferrer">打开文件</a>
             <a id="detailDownload" download>下载文件</a>
+            <a id="webDocs" target="_blank" rel="noopener noreferrer" hidden>原始组件文档 ↗</a>
           </aside>
         </div>
       </div>
     </dialog>
 
-    <script src="./app.js?v=sipplay-motion-20261014" type="module"></script>
+    <script src="./app.js?v=sipplay-motion-20261019" type="module"></script>
     <script src="./scripts/line-waves-static.mjs?v=20260802a" type="module"></script>
   </body>
 </html>

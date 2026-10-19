@@ -1,0 +1,71 @@
+import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js";
+import { demoCSS } from "./demo-styles.js";
+import { bindDemoActions } from "./demo-actions.js";
+
+const params = new URLSearchParams(location.search);
+const entry = webMotions.find((item) => item.id === params.get("id"));
+const root = document.querySelector("#demo");
+const style = document.createElement("style");
+style.textContent = demoCSS;
+document.head.append(style);
+let runtime;
+let values = {};
+let isPaused = false;
+
+function notify(status, message = "") {
+  parent.postMessage({ type: "sipplay-web-preview", id: entry?.id, status, message }, location.origin);
+}
+
+async function render() {
+  runtime?.cancelAll(root);
+  root.replaceChildren();
+  document.body.classList.toggle("compact", params.has("compact"));
+  document.body.classList.toggle("scroll-demo", entry.category === "滚动动效");
+  document.title = `${entry.name} · ${entry.id}`;
+  // All markup comes from the local curated catalog, never query-string HTML.
+  root.innerHTML = exampleMarkup(entry, values);
+  bindDemoActions(root);
+  await Promise.all([...root.querySelectorAll("[data-motion]")].map((el) => el.updateComplete));
+  await new Promise(requestAnimationFrame);
+  if (isPaused) {
+    root.querySelectorAll("[data-motion]").forEach((el) => { if (el.localName !== "motion-countdown") el.finish?.(); });
+    runtime.pauseAll(root);
+  }
+  notify("ready");
+}
+
+window.addEventListener("message", async (event) => {
+  if (event.source !== parent || event.origin !== location.origin || event.data?.type !== "sipplay-web-command" || !runtime) return;
+  const { command } = event.data;
+  if (command === "configure") {
+    values = normalizeValues(entry, event.data.values);
+    await render();
+  }
+  if (command === "replay") { isPaused = false; await render(); }
+  if (command === "pause") { isPaused = true; runtime.pauseAll(root); }
+  if (command === "play") {
+    isPaused = false;
+    runtime.resumeAll(root);
+    root.querySelectorAll("[data-motion]").forEach((el) => { if (el.playState === "finished" || el.playState === "idle") el.play?.(); });
+  }
+  if (command === "poster") {
+    isPaused = true;
+    root.querySelectorAll("[data-motion]").forEach((el) => { if (el.localName !== "motion-countdown") el.finish?.(); });
+    runtime.pauseAll(root);
+  }
+  if (command === "background" && /^#[0-9a-f]{6}$/i.test(event.data.color)) {
+    document.documentElement.style.setProperty("--demo-bg", event.data.color);
+  }
+});
+
+document.addEventListener("visibilitychange", () => { if (document.hidden) runtime?.pauseAll(root); });
+
+try {
+  if (!entry) throw new Error("未找到此组件，请从动效库重新选择。");
+  runtime = await import("./vendor/motion-components.js");
+  await render();
+} catch (error) {
+  root.className = "demo-error";
+  root.textContent = "组件加载失败，请刷新重试。";
+  notify("error", error.message);
+}
