@@ -83,15 +83,20 @@ export function defineSelectionToggle(animate) {
       const duration = instant ? 0 : this.duration;
       const spring = { type: "spring", duration, bounce: instant ? 0 : this.bounce };
       // Finish the purple fill before revealing the check.
-      const fillTiming = on
-        ? { duration: duration * 0.6, ease: [0.22, 1 + this.bounce * 1.5, 0.36, 1] }
-        : { ...spring, delay: instant ? 0 : duration * 0.2 };
+      const fillScale = on && !instant ? [null, 1 + this.bounce * 0.35, 1] : on ? 1 : 0.4;
+      const fillTiming = instant ? { duration: 0 } : on
+        ? {
+            duration: duration * 0.6,
+            scale: { times: [0, 0.65, 1], ease: ["easeOut", "easeInOut"] },
+            opacity: { duration: duration * 0.28, ease: "easeOut" },
+          }
+        : { ...spring, delay: duration * 0.2 };
       // Match motion-icon's stroke draw: a spring with no overshoot.
       const checkTiming = on
         ? { type: "spring", duration: duration * 0.35, bounce: 0, delay: instant ? 0 : duration * 0.65 }
         : { duration: duration * 0.7, ease: "easeIn" };
       this.controls = [
-        animate(this.fill, { opacity: on ? 1 : 0, scale: on ? 1 : 0.4 }, fillTiming),
+        animate(this.fill, { opacity: on ? 1 : 0, scale: fillScale }, fillTiming),
         animate(this.outline, { opacity: on ? 0 : 1 }, { duration: duration * 0.65, delay: !on && !instant ? duration * 0.18 : 0 }),
         animate(this.check, { strokeDashoffset: on ? 0 : 1.05, opacity: on ? 1 : 0 }, checkTiming),
       ];
