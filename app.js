@@ -1,5 +1,5 @@
-import { webMotions } from "./web-components/catalog.js?v=20261019-selection-pause";
-import { createWebController, copyExample, downloadExample, setupWebDetail, getWebValues, syncWebBackgrounds } from "./web-components/integration.js?v=20261019-selection-pause";
+import { webMotions } from "./web-components/catalog.js?v=20261019-selection-path";
+import { createWebController, copyExample, downloadExample, setupWebDetail, getWebValues, syncWebBackgrounds } from "./web-components/integration.js?v=20261019-selection-path";
 
 const gallery = document.querySelector("#gallery");
 const quickRail = document.querySelector("#quickRail");

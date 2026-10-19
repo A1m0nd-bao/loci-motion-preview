@@ -1,7 +1,7 @@
-import { exampleMarkup, upstreamURL, upstreamVersion } from "./catalog.js?v=20261019-selection-pause";
-import { demoCSS } from "./demo-styles.js?v=20261019-selection-pause";
-import { bindDemoActions } from "./demo-actions.js?v=20261019-selection-pause";
-import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261019-selection-pause";
+import { exampleMarkup, upstreamURL, upstreamVersion } from "./catalog.js?v=20261019-selection-path";
+import { demoCSS } from "./demo-styles.js?v=20261019-selection-path";
+import { bindDemoActions } from "./demo-actions.js?v=20261019-selection-path";
+import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261019-selection-path";
 
 export function exampleDocument(entry, values = {}) {
   const font = "https://cdn.jsdelivr.net/npm/@fontsource-variable/inter@5.3.0/files/inter-latin-wght-normal.woff2";

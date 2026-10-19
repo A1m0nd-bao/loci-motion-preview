@@ -1,7 +1,7 @@
-import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261019-selection-pause";
-import { demoCSS } from "./demo-styles.js?v=20261019-selection-pause";
-import { bindDemoActions } from "./demo-actions.js?v=20261019-selection-pause";
-import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261019-selection-pause";
+import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261019-selection-path";
+import { demoCSS } from "./demo-styles.js?v=20261019-selection-path";
+import { bindDemoActions } from "./demo-actions.js?v=20261019-selection-path";
+import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261019-selection-path";
 
 const params = new URLSearchParams(location.search);
 const entry = webMotions.find((item) => item.id === params.get("id"));
@@ -91,7 +91,7 @@ document.addEventListener("visibilitychange", () => { if (document.hidden) { run
 
 try {
   if (!entry) throw new Error("未找到此组件，请从动效库重新选择。");
-  runtime = await import("./vendor/motion-components.js?v=20261019-selection-pause");
+  runtime = await import("./vendor/motion-components.js?v=20261019-selection-path");
   defineSelectionToggle(runtime.animate);
   await render();
 } catch (error) {

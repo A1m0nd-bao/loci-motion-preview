@@ -1,5 +1,5 @@
-import { exampleDocument } from "./examples.js?v=20261019-selection-pause";
-import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261019-selection-pause";
+import { exampleDocument } from "./examples.js?v=20261019-selection-path";
+import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261019-selection-path";
 
 const controllers = new Set();
 

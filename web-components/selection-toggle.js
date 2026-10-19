@@ -92,8 +92,14 @@ export function defineSelectionToggle(animate) {
           }
         : { ...spring, delay: duration * 0.2 };
       // Pause briefly after the fill settles, then draw with a spring and no overshoot.
+      const checkSpring = { type: "spring", bounce: 0, delay: instant ? 0 : duration * 0.85 };
       const checkTiming = on
-        ? { type: "spring", duration: duration * 0.35, bounce: 0, delay: instant ? 0 : duration * 0.85 }
+        ? {
+            ...checkSpring,
+            duration: duration * 0.35,
+            // Let the short arm and turn read before the long arm settles.
+            strokeDashoffset: { ...checkSpring, duration: duration * 0.55 },
+          }
         : { duration: duration * 0.7, ease: "easeIn" };
       this.controls = [
         animate(this.fill, { opacity: on ? 1 : 0, scale: fillScale }, fillTiming),
