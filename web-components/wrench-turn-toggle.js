@@ -85,12 +85,21 @@ export function defineWrenchTurnToggle(animate) {
       const duration = this.duration;
       this.controls = [
         animate(this.svg, { color: on ? "#ffffff" : "#71717a" }, { duration: instant ? 0 : duration * 0.18 }),
-        // One counterclockwise revolution, a small overshoot, then settle.
-        animate(this.wrench, { rotate: turning ? [0, -360 - 18 * this.bounce, -360] : 0 }, turning
+        // Shrink before turning, hold through the rebound, restore only at rest.
+        // 0.965 keeps the original path and its stroke within the 20px square.
+        animate(this.wrench, turning ? {
+          rotate: [0, 0, -360 - 18 * this.bounce, -360, -360],
+          scale: [1, 0.965, 0.965, 1],
+        } : { rotate: 0, scale: 1 }, turning
           ? {
-              duration,
-              times: [0, 0.84, 1],
-              ease: [[0.3, 0.05, 0.2, 1], "easeOut"],
+              rotate: {
+                duration, times: [0, 0.07, 0.7252, 0.85, 1],
+                ease: ["linear", [0.3, 0.05, 0.2, 1], "easeOut", "linear"],
+              },
+              scale: {
+                duration, times: [0, 0.07, 0.85, 1],
+                ease: ["easeOut", "linear", "easeOut"],
+              },
             }
           : { duration: 0 }),
       ];

@@ -1,7 +1,7 @@
-import { selectionDemoMarkup } from "./selection-toggle.js?v=20261019-wrench-spin";
-import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261019-wrench-spin";
-import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261019-wrench-spin";
-import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261019-wrench-spin";
+import { selectionDemoMarkup } from "./selection-toggle.js?v=20261019-wrench-fit";
+import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261019-wrench-fit";
+import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261019-wrench-fit";
+import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261019-wrench-fit";
 
 export const upstreamVersion = "1.3.0";
 export const upstreamURL = "https://github.com/tgomilar/motion-components";
@@ -93,7 +93,7 @@ const upstreamMotions = entries.map(([id, name, category, description, markup, c
 
 export const webMotions = [{
   id: "sipplay-wrench-turn-toggle", name: "扳手旋转回弹", category: "动态图标",
-  description: "选中时围绕图标中心逆时针旋转一整圈，末尾轻微回弹收稳；取消选中时置灰。保留原始 20 × 20 SVG。",
+  description: "选中时围绕图标中心逆时针旋转一整圈，末尾轻微回弹收稳，全程保持在 20 × 20 内；取消选中时置灰，静止时恢复原始尺寸。",
   markup: wrenchTurnDemoMarkup, controls: [number("duration", "时长（秒）", 0.84, 0.28, 1.8, 0.04), number("bounce", "回弹程度", 0.28, 0, 0.5, 0.02)],
   kind: "web", kindLabel: "Web 组件", fileName: "sipplay-wrench-turn-toggle",
   file: "./web-components/preview.html?id=sipplay-wrench-turn-toggle",

@@ -1,5 +1,5 @@
-import { exampleDocument } from "./examples.js?v=20261019-wrench-spin";
-import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261019-wrench-spin";
+import { exampleDocument } from "./examples.js?v=20261019-wrench-fit";
+import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261019-wrench-fit";
 
 const controllers = new Set();
 

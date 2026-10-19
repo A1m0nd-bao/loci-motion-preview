@@ -1,10 +1,10 @@
-import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261019-wrench-spin";
-import { demoCSS } from "./demo-styles.js?v=20261019-wrench-spin";
-import { bindDemoActions } from "./demo-actions.js?v=20261019-wrench-spin";
-import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261019-wrench-spin";
-import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261019-wrench-spin";
-import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261019-wrench-spin";
-import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261019-wrench-spin";
+import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261019-wrench-fit";
+import { demoCSS } from "./demo-styles.js?v=20261019-wrench-fit";
+import { bindDemoActions } from "./demo-actions.js?v=20261019-wrench-fit";
+import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261019-wrench-fit";
+import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261019-wrench-fit";
+import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261019-wrench-fit";
+import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261019-wrench-fit";
 
 const params = new URLSearchParams(location.search);
 const entry = webMotions.find((item) => item.id === params.get("id"));
@@ -94,7 +94,7 @@ document.addEventListener("visibilitychange", () => { if (document.hidden) { run
 
 try {
   if (!entry) throw new Error("未找到此组件，请从动效库重新选择。");
-  runtime = await import("./vendor/motion-components.js?v=20261019-wrench-spin");
+  runtime = await import("./vendor/motion-components.js?v=20261019-wrench-fit");
   defineSelectionToggle(runtime.animate);
   defineLayerStackToggle(runtime.animate);
   defineProfileRiseToggle(runtime.animate);
