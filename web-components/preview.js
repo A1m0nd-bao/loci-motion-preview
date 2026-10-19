@@ -1,20 +1,21 @@
-import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261019-layer-stack";
-import { demoCSS } from "./demo-styles.js?v=20261019-layer-stack";
-import { bindDemoActions } from "./demo-actions.js?v=20261019-layer-stack";
-import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261019-layer-stack";
-import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261019-layer-stack";
+import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261019-profile-rise";
+import { demoCSS } from "./demo-styles.js?v=20261019-profile-rise";
+import { bindDemoActions } from "./demo-actions.js?v=20261019-profile-rise";
+import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261019-profile-rise";
+import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261019-profile-rise";
+import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261019-profile-rise";
 
 const params = new URLSearchParams(location.search);
 const entry = webMotions.find((item) => item.id === params.get("id"));
 const root = document.querySelector("#demo");
 const style = document.createElement("style");
-style.textContent = demoCSS + selectionDemoCSS + layerStackDemoCSS;
+style.textContent = demoCSS + selectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS;
 document.head.append(style);
 let runtime;
 let values = {};
 let isPaused = false;
 let cleanupDemo;
-const customElementsInDemo = () => [...root.querySelectorAll("sipplay-selection-toggle,sipplay-layer-stack-toggle")];
+const customElementsInDemo = () => [...root.querySelectorAll("sipplay-selection-toggle,sipplay-layer-stack-toggle,sipplay-profile-rise-toggle")];
 
 function notify(status, message = "") {
   parent.postMessage({ type: "sipplay-web-preview", id: entry?.id, status, message }, location.origin);
@@ -92,9 +93,10 @@ document.addEventListener("visibilitychange", () => { if (document.hidden) { run
 
 try {
   if (!entry) throw new Error("未找到此组件，请从动效库重新选择。");
-  runtime = await import("./vendor/motion-components.js?v=20261019-layer-stack");
+  runtime = await import("./vendor/motion-components.js?v=20261019-profile-rise");
   defineSelectionToggle(runtime.animate);
   defineLayerStackToggle(runtime.animate);
+  defineProfileRiseToggle(runtime.animate);
   await render();
 } catch (error) {
   root.className = "demo-error";

@@ -8,6 +8,8 @@
 
 自定义「图层落下叠加」保留提供的 20×20 图层 SVG：选中时方片依次从上方落下叠加，取消选中时恢复灰色图标。可调整时长和回弹；预览及导出的 HTML 共用 `web-components/layer-stack-toggle.js`，支持键盘、减少动态效果和中途取消。
 
+自定义「人物探出回弹」保留提供的人物 SVG：选中时从底部探出，身体先稳定，头部延后跟随并以较柔和的弹簧回弹，取消选中时置灰。预览及独立 HTML 共用 `web-components/profile-rise-toggle.js`，可调整时长与回弹。
+
 - 目录与示例：`web-components/catalog.js`。组件数据独立于自动生成的 `manifest.json`，飞书同步不会覆盖它们。
 - 预览运行在独立 iframe 中；离开可视区域或切换筛选时会清理实例。缩略预览默认静止，悬停时播放。
 - 主站使用已提交的本地运行文件与可变字体，GitHub Pages 无需额外构建。下载的独立 HTML 通过固定版本的 jsDelivr CDN 加载依赖，需要联网。

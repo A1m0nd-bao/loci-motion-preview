@@ -1,13 +1,18 @@
-import { exampleMarkup, upstreamURL, upstreamVersion } from "./catalog.js?v=20261019-layer-stack";
-import { demoCSS } from "./demo-styles.js?v=20261019-layer-stack";
-import { bindDemoActions } from "./demo-actions.js?v=20261019-layer-stack";
-import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261019-layer-stack";
-import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261019-layer-stack";
+import { exampleMarkup, upstreamURL, upstreamVersion } from "./catalog.js?v=20261019-profile-rise";
+import { demoCSS } from "./demo-styles.js?v=20261019-profile-rise";
+import { bindDemoActions } from "./demo-actions.js?v=20261019-profile-rise";
+import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261019-profile-rise";
+import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261019-profile-rise";
+import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261019-profile-rise";
 
 export function exampleDocument(entry, values = {}) {
   const font = "https://cdn.jsdelivr.net/npm/@fontsource-variable/inter@5.3.0/files/inter-latin-wght-normal.woff2";
-  const styles = (demoCSS + (entry.custom ? selectionDemoCSS + layerStackDemoCSS : "")).replace('./vendor/inter-latin-wght-normal.woff2', font);
-  const defineCustom = entry.id === "sipplay-layer-stack-toggle" ? defineLayerStackToggle : defineSelectionToggle;
+  const styles = (demoCSS + (entry.custom ? selectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS : "")).replace('./vendor/inter-latin-wght-normal.woff2', font);
+  const defineCustom = {
+    "sipplay-selection-toggle": defineSelectionToggle,
+    "sipplay-layer-stack-toggle": defineLayerStackToggle,
+    "sipplay-profile-rise-toggle": defineProfileRiseToggle,
+  }[entry.id];
   const initializer = entry.custom
     ? `import { animate } from 'https://cdn.jsdelivr.net/npm/motion@13.5.1/+esm';\n    (${defineCustom.toString()})(animate);`
     : `await customElements.whenDefined('${entry.id}');`;

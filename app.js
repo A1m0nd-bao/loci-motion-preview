@@ -1,5 +1,5 @@
-import { webMotions } from "./web-components/catalog.js?v=20261019-layer-stack";
-import { createWebController, copyExample, downloadExample, setupWebDetail, getWebValues, syncWebBackgrounds } from "./web-components/integration.js?v=20261019-layer-stack";
+import { webMotions } from "./web-components/catalog.js?v=20261019-profile-rise";
+import { createWebController, copyExample, downloadExample, setupWebDetail, getWebValues, syncWebBackgrounds } from "./web-components/integration.js?v=20261019-profile-rise";
 
 const gallery = document.querySelector("#gallery");
 const quickRail = document.querySelector("#quickRail");

@@ -1,5 +1,5 @@
-import { exampleDocument } from "./examples.js?v=20261019-layer-stack";
-import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261019-layer-stack";
+import { exampleDocument } from "./examples.js?v=20261019-profile-rise";
+import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261019-profile-rise";
 
 const controllers = new Set();
 
