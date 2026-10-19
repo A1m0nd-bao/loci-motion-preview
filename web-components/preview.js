@@ -16,6 +16,25 @@ function notify(status, message = "") {
   parent.postMessage({ type: "sipplay-web-preview", id: entry?.id, status, message }, location.origin);
 }
 
+// Card frames do not receive pointer input: a click opens the full interactive
+// example. Demonstrate pointer primitives when the parent card is hovered.
+function compactPointerPreview(active) {
+  if (!params.has("compact")) return;
+  const element = root.querySelector("[data-motion]");
+  if (!element) return;
+  const rect = element.getBoundingClientRect();
+  const point = { clientX: rect.left + rect.width * 0.8, clientY: rect.top + rect.height * 0.25 };
+  if (entry.id === "motion-hover" || entry.id === "motion-tilt") {
+    element.dispatchEvent(new MouseEvent(active ? "mouseenter" : "mouseleave", point));
+  }
+  if (entry.id === "motion-magnetic" || entry.id === "motion-tilt") {
+    element.dispatchEvent(new MouseEvent(active ? "mousemove" : "mouseleave", point));
+  }
+  if (entry.id === "motion-press") {
+    element.dispatchEvent(new PointerEvent(active ? "pointerdown" : "pointerup", { ...point, pointerType: "mouse", button: 0 }));
+  }
+}
+
 async function render() {
   runtime?.cancelAll(root);
   root.replaceChildren();
@@ -42,14 +61,16 @@ window.addEventListener("message", async (event) => {
     await render();
   }
   if (command === "replay") { isPaused = false; await render(); }
-  if (command === "pause") { isPaused = true; runtime.pauseAll(root); }
+  if (command === "pause") { isPaused = true; compactPointerPreview(false); runtime.pauseAll(root); }
   if (command === "play") {
     isPaused = false;
     runtime.resumeAll(root);
     root.querySelectorAll("[data-motion]").forEach((el) => { if (el.playState === "finished" || el.playState === "idle") el.play?.(); });
+    compactPointerPreview(true);
   }
   if (command === "poster") {
     isPaused = true;
+    compactPointerPreview(false);
     root.querySelectorAll("[data-motion]").forEach((el) => { if (el.localName !== "motion-countdown") el.finish?.(); });
     runtime.pauseAll(root);
   }
