@@ -1,7 +1,7 @@
-import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261019-selection-apple";
-import { demoCSS } from "./demo-styles.js?v=20261019-selection-apple";
-import { bindDemoActions } from "./demo-actions.js?v=20261019-selection-apple";
-import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261019-selection-apple";
+import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261019-selection-draw";
+import { demoCSS } from "./demo-styles.js?v=20261019-selection-draw";
+import { bindDemoActions } from "./demo-actions.js?v=20261019-selection-draw";
+import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261019-selection-draw";
 
 const params = new URLSearchParams(location.search);
 const entry = webMotions.find((item) => item.id === params.get("id"));
@@ -91,7 +91,7 @@ document.addEventListener("visibilitychange", () => { if (document.hidden) { run
 
 try {
   if (!entry) throw new Error("未找到此组件，请从动效库重新选择。");
-  runtime = await import("./vendor/motion-components.js?v=20261019-selection-apple");
+  runtime = await import("./vendor/motion-components.js?v=20261019-selection-draw");
   defineSelectionToggle(runtime.animate);
   await render();
 } catch (error) {
