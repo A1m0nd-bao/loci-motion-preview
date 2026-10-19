@@ -1,21 +1,22 @@
-import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261019-profile-pop";
-import { demoCSS } from "./demo-styles.js?v=20261019-profile-pop";
-import { bindDemoActions } from "./demo-actions.js?v=20261019-profile-pop";
-import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261019-profile-pop";
-import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261019-profile-pop";
-import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261019-profile-pop";
+import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261019-wrench-turn";
+import { demoCSS } from "./demo-styles.js?v=20261019-wrench-turn";
+import { bindDemoActions } from "./demo-actions.js?v=20261019-wrench-turn";
+import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261019-wrench-turn";
+import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261019-wrench-turn";
+import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261019-wrench-turn";
+import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261019-wrench-turn";
 
 const params = new URLSearchParams(location.search);
 const entry = webMotions.find((item) => item.id === params.get("id"));
 const root = document.querySelector("#demo");
 const style = document.createElement("style");
-style.textContent = demoCSS + selectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS;
+style.textContent = demoCSS + selectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS + wrenchTurnDemoCSS;
 document.head.append(style);
 let runtime;
 let values = {};
 let isPaused = false;
 let cleanupDemo;
-const customElementsInDemo = () => [...root.querySelectorAll("sipplay-selection-toggle,sipplay-layer-stack-toggle,sipplay-profile-rise-toggle")];
+const customElementsInDemo = () => [...root.querySelectorAll("sipplay-selection-toggle,sipplay-layer-stack-toggle,sipplay-profile-rise-toggle,sipplay-wrench-turn-toggle")];
 
 function notify(status, message = "") {
   parent.postMessage({ type: "sipplay-web-preview", id: entry?.id, status, message }, location.origin);
@@ -93,10 +94,11 @@ document.addEventListener("visibilitychange", () => { if (document.hidden) { run
 
 try {
   if (!entry) throw new Error("未找到此组件，请从动效库重新选择。");
-  runtime = await import("./vendor/motion-components.js?v=20261019-profile-pop");
+  runtime = await import("./vendor/motion-components.js?v=20261019-wrench-turn");
   defineSelectionToggle(runtime.animate);
   defineLayerStackToggle(runtime.animate);
   defineProfileRiseToggle(runtime.animate);
+  defineWrenchTurnToggle(runtime.animate);
   await render();
 } catch (error) {
   root.className = "demo-error";

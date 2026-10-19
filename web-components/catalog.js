@@ -1,6 +1,7 @@
-import { selectionDemoMarkup } from "./selection-toggle.js?v=20261019-profile-pop";
-import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261019-profile-pop";
-import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261019-profile-pop";
+import { selectionDemoMarkup } from "./selection-toggle.js?v=20261019-wrench-turn";
+import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261019-wrench-turn";
+import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261019-wrench-turn";
+import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261019-wrench-turn";
 
 export const upstreamVersion = "1.3.0";
 export const upstreamURL = "https://github.com/tgomilar/motion-components";
@@ -91,6 +92,14 @@ const upstreamMotions = entries.map(([id, name, category, description, markup, c
 }));
 
 export const webMotions = [{
+  id: "sipplay-wrench-turn-toggle", name: "扳手拧动回弹", category: "动态图标",
+  description: "选中时以扳口为支点，小幅蓄力后连续拧动两下，轻微回弹收稳；取消选中时置灰。保留原始 20 × 20 SVG。",
+  markup: wrenchTurnDemoMarkup, controls: [number("duration", "时长（秒）", 0.84, 0.28, 1.8, 0.04), number("bounce", "回弹程度", 0.28, 0, 0.5, 0.02)],
+  kind: "web", kindLabel: "Web 组件", fileName: "sipplay-wrench-turn-toggle",
+  file: "./web-components/preview.html?id=sipplay-wrench-turn-toggle",
+  docs: null, custom: true,
+  tags: ["自定义 SVG", "扳手", "工具", "维修", "设置", "拧动", "选中状态", "20px"], interactionType: "点击切换",
+}, {
   id: "sipplay-profile-rise-toggle", name: "人物探出回弹", category: "动态图标",
   description: "选中动画开头，头和身体完全隐藏在底部，再快速探出并错位回弹；取消选中时置灰。保留原始 20 × 20 SVG。",
   markup: profileRiseDemoMarkup, controls: [number("duration", "时长（秒）", 0.64, 0.24, 1.8, 0.04), number("bounce", "回弹程度", 0.3, 0, 0.5, 0.02)],

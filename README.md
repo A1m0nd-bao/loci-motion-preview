@@ -10,6 +10,8 @@
 
 自定义「人物探出回弹」保留提供的人物 SVG：选中动画开头头和身体完全藏于底部，再快速探出，拉伸、压缩后错位回弹，取消选中时置灰。预览及独立 HTML 共用 `web-components/profile-rise-toggle.js`，可调整时长与回弹。
 
+自定义「扳手拧动回弹」以原始 SVG 扳口为支点，先小幅蓄力，再连续拧动两下并回弹收稳；取消选中时置灰。预览及独立 HTML 共用 `web-components/wrench-turn-toggle.js`，可调整时长与回弹。
+
 - 目录与示例：`web-components/catalog.js`。组件数据独立于自动生成的 `manifest.json`，飞书同步不会覆盖它们。
 - 预览运行在独立 iframe 中；离开可视区域或切换筛选时会清理实例。缩略预览默认静止，悬停时播放。
 - 主站使用已提交的本地运行文件与可变字体，GitHub Pages 无需额外构建。下载的独立 HTML 通过固定版本的 jsDelivr CDN 加载依赖，需要联网。

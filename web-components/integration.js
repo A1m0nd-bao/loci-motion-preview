@@ -1,5 +1,5 @@
-import { exampleDocument } from "./examples.js?v=20261019-profile-pop";
-import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261019-profile-pop";
+import { exampleDocument } from "./examples.js?v=20261019-wrench-turn";
+import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261019-wrench-turn";
 
 const controllers = new Set();
 
