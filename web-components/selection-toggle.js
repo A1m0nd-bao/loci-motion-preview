@@ -31,7 +31,7 @@ export function defineSelectionToggle(animate) {
           <style>
             :host{display:inline-block;width:44px;height:44px;vertical-align:middle}
             button{display:grid;place-items:center;width:44px;height:44px;margin:0;padding:12px;border:0;border-radius:10px;background:transparent;color:white;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
-            button:focus-visible{outline:2px solid #ED78F4;outline-offset:3px}
+            button:focus-visible{outline:1px solid #ED78F4;outline-offset:-8px;border-radius:50%}
             svg{display:block;width:20px;height:20px;overflow:visible;pointer-events:none}
             .fill{transform-origin:10px 10px;opacity:0;transform:scale(.4)}
             .check{stroke-dasharray:1 2;stroke-dashoffset:1.05;opacity:0}
