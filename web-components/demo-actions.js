@@ -1,6 +1,6 @@
 // This function is also embedded in downloaded examples: keep it self-contained.
 export function bindDemoActions(root) {
-  const toggles = [...root.querySelectorAll("sipplay-selection-toggle,sipplay-layer-stack-toggle,sipplay-profile-rise-toggle,sipplay-wrench-turn-toggle")];
+  const toggles = [...root.querySelectorAll("sipplay-selection-toggle,sipplay-layer-stack-toggle,sipplay-profile-rise-toggle,sipplay-wrench-turn-toggle,sipplay-pin-toggle,sipplay-pin-reveal")];
   const primaryToggle = toggles[0];
   for (const toggle of toggles.slice(1)) {
     for (const attribute of ["duration", "bounce"]) toggle.setAttribute(attribute, primaryToggle.getAttribute(attribute));
@@ -9,13 +9,21 @@ export function bindDemoActions(root) {
     if (!toggles.includes(event.target)) return;
     for (const toggle of toggles) if (toggle !== event.target) toggle.active = event.detail.active;
     const status = root.querySelector("[data-selection-status]");
-    if (status) status.textContent = event.detail.active ? "已选中" : "未选中";
+    if (status) status.textContent = event.detail.active ? (status.dataset.activeText || "已选中") : (status.dataset.inactiveText || "未选中");
   };
   root.addEventListener("motion-change", onSelectionChange);
   const countdown = root.querySelector("motion-countdown");
   if (countdown) countdown.setAttribute("to", new Date(Date.now() + 185000).toISOString());
   root.onclick = (event) => {
     const action = event.target.closest("[data-demo-action]")?.dataset.demoAction;
+    if (action === "pin-replay") {
+      for (const toggle of toggles) {
+        if (toggle.active) toggle.apply(toggle.reducedMotion.matches);
+        else toggle.active = true;
+      }
+      const status = root.querySelector("[data-selection-status]");
+      if (status) status.textContent = status.dataset.activeText || "已选中";
+    }
     if (action === "open-dialog") root.querySelector("motion-dialog").show();
     if (action === "close-dialog") root.querySelector("motion-dialog").close();
     if (action === "theme-icon") {

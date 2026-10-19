@@ -1,15 +1,19 @@
-import { exampleMarkup, upstreamURL, upstreamVersion } from "./catalog.js?v=20261019-wrench-restore";
-import { demoCSS } from "./demo-styles.js?v=20261019-wrench-restore";
-import { bindDemoActions } from "./demo-actions.js?v=20261019-wrench-restore";
-import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261019-wrench-restore";
-import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261019-wrench-restore";
-import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261019-wrench-restore";
-import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261019-wrench-restore";
+import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261019-pin";
+import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261019-pin";
+import { exampleMarkup, upstreamURL, upstreamVersion } from "./catalog.js?v=20261019-pin";
+import { demoCSS } from "./demo-styles.js?v=20261019-pin";
+import { bindDemoActions } from "./demo-actions.js?v=20261019-pin";
+import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261019-pin";
+import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261019-pin";
+import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261019-pin";
+import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261019-pin";
 
 export function exampleDocument(entry, values = {}) {
   const font = "https://cdn.jsdelivr.net/npm/@fontsource-variable/inter@5.3.0/files/inter-latin-wght-normal.woff2";
-  const styles = (demoCSS + (entry.custom ? selectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS + wrenchTurnDemoCSS : "")).replace('./vendor/inter-latin-wght-normal.woff2', font);
+  const styles = (demoCSS + (entry.custom ? selectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS + wrenchTurnDemoCSS + pinToggleDemoCSS + pinRevealDemoCSS : "")).replace('./vendor/inter-latin-wght-normal.woff2', font);
   const defineCustom = {
+    "sipplay-pin-toggle": definePinToggle,
+    "sipplay-pin-reveal": definePinReveal,
     "sipplay-selection-toggle": defineSelectionToggle,
     "sipplay-layer-stack-toggle": defineLayerStackToggle,
     "sipplay-profile-rise-toggle": defineProfileRiseToggle,

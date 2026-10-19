@@ -1,7 +1,9 @@
-import { selectionDemoMarkup } from "./selection-toggle.js?v=20261019-wrench-restore";
-import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261019-wrench-restore";
-import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261019-wrench-restore";
-import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261019-wrench-restore";
+import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261019-pin";
+import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261019-pin";
+import { selectionDemoMarkup } from "./selection-toggle.js?v=20261019-pin";
+import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261019-pin";
+import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261019-pin";
+import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261019-pin";
 
 export const upstreamVersion = "1.3.0";
 export const upstreamURL = "https://github.com/tgomilar/motion-components";
@@ -92,6 +94,20 @@ const upstreamMotions = entries.map(([id, name, category, description, markup, c
 }));
 
 export const webMotions = [{
+  id: "sipplay-pin-toggle", name: "图钉选中切换", category: "动态图标",
+  description: "原始 18 × 18 双态图钉：选中时斜杠收起、实心图钉轻落回弹；取消选中时空心图钉与斜杠依次出现。保留原始路径及 60% / 40% 透明度。",
+  markup: pinToggleDemoMarkup, controls: [number("duration", "时长（秒）", 0.52, 0.24, 1.8, 0.04), number("bounce", "回弹程度", 0.28, 0, 0.5, 0.02)],
+  kind: "web", kindLabel: "Web 组件", fileName: "sipplay-pin-toggle",
+  file: "./web-components/preview.html?id=sipplay-pin-toggle", docs: null, custom: true,
+  tags: ["自定义 SVG", "图钉", "置顶", "取消置顶", "选中状态", "18px"], interactionType: "点击切换",
+}, {
+  id: "sipplay-pin-reveal", name: "实心图钉出现", category: "动态图标",
+  description: "实心图钉从上方落下，轻微摆正、回弹收稳。打开即播放，可单独重播出现过程；点击图钉可隐藏。保留原始 18 × 18 实心路径与 60% 透明度。",
+  markup: pinRevealDemoMarkup, controls: [number("duration", "时长（秒）", 0.64, 0.24, 1.8, 0.04), number("bounce", "回弹程度", 0.28, 0, 0.5, 0.02)],
+  kind: "web", kindLabel: "Web 组件", fileName: "sipplay-pin-reveal",
+  file: "./web-components/preview.html?id=sipplay-pin-reveal", docs: null, custom: true,
+  tags: ["自定义 SVG", "图钉", "置顶", "实心", "入场", "出现", "18px"], interactionType: "出现重播",
+}, {
   id: "sipplay-wrench-turn-toggle", name: "扳手拧动回弹", category: "动态图标",
   description: "选中时以扳口为支点，小幅蓄力后连续拧动两下，轻微回弹收稳；取消选中时置灰。保留原始 20 × 20 SVG。",
   markup: wrenchTurnDemoMarkup, controls: [number("duration", "时长（秒）", 0.84, 0.28, 1.8, 0.04), number("bounce", "回弹程度", 0.28, 0, 0.5, 0.02)],

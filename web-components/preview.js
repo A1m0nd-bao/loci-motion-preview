@@ -1,22 +1,24 @@
-import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261019-wrench-restore";
-import { demoCSS } from "./demo-styles.js?v=20261019-wrench-restore";
-import { bindDemoActions } from "./demo-actions.js?v=20261019-wrench-restore";
-import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261019-wrench-restore";
-import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261019-wrench-restore";
-import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261019-wrench-restore";
-import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261019-wrench-restore";
+import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261019-pin";
+import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261019-pin";
+import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261019-pin";
+import { demoCSS } from "./demo-styles.js?v=20261019-pin";
+import { bindDemoActions } from "./demo-actions.js?v=20261019-pin";
+import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261019-pin";
+import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261019-pin";
+import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261019-pin";
+import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261019-pin";
 
 const params = new URLSearchParams(location.search);
 const entry = webMotions.find((item) => item.id === params.get("id"));
 const root = document.querySelector("#demo");
 const style = document.createElement("style");
-style.textContent = demoCSS + selectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS + wrenchTurnDemoCSS;
+style.textContent = demoCSS + selectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS + wrenchTurnDemoCSS + pinToggleDemoCSS + pinRevealDemoCSS;
 document.head.append(style);
 let runtime;
 let values = {};
 let isPaused = false;
 let cleanupDemo;
-const customElementsInDemo = () => [...root.querySelectorAll("sipplay-selection-toggle,sipplay-layer-stack-toggle,sipplay-profile-rise-toggle,sipplay-wrench-turn-toggle")];
+const customElementsInDemo = () => [...root.querySelectorAll("sipplay-selection-toggle,sipplay-layer-stack-toggle,sipplay-profile-rise-toggle,sipplay-wrench-turn-toggle,sipplay-pin-toggle,sipplay-pin-reveal")];
 
 function notify(status, message = "") {
   parent.postMessage({ type: "sipplay-web-preview", id: entry?.id, status, message }, location.origin);
@@ -30,7 +32,9 @@ function compactPointerPreview(active) {
   if (!element) return;
   const rect = element.getBoundingClientRect();
   const point = { clientX: rect.left + rect.width * 0.8, clientY: rect.top + rect.height * 0.25 };
-  if (entry.custom && element.active !== active) element.toggle();
+  if (entry.id === "sipplay-pin-reveal") {
+    if (active) element.apply(element.reducedMotion.matches);
+  } else if (entry.custom && element.active !== active) element.toggle();
   if (entry.id === "motion-hover" || entry.id === "motion-tilt") {
     element.dispatchEvent(new MouseEvent(active ? "mouseenter" : "mouseleave", point));
   }
@@ -94,7 +98,9 @@ document.addEventListener("visibilitychange", () => { if (document.hidden) { run
 
 try {
   if (!entry) throw new Error("未找到此组件，请从动效库重新选择。");
-  runtime = await import("./vendor/motion-components.js?v=20261019-wrench-restore");
+  runtime = await import("./vendor/motion-components.js?v=20261019-pin");
+  definePinToggle(runtime.animate);
+  definePinReveal(runtime.animate);
   defineSelectionToggle(runtime.animate);
   defineLayerStackToggle(runtime.animate);
   defineProfileRiseToggle(runtime.animate);
