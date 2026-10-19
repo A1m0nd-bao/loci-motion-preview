@@ -1,5 +1,5 @@
-import { webMotions } from "./web-components/catalog.js?v=20261019-voice";
-import { createWebController, copyExample, downloadExample, setupWebDetail, getWebValues, syncWebBackgrounds } from "./web-components/integration.js?v=20261019-voice";
+import { webMotions } from "./web-components/catalog.js?v=20261019-voice-v2";
+import { createWebController, copyExample, downloadExample, setupWebDetail, getWebValues, syncWebBackgrounds } from "./web-components/integration.js?v=20261019-voice-v2";
 
 const gallery = document.querySelector("#gallery");
 const quickRail = document.querySelector("#quickRail");

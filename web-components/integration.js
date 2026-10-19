@@ -1,5 +1,5 @@
-import { exampleDocument } from "./examples.js?v=20261019-voice";
-import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261019-voice";
+import { exampleDocument } from "./examples.js?v=20261019-voice-v2";
+import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261019-voice-v2";
 
 const controllers = new Set();
 

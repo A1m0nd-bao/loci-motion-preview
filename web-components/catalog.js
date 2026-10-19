@@ -1,10 +1,10 @@
-import { voiceWaveDemoMarkup } from "./voice-wave.js?v=20261019-voice";
-import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261019-voice";
-import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261019-voice";
-import { selectionDemoMarkup } from "./selection-toggle.js?v=20261019-voice";
-import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261019-voice";
-import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261019-voice";
-import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261019-voice";
+import { voiceWaveDemoMarkup } from "./voice-wave.js?v=20261019-voice-v2";
+import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261019-voice-v2";
+import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261019-voice-v2";
+import { selectionDemoMarkup } from "./selection-toggle.js?v=20261019-voice-v2";
+import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261019-voice-v2";
+import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261019-voice-v2";
+import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261019-voice-v2";
 
 export const upstreamVersion = "1.3.0";
 export const upstreamURL = "https://github.com/tgomilar/motion-components";

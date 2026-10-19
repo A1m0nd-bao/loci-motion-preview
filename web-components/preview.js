@@ -1,13 +1,13 @@
-import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261019-voice";
-import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261019-voice";
-import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261019-voice";
-import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261019-voice";
-import { demoCSS } from "./demo-styles.js?v=20261019-voice";
-import { bindDemoActions } from "./demo-actions.js?v=20261019-voice";
-import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261019-voice";
-import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261019-voice";
-import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261019-voice";
-import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261019-voice";
+import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261019-voice-v2";
+import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261019-voice-v2";
+import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261019-voice-v2";
+import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261019-voice-v2";
+import { demoCSS } from "./demo-styles.js?v=20261019-voice-v2";
+import { bindDemoActions } from "./demo-actions.js?v=20261019-voice-v2";
+import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261019-voice-v2";
+import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261019-voice-v2";
+import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261019-voice-v2";
+import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261019-voice-v2";
 
 const params = new URLSearchParams(location.search);
 const entry = webMotions.find((item) => item.id === params.get("id"));
@@ -95,11 +95,12 @@ window.addEventListener("message", async (event) => {
   }
 });
 
-document.addEventListener("visibilitychange", () => { if (document.hidden) { runtime?.pauseAll(root); customElementsInDemo().forEach((el) => el.pause()); } });
+// Voice loops own their visibility pause so selected speech resumes on return.
+document.addEventListener("visibilitychange", () => { if (document.hidden) { runtime?.pauseAll(root); customElementsInDemo().filter(el => el.localName !== "sipplay-voice-wave").forEach(el => el.pause()); } });
 
 try {
   if (!entry) throw new Error("未找到此组件，请从动效库重新选择。");
-  runtime = await import("./vendor/motion-components.js?v=20261019-voice");
+  runtime = await import("./vendor/motion-components.js?v=20261019-voice-v2");
   defineVoiceWave(runtime.animate);
   definePinToggle(runtime.animate);
   definePinReveal(runtime.animate);

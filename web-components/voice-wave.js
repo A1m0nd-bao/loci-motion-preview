@@ -25,6 +25,16 @@ export function defineVoiceWave(animate) {
       this.epoch = 0;
       this.reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
       this.onReducedMotion = () => this.apply(this.reducedMotion.matches);
+      this.onVisibility = () => {
+        if (document.hidden) {
+          const wasRunning = this.active && this.state === "running";
+          this.pause();
+          this.resumeAfterVisibility = wasRunning;
+        } else if (this.resumeAfterVisibility) {
+          this.resumeAfterVisibility = false;
+          if (this.active) this.play();
+        }
+      };
     }
     get active() { return this.hasAttribute("active"); }
     set active(value) { this.toggleAttribute("active", Boolean(value)); }
@@ -64,11 +74,13 @@ export function defineVoiceWave(animate) {
         this.button.addEventListener("click", () => this.toggle());
       }
       this.reducedMotion.addEventListener("change", this.onReducedMotion);
+      document.addEventListener("visibilitychange", this.onVisibility);
       this.apply(this.reducedMotion.matches || !this.active);
     }
     disconnectedCallback() {
       this.stop();
       this.reducedMotion.removeEventListener("change", this.onReducedMotion);
+      document.removeEventListener("visibilitychange", this.onVisibility);
     }
     attributeChangedCallback(name) {
       if (!this.button) return;
@@ -88,6 +100,7 @@ export function defineVoiceWave(animate) {
       });
     }
     stop() {
+      this.resumeAfterVisibility = false;
       this.epoch++;
       this.controls.forEach(control => control.stop());
       this.controls = [];
@@ -128,16 +141,19 @@ export function defineVoiceWave(animate) {
         });
         this.draw(heights);
       } })];
+      if (document.hidden) this.onVisibility();
     }
     toggle() {
       this.active = !this.active;
       this.dispatchEvent(new CustomEvent("motion-change", { detail: { active: this.active }, bubbles: true, composed: true }));
     }
     pause() {
+      this.resumeAfterVisibility = false;
       this.controls.forEach(control => control.pause());
       this.state = "paused";
     }
     play() {
+      this.resumeAfterVisibility = false;
       if (this.state === "paused" && this.controls.length) {
         this.controls.forEach(control => control.play());
         this.state = "running";

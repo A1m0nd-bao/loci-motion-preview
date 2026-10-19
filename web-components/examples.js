@@ -1,13 +1,13 @@
-import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261019-voice";
-import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261019-voice";
-import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261019-voice";
-import { exampleMarkup, upstreamURL, upstreamVersion } from "./catalog.js?v=20261019-voice";
-import { demoCSS } from "./demo-styles.js?v=20261019-voice";
-import { bindDemoActions } from "./demo-actions.js?v=20261019-voice";
-import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261019-voice";
-import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261019-voice";
-import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261019-voice";
-import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261019-voice";
+import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261019-voice-v2";
+import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261019-voice-v2";
+import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261019-voice-v2";
+import { exampleMarkup, upstreamURL, upstreamVersion } from "./catalog.js?v=20261019-voice-v2";
+import { demoCSS } from "./demo-styles.js?v=20261019-voice-v2";
+import { bindDemoActions } from "./demo-actions.js?v=20261019-voice-v2";
+import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261019-voice-v2";
+import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261019-voice-v2";
+import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261019-voice-v2";
+import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261019-voice-v2";
 
 export function exampleDocument(entry, values = {}) {
   const font = "https://cdn.jsdelivr.net/npm/@fontsource-variable/inter@5.3.0/files/inter-latin-wght-normal.woff2";
