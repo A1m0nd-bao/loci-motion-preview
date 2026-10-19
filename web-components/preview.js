@@ -1,19 +1,20 @@
-import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261019-selection-path";
-import { demoCSS } from "./demo-styles.js?v=20261019-selection-path";
-import { bindDemoActions } from "./demo-actions.js?v=20261019-selection-path";
-import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261019-selection-path";
+import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261019-layer-stack";
+import { demoCSS } from "./demo-styles.js?v=20261019-layer-stack";
+import { bindDemoActions } from "./demo-actions.js?v=20261019-layer-stack";
+import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261019-layer-stack";
+import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261019-layer-stack";
 
 const params = new URLSearchParams(location.search);
 const entry = webMotions.find((item) => item.id === params.get("id"));
 const root = document.querySelector("#demo");
 const style = document.createElement("style");
-style.textContent = demoCSS + selectionDemoCSS;
+style.textContent = demoCSS + selectionDemoCSS + layerStackDemoCSS;
 document.head.append(style);
 let runtime;
 let values = {};
 let isPaused = false;
 let cleanupDemo;
-const customElementsInDemo = () => [...root.querySelectorAll("sipplay-selection-toggle")];
+const customElementsInDemo = () => [...root.querySelectorAll("sipplay-selection-toggle,sipplay-layer-stack-toggle")];
 
 function notify(status, message = "") {
   parent.postMessage({ type: "sipplay-web-preview", id: entry?.id, status, message }, location.origin);
@@ -91,8 +92,9 @@ document.addEventListener("visibilitychange", () => { if (document.hidden) { run
 
 try {
   if (!entry) throw new Error("未找到此组件，请从动效库重新选择。");
-  runtime = await import("./vendor/motion-components.js?v=20261019-selection-path");
+  runtime = await import("./vendor/motion-components.js?v=20261019-layer-stack");
   defineSelectionToggle(runtime.animate);
+  defineLayerStackToggle(runtime.animate);
   await render();
 } catch (error) {
   root.className = "demo-error";

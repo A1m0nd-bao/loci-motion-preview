@@ -1,5 +1,5 @@
-import { exampleDocument } from "./examples.js?v=20261019-selection-path";
-import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261019-selection-path";
+import { exampleDocument } from "./examples.js?v=20261019-layer-stack";
+import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261019-layer-stack";
 
 const controllers = new Set();
 

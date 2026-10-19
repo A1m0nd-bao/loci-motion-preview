@@ -1,4 +1,5 @@
-import { selectionDemoMarkup } from "./selection-toggle.js?v=20261019-selection-path";
+import { selectionDemoMarkup } from "./selection-toggle.js?v=20261019-layer-stack";
+import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261019-layer-stack";
 
 export const upstreamVersion = "1.3.0";
 export const upstreamURL = "https://github.com/tgomilar/motion-components";
@@ -89,6 +90,14 @@ const upstreamMotions = entries.map(([id, name, category, description, markup, c
 }));
 
 export const webMotions = [{
+  id: "sipplay-layer-stack-toggle", name: "图层落下叠加", category: "动态图标",
+  description: "选中时，方片从上方依次落下并叠成图层；取消选中时置灰。保留原始 20 × 20 SVG，支持快速切换与键盘操作。",
+  markup: layerStackDemoMarkup, controls: [number("duration", "时长（秒）", 0.72, 0.24, 1.8, 0.04), number("bounce", "回弹程度", 0.24, 0, 0.5, 0.02)],
+  kind: "web", kindLabel: "Web 组件", fileName: "sipplay-layer-stack-toggle",
+  file: "./web-components/preview.html?id=sipplay-layer-stack-toggle",
+  docs: null, custom: true,
+  tags: ["自定义 SVG", "图层", "叠片", "选中状态", "20px"], interactionType: "点击切换",
+}, {
   id: "sipplay-selection-toggle", name: "粉色勾选切换", category: "动态图标",
   description: "点击在白色空心圆与粉色勾选之间双向切换。保留原始 20 × 20 SVG，支持快速反复点击。",
   markup: selectionDemoMarkup, controls: [number("duration", "时长（秒）", 0.32, 0.12, 1.5, 0.02), number("bounce", "回弹程度", 0.15, 0, 0.5, 0.05)],

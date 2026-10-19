@@ -1,12 +1,12 @@
 // This function is also embedded in downloaded examples: keep it self-contained.
 export function bindDemoActions(root) {
-  const toggles = [...root.querySelectorAll("sipplay-selection-toggle")];
+  const toggles = [...root.querySelectorAll("sipplay-selection-toggle,sipplay-layer-stack-toggle")];
   const primaryToggle = toggles[0];
   for (const toggle of toggles.slice(1)) {
     for (const attribute of ["duration", "bounce"]) toggle.setAttribute(attribute, primaryToggle.getAttribute(attribute));
   }
   const onSelectionChange = (event) => {
-    if (event.target.localName !== "sipplay-selection-toggle") return;
+    if (!toggles.includes(event.target)) return;
     for (const toggle of toggles) if (toggle !== event.target) toggle.active = event.detail.active;
     const status = root.querySelector("[data-selection-status]");
     if (status) status.textContent = event.detail.active ? "已选中" : "未选中";
