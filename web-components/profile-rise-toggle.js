@@ -19,8 +19,8 @@ export function defineProfileRiseToggle(animate) {
     get active() { return this.hasAttribute("active"); }
     set active(value) { this.toggleAttribute("active", Boolean(value)); }
     get duration() {
-      const value = Number(this.getAttribute("duration") ?? 0.8);
-      return Number.isFinite(value) ? Math.min(1.8, Math.max(0.24, value)) : 0.8;
+      const value = Number(this.getAttribute("duration") ?? 0.64);
+      return Number.isFinite(value) ? Math.min(1.8, Math.max(0.24, value)) : 0.64;
     }
     get bounce() {
       const value = Number(this.getAttribute("bounce") ?? 0.3);
@@ -36,6 +36,8 @@ export function defineProfileRiseToggle(animate) {
             button{display:grid;place-items:center;width:44px;height:44px;margin:0;padding:12px;border:0;border-radius:10px;background:transparent;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
             button:focus-visible{outline:1px solid #d4d4d8;outline-offset:-8px;border-radius:50%}
             svg{display:block;width:20px;height:20px;overflow:visible;pointer-events:none;color:#71717a}
+            .body{transform-origin:10.0543px 18.0128px}
+            .head{transform-origin:10.0543px 6.15736px}
           </style>
           <button type="button" aria-pressed="false">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -88,15 +90,38 @@ export function defineProfileRiseToggle(animate) {
       const on = this.active;
       const duration = this.duration;
       const rising = on && !instant;
+      const bounce = this.bounce;
+      const times = [0, 0.56, 0.8, 1];
+      const ease = [[0.16, 1, 0.3, 1], "easeInOut", "easeOut"];
+      // Hide both parts immediately, including the short anticipation hold.
+      // Their first positions are entirely below the bottom clipping edge.
+      if (rising) this.head.style.opacity = this.body.style.opacity = "0";
+      const resting = { y: 0, scaleX: 1, scaleY: 1, opacity: 1 };
       this.controls = [
         animate(this.svg, { color: on ? "#ffffff" : "#71717a" }, { duration: instant ? 0 : duration * 0.18 }),
-        // The body finds its seat first; the head follows with a softer spring.
-        // Their relative vertical motion gives the neck a small stretch and settle.
-        animate(this.body, { y: rising ? [11, 0] : 0 }, rising
-          ? { type: "spring", duration: duration * 0.64, bounce: this.bounce * 0.35 }
+        // A fast upward impulse, a stretched peak, then a compressed rebound.
+        animate(this.body, rising ? {
+          y: [20, -2.2 * bounce, 0.8 * bounce, 0],
+          scaleY: [0.74, 1 + 0.4 * bounce, 1 - 0.2 * bounce, 1],
+          scaleX: [1.1, 1 - 0.12 * bounce, 1 + 0.1 * bounce, 1],
+          opacity: [0, 1],
+        } : resting, rising
+          ? {
+              duration: duration * 0.82, delay: duration * 0.06, times, ease,
+              opacity: { duration: duration * 0.055, delay: duration * 0.06, times: [0, 1], ease: "linear" },
+            }
           : { duration: 0 }),
-        animate(this.head, { y: rising ? [18, 0] : 0 }, rising
-          ? { type: "spring", duration: duration * 0.88, bounce: this.bounce, delay: duration * 0.12 }
+        // The head trails the torso and has a larger, later rebound at the neck.
+        animate(this.head, rising ? {
+          y: [26, -4.8 * bounce, 1.6 * bounce, 0],
+          scaleY: [0.86, 1 + 0.15 * bounce, 1 - 0.06 * bounce, 1],
+          scaleX: [1.04, 1 - 0.06 * bounce, 1 + 0.03 * bounce, 1],
+          opacity: [0, 1],
+        } : resting, rising
+          ? {
+              duration: duration * 0.96, delay: duration * 0.11, times, ease,
+              opacity: { duration: duration * 0.055, delay: duration * 0.11, times: [0, 1], ease: "linear" },
+            }
           : { duration: 0 }),
       ];
       const epoch = this.epoch;
@@ -127,7 +152,7 @@ export const profileRiseDemoMarkup = `
   <div class="selection-demo profile-rise-demo">
     <p class="selection-demo-hint">点击人物，查看底部探出与回弹</p>
     <div class="selection-demo-zoom">
-      <sipplay-profile-rise-toggle data-motion duration="0.8" bounce="0.3" label="切换人物选中状态（放大预览）"></sipplay-profile-rise-toggle>
+      <sipplay-profile-rise-toggle data-motion duration="0.64" bounce="0.3" label="切换人物选中状态（放大预览）"></sipplay-profile-rise-toggle>
     </div>
     <p class="selection-demo-caption">4× 细节预览</p>
     <div class="selection-demo-original">

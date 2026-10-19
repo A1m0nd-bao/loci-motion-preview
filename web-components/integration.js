@@ -1,5 +1,5 @@
-import { exampleDocument } from "./examples.js?v=20261019-profile-rise";
-import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261019-profile-rise";
+import { exampleDocument } from "./examples.js?v=20261019-profile-pop";
+import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261019-profile-pop";
 
 const controllers = new Set();
 

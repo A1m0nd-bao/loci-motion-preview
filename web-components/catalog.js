@@ -1,6 +1,6 @@
-import { selectionDemoMarkup } from "./selection-toggle.js?v=20261019-profile-rise";
-import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261019-profile-rise";
-import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261019-profile-rise";
+import { selectionDemoMarkup } from "./selection-toggle.js?v=20261019-profile-pop";
+import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261019-profile-pop";
+import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261019-profile-pop";
 
 export const upstreamVersion = "1.3.0";
 export const upstreamURL = "https://github.com/tgomilar/motion-components";
@@ -92,8 +92,8 @@ const upstreamMotions = entries.map(([id, name, category, description, markup, c
 
 export const webMotions = [{
   id: "sipplay-profile-rise-toggle", name: "人物探出回弹", category: "动态图标",
-  description: "选中时人物从底部探出，身体先收稳，头部稍晚跟上并轻轻回弹；取消选中时置灰。保留原始 20 × 20 SVG。",
-  markup: profileRiseDemoMarkup, controls: [number("duration", "时长（秒）", 0.8, 0.24, 1.8, 0.04), number("bounce", "回弹程度", 0.3, 0, 0.5, 0.02)],
+  description: "选中动画开头，头和身体完全隐藏在底部，再快速探出并错位回弹；取消选中时置灰。保留原始 20 × 20 SVG。",
+  markup: profileRiseDemoMarkup, controls: [number("duration", "时长（秒）", 0.64, 0.24, 1.8, 0.04), number("bounce", "回弹程度", 0.3, 0, 0.5, 0.02)],
   kind: "web", kindLabel: "Web 组件", fileName: "sipplay-profile-rise-toggle",
   file: "./web-components/preview.html?id=sipplay-profile-rise-toggle",
   docs: null, custom: true,
