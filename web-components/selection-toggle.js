@@ -86,10 +86,12 @@ export function defineSelectionToggle(animate) {
       const fillTiming = on
         ? { duration: duration * 0.6, ease: [0.22, 1 + this.bounce * 1.5, 0.36, 1] }
         : { ...spring, delay: instant ? 0 : duration * 0.2 };
+      // Apple's Core Animation easeInEaseOut: soft start and finish, faster middle.
+      const checkEase = on ? [0.42, 0, 0.58, 1] : "easeIn";
       this.controls = [
         animate(this.fill, { opacity: on ? 1 : 0, scale: on ? 1 : 0.4 }, fillTiming),
         animate(this.outline, { opacity: on ? 0 : 1 }, { duration: duration * 0.65, delay: !on && !instant ? duration * 0.18 : 0 }),
-        animate(this.check, { strokeDashoffset: on ? 0 : 1.05, opacity: on ? 1 : 0 }, { duration: duration * (on ? 0.35 : 0.7), ease: on ? "easeOut" : "easeIn", delay: on && !instant ? duration * 0.65 : 0 }),
+        animate(this.check, { strokeDashoffset: on ? 0 : 1.05, opacity: on ? 1 : 0 }, { duration: duration * (on ? 0.35 : 0.7), ease: checkEase, delay: on && !instant ? duration * 0.65 : 0 }),
       ];
       const epoch = this.epoch;
       this.state = instant ? "finished" : "running";
