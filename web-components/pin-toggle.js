@@ -83,9 +83,20 @@ export function definePinToggle(animate) {
       const on = this.active;
       const d = this.duration;
       const b = this.bounce;
+      const slashTransform = getComputedStyle(this.slash).transform;
+      const slashScale = slashTransform === "none" ? 1 : new DOMMatrix(slashTransform).a;
       this.controls = [
         animate(this.offBody, { opacity: on ? 0 : 0.4 }, { duration: instant ? 0 : d * 0.3, delay: !instant && !on ? d * 0.1 : 0, ease: "easeOut" }),
-        animate(this.slash, { scaleX: on ? 0 : 1, opacity: on ? 0 : 0.4 }, { duration: instant ? 0 : d * (on ? 0.24 : 0.64), delay: !instant && !on ? d * 0.18 : 0, ease: [0.22, 1, 0.36, 1] }),
+        // Keep the line visible through its anticipation and elastic settling.
+        animate(this.slash, { opacity: on ? 0 : 0.4 }, {
+          duration: instant ? 0 : d * 0.14,
+          delay: instant ? 0 : d * (on ? 0.16 : 0.18), ease: "easeOut",
+        }),
+        animate(this.slash, { scaleX: instant ? (on ? 0 : 1) : on
+          ? [null, slashScale * (1 + 0.1 * b), 0]
+          : [null, 1 + 0.24 * b, 1 - 0.08 * b, 1] }, instant ? { duration: 0 } : on
+          ? { duration: d * 0.3, times: [0, 0.22, 1], ease: ["easeOut", [0.55, 0, 0.85, 0.25]] }
+          : { duration: d * 0.8, delay: d * 0.18, times: [0, 0.64, 0.83, 1], ease: [[0.18, 0.9, 0.22, 1], "easeInOut", "easeOut"] }),
         animate(this.solid, { opacity: on ? 0.6 : 0 }, { duration: instant ? 0 : d * 0.34, delay: !instant && on ? d * 0.14 : 0, ease: "easeOut" }),
         animate(this.solid, { y: on && !instant ? [-1.8, 0.9 * b, 0] : 0, scale: on && !instant ? [0.9, 1 + 0.08 * b, 1] : 1 }, on && !instant
           ? { duration: d * 0.78, delay: d * 0.22, times: [0, 0.7, 1], ease: [[0.22, 1, 0.36, 1], "easeInOut"] }
