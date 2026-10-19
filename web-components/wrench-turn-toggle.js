@@ -86,7 +86,7 @@ export function defineWrenchTurnToggle(animate) {
       this.controls = [
         animate(this.svg, { color: on ? "#ffffff" : "#71717a" }, { duration: instant ? 0 : duration * 0.18 }),
         // Grip at the jaw: wind up, turn twice, then release the small recoil.
-        animate(this.wrench, { rotate: turning ? [0, -7, 16, 2, 11, -10 * this.bounce, 0] : 0 }, turning
+        animate(this.wrench, { rotate: turning ? [0, -14, 36, 3, 26, -16 * this.bounce, 0] : 0 }, turning
           ? {
               duration,
               times: [0, 0.12, 0.36, 0.55, 0.73, 0.88, 1],

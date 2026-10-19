@@ -1,10 +1,10 @@
-import { exampleMarkup, upstreamURL, upstreamVersion } from "./catalog.js?v=20261019-wrench-turn";
-import { demoCSS } from "./demo-styles.js?v=20261019-wrench-turn";
-import { bindDemoActions } from "./demo-actions.js?v=20261019-wrench-turn";
-import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261019-wrench-turn";
-import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261019-wrench-turn";
-import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261019-wrench-turn";
-import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261019-wrench-turn";
+import { exampleMarkup, upstreamURL, upstreamVersion } from "./catalog.js?v=20261019-wrench-wide";
+import { demoCSS } from "./demo-styles.js?v=20261019-wrench-wide";
+import { bindDemoActions } from "./demo-actions.js?v=20261019-wrench-wide";
+import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261019-wrench-wide";
+import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261019-wrench-wide";
+import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261019-wrench-wide";
+import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261019-wrench-wide";
 
 export function exampleDocument(entry, values = {}) {
   const font = "https://cdn.jsdelivr.net/npm/@fontsource-variable/inter@5.3.0/files/inter-latin-wght-normal.woff2";

@@ -1,7 +1,7 @@
-import { selectionDemoMarkup } from "./selection-toggle.js?v=20261019-wrench-turn";
-import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261019-wrench-turn";
-import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261019-wrench-turn";
-import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261019-wrench-turn";
+import { selectionDemoMarkup } from "./selection-toggle.js?v=20261019-wrench-wide";
+import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261019-wrench-wide";
+import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261019-wrench-wide";
+import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261019-wrench-wide";
 
 export const upstreamVersion = "1.3.0";
 export const upstreamURL = "https://github.com/tgomilar/motion-components";

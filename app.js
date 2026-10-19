@@ -1,5 +1,5 @@
-import { webMotions } from "./web-components/catalog.js?v=20261019-wrench-turn";
-import { createWebController, copyExample, downloadExample, setupWebDetail, getWebValues, syncWebBackgrounds } from "./web-components/integration.js?v=20261019-wrench-turn";
+import { webMotions } from "./web-components/catalog.js?v=20261019-wrench-wide";
+import { createWebController, copyExample, downloadExample, setupWebDetail, getWebValues, syncWebBackgrounds } from "./web-components/integration.js?v=20261019-wrench-wide";
 
 const gallery = document.querySelector("#gallery");
 const quickRail = document.querySelector("#quickRail");
