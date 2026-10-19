@@ -4,10 +4,14 @@ import { createRequire } from "node:module";
 import { dirname, resolve } from "node:path";
 
 const require = createRequire(import.meta.url);
+const motionRequire = createRequire(require.resolve("motion-components"));
+const motionPackagePath = motionRequire.resolve("motion/package.json");
+const motionPackage = JSON.parse(await readFile(motionPackagePath, "utf8"));
+const motionEntry = resolve(dirname(motionPackagePath), motionPackage.module);
 const target = new URL("../web-components/vendor/", import.meta.url);
 await mkdir(target, { recursive: true });
 await build({
-  stdin: { contents: 'export * from "motion-components";', resolveDir: process.cwd() },
+  stdin: { contents: `export * from "motion-components"; export { animate } from ${JSON.stringify(motionEntry)};`, resolveDir: process.cwd() },
   bundle: true, format: "esm", minify: true, target: "es2022",
   outfile: new URL("motion-components.js", target).pathname,
   legalComments: "inline",

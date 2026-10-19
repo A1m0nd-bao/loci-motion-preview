@@ -1,5 +1,5 @@
-import { exampleDocument } from "./examples.js";
-import { exampleMarkup, normalizeValues } from "./catalog.js";
+import { exampleDocument } from "./examples.js?v=20261019-selection";
+import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261019-selection";
 
 const controllers = new Set();
 
@@ -108,6 +108,7 @@ export function setupWebDetail(entry, getController) {
   const docs = document.querySelector("#webDocs");
   const isWeb = entry.kind === "web";
   panel.hidden = controls.hidden = docs.hidden = !isWeb;
+  docs.hidden = !isWeb || !entry.docs;
   document.querySelectorAll("#detailDialog [data-media-only]").forEach((el) => { el.hidden = isWeb; });
   document.querySelector("#detailDialog").classList.toggle("is-web-detail", isWeb);
   document.querySelector("#detailPlay").textContent = isWeb ? "重播 / 恢复交互" : "播放";
@@ -122,7 +123,8 @@ export function setupWebDetail(entry, getController) {
   document.querySelector("#webDescription").textContent = entry.description;
   const code = document.querySelector("#webCode");
   const updateCode = () => {
-    code.textContent = `// npm install motion-components@1.3.0\nimport 'motion-components/${entry.id}';\nimport 'motion-components/preload.css';\n\n${exampleMarkup(entry, currentValues).replace(/ data-motion/g, "")}`;
+    const setup = entry.custom ? "<!-- 自定义 SVG 状态组件；复制 / 下载 HTML 包含完整实现。 -->" : `// npm install motion-components@1.3.0\nimport 'motion-components/${entry.id}';\nimport 'motion-components/preload.css';`;
+    code.textContent = `${setup}\n\n${exampleMarkup(entry, currentValues).replace(/ data-motion/g, "")}`;
   };
   updateCode();
   if (entry.controls.length) {

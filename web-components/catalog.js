@@ -1,3 +1,5 @@
+import { selectionDemoMarkup } from "./selection-toggle.js?v=20261019-selection";
+
 export const upstreamVersion = "1.3.0";
 export const upstreamURL = "https://github.com/tgomilar/motion-components";
 
@@ -77,7 +79,7 @@ function docsSection(id) {
   return "text";
 }
 
-export const webMotions = entries.map(([id, name, category, description, markup, controls]) => ({
+const upstreamMotions = entries.map(([id, name, category, description, markup, controls]) => ({
   id, name, category, description, markup, controls,
   kind: "web", kindLabel: "Web 组件", fileName: id,
   file: `./web-components/preview.html?id=${id}`,
@@ -85,6 +87,16 @@ export const webMotions = entries.map(([id, name, category, description, markup,
   tags: [id, "Motion", "Web Components"],
   interactionType: category === "鼠标交互" ? "指针交互" : category === "滚动动效" ? "滚动体验" : "可交互预览",
 }));
+
+export const webMotions = [{
+  id: "sipplay-selection-toggle", name: "粉色勾选切换", category: "动态图标",
+  description: "点击在白色空心圆与粉色勾选之间双向切换。保留原始 20 × 20 SVG，支持快速反复点击。",
+  markup: selectionDemoMarkup, controls: [number("duration", "时长（秒）", 0.32, 0.12, 1.5, 0.02), number("bounce", "回弹程度", 0.15, 0, 0.5, 0.05)],
+  kind: "web", kindLabel: "Web 组件", fileName: "sipplay-selection-toggle",
+  file: "./web-components/preview.html?id=sipplay-selection-toggle",
+  docs: null, custom: true,
+  tags: ["自定义 SVG", "勾选", "选中状态", "20px"], interactionType: "点击切换",
+}, ...upstreamMotions];
 
 export function normalizeValues(entry, values = {}) {
   return Object.fromEntries(entry.controls.map((control) => {
