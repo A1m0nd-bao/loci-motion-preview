@@ -102,7 +102,7 @@ const upstreamMotions = entries.map(([id, name, category, description, markup, c
 export const webMotions = [{
   id: "sipplay-tap-tab", name: "灵动 Tap Tab", category: "交互组件",
   description: "将人物、图层、扳手三个已有动效组成互斥选中的 Tab。切换时图标播放原有动作，文字同步提亮，下划线静止时等长，切换时快速起步，短暂拉伸后连续收拢，落位后保持统一长度；再次点击当前项仅重播图标。保留 Character Setup、Intro、Advanced Settings 文案与必填星号。支持键盘、触屏、减少动态效果与独立 HTML 导出，通过 tab-change 事件连接页面内容。",
-  markup: tapTabDemoMarkup, controls: [number("duration", "切换时长（秒）", 0.3, 0.16, 1.2, 0.04), number("bounce", "速度伸缩", 0.18, 0, 0.4, 0.02)],
+  markup: tapTabDemoMarkup, controls: [number("duration", "切换时长（秒）", 0.3, 0.16, 1.2, 0.02), number("bounce", "速度伸缩", 0.18, 0, 0.4, 0.02)],
   kind: "web", kindLabel: "Web 组件", fileName: "sipplay-tap-tab",
   file: "./web-components/preview.html?id=sipplay-tap-tab", docs: null, custom: true,
   tags: ["Tab", "tapTab", "标签页", "导航", "人物", "图层", "扳手", "下划线"], interactionType: "Tab 切换",
