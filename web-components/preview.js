@@ -1,36 +1,37 @@
-import { defineUserPageToggle, userPageDemoCSS } from "./user-page-toggle.js?v=20261020-user-rise-ref";
-import { definePlusSelectionToggle, plusSelectionDemoCSS } from "./plus-selection-toggle.js?v=20261020-user-rise-ref";
-import { defineHomeSettleToggle, homeSettleDemoCSS } from "./home-settle-toggle.js?v=20261020-user-rise-ref";
-import { defineWarningNudge, warningNudgeDemoCSS } from "./warning-nudge.js?v=20261020-user-rise-ref";
-import { defineLiquidRiseToggle, liquidRiseDemoCSS } from "./liquid-rise-toggle.js?v=20261020-user-rise-ref";
-import { defineChatBubbleToggle, chatBubbleDemoCSS } from "./chat-bubble-toggle.js?v=20261020-user-rise-ref";
-import { defineTapTab, tapTabDemoCSS } from "./tap-tab.js?v=20261020-user-rise-ref";
-import { definePreviewTabs, previewTabsDemoCSS } from "./preview-tabs.js?v=20261020-user-rise-ref";
-import { defineWhiteSelectionToggle, whiteSelectionDemoCSS } from "./white-selection-toggle.js?v=20261020-user-rise-ref";
-import { defineHistoryClock, historyClockDemoCSS } from "./history-clock.js?v=20261020-user-rise-ref";
-import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261020-user-rise-ref";
-import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261020-user-rise-ref";
-import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261020-user-rise-ref";
-import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261020-user-rise-ref";
-import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-user-rise-ref";
-import { demoCSS } from "./demo-styles.js?v=20261020-user-rise-ref";
-import { bindDemoActions } from "./demo-actions.js?v=20261020-user-rise-ref";
-import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261020-user-rise-ref";
-import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261020-user-rise-ref";
-import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261020-user-rise-ref";
-import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261020-user-rise-ref";
+import { defineBottomBar, bottomBarDemoCSS } from "./bottom-bar.js?v=20261020-bottom-bar";
+import { defineUserPageToggle, userPageDemoCSS } from "./user-page-toggle.js?v=20261020-bottom-bar";
+import { definePlusSelectionToggle, plusSelectionDemoCSS } from "./plus-selection-toggle.js?v=20261020-bottom-bar";
+import { defineHomeSettleToggle, homeSettleDemoCSS } from "./home-settle-toggle.js?v=20261020-bottom-bar";
+import { defineWarningNudge, warningNudgeDemoCSS } from "./warning-nudge.js?v=20261020-bottom-bar";
+import { defineLiquidRiseToggle, liquidRiseDemoCSS } from "./liquid-rise-toggle.js?v=20261020-bottom-bar";
+import { defineChatBubbleToggle, chatBubbleDemoCSS } from "./chat-bubble-toggle.js?v=20261020-bottom-bar";
+import { defineTapTab, tapTabDemoCSS } from "./tap-tab.js?v=20261020-bottom-bar";
+import { definePreviewTabs, previewTabsDemoCSS } from "./preview-tabs.js?v=20261020-bottom-bar";
+import { defineWhiteSelectionToggle, whiteSelectionDemoCSS } from "./white-selection-toggle.js?v=20261020-bottom-bar";
+import { defineHistoryClock, historyClockDemoCSS } from "./history-clock.js?v=20261020-bottom-bar";
+import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261020-bottom-bar";
+import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261020-bottom-bar";
+import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261020-bottom-bar";
+import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261020-bottom-bar";
+import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-bottom-bar";
+import { demoCSS } from "./demo-styles.js?v=20261020-bottom-bar";
+import { bindDemoActions } from "./demo-actions.js?v=20261020-bottom-bar";
+import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261020-bottom-bar";
+import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261020-bottom-bar";
+import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261020-bottom-bar";
+import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261020-bottom-bar";
 
 const params = new URLSearchParams(location.search);
 const entry = webMotions.find((item) => item.id === params.get("id"));
 const root = document.querySelector("#demo");
 const style = document.createElement("style");
-style.textContent = demoCSS + userPageDemoCSS + plusSelectionDemoCSS + homeSettleDemoCSS + liquidRiseDemoCSS + warningNudgeDemoCSS + chatBubbleDemoCSS + previewTabsDemoCSS + selectionDemoCSS + whiteSelectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS + wrenchTurnDemoCSS + pinToggleDemoCSS + pinRevealDemoCSS + voiceWaveDemoCSS + bellRingDemoCSS + historyClockDemoCSS + tapTabDemoCSS;
+style.textContent = demoCSS + bottomBarDemoCSS + userPageDemoCSS + plusSelectionDemoCSS + homeSettleDemoCSS + liquidRiseDemoCSS + warningNudgeDemoCSS + chatBubbleDemoCSS + previewTabsDemoCSS + selectionDemoCSS + whiteSelectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS + wrenchTurnDemoCSS + pinToggleDemoCSS + pinRevealDemoCSS + voiceWaveDemoCSS + bellRingDemoCSS + historyClockDemoCSS + tapTabDemoCSS;
 document.head.append(style);
 let runtime;
 let values = {};
 let isPaused = false;
 let cleanupDemo;
-const customElementsInDemo = () => [...root.querySelectorAll("sipplay-user-page-toggle,sipplay-plus-selection-toggle,sipplay-home-settle-toggle,sipplay-liquid-rise-toggle,sipplay-chat-bubble-toggle,sipplay-preview-tabs,sipplay-white-selection-toggle,sipplay-selection-toggle,sipplay-layer-stack-toggle,sipplay-profile-rise-toggle,sipplay-wrench-turn-toggle,sipplay-pin-toggle,sipplay-pin-reveal,sipplay-voice-wave,sipplay-bell-ring-toggle,sipplay-history-clock,sipplay-tap-tab,sipplay-warning-nudge")];
+const customElementsInDemo = () => [...root.querySelectorAll("sipplay-bottom-bar,sipplay-user-page-toggle,sipplay-plus-selection-toggle,sipplay-home-settle-toggle,sipplay-liquid-rise-toggle,sipplay-chat-bubble-toggle,sipplay-preview-tabs,sipplay-white-selection-toggle,sipplay-selection-toggle,sipplay-layer-stack-toggle,sipplay-profile-rise-toggle,sipplay-wrench-turn-toggle,sipplay-pin-toggle,sipplay-pin-reveal,sipplay-voice-wave,sipplay-bell-ring-toggle,sipplay-history-clock,sipplay-tap-tab,sipplay-warning-nudge")];
 
 function notify(status, message = "") {
   parent.postMessage({ type: "sipplay-web-preview", id: entry?.id, status, message }, location.origin);
@@ -46,7 +47,7 @@ function compactPointerPreview(active) {
   const point = { clientX: rect.left + rect.width * 0.8, clientY: rect.top + rect.height * 0.25 };
   if (entry.id === "sipplay-warning-nudge") {
     element.preview(active);
-  } else if (entry.id === "sipplay-tap-tab") {
+  } else if (["sipplay-tap-tab", "sipplay-bottom-bar"].includes(entry.id)) {
     element.preview(active);
   } else if (entry.id === "sipplay-history-clock") {
     if (active) element.hoverIn();
@@ -117,11 +118,11 @@ window.addEventListener("message", async (event) => {
 });
 
 // Voice loops and notification feedback manage their own visibility behavior.
-document.addEventListener("visibilitychange", () => { if (document.hidden) { runtime?.pauseAll(root); customElementsInDemo().filter(el => !["sipplay-voice-wave", "sipplay-bell-ring-toggle", "sipplay-liquid-rise-toggle", "sipplay-home-settle-toggle", "sipplay-plus-selection-toggle", "sipplay-user-page-toggle"].includes(el.localName)).forEach(el => el.pause()); } });
+document.addEventListener("visibilitychange", () => { if (document.hidden) { runtime?.pauseAll(root); customElementsInDemo().filter(el => !["sipplay-voice-wave", "sipplay-bell-ring-toggle", "sipplay-liquid-rise-toggle", "sipplay-home-settle-toggle", "sipplay-plus-selection-toggle", "sipplay-user-page-toggle", "sipplay-bottom-bar"].includes(el.localName)).forEach(el => el.pause()); } });
 
 try {
   if (!entry) throw new Error("未找到此组件，请从动效库重新选择。");
-  runtime = await import("./vendor/motion-components.js?v=20261020-user-rise-ref");
+  runtime = await import("./vendor/motion-components.js?v=20261020-bottom-bar");
   defineHistoryClock(runtime.animate);
   defineWarningNudge(runtime.animate);
   defineBellRingToggle(runtime.animate);
@@ -136,6 +137,7 @@ try {
   defineHomeSettleToggle(runtime.animate);
   definePlusSelectionToggle(runtime.animate);
   defineUserPageToggle(runtime.animate);
+  defineBottomBar(runtime.animate);
   defineLayerStackToggle(runtime.animate);
   defineProfileRiseToggle(runtime.animate);
   defineWrenchTurnToggle(runtime.animate);

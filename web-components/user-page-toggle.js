@@ -92,7 +92,7 @@ export function defineUserPageToggle(animate) {
       const rising = on && !instant;
       const times = [0, 0.56, 0.8, 1];
       const ease = [[0.16, 1, 0.3, 1], "easeInOut", "easeOut"];
-      if (rising) this.head.style.opacity = this.body.style.opacity = "0";
+      this.head.style.opacity = this.body.style.opacity = rising ? "0" : "1";
       this.body.style.fillOpacity = this.head.style.fillOpacity = on ? "1" : "0";
       const resting = { y: 0, scaleX: 1, scaleY: 1, opacity: 1 };
       this.controls = [
@@ -131,7 +131,7 @@ export function defineUserPageToggle(animate) {
     pause() {
       this.resumeAfterVisibility = false;
       if (this.state !== "running") return;
-      this.pausedControls = this.controls.filter(control => control.state !== "finished");
+      this.pausedControls = this.controls.filter(control => control.duration > 0 && control.state !== "finished");
       this.pausedControls.forEach(control => control.pause());
       this.state = "paused";
     }

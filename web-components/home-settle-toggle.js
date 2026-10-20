@@ -111,7 +111,7 @@ export function defineHomeSettleToggle(animate) {
     pause() {
       this.resumeAfterVisibility = false;
       if (this.state !== "running") return;
-      this.pausedControls = this.controls.filter(control => control.state !== "finished");
+      this.pausedControls = this.controls.filter(control => control.duration > 0 && control.state !== "finished");
       this.pausedControls.forEach(control => control.pause());
       this.state = "paused";
     }

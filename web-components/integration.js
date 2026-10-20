@@ -1,5 +1,5 @@
-import { exampleDocument } from "./examples.js?v=20261020-user-rise-ref";
-import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-user-rise-ref";
+import { exampleDocument } from "./examples.js?v=20261020-bottom-bar";
+import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-bottom-bar";
 
 const controllers = new Set();
 

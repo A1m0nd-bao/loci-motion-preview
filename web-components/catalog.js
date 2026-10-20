@@ -1,21 +1,22 @@
-import { userPageDemoMarkup } from "./user-page-toggle.js?v=20261020-user-rise-ref";
-import { plusSelectionDemoMarkup } from "./plus-selection-toggle.js?v=20261020-user-rise-ref";
-import { homeSettleDemoMarkup } from "./home-settle-toggle.js?v=20261020-user-rise-ref";
-import { warningNudgeDemoMarkup } from "./warning-nudge.js?v=20261020-user-rise-ref";
-import { liquidRiseDemoMarkup } from "./liquid-rise-toggle.js?v=20261020-user-rise-ref";
-import { chatBubbleDemoMarkup } from "./chat-bubble-toggle.js?v=20261020-user-rise-ref";
-import { tapTabDemoMarkup } from "./tap-tab.js?v=20261020-user-rise-ref";
-import { previewTabsDemoMarkup } from "./preview-tabs.js?v=20261020-user-rise-ref";
-import { whiteSelectionDemoMarkup } from "./white-selection-toggle.js?v=20261020-user-rise-ref";
-import { historyClockDemoMarkup } from "./history-clock.js?v=20261020-user-rise-ref";
-import { bellRingDemoMarkup } from "./bell-ring-toggle.js?v=20261020-user-rise-ref";
-import { voiceWaveDemoMarkup } from "./voice-wave.js?v=20261020-user-rise-ref";
-import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261020-user-rise-ref";
-import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261020-user-rise-ref";
-import { selectionDemoMarkup } from "./selection-toggle.js?v=20261020-user-rise-ref";
-import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261020-user-rise-ref";
-import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261020-user-rise-ref";
-import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261020-user-rise-ref";
+import { bottomBarDemoMarkup } from "./bottom-bar.js?v=20261020-bottom-bar";
+import { userPageDemoMarkup } from "./user-page-toggle.js?v=20261020-bottom-bar";
+import { plusSelectionDemoMarkup } from "./plus-selection-toggle.js?v=20261020-bottom-bar";
+import { homeSettleDemoMarkup } from "./home-settle-toggle.js?v=20261020-bottom-bar";
+import { warningNudgeDemoMarkup } from "./warning-nudge.js?v=20261020-bottom-bar";
+import { liquidRiseDemoMarkup } from "./liquid-rise-toggle.js?v=20261020-bottom-bar";
+import { chatBubbleDemoMarkup } from "./chat-bubble-toggle.js?v=20261020-bottom-bar";
+import { tapTabDemoMarkup } from "./tap-tab.js?v=20261020-bottom-bar";
+import { previewTabsDemoMarkup } from "./preview-tabs.js?v=20261020-bottom-bar";
+import { whiteSelectionDemoMarkup } from "./white-selection-toggle.js?v=20261020-bottom-bar";
+import { historyClockDemoMarkup } from "./history-clock.js?v=20261020-bottom-bar";
+import { bellRingDemoMarkup } from "./bell-ring-toggle.js?v=20261020-bottom-bar";
+import { voiceWaveDemoMarkup } from "./voice-wave.js?v=20261020-bottom-bar";
+import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261020-bottom-bar";
+import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261020-bottom-bar";
+import { selectionDemoMarkup } from "./selection-toggle.js?v=20261020-bottom-bar";
+import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261020-bottom-bar";
+import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261020-bottom-bar";
+import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261020-bottom-bar";
 
 export const upstreamVersion = "1.3.0";
 export const upstreamURL = "https://github.com/tgomilar/motion-components";
@@ -106,6 +107,13 @@ const upstreamMotions = entries.map(([id, name, category, description, markup, c
 }));
 
 export const webMotions = [{
+  id: "sipplay-bottom-bar", name: "四页动效底栏", category: "交互组件",
+  description: "按提供的 375 × 48 底栏组合首页、聊天、添加、用户四个已确认动效。保留 24px 图标、原始横向位置、70% 深色底和下投影；默认选中首页，点击互斥切换，重复点击当前项只重播图标。首页填白落定、气泡绘波、加号填白镂空、用户从底部探出。通过 nav-change 事件连接页面，支持键盘、触屏、减少动态效果、响应宽度与完整 HTML 导出。",
+  markup: bottomBarDemoMarkup, controls: [number("speed", "播放速度", 1, 0.6, 1.6, 0.1)],
+  kind: "web", kindLabel: "Web 组件", fileName: "sipplay-bottom-bar",
+  file: "./web-components/preview.html?id=sipplay-bottom-bar", docs: null, custom: true,
+  tags: ["底栏", "底部导航", "Bottom Bar", "首页", "聊天", "添加", "用户", "375px"], interactionType: "底部导航切换",
+}, {
   id: "sipplay-user-page-toggle", name: "用户页探出选中", category: "动态图标",
   description: "保留提供的 24 × 24 人像路径、1.5px 描边和 40% 灰态透明度。选中时头部和身体先完全藏到画布底部，再以参考人物组件的节奏先后探出；身体拉伸、压缩收稳，头部稍晚并带更大的回弹。取消时恢复原始灰色线框。头部与身体各用同一条路径兼顾填充和描边，避免重复轮廓。支持快速反向、键盘、触屏、减少动态效果、暂停恢复和独立 HTML 导出。",
   markup: userPageDemoMarkup, controls: [number("duration", "切换时长（秒）", 0.64, 0.24, 1.2, 0.02), number("strength", "回弹幅度", 1, 0.4, 1.4, 0.05)],

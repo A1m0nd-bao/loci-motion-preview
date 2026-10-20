@@ -71,6 +71,12 @@ export function bindDemoActions(root) {
   };
   root.addEventListener("motion-replay", onWarningReplay);
   root.addEventListener("motion-finish", onWarningFinish);
+  const onBottomNavChange = event => {
+    if (event.target.localName !== "sipplay-bottom-bar") return;
+    const status = root.querySelector("[data-bottom-bar-status]");
+    if (status) status.textContent = `当前：${event.detail.label}`;
+  };
+  root.addEventListener("nav-change", onBottomNavChange);
   const countdown = root.querySelector("motion-countdown");
   if (countdown) countdown.setAttribute("to", new Date(Date.now() + 185000).toISOString());
   root.onclick = (event) => {
@@ -96,6 +102,7 @@ export function bindDemoActions(root) {
     }
   };
   return () => {
+    root.removeEventListener("nav-change", onBottomNavChange);
     root.removeEventListener("motion-change", onSelectionChange);
     root.removeEventListener("motion-replay", onHistoryReplay);
     root.removeEventListener("motion-finish", onHistoryFinish);
