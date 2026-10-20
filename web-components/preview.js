@@ -1,32 +1,33 @@
-import { defineLiquidRiseToggle, liquidRiseDemoCSS } from "./liquid-rise-toggle.js?v=20261020-straw-rest";
-import { defineChatBubbleToggle, chatBubbleDemoCSS } from "./chat-bubble-toggle.js?v=20261020-straw-rest";
-import { defineTapTab, tapTabDemoCSS } from "./tap-tab.js?v=20261020-straw-rest";
-import { definePreviewTabs, previewTabsDemoCSS } from "./preview-tabs.js?v=20261020-straw-rest";
-import { defineWhiteSelectionToggle, whiteSelectionDemoCSS } from "./white-selection-toggle.js?v=20261020-straw-rest";
-import { defineHistoryClock, historyClockDemoCSS } from "./history-clock.js?v=20261020-straw-rest";
-import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261020-straw-rest";
-import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261020-straw-rest";
-import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261020-straw-rest";
-import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261020-straw-rest";
-import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-straw-rest";
-import { demoCSS } from "./demo-styles.js?v=20261020-straw-rest";
-import { bindDemoActions } from "./demo-actions.js?v=20261020-straw-rest";
-import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261020-straw-rest";
-import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261020-straw-rest";
-import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261020-straw-rest";
-import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261020-straw-rest";
+import { defineWarningNudge, warningNudgeDemoCSS } from "./warning-nudge.js?v=20261020-warning-nudge";
+import { defineLiquidRiseToggle, liquidRiseDemoCSS } from "./liquid-rise-toggle.js?v=20261020-warning-nudge";
+import { defineChatBubbleToggle, chatBubbleDemoCSS } from "./chat-bubble-toggle.js?v=20261020-warning-nudge";
+import { defineTapTab, tapTabDemoCSS } from "./tap-tab.js?v=20261020-warning-nudge";
+import { definePreviewTabs, previewTabsDemoCSS } from "./preview-tabs.js?v=20261020-warning-nudge";
+import { defineWhiteSelectionToggle, whiteSelectionDemoCSS } from "./white-selection-toggle.js?v=20261020-warning-nudge";
+import { defineHistoryClock, historyClockDemoCSS } from "./history-clock.js?v=20261020-warning-nudge";
+import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261020-warning-nudge";
+import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261020-warning-nudge";
+import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261020-warning-nudge";
+import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261020-warning-nudge";
+import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-warning-nudge";
+import { demoCSS } from "./demo-styles.js?v=20261020-warning-nudge";
+import { bindDemoActions } from "./demo-actions.js?v=20261020-warning-nudge";
+import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261020-warning-nudge";
+import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261020-warning-nudge";
+import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261020-warning-nudge";
+import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261020-warning-nudge";
 
 const params = new URLSearchParams(location.search);
 const entry = webMotions.find((item) => item.id === params.get("id"));
 const root = document.querySelector("#demo");
 const style = document.createElement("style");
-style.textContent = demoCSS + liquidRiseDemoCSS + chatBubbleDemoCSS + previewTabsDemoCSS + selectionDemoCSS + whiteSelectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS + wrenchTurnDemoCSS + pinToggleDemoCSS + pinRevealDemoCSS + voiceWaveDemoCSS + bellRingDemoCSS + historyClockDemoCSS + tapTabDemoCSS;
+style.textContent = demoCSS + liquidRiseDemoCSS + warningNudgeDemoCSS + chatBubbleDemoCSS + previewTabsDemoCSS + selectionDemoCSS + whiteSelectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS + wrenchTurnDemoCSS + pinToggleDemoCSS + pinRevealDemoCSS + voiceWaveDemoCSS + bellRingDemoCSS + historyClockDemoCSS + tapTabDemoCSS;
 document.head.append(style);
 let runtime;
 let values = {};
 let isPaused = false;
 let cleanupDemo;
-const customElementsInDemo = () => [...root.querySelectorAll("sipplay-liquid-rise-toggle,sipplay-chat-bubble-toggle,sipplay-preview-tabs,sipplay-white-selection-toggle,sipplay-selection-toggle,sipplay-layer-stack-toggle,sipplay-profile-rise-toggle,sipplay-wrench-turn-toggle,sipplay-pin-toggle,sipplay-pin-reveal,sipplay-voice-wave,sipplay-bell-ring-toggle,sipplay-history-clock,sipplay-tap-tab")];
+const customElementsInDemo = () => [...root.querySelectorAll("sipplay-liquid-rise-toggle,sipplay-chat-bubble-toggle,sipplay-preview-tabs,sipplay-white-selection-toggle,sipplay-selection-toggle,sipplay-layer-stack-toggle,sipplay-profile-rise-toggle,sipplay-wrench-turn-toggle,sipplay-pin-toggle,sipplay-pin-reveal,sipplay-voice-wave,sipplay-bell-ring-toggle,sipplay-history-clock,sipplay-tap-tab,sipplay-warning-nudge")];
 
 function notify(status, message = "") {
   parent.postMessage({ type: "sipplay-web-preview", id: entry?.id, status, message }, location.origin);
@@ -40,7 +41,9 @@ function compactPointerPreview(active) {
   if (!element) return;
   const rect = element.getBoundingClientRect();
   const point = { clientX: rect.left + rect.width * 0.8, clientY: rect.top + rect.height * 0.25 };
-  if (entry.id === "sipplay-tap-tab") {
+  if (entry.id === "sipplay-warning-nudge") {
+    element.preview(active);
+  } else if (entry.id === "sipplay-tap-tab") {
     element.preview(active);
   } else if (entry.id === "sipplay-history-clock") {
     if (active) element.hoverIn();
@@ -115,8 +118,9 @@ document.addEventListener("visibilitychange", () => { if (document.hidden) { run
 
 try {
   if (!entry) throw new Error("未找到此组件，请从动效库重新选择。");
-  runtime = await import("./vendor/motion-components.js?v=20261020-straw-rest");
+  runtime = await import("./vendor/motion-components.js?v=20261020-warning-nudge");
   defineHistoryClock(runtime.animate);
+  defineWarningNudge(runtime.animate);
   defineBellRingToggle(runtime.animate);
   defineVoiceWave(runtime.animate);
   definePinToggle(runtime.animate);

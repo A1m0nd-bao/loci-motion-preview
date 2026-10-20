@@ -1,17 +1,18 @@
-import { liquidRiseDemoMarkup } from "./liquid-rise-toggle.js?v=20261020-straw-rest";
-import { chatBubbleDemoMarkup } from "./chat-bubble-toggle.js?v=20261020-straw-rest";
-import { tapTabDemoMarkup } from "./tap-tab.js?v=20261020-straw-rest";
-import { previewTabsDemoMarkup } from "./preview-tabs.js?v=20261020-straw-rest";
-import { whiteSelectionDemoMarkup } from "./white-selection-toggle.js?v=20261020-straw-rest";
-import { historyClockDemoMarkup } from "./history-clock.js?v=20261020-straw-rest";
-import { bellRingDemoMarkup } from "./bell-ring-toggle.js?v=20261020-straw-rest";
-import { voiceWaveDemoMarkup } from "./voice-wave.js?v=20261020-straw-rest";
-import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261020-straw-rest";
-import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261020-straw-rest";
-import { selectionDemoMarkup } from "./selection-toggle.js?v=20261020-straw-rest";
-import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261020-straw-rest";
-import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261020-straw-rest";
-import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261020-straw-rest";
+import { warningNudgeDemoMarkup } from "./warning-nudge.js?v=20261020-warning-nudge";
+import { liquidRiseDemoMarkup } from "./liquid-rise-toggle.js?v=20261020-warning-nudge";
+import { chatBubbleDemoMarkup } from "./chat-bubble-toggle.js?v=20261020-warning-nudge";
+import { tapTabDemoMarkup } from "./tap-tab.js?v=20261020-warning-nudge";
+import { previewTabsDemoMarkup } from "./preview-tabs.js?v=20261020-warning-nudge";
+import { whiteSelectionDemoMarkup } from "./white-selection-toggle.js?v=20261020-warning-nudge";
+import { historyClockDemoMarkup } from "./history-clock.js?v=20261020-warning-nudge";
+import { bellRingDemoMarkup } from "./bell-ring-toggle.js?v=20261020-warning-nudge";
+import { voiceWaveDemoMarkup } from "./voice-wave.js?v=20261020-warning-nudge";
+import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261020-warning-nudge";
+import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261020-warning-nudge";
+import { selectionDemoMarkup } from "./selection-toggle.js?v=20261020-warning-nudge";
+import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261020-warning-nudge";
+import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261020-warning-nudge";
+import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261020-warning-nudge";
 
 export const upstreamVersion = "1.3.0";
 export const upstreamURL = "https://github.com/tgomilar/motion-components";
@@ -102,6 +103,13 @@ const upstreamMotions = entries.map(([id, name, category, description, markup, c
 }));
 
 export const webMotions = [{
+  id: "sipplay-warning-nudge", name: "警示牌弹性提醒", category: "动态图标",
+  description: "点击后，三角框轻压弹起并左右轻晃，感叹号和圆点错开半拍跟上，最后回到原位。保留原始 20 × 20 SVG 与 1.5px 描边，单次播放，支持快速重播、键盘与减少动态效果。",
+  markup: warningNudgeDemoMarkup, controls: [number("duration", "时长（秒）", 0.82, 0.32, 1.6, 0.04), number("strength", "提醒幅度", 1, 0.4, 1.6, 0.1)],
+  kind: "web", kindLabel: "Web 组件", fileName: "sipplay-warning-nudge",
+  file: "./web-components/preview.html?id=sipplay-warning-nudge", docs: null, custom: true,
+  tags: ["自定义 SVG", "警告", "提醒", "感叹号", "三角形", "弹性", "20px"], interactionType: "点击重播",
+}, {
   id: "sipplay-liquid-rise-toggle", name: "彩色液面升起流动", category: "动态图标",
   description: "以提供的 41 × 40 SVG 为统一画布。点击后粉紫到暖金的渐变液面从底部升起，轻微回荡后持续流动；空态吸管按原图落在杯底，注入时随液面浮起并轻摆，再次点击时吸管先落回杯底、液体继续回落。保留原始外框、斜线、圆点、加号与 80% 透明度，液体被限制在容器内部。支持快速反向、键盘、触屏、减少动态效果与独立 HTML 导出。",
   markup: liquidRiseDemoMarkup, controls: [number("duration", "升起时长（秒）", 0.78, 0.3, 1.6, 0.02), number("flow-duration", "流动周期（秒）", 3.2, 1.6, 6, 0.2), number("strength", "起伏幅度", 1, 0.4, 1.5, 0.05)],

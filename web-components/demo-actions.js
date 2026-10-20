@@ -52,6 +52,25 @@ export function bindDemoActions(root) {
   };
   root.addEventListener("motion-replay", onHistoryReplay);
   root.addEventListener("motion-finish", onHistoryFinish);
+  const warnings = [...root.querySelectorAll("sipplay-warning-nudge")];
+  for (const warning of warnings.slice(1)) {
+    for (const attribute of ["duration", "strength"]) {
+      if (warnings[0].hasAttribute(attribute)) warning.setAttribute(attribute, warnings[0].getAttribute(attribute));
+    }
+  }
+  const onWarningReplay = event => {
+    if (!warnings.includes(event.target)) return;
+    for (const warning of warnings) if (warning !== event.target) warning.replay(false);
+    const status = root.querySelector("[data-warning-status]");
+    if (status) status.textContent = event.target.reducedMotion.matches ? "已收稳" : "提醒中";
+  };
+  const onWarningFinish = event => {
+    if (!warnings.includes(event.target)) return;
+    const status = root.querySelector("[data-warning-status]");
+    if (status) status.textContent = "已收稳";
+  };
+  root.addEventListener("motion-replay", onWarningReplay);
+  root.addEventListener("motion-finish", onWarningFinish);
   const countdown = root.querySelector("motion-countdown");
   if (countdown) countdown.setAttribute("to", new Date(Date.now() + 185000).toISOString());
   root.onclick = (event) => {
@@ -80,6 +99,8 @@ export function bindDemoActions(root) {
     root.removeEventListener("motion-change", onSelectionChange);
     root.removeEventListener("motion-replay", onHistoryReplay);
     root.removeEventListener("motion-finish", onHistoryFinish);
+    root.removeEventListener("motion-replay", onWarningReplay);
+    root.removeEventListener("motion-finish", onWarningFinish);
     root.removeEventListener("motion-action", onBellAction);
     root.removeEventListener("notification-request", onNotificationRequest);
   };

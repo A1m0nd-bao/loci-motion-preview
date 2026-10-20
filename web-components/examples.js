@@ -1,27 +1,29 @@
-import { defineLiquidRiseToggle, liquidRiseDemoCSS } from "./liquid-rise-toggle.js?v=20261020-straw-rest";
-import { defineChatBubbleToggle, chatBubbleDemoCSS } from "./chat-bubble-toggle.js?v=20261020-straw-rest";
-import { defineTapTab, tapTabDemoCSS } from "./tap-tab.js?v=20261020-straw-rest";
-import { definePreviewTabs, previewTabsDemoCSS } from "./preview-tabs.js?v=20261020-straw-rest";
-import { defineWhiteSelectionToggle, whiteSelectionDemoCSS } from "./white-selection-toggle.js?v=20261020-straw-rest";
-import { defineHistoryClock, historyClockDemoCSS } from "./history-clock.js?v=20261020-straw-rest";
-import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261020-straw-rest";
-import { motionExampleDocument } from "../motion/examples.js?v=20261020-straw-rest";
-import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261020-straw-rest";
-import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261020-straw-rest";
-import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261020-straw-rest";
-import { exampleMarkup, upstreamURL, upstreamVersion } from "./catalog.js?v=20261020-straw-rest";
-import { demoCSS } from "./demo-styles.js?v=20261020-straw-rest";
-import { bindDemoActions } from "./demo-actions.js?v=20261020-straw-rest";
-import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261020-straw-rest";
-import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261020-straw-rest";
-import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261020-straw-rest";
-import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261020-straw-rest";
+import { defineWarningNudge, warningNudgeDemoCSS } from "./warning-nudge.js?v=20261020-warning-nudge";
+import { defineLiquidRiseToggle, liquidRiseDemoCSS } from "./liquid-rise-toggle.js?v=20261020-warning-nudge";
+import { defineChatBubbleToggle, chatBubbleDemoCSS } from "./chat-bubble-toggle.js?v=20261020-warning-nudge";
+import { defineTapTab, tapTabDemoCSS } from "./tap-tab.js?v=20261020-warning-nudge";
+import { definePreviewTabs, previewTabsDemoCSS } from "./preview-tabs.js?v=20261020-warning-nudge";
+import { defineWhiteSelectionToggle, whiteSelectionDemoCSS } from "./white-selection-toggle.js?v=20261020-warning-nudge";
+import { defineHistoryClock, historyClockDemoCSS } from "./history-clock.js?v=20261020-warning-nudge";
+import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261020-warning-nudge";
+import { motionExampleDocument } from "../motion/examples.js?v=20261020-warning-nudge";
+import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261020-warning-nudge";
+import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261020-warning-nudge";
+import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261020-warning-nudge";
+import { exampleMarkup, upstreamURL, upstreamVersion } from "./catalog.js?v=20261020-warning-nudge";
+import { demoCSS } from "./demo-styles.js?v=20261020-warning-nudge";
+import { bindDemoActions } from "./demo-actions.js?v=20261020-warning-nudge";
+import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261020-warning-nudge";
+import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261020-warning-nudge";
+import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261020-warning-nudge";
+import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261020-warning-nudge";
 
 export function exampleDocument(entry, values = {}) {
   if (entry.kind === "motion") return motionExampleDocument(entry, values);
   const font = "https://cdn.jsdelivr.net/npm/@fontsource-variable/inter@5.3.0/files/inter-latin-wght-normal.woff2";
-  const styles = (demoCSS + (entry.custom ? liquidRiseDemoCSS + chatBubbleDemoCSS + previewTabsDemoCSS + selectionDemoCSS + whiteSelectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS + wrenchTurnDemoCSS + pinToggleDemoCSS + pinRevealDemoCSS + voiceWaveDemoCSS + bellRingDemoCSS + historyClockDemoCSS + tapTabDemoCSS : "")).replace('./vendor/inter-latin-wght-normal.woff2', font);
+  const styles = (demoCSS + (entry.custom ? liquidRiseDemoCSS + warningNudgeDemoCSS + chatBubbleDemoCSS + previewTabsDemoCSS + selectionDemoCSS + whiteSelectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS + wrenchTurnDemoCSS + pinToggleDemoCSS + pinRevealDemoCSS + voiceWaveDemoCSS + bellRingDemoCSS + historyClockDemoCSS + tapTabDemoCSS : "")).replace('./vendor/inter-latin-wght-normal.woff2', font);
   const defineCustom = {
+    "sipplay-warning-nudge": defineWarningNudge,
     "sipplay-liquid-rise-toggle": defineLiquidRiseToggle,
     "sipplay-chat-bubble-toggle": defineChatBubbleToggle,
     "sipplay-tap-tab": defineTapTab,
