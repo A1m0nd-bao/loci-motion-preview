@@ -1,6 +1,6 @@
-import { motionMotions } from "./motion/catalog.js?v=20261020-tab-snappy-line";
-import { webMotions } from "./web-components/catalog.js?v=20261020-tab-snappy-line";
-import { createWebController, copyExample, downloadExample, setupWebDetail, getWebValues, syncWebBackgrounds } from "./web-components/integration.js?v=20261020-tab-snappy-line";
+import { motionMotions } from "./motion/catalog.js?v=20261020-chat-bubble";
+import { webMotions } from "./web-components/catalog.js?v=20261020-chat-bubble";
+import { createWebController, copyExample, downloadExample, setupWebDetail, getWebValues, syncWebBackgrounds } from "./web-components/integration.js?v=20261020-chat-bubble";
 
 if (import.meta.env?.DEV) document.querySelector("#motionStudioLocal").hidden = false;
 

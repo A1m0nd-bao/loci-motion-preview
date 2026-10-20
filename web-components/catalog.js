@@ -1,15 +1,16 @@
-import { tapTabDemoMarkup } from "./tap-tab.js?v=20261020-tab-snappy-line";
-import { previewTabsDemoMarkup } from "./preview-tabs.js?v=20261020-tab-snappy-line";
-import { whiteSelectionDemoMarkup } from "./white-selection-toggle.js?v=20261020-tab-snappy-line";
-import { historyClockDemoMarkup } from "./history-clock.js?v=20261020-tab-snappy-line";
-import { bellRingDemoMarkup } from "./bell-ring-toggle.js?v=20261020-tab-snappy-line";
-import { voiceWaveDemoMarkup } from "./voice-wave.js?v=20261020-tab-snappy-line";
-import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261020-tab-snappy-line";
-import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261020-tab-snappy-line";
-import { selectionDemoMarkup } from "./selection-toggle.js?v=20261020-tab-snappy-line";
-import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261020-tab-snappy-line";
-import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261020-tab-snappy-line";
-import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261020-tab-snappy-line";
+import { chatBubbleDemoMarkup } from "./chat-bubble-toggle.js?v=20261020-chat-bubble";
+import { tapTabDemoMarkup } from "./tap-tab.js?v=20261020-chat-bubble";
+import { previewTabsDemoMarkup } from "./preview-tabs.js?v=20261020-chat-bubble";
+import { whiteSelectionDemoMarkup } from "./white-selection-toggle.js?v=20261020-chat-bubble";
+import { historyClockDemoMarkup } from "./history-clock.js?v=20261020-chat-bubble";
+import { bellRingDemoMarkup } from "./bell-ring-toggle.js?v=20261020-chat-bubble";
+import { voiceWaveDemoMarkup } from "./voice-wave.js?v=20261020-chat-bubble";
+import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261020-chat-bubble";
+import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261020-chat-bubble";
+import { selectionDemoMarkup } from "./selection-toggle.js?v=20261020-chat-bubble";
+import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261020-chat-bubble";
+import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261020-chat-bubble";
+import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261020-chat-bubble";
 
 export const upstreamVersion = "1.3.0";
 export const upstreamURL = "https://github.com/tgomilar/motion-components";
@@ -100,6 +101,13 @@ const upstreamMotions = entries.map(([id, name, category, description, markup, c
 }));
 
 export const webMotions = [{
+  id: "sipplay-chat-bubble-toggle", name: "对话气泡唤醒", category: "动态图标",
+  description: "选中时气泡轻压蓄力、鼓起并变为实心，内部镂空波形随后弹出；取消时波形先收起，再回到灰色线框。保留两份原始 24 × 24 SVG 造型，支持快速反向与键盘操作。",
+  markup: chatBubbleDemoMarkup, controls: [number("duration", "时长（秒）", 0.64, 0.24, 1.6, 0.04), number("bounce", "波形回弹", 0.22, 0, 0.45, 0.01)],
+  kind: "web", kindLabel: "Web 组件", fileName: "sipplay-chat-bubble-toggle",
+  file: "./web-components/preview.html?id=sipplay-chat-bubble-toggle", docs: null, custom: true,
+  tags: ["自定义 SVG", "对话", "聊天", "气泡", "波形", "选中状态", "24px"], interactionType: "点击切换",
+}, {
   id: "sipplay-tap-tab", name: "灵动 Tap Tab", category: "交互组件",
   description: "将人物、图层、扳手三个已有动效组成互斥选中的 Tab。切换时图标播放原有动作，文字同步提亮，下划线静止时等长，切换时快速起步，短暂拉伸后连续收拢，落位后保持统一长度；再次点击当前项仅重播图标。保留 Character Setup、Intro、Advanced Settings 文案与必填星号。支持键盘、触屏、减少动态效果与独立 HTML 导出，通过 tab-change 事件连接页面内容。",
   markup: tapTabDemoMarkup, controls: [number("duration", "切换时长（秒）", 0.3, 0.16, 1.2, 0.02), number("bounce", "速度伸缩", 0.18, 0, 0.4, 0.02)],

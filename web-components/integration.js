@@ -1,5 +1,5 @@
-import { exampleDocument } from "./examples.js?v=20261020-tab-snappy-line";
-import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-tab-snappy-line";
+import { exampleDocument } from "./examples.js?v=20261020-chat-bubble";
+import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-chat-bubble";
 
 const controllers = new Set();
 

@@ -1,30 +1,31 @@
-import { defineTapTab, tapTabDemoCSS } from "./tap-tab.js?v=20261020-tab-snappy-line";
-import { definePreviewTabs, previewTabsDemoCSS } from "./preview-tabs.js?v=20261020-tab-snappy-line";
-import { defineWhiteSelectionToggle, whiteSelectionDemoCSS } from "./white-selection-toggle.js?v=20261020-tab-snappy-line";
-import { defineHistoryClock, historyClockDemoCSS } from "./history-clock.js?v=20261020-tab-snappy-line";
-import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261020-tab-snappy-line";
-import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261020-tab-snappy-line";
-import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261020-tab-snappy-line";
-import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261020-tab-snappy-line";
-import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-tab-snappy-line";
-import { demoCSS } from "./demo-styles.js?v=20261020-tab-snappy-line";
-import { bindDemoActions } from "./demo-actions.js?v=20261020-tab-snappy-line";
-import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261020-tab-snappy-line";
-import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261020-tab-snappy-line";
-import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261020-tab-snappy-line";
-import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261020-tab-snappy-line";
+import { defineChatBubbleToggle, chatBubbleDemoCSS } from "./chat-bubble-toggle.js?v=20261020-chat-bubble";
+import { defineTapTab, tapTabDemoCSS } from "./tap-tab.js?v=20261020-chat-bubble";
+import { definePreviewTabs, previewTabsDemoCSS } from "./preview-tabs.js?v=20261020-chat-bubble";
+import { defineWhiteSelectionToggle, whiteSelectionDemoCSS } from "./white-selection-toggle.js?v=20261020-chat-bubble";
+import { defineHistoryClock, historyClockDemoCSS } from "./history-clock.js?v=20261020-chat-bubble";
+import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261020-chat-bubble";
+import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261020-chat-bubble";
+import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261020-chat-bubble";
+import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261020-chat-bubble";
+import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-chat-bubble";
+import { demoCSS } from "./demo-styles.js?v=20261020-chat-bubble";
+import { bindDemoActions } from "./demo-actions.js?v=20261020-chat-bubble";
+import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261020-chat-bubble";
+import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261020-chat-bubble";
+import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261020-chat-bubble";
+import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261020-chat-bubble";
 
 const params = new URLSearchParams(location.search);
 const entry = webMotions.find((item) => item.id === params.get("id"));
 const root = document.querySelector("#demo");
 const style = document.createElement("style");
-style.textContent = demoCSS + previewTabsDemoCSS + selectionDemoCSS + whiteSelectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS + wrenchTurnDemoCSS + pinToggleDemoCSS + pinRevealDemoCSS + voiceWaveDemoCSS + bellRingDemoCSS + historyClockDemoCSS + tapTabDemoCSS;
+style.textContent = demoCSS + chatBubbleDemoCSS + previewTabsDemoCSS + selectionDemoCSS + whiteSelectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS + wrenchTurnDemoCSS + pinToggleDemoCSS + pinRevealDemoCSS + voiceWaveDemoCSS + bellRingDemoCSS + historyClockDemoCSS + tapTabDemoCSS;
 document.head.append(style);
 let runtime;
 let values = {};
 let isPaused = false;
 let cleanupDemo;
-const customElementsInDemo = () => [...root.querySelectorAll("sipplay-preview-tabs,sipplay-white-selection-toggle,sipplay-selection-toggle,sipplay-layer-stack-toggle,sipplay-profile-rise-toggle,sipplay-wrench-turn-toggle,sipplay-pin-toggle,sipplay-pin-reveal,sipplay-voice-wave,sipplay-bell-ring-toggle,sipplay-history-clock,sipplay-tap-tab")];
+const customElementsInDemo = () => [...root.querySelectorAll("sipplay-chat-bubble-toggle,sipplay-preview-tabs,sipplay-white-selection-toggle,sipplay-selection-toggle,sipplay-layer-stack-toggle,sipplay-profile-rise-toggle,sipplay-wrench-turn-toggle,sipplay-pin-toggle,sipplay-pin-reveal,sipplay-voice-wave,sipplay-bell-ring-toggle,sipplay-history-clock,sipplay-tap-tab")];
 
 function notify(status, message = "") {
   parent.postMessage({ type: "sipplay-web-preview", id: entry?.id, status, message }, location.origin);
@@ -113,7 +114,7 @@ document.addEventListener("visibilitychange", () => { if (document.hidden) { run
 
 try {
   if (!entry) throw new Error("未找到此组件，请从动效库重新选择。");
-  runtime = await import("./vendor/motion-components.js?v=20261020-tab-snappy-line");
+  runtime = await import("./vendor/motion-components.js?v=20261020-chat-bubble");
   defineHistoryClock(runtime.animate);
   defineBellRingToggle(runtime.animate);
   defineVoiceWave(runtime.animate);
@@ -122,6 +123,7 @@ try {
   defineSelectionToggle(runtime.animate);
   defineWhiteSelectionToggle(runtime.animate);
   definePreviewTabs(runtime.animate);
+  defineChatBubbleToggle(runtime.animate);
   defineLayerStackToggle(runtime.animate);
   defineProfileRiseToggle(runtime.animate);
   defineWrenchTurnToggle(runtime.animate);
