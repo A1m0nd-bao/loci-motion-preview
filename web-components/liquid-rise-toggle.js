@@ -49,6 +49,7 @@ export function defineLiquidRiseToggle(animate) {
             svg{display:block;width:41px;height:40px;pointer-events:none;overflow:hidden}
             .liquid,.wave{transform-box:view-box!important;transform-origin:0 0!important}
             .liquid{transform:translateY(12px)}
+            .straw{transform-box:view-box!important;transform-origin:24.3271px 26.5517px!important}
           </style>
           <button type="button" aria-pressed="false">
             <svg width="41" height="40" viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -58,7 +59,7 @@ export function defineLiquidRiseToggle(animate) {
                 <clipPath id="liquid-surface"><path class="wave" d="${referenceLiquid}"/></clipPath>
               </defs>
               <g opacity="0.8">
-                <path d="M24.3271 26.5517L30.997 12.8599C31.0603 12.73 31.176 12.6333 31.315 12.594L36.0196 11.2661" stroke="white" stroke-width="1.52083" stroke-linecap="round"/>
+                <g class="straw"><path d="M24.3271 26.5517L30.997 12.8599C31.0603 12.73 31.176 12.6333 31.315 12.594L36.0196 11.2661" stroke="white" stroke-width="1.52083" stroke-linecap="round"/></g>
                 <g clip-path="url(#liquid-cup)"><g class="liquid"><g clip-path="url(#liquid-surface)"><rect x="10.1738" y="11.5747" width="21.8464" height="21.9248" fill="url(#liquid-gradient)"/></g></g></g>
                 <path d="M26.635 11.5747H13.3688C11.6889 11.5747 10.3271 12.9365 10.3271 14.6164V30.4579C10.3271 32.1378 11.6889 33.4995 13.3688 33.4995H28.978C30.6579 33.4995 32.0197 32.1377 32.0197 30.4579V20.6843" stroke="white" stroke-width="2" stroke-linecap="round"/>
                 <ellipse cx="16.6344" cy="17.7443" rx="2.46157" ry="2.4704" fill="white"/>
@@ -70,6 +71,7 @@ export function defineLiquidRiseToggle(animate) {
         this.svg = this.shadowRoot.querySelector("svg");
         this.liquid = this.shadowRoot.querySelector(".liquid");
         this.wave = this.shadowRoot.querySelector(".wave");
+        this.straw = this.shadowRoot.querySelector(".straw");
         this.button.addEventListener("click", () => this.toggle());
       }
       this.reducedMotion.addEventListener("change", this.onReducedMotion);
@@ -109,7 +111,7 @@ export function defineLiquidRiseToggle(animate) {
       this.updateAccessibility();
       if (instant) {
         this.wave.setAttribute("d", referenceLiquid);
-        this.controls = [animate(this.wave, { x: 0 }, { duration: 0 }), animate(this.liquid, { y: this.active ? 0 : 12 }, { duration: 0 })];
+        this.controls = [animate(this.wave, { x: 0 }, { duration: 0 }), animate(this.liquid, { y: this.active ? 0 : 12 }, { duration: 0 }), animate(this.straw, { rotate: 0 }, { duration: 0 })];
         this.state = "finished";
         return;
       }
@@ -121,9 +123,22 @@ export function defineLiquidRiseToggle(animate) {
         this.controls = [
           animate(this.liquid, { y: [null, -0.55, 0] }, { duration: this.duration, times: [0, 0.75, 1], ease: [[0.2, 0.85, 0.25, 1], "easeInOut"] }),
           animate(this.wave, { x: [phase, phase - 16] }, { duration: this.flowDuration, repeat: Infinity, ease: "linear" }),
+          animate(this.straw, { rotate: [null, 5.5 * this.strength, -2.2 * this.strength, 0.75 * this.strength, 0] }, {
+            duration: this.duration * 1.12, times: [0, 0.26, 0.58, 0.8, 1], ease: "easeInOut",
+            onComplete: () => {
+              if (epoch !== this.epoch || !this.active || !this.isConnected) return;
+              const drift = animate(this.straw, { rotate: [0, 0.65 * this.strength, 0, -0.45 * this.strength, 0] }, { duration: this.flowDuration, times: [0, 0.25, 0.5, 0.75, 1], ease: "easeInOut", repeat: Infinity });
+              this.controls.push(drift);
+              if (this.state === "paused") { drift.pause(); this.pausedControls.push(drift); }
+            },
+          }),
         ];
       } else {
-        this.controls = [animate(this.liquid, { y: 12 }, { duration: Math.min(0.4, this.duration * 0.55), ease: [0.4, 0, 0.6, 1], onComplete: () => { if (epoch === this.epoch) this.state = "finished"; } })];
+        const drainDuration = Math.min(0.4, this.duration * 0.55);
+        this.controls = [
+          animate(this.liquid, { y: 12 }, { duration: drainDuration, ease: [0.4, 0, 0.6, 1], onComplete: () => { if (epoch === this.epoch) this.state = "finished"; } }),
+          animate(this.straw, { rotate: 0 }, { duration: drainDuration, ease: [0.22, 1, 0.36, 1] }),
+        ];
       }
       if (document.hidden) this.onVisibility();
     }
@@ -153,7 +168,7 @@ export function defineLiquidRiseToggle(animate) {
 
 export const liquidRiseDemoMarkup = `
   <div class="selection-demo liquid-rise-demo">
-    <p class="selection-demo-hint">点击注入液体 · 选中后液面持续流动</p>
+    <p class="selection-demo-hint">点击注入液体 · 液面流动，吸管轻摆</p>
     <div class="selection-demo-zoom"><sipplay-liquid-rise-toggle data-motion duration="0.78" flow-duration="3.2" strength="1" label="切换彩色液体（放大预览）"></sipplay-liquid-rise-toggle></div>
     <p class="selection-demo-caption">4× 细节预览</p>
     <div class="selection-demo-original"><sipplay-liquid-rise-toggle label="切换彩色液体（原始尺寸）"></sipplay-liquid-rise-toggle><span>原始尺寸 · 41 × 40</span></div>

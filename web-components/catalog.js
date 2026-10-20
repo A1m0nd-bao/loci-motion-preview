@@ -1,17 +1,17 @@
-import { liquidRiseDemoMarkup } from "./liquid-rise-toggle.js?v=20261020-liquid-rise";
-import { chatBubbleDemoMarkup } from "./chat-bubble-toggle.js?v=20261020-liquid-rise";
-import { tapTabDemoMarkup } from "./tap-tab.js?v=20261020-liquid-rise";
-import { previewTabsDemoMarkup } from "./preview-tabs.js?v=20261020-liquid-rise";
-import { whiteSelectionDemoMarkup } from "./white-selection-toggle.js?v=20261020-liquid-rise";
-import { historyClockDemoMarkup } from "./history-clock.js?v=20261020-liquid-rise";
-import { bellRingDemoMarkup } from "./bell-ring-toggle.js?v=20261020-liquid-rise";
-import { voiceWaveDemoMarkup } from "./voice-wave.js?v=20261020-liquid-rise";
-import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261020-liquid-rise";
-import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261020-liquid-rise";
-import { selectionDemoMarkup } from "./selection-toggle.js?v=20261020-liquid-rise";
-import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261020-liquid-rise";
-import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261020-liquid-rise";
-import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261020-liquid-rise";
+import { liquidRiseDemoMarkup } from "./liquid-rise-toggle.js?v=20261020-liquid-straw";
+import { chatBubbleDemoMarkup } from "./chat-bubble-toggle.js?v=20261020-liquid-straw";
+import { tapTabDemoMarkup } from "./tap-tab.js?v=20261020-liquid-straw";
+import { previewTabsDemoMarkup } from "./preview-tabs.js?v=20261020-liquid-straw";
+import { whiteSelectionDemoMarkup } from "./white-selection-toggle.js?v=20261020-liquid-straw";
+import { historyClockDemoMarkup } from "./history-clock.js?v=20261020-liquid-straw";
+import { bellRingDemoMarkup } from "./bell-ring-toggle.js?v=20261020-liquid-straw";
+import { voiceWaveDemoMarkup } from "./voice-wave.js?v=20261020-liquid-straw";
+import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261020-liquid-straw";
+import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261020-liquid-straw";
+import { selectionDemoMarkup } from "./selection-toggle.js?v=20261020-liquid-straw";
+import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261020-liquid-straw";
+import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261020-liquid-straw";
+import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261020-liquid-straw";
 
 export const upstreamVersion = "1.3.0";
 export const upstreamURL = "https://github.com/tgomilar/motion-components";
@@ -103,11 +103,11 @@ const upstreamMotions = entries.map(([id, name, category, description, markup, c
 
 export const webMotions = [{
   id: "sipplay-liquid-rise-toggle", name: "彩色液面升起流动", category: "动态图标",
-  description: "以提供的 41 × 40 SVG 为统一画布。点击后粉紫到暖金的渐变液面从底部升起，轻微回荡后持续流动；再次点击时回落。保留原始外框、斜线、圆点、加号与 80% 透明度，液体被限制在容器内部。支持快速反向、键盘、触屏、减少动态效果与独立 HTML 导出。",
-  markup: liquidRiseDemoMarkup, controls: [number("duration", "升起时长（秒）", 0.78, 0.3, 1.6, 0.02), number("flow-duration", "流动周期（秒）", 3.2, 1.6, 6, 0.2), number("strength", "液面起伏", 1, 0.4, 1.5, 0.05)],
+  description: "以提供的 41 × 40 SVG 为统一画布。点击后粉紫到暖金的渐变液面从底部升起，轻微回荡后持续流动；吸管以插入端为轴先轻摆回正，再随液面小幅摆动，再次点击时液体回落、吸管收稳。保留原始外框、斜线、圆点、加号与 80% 透明度，液体被限制在容器内部。支持快速反向、键盘、触屏、减少动态效果与独立 HTML 导出。",
+  markup: liquidRiseDemoMarkup, controls: [number("duration", "升起时长（秒）", 0.78, 0.3, 1.6, 0.02), number("flow-duration", "流动周期（秒）", 3.2, 1.6, 6, 0.2), number("strength", "起伏幅度", 1, 0.4, 1.5, 0.05)],
   kind: "web", kindLabel: "Web 组件", fileName: "sipplay-liquid-rise-toggle",
   file: "./web-components/preview.html?id=sipplay-liquid-rise-toggle", docs: null, custom: true,
-  tags: ["自定义 SVG", "液体", "液面", "渐变", "流动", "注入", "升起", "加号"], interactionType: "点击注入／回落",
+  tags: ["自定义 SVG", "液体", "液面", "渐变", "流动", "注入", "升起", "吸管", "加号"], interactionType: "点击注入／回落",
 }, {
   id: "sipplay-chat-bubble-toggle", name: "对话气泡唤醒", category: "动态图标",
   description: "选中时气泡轻压蓄力、鼓起并变为实心，内部镂空波形随后沿路径从左到右绘出；取消时波形反向收笔，再回到灰色线框。保留两份原始 24 × 24 SVG 造型，支持快速反向与键盘操作。",
