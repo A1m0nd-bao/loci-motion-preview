@@ -492,6 +492,11 @@ export function handoffText(entry, values = {}) {
 export function integrationSnippet(entry) {
   const d = getHandoff(entry);
   if (!d) return "";
+  if (d.triggerStatus === "needs-confirmation") return `<!-- ${d.id}：位置已确认，播放触发待确认。
+当前保留此节点的原稿静态 SVG：${d.figma[0].url}
+${d.adaptation}
+不要直接挂载示例的交互按钮，也不要将 active 绑定生成进度。
+触发策略确认后再接入动画；当前不提供自动播放代码。 -->`;
   const state = !d.state ? "// 无持久状态；按业务事件调用，不要每次渲染都重播。" : d.state === "value" ? `el.value = '${d.initial}'; // 替换为实际业务状态` : d.state === "selected" ? "el.selected = 0; // 0=chat，1=feed；用实际预览模式覆盖" : `el.${d.state} = false; // 用实际业务状态覆盖；不要写 active=\"false\"`;
   const slotMarkup = d.slots.map(s => `\n  <div slot="${s}"><!-- ${s} 实际面板内容 --></div>`).join("");
   return `<!-- 将 web-components 源码目录放入项目；复用现有 Motion 依赖。 -->\n<${d.id} id="motion-control" label="${d.name}">${slotMarkup}</${d.id}>\n\n<script type="module">\n  import { animate } from 'motion';\n  import { registerMotion } from './web-components/register.js';\n  registerMotion('${d.id}', animate);\n  const el = document.querySelector('#motion-control');\n  ${state}\n  el.finish(); // 初始化落在当前状态；后续状态变化保留动画\n  el.addEventListener('${d.event}', (event) => {\n    // ${d.payload}\n    // ${d.integration}\n  });\n</script>`;
