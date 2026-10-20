@@ -1,25 +1,26 @@
-import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261019-motion";
-import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261019-motion";
-import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261019-motion";
-import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261019-motion";
-import { demoCSS } from "./demo-styles.js?v=20261019-motion";
-import { bindDemoActions } from "./demo-actions.js?v=20261019-motion";
-import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261019-motion";
-import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261019-motion";
-import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261019-motion";
-import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261019-motion";
+import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261020-bell";
+import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261020-bell";
+import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261020-bell";
+import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261020-bell";
+import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-bell";
+import { demoCSS } from "./demo-styles.js?v=20261020-bell";
+import { bindDemoActions } from "./demo-actions.js?v=20261020-bell";
+import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261020-bell";
+import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261020-bell";
+import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261020-bell";
+import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261020-bell";
 
 const params = new URLSearchParams(location.search);
 const entry = webMotions.find((item) => item.id === params.get("id"));
 const root = document.querySelector("#demo");
 const style = document.createElement("style");
-style.textContent = demoCSS + selectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS + wrenchTurnDemoCSS + pinToggleDemoCSS + pinRevealDemoCSS + voiceWaveDemoCSS;
+style.textContent = demoCSS + selectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS + wrenchTurnDemoCSS + pinToggleDemoCSS + pinRevealDemoCSS + voiceWaveDemoCSS + bellRingDemoCSS;
 document.head.append(style);
 let runtime;
 let values = {};
 let isPaused = false;
 let cleanupDemo;
-const customElementsInDemo = () => [...root.querySelectorAll("sipplay-selection-toggle,sipplay-layer-stack-toggle,sipplay-profile-rise-toggle,sipplay-wrench-turn-toggle,sipplay-pin-toggle,sipplay-pin-reveal,sipplay-voice-wave")];
+const customElementsInDemo = () => [...root.querySelectorAll("sipplay-selection-toggle,sipplay-layer-stack-toggle,sipplay-profile-rise-toggle,sipplay-wrench-turn-toggle,sipplay-pin-toggle,sipplay-pin-reveal,sipplay-voice-wave,sipplay-bell-ring-toggle")];
 
 function notify(status, message = "") {
   parent.postMessage({ type: "sipplay-web-preview", id: entry?.id, status, message }, location.origin);
@@ -95,12 +96,13 @@ window.addEventListener("message", async (event) => {
   }
 });
 
-// Voice loops own their visibility pause so selected speech resumes on return.
-document.addEventListener("visibilitychange", () => { if (document.hidden) { runtime?.pauseAll(root); customElementsInDemo().filter(el => el.localName !== "sipplay-voice-wave").forEach(el => el.pause()); } });
+// Looping icons handle visibility so active animation resumes on return.
+document.addEventListener("visibilitychange", () => { if (document.hidden) { runtime?.pauseAll(root); customElementsInDemo().filter(el => !["sipplay-voice-wave", "sipplay-bell-ring-toggle"].includes(el.localName)).forEach(el => el.pause()); } });
 
 try {
   if (!entry) throw new Error("未找到此组件，请从动效库重新选择。");
-  runtime = await import("./vendor/motion-components.js?v=20261019-motion");
+  runtime = await import("./vendor/motion-components.js?v=20261020-bell");
+  defineBellRingToggle(runtime.animate);
   defineVoiceWave(runtime.animate);
   definePinToggle(runtime.animate);
   definePinReveal(runtime.animate);

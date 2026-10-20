@@ -1,5 +1,5 @@
-import { exampleDocument } from "./examples.js?v=20261019-motion";
-import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261019-motion";
+import { exampleDocument } from "./examples.js?v=20261020-bell";
+import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-bell";
 
 const controllers = new Set();
 

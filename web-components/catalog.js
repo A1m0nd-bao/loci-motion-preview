@@ -1,10 +1,11 @@
-import { voiceWaveDemoMarkup } from "./voice-wave.js?v=20261019-motion";
-import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261019-motion";
-import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261019-motion";
-import { selectionDemoMarkup } from "./selection-toggle.js?v=20261019-motion";
-import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261019-motion";
-import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261019-motion";
-import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261019-motion";
+import { bellRingDemoMarkup } from "./bell-ring-toggle.js?v=20261020-bell";
+import { voiceWaveDemoMarkup } from "./voice-wave.js?v=20261020-bell";
+import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261020-bell";
+import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261020-bell";
+import { selectionDemoMarkup } from "./selection-toggle.js?v=20261020-bell";
+import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261020-bell";
+import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261020-bell";
+import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261020-bell";
 
 export const upstreamVersion = "1.3.0";
 export const upstreamURL = "https://github.com/tgomilar/motion-components";
@@ -95,6 +96,13 @@ const upstreamMotions = entries.map(([id, name, category, description, markup, c
 }));
 
 export const webMotions = [{
+  id: "sipplay-bell-ring-toggle", name: "铃铛节奏轻摇", category: "动态图标",
+  description: "保留原始 36 × 36 圆形底座与描边铃铛。点击后两次错落轻摇，摆幅逐步收小，停一拍再循环；铃舌稍滞后回摆。再次点击柔和收稳。",
+  markup: bellRingDemoMarkup, controls: [number("duration", "节奏周期（秒）", 2.2, 1.4, 4, 0.1), number("strength", "摇摆幅度", 1, 0.4, 1.4, 0.05)],
+  kind: "web", kindLabel: "Web 组件", fileName: "sipplay-bell-ring-toggle",
+  file: "./web-components/preview.html?id=sipplay-bell-ring-toggle", docs: null, custom: true,
+  tags: ["自定义 SVG", "铃铛", "提醒", "通知", "轻摇", "循环", "36px"], interactionType: "点击晃动",
+}, {
   id: "sipplay-voice-wave", name: "灵动语音条", category: "动态图标",
   description: "保留原始 58 × 28 气泡和五根圆头声纹。默认静止；点击选中后，错落的音节、重音和换气组成循环节奏，取消选中后平滑收稳。此示例为声纹动效，不包含音频。",
   markup: voiceWaveDemoMarkup, controls: [number("duration", "节奏周期（秒）", 4.8, 2.4, 8, 0.2), number("strength", "声纹幅度", 1, 0.35, 1.4, 0.05)],
