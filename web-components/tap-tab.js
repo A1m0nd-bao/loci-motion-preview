@@ -23,8 +23,8 @@ export function defineTapTab(animate) {
     get value() { return this.items.some(item => item.value === this.getAttribute("value")) ? this.getAttribute("value") : "character"; }
     set value(value) { if (this.items.some(item => item.value === value)) this.setAttribute("value", value); }
     get duration() {
-      const value = Number(this.getAttribute("duration") ?? 0.48);
-      return Number.isFinite(value) ? Math.min(1.2, Math.max(0.24, value)) : 0.48;
+      const value = Number(this.getAttribute("duration") ?? 0.3);
+      return Number.isFinite(value) ? Math.min(1.2, Math.max(0.16, value)) : 0.3;
     }
     get bounce() {
       const value = Number(this.getAttribute("bounce") ?? 0.18);
@@ -46,7 +46,7 @@ export function defineTapTab(animate) {
             .icon>*{position:absolute;left:-12px;top:-12px;pointer-events:none}
             .label{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:-.025em}
             .required{margin-left:3px;color:inherit}button[aria-selected=true] .required{color:#ec5b53}
-            .underline{position:absolute;left:0;bottom:11px;width:1px;height:1px;background:white;pointer-events:none;transform-origin:0 50%;opacity:0}
+            .underline{position:absolute;left:0;bottom:11px;width:1px;height:1px;background:white;pointer-events:none;transform-origin:50% 50%;opacity:0}
             section[hidden]{display:none}
             @container(max-width:560px){
               .tablist{height:68px}button{min-height:68px;padding:0 2px;font-size:12px;line-height:16px}
@@ -142,16 +142,16 @@ export function defineTapTab(animate) {
       if (instant || !previous || !changed) {
         this.controls.push(animate(this.line, { x: target.x, scaleX: 1 }, { duration: 0 }));
       } else {
-        const distance = target.x - from.x;
-        const stretch = Math.min(Math.abs(distance) * (0.16 + this.bounce * 0.5), target.width * 0.65);
-        const midWidth = Math.max(from.width, target.width + stretch);
-        const fromCenter = from.x + from.width / 2;
-        const targetCenter = target.x + target.width / 2;
-        const midX = fromCenter + (targetCenter - fromCenter) * 0.66 - midWidth / 2;
+        const distance = Math.abs(target.x - from.x);
+        const stretch = Math.min(distance * (0.14 + this.bounce * 0.4), target.width * 0.42);
+        const peakScale = Math.max(from.width / target.width, 1 + stretch / target.width);
         this.controls.push(animate(this.line, {
-          x: [from.x, midX, target.x],
-          scaleX: [from.width / target.width, midWidth / target.width, 1],
-        }, { duration: this.duration, times: [0, 0.48, 1], ease: [[0.2, 0.75, 0.25, 1], [0.2, 0.8, 0.25, 1]] }));
+          x: target.x,
+          scaleX: [from.width / target.width, peakScale, 1],
+        }, {
+          x: { duration: this.duration, ease: [0.16, 1, 0.3, 1] },
+          scaleX: { duration: this.duration, times: [0, 0.22, 1], ease: [[0.2, 0.8, 0.2, 1], [0.2, 0.8, 0.2, 1]] },
+        }));
       }
       const epoch = this.epoch;
       this.state = instant ? "finished" : "running";
@@ -194,7 +194,7 @@ export function defineTapTab(animate) {
 export const tapTabDemoMarkup = `
   <div class="tap-tab-demo">
     <p class="tap-tab-hint">点击切换 · 图标响应，下划线跟随</p>
-    <sipplay-tap-tab data-motion value="character" duration="0.48" bounce="0.18" label="创作设置"></sipplay-tap-tab>
+    <sipplay-tap-tab data-motion value="character" duration="0.3" bounce="0.18" label="创作设置"></sipplay-tap-tab>
     <p class="tap-tab-caption">人物探出 · 图层落下 · 扳手拧动</p>
   </div>`;
 

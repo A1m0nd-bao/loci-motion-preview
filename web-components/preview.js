@@ -1,18 +1,18 @@
-import { defineTapTab, tapTabDemoCSS } from "./tap-tab.js?v=20261020-tab-speed-line";
-import { definePreviewTabs, previewTabsDemoCSS } from "./preview-tabs.js?v=20261020-tab-speed-line";
-import { defineWhiteSelectionToggle, whiteSelectionDemoCSS } from "./white-selection-toggle.js?v=20261020-tab-speed-line";
-import { defineHistoryClock, historyClockDemoCSS } from "./history-clock.js?v=20261020-tab-speed-line";
-import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261020-tab-speed-line";
-import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261020-tab-speed-line";
-import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261020-tab-speed-line";
-import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261020-tab-speed-line";
-import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-tab-speed-line";
-import { demoCSS } from "./demo-styles.js?v=20261020-tab-speed-line";
-import { bindDemoActions } from "./demo-actions.js?v=20261020-tab-speed-line";
-import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261020-tab-speed-line";
-import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261020-tab-speed-line";
-import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261020-tab-speed-line";
-import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261020-tab-speed-line";
+import { defineTapTab, tapTabDemoCSS } from "./tap-tab.js?v=20261020-tab-snappy-line";
+import { definePreviewTabs, previewTabsDemoCSS } from "./preview-tabs.js?v=20261020-tab-snappy-line";
+import { defineWhiteSelectionToggle, whiteSelectionDemoCSS } from "./white-selection-toggle.js?v=20261020-tab-snappy-line";
+import { defineHistoryClock, historyClockDemoCSS } from "./history-clock.js?v=20261020-tab-snappy-line";
+import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261020-tab-snappy-line";
+import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261020-tab-snappy-line";
+import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261020-tab-snappy-line";
+import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261020-tab-snappy-line";
+import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-tab-snappy-line";
+import { demoCSS } from "./demo-styles.js?v=20261020-tab-snappy-line";
+import { bindDemoActions } from "./demo-actions.js?v=20261020-tab-snappy-line";
+import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261020-tab-snappy-line";
+import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261020-tab-snappy-line";
+import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261020-tab-snappy-line";
+import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261020-tab-snappy-line";
 
 const params = new URLSearchParams(location.search);
 const entry = webMotions.find((item) => item.id === params.get("id"));
@@ -113,7 +113,7 @@ document.addEventListener("visibilitychange", () => { if (document.hidden) { run
 
 try {
   if (!entry) throw new Error("未找到此组件，请从动效库重新选择。");
-  runtime = await import("./vendor/motion-components.js?v=20261020-tab-speed-line");
+  runtime = await import("./vendor/motion-components.js?v=20261020-tab-snappy-line");
   defineHistoryClock(runtime.animate);
   defineBellRingToggle(runtime.animate);
   defineVoiceWave(runtime.animate);

@@ -1,5 +1,5 @@
-import { exampleDocument } from "./examples.js?v=20261020-tab-speed-line";
-import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-tab-speed-line";
+import { exampleDocument } from "./examples.js?v=20261020-tab-snappy-line";
+import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-tab-snappy-line";
 
 const controllers = new Set();
 
