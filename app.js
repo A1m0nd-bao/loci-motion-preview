@@ -1,6 +1,6 @@
-import { motionMotions } from "./motion/catalog.js?v=20261020-history-ccw";
-import { webMotions } from "./web-components/catalog.js?v=20261020-history-ccw";
-import { createWebController, copyExample, downloadExample, setupWebDetail, getWebValues, syncWebBackgrounds } from "./web-components/integration.js?v=20261020-history-ccw";
+import { motionMotions } from "./motion/catalog.js?v=20261020-history-visible-ccw";
+import { webMotions } from "./web-components/catalog.js?v=20261020-history-visible-ccw";
+import { createWebController, copyExample, downloadExample, setupWebDetail, getWebValues, syncWebBackgrounds } from "./web-components/integration.js?v=20261020-history-visible-ccw";
 
 if (import.meta.env?.DEV) document.querySelector("#motionStudioLocal").hidden = false;
 

@@ -16,8 +16,8 @@ export function defineHistoryClock(animate) {
       this.onVisibility = () => { if (document.hidden) this.finish(); };
     }
     get duration() {
-      const value = Number(this.getAttribute("duration") ?? 0.6);
-      return Number.isFinite(value) ? Math.min(1.6, Math.max(0.3, value)) : 0.6;
+      const value = Number(this.getAttribute("duration") ?? 0.8);
+      return Number.isFinite(value) ? Math.min(1.6, Math.max(0.3, value)) : 0.8;
     }
     get bounce() {
       const value = Number(this.getAttribute("bounce") ?? 0.4);
@@ -97,20 +97,16 @@ export function defineHistoryClock(animate) {
         const transform = getComputedStyle(this.clock).transform;
         const matrix = transform === "none" ? new DOMMatrix() : new DOMMatrix(transform);
         const angle = (Math.atan2(matrix.b, matrix.a) * 180 / Math.PI - 360) % 360;
-        this.controls = [animate(this.clock, { rotate: [angle, -360] }, { type: "spring", duration: d, bounce: this.bounce })];
-        for (let index = 0; index < this.strokes.length; index++) {
-          const stroke = this.strokes[index];
-          const from = Number.parseFloat(getComputedStyle(stroke).strokeDashoffset) || 0;
-          const opacity = Number(getComputedStyle(stroke).opacity);
+        // Keep every stroke visible so the arrow's counterclockwise turn is clear.
+        for (const stroke of this.strokes) {
           stroke.style.strokeDasharray = "1 1";
-          const lead = d * (0.3 + 0.12 * index);
-          this.controls.push(animate([
-            [stroke, { strokeDashoffset: [from, 1] }, { duration: d * 0.3, ease: "easeIn", at: 0 }],
-            [stroke, { opacity: [opacity, 0] }, { duration: d * 0.08, ease: "easeIn", at: d * 0.22 }],
-            [stroke, { opacity: [0, 1] }, { duration: d * 0.07, ease: "easeOut", at: lead }],
-            [stroke, { strokeDashoffset: [1, 0] }, { type: "spring", bounce: 0, duration: d, at: lead }],
-          ]));
+          stroke.style.strokeDashoffset = "0";
+          stroke.style.opacity = "1";
         }
+        this.controls = [animate(this.clock, { rotate: [angle, -360 - 12 * this.bounce, -360] }, {
+          duration: d, times: [0, 0.86, 1],
+          ease: [[0.3, 0.05, 0.2, 1], "easeOut"],
+        })];
         this.state = "running";
         const epoch = this.epoch;
         Promise.all(this.controls.map(control => Promise.resolve(control))).then(() => {
@@ -136,9 +132,9 @@ export function defineHistoryClock(animate) {
 
 export const historyClockDemoMarkup = `
   <div class="selection-demo history-clock-demo">
-    <p class="selection-demo-hint">悬停或点击 · 路径绘制与整圈旋转</p>
+    <p class="selection-demo-hint">悬停或点击 · 沿箭头逆时针旋转一圈</p>
     <div class="selection-demo-zoom">
-      <sipplay-history-clock data-motion duration="0.6" bounce="0.4" label="重播历史时钟动效（放大预览）"></sipplay-history-clock>
+      <sipplay-history-clock data-motion duration="0.8" bounce="0.4" label="重播历史时钟动效（放大预览）"></sipplay-history-clock>
     </div>
     <p class="selection-demo-caption">4× 细节预览</p>
     <div class="selection-demo-original">

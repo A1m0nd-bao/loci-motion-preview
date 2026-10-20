@@ -1,12 +1,12 @@
-import { historyClockDemoMarkup } from "./history-clock.js?v=20261020-history-ccw";
-import { bellRingDemoMarkup } from "./bell-ring-toggle.js?v=20261020-history-ccw";
-import { voiceWaveDemoMarkup } from "./voice-wave.js?v=20261020-history-ccw";
-import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261020-history-ccw";
-import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261020-history-ccw";
-import { selectionDemoMarkup } from "./selection-toggle.js?v=20261020-history-ccw";
-import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261020-history-ccw";
-import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261020-history-ccw";
-import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261020-history-ccw";
+import { historyClockDemoMarkup } from "./history-clock.js?v=20261020-history-visible-ccw";
+import { bellRingDemoMarkup } from "./bell-ring-toggle.js?v=20261020-history-visible-ccw";
+import { voiceWaveDemoMarkup } from "./voice-wave.js?v=20261020-history-visible-ccw";
+import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261020-history-visible-ccw";
+import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261020-history-visible-ccw";
+import { selectionDemoMarkup } from "./selection-toggle.js?v=20261020-history-visible-ccw";
+import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261020-history-visible-ccw";
+import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261020-history-visible-ccw";
+import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261020-history-visible-ccw";
 
 export const upstreamVersion = "1.3.0";
 export const upstreamURL = "https://github.com/tgomilar/motion-components";
@@ -97,12 +97,12 @@ const upstreamMotions = entries.map(([id, name, category, description, markup, c
 }));
 
 export const webMotions = [{
-  id: "sipplay-history-clock", name: "历史时钟描绘旋转", category: "动态图标",
-  description: "参考 motion-icon 的 draw rotate：先收起线条，再错峰绘出外圈、箭头与指针，同时逆时针旋转一整圈并弹簧收稳。保留提供的原始 20 × 20 图形。悬停或点击播放一次。",
-  markup: historyClockDemoMarkup, controls: [number("duration", "基础时长（秒）", 0.6, 0.3, 1.6, 0.05), number("bounce", "旋转回弹", 0.4, 0, 0.5, 0.05)],
+  id: "sipplay-history-clock", name: "历史时钟逆时针旋转", category: "动态图标",
+  description: "沿箭头方向逆时针旋转一整圈，末尾轻微回弹收稳。全程保留完整图形和白色描边，使旋转方向清晰可见。保持原始 20 × 20 SVG，悬停或点击播放一次。",
+  markup: historyClockDemoMarkup, controls: [number("duration", "旋转时长（秒）", 0.8, 0.3, 1.6, 0.05), number("bounce", "旋转回弹", 0.4, 0, 0.5, 0.05)],
   kind: "web", kindLabel: "Web 组件", fileName: "sipplay-history-clock",
   file: "./web-components/preview.html?id=sipplay-history-clock", docs: null, custom: true,
-  tags: ["自定义 SVG", "历史", "时钟", "描边", "整圈旋转", "draw rotate", "20px"], interactionType: "悬停／点击重播",
+  tags: ["自定义 SVG", "历史", "时钟", "逆时针", "整圈旋转", "rotate", "20px"], interactionType: "悬停／点击重播",
 }, {
   id: "sipplay-bell-ring-toggle", name: "铃铛通知反馈", category: "动态图标",
   description: "鼠标移入轻摇一次；点击时轻微下沉，再柔和回位，保持铃铛原有比例和描边。只发出通知触发事件，不包含弹窗。保留原始 36 × 36 底座和描边。",
