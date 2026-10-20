@@ -1,20 +1,21 @@
-import { plusSelectionDemoMarkup } from "./plus-selection-toggle.js?v=20261020-plus-selection";
-import { homeSettleDemoMarkup } from "./home-settle-toggle.js?v=20261020-plus-selection";
-import { warningNudgeDemoMarkup } from "./warning-nudge.js?v=20261020-plus-selection";
-import { liquidRiseDemoMarkup } from "./liquid-rise-toggle.js?v=20261020-plus-selection";
-import { chatBubbleDemoMarkup } from "./chat-bubble-toggle.js?v=20261020-plus-selection";
-import { tapTabDemoMarkup } from "./tap-tab.js?v=20261020-plus-selection";
-import { previewTabsDemoMarkup } from "./preview-tabs.js?v=20261020-plus-selection";
-import { whiteSelectionDemoMarkup } from "./white-selection-toggle.js?v=20261020-plus-selection";
-import { historyClockDemoMarkup } from "./history-clock.js?v=20261020-plus-selection";
-import { bellRingDemoMarkup } from "./bell-ring-toggle.js?v=20261020-plus-selection";
-import { voiceWaveDemoMarkup } from "./voice-wave.js?v=20261020-plus-selection";
-import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261020-plus-selection";
-import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261020-plus-selection";
-import { selectionDemoMarkup } from "./selection-toggle.js?v=20261020-plus-selection";
-import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261020-plus-selection";
-import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261020-plus-selection";
-import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261020-plus-selection";
+import { userPageDemoMarkup } from "./user-page-toggle.js?v=20261020-user-rise-ref";
+import { plusSelectionDemoMarkup } from "./plus-selection-toggle.js?v=20261020-user-rise-ref";
+import { homeSettleDemoMarkup } from "./home-settle-toggle.js?v=20261020-user-rise-ref";
+import { warningNudgeDemoMarkup } from "./warning-nudge.js?v=20261020-user-rise-ref";
+import { liquidRiseDemoMarkup } from "./liquid-rise-toggle.js?v=20261020-user-rise-ref";
+import { chatBubbleDemoMarkup } from "./chat-bubble-toggle.js?v=20261020-user-rise-ref";
+import { tapTabDemoMarkup } from "./tap-tab.js?v=20261020-user-rise-ref";
+import { previewTabsDemoMarkup } from "./preview-tabs.js?v=20261020-user-rise-ref";
+import { whiteSelectionDemoMarkup } from "./white-selection-toggle.js?v=20261020-user-rise-ref";
+import { historyClockDemoMarkup } from "./history-clock.js?v=20261020-user-rise-ref";
+import { bellRingDemoMarkup } from "./bell-ring-toggle.js?v=20261020-user-rise-ref";
+import { voiceWaveDemoMarkup } from "./voice-wave.js?v=20261020-user-rise-ref";
+import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261020-user-rise-ref";
+import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261020-user-rise-ref";
+import { selectionDemoMarkup } from "./selection-toggle.js?v=20261020-user-rise-ref";
+import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261020-user-rise-ref";
+import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261020-user-rise-ref";
+import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261020-user-rise-ref";
 
 export const upstreamVersion = "1.3.0";
 export const upstreamURL = "https://github.com/tgomilar/motion-components";
@@ -105,6 +106,13 @@ const upstreamMotions = entries.map(([id, name, category, description, markup, c
 }));
 
 export const webMotions = [{
+  id: "sipplay-user-page-toggle", name: "用户页探出选中", category: "动态图标",
+  description: "保留提供的 24 × 24 人像路径、1.5px 描边和 40% 灰态透明度。选中时头部和身体先完全藏到画布底部，再以参考人物组件的节奏先后探出；身体拉伸、压缩收稳，头部稍晚并带更大的回弹。取消时恢复原始灰色线框。头部与身体各用同一条路径兼顾填充和描边，避免重复轮廓。支持快速反向、键盘、触屏、减少动态效果、暂停恢复和独立 HTML 导出。",
+  markup: userPageDemoMarkup, controls: [number("duration", "切换时长（秒）", 0.64, 0.24, 1.2, 0.02), number("strength", "回弹幅度", 1, 0.4, 1.4, 0.05)],
+  kind: "web", kindLabel: "Web 组件", fileName: "sipplay-user-page-toggle",
+  file: "./web-components/preview.html?id=sipplay-user-page-toggle", docs: null, custom: true,
+  tags: ["自定义 SVG", "用户页", "个人中心", "人像", "头像", "选中", "填白", "24px"], interactionType: "点击切换",
+}, {
   id: "sipplay-plus-selection-toggle", name: "加号选中填白", category: "动态图标",
   description: "保留原始 24 × 24 圆环与加号路径、1.5px 圆头描边和 90% 整体透明度。选中时轻压反馈，圆形从中心填白并轻微回弹，加号保持正向并成为透明镂空；再次点击收回填充，恢复灰色加号与圆环。透明镂空适配任意背景，轮廓始终使用单套路径，支持快速反向、键盘、触屏、减少动态效果、暂停恢复和独立 HTML 导出。",
   markup: plusSelectionDemoMarkup, controls: [number("duration", "切换时长（秒）", 0.46, 0.24, 1.2, 0.02), number("bounce", "填白回弹", 0.18, 0, 0.35, 0.01)],
@@ -114,7 +122,7 @@ export const webMotions = [{
 }, {
   id: "sipplay-home-settle-toggle", name: "首页填白落定", category: "动态图标",
   description: "保留原始 24 × 24 双态 SVG。选中时房屋整体轻提，白色从底部展开，随后轻落收稳；轮廓使用原始单一路径直接提亮；取消时填白收回，恢复 40% 白色线框。门洞始终镂空，支持快速反向、键盘、触屏、减少动态效果、暂停恢复和独立 HTML 导出。",
-  markup: homeSettleDemoMarkup, controls: [number("duration", "切换时长（秒）", 0.56, 0.24, 1.2, 0.02), number("strength", "提起幅度", 1, 0.4, 1.4, 0.05)],
+  markup: homeSettleDemoMarkup, controls: [number("duration", "切换时长（秒）", 0.56, 0.24, 1.2, 0.02), number("strength", "回弹幅度", 1, 0.4, 1.4, 0.05)],
   kind: "web", kindLabel: "Web 组件", fileName: "sipplay-home-settle-toggle",
   file: "./web-components/preview.html?id=sipplay-home-settle-toggle", docs: null, custom: true,
   tags: ["自定义 SVG", "首页", "房屋", "Home", "填白", "选中状态", "24px"], interactionType: "点击切换",
