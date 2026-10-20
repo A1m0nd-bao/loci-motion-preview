@@ -1,117 +1,9 @@
 {
   "items": [
     {
-      "name": "Ruby Fall · Soft Entry · Compact",
-      "fileName": "ruby-fall-soft-entry.json",
-      "file": "./lotties/未分类/ruby-fall-soft-entry-c1f625d4.json",
-      "kind": "lottie",
-      "kindLabel": "Lottie",
-      "category": "未分类",
-      "interactionType": "",
-      "tags": [],
-      "mimeType": "application/json",
-      "width": 1216,
-      "height": 1653,
-      "frameRate": 60,
-      "frames": 102,
-      "duration": 1.7,
-      "firstSeenAt": "",
-      "updatedAt": "2026-10-15T13:40:12.174Z"
-    },
-    {
-      "name": "Ice Drop · 2.2s / Quick Bottle 0.3s",
-      "fileName": "ice-drop-snappy-bottle.json",
-      "file": "./lotties/未分类/ice-drop-snappy-bottle-89f018a9.json",
-      "kind": "lottie",
-      "kindLabel": "Lottie",
-      "category": "未分类",
-      "interactionType": "",
-      "tags": [],
-      "mimeType": "application/json",
-      "width": 218,
-      "height": 150,
-      "frameRate": 60,
-      "frames": 132,
-      "duration": 2.2,
-      "firstSeenAt": "",
-      "updatedAt": "2026-10-15T10:18:13.909Z"
-    },
-    {
-      "name": "Sapphire Fall · Soft Entry · Compact",
-      "fileName": "sapphire-fall-soft-entry.json",
-      "file": "./lotties/未分类/sapphire-fall-soft-entry-f9cdcd70.json",
-      "kind": "lottie",
-      "kindLabel": "Lottie",
-      "category": "未分类",
-      "interactionType": "",
-      "tags": [],
-      "mimeType": "application/json",
-      "width": 1216,
-      "height": 1653,
-      "frameRate": 60,
-      "frames": 102,
-      "duration": 1.7,
-      "firstSeenAt": "",
-      "updatedAt": "2026-10-15T10:18:13.259Z"
-    },
-    {
-      "name": "Cheers · Gentle Clink · 80 Frames",
-      "fileName": "cheers-gentle-wave-80f.json",
-      "file": "./lotties/未分类/cheers-gentle-wave-80f-cc7349dd.json",
-      "kind": "lottie",
-      "kindLabel": "Lottie",
-      "category": "未分类",
-      "interactionType": "",
-      "tags": [],
-      "mimeType": "application/json",
-      "width": 445,
-      "height": 429,
-      "frameRate": 60,
-      "frames": 80,
-      "duration": 1.3333333333333333,
-      "firstSeenAt": "",
-      "updatedAt": "2026-10-14T13:04:54.435Z"
-    },
-    {
-      "name": "蓝宝石高脚杯 · 简约快节奏掉落与滚落",
-      "fileName": "蓝宝石高脚杯-掉落滚落_压缩版.json",
-      "file": "./lotties/未分类/蓝宝石高脚杯-掉落滚落-压缩版-53f202e8.json",
-      "kind": "lottie",
-      "kindLabel": "Lottie",
-      "category": "未分类",
-      "interactionType": "",
-      "tags": [],
-      "mimeType": "application/json",
-      "width": 1216,
-      "height": 1293,
-      "frameRate": 60,
-      "frames": 108,
-      "duration": 1.8,
-      "firstSeenAt": "2026-10-14T20:15:56+08:00",
-      "updatedAt": "2026-10-14T12:15:44.506Z"
-    },
-    {
-      "name": "Cheers · Original Gradient · Gravity Surface",
-      "fileName": "cheers-reference-web.json",
-      "file": "./lotties/未分类/cheers-reference-web-5b7ff2df.json",
-      "kind": "lottie",
-      "kindLabel": "Lottie",
-      "category": "未分类",
-      "interactionType": "",
-      "tags": [],
-      "mimeType": "application/json",
-      "width": 445,
-      "height": 429,
-      "frameRate": 60,
-      "frames": 240,
-      "duration": 4,
-      "firstSeenAt": "2026-10-14T13:47:58+08:00",
-      "updatedAt": "2026-10-14T05:47:29.475Z"
-    },
-    {
-      "name": "宝石奖励 · 光线爆开与盒子淡出",
-      "fileName": "gem-flow-lightweight.json",
-      "file": "./lotties/未分类/gem-flow-lightweight-67aa4104.json",
+      "name": "红宝石宝箱 · 500KB 优化版 v15",
+      "fileName": "红宝石宝箱-500KB版-v15.json",
+      "file": "./lotties/未分类/红宝石宝箱-500KB版-v15-44f28a79.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
       "category": "未分类",
@@ -123,18 +15,196 @@
       "frameRate": 60,
       "frames": 228,
       "duration": 3.8,
+      "firstSeenAt": "",
+      "updatedAt": "2026-10-20T10:49:00.050Z"
+    },
+    {
+      "name": "冰块落杯 / 红宝石柔和落杯",
+      "fileName": "ruby-fall-soft-entry.json",
+      "file": "./lotties/未分类/ruby-fall-soft-entry-c1f625d4.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "分别建议用于饮品展示、红宝石奖励。",
+      "tags": [
+        "入场",
+        "/",
+        "掉落",
+        "/",
+        "液面反馈",
+        "/",
+        "奖励展示"
+      ],
+      "mimeType": "application/json",
+      "width": 1216,
+      "height": 1653,
+      "frameRate": 60,
+      "frames": 102,
+      "duration": 1.7,
+      "firstSeenAt": "",
+      "updatedAt": "2026-10-15T13:40:12.174Z"
+    },
+    {
+      "name": "冰块落杯 / 红宝石柔和落杯",
+      "fileName": "ice-drop-snappy-bottle.json",
+      "file": "./lotties/未分类/ice-drop-snappy-bottle-89f018a9.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "分别建议用于饮品展示、红宝石奖励。",
+      "tags": [
+        "入场",
+        "/",
+        "掉落",
+        "/",
+        "液面反馈",
+        "/",
+        "奖励展示"
+      ],
+      "mimeType": "application/json",
+      "width": 218,
+      "height": 150,
+      "frameRate": 60,
+      "frames": 132,
+      "duration": 2.2,
+      "firstSeenAt": "",
+      "updatedAt": "2026-10-15T10:18:13.909Z"
+    },
+    {
+      "name": "蓝宝石落杯 · 柔和入场 / 快节奏滚落版",
+      "fileName": "sapphire-fall-soft-entry.json",
+      "file": "./lotties/未分类/sapphire-fall-soft-entry-f9cdcd70.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "建议用于蓝宝石奖励展示。",
+      "tags": [
+        "入场",
+        "/",
+        "掉落",
+        "/",
+        "受压回弹"
+      ],
+      "mimeType": "application/json",
+      "width": 1216,
+      "height": 1653,
+      "frameRate": 60,
+      "frames": 102,
+      "duration": 1.7,
+      "firstSeenAt": "",
+      "updatedAt": "2026-10-15T10:18:13.259Z"
+    },
+    {
+      "name": "双杯碰杯 · 80帧轻晃版 / 重力液面版",
+      "fileName": "cheers-gentle-wave-80f.json",
+      "file": "./lotties/未分类/cheers-gentle-wave-80f-cc7349dd.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "建议用于庆祝、成功反馈。",
+      "tags": [
+        "庆祝反馈",
+        "/",
+        "碰杯",
+        "/",
+        "酒液联动"
+      ],
+      "mimeType": "application/json",
+      "width": 445,
+      "height": 429,
+      "frameRate": 60,
+      "frames": 80,
+      "duration": 1.3333333333333333,
+      "firstSeenAt": "",
+      "updatedAt": "2026-10-14T13:04:54.435Z"
+    },
+    {
+      "name": "蓝宝石落杯 · 柔和入场 / 快节奏滚落版",
+      "fileName": "蓝宝石高脚杯-掉落滚落_压缩版.json",
+      "file": "./lotties/未分类/蓝宝石高脚杯-掉落滚落-压缩版-53f202e8.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "建议用于蓝宝石奖励展示。",
+      "tags": [
+        "入场",
+        "/",
+        "掉落",
+        "/",
+        "受压回弹"
+      ],
+      "mimeType": "application/json",
+      "width": 1216,
+      "height": 1293,
+      "frameRate": 60,
+      "frames": 108,
+      "duration": 1.8,
+      "firstSeenAt": "2026-10-14T20:15:56+08:00",
+      "updatedAt": "2026-10-14T12:15:44.506Z"
+    },
+    {
+      "name": "双杯碰杯 · 80帧轻晃版 / 重力液面版",
+      "fileName": "cheers-reference-web.json",
+      "file": "./lotties/未分类/cheers-reference-web-5b7ff2df.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "建议用于庆祝、成功反馈。",
+      "tags": [
+        "庆祝反馈",
+        "/",
+        "碰杯",
+        "/",
+        "酒液联动"
+      ],
+      "mimeType": "application/json",
+      "width": 445,
+      "height": 429,
+      "frameRate": 60,
+      "frames": 240,
+      "duration": 4,
+      "firstSeenAt": "2026-10-14T13:47:58+08:00",
+      "updatedAt": "2026-10-14T05:47:29.475Z"
+    },
+    {
+      "name": "宝石奖励 · 礼盒爆光与宝石飞入",
+      "fileName": "gem-flow-lightweight.json",
+      "file": "./lotties/未分类/gem-flow-lightweight-67aa4104.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "建议用于奖励领取、宝石到账。",
+      "tags": [
+        "奖励反馈",
+        "/",
+        "宝石飞行",
+        "/",
+        "消散"
+      ],
+      "mimeType": "application/json",
+      "width": 375,
+      "height": 812,
+      "frameRate": 60,
+      "frames": 228,
+      "duration": 3.8,
       "firstSeenAt": "2026-10-13T20:22:39+08:00",
       "updatedAt": "2026-10-13T12:21:03.323Z"
     },
     {
-      "name": "Treasure · flowing light + sustained peak · 9s",
+      "name": "宝箱持续流光 · JSON / dotLottie",
       "fileName": "treasure-glow-with-chest.lottie",
       "file": "./lotties/未分类/treasure-glow-with-chest-34625c9a.lottie",
       "kind": "lottie",
       "kindLabel": "Lottie",
       "category": "未分类",
-      "interactionType": "",
-      "tags": [],
+      "interactionType": "建议用于宝箱奖励展示。",
+      "tags": [
+        "奖励展示",
+        "/",
+        "流光",
+        "/",
+        "呼吸"
+      ],
       "mimeType": "application/json",
       "width": 640,
       "height": 560,
@@ -145,14 +215,20 @@
       "updatedAt": "2026-10-13T12:21:02.318Z"
     },
     {
-      "name": "Treasure · flowing light + sustained peak · 9s",
+      "name": "宝箱持续流光 · JSON / dotLottie",
       "fileName": "treasure-glow-with-chest.json",
       "file": "./lotties/未分类/treasure-glow-with-chest-16a2dbd3.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
       "category": "未分类",
-      "interactionType": "",
-      "tags": [],
+      "interactionType": "建议用于宝箱奖励展示。",
+      "tags": [
+        "奖励展示",
+        "/",
+        "流光",
+        "/",
+        "呼吸"
+      ],
       "mimeType": "application/json",
       "width": 640,
       "height": 560,
@@ -163,14 +239,20 @@
       "updatedAt": "2026-10-13T12:21:01.388Z"
     },
     {
-      "name": "合成 2",
+      "name": "宝石状态 · 亮起 / 常态",
       "fileName": "常态.json",
       "file": "./lotties/未分类/常态-83d45213.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
       "category": "未分类",
-      "interactionType": "",
-      "tags": [],
+      "interactionType": "建议用于激活反馈、默认展示。",
+      "tags": [
+        "状态反馈",
+        "/",
+        "强调",
+        "/",
+        "待机"
+      ],
       "mimeType": "application/json",
       "width": 948,
       "height": 600,
@@ -181,14 +263,20 @@
       "updatedAt": "2026-10-13T10:11:14.461Z"
     },
     {
-      "name": "合成 1",
+      "name": "宝石状态 · 亮起 / 常态",
       "fileName": "亮起.json",
       "file": "./lotties/未分类/亮起-298385e9.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
       "category": "未分类",
-      "interactionType": "",
-      "tags": [],
+      "interactionType": "建议用于激活反馈、默认展示。",
+      "tags": [
+        "状态反馈",
+        "/",
+        "强调",
+        "/",
+        "待机"
+      ],
       "mimeType": "application/json",
       "width": 948,
       "height": 600,
@@ -199,14 +287,20 @@
       "updatedAt": "2026-10-13T10:11:13.660Z"
     },
     {
-      "name": "合成 1",
+      "name": "短杯微晃 / 红酒连续液面 / 邀请码主视觉",
       "fileName": "Invitation code.json",
       "file": "./lotties/未分类/Invitation-code-5150662e.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
       "category": "未分类",
-      "interactionType": "",
-      "tags": [],
+      "interactionType": "按文件分别用于饮品或邀请页面。",
+      "tags": [
+        "循环微动",
+        "/",
+        "液面联动",
+        "/",
+        "页面主视觉"
+      ],
       "mimeType": "application/json",
       "width": 750,
       "height": 1624,
@@ -217,14 +311,20 @@
       "updatedAt": "2026-09-24T08:29:22.677Z"
     },
     {
-      "name": "Wine glass — continuous slosh, four whole images, no seams or frame sequence",
+      "name": "短杯微晃 / 红酒连续液面 / 邀请码主视觉",
       "fileName": "wine-continuous-rig.json",
       "file": "./lotties/未分类/wine-continuous-rig-c46a06d6.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
       "category": "未分类",
-      "interactionType": "",
-      "tags": [],
+      "interactionType": "按文件分别用于饮品或邀请页面。",
+      "tags": [
+        "循环微动",
+        "/",
+        "液面联动",
+        "/",
+        "页面主视觉"
+      ],
       "mimeType": "application/json",
       "width": 1086,
       "height": 1448,
@@ -235,14 +335,20 @@
       "updatedAt": "2026-09-24T07:23:10.984Z"
     },
     {
-      "name": "素材4 • 短杯轻晃",
+      "name": "短杯微晃 / 红酒连续液面 / 邀请码主视觉",
       "fileName": "cup-4.json",
       "file": "./lotties/未分类/cup-4-c7dbaff9.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
       "category": "未分类",
-      "interactionType": "",
-      "tags": [],
+      "interactionType": "按文件分别用于饮品或邀请页面。",
+      "tags": [
+        "循环微动",
+        "/",
+        "液面联动",
+        "/",
+        "页面主视觉"
+      ],
       "mimeType": "application/json",
       "width": 59,
       "height": 55,
@@ -253,14 +359,18 @@
       "updatedAt": "2026-09-22T07:24:09.405Z"
     },
     {
-      "name": "素材3 • 冰块漂动",
+      "name": "酒杯与冰块微动 · cup-1 / 2 / 3",
       "fileName": "cup-3.json",
       "file": "./lotties/未分类/cup-3-8c770208.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
       "category": "未分类",
-      "interactionType": "",
-      "tags": [],
+      "interactionType": "建议用于饮品展示、循环待机。",
+      "tags": [
+        "循环微动",
+        "/",
+        "冰块漂动"
+      ],
       "mimeType": "application/json",
       "width": 273,
       "height": 159,
@@ -271,14 +381,18 @@
       "updatedAt": "2026-09-22T07:24:08.398Z"
     },
     {
-      "name": "素材2 • 冰杯轻摇",
+      "name": "酒杯与冰块微动 · cup-1 / 2 / 3",
       "fileName": "cup-2.json",
       "file": "./lotties/未分类/cup-2-e8394150.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
       "category": "未分类",
-      "interactionType": "",
-      "tags": [],
+      "interactionType": "建议用于饮品展示、循环待机。",
+      "tags": [
+        "循环微动",
+        "/",
+        "冰块漂动"
+      ],
       "mimeType": "application/json",
       "width": 273,
       "height": 159,
@@ -289,14 +403,18 @@
       "updatedAt": "2026-09-22T07:24:07.502Z"
     },
     {
-      "name": "素材1 • 摇酒",
+      "name": "酒杯与冰块微动 · cup-1 / 2 / 3",
       "fileName": "cup-1.json",
       "file": "./lotties/未分类/cup-1-02a5a257.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
       "category": "未分类",
-      "interactionType": "",
-      "tags": [],
+      "interactionType": "建议用于饮品展示、循环待机。",
+      "tags": [
+        "循环微动",
+        "/",
+        "冰块漂动"
+      ],
       "mimeType": "application/json",
       "width": 79,
       "height": 103,
@@ -307,14 +425,18 @@
       "updatedAt": "2026-09-22T07:24:06.500Z"
     },
     {
-      "name": "D · Fine fluted tumbler",
+      "name": "威士忌酒杯轻晃 · 钻切 / 细竖纹款",
       "fileName": "D-fluted-transparent.json",
       "file": "./lotties/未分类/D-fluted-transparent-92cb056b.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
       "category": "未分类",
-      "interactionType": "",
-      "tags": [],
+      "interactionType": "建议用于酒杯选择、待机展示。",
+      "tags": [
+        "循环微动",
+        "/",
+        "玻璃质感"
+      ],
       "mimeType": "application/json",
       "width": 512,
       "height": 512,
@@ -325,14 +447,18 @@
       "updatedAt": "2026-09-22T07:19:25.003Z"
     },
     {
-      "name": "C · Diamond-cut foot",
+      "name": "威士忌酒杯轻晃 · 钻切 / 细竖纹款",
       "fileName": "C-diamond-transparent.json",
       "file": "./lotties/未分类/C-diamond-transparent-58b99b12.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
       "category": "未分类",
-      "interactionType": "",
-      "tags": [],
+      "interactionType": "建议用于酒杯选择、待机展示。",
+      "tags": [
+        "循环微动",
+        "/",
+        "玻璃质感"
+      ],
       "mimeType": "application/json",
       "width": 512,
       "height": 512,
@@ -343,14 +469,18 @@
       "updatedAt": "2026-09-22T07:19:23.650Z"
     },
     {
-      "name": "B · Rounded tasting tumbler",
+      "name": "威士忌酒杯轻晃 · 经典 / 扭转 / 圆润款",
       "fileName": "B-rounded-transparent.json",
       "file": "./lotties/未分类/B-rounded-transparent-2f2b806e.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
       "category": "未分类",
-      "interactionType": "",
-      "tags": [],
+      "interactionType": "建议用于酒杯选择、待机展示。",
+      "tags": [
+        "循环微动",
+        "/",
+        "酒液晃动"
+      ],
       "mimeType": "application/json",
       "width": 512,
       "height": 512,
@@ -361,14 +491,18 @@
       "updatedAt": "2026-09-22T07:19:22.740Z"
     },
     {
-      "name": "A · Twisted heavy base",
+      "name": "威士忌酒杯轻晃 · 经典 / 扭转 / 圆润款",
       "fileName": "A-twist-transparent.json",
       "file": "./lotties/未分类/A-twist-transparent-7e98d26a.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
       "category": "未分类",
-      "interactionType": "",
-      "tags": [],
+      "interactionType": "建议用于酒杯选择、待机展示。",
+      "tags": [
+        "循环微动",
+        "/",
+        "酒液晃动"
+      ],
       "mimeType": "application/json",
       "width": 512,
       "height": 512,
@@ -379,14 +513,18 @@
       "updatedAt": "2026-09-22T07:19:21.796Z"
     },
     {
-      "name": "Whisky • clear deep amber",
+      "name": "威士忌酒杯轻晃 · 经典 / 扭转 / 圆润款",
       "fileName": "whisky-transparent.json",
       "file": "./lotties/未分类/whisky-transparent-336cef70.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
       "category": "未分类",
-      "interactionType": "",
-      "tags": [],
+      "interactionType": "建议用于酒杯选择、待机展示。",
+      "tags": [
+        "循环微动",
+        "/",
+        "酒液晃动"
+      ],
       "mimeType": "application/json",
       "width": 512,
       "height": 512,
@@ -397,14 +535,18 @@
       "updatedAt": "2026-09-22T07:19:20.583Z"
     },
     {
-      "name": "合成 1 — half resolution",
+      "name": "邀请 / 邀请码竖屏主视觉 · 压缩与半分辨率版",
       "fileName": "Invitation code.half-resolution.json",
       "file": "./lotties/未分类/Invitation-code-66b53e89.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
       "category": "未分类",
-      "interactionType": "",
-      "tags": [],
+      "interactionType": "建议用于邀请 / 邀请码页面。",
+      "tags": [
+        "页面主视觉",
+        "/",
+        "展示转场"
+      ],
       "mimeType": "application/json",
       "width": 375,
       "height": 812,
@@ -415,14 +557,18 @@
       "updatedAt": "2026-09-21T09:11:59.494Z"
     },
     {
-      "name": "合成 1",
+      "name": "邀请 / 邀请码竖屏主视觉 · 压缩与半分辨率版",
       "fileName": "Invitation code.compressed.json",
       "file": "./lotties/未分类/Invitation-code-5c5f694f.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
       "category": "未分类",
-      "interactionType": "",
-      "tags": [],
+      "interactionType": "建议用于邀请 / 邀请码页面。",
+      "tags": [
+        "页面主视觉",
+        "/",
+        "展示转场"
+      ],
       "mimeType": "application/json",
       "width": 750,
       "height": 1624,
@@ -433,14 +579,18 @@
       "updatedAt": "2026-09-21T06:47:01.997Z"
     },
     {
-      "name": "合成 3",
+      "name": "双杯碰杯庆祝 · 原始版",
       "fileName": "new cheers.json",
       "file": "./lotties/未分类/new-cheers-19fabc6a.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
       "category": "未分类",
-      "interactionType": "",
-      "tags": [],
+      "interactionType": "建议用于庆祝、成功反馈。",
+      "tags": [
+        "庆祝反馈",
+        "/",
+        "碰杯"
+      ],
       "mimeType": "application/json",
       "width": 445,
       "height": 429,
@@ -571,13 +721,13 @@
       "updatedAt": "2026-09-08T08:36:29.769Z"
     },
     {
-      "name": "Shaker Loader — Purple Wide Swing (web-safe)",
+      "name": "紫色雪克杯加载 · 标准 / 活力 / 大摆幅",
       "fileName": "shaker-loader-purple-wide-swing-web-safe.json",
       "file": "./lotties/雪克杯摇晃加载态/shaker-loader-purple-wide-swing-web-safe-4fb14b30.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
       "category": "雪克杯摇晃加载态",
-      "interactionType": "",
+      "interactionType": "建议用于紫色主题的加载等待。",
       "tags": [
         "雪克杯摇晃加载态（变色）"
       ],
@@ -591,13 +741,13 @@
       "updatedAt": "2026-09-08T08:36:29.768Z"
     },
     {
-      "name": "Shaker Loader — Wide Swing (web-safe)",
+      "name": "雪克杯加载 · 标准 / 活力 / 大摆幅",
       "fileName": "shaker-loader-wide-swing-web-safe.json",
       "file": "./lotties/雪克杯摇晃加载态/shaker-loader-wide-swing-web-safe-33393b81.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
       "category": "雪克杯摇晃加载态",
-      "interactionType": "",
+      "interactionType": "建议用于调制、内容生成等加载等待。",
       "tags": [
         "雪克杯摇晃加载态"
       ],
@@ -611,14 +761,18 @@
       "updatedAt": "2026-09-08T08:36:27.316Z"
     },
     {
-      "name": "合成 2",
+      "name": "生成中 · 飞机上移与地球柔光",
       "fileName": "dxxr-b9e9d9f2-375x812-airplane-up40-fade-scaled-soft-halo.json",
       "file": "./lotties/未分类/dxxr-b9e9d9f2-375x812-airplane-up40-fade-scaled-soft-halo-594d0db5.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
       "category": "未分类",
-      "interactionType": "",
-      "tags": [],
+      "interactionType": "建议用于生成中、页面过渡。",
+      "tags": [
+        "加载",
+        "/",
+        "转场"
+      ],
       "mimeType": "application/json",
       "width": 375,
       "height": 812,
@@ -629,14 +783,18 @@
       "updatedAt": "2026-09-08T05:19:08.230Z"
     },
     {
-      "name": "Loci World Entry",
+      "name": "世界入口 · 入场与加载",
       "fileName": "LociWorldLottie.json",
       "file": "./lotties/创建模式-Publish-Loci/LociWorldLottie-3e7388a1.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
       "category": "未分类",
-      "interactionType": "",
-      "tags": [],
+      "interactionType": "建议用于开屏、世界入口加载。",
+      "tags": [
+        "入场",
+        "/",
+        "加载"
+      ],
       "mimeType": "application/json",
       "width": 750,
       "height": 1624,
@@ -647,14 +805,18 @@
       "updatedAt": "2026-09-08T05:19:08.229Z"
     },
     {
-      "name": "Loci World Loading Loop",
+      "name": "世界入口 · 入场与加载",
       "fileName": "LociWorldLottieLoading.json",
       "file": "./lotties/创建模式-Publish-Loci/LociWorldLottieLoading-c8771a12.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
       "category": "未分类",
-      "interactionType": "",
-      "tags": [],
+      "interactionType": "建议用于开屏、世界入口加载。",
+      "tags": [
+        "入场",
+        "/",
+        "加载"
+      ],
       "mimeType": "application/json",
       "width": 750,
       "height": 1624,
@@ -665,14 +827,16 @@
       "updatedAt": "2026-09-08T05:19:08.229Z"
     },
     {
-      "name": "Combined Gesture Animations",
+      "name": "紫色手势引导 · 缩小 / 放大 / 滑动",
       "fileName": "combined-gestures-purple-solid.json",
       "file": "./lotties/未分类/combined-gestures-purple-solid-5e0cbf98.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
       "category": "未分类",
-      "interactionType": "",
-      "tags": [],
+      "interactionType": "建议用于缩放、滑动操作教学。",
+      "tags": [
+        "手势引导"
+      ],
       "mimeType": "application/json",
       "width": 272,
       "height": 211,
@@ -778,14 +942,18 @@
       "updatedAt": "2026-08-06T06:20:52.021Z"
     },
     {
-      "name": "Camera Tilt Shake Local Flash Loop - 74x84",
+      "name": "相机轻晃与闪光",
       "fileName": "camera-shake-flash-top-expanded-74x84.embedded.lottie.json",
       "file": "./lotties/创建模式-Drop-Loci/camera-shake-flash-top-expanded-74x84-embedded-dc19089e.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
       "category": "未分类",
-      "interactionType": "",
-      "tags": [],
+      "interactionType": "建议用于拍摄入口、相机操作提示。",
+      "tags": [
+        "点击反馈",
+        "/",
+        "循环微动"
+      ],
       "mimeType": "application/json",
       "width": 74,
       "height": 84,
@@ -796,14 +964,18 @@
       "updatedAt": "2026-08-06T03:46:21.484Z"
     },
     {
-      "name": "Angry Avatar Loop",
+      "name": "生气状态 · 过渡与循环",
       "fileName": "angry-shake-loop-vector-only.json",
       "file": "./lotties/未分类/angry-shake-loop-vector-only-326acf97.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
       "category": "未分类",
-      "interactionType": "",
-      "tags": [],
+      "interactionType": "建议用于角色生气情绪反馈。",
+      "tags": [
+        "情绪反馈",
+        "/",
+        "状态切换"
+      ],
       "mimeType": "application/json",
       "width": 416,
       "height": 384,
@@ -814,14 +986,18 @@
       "updatedAt": "2026-08-06T03:46:21.484Z"
     },
     {
-      "name": "Angry Avatar Transition Variant",
+      "name": "生气状态 · 过渡与循环",
       "fileName": "calm-to-angry-transition-vector-only.json",
       "file": "./lotties/未分类/calm-to-angry-transition-vector-only-abf9b4f6.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
       "category": "未分类",
-      "interactionType": "",
-      "tags": [],
+      "interactionType": "建议用于角色生气情绪反馈。",
+      "tags": [
+        "情绪反馈",
+        "/",
+        "状态切换"
+      ],
       "mimeType": "application/json",
       "width": 416,
       "height": 384,
@@ -913,14 +1089,18 @@
       "updatedAt": "2026-07-29T04:06:11.525Z"
     },
     {
-      "name": "合成 2",
+      "name": "生成中 · 角色行走与地球脉冲",
       "fileName": "dxxr-b9e9d9f2-375x812-svg-rings-under-earth-pulse-compressed-subtle-clean-earth-r770.json",
       "file": "./lotties/未分类/dxxr-b9e9d9f2-375x812-svg-rings-under-earth-pulse-compressed-subtle-clean-earth--851efe1e.json",
       "kind": "lottie",
       "kindLabel": "Lottie",
       "category": "未分类",
-      "interactionType": "",
-      "tags": [],
+      "interactionType": "建议用于生成中、等待加载。",
+      "tags": [
+        "加载",
+        "/",
+        "循环微动"
+      ],
       "mimeType": "application/json",
       "width": 375,
       "height": 812,
