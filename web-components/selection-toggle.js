@@ -3,6 +3,29 @@ export function defineSelectionToggle(animate) {
   const tag = "sipplay-selection-toggle";
   if (customElements.get(tag)) return;
 
+  /**
+   * @summary 粉色勾选切换
+   * 动效：粉色勾选切换 / sipplay-selection-toggle
+   * 位置：建议用于粉色圆形勾选控件；本次设计选区未确认位置，不能匹配到方形协议勾选框。
+   * Figma：待绑定；仅凭图标相似不得批量替换
+   * 触发：选中时圆底弹出并画勾；取消时恢复空心圆。
+   * 状态：active；默认 false，接入时以业务状态覆盖
+   * 事件：motion-change → { active: boolean }
+   * 业务接入：active 绑定勾选数据；监听 motion-change 同步表单。图形不代表业务提交成功。
+   * 参数：duration=0.32（时长（秒））；bounce=0.15（回弹程度）
+   * 源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/selection-toggle.js；初始化 defineSelectionToggle(animate)
+   * 依赖：Motion animate
+   * API 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json
+   * 预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-selection-toggle
+   * 注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。
+   * 映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。
+   * @tag sipplay-selection-toggle
+   * @attribute {boolean} active - active 绑定勾选数据；监听 motion-change 同步表单。图形不代表业务提交成功。 默认 false。
+   * @attribute {number} duration - 时长（秒）；范围 0.12–1.5，步长 0.02。
+   * @attribute {number} bounce - 回弹程度；范围 0–0.5，步长 0.05。
+   * @attribute {string} label - 内部交互控件的可访问名称。
+   * @fires {CustomEvent} motion-change - detail: { active: boolean }。active 绑定勾选数据；监听 motion-change 同步表单。图形不代表业务提交成功。
+   */
   class SelectionToggle extends HTMLElement {
     static observedAttributes = ["active", "duration", "bounce", "label"];
 

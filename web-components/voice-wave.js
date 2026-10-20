@@ -14,6 +14,29 @@ export function defineVoiceWave(animate) {
     [2, 2, 2, 2, 2], [2, 2, 3, 2, 2], [3, 6, 9, 5, 3], [6, 11, 14, 7, 4],
     [4, 8, 10, 13, 6], [3, 5, 12, 7, 4], [2, 4, 7, 5, 3], rest,
   ];
+  /**
+   * @summary 灵动语音条
+   * 动效：灵动语音条 / sipplay-voice-wave
+   * 位置：建议用于语音消息播放状态；本次设计选区未确认位置。
+   * Figma：待绑定；仅凭图标相似不得批量替换
+   * 触发：active=true 循环声纹；false 时平滑收稳。
+   * 状态：active；默认 false，接入时以业务状态覆盖
+   * 事件：motion-change → { active: boolean }
+   * 业务接入：只提供视觉，不含音频播放器。以真实音频 playing / pause / ended / error 事件驱动 active；点击事件应交给业务音频控制，不以动画启动作为播放成功。
+   * 参数：duration=4.8（节奏周期（秒））；strength=1（声纹幅度）
+   * 源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/voice-wave.js；初始化 defineVoiceWave(animate)
+   * 依赖：Motion animate
+   * API 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json
+   * 预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-voice-wave
+   * 注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。
+   * 映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。
+   * @tag sipplay-voice-wave
+   * @attribute {boolean} active - 只提供视觉，不含音频播放器。以真实音频 playing / pause / ended / error 事件驱动 active；点击事件应交给业务音频控制，不以动画启动作为播放成功。 默认 false。
+   * @attribute {number} duration - 节奏周期（秒）；范围 2.4–8，步长 0.2。
+   * @attribute {number} strength - 声纹幅度；范围 0.35–1.4，步长 0.05。
+   * @attribute {string} label - 内部交互控件的可访问名称。
+   * @fires {CustomEvent} motion-change - detail: { active: boolean }。只提供视觉，不含音频播放器。以真实音频 playing / pause / ended / error 事件驱动 active；点击事件应交给业务音频控制，不以动画启动作为播放成功。
+   */
   class VoiceWave extends HTMLElement {
     static observedAttributes = ["active", "duration", "strength", "label"];
     constructor() {

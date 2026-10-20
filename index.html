@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>SipPlay Motion Library</title>
     <link rel="stylesheet" href="./styles.css?v=sipplay-motion-20261019" />
+    <link rel="stylesheet" href="./web-components/handoff.css?v=20261020-handoff" />
     <script type="importmap">{"imports":{"motion":"./motion/vendor/motion.js"}}</script>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@2.0.8/dist/lottie-player.js"></script>
     <script src="https://unpkg.com/@rive-app/canvas@2.24.0/rive.js"></script>
@@ -147,6 +148,16 @@
           <div>
             <h2>让界面动起来。</h2>
             <p>49 个开源组件与自定义 SVG 动效。悬停预览，打开详情体验交互、调整参数，复制 HTML 即可使用。</p>
+            <details class="web-usage-quick">
+              <summary>研发 / AI 怎么使用这些动效？</summary>
+              <ol>
+                <li>先在 Figma 核对动效 ID 与对应节点，确定放置位置。</li>
+                <li>打开自定义动效详情，复制「接入注释」，或下载 HTML 独立体验。</li>
+                <li>让研发 / AI 按公开状态和事件连接业务，验证一处后再批量接入。</li>
+              </ol>
+              <a href="./web-components/usage.html">查看完整接入说明与 AI 指令 ↗</a>
+              <span aria-hidden="true"> · </span><a href="./custom-elements.json" target="_blank" rel="noopener">组件 API 清单 ↗</a>
+            </details>
           </div>
           <p class="web-attribution">基于 <a href="https://github.com/tgomilar/motion-components" target="_blank" rel="noopener noreferrer">motion-components 1.3.0 ↗</a><br>作者 Tanja Gomilar · <a href="./web-components/vendor/THIRD-PARTY-NOTICES.txt" target="_blank" rel="noopener noreferrer">MIT 与第三方许可</a></p>
         </section>
@@ -251,6 +262,7 @@
             <section id="webCodePanel" class="web-code-panel" aria-label="组件代码与用法" hidden>
               <div class="web-code-heading"><h3>组件代码</h3><button id="webReset" type="button">重置参数</button></div>
               <p id="webDescription"></p>
+              <section id="webHandoffPanel" class="handoff-panel" aria-label="研发和 AI 接入说明" hidden></section>
               <pre tabindex="0" aria-label="组件接入代码"><code id="webCode"></code></pre>
               <p class="web-code-note">「复制 HTML」包含示例样式与初始化脚本；下载的 HTML 联网即可运行。Web 组件用于网页，不是 Lottie JSON。</p>
             </section>
@@ -298,7 +310,7 @@
       </div>
     </dialog>
 
-    <script src="./app.js?v=sipplay-motion-20261020-check-path" type="module"></script>
+    <script src="./app.js?v=sipplay-motion-20261020-handoff" type="module"></script>
     <script src="./scripts/line-waves-static.mjs?v=20260802a" type="module"></script>
   </body>
 </html>

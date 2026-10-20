@@ -1,6 +1,29 @@
 export function defineUserPageToggle(animate) {
   const tag = "sipplay-user-page-toggle";
   if (customElements.get(tag)) return;
+  /**
+   * @summary 用户页探出选中
+   * 动效：用户页探出选中 / sipplay-user-page-toggle
+   * 位置：建议用于用户页导航图标；本次设计选区未确认位置。
+   * Figma：待绑定；仅凭图标相似不得批量替换
+   * 触发：选中时头部、身体从底部先后探出；取消时恢复线框。
+   * 状态：active；默认 false，接入时以业务状态覆盖
+   * 事件：motion-change → { active: boolean }
+   * 业务接入：在底栏中由父级导航驱动；与创建页 20px 的人物图标分别使用。
+   * 参数：duration=0.64（切换时长（秒））；strength=1（回弹幅度）
+   * 源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/user-page-toggle.js；初始化 defineUserPageToggle(animate)
+   * 依赖：Motion animate
+   * API 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json
+   * 预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-user-page-toggle
+   * 注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。
+   * 映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。
+   * @tag sipplay-user-page-toggle
+   * @attribute {boolean} active - 在底栏中由父级导航驱动；与创建页 20px 的人物图标分别使用。 默认 false。
+   * @attribute {number} duration - 切换时长（秒）；范围 0.24–1.2，步长 0.02。
+   * @attribute {number} strength - 回弹幅度；范围 0.4–1.4，步长 0.05。
+   * @attribute {string} label - 内部交互控件的可访问名称。
+   * @fires {CustomEvent} motion-change - detail: { active: boolean }。在底栏中由父级导航驱动；与创建页 20px 的人物图标分别使用。
+   */
   class UserPageToggle extends HTMLElement {
     static observedAttributes = ["active", "duration", "strength", "label"];
     constructor() {

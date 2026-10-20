@@ -3,6 +3,29 @@ export function defineLayerStackToggle(animate) {
   const tag = "sipplay-layer-stack-toggle";
   if (customElements.get(tag)) return;
 
+  /**
+   * @summary 图层落下叠加
+   * 动效：图层落下叠加 / sipplay-layer-stack-toggle
+   * 位置：Intro 左侧图层图标。
+   * Figma：Intro / 图层图标 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-95323
+   * 触发：对应 Tab 从未选中变为选中时，方片依次落下叠合；取消选中置灰。
+   * 状态：active；默认 false，接入时以业务状态覆盖
+   * 事件：motion-change → { active: boolean }
+   * 业务接入：在 Tap Tab 中由父组件驱动 active。独立使用时，active 绑定当前步骤是否为 intro。
+   * 参数：duration=0.72（时长（秒））；bounce=0.24（回弹程度）
+   * 源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/layer-stack-toggle.js；初始化 defineLayerStackToggle(animate)
+   * 依赖：Motion animate
+   * API 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json
+   * 预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-layer-stack-toggle
+   * 注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。
+   * 映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。
+   * @tag sipplay-layer-stack-toggle
+   * @attribute {boolean} active - 在 Tap Tab 中由父组件驱动 active。独立使用时，active 绑定当前步骤是否为 intro。 默认 false。
+   * @attribute {number} duration - 时长（秒）；范围 0.24–1.8，步长 0.04。
+   * @attribute {number} bounce - 回弹程度；范围 0–0.5，步长 0.02。
+   * @attribute {string} label - 内部交互控件的可访问名称。
+   * @fires {CustomEvent} motion-change - detail: { active: boolean }。在 Tap Tab 中由父组件驱动 active。独立使用时，active 绑定当前步骤是否为 intro。
+   */
   class LayerStackToggle extends HTMLElement {
     static observedAttributes = ["active", "duration", "bounce", "label"];
 

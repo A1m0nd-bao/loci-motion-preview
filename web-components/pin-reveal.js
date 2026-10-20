@@ -2,6 +2,29 @@
 export function definePinReveal(animate) {
   const tag = "sipplay-pin-reveal";
   if (customElements.get(tag)) return;
+  /**
+   * @summary 实心图钉出现
+   * 动效：实心图钉出现 / sipplay-pin-reveal
+   * 位置：建议用于已置顶标记的出现；本次设计选区未确认位置。
+   * Figma：待绑定；仅凭图标相似不得批量替换
+   * 触发：active=true 时出现；带 active 挂载也会播放出现动画。
+   * 状态：active；默认 false，接入时以业务状态覆盖
+   * 事件：motion-change → { active: boolean }
+   * 业务接入：这是出现/隐藏效果，与图钉双态切换不同。初始需要静态显示时挂载后调用 finish()；业务状态仍由外部控制。
+   * 参数：duration=0.64（时长（秒））；bounce=0.28（回弹程度）
+   * 源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/pin-reveal.js；初始化 definePinReveal(animate)
+   * 依赖：Motion animate
+   * API 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json
+   * 预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-pin-reveal
+   * 注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。
+   * 映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。
+   * @tag sipplay-pin-reveal
+   * @attribute {boolean} active - 这是出现/隐藏效果，与图钉双态切换不同。初始需要静态显示时挂载后调用 finish()；业务状态仍由外部控制。 默认 false。
+   * @attribute {number} duration - 时长（秒）；范围 0.24–1.8，步长 0.04。
+   * @attribute {number} bounce - 回弹程度；范围 0–0.5，步长 0.02。
+   * @attribute {string} label - 内部交互控件的可访问名称。
+   * @fires {CustomEvent} motion-change - detail: { active: boolean }。这是出现/隐藏效果，与图钉双态切换不同。初始需要静态显示时挂载后调用 finish()；业务状态仍由外部控制。
+   */
   class PinMotion extends HTMLElement {
     static observedAttributes = ["active", "duration", "bounce", "label"];
     constructor() {

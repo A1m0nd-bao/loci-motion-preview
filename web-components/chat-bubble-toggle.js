@@ -2,6 +2,29 @@
 export function defineChatBubbleToggle(animate) {
   const tag = "sipplay-chat-bubble-toggle";
   if (customElements.get(tag)) return;
+  /**
+   * @summary 对话气泡唤醒
+   * 动效：对话气泡唤醒 / sipplay-chat-bubble-toggle
+   * 位置：建议用于聊天导航图标；本次设计选区未确认位置。
+   * Figma：待绑定；仅凭图标相似不得批量替换
+   * 触发：选中时气泡填充并绘出波形，取消时反向收笔。
+   * 状态：active；默认 false，接入时以业务状态覆盖
+   * 事件：motion-change → { active: boolean }
+   * 业务接入：在底栏中由父级导航驱动；独立使用时 active 绑定当前路由是否为聊天页，不表示语音播放。
+   * 参数：duration=0.64（时长（秒））；bounce=0.22（绘制弹性）
+   * 源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/chat-bubble-toggle.js；初始化 defineChatBubbleToggle(animate)
+   * 依赖：Motion animate
+   * API 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json
+   * 预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-chat-bubble-toggle
+   * 注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。
+   * 映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。
+   * @tag sipplay-chat-bubble-toggle
+   * @attribute {boolean} active - 在底栏中由父级导航驱动；独立使用时 active 绑定当前路由是否为聊天页，不表示语音播放。 默认 false。
+   * @attribute {number} duration - 时长（秒）；范围 0.24–1.6，步长 0.04。
+   * @attribute {number} bounce - 绘制弹性；范围 0–0.45，步长 0.01。
+   * @attribute {string} label - 内部交互控件的可访问名称。
+   * @fires {CustomEvent} motion-change - detail: { active: boolean }。在底栏中由父级导航驱动；独立使用时 active 绑定当前路由是否为聊天页，不表示语音播放。
+   */
   class ChatBubbleToggle extends HTMLElement {
     static observedAttributes = ["active", "duration", "bounce", "label"];
     constructor() {

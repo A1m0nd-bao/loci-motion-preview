@@ -1,0 +1,46 @@
+{
+  "fileKey": "KZyY9qkYbf0yiwqcovRKy3",
+  "codeConnect": "unavailable-plan",
+  "annotationBoard": {
+    "nodeId": "757:14437",
+    "url": "https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=757-14437"
+  },
+  "note": "项目交付记录，不是 Code Connect 标准格式。仅映射核对过的节点；未匹配项不得按外观批量替换。",
+  "bindings": [
+    {
+      "nodeId": "730:95317",
+      "tagName": "sipplay-tap-tab",
+      "source": "web-components/tap-tab.js",
+      "placement": "整组导航；优先复用组合组件，三个图标由父级统一驱动",
+      "url": "https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-95317"
+    },
+    {
+      "nodeId": "730:95330",
+      "tagName": "sipplay-preview-tabs",
+      "source": "web-components/preview-tabs.js",
+      "placement": "整组分段控件；selected = 0（Chat）或 1（Feed）",
+      "url": "https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-95330"
+    },
+    {
+      "nodeId": "730:95327",
+      "tagName": "sipplay-wrench-turn-toggle",
+      "source": "web-components/wrench-turn-toggle.js",
+      "placement": "仅图标；active = 当前步骤为 advanced",
+      "url": "https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-95327"
+    },
+    {
+      "nodeId": "730:95319",
+      "tagName": "sipplay-profile-rise-toggle",
+      "source": "web-components/profile-rise-toggle.js",
+      "placement": "仅图标；active = 当前步骤为 character",
+      "url": "https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-95319"
+    },
+    {
+      "nodeId": "730:95323",
+      "tagName": "sipplay-layer-stack-toggle",
+      "source": "web-components/layer-stack-toggle.js",
+      "placement": "仅图标；active = 当前步骤为 intro",
+      "url": "https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-95323"
+    }
+  ]
+}

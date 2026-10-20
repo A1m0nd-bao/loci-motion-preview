@@ -1,0 +1,36 @@
+.web-usage-quick{margin-top:16px;font-size:13px;line-height:1.8;color:#b6b5c0}
+.web-usage-quick summary{cursor:pointer;color:#e9e3ff;font-weight:600}
+.web-usage-quick ol{padding-left:20px;margin:10px 0}
+.web-usage-quick a{color:#c8b7fe}
+.handoff-panel{margin:20px 0;padding:20px;border:1px solid #35313f;border-radius:14px;background:#14131b;color:#d4cfdf;font:400 13px/1.75 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.handoff-panel[hidden]{display:none}
+.handoff-panel h3{margin:0;color:#fff;font-size:15px}
+.handoff-panel .handoff-status{margin:5px 0 14px;color:#bba6ee;font-size:12px}
+.handoff-panel dl{display:grid;grid-template-columns:80px minmax(0,1fr);gap:10px;margin:0}
+.handoff-panel dt{color:#9c94aa}.handoff-panel dd{margin:0;overflow-wrap:anywhere}
+.handoff-actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:18px 0}
+.handoff-panel button,.handoff-panel a,.usage-page button,.usage-page .button{font:inherit;padding:6px 12px;border:1px solid #494253;border-radius:7px;background:#24202e;color:#eee4ff;text-decoration:none;cursor:pointer}
+.handoff-panel details{padding-top:12px;border-top:1px solid #35313f}
+.handoff-panel summary{cursor:pointer;color:#ded4f5}
+.handoff-panel pre{max-height:360px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;background:#0c0b11;border-radius:8px;padding:14px;color:#dbd1ed;font:12px/1.7 ui-monospace,SFMono-Regular,monospace}
+.handoff-panel .handoff-footnote{margin:14px 0 0;color:#a49aad;font-size:12px}
+.handoff-panel :focus-visible,.usage-page :focus-visible{outline:2px solid #c8b7fe;outline-offset:4px}
+.usage-page{margin:0;background:#0b0c12;color:#e8e4f0;font:15px/1.8 -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC",sans-serif}
+.usage-page main{max-width:1080px;margin:auto;padding:40px 28px 80px}
+.usage-page header{display:flex;justify-content:space-between;gap:20px;align-items:center;border-bottom:1px solid #2f2c3a;padding-bottom:18px;margin-bottom:42px;font-size:13px;color:#b2a9c5}
+.usage-page h1{font-size:clamp(28px,5vw,42px);line-height:1.3;letter-spacing:-.04em;margin:0 0 16px}
+.usage-page h2{font-size:20px;margin:32px 0 16px}.usage-page p{color:#b7afc6}
+.usage-page .eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#c8b7fe}
+.usage-page .steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:26px 0}
+.usage-page .step{padding:20px;border:1px solid #353040;border-radius:14px;background:#15131d}
+.usage-page .step strong{font-size:16px}.usage-page .step p{font-size:13px;margin-bottom:0}
+.usage-page .resources{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0}
+.usage-page .scope{border-left:3px solid #a58ccf;padding:12px 18px;background:#181420;font-size:13px}
+.usage-page .component-doc{margin:12px 0;border:1px solid #39323f;border-radius:14px;background:#131219;scroll-margin-top:24px}
+.usage-page .component-doc>summary{display:flex;flex-wrap:wrap;gap:8px 14px;justify-content:space-between;cursor:pointer;padding:18px 20px;font-weight:600}
+.usage-page .component-doc>summary code{font-size:11px;color:#b6a5cc;overflow-wrap:anywhere}
+.usage-page .component-doc .handoff-panel{margin:0;border:0;border-top:1px solid #302a38;border-radius:0 0 14px 14px}
+.usage-page #commonNotes{padding-left:20px;color:#b7afc6;font-size:13px}
+.usage-page #commonNotes li{margin:10px 0}
+.usage-page .batch-text{white-space:pre-wrap;overflow-wrap:anywhere;font:12px/1.8 ui-monospace,SFMono-Regular,monospace;background:#131219;border:1px solid #353040;padding:18px;border-radius:12px;color:#cfc4df}
+@media(max-width:600px){.usage-page main{padding:22px 16px 60px}.usage-page .steps{grid-template-columns:1fr}.usage-page header{margin-bottom:28px}.handoff-panel{padding:16px}.handoff-panel dl{grid-template-columns:1fr;gap:4px}.handoff-panel dd{margin-bottom:8px}}

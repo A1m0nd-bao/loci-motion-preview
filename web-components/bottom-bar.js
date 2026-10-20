@@ -1,6 +1,28 @@
 export function defineBottomBar() {
   const tag = "sipplay-bottom-bar";
   if (customElements.get(tag)) return;
+  /**
+   * @summary 四页动效底栏
+   * 动效：四页动效底栏 / sipplay-bottom-bar
+   * 位置：建议用于首页/聊天/添加/用户四页底部导航整组；本次设计选区未确认位置。
+   * Figma：待绑定；仅凭图标相似不得批量替换
+   * 触发：互斥切换时播放相应图标；重复点击当前项只重播图标。
+   * 状态：value；默认 home，接入时以业务状态覆盖
+   * 事件：nav-change → { value, previous, index, label }
+   * 业务接入：value 绑定当前路由，监听 nav-change 执行业务导航；组件不包含页面和路由器。外部设置 value 不发出 nav-change。
+   * 参数：speed=1（播放速度）
+   * 源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/bottom-bar.js；初始化 defineBottomBar(animate)
+   * 依赖：sipplay-home-settle-toggle, sipplay-chat-bubble-toggle, sipplay-plus-selection-toggle, sipplay-user-page-toggle（先注册）
+   * API 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json
+   * 预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-bottom-bar
+   * 注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。
+   * 映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。
+   * @tag sipplay-bottom-bar
+   * @attribute {string} value - value 绑定当前路由，监听 nav-change 执行业务导航；组件不包含页面和路由器。外部设置 value 不发出 nav-change。 默认 home。
+   * @attribute {number} speed - 播放速度；范围 0.6–1.6，步长 0.1。
+   * @attribute {string} label - 内部交互控件的可访问名称。
+   * @fires {CustomEvent} nav-change - detail: { value, previous, index, label }。value 绑定当前路由，监听 nav-change 执行业务导航；组件不包含页面和路由器。外部设置 value 不发出 nav-change。
+   */
   class BottomBar extends HTMLElement {
     static observedAttributes = ["value", "speed", "label"];
     constructor() {

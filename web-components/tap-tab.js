@@ -1,6 +1,32 @@
 export function defineTapTab(animate) {
   const tag = "sipplay-tap-tab";
   if (customElements.get(tag)) return;
+  /**
+   * @summary 灵动 Tap Tab
+   * 动效：灵动 Tap Tab / sipplay-tap-tab
+   * 位置：创建页 Character Setup / Intro / Advanced Settings 整组导航；保留 Figma 的 912×37 布局、文字与间距，复用组件交互与动画。示例的 44px 点击区和自适应布局需要按项目适配。
+   * Figma：创建页三项 Tab https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-95317
+   * 触发：切换到新 Tab 时播放对应图标并移动下划线；再次点击当前项只重播图标。初次挂载直接显示当前业务状态。
+   * 状态：value；默认 character，接入时以业务状态覆盖
+   * 事件：tab-change → { value, previous, index }
+   * 业务接入：value 绑定当前创作步骤；监听 tab-change 更新步骤或路由。使用 character / intro / advanced 命名 slot 放面板，或由业务层切换外部面板。外部设置 value 不发出 tab-change。
+   * 参数：duration=0.3（切换时长（秒））；bounce=0.18（速度伸缩）
+   * 源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/tap-tab.js；初始化 defineTapTab(animate)
+   * 依赖：sipplay-profile-rise-toggle, sipplay-layer-stack-toggle, sipplay-wrench-turn-toggle（先注册）
+   * API 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json
+   * 预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-tap-tab
+   * 注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。
+   * 映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。
+   * @tag sipplay-tap-tab
+   * @attribute {string} value - value 绑定当前创作步骤；监听 tab-change 更新步骤或路由。使用 character / intro / advanced 命名 slot 放面板，或由业务层切换外部面板。外部设置 value 不发出 tab-change。 默认 character。
+   * @attribute {number} duration - 切换时长（秒）；范围 0.16–1.2，步长 0.02。
+   * @attribute {number} bounce - 速度伸缩；范围 0–0.4，步长 0.02。
+   * @attribute {string} label - 内部交互控件的可访问名称。
+   * @fires {CustomEvent} tab-change - detail: { value, previous, index }。value 绑定当前创作步骤；监听 tab-change 更新步骤或路由。使用 character / intro / advanced 命名 slot 放面板，或由业务层切换外部面板。外部设置 value 不发出 tab-change。
+   * @slot character - character 步骤的业务内容。
+   * @slot intro - intro 步骤的业务内容。
+   * @slot advanced - advanced 步骤的业务内容。
+   */
   class TapTab extends HTMLElement {
     static observedAttributes = ["value", "duration", "bounce", "label"];
     constructor() {

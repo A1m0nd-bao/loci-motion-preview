@@ -1,5 +1,6 @@
-import { exampleDocument } from "./examples.js?v=20261020-check-path";
+import { exampleDocument } from "./examples.js?v=20261020-handoff";
 import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-check-path";
+import { renderHandoff } from "./handoff-ui.js?v=20261020-handoff";
 
 const controllers = new Set();
 
@@ -117,6 +118,8 @@ export function setupWebDetail(entry, getController) {
   document.querySelector("#detailOpen").textContent = isWeb ? "独立体验示例 ↗" : "打开文件";
   document.querySelector("#detailDownload").textContent = isWeb ? "下载 HTML 示例" : "下载文件";
   controls.replaceChildren();
+  const handoffPanel = document.querySelector("#webHandoffPanel");
+  if (handoffPanel) renderHandoff(handoffPanel, entry, () => currentValues);
   if (!isWeb) return;
   currentValues = normalizeValues(entry);
   docs.href = entry.docs;

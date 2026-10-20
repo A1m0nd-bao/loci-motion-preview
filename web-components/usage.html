@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="icon" href="data:,"><link rel="stylesheet" href="./handoff.css?v=20261020-handoff">
+  <title>自定义动效接入说明 · SipPlay Motion</title>
+</head>
+<body class="usage-page">
+<main>
+  <header><span>SipPlay Motion / Handoff</span><a class="button" href="../#web">返回动效库 ↗</a></header>
+  <p class="eyebrow">Design → Component → Product</p>
+  <h1>选对位置，接上状态。</h1>
+  <p>给研发和 AI 的自定义动效接入说明。先对照 Figma，再复用现有组件；动画代码与预览使用同一实现。</p>
+  <div class="steps">
+    <article class="step"><strong>01 · 核对设计位置</strong><p>读取 Figma 的动效 ID 与节点链接。已核对的五处可直接对照；其他组件先确认用途。</p></article>
+    <article class="step"><strong>02 · 复制接入说明</strong><p>在下方选择组件，复制放置位置、状态、触发、事件和源码。需要体验时下载完整 HTML。</p></article>
+    <article class="step"><strong>03 · 绑定业务并验证</strong><p>以业务数据初始化；通过公开事件连接功能。先验证一处，再让 AI 批量复用。</p></article>
+  </div>
+  <p class="scope">当前已核对：创作页三项 Tab、人物 / 图层 / 扳手图标、Chat / Feed 预览切换。正式 Code Connect 受账号套餐限制尚未启用；Figma 采用画布交付注释，节点对照是项目记录。</p>
+  <nav class="resources" aria-label="交付资源">
+    <a class="button" href="../custom-elements.json" target="_blank" rel="noopener">组件 API 清单 ↗</a>
+    <a class="button" href="./figma-bindings.json" target="_blank" rel="noopener">Figma 节点对照 ↗</a>
+    <a class="button" href="https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/USAGE.md" target="_blank" rel="noopener">完整文档 ↗</a>
+    <span id="batchCopy"></span>
+  </nav>
+  <h2>按组件查看</h2><p id="componentCount"></p>
+  <div id="componentDocs"></div>
+  <h2>接入前记住这几件事</h2><ul id="commonNotes"></ul>
+  <h2>交给 AI 批量处理</h2><p>把设计链接、项目源码和下面这段指令一起交给 AI。仅提供截图时无法可靠匹配节点。</p>
+  <pre class="batch-text" id="batchText" tabindex="0"></pre>
+  <p>API 文档采用 <a href="https://github.com/webcomponents/custom-elements-manifest">Custom Elements Manifest</a> 格式；源码包含 JSDoc。后续具备权限并发布设计组件后，可继续接入 <a href="https://developers.figma.com/docs/code-connect/">Figma Code Connect</a>。</p>
+</main>
+<script type="module" src="./usage.js?v=20261020-handoff"></script>
+</body></html>

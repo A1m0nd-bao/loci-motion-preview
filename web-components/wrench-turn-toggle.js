@@ -3,6 +3,29 @@ export function defineWrenchTurnToggle(animate) {
   const tag = "sipplay-wrench-turn-toggle";
   if (customElements.get(tag)) return;
 
+  /**
+   * @summary 扳手拧动回弹
+   * 动效：扳手拧动回弹 / sipplay-wrench-turn-toggle
+   * 位置：Advanced Settings 左侧扳手图标。
+   * Figma：Advanced Settings / 扳手图标 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-95327
+   * 触发：对应 Tab 选中时，以扳口为轴连续拧动两次、回弹收稳；取消选中置灰。
+   * 状态：active；默认 false，接入时以业务状态覆盖
+   * 事件：motion-change → { active: boolean }
+   * 业务接入：在 Tap Tab 中由父组件驱动 active。独立使用时，active 绑定当前步骤是否为 advanced。
+   * 参数：duration=0.84（时长（秒））；bounce=0.28（回弹程度）
+   * 源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/wrench-turn-toggle.js；初始化 defineWrenchTurnToggle(animate)
+   * 依赖：Motion animate
+   * API 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json
+   * 预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-wrench-turn-toggle
+   * 注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。
+   * 映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。
+   * @tag sipplay-wrench-turn-toggle
+   * @attribute {boolean} active - 在 Tap Tab 中由父组件驱动 active。独立使用时，active 绑定当前步骤是否为 advanced。 默认 false。
+   * @attribute {number} duration - 时长（秒）；范围 0.28–1.8，步长 0.04。
+   * @attribute {number} bounce - 回弹程度；范围 0–0.5，步长 0.02。
+   * @attribute {string} label - 内部交互控件的可访问名称。
+   * @fires {CustomEvent} motion-change - detail: { active: boolean }。在 Tap Tab 中由父组件驱动 active。独立使用时，active 绑定当前步骤是否为 advanced。
+   */
   class WrenchTurnToggle extends HTMLElement {
     static observedAttributes = ["active", "duration", "bounce", "label"];
 

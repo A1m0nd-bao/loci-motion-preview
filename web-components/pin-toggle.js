@@ -2,6 +2,29 @@
 export function definePinToggle(animate) {
   const tag = "sipplay-pin-toggle";
   if (customElements.get(tag)) return;
+  /**
+   * @summary 图钉选中切换
+   * 动效：图钉选中切换 / sipplay-pin-toggle
+   * 位置：建议用于置顶按钮的图钉区域；本次设计选区未确认位置。
+   * Figma：待绑定；仅凭图标相似不得批量替换
+   * 触发：选中时收起斜杠、实心图钉落下回弹；取消时恢复未置顶图形。
+   * 状态：active；默认 false，接入时以业务状态覆盖
+   * 事件：motion-change → { active: boolean }
+   * 业务接入：active 绑定是否已置顶；监听 motion-change 连接业务。请求时机与失败回滚由业务层决定。
+   * 参数：duration=0.52（时长（秒））；bounce=0.28（回弹程度）
+   * 源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/pin-toggle.js；初始化 definePinToggle(animate)
+   * 依赖：Motion animate
+   * API 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json
+   * 预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-pin-toggle
+   * 注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。
+   * 映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。
+   * @tag sipplay-pin-toggle
+   * @attribute {boolean} active - active 绑定是否已置顶；监听 motion-change 连接业务。请求时机与失败回滚由业务层决定。 默认 false。
+   * @attribute {number} duration - 时长（秒）；范围 0.24–1.8，步长 0.04。
+   * @attribute {number} bounce - 回弹程度；范围 0–0.5，步长 0.02。
+   * @attribute {string} label - 内部交互控件的可访问名称。
+   * @fires {CustomEvent} motion-change - detail: { active: boolean }。active 绑定是否已置顶；监听 motion-change 连接业务。请求时机与失败回滚由业务层决定。
+   */
   class PinMotion extends HTMLElement {
     static observedAttributes = ["active", "duration", "bounce", "label"];
     constructor() {

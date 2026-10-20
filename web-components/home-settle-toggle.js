@@ -3,6 +3,29 @@ export function defineHomeSettleToggle(animate) {
   if (customElements.get(tag)) return;
   const emptyOutline = "M4.06689 9.07961V20.0529C4.06689 21.025 4.85487 21.8129 5.82689 21.8129H7.3069C8.27892 21.8129 9.06689 21.025 9.06689 20.0529V16.6396C9.06689 15.6676 9.85487 14.8796 10.8269 14.8796H13.1736C14.1456 14.8796 14.9336 15.6676 14.9336 16.6396V20.0529C14.9336 21.025 15.7215 21.8129 16.6936 21.8129H18.1736C19.1456 21.8129 19.9336 21.025 19.9336 20.0529V9.07961M1 11.6786L10.795 2.47723C11.4723 1.84092 12.5277 1.84092 13.205 2.47723L23 11.6786";
   const selectedOutline = "M4.06689 8.79754V20.0529C4.06689 21.025 4.85487 21.8129 5.82689 21.8129H7.3069C8.27892 21.8129 9.06689 21.025 9.06689 20.0529V16.6396C9.06689 15.6676 9.85487 14.8796 10.8269 14.8796H13.1736C14.1456 14.8796 14.9336 15.6676 14.9336 16.6396V20.0529C14.9336 21.025 15.7215 21.8129 16.6936 21.8129H18.1736C19.1456 21.8129 19.9336 21.025 19.9336 20.0529V8.79797M1 11.6786L10.795 2.47723C11.4723 1.84092 12.5277 1.84092 13.205 2.47723L23 11.6786";
+  /**
+   * @summary 首页填白落定
+   * 动效：首页填白落定 / sipplay-home-settle-toggle
+   * 位置：建议用于首页导航图标；本次设计选区未确认位置。
+   * Figma：待绑定；仅凭图标相似不得批量替换
+   * 触发：选中时轻提、填白并落定；取消时恢复线框。
+   * 状态：active；默认 false，接入时以业务状态覆盖
+   * 事件：motion-change → { active: boolean }
+   * 业务接入：在底栏中由父级导航驱动；独立使用时 active 绑定当前路由。
+   * 参数：duration=0.56（切换时长（秒））；strength=1（回弹幅度）
+   * 源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/home-settle-toggle.js；初始化 defineHomeSettleToggle(animate)
+   * 依赖：Motion animate
+   * API 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json
+   * 预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-home-settle-toggle
+   * 注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。
+   * 映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。
+   * @tag sipplay-home-settle-toggle
+   * @attribute {boolean} active - 在底栏中由父级导航驱动；独立使用时 active 绑定当前路由。 默认 false。
+   * @attribute {number} duration - 切换时长（秒）；范围 0.24–1.2，步长 0.02。
+   * @attribute {number} strength - 回弹幅度；范围 0.4–1.4，步长 0.05。
+   * @attribute {string} label - 内部交互控件的可访问名称。
+   * @fires {CustomEvent} motion-change - detail: { active: boolean }。在底栏中由父级导航驱动；独立使用时 active 绑定当前路由。
+   */
   class HomeSettleToggle extends HTMLElement {
     static observedAttributes = ["active", "duration", "strength", "label"];
     constructor() {

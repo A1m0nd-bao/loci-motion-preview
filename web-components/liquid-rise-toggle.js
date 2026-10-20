@@ -2,6 +2,30 @@ export function defineLiquidRiseToggle(animate) {
   const tag = "sipplay-liquid-rise-toggle";
   if (customElements.get(tag)) return;
   const referenceLiquid = "M13.3177 26.1261L10.1738 24.3738V30.4578C10.1738 32.1377 11.5356 33.4995 13.2155 33.4995H28.9786C30.6584 33.4995 32.0202 32.1377 32.0202 30.4578V27.1115L28.1093 24.8702C26.4005 23.8908 24.3232 23.7994 22.5349 24.6249L18.829 26.3356C17.0639 27.1504 15.0158 27.0725 13.3177 26.1261Z";
+  /**
+   * @summary 彩色液面升起流动
+   * 动效：彩色液面升起流动 / sipplay-liquid-rise-toggle
+   * 位置：建议用于同形液面注入图标；本次设计选区未确认位置。
+   * Figma：待绑定；仅凭图标相似不得批量替换
+   * 触发：选中时液面升起后持续流动，取消时回落。
+   * 状态：active；默认 false，接入时以业务状态覆盖
+   * 事件：motion-change → { active: boolean }
+   * 业务接入：active 绑定产品定义的激活状态；不是下载进度条，没有 progress 接口。
+   * 参数：duration=0.78（升起时长（秒））；flow-duration=3.2（流动周期（秒））；strength=1（起伏幅度）
+   * 源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/liquid-rise-toggle.js；初始化 defineLiquidRiseToggle(animate)
+   * 依赖：Motion animate
+   * API 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json
+   * 预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-liquid-rise-toggle
+   * 注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。
+   * 映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。
+   * @tag sipplay-liquid-rise-toggle
+   * @attribute {boolean} active - active 绑定产品定义的激活状态；不是下载进度条，没有 progress 接口。 默认 false。
+   * @attribute {number} duration - 升起时长（秒）；范围 0.3–1.6，步长 0.02。
+   * @attribute {number} flow-duration - 流动周期（秒）；范围 1.6–6，步长 0.2。
+   * @attribute {number} strength - 起伏幅度；范围 0.4–1.5，步长 0.05。
+   * @attribute {string} label - 内部交互控件的可访问名称。
+   * @fires {CustomEvent} motion-change - detail: { active: boolean }。active 绑定产品定义的激活状态；不是下载进度条，没有 progress 接口。
+   */
   class LiquidRiseToggle extends HTMLElement {
     static observedAttributes = ["active", "duration", "flow-duration", "strength", "label"];
     constructor() {

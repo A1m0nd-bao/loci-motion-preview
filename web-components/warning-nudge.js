@@ -2,6 +2,29 @@
 export function defineWarningNudge(animate) {
   const tag = "sipplay-warning-nudge";
   if (customElements.get(tag)) return;
+  /**
+   * @summary 警示牌弹性提醒
+   * 动效：警示牌弹性提醒 / sipplay-warning-nudge
+   * 位置：建议用于同形三角警示图标；本次设计选区未确认位置。
+   * Figma：待绑定；仅凭图标相似不得批量替换
+   * 触发：点击或外部 replay() 单次提醒；不循环。
+   * 状态：无持久状态；默认 静止，接入时以业务状态覆盖
+   * 事件：motion-replay → 无 detail
+   * 业务接入：由校验提示出现或严重程度变化等业务事件触发 replay()，不要在每次页面渲染时重播；具体错误字段由页面层提供。
+   * 参数：duration=0.82（时长（秒））；strength=1（提醒幅度）
+   * 源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/warning-nudge.js；初始化 defineWarningNudge(animate)
+   * 依赖：Motion animate
+   * API 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json
+   * 预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-warning-nudge
+   * 注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。
+   * 映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。
+   * @tag sipplay-warning-nudge
+   * @attribute {number} duration - 时长（秒）；范围 0.32–1.6，步长 0.04。
+   * @attribute {number} strength - 提醒幅度；范围 0.4–1.6，步长 0.1。
+   * @attribute {string} label - 内部交互控件的可访问名称。
+   * @fires {CustomEvent} motion-replay - detail: 无 detail。由校验提示出现或严重程度变化等业务事件触发 replay()，不要在每次页面渲染时重播；具体错误字段由页面层提供。
+   * @fires {CustomEvent} motion-finish - detail: 无 detail。动画完成或 finish() 提前结束时发出。
+   */
   class WarningNudge extends HTMLElement {
     static observedAttributes = ["duration", "strength", "label"];
     constructor() {

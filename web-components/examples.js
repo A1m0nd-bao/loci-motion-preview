@@ -22,6 +22,7 @@ import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v
 import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261020-check-path";
 import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261020-check-path";
 import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261020-check-path";
+import { handoffText } from "./handoff.js?v=20261020-handoff";
 
 export function exampleDocument(entry, values = {}) {
   if (entry.kind === "motion") return motionExampleDocument(entry, values);
@@ -65,6 +66,7 @@ export function exampleDocument(entry, values = {}) {
   ${entry.custom ? "" : `<script type="module" src="https://cdn.jsdelivr.net/npm/motion-components@${upstreamVersion}/+esm"></script>`}
 </head>
 <body${entry.category === "滚动动效" ? ' class="scroll-demo"' : ""}>
+  ${entry.custom ? `<!--\n${handoffText(entry, values).replaceAll('--', '—')}\n-->` : ''}
   <main id="demo">
     ${exampleMarkup(entry, values).replace(/ data-motion/g, "")}
   </main>

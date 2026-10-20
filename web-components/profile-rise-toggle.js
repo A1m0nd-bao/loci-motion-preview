@@ -3,6 +3,29 @@ export function defineProfileRiseToggle(animate) {
   const tag = "sipplay-profile-rise-toggle";
   if (customElements.get(tag)) return;
 
+  /**
+   * @summary 人物探出回弹
+   * 动效：人物探出回弹 / sipplay-profile-rise-toggle
+   * 位置：Character Setup 左侧人物图标。
+   * Figma：Character Setup / 人物图标 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-95319
+   * 触发：对应 Tab 从未选中变为选中时，人物从底部探出并回弹；取消选中置灰。
+   * 状态：active；默认 false，接入时以业务状态覆盖
+   * 事件：motion-change → { active: boolean }
+   * 业务接入：在 Tap Tab 中由父组件驱动 active，不再单独绑定业务点击。独立使用时，active 绑定当前项是否选中。
+   * 参数：duration=0.64（时长（秒））；bounce=0.3（回弹程度）
+   * 源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/profile-rise-toggle.js；初始化 defineProfileRiseToggle(animate)
+   * 依赖：Motion animate
+   * API 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json
+   * 预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-profile-rise-toggle
+   * 注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。
+   * 映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。
+   * @tag sipplay-profile-rise-toggle
+   * @attribute {boolean} active - 在 Tap Tab 中由父组件驱动 active，不再单独绑定业务点击。独立使用时，active 绑定当前项是否选中。 默认 false。
+   * @attribute {number} duration - 时长（秒）；范围 0.24–1.8，步长 0.04。
+   * @attribute {number} bounce - 回弹程度；范围 0–0.5，步长 0.02。
+   * @attribute {string} label - 内部交互控件的可访问名称。
+   * @fires {CustomEvent} motion-change - detail: { active: boolean }。在 Tap Tab 中由父组件驱动 active，不再单独绑定业务点击。独立使用时，active 绑定当前项是否选中。
+   */
   class ProfileRiseToggle extends HTMLElement {
     static observedAttributes = ["active", "duration", "bounce", "label"];
 

@@ -2,6 +2,29 @@
 export function definePreviewTabs(animate) {
   const tag = "sipplay-preview-tabs";
   if (customElements.get(tag)) return;
+  /**
+   * @summary 预览 Tab 滑动切换
+   * 动效：预览 Tab 滑动切换 / sipplay-preview-tabs
+   * 位置：创建页右侧 Chat Preview / Feed Preview 分段切换整组控件。
+   * Figma：创建页预览切换 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-95330
+   * 触发：切换选项时，底片滑动、轻微拉伸回弹，文字亮度同步变化；重复点击当前项不重播。
+   * 状态：selected；默认 0，接入时以业务状态覆盖
+   * 事件：motion-change → { active, selected, value }
+   * 业务接入：selected=0 对应 chat；selected=1 对应 feed。监听 motion-change，用 detail.value 切换业务预览；外部更新使用 selected 属性或 property，value 是只读派生值。组件不含预览页面。
+   * 参数：duration=0.46（时长（秒））；bounce=0.14（回弹程度）
+   * 源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/preview-tabs.js；初始化 definePreviewTabs(animate)
+   * 依赖：Motion animate
+   * API 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json
+   * 预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-preview-tabs
+   * 注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。
+   * 映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。
+   * @tag sipplay-preview-tabs
+   * @attribute {string} selected - selected=0 对应 chat；selected=1 对应 feed。监听 motion-change，用 detail.value 切换业务预览；外部更新使用 selected 属性或 property，value 是只读派生值。组件不含预览页面。 默认 0。
+   * @attribute {number} duration - 时长（秒）；范围 0.18–1.2，步长 0.02。
+   * @attribute {number} bounce - 回弹程度；范围 0–0.35，步长 0.01。
+   * @attribute {string} label - 内部交互控件的可访问名称。
+   * @fires {CustomEvent} motion-change - detail: { active, selected, value }。selected=0 对应 chat；selected=1 对应 feed。监听 motion-change，用 detail.value 切换业务预览；外部更新使用 selected 属性或 property，value 是只读派生值。组件不含预览页面。
+   */
   class PreviewTabs extends HTMLElement {
     static observedAttributes = ["selected", "duration", "bounce", "label"];
     constructor() {

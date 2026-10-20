@@ -119,3 +119,13 @@ npm run sync:watch:publish
 自定义「四页动效底栏」组合现有首页、聊天、加号选中、用户页四个动效，保留 375×48 原始底栏、24px 图标和横向中心 48/141/234/327px，底色 rgba(22,10,12,.7)，投影 0 3px 5px rgba(0,0,0,.16)。默认首页选中，四项互斥，重复点击当前项重播图标。原动作时长保持一致，speed（0.6–1.6）可统一调整；value 支持 home/chat/add/user。nav-change 事件携带 value、previous、index、label，用于接入实际页面。原生按钮支持键盘和触屏，支持减少动态效果、暂停恢复及独立 HTML 导出。实现位于 `web-components/bottom-bar.js`。
 
 自定义「括号工具单击高亮」与「添加图片单击高亮」分别使用 `sipplay-brackets-tool`、`sipplay-image-tool`，各有独立卡片、预览与导出。括号已按圆心 (13,13) 居中。悬停临时提亮，单击后短暂加强高亮，再自动恢复到当前悬停或默认状态，不保留选中。可调用 trigger()，tool-activate 事件携带 icon；无 aria-pressed 或持久选中状态。duration 默认 0.18 秒，支持连续触发、键盘、触屏、减少动态效果、暂停恢复与独立 HTML 导出。共享实现位于 `web-components/tool-highlight.js`。
+
+## Figma 与自定义动效交付
+
+Web 分支入口提供简短使用说明；自定义组件详情新增「研发 / AI 接入」、复制接入注释与最小接入代码。完整文档见 `web-components/usage.html` 和 `web-components/USAGE.md`。
+
+`custom-elements.json` 采用 Custom Elements Manifest 格式，`package.json` 的 `customElements` 字段指向该文件。`web-components/figma-bindings.json` 记录五个已核对的设计节点，是项目交付对照，并非正式 Code Connect。当前账号不具备 Code Connect 权限；未绑定组件保持待绑定状态。
+
+修改组件接口、参数或设计位置后运行 `npm run docs:components`：同步源码 JSDoc、标准 API 清单、节点对照、注册入口和文档。生成器以真实 observedAttributes / getter / method 与经核对的 handoff.js 为依据；新增组件缺少接入定义时会报错。源码中的 API 改动仍需人工核对业务语义。
+
+浏览器项目可复制源码目录，通过 `registerMotion(tagName, animate)` 初始化（包含组合图标依赖）。SSR 在客户端调用。独立导出的 HTML 自带接入注释与当前参数；业务接入要保留设计布局并避免嵌套按钮。
