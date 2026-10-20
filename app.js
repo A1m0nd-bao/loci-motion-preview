@@ -1,6 +1,6 @@
-import { motionMotions } from "./motion/catalog.js?v=20261020-bell";
-import { webMotions } from "./web-components/catalog.js?v=20261020-bell";
-import { createWebController, copyExample, downloadExample, setupWebDetail, getWebValues, syncWebBackgrounds } from "./web-components/integration.js?v=20261020-bell";
+import { motionMotions } from "./motion/catalog.js?v=20261020-bell-notify";
+import { webMotions } from "./web-components/catalog.js?v=20261020-bell-notify";
+import { createWebController, copyExample, downloadExample, setupWebDetail, getWebValues, syncWebBackgrounds } from "./web-components/integration.js?v=20261020-bell-notify";
 
 if (import.meta.env?.DEV) document.querySelector("#motionStudioLocal").hidden = false;
 

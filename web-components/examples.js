@@ -1,15 +1,15 @@
-import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261020-bell";
-import { motionExampleDocument } from "../motion/examples.js?v=20261020-bell";
-import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261020-bell";
-import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261020-bell";
-import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261020-bell";
-import { exampleMarkup, upstreamURL, upstreamVersion } from "./catalog.js?v=20261020-bell";
-import { demoCSS } from "./demo-styles.js?v=20261020-bell";
-import { bindDemoActions } from "./demo-actions.js?v=20261020-bell";
-import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261020-bell";
-import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261020-bell";
-import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261020-bell";
-import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261020-bell";
+import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261020-bell-notify";
+import { motionExampleDocument } from "../motion/examples.js?v=20261020-bell-notify";
+import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261020-bell-notify";
+import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261020-bell-notify";
+import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261020-bell-notify";
+import { exampleMarkup, upstreamURL, upstreamVersion } from "./catalog.js?v=20261020-bell-notify";
+import { demoCSS } from "./demo-styles.js?v=20261020-bell-notify";
+import { bindDemoActions } from "./demo-actions.js?v=20261020-bell-notify";
+import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261020-bell-notify";
+import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261020-bell-notify";
+import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261020-bell-notify";
+import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261020-bell-notify";
 
 export function exampleDocument(entry, values = {}) {
   if (entry.kind === "motion") return motionExampleDocument(entry, values);

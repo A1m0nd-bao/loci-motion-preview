@@ -1,6 +1,6 @@
 // This function is also embedded in downloaded examples: keep it self-contained.
 export function bindDemoActions(root) {
-  const toggles = [...root.querySelectorAll("sipplay-selection-toggle,sipplay-layer-stack-toggle,sipplay-profile-rise-toggle,sipplay-wrench-turn-toggle,sipplay-pin-toggle,sipplay-pin-reveal,sipplay-voice-wave,sipplay-bell-ring-toggle")];
+  const toggles = [...root.querySelectorAll("sipplay-selection-toggle,sipplay-layer-stack-toggle,sipplay-profile-rise-toggle,sipplay-wrench-turn-toggle,sipplay-pin-toggle,sipplay-pin-reveal,sipplay-voice-wave")];
   const primaryToggle = toggles[0];
   for (const toggle of toggles.slice(1)) {
     for (const attribute of ["duration", "bounce", "strength"]) {
@@ -16,10 +16,40 @@ export function bindDemoActions(root) {
     if (status) status.textContent = event.detail.active ? (status.dataset.activeText || "已选中") : (status.dataset.inactiveText || "未选中");
   };
   root.addEventListener("motion-change", onSelectionChange);
+  const bells = [...root.querySelectorAll("sipplay-bell-ring-toggle")];
+  for (const bell of bells.slice(1)) {
+    for (const attribute of ["duration", "strength"]) {
+      if (bells[0].hasAttribute(attribute)) bell.setAttribute(attribute, bells[0].getAttribute(attribute));
+    }
+  }
+  const notificationDialog = root.querySelector(".bell-notification-dialog");
+  let notificationTrigger;
+  const onBellAction = event => {
+    if (!bells.includes(event.target)) return;
+    for (const bell of bells) if (bell !== event.target) bell.perform(event.detail.action, false);
+  };
+  const onNotificationRequest = event => {
+    if (!bells.includes(event.target) || !notificationDialog || notificationDialog.open) return;
+    notificationTrigger = event.target;
+    notificationDialog.showModal();
+    bells.forEach(bell => { bell.expanded = true; });
+    const status = root.querySelector("[data-bell-status]");
+    if (status) status.textContent = "通知弹窗已打开";
+  };
+  const onNotificationClose = () => {
+    bells.forEach(bell => { bell.expanded = false; });
+    const status = root.querySelector("[data-bell-status]");
+    if (status) status.textContent = "移入试试";
+    if (notificationTrigger?.isConnected) notificationTrigger.button.focus({ preventScroll: true });
+  };
+  root.addEventListener("motion-action", onBellAction);
+  root.addEventListener("notification-request", onNotificationRequest);
+  notificationDialog?.addEventListener("close", onNotificationClose);
   const countdown = root.querySelector("motion-countdown");
   if (countdown) countdown.setAttribute("to", new Date(Date.now() + 185000).toISOString());
   root.onclick = (event) => {
     const action = event.target.closest("[data-demo-action]")?.dataset.demoAction;
+    if (action === "close-notifications") notificationDialog?.close();
     if (action === "pin-replay") {
       for (const toggle of toggles) {
         if (toggle.active) toggle.apply(toggle.reducedMotion.matches);
@@ -40,5 +70,11 @@ export function bindDemoActions(root) {
       root.querySelector(tag).setAttribute("values", Array.from({ length }, () => 15 + Math.floor(Math.random() * 75)).join(","));
     }
   };
-  return () => root.removeEventListener("motion-change", onSelectionChange);
+  return () => {
+    root.removeEventListener("motion-change", onSelectionChange);
+    root.removeEventListener("motion-action", onBellAction);
+    root.removeEventListener("notification-request", onNotificationRequest);
+    notificationDialog?.removeEventListener("close", onNotificationClose);
+    notificationDialog?.close();
+  };
 }

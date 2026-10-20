@@ -1,14 +1,14 @@
-import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261020-bell";
-import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261020-bell";
-import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261020-bell";
-import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261020-bell";
-import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-bell";
-import { demoCSS } from "./demo-styles.js?v=20261020-bell";
-import { bindDemoActions } from "./demo-actions.js?v=20261020-bell";
-import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261020-bell";
-import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261020-bell";
-import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261020-bell";
-import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261020-bell";
+import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261020-bell-notify";
+import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261020-bell-notify";
+import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261020-bell-notify";
+import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261020-bell-notify";
+import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-bell-notify";
+import { demoCSS } from "./demo-styles.js?v=20261020-bell-notify";
+import { bindDemoActions } from "./demo-actions.js?v=20261020-bell-notify";
+import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261020-bell-notify";
+import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261020-bell-notify";
+import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261020-bell-notify";
+import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261020-bell-notify";
 
 const params = new URLSearchParams(location.search);
 const entry = webMotions.find((item) => item.id === params.get("id"));
@@ -34,7 +34,10 @@ function compactPointerPreview(active) {
   if (!element) return;
   const rect = element.getBoundingClientRect();
   const point = { clientX: rect.left + rect.width * 0.8, clientY: rect.top + rect.height * 0.25 };
-  if (entry.id === "sipplay-pin-reveal") {
+  if (entry.id === "sipplay-bell-ring-toggle") {
+    if (active) element.hoverIn();
+    else element.hoverOut();
+  } else if (entry.id === "sipplay-pin-reveal") {
     if (active) element.apply(element.reducedMotion.matches);
   } else if (entry.custom && element.active !== active) element.toggle();
   if (entry.id === "motion-hover" || entry.id === "motion-tilt") {
@@ -96,12 +99,12 @@ window.addEventListener("message", async (event) => {
   }
 });
 
-// Looping icons handle visibility so active animation resumes on return.
+// Voice loops and notification feedback manage their own visibility behavior.
 document.addEventListener("visibilitychange", () => { if (document.hidden) { runtime?.pauseAll(root); customElementsInDemo().filter(el => !["sipplay-voice-wave", "sipplay-bell-ring-toggle"].includes(el.localName)).forEach(el => el.pause()); } });
 
 try {
   if (!entry) throw new Error("未找到此组件，请从动效库重新选择。");
-  runtime = await import("./vendor/motion-components.js?v=20261020-bell");
+  runtime = await import("./vendor/motion-components.js?v=20261020-bell-notify");
   defineBellRingToggle(runtime.animate);
   defineVoiceWave(runtime.animate);
   definePinToggle(runtime.animate);
