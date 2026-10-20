@@ -1,5 +1,5 @@
-import { exampleDocument } from "./examples.js?v=20261020-liquid-straw";
-import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-liquid-straw";
+import { exampleDocument } from "./examples.js?v=20261020-straw-rest";
+import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-straw-rest";
 
 const controllers = new Set();
 

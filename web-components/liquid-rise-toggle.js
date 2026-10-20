@@ -49,7 +49,7 @@ export function defineLiquidRiseToggle(animate) {
             svg{display:block;width:41px;height:40px;pointer-events:none;overflow:hidden}
             .liquid,.wave{transform-box:view-box!important;transform-origin:0 0!important}
             .liquid{transform:translateY(12px)}
-            .straw{transform-box:view-box!important;transform-origin:24.3271px 26.5517px!important}
+            .straw{transform:translate(-1px,6px);transform-box:view-box!important;transform-origin:24.3271px 26.5517px!important}
           </style>
           <button type="button" aria-pressed="false">
             <svg width="41" height="40" viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -111,7 +111,7 @@ export function defineLiquidRiseToggle(animate) {
       this.updateAccessibility();
       if (instant) {
         this.wave.setAttribute("d", referenceLiquid);
-        this.controls = [animate(this.wave, { x: 0 }, { duration: 0 }), animate(this.liquid, { y: this.active ? 0 : 12 }, { duration: 0 }), animate(this.straw, { rotate: 0 }, { duration: 0 })];
+        this.controls = [animate(this.wave, { x: 0 }, { duration: 0 }), animate(this.liquid, { y: this.active ? 0 : 12 }, { duration: 0 }), animate(this.straw, { x: this.active ? 0 : -1, y: this.active ? 0 : 6, rotate: 0 }, { duration: 0 })];
         this.state = "finished";
         return;
       }
@@ -123,6 +123,7 @@ export function defineLiquidRiseToggle(animate) {
         this.controls = [
           animate(this.liquid, { y: [null, -0.55, 0] }, { duration: this.duration, times: [0, 0.75, 1], ease: [[0.2, 0.85, 0.25, 1], "easeInOut"] }),
           animate(this.wave, { x: [phase, phase - 16] }, { duration: this.flowDuration, repeat: Infinity, ease: "linear" }),
+          animate(this.straw, { x: 0, y: 0 }, { duration: this.duration * 0.82, delay: this.duration * 0.12, ease: [0.2, 0.85, 0.25, 1] }),
           animate(this.straw, { rotate: [null, 5.5 * this.strength, -2.2 * this.strength, 0.75 * this.strength, 0] }, {
             duration: this.duration * 1.12, times: [0, 0.26, 0.58, 0.8, 1], ease: "easeInOut",
             onComplete: () => {
@@ -137,7 +138,7 @@ export function defineLiquidRiseToggle(animate) {
         const drainDuration = Math.min(0.4, this.duration * 0.55);
         this.controls = [
           animate(this.liquid, { y: 12 }, { duration: drainDuration, ease: [0.4, 0, 0.6, 1], onComplete: () => { if (epoch === this.epoch) this.state = "finished"; } }),
-          animate(this.straw, { rotate: 0 }, { duration: drainDuration, ease: [0.22, 1, 0.36, 1] }),
+          animate(this.straw, { x: -1, y: 6, rotate: 0 }, { duration: drainDuration * 0.6, ease: [0.22, 1, 0.36, 1] }),
         ];
       }
       if (document.hidden) this.onVisibility();
@@ -168,7 +169,7 @@ export function defineLiquidRiseToggle(animate) {
 
 export const liquidRiseDemoMarkup = `
   <div class="selection-demo liquid-rise-demo">
-    <p class="selection-demo-hint">点击注入液体 · 液面流动，吸管轻摆</p>
+    <p class="selection-demo-hint">点击注入液体 · 吸管随液面升起、轻摆</p>
     <div class="selection-demo-zoom"><sipplay-liquid-rise-toggle data-motion duration="0.78" flow-duration="3.2" strength="1" label="切换彩色液体（放大预览）"></sipplay-liquid-rise-toggle></div>
     <p class="selection-demo-caption">4× 细节预览</p>
     <div class="selection-demo-original"><sipplay-liquid-rise-toggle label="切换彩色液体（原始尺寸）"></sipplay-liquid-rise-toggle><span>原始尺寸 · 41 × 40</span></div>

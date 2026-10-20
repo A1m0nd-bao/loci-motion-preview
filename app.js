@@ -1,6 +1,6 @@
-import { motionMotions } from "./motion/catalog.js?v=20261020-liquid-straw";
-import { webMotions } from "./web-components/catalog.js?v=20261020-liquid-straw";
-import { createWebController, copyExample, downloadExample, setupWebDetail, getWebValues, syncWebBackgrounds } from "./web-components/integration.js?v=20261020-liquid-straw";
+import { motionMotions } from "./motion/catalog.js?v=20261020-straw-rest";
+import { webMotions } from "./web-components/catalog.js?v=20261020-straw-rest";
+import { createWebController, copyExample, downloadExample, setupWebDetail, getWebValues, syncWebBackgrounds } from "./web-components/integration.js?v=20261020-straw-rest";
 
 if (import.meta.env?.DEV) document.querySelector("#motionStudioLocal").hidden = false;
 
