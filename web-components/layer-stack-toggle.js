@@ -8,6 +8,8 @@ export function defineLayerStackToggle(animate) {
    * 动效：图层落下叠加 / sipplay-layer-stack-toggle
    * 位置：Intro 左侧图层图标。
    * Figma：Intro / 图层图标 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-95323
+   * 适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套
+   * 注释同步：Figma 画布与网站已同步
    * 触发：对应 Tab 从未选中变为选中时，方片依次落下叠合；取消选中置灰。
    * 状态：active；默认 false，接入时以业务状态覆盖
    * 事件：motion-change → { active: boolean }

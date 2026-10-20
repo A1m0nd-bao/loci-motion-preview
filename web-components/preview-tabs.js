@@ -7,6 +7,8 @@ export function definePreviewTabs(animate) {
    * 动效：预览 Tab 滑动切换 / sipplay-preview-tabs
    * 位置：创建页右侧 Chat Preview / Feed Preview 分段切换整组控件。
    * Figma：创建页预览切换 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-95330
+   * 适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套
+   * 注释同步：Figma 画布与网站已同步
    * 触发：切换选项时，底片滑动、轻微拉伸回弹，文字亮度同步变化；重复点击当前项不重播。
    * 状态：selected；默认 0，接入时以业务状态覆盖
    * 事件：motion-change → { active, selected, value }

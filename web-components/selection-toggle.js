@@ -8,6 +8,8 @@ export function defineSelectionToggle(animate) {
    * 动效：粉色勾选切换 / sipplay-selection-toggle
    * 位置：建议用于粉色圆形勾选控件；本次设计选区未确认位置，不能匹配到方形协议勾选框。
    * Figma：待绑定；仅凭图标相似不得批量替换
+   * 适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套
+   * 注释同步：位置待核对
    * 触发：选中时圆底弹出并画勾；取消时恢复空心圆。
    * 状态：active；默认 false，接入时以业务状态覆盖
    * 事件：motion-change → { active: boolean }

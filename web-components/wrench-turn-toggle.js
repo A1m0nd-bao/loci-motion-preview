@@ -8,6 +8,8 @@ export function defineWrenchTurnToggle(animate) {
    * 动效：扳手拧动回弹 / sipplay-wrench-turn-toggle
    * 位置：Advanced Settings 左侧扳手图标。
    * Figma：Advanced Settings / 扳手图标 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-95327
+   * 适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套
+   * 注释同步：Figma 画布与网站已同步
    * 触发：对应 Tab 选中时，以扳口为轴连续拧动两次、回弹收稳；取消选中置灰。
    * 状态：active；默认 false，接入时以业务状态覆盖
    * 事件：motion-change → { active: boolean }

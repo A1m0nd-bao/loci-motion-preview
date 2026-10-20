@@ -5,12 +5,14 @@ export function defineHistoryClock(animate) {
   /**
    * @summary 历史时钟描绘旋转
    * 动效：历史时钟描绘旋转 / sipplay-history-clock
-   * 位置：建议用于历史记录入口；本次设计选区未确认位置。
-   * Figma：待绑定；仅凭图标相似不得批量替换
+   * 位置：Web 聊天页：消息操作浮层中的 Backtrack（回溯）入口，20×20。不是通用历史记录列表入口。
+   * Figma：聊天消息 / Backtrack https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-67269
+   * 适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套
+   * 注释同步：位置已核对；本次 Figma 调用额度用尽，新增注释目前仅在网站和源码
    * 触发：悬停或点击重播一次；外部可 replay()。
    * 状态：无持久状态；默认 静止，接入时以业务状态覆盖
    * 事件：motion-replay → 无 detail
-   * 业务接入：没有 active 状态；历史记录面板由业务层响应点击打开，motion-replay 仅表示动画开始。
+   * 业务接入：没有 active 状态。保留既有 Backtrack 点击与回溯流程；hover/click 播放动画，motion-replay 仅表示动画开始，不触发或确认回溯。
    * 参数：duration=0.8（总时长（秒））；bounce=0.4（填白回弹）
    * 源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/history-clock.js；初始化 defineHistoryClock(animate)
    * 依赖：Motion animate
@@ -22,7 +24,7 @@ export function defineHistoryClock(animate) {
    * @attribute {number} duration - 总时长（秒）；范围 0.3–1.6，步长 0.05。
    * @attribute {number} bounce - 填白回弹；范围 0–0.5，步长 0.05。
    * @attribute {string} label - 内部交互控件的可访问名称。
-   * @fires {CustomEvent} motion-replay - detail: 无 detail。没有 active 状态；历史记录面板由业务层响应点击打开，motion-replay 仅表示动画开始。
+   * @fires {CustomEvent} motion-replay - detail: 无 detail。没有 active 状态。保留既有 Backtrack 点击与回溯流程；hover/click 播放动画，motion-replay 仅表示动画开始，不触发或确认回溯。
    * @fires {CustomEvent} motion-finish - detail: 无 detail。本次动画自然播放完成时发出；finish() 不发出。
    */
   class HistoryClock extends HTMLElement {

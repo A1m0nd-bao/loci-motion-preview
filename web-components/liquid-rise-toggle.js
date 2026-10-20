@@ -7,6 +7,8 @@ export function defineLiquidRiseToggle(animate) {
    * 动效：彩色液面升起流动 / sipplay-liquid-rise-toggle
    * 位置：建议用于同形液面注入图标；本次设计选区未确认位置。
    * Figma：待绑定；仅凭图标相似不得批量替换
+   * 适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套
+   * 注释同步：位置待核对
    * 触发：选中时液面升起后持续流动，取消时回落。
    * 状态：active；默认 false，接入时以业务状态覆盖
    * 事件：motion-change → { active: boolean }

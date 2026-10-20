@@ -1,6 +1,6 @@
-import { exampleDocument } from "./examples.js?v=20261020-handoff";
+import { exampleDocument } from "./examples.js?v=20261020-placements";
 import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-check-path";
-import { renderHandoff } from "./handoff-ui.js?v=20261020-handoff";
+import { renderHandoff } from "./handoff-ui.js?v=20261020-placements";
 
 const controllers = new Set();
 

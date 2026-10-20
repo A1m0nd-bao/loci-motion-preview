@@ -4,8 +4,10 @@ export function defineBottomBar() {
   /**
    * @summary 四页动效底栏
    * 动效：四页动效底栏 / sipplay-bottom-bar
-   * 位置：建议用于首页/聊天/添加/用户四页底部导航整组；本次设计选区未确认位置。
-   * Figma：待绑定；仅凭图标相似不得批量替换
+   * 位置：移动 Web Feed 页底部 Frame 3507 整组导航，375×48；四项依次为首页、聊天、添加、用户。不要替换旁边 Safari 的 Nav bar 或 Home Indicator。
+   * Figma：移动 Web / 四项底部导航 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-82191
+   * 适配：保持原稿四项图标间距、底栏背景和安全区；聊天图标原稿是三点，组件选中态为波形，按页面视觉要求适配。
+   * 注释同步：位置已核对；本次 Figma 调用额度用尽，新增注释目前仅在网站和源码
    * 触发：互斥切换时播放相应图标；重复点击当前项只重播图标。
    * 状态：value；默认 home，接入时以业务状态覆盖
    * 事件：nav-change → { value, previous, index, label }

@@ -17,8 +17,10 @@ export function defineVoiceWave(animate) {
   /**
    * @summary 灵动语音条
    * 动效：灵动语音条 / sipplay-voice-wave
-   * 位置：建议用于语音消息播放状态；本次设计选区未确认位置。
-   * Figma：待绑定；仅凭图标相似不得批量替换
+   * 位置：Web 聊天页：角色消息气泡左上方的五条声纹播放入口，可见于 Frame 3549；与消息气泡连接。
+   * Figma：角色聊天消息 / 语音入口 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-67162
+   * 适配：此稿外框约 59×33，底色随消息主题；示例固定 58×28、深色。保留原稿位置、形状、底色和五条声纹节奏，不能整块覆盖为示例黑底。
+   * 注释同步：位置已核对；本次 Figma 调用额度用尽，新增注释目前仅在网站和源码
    * 触发：active=true 循环声纹；false 时平滑收稳。
    * 状态：active；默认 false，接入时以业务状态覆盖
    * 事件：motion-change → { active: boolean }

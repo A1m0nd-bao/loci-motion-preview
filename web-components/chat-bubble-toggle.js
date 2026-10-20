@@ -5,8 +5,10 @@ export function defineChatBubbleToggle(animate) {
   /**
    * @summary 对话气泡唤醒
    * 动效：对话气泡唤醒 / sipplay-chat-bubble-toggle
-   * 位置：建议用于聊天导航图标；本次设计选区未确认位置。
-   * Figma：待绑定；仅凭图标相似不得批量替换
+   * 位置：移动 Web Feed 页底部四项导航的第二项：聊天气泡，24×24。
+   * Figma：移动 Web 底栏 / 聊天 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-82196
+   * 适配：原稿气泡内为三个点；动效组件选中态是波形。位置已确认，接入时保留原稿内符号或明确采用动效选中态，不能声称逐像素一致。
+   * 注释同步：位置已核对；本次 Figma 调用额度用尽，新增注释目前仅在网站和源码
    * 触发：选中时气泡填充并绘出波形，取消时反向收笔。
    * 状态：active；默认 false，接入时以业务状态覆盖
    * 事件：motion-change → { active: boolean }

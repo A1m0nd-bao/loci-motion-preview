@@ -8,39 +8,154 @@
   "note": "项目交付记录，不是 Code Connect 标准格式。仅映射核对过的节点；未匹配项不得按外观批量替换。",
   "bindings": [
     {
+      "nodeId": "730:67212",
+      "tagName": "sipplay-brackets-tool",
+      "source": "web-components/tool-highlight.js",
+      "placement": "26×26 圆形按钮；复用图标反馈，保留原工具业务",
+      "url": "https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-67212",
+      "annotationStatus": "website-only",
+      "adaptation": "原稿括号是 SF Pro 文本，组件为 SVG 字形；保持原稿视觉与字号，不要求逐路径一致。"
+    },
+    {
+      "nodeId": "730:67209",
+      "tagName": "sipplay-image-tool",
+      "source": "web-components/tool-highlight.js",
+      "placement": "整枚 26×26 工具按钮；保留原图片选择、校验及上传流程",
+      "url": "https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-67209",
+      "annotationStatus": "website-only"
+    },
+    {
+      "nodeId": "730:82191",
+      "tagName": "sipplay-bottom-bar",
+      "source": "web-components/bottom-bar.js",
+      "placement": "整组 375×48 导航；优先父级绑定，四枚子图标不另接业务点击",
+      "url": "https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-82191",
+      "annotationStatus": "website-only",
+      "adaptation": "保持原稿四项图标间距、底栏背景和安全区；聊天图标原稿是三点，组件选中态为波形，按页面视觉要求适配。"
+    },
+    {
+      "nodeId": "730:82201",
+      "tagName": "sipplay-user-page-toggle",
+      "source": "web-components/user-page-toggle.js",
+      "placement": "仅图标；active = 当前路由为用户页，由整组导航统一驱动",
+      "url": "https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-82201",
+      "annotationStatus": "website-only"
+    },
+    {
+      "nodeId": "730:82199",
+      "tagName": "sipplay-plus-selection-toggle",
+      "source": "web-components/plus-selection-toggle.js",
+      "placement": "仅图标；active = 当前路由为添加，由整组导航统一驱动",
+      "url": "https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-82199",
+      "annotationStatus": "website-only"
+    },
+    {
+      "nodeId": "730:82194",
+      "tagName": "sipplay-home-settle-toggle",
+      "source": "web-components/home-settle-toggle.js",
+      "placement": "仅图标；active = 当前路由为首页，由整组导航统一驱动",
+      "url": "https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-82194",
+      "annotationStatus": "website-only"
+    },
+    {
+      "nodeId": "730:67273",
+      "tagName": "sipplay-warning-nudge",
+      "source": "web-components/warning-nudge.js",
+      "placement": "消息操作浮层的举报图标；不得改成自动错误提示",
+      "url": "https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-67273",
+      "annotationStatus": "website-only"
+    },
+    {
+      "nodeId": "730:82196",
+      "tagName": "sipplay-chat-bubble-toggle",
+      "source": "web-components/chat-bubble-toggle.js",
+      "placement": "仅图标；active = 当前路由为聊天，由整组导航统一驱动",
+      "url": "https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-82196",
+      "annotationStatus": "website-only",
+      "adaptation": "原稿气泡内为三个点；动效组件选中态是波形。位置已确认，接入时保留原稿内符号或明确采用动效选中态，不能声称逐像素一致。"
+    },
+    {
       "nodeId": "730:95317",
       "tagName": "sipplay-tap-tab",
       "source": "web-components/tap-tab.js",
       "placement": "整组导航；优先复用组合组件，三个图标由父级统一驱动",
-      "url": "https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-95317"
+      "url": "https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-95317",
+      "annotationStatus": "canvas-and-website"
     },
     {
       "nodeId": "730:95330",
       "tagName": "sipplay-preview-tabs",
       "source": "web-components/preview-tabs.js",
       "placement": "整组分段控件；selected = 0（Chat）或 1（Feed）",
-      "url": "https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-95330"
+      "url": "https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-95330",
+      "annotationStatus": "canvas-and-website"
+    },
+    {
+      "nodeId": "730:67269",
+      "tagName": "sipplay-history-clock",
+      "source": "web-components/history-clock.js",
+      "placement": "消息操作浮层的时钟图标；保留 Backtrack 文案与原业务点击",
+      "url": "https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-67269",
+      "annotationStatus": "website-only"
+    },
+    {
+      "nodeId": "730:68771",
+      "tagName": "sipplay-bell-ring-toggle",
+      "source": "web-components/bell-ring-toggle.js",
+      "placement": "36×36 通知入口；未读角标由业务外层保留",
+      "url": "https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-68771",
+      "annotationStatus": "website-only"
+    },
+    {
+      "nodeId": "730:67162",
+      "tagName": "sipplay-voice-wave",
+      "source": "web-components/voice-wave.js",
+      "placement": "角色消息左上声纹按钮；active 由这条消息的真实音频播放状态驱动",
+      "url": "https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-67162",
+      "annotationStatus": "website-only",
+      "adaptation": "此稿外框约 59×33，底色随消息主题；示例固定 58×28、深色。保留原稿位置、形状、底色和五条声纹节奏，不能整块覆盖为示例黑底。"
+    },
+    {
+      "nodeId": "730:67903",
+      "tagName": "sipplay-pin-toggle",
+      "source": "web-components/pin-toggle.js",
+      "placement": "斜杠图钉的双态交互位置；active 绑定真实置顶状态",
+      "url": "https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-67903",
+      "annotationStatus": "website-only",
+      "adaptation": "原稿图钉含旋转和布尔裁切，保留该位置的尺寸及原有点击区。页面未说明接口时，不自行添加请求。"
+    },
+    {
+      "nodeId": "730:67915",
+      "tagName": "sipplay-pin-reveal",
+      "source": "web-components/pin-reveal.js",
+      "placement": "消息气泡右下角的实心图钉；作为状态标记，不新增点击入口",
+      "url": "https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-67915",
+      "annotationStatus": "website-only",
+      "adaptation": "组件示例含内部按钮；这里的设计是消息状态标记，接入时改为被动图标，并保留原稿背景与透明度。"
     },
     {
       "nodeId": "730:95327",
       "tagName": "sipplay-wrench-turn-toggle",
       "source": "web-components/wrench-turn-toggle.js",
       "placement": "仅图标；active = 当前步骤为 advanced",
-      "url": "https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-95327"
+      "url": "https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-95327",
+      "annotationStatus": "canvas-and-website"
     },
     {
       "nodeId": "730:95319",
       "tagName": "sipplay-profile-rise-toggle",
       "source": "web-components/profile-rise-toggle.js",
       "placement": "仅图标；active = 当前步骤为 character",
-      "url": "https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-95319"
+      "url": "https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-95319",
+      "annotationStatus": "canvas-and-website"
     },
     {
       "nodeId": "730:95323",
       "tagName": "sipplay-layer-stack-toggle",
       "source": "web-components/layer-stack-toggle.js",
       "placement": "仅图标；active = 当前步骤为 intro",
-      "url": "https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-95323"
+      "url": "https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-95323",
+      "annotationStatus": "canvas-and-website"
     }
   ]
 }

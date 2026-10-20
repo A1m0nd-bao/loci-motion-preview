@@ -5,12 +5,14 @@ export function defineWarningNudge(animate) {
   /**
    * @summary 警示牌弹性提醒
    * 动效：警示牌弹性提醒 / sipplay-warning-nudge
-   * 位置：建议用于同形三角警示图标；本次设计选区未确认位置。
-   * Figma：待绑定；仅凭图标相似不得批量替换
-   * 触发：点击或外部 replay() 单次提醒；不循环。
+   * 位置：Web 聊天页：消息操作浮层中的 Report（举报）入口，20×20 三角图标。
+   * Figma：聊天消息 / Report https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-67273
+   * 适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套
+   * 注释同步：位置已核对；本次 Figma 调用额度用尽，新增注释目前仅在网站和源码
+   * 触发：举报入口点击时单次提醒；不循环。不要因页面渲染、消息到达或鼠标经过就自动报警。
    * 状态：无持久状态；默认 静止，接入时以业务状态覆盖
    * 事件：motion-replay → 无 detail
-   * 业务接入：由校验提示出现或严重程度变化等业务事件触发 replay()，不要在每次页面渲染时重播；具体错误字段由页面层提供。
+   * 业务接入：此处为 Report 操作，不是字段校验错误。保留既有举报面板与业务点击；只给图标加单次反馈，不等待动画完成才打开举报流程。
    * 参数：duration=0.82（时长（秒））；strength=1（提醒幅度）
    * 源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/warning-nudge.js；初始化 defineWarningNudge(animate)
    * 依赖：Motion animate
@@ -22,7 +24,7 @@ export function defineWarningNudge(animate) {
    * @attribute {number} duration - 时长（秒）；范围 0.32–1.6，步长 0.04。
    * @attribute {number} strength - 提醒幅度；范围 0.4–1.6，步长 0.1。
    * @attribute {string} label - 内部交互控件的可访问名称。
-   * @fires {CustomEvent} motion-replay - detail: 无 detail。由校验提示出现或严重程度变化等业务事件触发 replay()，不要在每次页面渲染时重播；具体错误字段由页面层提供。
+   * @fires {CustomEvent} motion-replay - detail: 无 detail。此处为 Report 操作，不是字段校验错误。保留既有举报面板与业务点击；只给图标加单次反馈，不等待动画完成才打开举报流程。
    * @fires {CustomEvent} motion-finish - detail: 无 detail。动画完成或 finish() 提前结束时发出。
    */
   class WarningNudge extends HTMLElement {

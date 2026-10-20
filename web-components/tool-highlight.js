@@ -9,12 +9,14 @@ export function defineToolHighlight(animate) {
   /**
    * @summary 括号工具单击高亮 / 添加图片单击高亮
    * 动效：括号工具单击高亮 / sipplay-brackets-tool
-   * 位置：建议用于同形括号工具按钮；本次设计选区未确认位置。
-   * Figma：待绑定；仅凭图标相似不得批量替换
+   * 位置：Web 聊天页：底部 Your message 输入框右侧，与图片工具并排的 26×26 圆形 ( ) 按钮。
+   * Figma：聊天输入框 / ( ) 工具 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-67212
+   * 适配：原稿括号是 SF Pro 文本，组件为 SVG 字形；保持原稿视觉与字号，不要求逐路径一致。
+   * 注释同步：位置已核对；本次 Figma 调用额度用尽，新增注释目前仅在网站和源码
    * 触发：悬停提亮、点击短亮后自动恢复；不保留选中。
    * 状态：无持久状态；默认 静止，接入时以业务状态覆盖
    * 事件：tool-activate → { icon: 'brackets' }
-   * 业务接入：监听 tool-activate 执行现有编辑器操作；没有 active 状态。
+   * 业务接入：监听 tool-activate 执行项目原有括号工具操作；设计稿未说明具体编辑语义，不把它猜成代码编辑器或新路由。没有 active 状态。
    * 参数：duration=0.18（提亮时长（秒））
    * 源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/tool-highlight.js；初始化 defineToolHighlight(animate)
    * 依赖：Motion animate
@@ -24,8 +26,10 @@ export function defineToolHighlight(animate) {
    * 映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。
    *
    * 动效：添加图片单击高亮 / sipplay-image-tool
-   * 位置：建议用于同形添加图片工具按钮；本次设计选区未确认位置。
-   * Figma：待绑定；仅凭图标相似不得批量替换
+   * 位置：Web 聊天页：底部 Your message 输入框右侧，26×26 圆形添加图片工具。内图形与源码路径一致。
+   * Figma：聊天输入框 / 添加图片 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-67209
+   * 适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套
+   * 注释同步：位置已核对；本次 Figma 调用额度用尽，新增注释目前仅在网站和源码
    * 触发：悬停提亮、点击短亮后自动恢复；不保留选中。
    * 状态：无持久状态；默认 静止，接入时以业务状态覆盖
    * 事件：tool-activate → { icon: 'image' }

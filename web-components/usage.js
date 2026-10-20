@@ -1,9 +1,11 @@
 import { webMotions } from './catalog.js?v=20261020-check-path';
-import { getHandoff } from './handoff.js?v=20261020-handoff';
-import { batchPrompt, copyButton, renderHandoff, renderCommonNotes } from './handoff-ui.js?v=20261020-handoff';
+import { getHandoff } from './handoff.js?v=20261020-placements';
+import { batchPrompt, copyButton, renderHandoff, renderCommonNotes } from './handoff-ui.js?v=20261020-placements';
 
 const entries = webMotions.filter(e => e.custom).sort((a,b) => getHandoff(b).figma.length - getHandoff(a).figma.length);
-document.querySelector('#componentCount').textContent = `${entries.length} 个自定义动效 · 5 个已核对节点。展开任意组件查看接入细节。`;
+const mapped = entries.filter(e => getHandoff(e).figma.length);
+const nodeCount = new Set(mapped.flatMap(e => getHandoff(e).figma.map(f => f.nodeId))).size;
+document.querySelector('#componentCount').textContent = `${entries.length} 个自定义动效 · ${mapped.length} 个已定位 · ${nodeCount} 个已核对节点 · ${entries.length - mapped.length} 个待核对。展开查看适配要求。`;
 document.querySelector('#batchCopy').append(copyButton('复制 AI 接入指令', batchPrompt));
 document.querySelector('#batchText').textContent = batchPrompt;
 renderCommonNotes(document.querySelector('#commonNotes'));

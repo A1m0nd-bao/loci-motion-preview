@@ -8,6 +8,8 @@ export function defineWhiteSelectionToggle(animate) {
    * 动效：白色勾选切换 / sipplay-white-selection-toggle
    * 位置：建议用于白色圆形勾选控件；本次设计选区未确认位置。
    * Figma：待绑定；仅凭图标相似不得批量替换
+   * 适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套
+   * 注释同步：位置待核对
    * 触发：白色圆底弹出后，镂空勾沿路径绘出；取消时反向恢复。
    * 状态：active；默认 false，接入时以业务状态覆盖
    * 事件：motion-change → { active: boolean }

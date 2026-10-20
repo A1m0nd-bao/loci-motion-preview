@@ -23,7 +23,7 @@
           "kind": "class",
           "name": "ToolHighlight",
           "customElement": true,
-          "description": "动效：括号工具单击高亮 / sipplay-brackets-tool\n位置：建议用于同形括号工具按钮；本次设计选区未确认位置。\nFigma：待绑定；仅凭图标相似不得批量替换\n触发：悬停提亮、点击短亮后自动恢复；不保留选中。\n状态：无持久状态；默认 静止，接入时以业务状态覆盖\n事件：tool-activate → { icon: 'brackets' }\n业务接入：监听 tool-activate 执行现有编辑器操作；没有 active 状态。\n参数：duration=0.18（提亮时长（秒））\n源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/tool-highlight.js；初始化 defineToolHighlight(animate)\n依赖：Motion animate\nAPI 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json\n预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-brackets-tool\n注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。\n映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。\n\n动效：添加图片单击高亮 / sipplay-image-tool\n位置：建议用于同形添加图片工具按钮；本次设计选区未确认位置。\nFigma：待绑定；仅凭图标相似不得批量替换\n触发：悬停提亮、点击短亮后自动恢复；不保留选中。\n状态：无持久状态；默认 静止，接入时以业务状态覆盖\n事件：tool-activate → { icon: 'image' }\n业务接入：监听 tool-activate 打开现有图片选择器；组件不上传文件，没有 active 状态。\n参数：duration=0.18（提亮时长（秒））\n源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/tool-highlight.js；初始化 defineToolHighlight(animate)\n依赖：Motion animate\nAPI 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json\n预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-image-tool\n注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。\n映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。",
+          "description": "动效：括号工具单击高亮 / sipplay-brackets-tool\n位置：Web 聊天页：底部 Your message 输入框右侧，与图片工具并排的 26×26 圆形 ( ) 按钮。\nFigma：聊天输入框 / ( ) 工具 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-67212\n适配：原稿括号是 SF Pro 文本，组件为 SVG 字形；保持原稿视觉与字号，不要求逐路径一致。\n注释同步：位置已核对；本次 Figma 调用额度用尽，新增注释目前仅在网站和源码\n触发：悬停提亮、点击短亮后自动恢复；不保留选中。\n状态：无持久状态；默认 静止，接入时以业务状态覆盖\n事件：tool-activate → { icon: 'brackets' }\n业务接入：监听 tool-activate 执行项目原有括号工具操作；设计稿未说明具体编辑语义，不把它猜成代码编辑器或新路由。没有 active 状态。\n参数：duration=0.18（提亮时长（秒））\n源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/tool-highlight.js；初始化 defineToolHighlight(animate)\n依赖：Motion animate\nAPI 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json\n预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-brackets-tool\n注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。\n映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。\n\n动效：添加图片单击高亮 / sipplay-image-tool\n位置：Web 聊天页：底部 Your message 输入框右侧，26×26 圆形添加图片工具。内图形与源码路径一致。\nFigma：聊天输入框 / 添加图片 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-67209\n适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套\n注释同步：位置已核对；本次 Figma 调用额度用尽，新增注释目前仅在网站和源码\n触发：悬停提亮、点击短亮后自动恢复；不保留选中。\n状态：无持久状态；默认 静止，接入时以业务状态覆盖\n事件：tool-activate → { icon: 'image' }\n业务接入：监听 tool-activate 打开现有图片选择器；组件不上传文件，没有 active 状态。\n参数：duration=0.18（提亮时长（秒））\n源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/tool-highlight.js；初始化 defineToolHighlight(animate)\n依赖：Motion animate\nAPI 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json\n预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-image-tool\n注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。\n映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。",
           "superclass": {
             "name": "HTMLElement"
           },
@@ -155,7 +155,7 @@
           "name": "BottomBar",
           "customElement": true,
           "tagName": "sipplay-bottom-bar",
-          "description": "动效：四页动效底栏 / sipplay-bottom-bar\n位置：建议用于首页/聊天/添加/用户四页底部导航整组；本次设计选区未确认位置。\nFigma：待绑定；仅凭图标相似不得批量替换\n触发：互斥切换时播放相应图标；重复点击当前项只重播图标。\n状态：value；默认 home，接入时以业务状态覆盖\n事件：nav-change → { value, previous, index, label }\n业务接入：value 绑定当前路由，监听 nav-change 执行业务导航；组件不包含页面和路由器。外部设置 value 不发出 nav-change。\n参数：speed=1（播放速度）\n源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/bottom-bar.js；初始化 defineBottomBar(animate)\n依赖：sipplay-home-settle-toggle, sipplay-chat-bubble-toggle, sipplay-plus-selection-toggle, sipplay-user-page-toggle（先注册）\nAPI 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json\n预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-bottom-bar\n注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。\n映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。",
+          "description": "动效：四页动效底栏 / sipplay-bottom-bar\n位置：移动 Web Feed 页底部 Frame 3507 整组导航，375×48；四项依次为首页、聊天、添加、用户。不要替换旁边 Safari 的 Nav bar 或 Home Indicator。\nFigma：移动 Web / 四项底部导航 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-82191\n适配：保持原稿四项图标间距、底栏背景和安全区；聊天图标原稿是三点，组件选中态为波形，按页面视觉要求适配。\n注释同步：位置已核对；本次 Figma 调用额度用尽，新增注释目前仅在网站和源码\n触发：互斥切换时播放相应图标；重复点击当前项只重播图标。\n状态：value；默认 home，接入时以业务状态覆盖\n事件：nav-change → { value, previous, index, label }\n业务接入：value 绑定当前路由，监听 nav-change 执行业务导航；组件不包含页面和路由器。外部设置 value 不发出 nav-change。\n参数：speed=1（播放速度）\n源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/bottom-bar.js；初始化 defineBottomBar(animate)\n依赖：sipplay-home-settle-toggle, sipplay-chat-bubble-toggle, sipplay-plus-selection-toggle, sipplay-user-page-toggle（先注册）\nAPI 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json\n预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-bottom-bar\n注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。\n映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。",
           "superclass": {
             "name": "HTMLElement"
           },
@@ -293,7 +293,7 @@
           "name": "UserPageToggle",
           "customElement": true,
           "tagName": "sipplay-user-page-toggle",
-          "description": "动效：用户页探出选中 / sipplay-user-page-toggle\n位置：建议用于用户页导航图标；本次设计选区未确认位置。\nFigma：待绑定；仅凭图标相似不得批量替换\n触发：选中时头部、身体从底部先后探出；取消时恢复线框。\n状态：active；默认 false，接入时以业务状态覆盖\n事件：motion-change → { active: boolean }\n业务接入：在底栏中由父级导航驱动；与创建页 20px 的人物图标分别使用。\n参数：duration=0.64（切换时长（秒））；strength=1（回弹幅度）\n源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/user-page-toggle.js；初始化 defineUserPageToggle(animate)\n依赖：Motion animate\nAPI 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json\n预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-user-page-toggle\n注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。\n映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。",
+          "description": "动效：用户页探出选中 / sipplay-user-page-toggle\n位置：移动 Web Feed 页底部四项导航的第四项：用户头像轮廓，24×24。原图层名是 plus.circle 3，实际画的是人物。\nFigma：移动 Web 底栏 / 用户 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-82201\n适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套\n注释同步：位置已核对；本次 Figma 调用额度用尽，新增注释目前仅在网站和源码\n触发：选中时头部、身体从底部先后探出；取消时恢复线框。\n状态：active；默认 false，接入时以业务状态覆盖\n事件：motion-change → { active: boolean }\n业务接入：在底栏中由父级导航驱动；与创建页 20px 的人物图标分别使用。\n参数：duration=0.64（切换时长（秒））；strength=1（回弹幅度）\n源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/user-page-toggle.js；初始化 defineUserPageToggle(animate)\n依赖：Motion animate\nAPI 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json\n预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-user-page-toggle\n注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。\n映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。",
           "superclass": {
             "name": "HTMLElement"
           },
@@ -442,7 +442,7 @@
           "name": "PlusSelectionToggle",
           "customElement": true,
           "tagName": "sipplay-plus-selection-toggle",
-          "description": "动效：加号选中填白 / sipplay-plus-selection-toggle\n位置：建议用于添加页导航图标；本次设计选区未确认位置。\nFigma：待绑定；仅凭图标相似不得批量替换\n触发：选中时圆形填白，加号保持透明镂空；取消时恢复灰态。\n状态：active；默认 false，接入时以业务状态覆盖\n事件：motion-change → { active: boolean }\n业务接入：在底栏中由父级导航驱动；这是可保持选中的导航状态，不等同于一次性添加操作。\n参数：duration=0.46（切换时长（秒））；bounce=0.18（填白回弹）\n源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/plus-selection-toggle.js；初始化 definePlusSelectionToggle(animate)\n依赖：Motion animate\nAPI 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json\n预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-plus-selection-toggle\n注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。\n映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。",
+          "description": "动效：加号选中填白 / sipplay-plus-selection-toggle\n位置：移动 Web Feed 页底部四项导航的第三项：圆形加号，24×24。\nFigma：移动 Web 底栏 / 添加 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-82199\n适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套\n注释同步：位置已核对；本次 Figma 调用额度用尽，新增注释目前仅在网站和源码\n触发：选中时圆形填白，加号保持透明镂空；取消时恢复灰态。\n状态：active；默认 false，接入时以业务状态覆盖\n事件：motion-change → { active: boolean }\n业务接入：在底栏中由父级导航驱动；这是可保持选中的导航状态，不等同于一次性添加操作。\n参数：duration=0.46（切换时长（秒））；bounce=0.18（填白回弹）\n源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/plus-selection-toggle.js；初始化 definePlusSelectionToggle(animate)\n依赖：Motion animate\nAPI 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json\n预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-plus-selection-toggle\n注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。\n映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。",
           "superclass": {
             "name": "HTMLElement"
           },
@@ -591,7 +591,7 @@
           "name": "HomeSettleToggle",
           "customElement": true,
           "tagName": "sipplay-home-settle-toggle",
-          "description": "动效：首页填白落定 / sipplay-home-settle-toggle\n位置：建议用于首页导航图标；本次设计选区未确认位置。\nFigma：待绑定；仅凭图标相似不得批量替换\n触发：选中时轻提、填白并落定；取消时恢复线框。\n状态：active；默认 false，接入时以业务状态覆盖\n事件：motion-change → { active: boolean }\n业务接入：在底栏中由父级导航驱动；独立使用时 active 绑定当前路由。\n参数：duration=0.56（切换时长（秒））；strength=1（回弹幅度）\n源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/home-settle-toggle.js；初始化 defineHomeSettleToggle(animate)\n依赖：Motion animate\nAPI 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json\n预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-home-settle-toggle\n注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。\n映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。",
+          "description": "动效：首页填白落定 / sipplay-home-settle-toggle\n位置：移动 Web Feed 页底部四项导航的第一项：首页图标，24×24。\nFigma：移动 Web 底栏 / 首页 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-82194\n适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套\n注释同步：位置已核对；本次 Figma 调用额度用尽，新增注释目前仅在网站和源码\n触发：选中时轻提、填白并落定；取消时恢复线框。\n状态：active；默认 false，接入时以业务状态覆盖\n事件：motion-change → { active: boolean }\n业务接入：在底栏中由父级导航驱动；独立使用时 active 绑定当前路由。\n参数：duration=0.56（切换时长（秒））；strength=1（回弹幅度）\n源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/home-settle-toggle.js；初始化 defineHomeSettleToggle(animate)\n依赖：Motion animate\nAPI 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json\n预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-home-settle-toggle\n注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。\n映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。",
           "superclass": {
             "name": "HTMLElement"
           },
@@ -740,7 +740,7 @@
           "name": "WarningNudge",
           "customElement": true,
           "tagName": "sipplay-warning-nudge",
-          "description": "动效：警示牌弹性提醒 / sipplay-warning-nudge\n位置：建议用于同形三角警示图标；本次设计选区未确认位置。\nFigma：待绑定；仅凭图标相似不得批量替换\n触发：点击或外部 replay() 单次提醒；不循环。\n状态：无持久状态；默认 静止，接入时以业务状态覆盖\n事件：motion-replay → 无 detail\n业务接入：由校验提示出现或严重程度变化等业务事件触发 replay()，不要在每次页面渲染时重播；具体错误字段由页面层提供。\n参数：duration=0.82（时长（秒））；strength=1（提醒幅度）\n源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/warning-nudge.js；初始化 defineWarningNudge(animate)\n依赖：Motion animate\nAPI 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json\n预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-warning-nudge\n注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。\n映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。",
+          "description": "动效：警示牌弹性提醒 / sipplay-warning-nudge\n位置：Web 聊天页：消息操作浮层中的 Report（举报）入口，20×20 三角图标。\nFigma：聊天消息 / Report https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-67273\n适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套\n注释同步：位置已核对；本次 Figma 调用额度用尽，新增注释目前仅在网站和源码\n触发：举报入口点击时单次提醒；不循环。不要因页面渲染、消息到达或鼠标经过就自动报警。\n状态：无持久状态；默认 静止，接入时以业务状态覆盖\n事件：motion-replay → 无 detail\n业务接入：此处为 Report 操作，不是字段校验错误。保留既有举报面板与业务点击；只给图标加单次反馈，不等待动画完成才打开举报流程。\n参数：duration=0.82（时长（秒））；strength=1（提醒幅度）\n源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/warning-nudge.js；初始化 defineWarningNudge(animate)\n依赖：Motion animate\nAPI 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json\n预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-warning-nudge\n注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。\n映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。",
           "superclass": {
             "name": "HTMLElement"
           },
@@ -823,7 +823,7 @@
           "events": [
             {
               "name": "motion-replay",
-              "description": "detail: 无 detail。由校验提示出现或严重程度变化等业务事件触发 replay()，不要在每次页面渲染时重播；具体错误字段由页面层提供。",
+              "description": "detail: 无 detail。此处为 Report 操作，不是字段校验错误。保留既有举报面板与业务点击；只给图标加单次反馈，不等待动画完成才打开举报流程。",
               "type": {
                 "text": "CustomEvent"
               }
@@ -880,7 +880,7 @@
           "name": "LiquidRiseToggle",
           "customElement": true,
           "tagName": "sipplay-liquid-rise-toggle",
-          "description": "动效：彩色液面升起流动 / sipplay-liquid-rise-toggle\n位置：建议用于同形液面注入图标；本次设计选区未确认位置。\nFigma：待绑定；仅凭图标相似不得批量替换\n触发：选中时液面升起后持续流动，取消时回落。\n状态：active；默认 false，接入时以业务状态覆盖\n事件：motion-change → { active: boolean }\n业务接入：active 绑定产品定义的激活状态；不是下载进度条，没有 progress 接口。\n参数：duration=0.78（升起时长（秒））；flow-duration=3.2（流动周期（秒））；strength=1（起伏幅度）\n源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/liquid-rise-toggle.js；初始化 defineLiquidRiseToggle(animate)\n依赖：Motion animate\nAPI 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json\n预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-liquid-rise-toggle\n注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。\n映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。",
+          "description": "动效：彩色液面升起流动 / sipplay-liquid-rise-toggle\n位置：建议用于同形液面注入图标；本次设计选区未确认位置。\nFigma：待绑定；仅凭图标相似不得批量替换\n适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套\n注释同步：位置待核对\n触发：选中时液面升起后持续流动，取消时回落。\n状态：active；默认 false，接入时以业务状态覆盖\n事件：motion-change → { active: boolean }\n业务接入：active 绑定产品定义的激活状态；不是下载进度条，没有 progress 接口。\n参数：duration=0.78（升起时长（秒））；flow-duration=3.2（流动周期（秒））；strength=1（起伏幅度）\n源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/liquid-rise-toggle.js；初始化 defineLiquidRiseToggle(animate)\n依赖：Motion animate\nAPI 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json\n预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-liquid-rise-toggle\n注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。\n映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。",
           "superclass": {
             "name": "HTMLElement"
           },
@@ -1045,7 +1045,7 @@
           "name": "ChatBubbleToggle",
           "customElement": true,
           "tagName": "sipplay-chat-bubble-toggle",
-          "description": "动效：对话气泡唤醒 / sipplay-chat-bubble-toggle\n位置：建议用于聊天导航图标；本次设计选区未确认位置。\nFigma：待绑定；仅凭图标相似不得批量替换\n触发：选中时气泡填充并绘出波形，取消时反向收笔。\n状态：active；默认 false，接入时以业务状态覆盖\n事件：motion-change → { active: boolean }\n业务接入：在底栏中由父级导航驱动；独立使用时 active 绑定当前路由是否为聊天页，不表示语音播放。\n参数：duration=0.64（时长（秒））；bounce=0.22（绘制弹性）\n源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/chat-bubble-toggle.js；初始化 defineChatBubbleToggle(animate)\n依赖：Motion animate\nAPI 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json\n预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-chat-bubble-toggle\n注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。\n映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。",
+          "description": "动效：对话气泡唤醒 / sipplay-chat-bubble-toggle\n位置：移动 Web Feed 页底部四项导航的第二项：聊天气泡，24×24。\nFigma：移动 Web 底栏 / 聊天 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-82196\n适配：原稿气泡内为三个点；动效组件选中态是波形。位置已确认，接入时保留原稿内符号或明确采用动效选中态，不能声称逐像素一致。\n注释同步：位置已核对；本次 Figma 调用额度用尽，新增注释目前仅在网站和源码\n触发：选中时气泡填充并绘出波形，取消时反向收笔。\n状态：active；默认 false，接入时以业务状态覆盖\n事件：motion-change → { active: boolean }\n业务接入：在底栏中由父级导航驱动；独立使用时 active 绑定当前路由是否为聊天页，不表示语音播放。\n参数：duration=0.64（时长（秒））；bounce=0.22（绘制弹性）\n源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/chat-bubble-toggle.js；初始化 defineChatBubbleToggle(animate)\n依赖：Motion animate\nAPI 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json\n预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-chat-bubble-toggle\n注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。\n映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。",
           "superclass": {
             "name": "HTMLElement"
           },
@@ -1194,7 +1194,7 @@
           "name": "TapTab",
           "customElement": true,
           "tagName": "sipplay-tap-tab",
-          "description": "动效：灵动 Tap Tab / sipplay-tap-tab\n位置：创建页 Character Setup / Intro / Advanced Settings 整组导航；保留 Figma 的 912×37 布局、文字与间距，复用组件交互与动画。示例的 44px 点击区和自适应布局需要按项目适配。\nFigma：创建页三项 Tab https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-95317\n触发：切换到新 Tab 时播放对应图标并移动下划线；再次点击当前项只重播图标。初次挂载直接显示当前业务状态。\n状态：value；默认 character，接入时以业务状态覆盖\n事件：tab-change → { value, previous, index }\n业务接入：value 绑定当前创作步骤；监听 tab-change 更新步骤或路由。使用 character / intro / advanced 命名 slot 放面板，或由业务层切换外部面板。外部设置 value 不发出 tab-change。\n参数：duration=0.3（切换时长（秒））；bounce=0.18（速度伸缩）\n源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/tap-tab.js；初始化 defineTapTab(animate)\n依赖：sipplay-profile-rise-toggle, sipplay-layer-stack-toggle, sipplay-wrench-turn-toggle（先注册）\nAPI 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json\n预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-tap-tab\n注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。\n映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。",
+          "description": "动效：灵动 Tap Tab / sipplay-tap-tab\n位置：创建页 Character Setup / Intro / Advanced Settings 整组导航；保留 Figma 的 912×37 布局、文字与间距，复用组件交互与动画。示例的 44px 点击区和自适应布局需要按项目适配。\nFigma：创建页三项 Tab https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-95317\n适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套\n注释同步：Figma 画布与网站已同步\n触发：切换到新 Tab 时播放对应图标并移动下划线；再次点击当前项只重播图标。初次挂载直接显示当前业务状态。\n状态：value；默认 character，接入时以业务状态覆盖\n事件：tab-change → { value, previous, index }\n业务接入：value 绑定当前创作步骤；监听 tab-change 更新步骤或路由。使用 character / intro / advanced 命名 slot 放面板，或由业务层切换外部面板。外部设置 value 不发出 tab-change。\n参数：duration=0.3（切换时长（秒））；bounce=0.18（速度伸缩）\n源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/tap-tab.js；初始化 defineTapTab(animate)\n依赖：sipplay-profile-rise-toggle, sipplay-layer-stack-toggle, sipplay-wrench-turn-toggle（先注册）\nAPI 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json\n预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-tap-tab\n注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。\n映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。",
           "superclass": {
             "name": "HTMLElement"
           },
@@ -1361,7 +1361,7 @@
           "name": "PreviewTabs",
           "customElement": true,
           "tagName": "sipplay-preview-tabs",
-          "description": "动效：预览 Tab 滑动切换 / sipplay-preview-tabs\n位置：创建页右侧 Chat Preview / Feed Preview 分段切换整组控件。\nFigma：创建页预览切换 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-95330\n触发：切换选项时，底片滑动、轻微拉伸回弹，文字亮度同步变化；重复点击当前项不重播。\n状态：selected；默认 0，接入时以业务状态覆盖\n事件：motion-change → { active, selected, value }\n业务接入：selected=0 对应 chat；selected=1 对应 feed。监听 motion-change，用 detail.value 切换业务预览；外部更新使用 selected 属性或 property，value 是只读派生值。组件不含预览页面。\n参数：duration=0.46（时长（秒））；bounce=0.14（回弹程度）\n源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/preview-tabs.js；初始化 definePreviewTabs(animate)\n依赖：Motion animate\nAPI 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json\n预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-preview-tabs\n注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。\n映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。",
+          "description": "动效：预览 Tab 滑动切换 / sipplay-preview-tabs\n位置：创建页右侧 Chat Preview / Feed Preview 分段切换整组控件。\nFigma：创建页预览切换 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-95330\n适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套\n注释同步：Figma 画布与网站已同步\n触发：切换选项时，底片滑动、轻微拉伸回弹，文字亮度同步变化；重复点击当前项不重播。\n状态：selected；默认 0，接入时以业务状态覆盖\n事件：motion-change → { active, selected, value }\n业务接入：selected=0 对应 chat；selected=1 对应 feed。监听 motion-change，用 detail.value 切换业务预览；外部更新使用 selected 属性或 property，value 是只读派生值。组件不含预览页面。\n参数：duration=0.46（时长（秒））；bounce=0.14（回弹程度）\n源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/preview-tabs.js；初始化 definePreviewTabs(animate)\n依赖：Motion animate\nAPI 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json\n预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-preview-tabs\n注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。\n映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。",
           "superclass": {
             "name": "HTMLElement"
           },
@@ -1531,7 +1531,7 @@
           "name": "HistoryClock",
           "customElement": true,
           "tagName": "sipplay-history-clock",
-          "description": "动效：历史时钟描绘旋转 / sipplay-history-clock\n位置：建议用于历史记录入口；本次设计选区未确认位置。\nFigma：待绑定；仅凭图标相似不得批量替换\n触发：悬停或点击重播一次；外部可 replay()。\n状态：无持久状态；默认 静止，接入时以业务状态覆盖\n事件：motion-replay → 无 detail\n业务接入：没有 active 状态；历史记录面板由业务层响应点击打开，motion-replay 仅表示动画开始。\n参数：duration=0.8（总时长（秒））；bounce=0.4（填白回弹）\n源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/history-clock.js；初始化 defineHistoryClock(animate)\n依赖：Motion animate\nAPI 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json\n预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-history-clock\n注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。\n映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。",
+          "description": "动效：历史时钟描绘旋转 / sipplay-history-clock\n位置：Web 聊天页：消息操作浮层中的 Backtrack（回溯）入口，20×20。不是通用历史记录列表入口。\nFigma：聊天消息 / Backtrack https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-67269\n适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套\n注释同步：位置已核对；本次 Figma 调用额度用尽，新增注释目前仅在网站和源码\n触发：悬停或点击重播一次；外部可 replay()。\n状态：无持久状态；默认 静止，接入时以业务状态覆盖\n事件：motion-replay → 无 detail\n业务接入：没有 active 状态。保留既有 Backtrack 点击与回溯流程；hover/click 播放动画，motion-replay 仅表示动画开始，不触发或确认回溯。\n参数：duration=0.8（总时长（秒））；bounce=0.4（填白回弹）\n源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/history-clock.js；初始化 defineHistoryClock(animate)\n依赖：Motion animate\nAPI 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json\n预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-history-clock\n注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。\n映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。",
           "superclass": {
             "name": "HTMLElement"
           },
@@ -1614,7 +1614,7 @@
           "events": [
             {
               "name": "motion-replay",
-              "description": "detail: 无 detail。没有 active 状态；历史记录面板由业务层响应点击打开，motion-replay 仅表示动画开始。",
+              "description": "detail: 无 detail。没有 active 状态。保留既有 Backtrack 点击与回溯流程；hover/click 播放动画，motion-replay 仅表示动画开始，不触发或确认回溯。",
               "type": {
                 "text": "CustomEvent"
               }
@@ -1671,7 +1671,7 @@
           "name": "BellNotification",
           "customElement": true,
           "tagName": "sipplay-bell-ring-toggle",
-          "description": "动效：铃铛通知反馈 / sipplay-bell-ring-toggle\n位置：建议用于同形铃铛通知入口；本次设计选区的同名按钮未确认是此图形。\nFigma：待绑定；仅凭图标相似不得批量替换\n触发：鼠标移入轻摇一次，点击轻沉回位并立即发出通知请求。\n状态：expanded；默认 false，接入时以业务状态覆盖\n事件：notification-request → 无 detail\n业务接入：监听 notification-request 打开既有通知弹窗；expanded 同步真实弹窗开关，仅用于可访问状态。不要等待动画结束才打开弹窗。\n参数：duration=0.7（轻摇时长（秒））；click-duration=0.64（点击时长（秒））；strength=1（动效幅度）\n源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/bell-ring-toggle.js；初始化 defineBellRingToggle(animate)\n依赖：Motion animate\nAPI 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json\n预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-bell-ring-toggle\n注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。\n映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。",
+          "description": "动效：铃铛通知反馈 / sipplay-bell-ring-toggle\n位置：Web 首页顶栏 RecoilRoot 中的 36×36 通知铃铛，带独立未读提示层。已核对 bell SVG；创建页同名 Notification 图层是皇冠，不适用。\nFigma：Web 首页顶栏 / 通知铃铛 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-68771\n适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套\n注释同步：位置已核对；本次 Figma 调用额度用尽，新增注释目前仅在网站和源码\n触发：鼠标移入轻摇一次，点击轻沉回位并立即发出通知请求。\n状态：expanded；默认 false，接入时以业务状态覆盖\n事件：notification-request → 无 detail\n业务接入：监听 notification-request 打开既有通知弹窗；expanded 同步真实弹窗开关，仅用于可访问状态。不要等待动画结束才打开弹窗。\n参数：duration=0.7（轻摇时长（秒））；click-duration=0.64（点击时长（秒））；strength=1（动效幅度）\n源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/bell-ring-toggle.js；初始化 defineBellRingToggle(animate)\n依赖：Motion animate\nAPI 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json\n预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-bell-ring-toggle\n注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。\n映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。",
           "superclass": {
             "name": "HTMLElement"
           },
@@ -1838,7 +1838,7 @@
           "name": "VoiceWave",
           "customElement": true,
           "tagName": "sipplay-voice-wave",
-          "description": "动效：灵动语音条 / sipplay-voice-wave\n位置：建议用于语音消息播放状态；本次设计选区未确认位置。\nFigma：待绑定；仅凭图标相似不得批量替换\n触发：active=true 循环声纹；false 时平滑收稳。\n状态：active；默认 false，接入时以业务状态覆盖\n事件：motion-change → { active: boolean }\n业务接入：只提供视觉，不含音频播放器。以真实音频 playing / pause / ended / error 事件驱动 active；点击事件应交给业务音频控制，不以动画启动作为播放成功。\n参数：duration=4.8（节奏周期（秒））；strength=1（声纹幅度）\n源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/voice-wave.js；初始化 defineVoiceWave(animate)\n依赖：Motion animate\nAPI 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json\n预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-voice-wave\n注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。\n映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。",
+          "description": "动效：灵动语音条 / sipplay-voice-wave\n位置：Web 聊天页：角色消息气泡左上方的五条声纹播放入口，可见于 Frame 3549；与消息气泡连接。\nFigma：角色聊天消息 / 语音入口 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-67162\n适配：此稿外框约 59×33，底色随消息主题；示例固定 58×28、深色。保留原稿位置、形状、底色和五条声纹节奏，不能整块覆盖为示例黑底。\n注释同步：位置已核对；本次 Figma 调用额度用尽，新增注释目前仅在网站和源码\n触发：active=true 循环声纹；false 时平滑收稳。\n状态：active；默认 false，接入时以业务状态覆盖\n事件：motion-change → { active: boolean }\n业务接入：只提供视觉，不含音频播放器。以真实音频 playing / pause / ended / error 事件驱动 active；点击事件应交给业务音频控制，不以动画启动作为播放成功。\n参数：duration=4.8（节奏周期（秒））；strength=1（声纹幅度）\n源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/voice-wave.js；初始化 defineVoiceWave(animate)\n依赖：Motion animate\nAPI 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json\n预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-voice-wave\n注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。\n映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。",
           "superclass": {
             "name": "HTMLElement"
           },
@@ -1987,7 +1987,7 @@
           "name": "PinMotion",
           "customElement": true,
           "tagName": "sipplay-pin-toggle",
-          "description": "动效：图钉选中切换 / sipplay-pin-toggle\n位置：建议用于置顶按钮的图钉区域；本次设计选区未确认位置。\nFigma：待绑定；仅凭图标相似不得批量替换\n触发：选中时收起斜杠、实心图钉落下回弹；取消时恢复未置顶图形。\n状态：active；默认 false，接入时以业务状态覆盖\n事件：motion-change → { active: boolean }\n业务接入：active 绑定是否已置顶；监听 motion-change 连接业务。请求时机与失败回滚由业务层决定。\n参数：duration=0.52（时长（秒））；bounce=0.28（回弹程度）\n源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/pin-toggle.js；初始化 definePinToggle(animate)\n依赖：Motion animate\nAPI 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json\n预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-pin-toggle\n注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。\n映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。",
+          "description": "动效：图钉选中切换 / sipplay-pin-toggle\n位置：Web 聊天页 Frame 4675：取消置顶状态的斜杠图钉，18×18；与同屏消息角落的实心图钉区分。\nFigma：Web 聊天 / 图钉状态按钮 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-67903\n适配：原稿图钉含旋转和布尔裁切，保留该位置的尺寸及原有点击区。页面未说明接口时，不自行添加请求。\n注释同步：位置已核对；本次 Figma 调用额度用尽，新增注释目前仅在网站和源码\n触发：选中时收起斜杠、实心图钉落下回弹；取消时恢复未置顶图形。\n状态：active；默认 false，接入时以业务状态覆盖\n事件：motion-change → { active: boolean }\n业务接入：active 绑定是否已置顶；监听 motion-change 连接业务。请求时机与失败回滚由业务层决定。\n参数：duration=0.52（时长（秒））；bounce=0.28（回弹程度）\n源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/pin-toggle.js；初始化 definePinToggle(animate)\n依赖：Motion animate\nAPI 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json\n预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-pin-toggle\n注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。\n映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。",
           "superclass": {
             "name": "HTMLElement"
           },
@@ -2136,7 +2136,7 @@
           "name": "PinMotion",
           "customElement": true,
           "tagName": "sipplay-pin-reveal",
-          "description": "动效：实心图钉出现 / sipplay-pin-reveal\n位置：建议用于已置顶标记的出现；本次设计选区未确认位置。\nFigma：待绑定；仅凭图标相似不得批量替换\n触发：active=true 时出现；带 active 挂载也会播放出现动画。\n状态：active；默认 false，接入时以业务状态覆盖\n事件：motion-change → { active: boolean }\n业务接入：这是出现/隐藏效果，与图钉双态切换不同。初始需要静态显示时挂载后调用 finish()；业务状态仍由外部控制。\n参数：duration=0.64（时长（秒））；bounce=0.28（回弹程度）\n源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/pin-reveal.js；初始化 definePinReveal(animate)\n依赖：Motion animate\nAPI 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json\n预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-pin-reveal\n注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。\n映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。",
+          "description": "动效：实心图钉出现 / sipplay-pin-reveal\n位置：Web 聊天页 Frame 4675：消息气泡右下角的实心图钉标记，18×18。它标识消息已置顶。\nFigma：Web 聊天 / 已置顶消息标记 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-67915\n适配：组件示例含内部按钮；这里的设计是消息状态标记，接入时改为被动图标，并保留原稿背景与透明度。\n注释同步：位置已核对；本次 Figma 调用额度用尽，新增注释目前仅在网站和源码\n触发：active=true 时出现；带 active 挂载也会播放出现动画。\n状态：active；默认 false，接入时以业务状态覆盖\n事件：motion-change → { active: boolean }\n业务接入：active 绑定这条消息是否已置顶，仅在标记出现时播放。作为纯状态标记使用时应提取被动图标视图，不新增按钮、点击切换或 Tab 焦点；不能与置顶操作按钮重复执行业务。初始静态显示时调用 finish()。\n参数：duration=0.64（时长（秒））；bounce=0.28（回弹程度）\n源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/pin-reveal.js；初始化 definePinReveal(animate)\n依赖：Motion animate\nAPI 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json\n预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-pin-reveal\n注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。\n映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。",
           "superclass": {
             "name": "HTMLElement"
           },
@@ -2146,7 +2146,7 @@
               "type": {
                 "text": "boolean"
               },
-              "description": "这是出现/隐藏效果，与图钉双态切换不同。初始需要静态显示时挂载后调用 finish()；业务状态仍由外部控制。 默认 false。",
+              "description": "active 绑定这条消息是否已置顶，仅在标记出现时播放。作为纯状态标记使用时应提取被动图标视图，不新增按钮、点击切换或 Tab 焦点；不能与置顶操作按钮重复执行业务。初始静态显示时调用 finish()。 默认 false。",
               "default": "false"
             },
             {
@@ -2235,7 +2235,7 @@
           "events": [
             {
               "name": "motion-change",
-              "description": "detail: { active: boolean }。这是出现/隐藏效果，与图钉双态切换不同。初始需要静态显示时挂载后调用 finish()；业务状态仍由外部控制。",
+              "description": "detail: { active: boolean }。active 绑定这条消息是否已置顶，仅在标记出现时播放。作为纯状态标记使用时应提取被动图标视图，不新增按钮、点击切换或 Tab 焦点；不能与置顶操作按钮重复执行业务。初始静态显示时调用 finish()。",
               "type": {
                 "text": "CustomEvent"
               }
@@ -2285,7 +2285,7 @@
           "name": "WrenchTurnToggle",
           "customElement": true,
           "tagName": "sipplay-wrench-turn-toggle",
-          "description": "动效：扳手拧动回弹 / sipplay-wrench-turn-toggle\n位置：Advanced Settings 左侧扳手图标。\nFigma：Advanced Settings / 扳手图标 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-95327\n触发：对应 Tab 选中时，以扳口为轴连续拧动两次、回弹收稳；取消选中置灰。\n状态：active；默认 false，接入时以业务状态覆盖\n事件：motion-change → { active: boolean }\n业务接入：在 Tap Tab 中由父组件驱动 active。独立使用时，active 绑定当前步骤是否为 advanced。\n参数：duration=0.84（时长（秒））；bounce=0.28（回弹程度）\n源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/wrench-turn-toggle.js；初始化 defineWrenchTurnToggle(animate)\n依赖：Motion animate\nAPI 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json\n预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-wrench-turn-toggle\n注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。\n映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。",
+          "description": "动效：扳手拧动回弹 / sipplay-wrench-turn-toggle\n位置：Advanced Settings 左侧扳手图标。\nFigma：Advanced Settings / 扳手图标 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-95327\n适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套\n注释同步：Figma 画布与网站已同步\n触发：对应 Tab 选中时，以扳口为轴连续拧动两次、回弹收稳；取消选中置灰。\n状态：active；默认 false，接入时以业务状态覆盖\n事件：motion-change → { active: boolean }\n业务接入：在 Tap Tab 中由父组件驱动 active。独立使用时，active 绑定当前步骤是否为 advanced。\n参数：duration=0.84（时长（秒））；bounce=0.28（回弹程度）\n源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/wrench-turn-toggle.js；初始化 defineWrenchTurnToggle(animate)\n依赖：Motion animate\nAPI 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json\n预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-wrench-turn-toggle\n注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。\n映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。",
           "superclass": {
             "name": "HTMLElement"
           },
@@ -2434,7 +2434,7 @@
           "name": "ProfileRiseToggle",
           "customElement": true,
           "tagName": "sipplay-profile-rise-toggle",
-          "description": "动效：人物探出回弹 / sipplay-profile-rise-toggle\n位置：Character Setup 左侧人物图标。\nFigma：Character Setup / 人物图标 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-95319\n触发：对应 Tab 从未选中变为选中时，人物从底部探出并回弹；取消选中置灰。\n状态：active；默认 false，接入时以业务状态覆盖\n事件：motion-change → { active: boolean }\n业务接入：在 Tap Tab 中由父组件驱动 active，不再单独绑定业务点击。独立使用时，active 绑定当前项是否选中。\n参数：duration=0.64（时长（秒））；bounce=0.3（回弹程度）\n源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/profile-rise-toggle.js；初始化 defineProfileRiseToggle(animate)\n依赖：Motion animate\nAPI 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json\n预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-profile-rise-toggle\n注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。\n映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。",
+          "description": "动效：人物探出回弹 / sipplay-profile-rise-toggle\n位置：Character Setup 左侧人物图标。\nFigma：Character Setup / 人物图标 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-95319\n适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套\n注释同步：Figma 画布与网站已同步\n触发：对应 Tab 从未选中变为选中时，人物从底部探出并回弹；取消选中置灰。\n状态：active；默认 false，接入时以业务状态覆盖\n事件：motion-change → { active: boolean }\n业务接入：在 Tap Tab 中由父组件驱动 active，不再单独绑定业务点击。独立使用时，active 绑定当前项是否选中。\n参数：duration=0.64（时长（秒））；bounce=0.3（回弹程度）\n源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/profile-rise-toggle.js；初始化 defineProfileRiseToggle(animate)\n依赖：Motion animate\nAPI 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json\n预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-profile-rise-toggle\n注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。\n映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。",
           "superclass": {
             "name": "HTMLElement"
           },
@@ -2583,7 +2583,7 @@
           "name": "LayerStackToggle",
           "customElement": true,
           "tagName": "sipplay-layer-stack-toggle",
-          "description": "动效：图层落下叠加 / sipplay-layer-stack-toggle\n位置：Intro 左侧图层图标。\nFigma：Intro / 图层图标 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-95323\n触发：对应 Tab 从未选中变为选中时，方片依次落下叠合；取消选中置灰。\n状态：active；默认 false，接入时以业务状态覆盖\n事件：motion-change → { active: boolean }\n业务接入：在 Tap Tab 中由父组件驱动 active。独立使用时，active 绑定当前步骤是否为 intro。\n参数：duration=0.72（时长（秒））；bounce=0.24（回弹程度）\n源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/layer-stack-toggle.js；初始化 defineLayerStackToggle(animate)\n依赖：Motion animate\nAPI 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json\n预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-layer-stack-toggle\n注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。\n映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。",
+          "description": "动效：图层落下叠加 / sipplay-layer-stack-toggle\n位置：Intro 左侧图层图标。\nFigma：Intro / 图层图标 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-95323\n适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套\n注释同步：Figma 画布与网站已同步\n触发：对应 Tab 从未选中变为选中时，方片依次落下叠合；取消选中置灰。\n状态：active；默认 false，接入时以业务状态覆盖\n事件：motion-change → { active: boolean }\n业务接入：在 Tap Tab 中由父组件驱动 active。独立使用时，active 绑定当前步骤是否为 intro。\n参数：duration=0.72（时长（秒））；bounce=0.24（回弹程度）\n源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/layer-stack-toggle.js；初始化 defineLayerStackToggle(animate)\n依赖：Motion animate\nAPI 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json\n预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-layer-stack-toggle\n注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。\n映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。",
           "superclass": {
             "name": "HTMLElement"
           },
@@ -2732,7 +2732,7 @@
           "name": "WhiteSelectionToggle",
           "customElement": true,
           "tagName": "sipplay-white-selection-toggle",
-          "description": "动效：白色勾选切换 / sipplay-white-selection-toggle\n位置：建议用于白色圆形勾选控件；本次设计选区未确认位置。\nFigma：待绑定；仅凭图标相似不得批量替换\n触发：白色圆底弹出后，镂空勾沿路径绘出；取消时反向恢复。\n状态：active；默认 false，接入时以业务状态覆盖\n事件：motion-change → { active: boolean }\n业务接入：active 绑定勾选数据；不要仅因同为勾选就替换其他形状或颜色的控件。\n参数：duration=0.32（时长（秒））；bounce=0.15（回弹程度）\n源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/white-selection-toggle.js；初始化 defineWhiteSelectionToggle(animate)\n依赖：Motion animate\nAPI 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json\n预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-white-selection-toggle\n注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。\n映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。",
+          "description": "动效：白色勾选切换 / sipplay-white-selection-toggle\n位置：建议用于白色圆形勾选控件；本次设计选区未确认位置。\nFigma：待绑定；仅凭图标相似不得批量替换\n适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套\n注释同步：位置待核对\n触发：白色圆底弹出后，镂空勾沿路径绘出；取消时反向恢复。\n状态：active；默认 false，接入时以业务状态覆盖\n事件：motion-change → { active: boolean }\n业务接入：active 绑定勾选数据；不要仅因同为勾选就替换其他形状或颜色的控件。\n参数：duration=0.32（时长（秒））；bounce=0.15（回弹程度）\n源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/white-selection-toggle.js；初始化 defineWhiteSelectionToggle(animate)\n依赖：Motion animate\nAPI 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json\n预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-white-selection-toggle\n注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。\n映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。",
           "superclass": {
             "name": "HTMLElement"
           },
@@ -2881,7 +2881,7 @@
           "name": "SelectionToggle",
           "customElement": true,
           "tagName": "sipplay-selection-toggle",
-          "description": "动效：粉色勾选切换 / sipplay-selection-toggle\n位置：建议用于粉色圆形勾选控件；本次设计选区未确认位置，不能匹配到方形协议勾选框。\nFigma：待绑定；仅凭图标相似不得批量替换\n触发：选中时圆底弹出并画勾；取消时恢复空心圆。\n状态：active；默认 false，接入时以业务状态覆盖\n事件：motion-change → { active: boolean }\n业务接入：active 绑定勾选数据；监听 motion-change 同步表单。图形不代表业务提交成功。\n参数：duration=0.32（时长（秒））；bounce=0.15（回弹程度）\n源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/selection-toggle.js；初始化 defineSelectionToggle(animate)\n依赖：Motion animate\nAPI 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json\n预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-selection-toggle\n注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。\n映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。",
+          "description": "动效：粉色勾选切换 / sipplay-selection-toggle\n位置：建议用于粉色圆形勾选控件；本次设计选区未确认位置，不能匹配到方形协议勾选框。\nFigma：待绑定；仅凭图标相似不得批量替换\n适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套\n注释同步：位置待核对\n触发：选中时圆底弹出并画勾；取消时恢复空心圆。\n状态：active；默认 false，接入时以业务状态覆盖\n事件：motion-change → { active: boolean }\n业务接入：active 绑定勾选数据；监听 motion-change 同步表单。图形不代表业务提交成功。\n参数：duration=0.32（时长（秒））；bounce=0.15（回弹程度）\n源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/selection-toggle.js；初始化 defineSelectionToggle(animate)\n依赖：Motion animate\nAPI 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json\n预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-selection-toggle\n注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。\n映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。",
           "superclass": {
             "name": "HTMLElement"
           },
