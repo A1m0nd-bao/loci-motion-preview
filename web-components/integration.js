@@ -1,5 +1,5 @@
-import { exampleDocument } from "./examples.js?v=20261020-warning-nudge";
-import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-warning-nudge";
+import { exampleDocument } from "./examples.js?v=20261020-home-clean";
+import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-home-clean";
 
 const controllers = new Set();
 
