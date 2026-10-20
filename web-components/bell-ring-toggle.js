@@ -23,8 +23,8 @@ export function defineBellRingToggle(animate) {
       return Number.isFinite(value) ? Math.min(1.4, Math.max(0.4, value)) : 0.7;
     }
     get clickDuration() {
-      const value = Number(this.getAttribute("click-duration") ?? 0.94);
-      return Number.isFinite(value) ? Math.min(1.6, Math.max(0.55, value)) : 0.94;
+      const value = Number(this.getAttribute("click-duration") ?? 0.64);
+      return Number.isFinite(value) ? Math.min(1.6, Math.max(0.55, value)) : 0.64;
     }
     get strength() {
       const value = Number(this.getAttribute("strength") ?? 1);
@@ -59,12 +59,6 @@ export function defineBellRingToggle(animate) {
         this.glyph = this.shadowRoot.querySelector(".glyph");
         this.bell = this.shadowRoot.querySelector(".bell");
         this.clapper = this.shadowRoot.querySelector(".clapper");
-        this.solid = this.bell.querySelector("path:not(.clapper)").cloneNode(true);
-        this.solid.setAttribute("fill", "white");
-        this.solid.setAttribute("stroke", "none");
-        this.solid.classList.add("solid");
-        this.solid.style.opacity = "0";
-        this.bell.insertBefore(this.solid, this.bell.firstChild);
         this.button.addEventListener("pointerenter", event => {
           if (event.pointerType === "mouse" || event.pointerType === "pen") this.hoverIn();
         });
@@ -101,7 +95,6 @@ export function defineBellRingToggle(animate) {
         animate(this.bell, { rotate: 0 }, { duration: 0 }),
         animate(this.clapper, { rotate: 0 }, { duration: 0 }),
         animate(this.glyph, { scale: 1, scaleX: 1, scaleY: 1, y: 0 }, { duration: 0 }),
-        animate(this.solid, { opacity: 0 }, { duration: 0 }),
       ];
     }
     hoverIn() {
@@ -125,28 +118,20 @@ export function defineBellRingToggle(animate) {
           animate(this.clapper, { rotate: [null, -7 * strength, 8 * strength, -4 * strength, 1.5 * strength, 0] }, {
             duration: d, times: [0, 0.32, 0.55, 0.75, 0.9, 1], ease: "easeInOut",
           }),
-          animate(this.solid, { opacity: 0 }, { duration: d * 0.15 }),
           animate(this.glyph, { scale: 1, scaleX: 1, scaleY: 1, y: 0 }, { duration: d * 0.2, ease: "easeOut" }),
         ];
       } else {
-        // Give the press time to load, release upward, then settle in two beats.
+        // A small press and a soft return keep the original outline intact.
         const clickDuration = this.clickDuration;
         this.controls = [
-          animate(this.bell, { rotate: 0 }, { duration: 0.16, ease: "easeOut" }),
-          animate(this.clapper, { rotate: [null, -6 * strength, 10 * strength, -6 * strength, 2 * strength, 0] }, {
-            duration: clickDuration, times: [0, 0.2, 0.47, 0.7, 0.86, 1], ease: "easeInOut",
-          }),
+          animate(this.bell, { rotate: 0 }, { duration: 0.18, ease: "easeOut" }),
+          animate(this.clapper, { rotate: 0 }, { duration: 0.22, ease: "easeOut" }),
           animate(this.glyph, {
-            scale: 1,
-            scaleX: [null, 1 + 0.055 * strength, 1 - 0.065 * strength, 1 + 0.02 * strength, 1 - 0.008 * strength, 1],
-            scaleY: [null, 1 - 0.18 * strength, 1 + 0.16 * strength, 1 - 0.06 * strength, 1 + 0.02 * strength, 1],
-            y: [null, 1.7 * strength, -2.7 * strength, 0.8 * strength, -0.28 * strength, 0],
+            scale: 1, scaleX: 1, scaleY: 1,
+            y: [null, 1 * strength, -0.12 * strength, 0],
           }, {
-            duration: clickDuration, times: [0, 0.22, 0.48, 0.72, 0.87, 1],
-            ease: [[0.4, 0, 0.7, 1], [0.18, 0.95, 0.25, 1], "easeInOut", "easeInOut", "easeOut"],
-          }),
-          animate(this.solid, { opacity: [null, 0, 0.95, 0.95, 0] }, {
-            duration: clickDuration, times: [0, 0.18, 0.43, 0.68, 1], ease: "easeInOut",
+            duration: clickDuration, times: [0, 0.25, 0.72, 1],
+            ease: [[0.3, 0, 0.6, 1], [0.2, 0.75, 0.25, 1], "easeInOut"],
           }),
         ];
       }
@@ -171,9 +156,9 @@ export function defineBellRingToggle(animate) {
 
 export const bellRingDemoMarkup = `
   <div class="selection-demo bell-ring-demo">
-    <p class="selection-demo-hint">移入轻摇一次 · 点击蓄力弹起、缓缓收稳</p>
+    <p class="selection-demo-hint">移入轻摇一次 · 点击轻按、柔和回位</p>
     <div class="selection-demo-zoom">
-      <sipplay-bell-ring-toggle data-motion duration="0.7" click-duration="0.94" strength="1" label="打开通知（放大预览）"></sipplay-bell-ring-toggle>
+      <sipplay-bell-ring-toggle data-motion duration="0.7" click-duration="0.64" strength="1" label="打开通知（放大预览）"></sipplay-bell-ring-toggle>
     </div>
     <p class="selection-demo-caption">3× 细节预览</p>
     <div class="selection-demo-original">
