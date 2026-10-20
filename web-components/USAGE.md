@@ -4,7 +4,7 @@
 
 ## 当前交付范围
 
-共 21 个自定义动效，20 个 Figma 节点记录（19 个已核对，1 个由设计师指定、用途待核对）。其中原有 5 处画布注释已同步；新增 15 处记录暂存网站与源码，尚未写回画布。verification=user-specified / contextStatus=needs-confirmation 的仅记录设计师指定的节点，页面上下文未复核，不可自动绑定业务。读取每条 annotationStatus，website-only 不代表已写回画布；有 adaptation 的必须按说明适配；triggerStatus=needs-confirmation 的不能自行绑定播放触发。正式 Code Connect 因当前账号套餐限制未启用。figma-bindings.json 是本项目的节点对照记录，不是 Code Connect 格式。没有绑定的动效仅提供建议用途，不应按图形相似自动替换整页。
+共 21 个自定义动效，20 个 Figma 节点记录（19 个已核对，1 个由设计师指定并确认单选）。其中原有 5 处画布注释已同步；新增 15 处记录暂存网站与源码，尚未写回画布。verification=user-specified 的对应关系来自设计师指定；selectionMode=single 时由父级唯一选择值驱动，重复点击当前项不取消。contextStatus=needs-confirmation 的暂停自动业务绑定。读取每条 annotationStatus，website-only 不代表已写回画布；有 adaptation 的必须按说明适配；triggerStatus=needs-confirmation 的不能自行绑定播放触发。正式 Code Connect 因当前账号套餐限制未启用。figma-bindings.json 是本项目的节点对照记录，不是 Code Connect 格式。没有绑定的动效仅提供建议用途，不应按图形相似自动替换整页。
 
 ## 研发 / AI 三步使用
 
@@ -43,7 +43,7 @@
 - [730:95327](https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-95327) → sipplay-wrench-turn-toggle：仅图标；active = 当前步骤为 advanced
 - [730:95319](https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-95319) → sipplay-profile-rise-toggle：仅图标；active = 当前步骤为 character
 - [730:95323](https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-95323) → sipplay-layer-stack-toggle：仅图标；active = 当前步骤为 intro
-- [730:102857](https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-102857) → sipplay-selection-toggle：设计师已指定此节点对应粉色勾选；所在页面和业务语义待核对
+- [730:102857](https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-102857) → sipplay-selection-toggle：设计师指定的粉色勾选；单选规则已确认；由父级唯一选择值统一驱动，重复点击当前项不取消
 
 ## 批量接入给 AI 的指令
 
@@ -495,15 +495,15 @@ API 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.js
 
 ```text
 动效：粉色勾选切换 / sipplay-selection-toggle
-位置：设计师已指定 Figma 节点 730:102857 对应粉色勾选。当前浏览器与 Figma 读取受限，尚未核对所在页面、相邻文案和业务用途；不得推断为协议勾选、成功反馈或某个特定表单字段。
+位置：设计师指定的粉色圆形勾选节点 730:102857，用于单选。对应节点由设计师确认；所在页面名称及实际业务字段尚未读取，接入时沿用项目已有字段。
 Figma：设计师指定 / 粉色勾选 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-102857
-核对依据：设计师指定节点；页面上下文尚未复核，暂停自动业务绑定
-适配：组件 SVG 为 20×20，粉色 #ED78F4；设计节点实际尺寸、颜色与点击区尚未复核。接入前核对这些值；避免把内部 44px 按钮直接套进现有按钮。
+核对依据：设计师指定节点并确认单选；接入时沿用项目实际字段
+适配：组件 SVG 为 20×20、粉色 #ED78F4；节点实际尺寸与颜色尚未复核，按原稿核对。现成组件内部是独立 toggle 按钮，不能原样当作 radio 使用；应提取动效视图接入原有单选控件，避免按钮嵌套或新增焦点入口。
 注释同步：此对应关系目前仅保存在网站和源码，尚未写回 Figma 画布
-触发：组件本身在 active=true 时弹出粉色圆底并画勾，false 时恢复空心圆；该节点的业务触发与单选/多选规则仍待核对，当前不自动绑定交互。
+触发：单选组切换到新选项时，新项弹出粉色圆底并画勾，旧项恢复空心圆。再次点击当前项保持选中，不反向取消；初次挂载直接显示当前选项。
 状态：active；默认 false，接入时以业务状态覆盖
 事件：motion-change → { active: boolean }
-业务接入：保留该节点原有静态外观与原业务。核对页面上下文后，将 active 绑定真实选中状态；若是单选组，由父级选择值统一驱动，不能让每枚图标独立切换。若是多选，才分别绑定对应项。motion-change 的 detail.active 只描述组件选中状态，不代表提交成功。
+业务接入：由单选组唯一的 selectedId / value（名称沿用项目）统一驱动：active = 当前组值等于本项 ID。点击只请求选择本项；当前项不能被再次点击取消。不要让每枚组件独立 toggle()，不要新增多选数组。复用动效视图，并保留现有 radio / radiogroup 语义、方向键与焦点管理；选中不代表提交成功。
 参数：duration=0.32（时长（秒））；bounce=0.15（回弹程度）
 源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/selection-toggle.js；初始化 defineSelectionToggle(animate)
 依赖：Motion animate

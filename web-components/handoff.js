@@ -163,25 +163,25 @@ export const definitions = {
     "initializer": "defineSelectionToggle",
     "size": "20×20",
     "state": "active",
-    "placement": "设计师已指定 Figma 节点 730:102857 对应粉色勾选。当前浏览器与 Figma 读取受限，尚未核对所在页面、相邻文案和业务用途；不得推断为协议勾选、成功反馈或某个特定表单字段。",
-    "trigger": "组件本身在 active=true 时弹出粉色圆底并画勾，false 时恢复空心圆；该节点的业务触发与单选/多选规则仍待核对，当前不自动绑定交互。",
-    "integration": "保留该节点原有静态外观与原业务。核对页面上下文后，将 active 绑定真实选中状态；若是单选组，由父级选择值统一驱动，不能让每枚图标独立切换。若是多选，才分别绑定对应项。motion-change 的 detail.active 只描述组件选中状态，不代表提交成功。",
-    "adaptation": "组件 SVG 为 20×20，粉色 #ED78F4；设计节点实际尺寸、颜色与点击区尚未复核。接入前核对这些值；避免把内部 44px 按钮直接套进现有按钮。",
+    "placement": "设计师指定的粉色圆形勾选节点 730:102857，用于单选。对应节点由设计师确认；所在页面名称及实际业务字段尚未读取，接入时沿用项目已有字段。",
+    "trigger": "单选组切换到新选项时，新项弹出粉色圆底并画勾，旧项恢复空心圆。再次点击当前项保持选中，不反向取消；初次挂载直接显示当前选项。",
+    "integration": "由单选组唯一的 selectedId / value（名称沿用项目）统一驱动：active = 当前组值等于本项 ID。点击只请求选择本项；当前项不能被再次点击取消。不要让每枚组件独立 toggle()，不要新增多选数组。复用动效视图，并保留现有 radio / radiogroup 语义、方向键与焦点管理；选中不代表提交成功。",
+    "adaptation": "组件 SVG 为 20×20、粉色 #ED78F4；节点实际尺寸与颜色尚未复核，按原稿核对。现成组件内部是独立 toggle 按钮，不能原样当作 radio 使用；应提取动效视图接入原有单选控件，避免按钮嵌套或新增焦点入口。",
     "verification": "user-specified",
-    "contextStatus": "needs-confirmation",
-    "triggerStatus": "needs-confirmation",
     "figma": [
       {
         "nodeId": "730:102857",
         "name": "设计师指定 / 粉色勾选",
-        "placement": "设计师已指定此节点对应粉色勾选；所在页面和业务语义待核对",
+        "placement": "设计师指定的粉色勾选；单选规则已确认；由父级唯一选择值统一驱动，重复点击当前项不取消",
         "url": "https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-102857",
         "annotationStatus": "website-only",
         "verification": "user-specified",
-        "contextStatus": "needs-confirmation",
-        "triggerStatus": "needs-confirmation"
+        "selectionMode": "single",
+        "integrationMode": "adapt-view"
       }
-    ]
+    ],
+    "selectionMode": "single",
+    "integrationMode": "adapt-view"
   },
   "sipplay-white-selection-toggle": {
     "source": "white-selection-toggle.js",
@@ -492,7 +492,7 @@ export function handoffText(entry, values = {}) {
   return [
     `动效：${d.name} / ${d.id}`, `位置：${d.placement}`,
     `Figma：${d.figma.length ? d.figma.map(n => `${n.name} ${n.url}`).join("；") : "待绑定；仅凭图标相似不得批量替换"}`,
-    `核对依据：${d.verification === "user-specified" ? "设计师指定节点；页面上下文尚未复核，暂停自动业务绑定" : "已核对图形和页面上下文"}`,
+    `核对依据：${d.verification === "user-specified" ? (d.selectionMode === "single" ? "设计师指定节点并确认单选；接入时沿用项目实际字段" : "设计师指定节点；页面上下文尚未复核，暂停自动业务绑定") : "已核对图形和页面上下文"}`,
     `适配：${d.adaptation ?? "保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套"}`,
     `注释同步：${d.figma.length ? (d.figma.every(n => n.annotationStatus === "canvas-and-website") ? "Figma 画布与网站已同步" : "此对应关系目前仅保存在网站和源码，尚未写回 Figma 画布") : "位置待核对"}`,
     `触发：${d.trigger}`, `状态：${d.state ?? "无持久状态"}；默认 ${d.initial}，接入时以业务状态覆盖`,
@@ -509,6 +509,12 @@ export function handoffText(entry, values = {}) {
 export function integrationSnippet(entry) {
   const d = getHandoff(entry);
   if (!d) return "";
+  if (d.selectionMode === "single") return `<!-- ${d.id}：设计师已确认这是单选。
+Figma：${d.figma[0].url}
+复用原有 radio / radiogroup；不要直接挂载示例的独立 toggle 按钮。
+图标状态：active = (单选组当前值 === 本项 ID)，初次挂载后 finish()。
+点击：只请求父级选择本项，重复点击当前项不取消；旧项由父级设为 false。
+沿用现有字段、键盘与焦点逻辑；仅将勾选视图替换为这里的动效。 -->`;
   if (d.contextStatus === "needs-confirmation") return `<!-- ${d.id}：设计师已指定节点，页面用途与选择规则待核对。
 Figma：${d.figma[0].url}
 当前保留原稿和既有业务，不新增点击、单选/多选或提交逻辑。
