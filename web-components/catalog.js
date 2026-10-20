@@ -1,13 +1,14 @@
-import { whiteSelectionDemoMarkup } from "./white-selection-toggle.js?v=20261020-white-check";
-import { historyClockDemoMarkup } from "./history-clock.js?v=20261020-white-check";
-import { bellRingDemoMarkup } from "./bell-ring-toggle.js?v=20261020-white-check";
-import { voiceWaveDemoMarkup } from "./voice-wave.js?v=20261020-white-check";
-import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261020-white-check";
-import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261020-white-check";
-import { selectionDemoMarkup } from "./selection-toggle.js?v=20261020-white-check";
-import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261020-white-check";
-import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261020-white-check";
-import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261020-white-check";
+import { tapTabDemoMarkup } from "./tap-tab.js?v=20261020-tap-tab";
+import { whiteSelectionDemoMarkup } from "./white-selection-toggle.js?v=20261020-tap-tab";
+import { historyClockDemoMarkup } from "./history-clock.js?v=20261020-tap-tab";
+import { bellRingDemoMarkup } from "./bell-ring-toggle.js?v=20261020-tap-tab";
+import { voiceWaveDemoMarkup } from "./voice-wave.js?v=20261020-tap-tab";
+import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261020-tap-tab";
+import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261020-tap-tab";
+import { selectionDemoMarkup } from "./selection-toggle.js?v=20261020-tap-tab";
+import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261020-tap-tab";
+import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261020-tap-tab";
+import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261020-tap-tab";
 
 export const upstreamVersion = "1.3.0";
 export const upstreamURL = "https://github.com/tgomilar/motion-components";
@@ -98,6 +99,13 @@ const upstreamMotions = entries.map(([id, name, category, description, markup, c
 }));
 
 export const webMotions = [{
+  id: "sipplay-tap-tab", name: "灵动 Tap Tab", category: "交互组件",
+  description: "将人物、图层、扳手三个已有动效组成互斥选中的 Tab。切换时图标播放原有动作，文字同步提亮，下划线先牵引伸展再收稳；再次点击当前项仅重播图标。保留 Character Setup、Intro、Advanced Settings 文案与必填星号。支持键盘、触屏、减少动态效果与独立 HTML 导出，通过 tab-change 事件连接页面内容。",
+  markup: tapTabDemoMarkup, controls: [number("duration", "切换时长（秒）", 0.48, 0.24, 1.2, 0.04), number("bounce", "下划线牵引", 0.18, 0, 0.4, 0.02)],
+  kind: "web", kindLabel: "Web 组件", fileName: "sipplay-tap-tab",
+  file: "./web-components/preview.html?id=sipplay-tap-tab", docs: null, custom: true,
+  tags: ["Tab", "tapTab", "标签页", "导航", "人物", "图层", "扳手", "下划线"], interactionType: "Tab 切换",
+}, {
   id: "sipplay-history-clock", name: "历史时钟描绘旋转", category: "动态图标",
   description: "恢复外圈、箭头和指针的错峰路径绘制；以圆环真实圆心 (8.75194, 10) 为轴，沿箭头方向逆时针旋转一整圈并轻微回弹。外圈描边也逆时针绘出，保留原始路径、比例与描边。悬停或点击播放一次。",
   markup: historyClockDemoMarkup, controls: [number("duration", "总时长（秒）", 0.8, 0.3, 1.6, 0.05), number("bounce", "旋转回弹", 0.4, 0, 0.5, 0.05)],

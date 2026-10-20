@@ -1,23 +1,25 @@
-import { defineWhiteSelectionToggle, whiteSelectionDemoCSS } from "./white-selection-toggle.js?v=20261020-white-check";
-import { defineHistoryClock, historyClockDemoCSS } from "./history-clock.js?v=20261020-white-check";
-import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261020-white-check";
-import { motionExampleDocument } from "../motion/examples.js?v=20261020-white-check";
-import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261020-white-check";
-import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261020-white-check";
-import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261020-white-check";
-import { exampleMarkup, upstreamURL, upstreamVersion } from "./catalog.js?v=20261020-white-check";
-import { demoCSS } from "./demo-styles.js?v=20261020-white-check";
-import { bindDemoActions } from "./demo-actions.js?v=20261020-white-check";
-import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261020-white-check";
-import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261020-white-check";
-import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261020-white-check";
-import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261020-white-check";
+import { defineTapTab, tapTabDemoCSS } from "./tap-tab.js?v=20261020-tap-tab";
+import { defineWhiteSelectionToggle, whiteSelectionDemoCSS } from "./white-selection-toggle.js?v=20261020-tap-tab";
+import { defineHistoryClock, historyClockDemoCSS } from "./history-clock.js?v=20261020-tap-tab";
+import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261020-tap-tab";
+import { motionExampleDocument } from "../motion/examples.js?v=20261020-tap-tab";
+import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261020-tap-tab";
+import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261020-tap-tab";
+import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261020-tap-tab";
+import { exampleMarkup, upstreamURL, upstreamVersion } from "./catalog.js?v=20261020-tap-tab";
+import { demoCSS } from "./demo-styles.js?v=20261020-tap-tab";
+import { bindDemoActions } from "./demo-actions.js?v=20261020-tap-tab";
+import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261020-tap-tab";
+import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261020-tap-tab";
+import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261020-tap-tab";
+import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261020-tap-tab";
 
 export function exampleDocument(entry, values = {}) {
   if (entry.kind === "motion") return motionExampleDocument(entry, values);
   const font = "https://cdn.jsdelivr.net/npm/@fontsource-variable/inter@5.3.0/files/inter-latin-wght-normal.woff2";
-  const styles = (demoCSS + (entry.custom ? selectionDemoCSS + whiteSelectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS + wrenchTurnDemoCSS + pinToggleDemoCSS + pinRevealDemoCSS + voiceWaveDemoCSS + bellRingDemoCSS + historyClockDemoCSS : "")).replace('./vendor/inter-latin-wght-normal.woff2', font);
+  const styles = (demoCSS + (entry.custom ? selectionDemoCSS + whiteSelectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS + wrenchTurnDemoCSS + pinToggleDemoCSS + pinRevealDemoCSS + voiceWaveDemoCSS + bellRingDemoCSS + historyClockDemoCSS + tapTabDemoCSS : "")).replace('./vendor/inter-latin-wght-normal.woff2', font);
   const defineCustom = {
+    "sipplay-tap-tab": defineTapTab,
     "sipplay-history-clock": defineHistoryClock,
     "sipplay-bell-ring-toggle": defineBellRingToggle,
     "sipplay-voice-wave": defineVoiceWave,
@@ -29,8 +31,9 @@ export function exampleDocument(entry, values = {}) {
     "sipplay-profile-rise-toggle": defineProfileRiseToggle,
     "sipplay-wrench-turn-toggle": defineWrenchTurnToggle,
   }[entry.id];
+  const dependencies = entry.id === "sipplay-tap-tab" ? [defineProfileRiseToggle, defineLayerStackToggle, defineWrenchTurnToggle] : [];
   const initializer = entry.custom
-    ? `import { animate } from 'https://cdn.jsdelivr.net/npm/motion@13.5.1/+esm';\n    (${defineCustom.toString()})(animate);`
+    ? `import { animate } from 'https://cdn.jsdelivr.net/npm/motion@13.5.1/+esm';\n    ${dependencies.map(define => `(${define.toString()})(animate);`).join('\n    ')}\n    (${defineCustom.toString()})(animate);`
     : `await customElements.whenDefined('${entry.id}');`;
   return `<!doctype html>
 <html lang="zh-CN">

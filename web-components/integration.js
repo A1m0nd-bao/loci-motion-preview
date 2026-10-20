@@ -1,5 +1,5 @@
-import { exampleDocument } from "./examples.js?v=20261020-white-check";
-import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-white-check";
+import { exampleDocument } from "./examples.js?v=20261020-tap-tab";
+import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-tap-tab";
 
 const controllers = new Set();
 

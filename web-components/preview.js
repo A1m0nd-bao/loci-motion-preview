@@ -1,28 +1,29 @@
-import { defineWhiteSelectionToggle, whiteSelectionDemoCSS } from "./white-selection-toggle.js?v=20261020-white-check";
-import { defineHistoryClock, historyClockDemoCSS } from "./history-clock.js?v=20261020-white-check";
-import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261020-white-check";
-import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261020-white-check";
-import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261020-white-check";
-import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261020-white-check";
-import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-white-check";
-import { demoCSS } from "./demo-styles.js?v=20261020-white-check";
-import { bindDemoActions } from "./demo-actions.js?v=20261020-white-check";
-import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261020-white-check";
-import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261020-white-check";
-import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261020-white-check";
-import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261020-white-check";
+import { defineTapTab, tapTabDemoCSS } from "./tap-tab.js?v=20261020-tap-tab";
+import { defineWhiteSelectionToggle, whiteSelectionDemoCSS } from "./white-selection-toggle.js?v=20261020-tap-tab";
+import { defineHistoryClock, historyClockDemoCSS } from "./history-clock.js?v=20261020-tap-tab";
+import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261020-tap-tab";
+import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261020-tap-tab";
+import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261020-tap-tab";
+import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261020-tap-tab";
+import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-tap-tab";
+import { demoCSS } from "./demo-styles.js?v=20261020-tap-tab";
+import { bindDemoActions } from "./demo-actions.js?v=20261020-tap-tab";
+import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261020-tap-tab";
+import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261020-tap-tab";
+import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261020-tap-tab";
+import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261020-tap-tab";
 
 const params = new URLSearchParams(location.search);
 const entry = webMotions.find((item) => item.id === params.get("id"));
 const root = document.querySelector("#demo");
 const style = document.createElement("style");
-style.textContent = demoCSS + selectionDemoCSS + whiteSelectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS + wrenchTurnDemoCSS + pinToggleDemoCSS + pinRevealDemoCSS + voiceWaveDemoCSS + bellRingDemoCSS + historyClockDemoCSS;
+style.textContent = demoCSS + selectionDemoCSS + whiteSelectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS + wrenchTurnDemoCSS + pinToggleDemoCSS + pinRevealDemoCSS + voiceWaveDemoCSS + bellRingDemoCSS + historyClockDemoCSS + tapTabDemoCSS;
 document.head.append(style);
 let runtime;
 let values = {};
 let isPaused = false;
 let cleanupDemo;
-const customElementsInDemo = () => [...root.querySelectorAll("sipplay-white-selection-toggle,sipplay-selection-toggle,sipplay-layer-stack-toggle,sipplay-profile-rise-toggle,sipplay-wrench-turn-toggle,sipplay-pin-toggle,sipplay-pin-reveal,sipplay-voice-wave,sipplay-bell-ring-toggle,sipplay-history-clock")];
+const customElementsInDemo = () => [...root.querySelectorAll("sipplay-white-selection-toggle,sipplay-selection-toggle,sipplay-layer-stack-toggle,sipplay-profile-rise-toggle,sipplay-wrench-turn-toggle,sipplay-pin-toggle,sipplay-pin-reveal,sipplay-voice-wave,sipplay-bell-ring-toggle,sipplay-history-clock,sipplay-tap-tab")];
 
 function notify(status, message = "") {
   parent.postMessage({ type: "sipplay-web-preview", id: entry?.id, status, message }, location.origin);
@@ -36,7 +37,9 @@ function compactPointerPreview(active) {
   if (!element) return;
   const rect = element.getBoundingClientRect();
   const point = { clientX: rect.left + rect.width * 0.8, clientY: rect.top + rect.height * 0.25 };
-  if (entry.id === "sipplay-history-clock") {
+  if (entry.id === "sipplay-tap-tab") {
+    element.preview(active);
+  } else if (entry.id === "sipplay-history-clock") {
     if (active) element.hoverIn();
     else element.hoverOut();
   } else if (entry.id === "sipplay-bell-ring-toggle") {
@@ -109,7 +112,7 @@ document.addEventListener("visibilitychange", () => { if (document.hidden) { run
 
 try {
   if (!entry) throw new Error("未找到此组件，请从动效库重新选择。");
-  runtime = await import("./vendor/motion-components.js?v=20261020-white-check");
+  runtime = await import("./vendor/motion-components.js?v=20261020-tap-tab");
   defineHistoryClock(runtime.animate);
   defineBellRingToggle(runtime.animate);
   defineVoiceWave(runtime.animate);
@@ -120,6 +123,7 @@ try {
   defineLayerStackToggle(runtime.animate);
   defineProfileRiseToggle(runtime.animate);
   defineWrenchTurnToggle(runtime.animate);
+  defineTapTab(runtime.animate);
   await render();
 } catch (error) {
   root.className = "demo-error";
