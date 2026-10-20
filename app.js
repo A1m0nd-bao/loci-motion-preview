@@ -1,6 +1,6 @@
-import { motionMotions } from "./motion/catalog.js?v=20261020-history-clock";
-import { webMotions } from "./web-components/catalog.js?v=20261020-history-clock";
-import { createWebController, copyExample, downloadExample, setupWebDetail, getWebValues, syncWebBackgrounds } from "./web-components/integration.js?v=20261020-history-clock";
+import { motionMotions } from "./motion/catalog.js?v=20261020-history-ccw";
+import { webMotions } from "./web-components/catalog.js?v=20261020-history-ccw";
+import { createWebController, copyExample, downloadExample, setupWebDetail, getWebValues, syncWebBackgrounds } from "./web-components/integration.js?v=20261020-history-ccw";
 
 if (import.meta.env?.DEV) document.querySelector("#motionStudioLocal").hidden = false;
 

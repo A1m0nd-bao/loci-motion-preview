@@ -96,8 +96,8 @@ export function defineHistoryClock(animate) {
         const d = this.duration;
         const transform = getComputedStyle(this.clock).transform;
         const matrix = transform === "none" ? new DOMMatrix() : new DOMMatrix(transform);
-        const angle = (Math.atan2(matrix.b, matrix.a) * 180 / Math.PI + 360) % 360;
-        this.controls = [animate(this.clock, { rotate: [angle, 360] }, { type: "spring", duration: d, bounce: this.bounce })];
+        const angle = (Math.atan2(matrix.b, matrix.a) * 180 / Math.PI - 360) % 360;
+        this.controls = [animate(this.clock, { rotate: [angle, -360] }, { type: "spring", duration: d, bounce: this.bounce })];
         for (let index = 0; index < this.strokes.length; index++) {
           const stroke = this.strokes[index];
           const from = Number.parseFloat(getComputedStyle(stroke).strokeDashoffset) || 0;

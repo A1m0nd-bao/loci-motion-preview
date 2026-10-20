@@ -1,12 +1,12 @@
-import { historyClockDemoMarkup } from "./history-clock.js?v=20261020-history-clock";
-import { bellRingDemoMarkup } from "./bell-ring-toggle.js?v=20261020-history-clock";
-import { voiceWaveDemoMarkup } from "./voice-wave.js?v=20261020-history-clock";
-import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261020-history-clock";
-import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261020-history-clock";
-import { selectionDemoMarkup } from "./selection-toggle.js?v=20261020-history-clock";
-import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261020-history-clock";
-import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261020-history-clock";
-import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261020-history-clock";
+import { historyClockDemoMarkup } from "./history-clock.js?v=20261020-history-ccw";
+import { bellRingDemoMarkup } from "./bell-ring-toggle.js?v=20261020-history-ccw";
+import { voiceWaveDemoMarkup } from "./voice-wave.js?v=20261020-history-ccw";
+import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261020-history-ccw";
+import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261020-history-ccw";
+import { selectionDemoMarkup } from "./selection-toggle.js?v=20261020-history-ccw";
+import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261020-history-ccw";
+import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261020-history-ccw";
+import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261020-history-ccw";
 
 export const upstreamVersion = "1.3.0";
 export const upstreamURL = "https://github.com/tgomilar/motion-components";
@@ -98,7 +98,7 @@ const upstreamMotions = entries.map(([id, name, category, description, markup, c
 
 export const webMotions = [{
   id: "sipplay-history-clock", name: "历史时钟描绘旋转", category: "动态图标",
-  description: "参考 motion-icon 的 draw rotate：先收起线条，再错峰绘出外圈、箭头与指针，同时顺时针旋转一整圈并弹簧收稳。保留提供的原始 20 × 20 图形。悬停或点击播放一次。",
+  description: "参考 motion-icon 的 draw rotate：先收起线条，再错峰绘出外圈、箭头与指针，同时逆时针旋转一整圈并弹簧收稳。保留提供的原始 20 × 20 图形。悬停或点击播放一次。",
   markup: historyClockDemoMarkup, controls: [number("duration", "基础时长（秒）", 0.6, 0.3, 1.6, 0.05), number("bounce", "旋转回弹", 0.4, 0, 0.5, 0.05)],
   kind: "web", kindLabel: "Web 组件", fileName: "sipplay-history-clock",
   file: "./web-components/preview.html?id=sipplay-history-clock", docs: null, custom: true,

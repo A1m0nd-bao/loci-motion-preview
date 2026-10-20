@@ -1,15 +1,15 @@
-import { defineHistoryClock, historyClockDemoCSS } from "./history-clock.js?v=20261020-history-clock";
-import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261020-history-clock";
-import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261020-history-clock";
-import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261020-history-clock";
-import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261020-history-clock";
-import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-history-clock";
-import { demoCSS } from "./demo-styles.js?v=20261020-history-clock";
-import { bindDemoActions } from "./demo-actions.js?v=20261020-history-clock";
-import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261020-history-clock";
-import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261020-history-clock";
-import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261020-history-clock";
-import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261020-history-clock";
+import { defineHistoryClock, historyClockDemoCSS } from "./history-clock.js?v=20261020-history-ccw";
+import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261020-history-ccw";
+import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261020-history-ccw";
+import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261020-history-ccw";
+import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261020-history-ccw";
+import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-history-ccw";
+import { demoCSS } from "./demo-styles.js?v=20261020-history-ccw";
+import { bindDemoActions } from "./demo-actions.js?v=20261020-history-ccw";
+import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261020-history-ccw";
+import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261020-history-ccw";
+import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261020-history-ccw";
+import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261020-history-ccw";
 
 const params = new URLSearchParams(location.search);
 const entry = webMotions.find((item) => item.id === params.get("id"));
@@ -108,7 +108,7 @@ document.addEventListener("visibilitychange", () => { if (document.hidden) { run
 
 try {
   if (!entry) throw new Error("未找到此组件，请从动效库重新选择。");
-  runtime = await import("./vendor/motion-components.js?v=20261020-history-clock");
+  runtime = await import("./vendor/motion-components.js?v=20261020-history-ccw");
   defineHistoryClock(runtime.animate);
   defineBellRingToggle(runtime.animate);
   defineVoiceWave(runtime.animate);

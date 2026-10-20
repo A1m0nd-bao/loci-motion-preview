@@ -1,5 +1,5 @@
-import { exampleDocument } from "./examples.js?v=20261020-history-clock";
-import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-history-clock";
+import { exampleDocument } from "./examples.js?v=20261020-history-ccw";
+import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-history-ccw";
 
 const controllers = new Set();
 

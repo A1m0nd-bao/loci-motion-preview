@@ -1,16 +1,16 @@
-import { defineHistoryClock, historyClockDemoCSS } from "./history-clock.js?v=20261020-history-clock";
-import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261020-history-clock";
-import { motionExampleDocument } from "../motion/examples.js?v=20261020-history-clock";
-import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261020-history-clock";
-import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261020-history-clock";
-import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261020-history-clock";
-import { exampleMarkup, upstreamURL, upstreamVersion } from "./catalog.js?v=20261020-history-clock";
-import { demoCSS } from "./demo-styles.js?v=20261020-history-clock";
-import { bindDemoActions } from "./demo-actions.js?v=20261020-history-clock";
-import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261020-history-clock";
-import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261020-history-clock";
-import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261020-history-clock";
-import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261020-history-clock";
+import { defineHistoryClock, historyClockDemoCSS } from "./history-clock.js?v=20261020-history-ccw";
+import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261020-history-ccw";
+import { motionExampleDocument } from "../motion/examples.js?v=20261020-history-ccw";
+import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261020-history-ccw";
+import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261020-history-ccw";
+import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261020-history-ccw";
+import { exampleMarkup, upstreamURL, upstreamVersion } from "./catalog.js?v=20261020-history-ccw";
+import { demoCSS } from "./demo-styles.js?v=20261020-history-ccw";
+import { bindDemoActions } from "./demo-actions.js?v=20261020-history-ccw";
+import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261020-history-ccw";
+import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261020-history-ccw";
+import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261020-history-ccw";
+import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261020-history-ccw";
 
 export function exampleDocument(entry, values = {}) {
   if (entry.kind === "motion") return motionExampleDocument(entry, values);
