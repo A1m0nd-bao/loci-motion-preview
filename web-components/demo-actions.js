@@ -18,38 +18,25 @@ export function bindDemoActions(root) {
   root.addEventListener("motion-change", onSelectionChange);
   const bells = [...root.querySelectorAll("sipplay-bell-ring-toggle")];
   for (const bell of bells.slice(1)) {
-    for (const attribute of ["duration", "strength"]) {
+    for (const attribute of ["duration", "click-duration", "strength"]) {
       if (bells[0].hasAttribute(attribute)) bell.setAttribute(attribute, bells[0].getAttribute(attribute));
     }
   }
-  const notificationDialog = root.querySelector(".bell-notification-dialog");
-  let notificationTrigger;
   const onBellAction = event => {
     if (!bells.includes(event.target)) return;
     for (const bell of bells) if (bell !== event.target) bell.perform(event.detail.action, false);
   };
   const onNotificationRequest = event => {
-    if (!bells.includes(event.target) || !notificationDialog || notificationDialog.open) return;
-    notificationTrigger = event.target;
-    notificationDialog.showModal();
-    bells.forEach(bell => { bell.expanded = true; });
+    if (!bells.includes(event.target)) return;
     const status = root.querySelector("[data-bell-status]");
-    if (status) status.textContent = "通知弹窗已打开";
-  };
-  const onNotificationClose = () => {
-    bells.forEach(bell => { bell.expanded = false; });
-    const status = root.querySelector("[data-bell-status]");
-    if (status) status.textContent = "移入试试";
-    if (notificationTrigger?.isConnected) notificationTrigger.button.focus({ preventScroll: true });
+    if (status) status.textContent = "已发出通知触发事件";
   };
   root.addEventListener("motion-action", onBellAction);
   root.addEventListener("notification-request", onNotificationRequest);
-  notificationDialog?.addEventListener("close", onNotificationClose);
   const countdown = root.querySelector("motion-countdown");
   if (countdown) countdown.setAttribute("to", new Date(Date.now() + 185000).toISOString());
   root.onclick = (event) => {
     const action = event.target.closest("[data-demo-action]")?.dataset.demoAction;
-    if (action === "close-notifications") notificationDialog?.close();
     if (action === "pin-replay") {
       for (const toggle of toggles) {
         if (toggle.active) toggle.apply(toggle.reducedMotion.matches);
@@ -74,7 +61,5 @@ export function bindDemoActions(root) {
     root.removeEventListener("motion-change", onSelectionChange);
     root.removeEventListener("motion-action", onBellAction);
     root.removeEventListener("notification-request", onNotificationRequest);
-    notificationDialog?.removeEventListener("close", onNotificationClose);
-    notificationDialog?.close();
   };
 }

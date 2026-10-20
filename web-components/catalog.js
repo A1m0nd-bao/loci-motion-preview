@@ -1,11 +1,11 @@
-import { bellRingDemoMarkup } from "./bell-ring-toggle.js?v=20261020-bell-notify";
-import { voiceWaveDemoMarkup } from "./voice-wave.js?v=20261020-bell-notify";
-import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261020-bell-notify";
-import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261020-bell-notify";
-import { selectionDemoMarkup } from "./selection-toggle.js?v=20261020-bell-notify";
-import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261020-bell-notify";
-import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261020-bell-notify";
-import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261020-bell-notify";
+import { bellRingDemoMarkup } from "./bell-ring-toggle.js?v=20261020-bell-trigger";
+import { voiceWaveDemoMarkup } from "./voice-wave.js?v=20261020-bell-trigger";
+import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261020-bell-trigger";
+import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261020-bell-trigger";
+import { selectionDemoMarkup } from "./selection-toggle.js?v=20261020-bell-trigger";
+import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261020-bell-trigger";
+import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261020-bell-trigger";
+import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261020-bell-trigger";
 
 export const upstreamVersion = "1.3.0";
 export const upstreamURL = "https://github.com/tgomilar/motion-components";
@@ -97,8 +97,8 @@ const upstreamMotions = entries.map(([id, name, category, description, markup, c
 
 export const webMotions = [{
   id: "sipplay-bell-ring-toggle", name: "铃铛通知反馈", category: "动态图标",
-  description: "鼠标移入轻摇一次，停留不循环；点击短促按压并闪现实心铃铛，随后打开通知弹窗。保留原始 36 × 36 圆形底座与描边，支持键盘和触屏。",
-  markup: bellRingDemoMarkup, controls: [number("duration", "轻摇时长（秒）", 0.7, 0.4, 1.4, 0.05), number("strength", "摇摆幅度", 1, 0.4, 1.4, 0.05)],
+  description: "鼠标移入轻摇一次；点击时先下压蓄力，再向上弹起并转实心，带两段余韵缓缓收稳。只发出通知触发事件，不包含弹窗。保留原始 36 × 36 底座和描边。",
+  markup: bellRingDemoMarkup, controls: [number("duration", "轻摇时长（秒）", 0.7, 0.4, 1.4, 0.05), number("click-duration", "点击时长（秒）", 0.94, 0.55, 1.6, 0.05), number("strength", "动效幅度", 1, 0.4, 1.4, 0.05)],
   kind: "web", kindLabel: "Web 组件", fileName: "sipplay-bell-ring-toggle",
   file: "./web-components/preview.html?id=sipplay-bell-ring-toggle", docs: null, custom: true,
   tags: ["自定义 SVG", "铃铛", "提醒", "通知", "轻摇", "弹窗", "36px"], interactionType: "悬停／点击",

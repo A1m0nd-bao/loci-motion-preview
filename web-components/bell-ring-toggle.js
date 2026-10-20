@@ -3,7 +3,7 @@ export function defineBellRingToggle(animate) {
   const tag = "sipplay-bell-ring-toggle";
   if (customElements.get(tag)) return;
   class BellNotification extends HTMLElement {
-    static observedAttributes = ["expanded", "duration", "strength", "label"];
+    static observedAttributes = ["expanded", "duration", "click-duration", "strength", "label"];
     constructor() {
       super();
       this.attachShadow({ mode: "open" });
@@ -21,6 +21,10 @@ export function defineBellRingToggle(animate) {
     get duration() {
       const value = Number(this.getAttribute("duration") ?? 0.7);
       return Number.isFinite(value) ? Math.min(1.4, Math.max(0.4, value)) : 0.7;
+    }
+    get clickDuration() {
+      const value = Number(this.getAttribute("click-duration") ?? 0.94);
+      return Number.isFinite(value) ? Math.min(1.6, Math.max(0.55, value)) : 0.94;
     }
     get strength() {
       const value = Number(this.getAttribute("strength") ?? 1);
@@ -96,7 +100,7 @@ export function defineBellRingToggle(animate) {
       this.controls = [
         animate(this.bell, { rotate: 0 }, { duration: 0 }),
         animate(this.clapper, { rotate: 0 }, { duration: 0 }),
-        animate(this.glyph, { scale: 1, y: 0 }, { duration: 0 }),
+        animate(this.glyph, { scale: 1, scaleX: 1, scaleY: 1, y: 0 }, { duration: 0 }),
         animate(this.solid, { opacity: 0 }, { duration: 0 }),
       ];
     }
@@ -122,18 +126,27 @@ export function defineBellRingToggle(animate) {
             duration: d, times: [0, 0.32, 0.55, 0.75, 0.9, 1], ease: "easeInOut",
           }),
           animate(this.solid, { opacity: 0 }, { duration: d * 0.15 }),
-          animate(this.glyph, { scale: 1, y: 0 }, { duration: d * 0.2, ease: "easeOut" }),
+          animate(this.glyph, { scale: 1, scaleX: 1, scaleY: 1, y: 0 }, { duration: d * 0.2, ease: "easeOut" }),
         ];
       } else {
-        // One short confirmation: compress, flash filled, then return to the outline.
+        // Give the press time to load, release upward, then settle in two beats.
+        const clickDuration = this.clickDuration;
         this.controls = [
-          animate(this.bell, { rotate: 0 }, { duration: d * 0.2, ease: "easeOut" }),
-          animate(this.clapper, { rotate: 0 }, { duration: d * 0.2, ease: "easeOut" }),
-          animate(this.glyph, { scale: [null, 1 - 0.13 * strength, 1 + 0.045 * strength, 1], y: [null, 0.7, -0.6, 0] }, {
-            duration: d * 0.6, times: [0, 0.24, 0.67, 1], ease: ["easeOut", [0.16, 1, 0.3, 1], "easeInOut"],
+          animate(this.bell, { rotate: 0 }, { duration: 0.16, ease: "easeOut" }),
+          animate(this.clapper, { rotate: [null, -6 * strength, 10 * strength, -6 * strength, 2 * strength, 0] }, {
+            duration: clickDuration, times: [0, 0.2, 0.47, 0.7, 0.86, 1], ease: "easeInOut",
           }),
-          animate(this.solid, { opacity: [null, 0.92, 0.92, 0] }, {
-            duration: d * 0.6, times: [0, 0.22, 0.45, 1], ease: "easeInOut",
+          animate(this.glyph, {
+            scale: 1,
+            scaleX: [null, 1 + 0.055 * strength, 1 - 0.065 * strength, 1 + 0.02 * strength, 1 - 0.008 * strength, 1],
+            scaleY: [null, 1 - 0.18 * strength, 1 + 0.16 * strength, 1 - 0.06 * strength, 1 + 0.02 * strength, 1],
+            y: [null, 1.7 * strength, -2.7 * strength, 0.8 * strength, -0.28 * strength, 0],
+          }, {
+            duration: clickDuration, times: [0, 0.22, 0.48, 0.72, 0.87, 1],
+            ease: [[0.4, 0, 0.7, 1], [0.18, 0.95, 0.25, 1], "easeInOut", "easeInOut", "easeOut"],
+          }),
+          animate(this.solid, { opacity: [null, 0, 0.95, 0.95, 0] }, {
+            duration: clickDuration, times: [0, 0.18, 0.43, 0.68, 1], ease: "easeInOut",
           }),
         ];
       }
@@ -158,9 +171,9 @@ export function defineBellRingToggle(animate) {
 
 export const bellRingDemoMarkup = `
   <div class="selection-demo bell-ring-demo">
-    <p class="selection-demo-hint">移入轻摇一次 · 点击确认并打开通知弹窗</p>
+    <p class="selection-demo-hint">移入轻摇一次 · 点击蓄力弹起、缓缓收稳</p>
     <div class="selection-demo-zoom">
-      <sipplay-bell-ring-toggle data-motion duration="0.7" strength="1" label="打开通知（放大预览）"></sipplay-bell-ring-toggle>
+      <sipplay-bell-ring-toggle data-motion duration="0.7" click-duration="0.94" strength="1" label="打开通知（放大预览）"></sipplay-bell-ring-toggle>
     </div>
     <p class="selection-demo-caption">3× 细节预览</p>
     <div class="selection-demo-original">
@@ -168,19 +181,10 @@ export const bellRingDemoMarkup = `
       <span>原始尺寸 · 36 × 36</span>
     </div>
     <output class="selection-demo-state" data-bell-status aria-live="polite">移入试试</output>
-    <dialog class="bell-notification-dialog" aria-labelledby="bell-notification-title">
-      <div class="bell-dialog-header"><h2 id="bell-notification-title">通知</h2><button type="button" data-demo-action="close-notifications" aria-label="关闭通知">×</button></div>
-      <p>暂无新通知</p>
-    </dialog>
+
   </div>`;
 export const bellRingDemoCSS = `
   .selection-demo-zoom sipplay-bell-ring-toggle{transform:scale(3)}
   .bell-ring-demo .selection-demo-state{color:#d4d4d8}
   .compact .selection-demo-zoom sipplay-bell-ring-toggle{transform:scale(2.3)}
-  .bell-notification-dialog{position:fixed;left:50%;top:calc(50% + 20px);margin:0;transform:translateX(-50%);max-height:calc(50vh - 36px);overflow:auto;width:min(280px,calc(100vw - 32px));padding:20px;border:1px solid #3e3947;border-radius:16px;background:#19171f;color:#f5f2fa;box-shadow:0 24px 70px #0006;text-align:left}
-  .bell-notification-dialog::backdrop{background:#0006}
-  .bell-dialog-header{display:flex;align-items:center;justify-content:space-between;gap:20px}
-  .bell-dialog-header h2{margin:0;font-size:17px}
-  .bell-dialog-header button{display:grid;place-items:center;width:32px;height:32px;border:0;border-radius:8px;background:#ffffff0a;color:#ddd6e7;font:20px/1 system-ui;cursor:pointer}
-  .bell-notification-dialog p{padding:32px 0 18px;margin:0;text-align:center;color:#a9a5b6;font-size:13px}
 `;

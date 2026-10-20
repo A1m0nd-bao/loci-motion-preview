@@ -1,5 +1,5 @@
-import { exampleDocument } from "./examples.js?v=20261020-bell-notify";
-import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-bell-notify";
+import { exampleDocument } from "./examples.js?v=20261020-bell-trigger";
+import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-bell-trigger";
 
 const controllers = new Set();
 

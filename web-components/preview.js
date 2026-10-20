@@ -1,14 +1,14 @@
-import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261020-bell-notify";
-import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261020-bell-notify";
-import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261020-bell-notify";
-import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261020-bell-notify";
-import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-bell-notify";
-import { demoCSS } from "./demo-styles.js?v=20261020-bell-notify";
-import { bindDemoActions } from "./demo-actions.js?v=20261020-bell-notify";
-import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261020-bell-notify";
-import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261020-bell-notify";
-import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261020-bell-notify";
-import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261020-bell-notify";
+import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261020-bell-trigger";
+import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261020-bell-trigger";
+import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261020-bell-trigger";
+import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261020-bell-trigger";
+import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-bell-trigger";
+import { demoCSS } from "./demo-styles.js?v=20261020-bell-trigger";
+import { bindDemoActions } from "./demo-actions.js?v=20261020-bell-trigger";
+import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261020-bell-trigger";
+import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261020-bell-trigger";
+import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261020-bell-trigger";
+import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261020-bell-trigger";
 
 const params = new URLSearchParams(location.search);
 const entry = webMotions.find((item) => item.id === params.get("id"));
@@ -104,7 +104,7 @@ document.addEventListener("visibilitychange", () => { if (document.hidden) { run
 
 try {
   if (!entry) throw new Error("未找到此组件，请从动效库重新选择。");
-  runtime = await import("./vendor/motion-components.js?v=20261020-bell-notify");
+  runtime = await import("./vendor/motion-components.js?v=20261020-bell-trigger");
   defineBellRingToggle(runtime.animate);
   defineVoiceWave(runtime.animate);
   definePinToggle(runtime.animate);
