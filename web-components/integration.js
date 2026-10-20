@@ -1,5 +1,5 @@
-import { exampleDocument } from "./examples.js?v=20261020-history-visible-ccw";
-import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-history-visible-ccw";
+import { exampleDocument } from "./examples.js?v=20261020-history-center-draw";
+import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-history-center-draw";
 
 const controllers = new Set();
 

@@ -31,8 +31,8 @@ export function defineHistoryClock(animate) {
             :host{display:inline-block;width:44px;height:44px;vertical-align:middle}
             button{display:grid;place-items:center;width:44px;height:44px;margin:0;padding:12px;border:0;border-radius:10px;background:transparent;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
             button:focus-visible{outline:1px solid #d4d4d8;outline-offset:-8px;border-radius:50%}
-            svg{display:block;width:20px;height:20px;pointer-events:none;overflow:hidden}
-            .clock{transform-box:view-box!important;transform-origin:10px 10px!important}
+            svg{display:block;width:20px;height:20px;pointer-events:none;overflow:visible}
+            .clock{transform-box:view-box!important;transform-origin:8.75194px 10px!important}
           </style>
           <button type="button">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -97,16 +97,24 @@ export function defineHistoryClock(animate) {
         const transform = getComputedStyle(this.clock).transform;
         const matrix = transform === "none" ? new DOMMatrix() : new DOMMatrix(transform);
         const angle = (Math.atan2(matrix.b, matrix.a) * 180 / Math.PI - 360) % 360;
-        // Keep every stroke visible so the arrow's counterclockwise turn is clear.
-        for (const stroke of this.strokes) {
-          stroke.style.strokeDasharray = "1 1";
-          stroke.style.strokeDashoffset = "0";
-          stroke.style.opacity = "1";
-        }
         this.controls = [animate(this.clock, { rotate: [angle, -360 - 12 * this.bounce, -360] }, {
           duration: d, times: [0, 0.86, 1],
           ease: [[0.3, 0.05, 0.2, 1], "easeOut"],
         })];
+        for (let index = 0; index < this.strokes.length; index++) {
+          const stroke = this.strokes[index];
+          const from = Number.parseFloat(getComputedStyle(stroke).strokeDashoffset) || 0;
+          const opacity = Number(getComputedStyle(stroke).opacity);
+          stroke.style.strokeDasharray = "1 1";
+          const lead = d * (0.2 + 0.08 * index);
+          // Negative offsets reveal from the path's end: the ring draws counterclockwise.
+          this.controls.push(animate([
+            [stroke, { strokeDashoffset: [from, -1] }, { duration: d * 0.2, ease: "easeIn", at: 0 }],
+            [stroke, { opacity: [opacity, 0] }, { duration: d * 0.06, ease: "easeIn", at: d * 0.14 }],
+            [stroke, { opacity: [0, 1] }, { duration: d * 0.04, ease: "easeOut", at: lead }],
+            [stroke, { strokeDashoffset: [-1, 0] }, { type: "spring", bounce: 0, duration: d * 0.64, at: lead }],
+          ]));
+        }
         this.state = "running";
         const epoch = this.epoch;
         Promise.all(this.controls.map(control => Promise.resolve(control))).then(() => {
@@ -132,7 +140,7 @@ export function defineHistoryClock(animate) {
 
 export const historyClockDemoMarkup = `
   <div class="selection-demo history-clock-demo">
-    <p class="selection-demo-hint">悬停或点击 · 沿箭头逆时针旋转一圈</p>
+    <p class="selection-demo-hint">悬停或点击 · 逆时针绘制与旋转 · 以圆环中心为轴</p>
     <div class="selection-demo-zoom">
       <sipplay-history-clock data-motion duration="0.8" bounce="0.4" label="重播历史时钟动效（放大预览）"></sipplay-history-clock>
     </div>
