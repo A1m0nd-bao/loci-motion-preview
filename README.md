@@ -40,7 +40,7 @@
 
 ## Motion 原生示例与 Studio
 
-主站新增独立的 `/#motion` 分支，收录 6 个基于免费 Motion API 制作的原生 JavaScript 示例：弹簧切换、错峰入场、悬停按压、时间线编排、SVG 路径绘制、滚动关联进度。支持交互、参数调整、复制完整 HTML 与下载；原有 `/#web` 的 68 个组件保持独立。
+主站新增独立的 `/#motion` 分支，收录 6 个基于免费 Motion API 制作的原生 JavaScript 示例：弹簧切换、错峰入场、悬停按压、时间线编排、SVG 路径绘制、滚动关联进度。支持交互、参数调整、复制完整 HTML 与下载；原有 `/#web` 的 70 个组件保持独立。
 
 Motion 固定为 13.5.1，与已有自定义图标使用的版本一致。修改 `motion/demos.js` 后运行 `pnpm build:motion`：生成公开站使用的本地运行文件与独立导出源码，避免开发期 Studio 插桩进入下载的 HTML。开源许可见 `web-components/vendor/THIRD-PARTY-NOTICES.txt`。
 
@@ -117,3 +117,5 @@ npm run sync:watch:publish
 自定义「用户页探出选中」保留原始 24×24 人像两条路径、1.5px 描边和 40% 灰态透明度。参考已有的人物探出动效：点击后头部和身体先完全藏到 24px 底部裁切区，再先后探出；身体拉伸后压缩回弹，头部延后且回弹更明显。头部上冲按新图标的尺寸限制，避免顶端裁切；取消时返回原始灰色线框。头部、身体各以同一路径承担填充与描边，不叠加轮廓。默认时长 0.64 秒，支持幅度调整、快速反向、键盘、触屏、减少动态效果、暂停恢复和独立 HTML 导出。实现位于 `web-components/user-page-toggle.js`。
 
 自定义「四页动效底栏」组合现有首页、聊天、加号选中、用户页四个动效，保留 375×48 原始底栏、24px 图标和横向中心 48/141/234/327px，底色 rgba(22,10,12,.7)，投影 0 3px 5px rgba(0,0,0,.16)。默认首页选中，四项互斥，重复点击当前项重播图标。原动作时长保持一致，speed（0.6–1.6）可统一调整；value 支持 home/chat/add/user。nav-change 事件携带 value、previous、index、label，用于接入实际页面。原生按钮支持键盘和触屏，支持减少动态效果、暂停恢复及独立 HTML 导出。实现位于 `web-components/bottom-bar.js`。
+
+自定义「括号工具单击高亮」与「添加图片单击高亮」分别使用 `sipplay-brackets-tool`、`sipplay-image-tool`，各有独立卡片、预览与导出。括号已按圆心 (13,13) 居中。悬停临时提亮，单击后短暂加强高亮，再自动恢复到当前悬停或默认状态，不保留选中。可调用 trigger()，tool-activate 事件携带 icon；无 aria-pressed 或持久选中状态。duration 默认 0.18 秒，支持连续触发、键盘、触屏、减少动态效果、暂停恢复与独立 HTML 导出。共享实现位于 `web-components/tool-highlight.js`。

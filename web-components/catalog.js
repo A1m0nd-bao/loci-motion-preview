@@ -1,22 +1,23 @@
-import { bottomBarDemoMarkup } from "./bottom-bar.js?v=20261020-bottom-bar";
-import { userPageDemoMarkup } from "./user-page-toggle.js?v=20261020-bottom-bar";
-import { plusSelectionDemoMarkup } from "./plus-selection-toggle.js?v=20261020-bottom-bar";
-import { homeSettleDemoMarkup } from "./home-settle-toggle.js?v=20261020-bottom-bar";
-import { warningNudgeDemoMarkup } from "./warning-nudge.js?v=20261020-bottom-bar";
-import { liquidRiseDemoMarkup } from "./liquid-rise-toggle.js?v=20261020-bottom-bar";
-import { chatBubbleDemoMarkup } from "./chat-bubble-toggle.js?v=20261020-bottom-bar";
-import { tapTabDemoMarkup } from "./tap-tab.js?v=20261020-bottom-bar";
-import { previewTabsDemoMarkup } from "./preview-tabs.js?v=20261020-bottom-bar";
-import { whiteSelectionDemoMarkup } from "./white-selection-toggle.js?v=20261020-bottom-bar";
-import { historyClockDemoMarkup } from "./history-clock.js?v=20261020-bottom-bar";
-import { bellRingDemoMarkup } from "./bell-ring-toggle.js?v=20261020-bottom-bar";
-import { voiceWaveDemoMarkup } from "./voice-wave.js?v=20261020-bottom-bar";
-import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261020-bottom-bar";
-import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261020-bottom-bar";
-import { selectionDemoMarkup } from "./selection-toggle.js?v=20261020-bottom-bar";
-import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261020-bottom-bar";
-import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261020-bottom-bar";
-import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261020-bottom-bar";
+import { bracketsToolDemoMarkup, imageToolDemoMarkup } from "./tool-highlight.js?v=20261020-tool-click";
+import { bottomBarDemoMarkup } from "./bottom-bar.js?v=20261020-tool-click";
+import { userPageDemoMarkup } from "./user-page-toggle.js?v=20261020-tool-click";
+import { plusSelectionDemoMarkup } from "./plus-selection-toggle.js?v=20261020-tool-click";
+import { homeSettleDemoMarkup } from "./home-settle-toggle.js?v=20261020-tool-click";
+import { warningNudgeDemoMarkup } from "./warning-nudge.js?v=20261020-tool-click";
+import { liquidRiseDemoMarkup } from "./liquid-rise-toggle.js?v=20261020-tool-click";
+import { chatBubbleDemoMarkup } from "./chat-bubble-toggle.js?v=20261020-tool-click";
+import { tapTabDemoMarkup } from "./tap-tab.js?v=20261020-tool-click";
+import { previewTabsDemoMarkup } from "./preview-tabs.js?v=20261020-tool-click";
+import { whiteSelectionDemoMarkup } from "./white-selection-toggle.js?v=20261020-tool-click";
+import { historyClockDemoMarkup } from "./history-clock.js?v=20261020-tool-click";
+import { bellRingDemoMarkup } from "./bell-ring-toggle.js?v=20261020-tool-click";
+import { voiceWaveDemoMarkup } from "./voice-wave.js?v=20261020-tool-click";
+import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261020-tool-click";
+import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261020-tool-click";
+import { selectionDemoMarkup } from "./selection-toggle.js?v=20261020-tool-click";
+import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261020-tool-click";
+import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261020-tool-click";
+import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261020-tool-click";
 
 export const upstreamVersion = "1.3.0";
 export const upstreamURL = "https://github.com/tgomilar/motion-components";
@@ -107,6 +108,20 @@ const upstreamMotions = entries.map(([id, name, category, description, markup, c
 }));
 
 export const webMotions = [{
+  id: "sipplay-brackets-tool", name: "括号工具单击高亮", category: "鼠标交互",
+  description: "独立的 26 × 26 括号工具。悬停临时提亮；单击时短暂加强边缘和底色，随后自动恢复到当前悬停或默认状态，不保留选中。保留原始路径、尺寸与灰态透明度，支持键盘、触屏、减少动态效果与独立 HTML 导出。",
+  markup: bracketsToolDemoMarkup, controls: [number("duration", "提亮时长（秒）", 0.18, 0.08, 0.5, 0.02)],
+  kind: "web", kindLabel: "Web 组件", fileName: "sipplay-brackets-tool",
+  file: "./web-components/preview.html?id=sipplay-brackets-tool", docs: null, custom: true,
+  tags: ["悬停", "高亮", "括号", "单击", "工具按钮", "26px"], interactionType: "悬停／单击反馈",
+}, {
+  id: "sipplay-image-tool", name: "添加图片单击高亮", category: "鼠标交互",
+  description: "独立的 26 × 26 添加图片工具。悬停临时提亮；单击时短暂加强边缘和底色，随后自动恢复到当前悬停或默认状态，不保留选中。保留原始路径、尺寸与灰态透明度，支持键盘、触屏、减少动态效果与独立 HTML 导出。",
+  markup: imageToolDemoMarkup, controls: [number("duration", "提亮时长（秒）", 0.18, 0.08, 0.5, 0.02)],
+  kind: "web", kindLabel: "Web 组件", fileName: "sipplay-image-tool",
+  file: "./web-components/preview.html?id=sipplay-image-tool", docs: null, custom: true,
+  tags: ["悬停", "高亮", "图片", "添加图片", "单击", "工具按钮", "26px"], interactionType: "悬停／单击反馈",
+}, {
   id: "sipplay-bottom-bar", name: "四页动效底栏", category: "交互组件",
   description: "按提供的 375 × 48 底栏组合首页、聊天、添加、用户四个已确认动效。保留 24px 图标、原始横向位置、70% 深色底和下投影；默认选中首页，点击互斥切换，重复点击当前项只重播图标。首页填白落定、气泡绘波、加号填白镂空、用户从底部探出。通过 nav-change 事件连接页面，支持键盘、触屏、减少动态效果、响应宽度与完整 HTML 导出。",
   markup: bottomBarDemoMarkup, controls: [number("speed", "播放速度", 1, 0.6, 1.6, 0.1)],

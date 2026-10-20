@@ -1,33 +1,36 @@
-import { defineBottomBar, bottomBarDemoCSS } from "./bottom-bar.js?v=20261020-bottom-bar";
-import { defineUserPageToggle, userPageDemoCSS } from "./user-page-toggle.js?v=20261020-bottom-bar";
-import { definePlusSelectionToggle, plusSelectionDemoCSS } from "./plus-selection-toggle.js?v=20261020-bottom-bar";
-import { defineHomeSettleToggle, homeSettleDemoCSS } from "./home-settle-toggle.js?v=20261020-bottom-bar";
-import { defineWarningNudge, warningNudgeDemoCSS } from "./warning-nudge.js?v=20261020-bottom-bar";
-import { defineLiquidRiseToggle, liquidRiseDemoCSS } from "./liquid-rise-toggle.js?v=20261020-bottom-bar";
-import { defineChatBubbleToggle, chatBubbleDemoCSS } from "./chat-bubble-toggle.js?v=20261020-bottom-bar";
-import { defineTapTab, tapTabDemoCSS } from "./tap-tab.js?v=20261020-bottom-bar";
-import { definePreviewTabs, previewTabsDemoCSS } from "./preview-tabs.js?v=20261020-bottom-bar";
-import { defineWhiteSelectionToggle, whiteSelectionDemoCSS } from "./white-selection-toggle.js?v=20261020-bottom-bar";
-import { defineHistoryClock, historyClockDemoCSS } from "./history-clock.js?v=20261020-bottom-bar";
-import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261020-bottom-bar";
-import { motionExampleDocument } from "../motion/examples.js?v=20261020-bottom-bar";
-import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261020-bottom-bar";
-import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261020-bottom-bar";
-import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261020-bottom-bar";
-import { exampleMarkup, upstreamURL, upstreamVersion } from "./catalog.js?v=20261020-bottom-bar";
-import { demoCSS } from "./demo-styles.js?v=20261020-bottom-bar";
-import { bindDemoActions } from "./demo-actions.js?v=20261020-bottom-bar";
-import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261020-bottom-bar";
-import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261020-bottom-bar";
-import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261020-bottom-bar";
-import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261020-bottom-bar";
+import { defineToolHighlight, toolHighlightDemoCSS } from "./tool-highlight.js?v=20261020-tool-click";
+import { defineBottomBar, bottomBarDemoCSS } from "./bottom-bar.js?v=20261020-tool-click";
+import { defineUserPageToggle, userPageDemoCSS } from "./user-page-toggle.js?v=20261020-tool-click";
+import { definePlusSelectionToggle, plusSelectionDemoCSS } from "./plus-selection-toggle.js?v=20261020-tool-click";
+import { defineHomeSettleToggle, homeSettleDemoCSS } from "./home-settle-toggle.js?v=20261020-tool-click";
+import { defineWarningNudge, warningNudgeDemoCSS } from "./warning-nudge.js?v=20261020-tool-click";
+import { defineLiquidRiseToggle, liquidRiseDemoCSS } from "./liquid-rise-toggle.js?v=20261020-tool-click";
+import { defineChatBubbleToggle, chatBubbleDemoCSS } from "./chat-bubble-toggle.js?v=20261020-tool-click";
+import { defineTapTab, tapTabDemoCSS } from "./tap-tab.js?v=20261020-tool-click";
+import { definePreviewTabs, previewTabsDemoCSS } from "./preview-tabs.js?v=20261020-tool-click";
+import { defineWhiteSelectionToggle, whiteSelectionDemoCSS } from "./white-selection-toggle.js?v=20261020-tool-click";
+import { defineHistoryClock, historyClockDemoCSS } from "./history-clock.js?v=20261020-tool-click";
+import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261020-tool-click";
+import { motionExampleDocument } from "../motion/examples.js?v=20261020-tool-click";
+import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261020-tool-click";
+import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261020-tool-click";
+import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261020-tool-click";
+import { exampleMarkup, upstreamURL, upstreamVersion } from "./catalog.js?v=20261020-tool-click";
+import { demoCSS } from "./demo-styles.js?v=20261020-tool-click";
+import { bindDemoActions } from "./demo-actions.js?v=20261020-tool-click";
+import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261020-tool-click";
+import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261020-tool-click";
+import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261020-tool-click";
+import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261020-tool-click";
 
 export function exampleDocument(entry, values = {}) {
   if (entry.kind === "motion") return motionExampleDocument(entry, values);
   const font = "https://cdn.jsdelivr.net/npm/@fontsource-variable/inter@5.3.0/files/inter-latin-wght-normal.woff2";
-  const styles = (demoCSS + (entry.custom ? bottomBarDemoCSS + userPageDemoCSS + plusSelectionDemoCSS + homeSettleDemoCSS + liquidRiseDemoCSS + warningNudgeDemoCSS + chatBubbleDemoCSS + previewTabsDemoCSS + selectionDemoCSS + whiteSelectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS + wrenchTurnDemoCSS + pinToggleDemoCSS + pinRevealDemoCSS + voiceWaveDemoCSS + bellRingDemoCSS + historyClockDemoCSS + tapTabDemoCSS : "")).replace('./vendor/inter-latin-wght-normal.woff2', font);
+  const styles = (demoCSS + (entry.custom ? toolHighlightDemoCSS + bottomBarDemoCSS + userPageDemoCSS + plusSelectionDemoCSS + homeSettleDemoCSS + liquidRiseDemoCSS + warningNudgeDemoCSS + chatBubbleDemoCSS + previewTabsDemoCSS + selectionDemoCSS + whiteSelectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS + wrenchTurnDemoCSS + pinToggleDemoCSS + pinRevealDemoCSS + voiceWaveDemoCSS + bellRingDemoCSS + historyClockDemoCSS + tapTabDemoCSS : "")).replace('./vendor/inter-latin-wght-normal.woff2', font);
   const defineCustom = {
     "sipplay-warning-nudge": defineWarningNudge,
+    "sipplay-brackets-tool": defineToolHighlight,
+    "sipplay-image-tool": defineToolHighlight,
     "sipplay-bottom-bar": defineBottomBar,
     "sipplay-user-page-toggle": defineUserPageToggle,
     "sipplay-plus-selection-toggle": definePlusSelectionToggle,
