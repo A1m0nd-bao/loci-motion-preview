@@ -1,31 +1,32 @@
-import { defineChatBubbleToggle, chatBubbleDemoCSS } from "./chat-bubble-toggle.js?v=20261020-chat-wave-path";
-import { defineTapTab, tapTabDemoCSS } from "./tap-tab.js?v=20261020-chat-wave-path";
-import { definePreviewTabs, previewTabsDemoCSS } from "./preview-tabs.js?v=20261020-chat-wave-path";
-import { defineWhiteSelectionToggle, whiteSelectionDemoCSS } from "./white-selection-toggle.js?v=20261020-chat-wave-path";
-import { defineHistoryClock, historyClockDemoCSS } from "./history-clock.js?v=20261020-chat-wave-path";
-import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261020-chat-wave-path";
-import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261020-chat-wave-path";
-import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261020-chat-wave-path";
-import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261020-chat-wave-path";
-import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-chat-wave-path";
-import { demoCSS } from "./demo-styles.js?v=20261020-chat-wave-path";
-import { bindDemoActions } from "./demo-actions.js?v=20261020-chat-wave-path";
-import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261020-chat-wave-path";
-import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261020-chat-wave-path";
-import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261020-chat-wave-path";
-import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261020-chat-wave-path";
+import { defineLiquidRiseToggle, liquidRiseDemoCSS } from "./liquid-rise-toggle.js?v=20261020-liquid-rise";
+import { defineChatBubbleToggle, chatBubbleDemoCSS } from "./chat-bubble-toggle.js?v=20261020-liquid-rise";
+import { defineTapTab, tapTabDemoCSS } from "./tap-tab.js?v=20261020-liquid-rise";
+import { definePreviewTabs, previewTabsDemoCSS } from "./preview-tabs.js?v=20261020-liquid-rise";
+import { defineWhiteSelectionToggle, whiteSelectionDemoCSS } from "./white-selection-toggle.js?v=20261020-liquid-rise";
+import { defineHistoryClock, historyClockDemoCSS } from "./history-clock.js?v=20261020-liquid-rise";
+import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261020-liquid-rise";
+import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261020-liquid-rise";
+import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261020-liquid-rise";
+import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261020-liquid-rise";
+import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-liquid-rise";
+import { demoCSS } from "./demo-styles.js?v=20261020-liquid-rise";
+import { bindDemoActions } from "./demo-actions.js?v=20261020-liquid-rise";
+import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261020-liquid-rise";
+import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261020-liquid-rise";
+import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261020-liquid-rise";
+import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261020-liquid-rise";
 
 const params = new URLSearchParams(location.search);
 const entry = webMotions.find((item) => item.id === params.get("id"));
 const root = document.querySelector("#demo");
 const style = document.createElement("style");
-style.textContent = demoCSS + chatBubbleDemoCSS + previewTabsDemoCSS + selectionDemoCSS + whiteSelectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS + wrenchTurnDemoCSS + pinToggleDemoCSS + pinRevealDemoCSS + voiceWaveDemoCSS + bellRingDemoCSS + historyClockDemoCSS + tapTabDemoCSS;
+style.textContent = demoCSS + liquidRiseDemoCSS + chatBubbleDemoCSS + previewTabsDemoCSS + selectionDemoCSS + whiteSelectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS + wrenchTurnDemoCSS + pinToggleDemoCSS + pinRevealDemoCSS + voiceWaveDemoCSS + bellRingDemoCSS + historyClockDemoCSS + tapTabDemoCSS;
 document.head.append(style);
 let runtime;
 let values = {};
 let isPaused = false;
 let cleanupDemo;
-const customElementsInDemo = () => [...root.querySelectorAll("sipplay-chat-bubble-toggle,sipplay-preview-tabs,sipplay-white-selection-toggle,sipplay-selection-toggle,sipplay-layer-stack-toggle,sipplay-profile-rise-toggle,sipplay-wrench-turn-toggle,sipplay-pin-toggle,sipplay-pin-reveal,sipplay-voice-wave,sipplay-bell-ring-toggle,sipplay-history-clock,sipplay-tap-tab")];
+const customElementsInDemo = () => [...root.querySelectorAll("sipplay-liquid-rise-toggle,sipplay-chat-bubble-toggle,sipplay-preview-tabs,sipplay-white-selection-toggle,sipplay-selection-toggle,sipplay-layer-stack-toggle,sipplay-profile-rise-toggle,sipplay-wrench-turn-toggle,sipplay-pin-toggle,sipplay-pin-reveal,sipplay-voice-wave,sipplay-bell-ring-toggle,sipplay-history-clock,sipplay-tap-tab")];
 
 function notify(status, message = "") {
   parent.postMessage({ type: "sipplay-web-preview", id: entry?.id, status, message }, location.origin);
@@ -110,11 +111,11 @@ window.addEventListener("message", async (event) => {
 });
 
 // Voice loops and notification feedback manage their own visibility behavior.
-document.addEventListener("visibilitychange", () => { if (document.hidden) { runtime?.pauseAll(root); customElementsInDemo().filter(el => !["sipplay-voice-wave", "sipplay-bell-ring-toggle"].includes(el.localName)).forEach(el => el.pause()); } });
+document.addEventListener("visibilitychange", () => { if (document.hidden) { runtime?.pauseAll(root); customElementsInDemo().filter(el => !["sipplay-voice-wave", "sipplay-bell-ring-toggle", "sipplay-liquid-rise-toggle"].includes(el.localName)).forEach(el => el.pause()); } });
 
 try {
   if (!entry) throw new Error("未找到此组件，请从动效库重新选择。");
-  runtime = await import("./vendor/motion-components.js?v=20261020-chat-wave-path");
+  runtime = await import("./vendor/motion-components.js?v=20261020-liquid-rise");
   defineHistoryClock(runtime.animate);
   defineBellRingToggle(runtime.animate);
   defineVoiceWave(runtime.animate);
@@ -124,6 +125,7 @@ try {
   defineWhiteSelectionToggle(runtime.animate);
   definePreviewTabs(runtime.animate);
   defineChatBubbleToggle(runtime.animate);
+  defineLiquidRiseToggle(runtime.animate);
   defineLayerStackToggle(runtime.animate);
   defineProfileRiseToggle(runtime.animate);
   defineWrenchTurnToggle(runtime.animate);

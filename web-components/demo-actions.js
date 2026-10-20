@@ -1,13 +1,13 @@
 // This function is also embedded in downloaded examples: keep it self-contained.
 export function bindDemoActions(root) {
-  const toggles = [...root.querySelectorAll("sipplay-chat-bubble-toggle,sipplay-preview-tabs,sipplay-white-selection-toggle,sipplay-selection-toggle,sipplay-layer-stack-toggle,sipplay-profile-rise-toggle,sipplay-wrench-turn-toggle,sipplay-pin-toggle,sipplay-pin-reveal,sipplay-voice-wave")];
+  const toggles = [...root.querySelectorAll("sipplay-liquid-rise-toggle,sipplay-chat-bubble-toggle,sipplay-preview-tabs,sipplay-white-selection-toggle,sipplay-selection-toggle,sipplay-layer-stack-toggle,sipplay-profile-rise-toggle,sipplay-wrench-turn-toggle,sipplay-pin-toggle,sipplay-pin-reveal,sipplay-voice-wave")];
   const primaryToggle = toggles[0];
   for (const toggle of toggles.slice(1)) {
-    for (const attribute of ["duration", "bounce", "strength"]) {
+    for (const attribute of ["duration", "bounce", "strength", "flow-duration"]) {
       if (primaryToggle.hasAttribute(attribute)) toggle.setAttribute(attribute, primaryToggle.getAttribute(attribute));
     }
     // This example starts on connection: replay after inheriting edited parameters.
-    if (["sipplay-pin-reveal", "sipplay-voice-wave"].includes(toggle.localName) && toggle.active) toggle.apply(toggle.reducedMotion.matches);
+    if (["sipplay-pin-reveal", "sipplay-voice-wave", "sipplay-liquid-rise-toggle"].includes(toggle.localName) && toggle.active) toggle.apply(toggle.reducedMotion.matches);
   }
   const onSelectionChange = (event) => {
     if (!toggles.includes(event.target)) return;

@@ -1,5 +1,5 @@
-import { exampleDocument } from "./examples.js?v=20261020-chat-wave-path";
-import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-chat-wave-path";
+import { exampleDocument } from "./examples.js?v=20261020-liquid-rise";
+import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-liquid-rise";
 
 const controllers = new Set();
 
