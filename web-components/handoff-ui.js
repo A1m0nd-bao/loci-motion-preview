@@ -1,8 +1,8 @@
-import { commonNotes, getHandoff, handoffText, integrationSnippet, siteURL } from './handoff.js?v=20261020-pink-single';
+import { commonNotes, getHandoff, handoffText, integrationSnippet, siteURL } from './handoff.js?v=20261020-white-multi';
 
 export const batchPrompt = `请按 Figma 与现有动效组件完成页面接入：
 1. 先读取 ${siteURL}web-components/USAGE.md、${siteURL}custom-elements.json 和 ${siteURL}web-components/figma-bindings.json。
-2. 先检查 figma-bindings.json 每条记录的 adaptation 和 annotationStatus。website-only 仅表示注释尚未写回 Figma 画布；verification=user-specified 表示对应节点由设计师指定；selectionMode=single 必须按父级唯一值驱动，重复点击当前项不取消，contextStatus=needs-confirmation 时暂停自动业务绑定；有 adaptation 的必须按说明适配，不能原样整块替换；triggerStatus=needs-confirmation 的仅定位，不得自行绑定触发事件。然后精确匹配 Figma fileKey + nodeId 或图层中的动效 ID；只对已核对的设计位置执行替换。未绑定项列清单，不凭外观猜测。
+2. 先检查 figma-bindings.json 每条记录的 adaptation 和 annotationStatus。website-only 仅表示注释尚未写回 Figma 画布；verification=user-specified 表示对应节点由设计师指定；selectionMode=single 必须按父级唯一值驱动，重复点击当前项不取消；selectionMode=multiple 每项只增删自己的选中 ID，不影响其他项，contextStatus=needs-confirmation 时暂停自动业务绑定；有 adaptation 的必须按说明适配，不能原样整块替换；triggerStatus=needs-confirmation 的仅定位，不得自行绑定触发事件。然后精确匹配 Figma fileKey + nodeId 或图层中的动效 ID；只对已核对的设计位置执行替换。未绑定项列清单，不凭外观猜测。
 3. 优先复用整组导航组件。保留设计稿位置、尺寸、文案和原业务功能；示例放大样式不进入产品。
 4. 使用现有 Motion 依赖与组件源码；注册元素后，以真实业务状态初始化并调用 finish()。用公开事件连接业务，外部属性写入不假定发出用户事件。
 5. 避免嵌套 button、重复监听、同时驱动父子图标；保留键盘、减少动态效果及卸载清理。
@@ -31,7 +31,7 @@ export function renderHandoff(host, entry, values = () => ({})) {
   if (!d) return;
   const heading = document.createElement('h3'); heading.textContent = '研发 / AI 接入';
   const badge = document.createElement('p'); badge.className = 'handoff-status';
-  badge.textContent = d.figma.length ? `${d.verification === 'user-specified' ? (d.selectionMode === 'single' ? '设计师指定 · 单选已确认' : '设计师已指定 · 用途待核对') : '位置已核对'}${d.triggerStatus === 'needs-confirmation' ? ' · 触发待确认' : ''}${d.adaptation ? ' · 需视觉或交互适配' : ''} · Motion 13.5.1` : '设计位置待绑定 · Motion 13.5.1';
+  badge.textContent = d.figma.length ? `${d.verification === 'user-specified' ? (d.selectionMode === 'single' ? '设计师指定 · 单选已确认' : '设计师已指定 · 用途待核对') : '位置已核对'}${d.selectionMode === 'multiple' ? ' · 多选已确认' : ''}${d.triggerStatus === 'needs-confirmation' ? ' · 触发待确认' : ''}${d.adaptation ? ' · 需视觉或交互适配' : ''} · Motion 13.5.1` : '设计位置待绑定 · Motion 13.5.1';
   const dl = document.createElement('dl');
   for (const [label, value] of [
     ['放在哪里', d.placement], ...(d.adaptation ? [['设计适配', d.adaptation]] : []), ['何时播放', d.trigger],

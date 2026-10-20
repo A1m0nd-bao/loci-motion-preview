@@ -1,6 +1,6 @@
-import { exampleDocument } from "./examples.js?v=20261020-pink-single";
+import { exampleDocument } from "./examples.js?v=20261020-white-multi";
 import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-check-path";
-import { renderHandoff } from "./handoff-ui.js?v=20261020-pink-single";
+import { renderHandoff } from "./handoff-ui.js?v=20261020-white-multi";
 
 const controllers = new Set();
 

@@ -22,7 +22,7 @@ import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v
 import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261020-check-path";
 import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261020-check-path";
 import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261020-check-path";
-import { handoffText } from "./handoff.js?v=20261020-pink-single";
+import { handoffText } from "./handoff.js?v=20261020-white-multi";
 
 export function exampleDocument(entry, values = {}) {
   if (entry.kind === "motion") return motionExampleDocument(entry, values);

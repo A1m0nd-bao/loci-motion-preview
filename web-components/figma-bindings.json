@@ -168,6 +168,17 @@
       "annotationStatus": "canvas-and-website"
     },
     {
+      "nodeId": "730:82029",
+      "tagName": "sipplay-white-selection-toggle",
+      "source": "web-components/white-selection-toggle.js",
+      "placement": "反馈类型列表右侧的白色勾选；每项独立增删选中集合，不取消其他项",
+      "url": "https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-82029",
+      "annotationStatus": "website-only",
+      "selectionMode": "multiple",
+      "integrationMode": "adapt-view",
+      "verification": "visual-and-user-confirmed"
+    },
+    {
       "nodeId": "730:102857",
       "tagName": "sipplay-selection-toggle",
       "source": "web-components/selection-toggle.js",
