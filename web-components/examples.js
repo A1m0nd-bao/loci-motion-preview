@@ -1,21 +1,23 @@
-import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261020-bell-subtle";
-import { motionExampleDocument } from "../motion/examples.js?v=20261020-bell-subtle";
-import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261020-bell-subtle";
-import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261020-bell-subtle";
-import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261020-bell-subtle";
-import { exampleMarkup, upstreamURL, upstreamVersion } from "./catalog.js?v=20261020-bell-subtle";
-import { demoCSS } from "./demo-styles.js?v=20261020-bell-subtle";
-import { bindDemoActions } from "./demo-actions.js?v=20261020-bell-subtle";
-import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261020-bell-subtle";
-import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261020-bell-subtle";
-import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261020-bell-subtle";
-import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261020-bell-subtle";
+import { defineHistoryClock, historyClockDemoCSS } from "./history-clock.js?v=20261020-history-clock";
+import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261020-history-clock";
+import { motionExampleDocument } from "../motion/examples.js?v=20261020-history-clock";
+import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261020-history-clock";
+import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261020-history-clock";
+import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261020-history-clock";
+import { exampleMarkup, upstreamURL, upstreamVersion } from "./catalog.js?v=20261020-history-clock";
+import { demoCSS } from "./demo-styles.js?v=20261020-history-clock";
+import { bindDemoActions } from "./demo-actions.js?v=20261020-history-clock";
+import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261020-history-clock";
+import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261020-history-clock";
+import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261020-history-clock";
+import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261020-history-clock";
 
 export function exampleDocument(entry, values = {}) {
   if (entry.kind === "motion") return motionExampleDocument(entry, values);
   const font = "https://cdn.jsdelivr.net/npm/@fontsource-variable/inter@5.3.0/files/inter-latin-wght-normal.woff2";
-  const styles = (demoCSS + (entry.custom ? selectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS + wrenchTurnDemoCSS + pinToggleDemoCSS + pinRevealDemoCSS + voiceWaveDemoCSS + bellRingDemoCSS : "")).replace('./vendor/inter-latin-wght-normal.woff2', font);
+  const styles = (demoCSS + (entry.custom ? selectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS + wrenchTurnDemoCSS + pinToggleDemoCSS + pinRevealDemoCSS + voiceWaveDemoCSS + bellRingDemoCSS + historyClockDemoCSS : "")).replace('./vendor/inter-latin-wght-normal.woff2', font);
   const defineCustom = {
+    "sipplay-history-clock": defineHistoryClock,
     "sipplay-bell-ring-toggle": defineBellRingToggle,
     "sipplay-voice-wave": defineVoiceWave,
     "sipplay-pin-toggle": definePinToggle,

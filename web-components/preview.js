@@ -1,26 +1,27 @@
-import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261020-bell-subtle";
-import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261020-bell-subtle";
-import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261020-bell-subtle";
-import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261020-bell-subtle";
-import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-bell-subtle";
-import { demoCSS } from "./demo-styles.js?v=20261020-bell-subtle";
-import { bindDemoActions } from "./demo-actions.js?v=20261020-bell-subtle";
-import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261020-bell-subtle";
-import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261020-bell-subtle";
-import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261020-bell-subtle";
-import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261020-bell-subtle";
+import { defineHistoryClock, historyClockDemoCSS } from "./history-clock.js?v=20261020-history-clock";
+import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261020-history-clock";
+import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261020-history-clock";
+import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261020-history-clock";
+import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261020-history-clock";
+import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-history-clock";
+import { demoCSS } from "./demo-styles.js?v=20261020-history-clock";
+import { bindDemoActions } from "./demo-actions.js?v=20261020-history-clock";
+import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261020-history-clock";
+import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261020-history-clock";
+import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261020-history-clock";
+import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261020-history-clock";
 
 const params = new URLSearchParams(location.search);
 const entry = webMotions.find((item) => item.id === params.get("id"));
 const root = document.querySelector("#demo");
 const style = document.createElement("style");
-style.textContent = demoCSS + selectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS + wrenchTurnDemoCSS + pinToggleDemoCSS + pinRevealDemoCSS + voiceWaveDemoCSS + bellRingDemoCSS;
+style.textContent = demoCSS + selectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS + wrenchTurnDemoCSS + pinToggleDemoCSS + pinRevealDemoCSS + voiceWaveDemoCSS + bellRingDemoCSS + historyClockDemoCSS;
 document.head.append(style);
 let runtime;
 let values = {};
 let isPaused = false;
 let cleanupDemo;
-const customElementsInDemo = () => [...root.querySelectorAll("sipplay-selection-toggle,sipplay-layer-stack-toggle,sipplay-profile-rise-toggle,sipplay-wrench-turn-toggle,sipplay-pin-toggle,sipplay-pin-reveal,sipplay-voice-wave,sipplay-bell-ring-toggle")];
+const customElementsInDemo = () => [...root.querySelectorAll("sipplay-selection-toggle,sipplay-layer-stack-toggle,sipplay-profile-rise-toggle,sipplay-wrench-turn-toggle,sipplay-pin-toggle,sipplay-pin-reveal,sipplay-voice-wave,sipplay-bell-ring-toggle,sipplay-history-clock")];
 
 function notify(status, message = "") {
   parent.postMessage({ type: "sipplay-web-preview", id: entry?.id, status, message }, location.origin);
@@ -34,7 +35,10 @@ function compactPointerPreview(active) {
   if (!element) return;
   const rect = element.getBoundingClientRect();
   const point = { clientX: rect.left + rect.width * 0.8, clientY: rect.top + rect.height * 0.25 };
-  if (entry.id === "sipplay-bell-ring-toggle") {
+  if (entry.id === "sipplay-history-clock") {
+    if (active) element.hoverIn();
+    else element.hoverOut();
+  } else if (entry.id === "sipplay-bell-ring-toggle") {
     if (active) element.hoverIn();
     else element.hoverOut();
   } else if (entry.id === "sipplay-pin-reveal") {
@@ -104,7 +108,8 @@ document.addEventListener("visibilitychange", () => { if (document.hidden) { run
 
 try {
   if (!entry) throw new Error("未找到此组件，请从动效库重新选择。");
-  runtime = await import("./vendor/motion-components.js?v=20261020-bell-subtle");
+  runtime = await import("./vendor/motion-components.js?v=20261020-history-clock");
+  defineHistoryClock(runtime.animate);
   defineBellRingToggle(runtime.animate);
   defineVoiceWave(runtime.animate);
   definePinToggle(runtime.animate);

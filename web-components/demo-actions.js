@@ -33,6 +33,25 @@ export function bindDemoActions(root) {
   };
   root.addEventListener("motion-action", onBellAction);
   root.addEventListener("notification-request", onNotificationRequest);
+  const clocks = [...root.querySelectorAll("sipplay-history-clock")];
+  for (const clock of clocks.slice(1)) {
+    for (const attribute of ["duration", "bounce"]) {
+      if (clocks[0].hasAttribute(attribute)) clock.setAttribute(attribute, clocks[0].getAttribute(attribute));
+    }
+  }
+  const onHistoryReplay = event => {
+    if (!clocks.includes(event.target)) return;
+    for (const clock of clocks) if (clock !== event.target) clock.replay(false);
+    const status = root.querySelector("[data-history-status]");
+    if (status) status.textContent = event.target.reducedMotion.matches ? "已收稳" : "播放中";
+  };
+  const onHistoryFinish = event => {
+    if (!clocks.includes(event.target)) return;
+    const status = root.querySelector("[data-history-status]");
+    if (status) status.textContent = "已收稳";
+  };
+  root.addEventListener("motion-replay", onHistoryReplay);
+  root.addEventListener("motion-finish", onHistoryFinish);
   const countdown = root.querySelector("motion-countdown");
   if (countdown) countdown.setAttribute("to", new Date(Date.now() + 185000).toISOString());
   root.onclick = (event) => {
@@ -59,6 +78,8 @@ export function bindDemoActions(root) {
   };
   return () => {
     root.removeEventListener("motion-change", onSelectionChange);
+    root.removeEventListener("motion-replay", onHistoryReplay);
+    root.removeEventListener("motion-finish", onHistoryFinish);
     root.removeEventListener("motion-action", onBellAction);
     root.removeEventListener("notification-request", onNotificationRequest);
   };
