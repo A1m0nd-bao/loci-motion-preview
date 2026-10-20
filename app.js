@@ -1,6 +1,6 @@
-import { motionMotions } from "./motion/catalog.js?v=20261020-home-clean";
-import { webMotions } from "./web-components/catalog.js?v=20261020-home-clean";
-import { createWebController, copyExample, downloadExample, setupWebDetail, getWebValues, syncWebBackgrounds } from "./web-components/integration.js?v=20261020-home-clean";
+import { motionMotions } from "./motion/catalog.js?v=20261020-plus-selection";
+import { webMotions } from "./web-components/catalog.js?v=20261020-plus-selection";
+import { createWebController, copyExample, downloadExample, setupWebDetail, getWebValues, syncWebBackgrounds } from "./web-components/integration.js?v=20261020-plus-selection";
 
 if (import.meta.env?.DEV) document.querySelector("#motionStudioLocal").hidden = false;
 

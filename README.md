@@ -40,7 +40,7 @@
 
 ## Motion 原生示例与 Studio
 
-主站新增独立的 `/#motion` 分支，收录 6 个基于免费 Motion API 制作的原生 JavaScript 示例：弹簧切换、错峰入场、悬停按压、时间线编排、SVG 路径绘制、滚动关联进度。支持交互、参数调整、复制完整 HTML 与下载；原有 `/#web` 的 65 个组件保持独立。
+主站新增独立的 `/#motion` 分支，收录 6 个基于免费 Motion API 制作的原生 JavaScript 示例：弹簧切换、错峰入场、悬停按压、时间线编排、SVG 路径绘制、滚动关联进度。支持交互、参数调整、复制完整 HTML 与下载；原有 `/#web` 的 66 个组件保持独立。
 
 Motion 固定为 13.5.1，与已有自定义图标使用的版本一致。修改 `motion/demos.js` 后运行 `pnpm build:motion`：生成公开站使用的本地运行文件与独立导出源码，避免开发期 Studio 插桩进入下载的 HTML。开源许可见 `web-components/vendor/THIRD-PARTY-NOTICES.txt`。
 
@@ -111,3 +111,5 @@ npm run sync:watch:publish
 - 在评审或交付前运行一次 `npm run manifest`，把更新后的 `manifest.json` 一起提交。
 
 自定义「首页填白落定」使用原始 24×24 双态房屋路径。轮廓使用原始单一路径，整体提起后落稳，白色填充从底部展开，门洞始终镂空；取消时恢复 40% 白色线框。默认时长 0.56 秒，支持调整提起幅度、快速反向、键盘、触屏、减少动态效果、暂停恢复与独立 HTML 导出。实现位于 `web-components/home-settle-toggle.js`。
+
+自定义「加号选中填白」使用原始 24×24 圆环和加号路径，保留 1.5px 圆头描边及 90% 整体透明度。选中时圆形从中心填白并轻微回弹，加号保持正向并镂空，透出实际背景；取消时恢复 40% 灰色描边。默认时长 0.46 秒、回弹 0.18，可调整，支持快速反向、键盘、触屏、减少动态效果、暂停恢复与独立 HTML 导出。实现位于 `web-components/plus-selection-toggle.js`。

@@ -1,30 +1,32 @@
-import { defineHomeSettleToggle, homeSettleDemoCSS } from "./home-settle-toggle.js?v=20261020-home-clean";
-import { defineWarningNudge, warningNudgeDemoCSS } from "./warning-nudge.js?v=20261020-home-clean";
-import { defineLiquidRiseToggle, liquidRiseDemoCSS } from "./liquid-rise-toggle.js?v=20261020-home-clean";
-import { defineChatBubbleToggle, chatBubbleDemoCSS } from "./chat-bubble-toggle.js?v=20261020-home-clean";
-import { defineTapTab, tapTabDemoCSS } from "./tap-tab.js?v=20261020-home-clean";
-import { definePreviewTabs, previewTabsDemoCSS } from "./preview-tabs.js?v=20261020-home-clean";
-import { defineWhiteSelectionToggle, whiteSelectionDemoCSS } from "./white-selection-toggle.js?v=20261020-home-clean";
-import { defineHistoryClock, historyClockDemoCSS } from "./history-clock.js?v=20261020-home-clean";
-import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261020-home-clean";
-import { motionExampleDocument } from "../motion/examples.js?v=20261020-home-clean";
-import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261020-home-clean";
-import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261020-home-clean";
-import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261020-home-clean";
-import { exampleMarkup, upstreamURL, upstreamVersion } from "./catalog.js?v=20261020-home-clean";
-import { demoCSS } from "./demo-styles.js?v=20261020-home-clean";
-import { bindDemoActions } from "./demo-actions.js?v=20261020-home-clean";
-import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261020-home-clean";
-import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261020-home-clean";
-import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261020-home-clean";
-import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261020-home-clean";
+import { definePlusSelectionToggle, plusSelectionDemoCSS } from "./plus-selection-toggle.js?v=20261020-plus-selection";
+import { defineHomeSettleToggle, homeSettleDemoCSS } from "./home-settle-toggle.js?v=20261020-plus-selection";
+import { defineWarningNudge, warningNudgeDemoCSS } from "./warning-nudge.js?v=20261020-plus-selection";
+import { defineLiquidRiseToggle, liquidRiseDemoCSS } from "./liquid-rise-toggle.js?v=20261020-plus-selection";
+import { defineChatBubbleToggle, chatBubbleDemoCSS } from "./chat-bubble-toggle.js?v=20261020-plus-selection";
+import { defineTapTab, tapTabDemoCSS } from "./tap-tab.js?v=20261020-plus-selection";
+import { definePreviewTabs, previewTabsDemoCSS } from "./preview-tabs.js?v=20261020-plus-selection";
+import { defineWhiteSelectionToggle, whiteSelectionDemoCSS } from "./white-selection-toggle.js?v=20261020-plus-selection";
+import { defineHistoryClock, historyClockDemoCSS } from "./history-clock.js?v=20261020-plus-selection";
+import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261020-plus-selection";
+import { motionExampleDocument } from "../motion/examples.js?v=20261020-plus-selection";
+import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261020-plus-selection";
+import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261020-plus-selection";
+import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261020-plus-selection";
+import { exampleMarkup, upstreamURL, upstreamVersion } from "./catalog.js?v=20261020-plus-selection";
+import { demoCSS } from "./demo-styles.js?v=20261020-plus-selection";
+import { bindDemoActions } from "./demo-actions.js?v=20261020-plus-selection";
+import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261020-plus-selection";
+import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261020-plus-selection";
+import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261020-plus-selection";
+import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261020-plus-selection";
 
 export function exampleDocument(entry, values = {}) {
   if (entry.kind === "motion") return motionExampleDocument(entry, values);
   const font = "https://cdn.jsdelivr.net/npm/@fontsource-variable/inter@5.3.0/files/inter-latin-wght-normal.woff2";
-  const styles = (demoCSS + (entry.custom ? homeSettleDemoCSS + liquidRiseDemoCSS + warningNudgeDemoCSS + chatBubbleDemoCSS + previewTabsDemoCSS + selectionDemoCSS + whiteSelectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS + wrenchTurnDemoCSS + pinToggleDemoCSS + pinRevealDemoCSS + voiceWaveDemoCSS + bellRingDemoCSS + historyClockDemoCSS + tapTabDemoCSS : "")).replace('./vendor/inter-latin-wght-normal.woff2', font);
+  const styles = (demoCSS + (entry.custom ? plusSelectionDemoCSS + homeSettleDemoCSS + liquidRiseDemoCSS + warningNudgeDemoCSS + chatBubbleDemoCSS + previewTabsDemoCSS + selectionDemoCSS + whiteSelectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS + wrenchTurnDemoCSS + pinToggleDemoCSS + pinRevealDemoCSS + voiceWaveDemoCSS + bellRingDemoCSS + historyClockDemoCSS + tapTabDemoCSS : "")).replace('./vendor/inter-latin-wght-normal.woff2', font);
   const defineCustom = {
     "sipplay-warning-nudge": defineWarningNudge,
+    "sipplay-plus-selection-toggle": definePlusSelectionToggle,
     "sipplay-home-settle-toggle": defineHomeSettleToggle,
     "sipplay-liquid-rise-toggle": defineLiquidRiseToggle,
     "sipplay-chat-bubble-toggle": defineChatBubbleToggle,

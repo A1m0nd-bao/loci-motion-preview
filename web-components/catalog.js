@@ -1,19 +1,20 @@
-import { homeSettleDemoMarkup } from "./home-settle-toggle.js?v=20261020-home-clean";
-import { warningNudgeDemoMarkup } from "./warning-nudge.js?v=20261020-home-clean";
-import { liquidRiseDemoMarkup } from "./liquid-rise-toggle.js?v=20261020-home-clean";
-import { chatBubbleDemoMarkup } from "./chat-bubble-toggle.js?v=20261020-home-clean";
-import { tapTabDemoMarkup } from "./tap-tab.js?v=20261020-home-clean";
-import { previewTabsDemoMarkup } from "./preview-tabs.js?v=20261020-home-clean";
-import { whiteSelectionDemoMarkup } from "./white-selection-toggle.js?v=20261020-home-clean";
-import { historyClockDemoMarkup } from "./history-clock.js?v=20261020-home-clean";
-import { bellRingDemoMarkup } from "./bell-ring-toggle.js?v=20261020-home-clean";
-import { voiceWaveDemoMarkup } from "./voice-wave.js?v=20261020-home-clean";
-import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261020-home-clean";
-import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261020-home-clean";
-import { selectionDemoMarkup } from "./selection-toggle.js?v=20261020-home-clean";
-import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261020-home-clean";
-import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261020-home-clean";
-import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261020-home-clean";
+import { plusSelectionDemoMarkup } from "./plus-selection-toggle.js?v=20261020-plus-selection";
+import { homeSettleDemoMarkup } from "./home-settle-toggle.js?v=20261020-plus-selection";
+import { warningNudgeDemoMarkup } from "./warning-nudge.js?v=20261020-plus-selection";
+import { liquidRiseDemoMarkup } from "./liquid-rise-toggle.js?v=20261020-plus-selection";
+import { chatBubbleDemoMarkup } from "./chat-bubble-toggle.js?v=20261020-plus-selection";
+import { tapTabDemoMarkup } from "./tap-tab.js?v=20261020-plus-selection";
+import { previewTabsDemoMarkup } from "./preview-tabs.js?v=20261020-plus-selection";
+import { whiteSelectionDemoMarkup } from "./white-selection-toggle.js?v=20261020-plus-selection";
+import { historyClockDemoMarkup } from "./history-clock.js?v=20261020-plus-selection";
+import { bellRingDemoMarkup } from "./bell-ring-toggle.js?v=20261020-plus-selection";
+import { voiceWaveDemoMarkup } from "./voice-wave.js?v=20261020-plus-selection";
+import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261020-plus-selection";
+import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261020-plus-selection";
+import { selectionDemoMarkup } from "./selection-toggle.js?v=20261020-plus-selection";
+import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261020-plus-selection";
+import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261020-plus-selection";
+import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261020-plus-selection";
 
 export const upstreamVersion = "1.3.0";
 export const upstreamURL = "https://github.com/tgomilar/motion-components";
@@ -104,6 +105,13 @@ const upstreamMotions = entries.map(([id, name, category, description, markup, c
 }));
 
 export const webMotions = [{
+  id: "sipplay-plus-selection-toggle", name: "加号选中填白", category: "动态图标",
+  description: "保留原始 24 × 24 圆环与加号路径、1.5px 圆头描边和 90% 整体透明度。选中时轻压反馈，圆形从中心填白并轻微回弹，加号保持正向并成为透明镂空；再次点击收回填充，恢复灰色加号与圆环。透明镂空适配任意背景，轮廓始终使用单套路径，支持快速反向、键盘、触屏、减少动态效果、暂停恢复和独立 HTML 导出。",
+  markup: plusSelectionDemoMarkup, controls: [number("duration", "切换时长（秒）", 0.46, 0.24, 1.2, 0.02), number("bounce", "填白回弹", 0.18, 0, 0.35, 0.01)],
+  kind: "web", kindLabel: "Web 组件", fileName: "sipplay-plus-selection-toggle",
+  file: "./web-components/preview.html?id=sipplay-plus-selection-toggle", docs: null, custom: true,
+  tags: ["自定义 SVG", "添加", "选中", "加号", "Plus", "实心", "镂空", "双形态", "24px"], interactionType: "点击切换",
+}, {
   id: "sipplay-home-settle-toggle", name: "首页填白落定", category: "动态图标",
   description: "保留原始 24 × 24 双态 SVG。选中时房屋整体轻提，白色从底部展开，随后轻落收稳；轮廓使用原始单一路径直接提亮；取消时填白收回，恢复 40% 白色线框。门洞始终镂空，支持快速反向、键盘、触屏、减少动态效果、暂停恢复和独立 HTML 导出。",
   markup: homeSettleDemoMarkup, controls: [number("duration", "切换时长（秒）", 0.56, 0.24, 1.2, 0.02), number("strength", "提起幅度", 1, 0.4, 1.4, 0.05)],
@@ -149,7 +157,7 @@ export const webMotions = [{
 }, {
   id: "sipplay-history-clock", name: "历史时钟描绘旋转", category: "动态图标",
   description: "恢复外圈、箭头和指针的错峰路径绘制；以圆环真实圆心 (8.75194, 10) 为轴，沿箭头方向逆时针旋转一整圈并轻微回弹。外圈描边也逆时针绘出，保留原始路径、比例与描边。悬停或点击播放一次。",
-  markup: historyClockDemoMarkup, controls: [number("duration", "总时长（秒）", 0.8, 0.3, 1.6, 0.05), number("bounce", "旋转回弹", 0.4, 0, 0.5, 0.05)],
+  markup: historyClockDemoMarkup, controls: [number("duration", "总时长（秒）", 0.8, 0.3, 1.6, 0.05), number("bounce", "填白回弹", 0.4, 0, 0.5, 0.05)],
   kind: "web", kindLabel: "Web 组件", fileName: "sipplay-history-clock",
   file: "./web-components/preview.html?id=sipplay-history-clock", docs: null, custom: true,
   tags: ["自定义 SVG", "历史", "时钟", "逆时针", "描边", "整圈旋转", "draw rotate", "20px"], interactionType: "悬停／点击重播",
