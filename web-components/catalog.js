@@ -1,14 +1,15 @@
-import { tapTabDemoMarkup } from "./tap-tab.js?v=20261020-tab-equal-line";
-import { whiteSelectionDemoMarkup } from "./white-selection-toggle.js?v=20261020-tab-equal-line";
-import { historyClockDemoMarkup } from "./history-clock.js?v=20261020-tab-equal-line";
-import { bellRingDemoMarkup } from "./bell-ring-toggle.js?v=20261020-tab-equal-line";
-import { voiceWaveDemoMarkup } from "./voice-wave.js?v=20261020-tab-equal-line";
-import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261020-tab-equal-line";
-import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261020-tab-equal-line";
-import { selectionDemoMarkup } from "./selection-toggle.js?v=20261020-tab-equal-line";
-import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261020-tab-equal-line";
-import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261020-tab-equal-line";
-import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261020-tab-equal-line";
+import { tapTabDemoMarkup } from "./tap-tab.js?v=20261020-preview-tabs-v2";
+import { previewTabsDemoMarkup } from "./preview-tabs.js?v=20261020-preview-tabs-v2";
+import { whiteSelectionDemoMarkup } from "./white-selection-toggle.js?v=20261020-preview-tabs-v2";
+import { historyClockDemoMarkup } from "./history-clock.js?v=20261020-preview-tabs-v2";
+import { bellRingDemoMarkup } from "./bell-ring-toggle.js?v=20261020-preview-tabs-v2";
+import { voiceWaveDemoMarkup } from "./voice-wave.js?v=20261020-preview-tabs-v2";
+import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261020-preview-tabs-v2";
+import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261020-preview-tabs-v2";
+import { selectionDemoMarkup } from "./selection-toggle.js?v=20261020-preview-tabs-v2";
+import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261020-preview-tabs-v2";
+import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261020-preview-tabs-v2";
+import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261020-preview-tabs-v2";
 
 export const upstreamVersion = "1.3.0";
 export const upstreamURL = "https://github.com/tgomilar/motion-components";
@@ -105,6 +106,14 @@ export const webMotions = [{
   kind: "web", kindLabel: "Web 组件", fileName: "sipplay-tap-tab",
   file: "./web-components/preview.html?id=sipplay-tap-tab", docs: null, custom: true,
   tags: ["Tab", "tapTab", "标签页", "导航", "人物", "图层", "扳手", "下划线"], interactionType: "Tab 切换",
+}, {
+  id: "sipplay-preview-tabs", name: "预览 Tab 滑动切换", category: "状态切换",
+  description: "点击切换 Chat Preview 与 Feed Preview，选中底片平滑滑动、轻微拉伸并回弹，文字亮度同步过渡。保留原始 312 × 37 SVG 比例与字形，支持键盘和快速反向操作。",
+  markup: previewTabsDemoMarkup, controls: [number("duration", "时长（秒）", 0.46, 0.18, 1.2, 0.02), number("bounce", "回弹程度", 0.14, 0, 0.35, 0.01)],
+  kind: "web", kindLabel: "Web 组件", fileName: "sipplay-preview-tabs",
+  file: "./web-components/preview.html?id=sipplay-preview-tabs",
+  docs: null, custom: true,
+  tags: ["自定义 SVG", "Tab", "标签页", "分段控件", "预览切换", "滑动", "弹簧"], interactionType: "点击切换",
 }, {
   id: "sipplay-history-clock", name: "历史时钟描绘旋转", category: "动态图标",
   description: "恢复外圈、箭头和指针的错峰路径绘制；以圆环真实圆心 (8.75194, 10) 为轴，沿箭头方向逆时针旋转一整圈并轻微回弹。外圈描边也逆时针绘出，保留原始路径、比例与描边。悬停或点击播放一次。",

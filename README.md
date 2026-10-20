@@ -8,6 +8,8 @@
 
 自定义「白色勾选切换」与粉色版共用相同的圆底弹出、短暂停顿和画勾时间曲线。保留原 SVG 的白色圆底与精确镂空勾轮廓，镂空随背景透出；支持切换、快速反向、减少动态效果与独立 HTML 导出。实现位于 `web-components/white-selection-toggle.js`。
 
+自定义「预览 Tab 滑动切换」保留提供的 312×37 SVG、Chat Preview / Feed Preview 字形与透明度。选中底片以弹簧平移、轻微拉伸并收稳，文字亮度同步过渡；点击已选项不重播，支持键盘左右键 / Home / End、快速反向、减少动态效果及 HTML 导出，切换时发出带 selected / value 的 `motion-change` 事件。实现位于 `web-components/preview-tabs.js`。
+
 自定义「图层落下叠加」保留提供的 20×20 图层 SVG：选中时方片依次从上方落下叠加，取消选中时恢复灰色图标。可调整时长和回弹；预览及导出的 HTML 共用 `web-components/layer-stack-toggle.js`，支持键盘、减少动态效果和中途取消。
 
 自定义「人物探出回弹」保留提供的人物 SVG：选中动画开头头和身体完全藏于底部，再快速探出，拉伸、压缩后错位回弹，取消选中时置灰。预览及独立 HTML 共用 `web-components/profile-rise-toggle.js`，可调整时长与回弹。
@@ -32,7 +34,7 @@
 
 ## Motion 原生示例与 Studio
 
-主站新增独立的 `/#motion` 分支，收录 6 个基于免费 Motion API 制作的原生 JavaScript 示例：弹簧切换、错峰入场、悬停按压、时间线编排、SVG 路径绘制、滚动关联进度。支持交互、参数调整、复制完整 HTML 与下载；原有 `/#web` 的 60 个组件保持独立。
+主站新增独立的 `/#motion` 分支，收录 6 个基于免费 Motion API 制作的原生 JavaScript 示例：弹簧切换、错峰入场、悬停按压、时间线编排、SVG 路径绘制、滚动关联进度。支持交互、参数调整、复制完整 HTML 与下载；原有 `/#web` 的 61 个组件保持独立。
 
 Motion 固定为 13.5.1，与已有自定义图标使用的版本一致。修改 `motion/demos.js` 后运行 `pnpm build:motion`：生成公开站使用的本地运行文件与独立导出源码，避免开发期 Studio 插桩进入下载的 HTML。开源许可见 `web-components/vendor/THIRD-PARTY-NOTICES.txt`。
 

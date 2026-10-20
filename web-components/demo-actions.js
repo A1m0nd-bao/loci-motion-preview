@@ -1,6 +1,6 @@
 // This function is also embedded in downloaded examples: keep it self-contained.
 export function bindDemoActions(root) {
-  const toggles = [...root.querySelectorAll("sipplay-white-selection-toggle,sipplay-selection-toggle,sipplay-layer-stack-toggle,sipplay-profile-rise-toggle,sipplay-wrench-turn-toggle,sipplay-pin-toggle,sipplay-pin-reveal,sipplay-voice-wave")];
+  const toggles = [...root.querySelectorAll("sipplay-preview-tabs,sipplay-white-selection-toggle,sipplay-selection-toggle,sipplay-layer-stack-toggle,sipplay-profile-rise-toggle,sipplay-wrench-turn-toggle,sipplay-pin-toggle,sipplay-pin-reveal,sipplay-voice-wave")];
   const primaryToggle = toggles[0];
   for (const toggle of toggles.slice(1)) {
     for (const attribute of ["duration", "bounce", "strength"]) {

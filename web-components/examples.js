@@ -1,23 +1,24 @@
-import { defineTapTab, tapTabDemoCSS } from "./tap-tab.js?v=20261020-tab-equal-line";
-import { defineWhiteSelectionToggle, whiteSelectionDemoCSS } from "./white-selection-toggle.js?v=20261020-tab-equal-line";
-import { defineHistoryClock, historyClockDemoCSS } from "./history-clock.js?v=20261020-tab-equal-line";
-import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261020-tab-equal-line";
-import { motionExampleDocument } from "../motion/examples.js?v=20261020-tab-equal-line";
-import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261020-tab-equal-line";
-import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261020-tab-equal-line";
-import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261020-tab-equal-line";
-import { exampleMarkup, upstreamURL, upstreamVersion } from "./catalog.js?v=20261020-tab-equal-line";
-import { demoCSS } from "./demo-styles.js?v=20261020-tab-equal-line";
-import { bindDemoActions } from "./demo-actions.js?v=20261020-tab-equal-line";
-import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261020-tab-equal-line";
-import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261020-tab-equal-line";
-import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261020-tab-equal-line";
-import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261020-tab-equal-line";
+import { defineTapTab, tapTabDemoCSS } from "./tap-tab.js?v=20261020-preview-tabs-v2";
+import { definePreviewTabs, previewTabsDemoCSS } from "./preview-tabs.js?v=20261020-preview-tabs-v2";
+import { defineWhiteSelectionToggle, whiteSelectionDemoCSS } from "./white-selection-toggle.js?v=20261020-preview-tabs-v2";
+import { defineHistoryClock, historyClockDemoCSS } from "./history-clock.js?v=20261020-preview-tabs-v2";
+import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261020-preview-tabs-v2";
+import { motionExampleDocument } from "../motion/examples.js?v=20261020-preview-tabs-v2";
+import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261020-preview-tabs-v2";
+import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261020-preview-tabs-v2";
+import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261020-preview-tabs-v2";
+import { exampleMarkup, upstreamURL, upstreamVersion } from "./catalog.js?v=20261020-preview-tabs-v2";
+import { demoCSS } from "./demo-styles.js?v=20261020-preview-tabs-v2";
+import { bindDemoActions } from "./demo-actions.js?v=20261020-preview-tabs-v2";
+import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261020-preview-tabs-v2";
+import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261020-preview-tabs-v2";
+import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261020-preview-tabs-v2";
+import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261020-preview-tabs-v2";
 
 export function exampleDocument(entry, values = {}) {
   if (entry.kind === "motion") return motionExampleDocument(entry, values);
   const font = "https://cdn.jsdelivr.net/npm/@fontsource-variable/inter@5.3.0/files/inter-latin-wght-normal.woff2";
-  const styles = (demoCSS + (entry.custom ? selectionDemoCSS + whiteSelectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS + wrenchTurnDemoCSS + pinToggleDemoCSS + pinRevealDemoCSS + voiceWaveDemoCSS + bellRingDemoCSS + historyClockDemoCSS + tapTabDemoCSS : "")).replace('./vendor/inter-latin-wght-normal.woff2', font);
+  const styles = (demoCSS + (entry.custom ? previewTabsDemoCSS + selectionDemoCSS + whiteSelectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS + wrenchTurnDemoCSS + pinToggleDemoCSS + pinRevealDemoCSS + voiceWaveDemoCSS + bellRingDemoCSS + historyClockDemoCSS + tapTabDemoCSS : "")).replace('./vendor/inter-latin-wght-normal.woff2', font);
   const defineCustom = {
     "sipplay-tap-tab": defineTapTab,
     "sipplay-history-clock": defineHistoryClock,
@@ -27,6 +28,7 @@ export function exampleDocument(entry, values = {}) {
     "sipplay-pin-reveal": definePinReveal,
     "sipplay-selection-toggle": defineSelectionToggle,
     "sipplay-white-selection-toggle": defineWhiteSelectionToggle,
+    "sipplay-preview-tabs": definePreviewTabs,
     "sipplay-layer-stack-toggle": defineLayerStackToggle,
     "sipplay-profile-rise-toggle": defineProfileRiseToggle,
     "sipplay-wrench-turn-toggle": defineWrenchTurnToggle,
