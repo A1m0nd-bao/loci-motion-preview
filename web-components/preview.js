@@ -1,27 +1,28 @@
-import { defineHistoryClock, historyClockDemoCSS } from "./history-clock.js?v=20261020-history-center-draw";
-import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261020-history-center-draw";
-import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261020-history-center-draw";
-import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261020-history-center-draw";
-import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261020-history-center-draw";
-import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-history-center-draw";
-import { demoCSS } from "./demo-styles.js?v=20261020-history-center-draw";
-import { bindDemoActions } from "./demo-actions.js?v=20261020-history-center-draw";
-import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261020-history-center-draw";
-import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261020-history-center-draw";
-import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261020-history-center-draw";
-import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261020-history-center-draw";
+import { defineWhiteSelectionToggle, whiteSelectionDemoCSS } from "./white-selection-toggle.js?v=20261020-white-check";
+import { defineHistoryClock, historyClockDemoCSS } from "./history-clock.js?v=20261020-white-check";
+import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261020-white-check";
+import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261020-white-check";
+import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261020-white-check";
+import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261020-white-check";
+import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-white-check";
+import { demoCSS } from "./demo-styles.js?v=20261020-white-check";
+import { bindDemoActions } from "./demo-actions.js?v=20261020-white-check";
+import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261020-white-check";
+import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261020-white-check";
+import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261020-white-check";
+import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261020-white-check";
 
 const params = new URLSearchParams(location.search);
 const entry = webMotions.find((item) => item.id === params.get("id"));
 const root = document.querySelector("#demo");
 const style = document.createElement("style");
-style.textContent = demoCSS + selectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS + wrenchTurnDemoCSS + pinToggleDemoCSS + pinRevealDemoCSS + voiceWaveDemoCSS + bellRingDemoCSS + historyClockDemoCSS;
+style.textContent = demoCSS + selectionDemoCSS + whiteSelectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS + wrenchTurnDemoCSS + pinToggleDemoCSS + pinRevealDemoCSS + voiceWaveDemoCSS + bellRingDemoCSS + historyClockDemoCSS;
 document.head.append(style);
 let runtime;
 let values = {};
 let isPaused = false;
 let cleanupDemo;
-const customElementsInDemo = () => [...root.querySelectorAll("sipplay-selection-toggle,sipplay-layer-stack-toggle,sipplay-profile-rise-toggle,sipplay-wrench-turn-toggle,sipplay-pin-toggle,sipplay-pin-reveal,sipplay-voice-wave,sipplay-bell-ring-toggle,sipplay-history-clock")];
+const customElementsInDemo = () => [...root.querySelectorAll("sipplay-white-selection-toggle,sipplay-selection-toggle,sipplay-layer-stack-toggle,sipplay-profile-rise-toggle,sipplay-wrench-turn-toggle,sipplay-pin-toggle,sipplay-pin-reveal,sipplay-voice-wave,sipplay-bell-ring-toggle,sipplay-history-clock")];
 
 function notify(status, message = "") {
   parent.postMessage({ type: "sipplay-web-preview", id: entry?.id, status, message }, location.origin);
@@ -108,13 +109,14 @@ document.addEventListener("visibilitychange", () => { if (document.hidden) { run
 
 try {
   if (!entry) throw new Error("未找到此组件，请从动效库重新选择。");
-  runtime = await import("./vendor/motion-components.js?v=20261020-history-center-draw");
+  runtime = await import("./vendor/motion-components.js?v=20261020-white-check");
   defineHistoryClock(runtime.animate);
   defineBellRingToggle(runtime.animate);
   defineVoiceWave(runtime.animate);
   definePinToggle(runtime.animate);
   definePinReveal(runtime.animate);
   defineSelectionToggle(runtime.animate);
+  defineWhiteSelectionToggle(runtime.animate);
   defineLayerStackToggle(runtime.animate);
   defineProfileRiseToggle(runtime.animate);
   defineWrenchTurnToggle(runtime.animate);

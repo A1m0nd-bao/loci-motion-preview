@@ -1,12 +1,13 @@
-import { historyClockDemoMarkup } from "./history-clock.js?v=20261020-history-center-draw";
-import { bellRingDemoMarkup } from "./bell-ring-toggle.js?v=20261020-history-center-draw";
-import { voiceWaveDemoMarkup } from "./voice-wave.js?v=20261020-history-center-draw";
-import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261020-history-center-draw";
-import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261020-history-center-draw";
-import { selectionDemoMarkup } from "./selection-toggle.js?v=20261020-history-center-draw";
-import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261020-history-center-draw";
-import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261020-history-center-draw";
-import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261020-history-center-draw";
+import { whiteSelectionDemoMarkup } from "./white-selection-toggle.js?v=20261020-white-check";
+import { historyClockDemoMarkup } from "./history-clock.js?v=20261020-white-check";
+import { bellRingDemoMarkup } from "./bell-ring-toggle.js?v=20261020-white-check";
+import { voiceWaveDemoMarkup } from "./voice-wave.js?v=20261020-white-check";
+import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261020-white-check";
+import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261020-white-check";
+import { selectionDemoMarkup } from "./selection-toggle.js?v=20261020-white-check";
+import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261020-white-check";
+import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261020-white-check";
+import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261020-white-check";
 
 export const upstreamVersion = "1.3.0";
 export const upstreamURL = "https://github.com/tgomilar/motion-components";
@@ -155,6 +156,14 @@ export const webMotions = [{
   file: "./web-components/preview.html?id=sipplay-layer-stack-toggle",
   docs: null, custom: true,
   tags: ["自定义 SVG", "图层", "叠片", "选中状态", "20px"], interactionType: "点击切换",
+}, {
+  id: "sipplay-white-selection-toggle", name: "白色勾选切换", category: "动态图标",
+  description: "白色圆底先弹出，稍停后画出镂空勾。与粉色勾选保持相同的时间曲线，保留原始 20 × 20 SVG 造型，支持双向切换。",
+  markup: whiteSelectionDemoMarkup, controls: [number("duration", "时长（秒）", 0.32, 0.12, 1.5, 0.02), number("bounce", "回弹程度", 0.15, 0, 0.5, 0.05)],
+  kind: "web", kindLabel: "Web 组件", fileName: "sipplay-white-selection-toggle",
+  file: "./web-components/preview.html?id=sipplay-white-selection-toggle",
+  docs: null, custom: true,
+  tags: ["自定义 SVG", "勾选", "白色", "镂空", "选中状态", "20px"], interactionType: "点击切换",
 }, {
   id: "sipplay-selection-toggle", name: "粉色勾选切换", category: "动态图标",
   description: "点击在白色空心圆与粉色勾选之间双向切换。保留原始 20 × 20 SVG，支持快速反复点击。",
