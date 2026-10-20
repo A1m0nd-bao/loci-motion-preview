@@ -1,6 +1,6 @@
-import { motionMotions } from "./motion/catalog.js?v=20261020-preview-tabs-v2";
-import { webMotions } from "./web-components/catalog.js?v=20261020-preview-tabs-v2";
-import { createWebController, copyExample, downloadExample, setupWebDetail, getWebValues, syncWebBackgrounds } from "./web-components/integration.js?v=20261020-preview-tabs-v2";
+import { motionMotions } from "./motion/catalog.js?v=20261020-tab-speed-line";
+import { webMotions } from "./web-components/catalog.js?v=20261020-tab-speed-line";
+import { createWebController, copyExample, downloadExample, setupWebDetail, getWebValues, syncWebBackgrounds } from "./web-components/integration.js?v=20261020-tab-speed-line";
 
 if (import.meta.env?.DEV) document.querySelector("#motionStudioLocal").hidden = false;
 

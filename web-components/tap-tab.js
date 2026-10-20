@@ -120,6 +120,8 @@ export function defineTapTab(animate) {
       if (!this.nav) return;
       const previous = this.current;
       const changed = previous !== this.value;
+      const matrix = new DOMMatrix(getComputedStyle(this.line).transform);
+      const from = { x: matrix.e, width: this.line.getBoundingClientRect().width };
       this.stop();
       this.current = this.value;
       this.nav.setAttribute("aria-label", this.getAttribute("label") || "设置导航");
@@ -137,9 +139,20 @@ export function defineTapTab(animate) {
       const target = this.target();
       this.line.style.opacity = "1";
       this.line.style.width = `${target.width}px`;
-      this.controls.push(animate(this.line, { x: target.x }, instant || !previous || !changed
-        ? { duration: 0 }
-        : { type: "spring", duration: this.duration, bounce: this.bounce }));
+      if (instant || !previous || !changed) {
+        this.controls.push(animate(this.line, { x: target.x, scaleX: 1 }, { duration: 0 }));
+      } else {
+        const distance = target.x - from.x;
+        const stretch = Math.min(Math.abs(distance) * (0.16 + this.bounce * 0.5), target.width * 0.65);
+        const midWidth = Math.max(from.width, target.width + stretch);
+        const fromCenter = from.x + from.width / 2;
+        const targetCenter = target.x + target.width / 2;
+        const midX = fromCenter + (targetCenter - fromCenter) * 0.66 - midWidth / 2;
+        this.controls.push(animate(this.line, {
+          x: [from.x, midX, target.x],
+          scaleX: [from.width / target.width, midWidth / target.width, 1],
+        }, { duration: this.duration, times: [0, 0.48, 1], ease: [[0.2, 0.75, 0.25, 1], [0.2, 0.8, 0.25, 1]] }));
+      }
       const epoch = this.epoch;
       this.state = instant ? "finished" : "running";
       Promise.all([...this.controls, ...this.icons.flatMap(icon => icon.controls)].map(control => Promise.resolve(control))).then(() => {

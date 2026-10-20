@@ -1,19 +1,19 @@
-import { defineTapTab, tapTabDemoCSS } from "./tap-tab.js?v=20261020-preview-tabs-v2";
-import { definePreviewTabs, previewTabsDemoCSS } from "./preview-tabs.js?v=20261020-preview-tabs-v2";
-import { defineWhiteSelectionToggle, whiteSelectionDemoCSS } from "./white-selection-toggle.js?v=20261020-preview-tabs-v2";
-import { defineHistoryClock, historyClockDemoCSS } from "./history-clock.js?v=20261020-preview-tabs-v2";
-import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261020-preview-tabs-v2";
-import { motionExampleDocument } from "../motion/examples.js?v=20261020-preview-tabs-v2";
-import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261020-preview-tabs-v2";
-import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261020-preview-tabs-v2";
-import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261020-preview-tabs-v2";
-import { exampleMarkup, upstreamURL, upstreamVersion } from "./catalog.js?v=20261020-preview-tabs-v2";
-import { demoCSS } from "./demo-styles.js?v=20261020-preview-tabs-v2";
-import { bindDemoActions } from "./demo-actions.js?v=20261020-preview-tabs-v2";
-import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261020-preview-tabs-v2";
-import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261020-preview-tabs-v2";
-import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261020-preview-tabs-v2";
-import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261020-preview-tabs-v2";
+import { defineTapTab, tapTabDemoCSS } from "./tap-tab.js?v=20261020-tab-speed-line";
+import { definePreviewTabs, previewTabsDemoCSS } from "./preview-tabs.js?v=20261020-tab-speed-line";
+import { defineWhiteSelectionToggle, whiteSelectionDemoCSS } from "./white-selection-toggle.js?v=20261020-tab-speed-line";
+import { defineHistoryClock, historyClockDemoCSS } from "./history-clock.js?v=20261020-tab-speed-line";
+import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261020-tab-speed-line";
+import { motionExampleDocument } from "../motion/examples.js?v=20261020-tab-speed-line";
+import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261020-tab-speed-line";
+import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261020-tab-speed-line";
+import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261020-tab-speed-line";
+import { exampleMarkup, upstreamURL, upstreamVersion } from "./catalog.js?v=20261020-tab-speed-line";
+import { demoCSS } from "./demo-styles.js?v=20261020-tab-speed-line";
+import { bindDemoActions } from "./demo-actions.js?v=20261020-tab-speed-line";
+import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261020-tab-speed-line";
+import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261020-tab-speed-line";
+import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261020-tab-speed-line";
+import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261020-tab-speed-line";
 
 export function exampleDocument(entry, values = {}) {
   if (entry.kind === "motion") return motionExampleDocument(entry, values);
