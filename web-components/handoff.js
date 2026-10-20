@@ -163,9 +163,25 @@ export const definitions = {
     "initializer": "defineSelectionToggle",
     "size": "20×20",
     "state": "active",
-    "placement": "建议用于粉色圆形勾选控件；本次设计选区未确认位置，不能匹配到方形协议勾选框。",
-    "trigger": "选中时圆底弹出并画勾；取消时恢复空心圆。",
-    "integration": "active 绑定勾选数据；监听 motion-change 同步表单。图形不代表业务提交成功。"
+    "placement": "设计师已指定 Figma 节点 730:102857 对应粉色勾选。当前浏览器与 Figma 读取受限，尚未核对所在页面、相邻文案和业务用途；不得推断为协议勾选、成功反馈或某个特定表单字段。",
+    "trigger": "组件本身在 active=true 时弹出粉色圆底并画勾，false 时恢复空心圆；该节点的业务触发与单选/多选规则仍待核对，当前不自动绑定交互。",
+    "integration": "保留该节点原有静态外观与原业务。核对页面上下文后，将 active 绑定真实选中状态；若是单选组，由父级选择值统一驱动，不能让每枚图标独立切换。若是多选，才分别绑定对应项。motion-change 的 detail.active 只描述组件选中状态，不代表提交成功。",
+    "adaptation": "组件 SVG 为 20×20，粉色 #ED78F4；设计节点实际尺寸、颜色与点击区尚未复核。接入前核对这些值；避免把内部 44px 按钮直接套进现有按钮。",
+    "verification": "user-specified",
+    "contextStatus": "needs-confirmation",
+    "triggerStatus": "needs-confirmation",
+    "figma": [
+      {
+        "nodeId": "730:102857",
+        "name": "设计师指定 / 粉色勾选",
+        "placement": "设计师已指定此节点对应粉色勾选；所在页面和业务语义待核对",
+        "url": "https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-102857",
+        "annotationStatus": "website-only",
+        "verification": "user-specified",
+        "contextStatus": "needs-confirmation",
+        "triggerStatus": "needs-confirmation"
+      }
+    ]
   },
   "sipplay-white-selection-toggle": {
     "source": "white-selection-toggle.js",
@@ -476,8 +492,9 @@ export function handoffText(entry, values = {}) {
   return [
     `动效：${d.name} / ${d.id}`, `位置：${d.placement}`,
     `Figma：${d.figma.length ? d.figma.map(n => `${n.name} ${n.url}`).join("；") : "待绑定；仅凭图标相似不得批量替换"}`,
+    `核对依据：${d.verification === "user-specified" ? "设计师指定节点；页面上下文尚未复核，暂停自动业务绑定" : "已核对图形和页面上下文"}`,
     `适配：${d.adaptation ?? "保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套"}`,
-    `注释同步：${d.figma.length ? (d.figma.every(n => n.annotationStatus === "canvas-and-website") ? "Figma 画布与网站已同步" : "位置已核对；本次 Figma 调用额度用尽，新增注释目前仅在网站和源码") : "位置待核对"}`,
+    `注释同步：${d.figma.length ? (d.figma.every(n => n.annotationStatus === "canvas-and-website") ? "Figma 画布与网站已同步" : "此对应关系目前仅保存在网站和源码，尚未写回 Figma 画布") : "位置待核对"}`,
     `触发：${d.trigger}`, `状态：${d.state ?? "无持久状态"}；默认 ${d.initial}，接入时以业务状态覆盖`,
     `事件：${d.event} → ${d.payload}`, `业务接入：${d.integration}`,
     `参数：${d.controls.map(c => `${c.attribute}=${values[c.attribute] ?? c.value}（${c.label}）`).join("；")}`,
@@ -492,6 +509,10 @@ export function handoffText(entry, values = {}) {
 export function integrationSnippet(entry) {
   const d = getHandoff(entry);
   if (!d) return "";
+  if (d.contextStatus === "needs-confirmation") return `<!-- ${d.id}：设计师已指定节点，页面用途与选择规则待核对。
+Figma：${d.figma[0].url}
+当前保留原稿和既有业务，不新增点击、单选/多选或提交逻辑。
+核对业务语义后再设置 active 并连接 motion-change；此处暂不提供自动接入代码。 -->`;
   if (d.triggerStatus === "needs-confirmation") return `<!-- ${d.id}：位置已确认，播放触发待确认。
 当前保留此节点的原稿静态 SVG：${d.figma[0].url}
 ${d.adaptation}

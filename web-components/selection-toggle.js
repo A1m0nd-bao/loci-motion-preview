@@ -6,14 +6,15 @@ export function defineSelectionToggle(animate) {
   /**
    * @summary 粉色勾选切换
    * 动效：粉色勾选切换 / sipplay-selection-toggle
-   * 位置：建议用于粉色圆形勾选控件；本次设计选区未确认位置，不能匹配到方形协议勾选框。
-   * Figma：待绑定；仅凭图标相似不得批量替换
-   * 适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套
-   * 注释同步：位置待核对
-   * 触发：选中时圆底弹出并画勾；取消时恢复空心圆。
+   * 位置：设计师已指定 Figma 节点 730:102857 对应粉色勾选。当前浏览器与 Figma 读取受限，尚未核对所在页面、相邻文案和业务用途；不得推断为协议勾选、成功反馈或某个特定表单字段。
+   * Figma：设计师指定 / 粉色勾选 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-102857
+   * 核对依据：设计师指定节点；页面上下文尚未复核，暂停自动业务绑定
+   * 适配：组件 SVG 为 20×20，粉色 #ED78F4；设计节点实际尺寸、颜色与点击区尚未复核。接入前核对这些值；避免把内部 44px 按钮直接套进现有按钮。
+   * 注释同步：此对应关系目前仅保存在网站和源码，尚未写回 Figma 画布
+   * 触发：组件本身在 active=true 时弹出粉色圆底并画勾，false 时恢复空心圆；该节点的业务触发与单选/多选规则仍待核对，当前不自动绑定交互。
    * 状态：active；默认 false，接入时以业务状态覆盖
    * 事件：motion-change → { active: boolean }
-   * 业务接入：active 绑定勾选数据；监听 motion-change 同步表单。图形不代表业务提交成功。
+   * 业务接入：保留该节点原有静态外观与原业务。核对页面上下文后，将 active 绑定真实选中状态；若是单选组，由父级选择值统一驱动，不能让每枚图标独立切换。若是多选，才分别绑定对应项。motion-change 的 detail.active 只描述组件选中状态，不代表提交成功。
    * 参数：duration=0.32（时长（秒））；bounce=0.15（回弹程度）
    * 源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/selection-toggle.js；初始化 defineSelectionToggle(animate)
    * 依赖：Motion animate
@@ -22,11 +23,11 @@ export function defineSelectionToggle(animate) {
    * 注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。
    * 映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。
    * @tag sipplay-selection-toggle
-   * @attribute {boolean} active - active 绑定勾选数据；监听 motion-change 同步表单。图形不代表业务提交成功。 默认 false。
+   * @attribute {boolean} active - 保留该节点原有静态外观与原业务。核对页面上下文后，将 active 绑定真实选中状态；若是单选组，由父级选择值统一驱动，不能让每枚图标独立切换。若是多选，才分别绑定对应项。motion-change 的 detail.active 只描述组件选中状态，不代表提交成功。 默认 false。
    * @attribute {number} duration - 时长（秒）；范围 0.12–1.5，步长 0.02。
    * @attribute {number} bounce - 回弹程度；范围 0–0.5，步长 0.05。
    * @attribute {string} label - 内部交互控件的可访问名称。
-   * @fires {CustomEvent} motion-change - detail: { active: boolean }。active 绑定勾选数据；监听 motion-change 同步表单。图形不代表业务提交成功。
+   * @fires {CustomEvent} motion-change - detail: { active: boolean }。保留该节点原有静态外观与原业务。核对页面上下文后，将 active 绑定真实选中状态；若是单选组，由父级选择值统一驱动，不能让每枚图标独立切换。若是多选，才分别绑定对应项。motion-change 的 detail.active 只描述组件选中状态，不代表提交成功。
    */
   class SelectionToggle extends HTMLElement {
     static observedAttributes = ["active", "duration", "bounce", "label"];

@@ -7,8 +7,9 @@ export function defineWarningNudge(animate) {
    * 动效：警示牌弹性提醒 / sipplay-warning-nudge
    * 位置：Web 聊天页：消息操作浮层中的 Report（举报）入口，20×20 三角图标。
    * Figma：聊天消息 / Report https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-67273
+   * 核对依据：已核对图形和页面上下文
    * 适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套
-   * 注释同步：位置已核对；本次 Figma 调用额度用尽，新增注释目前仅在网站和源码
+   * 注释同步：此对应关系目前仅保存在网站和源码，尚未写回 Figma 画布
    * 触发：举报入口点击时单次提醒；不循环。不要因页面渲染、消息到达或鼠标经过就自动报警。
    * 状态：无持久状态；默认 静止，接入时以业务状态覆盖
    * 事件：motion-replay → 无 detail

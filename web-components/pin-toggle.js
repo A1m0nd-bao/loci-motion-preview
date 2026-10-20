@@ -7,8 +7,9 @@ export function definePinToggle(animate) {
    * 动效：图钉选中切换 / sipplay-pin-toggle
    * 位置：Web 聊天页 Frame 4675：取消置顶状态的斜杠图钉，18×18；与同屏消息角落的实心图钉区分。
    * Figma：Web 聊天 / 图钉状态按钮 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-67903
+   * 核对依据：已核对图形和页面上下文
    * 适配：原稿图钉含旋转和布尔裁切，保留该位置的尺寸及原有点击区。页面未说明接口时，不自行添加请求。
-   * 注释同步：位置已核对；本次 Figma 调用额度用尽，新增注释目前仅在网站和源码
+   * 注释同步：此对应关系目前仅保存在网站和源码，尚未写回 Figma 画布
    * 触发：选中时收起斜杠、实心图钉落下回弹；取消时恢复未置顶图形。
    * 状态：active；默认 false，接入时以业务状态覆盖
    * 事件：motion-change → { active: boolean }

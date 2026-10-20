@@ -8,6 +8,7 @@ export function defineProfileRiseToggle(animate) {
    * 动效：人物探出回弹 / sipplay-profile-rise-toggle
    * 位置：Character Setup 左侧人物图标。
    * Figma：Character Setup / 人物图标 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-95319
+   * 核对依据：已核对图形和页面上下文
    * 适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套
    * 注释同步：Figma 画布与网站已同步
    * 触发：对应 Tab 从未选中变为选中时，人物从底部探出并回弹；取消选中置灰。

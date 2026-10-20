@@ -7,8 +7,9 @@ export function defineBellRingToggle(animate) {
    * 动效：铃铛通知反馈 / sipplay-bell-ring-toggle
    * 位置：Web 首页顶栏 RecoilRoot 中的 36×36 通知铃铛，带独立未读提示层。已核对 bell SVG；创建页同名 Notification 图层是皇冠，不适用。
    * Figma：Web 首页顶栏 / 通知铃铛 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-68771
+   * 核对依据：已核对图形和页面上下文
    * 适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套
-   * 注释同步：位置已核对；本次 Figma 调用额度用尽，新增注释目前仅在网站和源码
+   * 注释同步：此对应关系目前仅保存在网站和源码，尚未写回 Figma 画布
    * 触发：鼠标移入轻摇一次，点击轻沉回位并立即发出通知请求。
    * 状态：expanded；默认 false，接入时以业务状态覆盖
    * 事件：notification-request → 无 detail
