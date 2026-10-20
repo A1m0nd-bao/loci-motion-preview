@@ -5,14 +5,14 @@ export function defineLiquidRiseToggle(animate) {
   /**
    * @summary 彩色液面升起流动
    * 动效：彩色液面升起流动 / sipplay-liquid-rise-toggle
-   * 位置：建议用于同形液面注入图标；本次设计选区未确认位置。
-   * Figma：待绑定；仅凭图标相似不得批量替换
-   * 适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套
-   * 注释同步：位置待核对
-   * 触发：选中时液面升起后持续流动，取消时回落。
+   * 位置：创建页 Character Setup → Appearance：尚未设置角色图片时，Upload / Generate 两个入口上方的加号、杯子与渐变液面图标。位于“创建生成图片链路更新”的首次图片设置页面。
+   * Figma：创建页 Appearance / 图片设置引导图形 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-98165
+   * 适配：Figma 选区为 40.04×40，整体透明度 80%；组件 SVG 为 41×40。保留原稿位置、尺寸、透明度及杯子/加号/渐变；不得把示例 44px 内部按钮直接替换进去。
+   * 注释同步：位置已核对；本次 Figma 调用额度用尽，新增注释目前仅在网站和源码
+   * 触发：位置与图形已确认；何时开始注入、何时回落尚待设计确认。确认前保持设计稿静态外观，不因进入页面、悬停、点击 Upload / Generate 或请求进行中而自动播放。
    * 状态：active；默认 false，接入时以业务状态覆盖
    * 事件：motion-change → { active: boolean }
-   * 业务接入：active 绑定产品定义的激活状态；不是下载进度条，没有 progress 接口。
+   * 业务接入：此处是图片设置区域的引导图形，不是已确认的开关或进度指示器。组件 active 仅控制液面升起/回落；不能绑定生成百分比。保留原有 Upload / Generate 业务按钮，图形使用被动视图，不新增点击切换、按钮或 Tab 焦点。触发策略确认后再绑定对应业务事件。
    * 参数：duration=0.78（升起时长（秒））；flow-duration=3.2（流动周期（秒））；strength=1（起伏幅度）
    * 源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/liquid-rise-toggle.js；初始化 defineLiquidRiseToggle(animate)
    * 依赖：Motion animate
@@ -21,12 +21,12 @@ export function defineLiquidRiseToggle(animate) {
    * 注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。
    * 映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。
    * @tag sipplay-liquid-rise-toggle
-   * @attribute {boolean} active - active 绑定产品定义的激活状态；不是下载进度条，没有 progress 接口。 默认 false。
+   * @attribute {boolean} active - 此处是图片设置区域的引导图形，不是已确认的开关或进度指示器。组件 active 仅控制液面升起/回落；不能绑定生成百分比。保留原有 Upload / Generate 业务按钮，图形使用被动视图，不新增点击切换、按钮或 Tab 焦点。触发策略确认后再绑定对应业务事件。 默认 false。
    * @attribute {number} duration - 升起时长（秒）；范围 0.3–1.6，步长 0.02。
    * @attribute {number} flow-duration - 流动周期（秒）；范围 1.6–6，步长 0.2。
    * @attribute {number} strength - 起伏幅度；范围 0.4–1.5，步长 0.05。
    * @attribute {string} label - 内部交互控件的可访问名称。
-   * @fires {CustomEvent} motion-change - detail: { active: boolean }。active 绑定产品定义的激活状态；不是下载进度条，没有 progress 接口。
+   * @fires {CustomEvent} motion-change - detail: { active: boolean }。此处是图片设置区域的引导图形，不是已确认的开关或进度指示器。组件 active 仅控制液面升起/回落；不能绑定生成百分比。保留原有 Upload / Generate 业务按钮，图形使用被动视图，不新增点击切换、按钮或 Tab 焦点。触发策略确认后再绑定对应业务事件。
    */
   class LiquidRiseToggle extends HTMLElement {
     static observedAttributes = ["active", "duration", "flow-duration", "strength", "label"];

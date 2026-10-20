@@ -4,7 +4,7 @@
 
 ## 当前交付范围
 
-共 21 个自定义动效，18 个已核对 Figma 节点。其中原有 5 处画布注释已同步；新增 13 处的位置已核对，但 Figma 工具调用额度用尽，注释暂存网站与源码。读取每条 annotationStatus，website-only 不代表已写回画布；有 adaptation 的必须按说明适配。正式 Code Connect 因当前账号套餐限制未启用。figma-bindings.json 是本项目的节点对照记录，不是 Code Connect 格式。没有绑定的动效仅提供建议用途，不应按图形相似自动替换整页。
+共 21 个自定义动效，19 个已核对 Figma 节点。其中原有 5 处画布注释已同步；新增 14 处的位置已核对，但 Figma 工具调用额度用尽，注释暂存网站与源码。读取每条 annotationStatus，website-only 不代表已写回画布；有 adaptation 的必须按说明适配；triggerStatus=needs-confirmation 的不能自行绑定播放触发。正式 Code Connect 因当前账号套餐限制未启用。figma-bindings.json 是本项目的节点对照记录，不是 Code Connect 格式。没有绑定的动效仅提供建议用途，不应按图形相似自动替换整页。
 
 ## 研发 / AI 三步使用
 
@@ -31,6 +31,7 @@
 - [730:82199](https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-82199) → sipplay-plus-selection-toggle：仅图标；active = 当前路由为添加，由整组导航统一驱动
 - [730:82194](https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-82194) → sipplay-home-settle-toggle：仅图标；active = 当前路由为首页，由整组导航统一驱动
 - [730:67273](https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-67273) → sipplay-warning-nudge：消息操作浮层的举报图标；不得改成自动错误提示
+- [730:98165](https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-98165) → sipplay-liquid-rise-toggle：Upload / Generate 上方的液面图形；位置已确认，触发待确认；按被动图形接入
 - [730:82196](https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-82196) → sipplay-chat-bubble-toggle：仅图标；active = 当前路由为聊天，由整组导航统一驱动
 - [730:95317](https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-95317) → sipplay-tap-tab：整组导航；优先复用组合组件，三个图标由父级统一驱动
 - [730:95330](https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-95330) → sipplay-preview-tabs：整组分段控件；selected = 0（Chat）或 1（Feed）
@@ -200,14 +201,14 @@ API 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.js
 
 ```text
 动效：彩色液面升起流动 / sipplay-liquid-rise-toggle
-位置：建议用于同形液面注入图标；本次设计选区未确认位置。
-Figma：待绑定；仅凭图标相似不得批量替换
-适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套
-注释同步：位置待核对
-触发：选中时液面升起后持续流动，取消时回落。
+位置：创建页 Character Setup → Appearance：尚未设置角色图片时，Upload / Generate 两个入口上方的加号、杯子与渐变液面图标。位于“创建生成图片链路更新”的首次图片设置页面。
+Figma：创建页 Appearance / 图片设置引导图形 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-98165
+适配：Figma 选区为 40.04×40，整体透明度 80%；组件 SVG 为 41×40。保留原稿位置、尺寸、透明度及杯子/加号/渐变；不得把示例 44px 内部按钮直接替换进去。
+注释同步：位置已核对；本次 Figma 调用额度用尽，新增注释目前仅在网站和源码
+触发：位置与图形已确认；何时开始注入、何时回落尚待设计确认。确认前保持设计稿静态外观，不因进入页面、悬停、点击 Upload / Generate 或请求进行中而自动播放。
 状态：active；默认 false，接入时以业务状态覆盖
 事件：motion-change → { active: boolean }
-业务接入：active 绑定产品定义的激活状态；不是下载进度条，没有 progress 接口。
+业务接入：此处是图片设置区域的引导图形，不是已确认的开关或进度指示器。组件 active 仅控制液面升起/回落；不能绑定生成百分比。保留原有 Upload / Generate 业务按钮，图形使用被动视图，不新增点击切换、按钮或 Tab 焦点。触发策略确认后再绑定对应业务事件。
 参数：duration=0.78（升起时长（秒））；flow-duration=3.2（流动周期（秒））；strength=1（起伏幅度）
 源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/liquid-rise-toggle.js；初始化 defineLiquidRiseToggle(animate)
 依赖：Motion animate

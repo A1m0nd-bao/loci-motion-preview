@@ -201,9 +201,22 @@ export const definitions = {
     "initializer": "defineLiquidRiseToggle",
     "size": "41×40",
     "state": "active",
-    "placement": "建议用于同形液面注入图标；本次设计选区未确认位置。",
-    "trigger": "选中时液面升起后持续流动，取消时回落。",
-    "integration": "active 绑定产品定义的激活状态；不是下载进度条，没有 progress 接口。"
+    "placement": "创建页 Character Setup → Appearance：尚未设置角色图片时，Upload / Generate 两个入口上方的加号、杯子与渐变液面图标。位于“创建生成图片链路更新”的首次图片设置页面。",
+    "trigger": "位置与图形已确认；何时开始注入、何时回落尚待设计确认。确认前保持设计稿静态外观，不因进入页面、悬停、点击 Upload / Generate 或请求进行中而自动播放。",
+    "integration": "此处是图片设置区域的引导图形，不是已确认的开关或进度指示器。组件 active 仅控制液面升起/回落；不能绑定生成百分比。保留原有 Upload / Generate 业务按钮，图形使用被动视图，不新增点击切换、按钮或 Tab 焦点。触发策略确认后再绑定对应业务事件。",
+    "adaptation": "Figma 选区为 40.04×40，整体透明度 80%；组件 SVG 为 41×40。保留原稿位置、尺寸、透明度及杯子/加号/渐变；不得把示例 44px 内部按钮直接替换进去。",
+    "triggerStatus": "needs-confirmation",
+    "figma": [
+      {
+        "nodeId": "730:98165",
+        "name": "创建页 Appearance / 图片设置引导图形",
+        "placement": "Upload / Generate 上方的液面图形；位置已确认，触发待确认；按被动图形接入",
+        "url": "https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-98165",
+        "annotationStatus": "website-only",
+        "triggerStatus": "needs-confirmation",
+        "adaptation": "40.04×40、整体透明度80%；保留原稿外观；从带按钮的示例提取被动图形，不直接新增交互。"
+      }
+    ]
   },
   "sipplay-chat-bubble-toggle": {
     "source": "chat-bubble-toggle.js",

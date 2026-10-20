@@ -66,6 +66,16 @@
       "annotationStatus": "website-only"
     },
     {
+      "nodeId": "730:98165",
+      "tagName": "sipplay-liquid-rise-toggle",
+      "source": "web-components/liquid-rise-toggle.js",
+      "placement": "Upload / Generate 上方的液面图形；位置已确认，触发待确认；按被动图形接入",
+      "url": "https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-98165",
+      "annotationStatus": "website-only",
+      "triggerStatus": "needs-confirmation",
+      "adaptation": "40.04×40、整体透明度80%；保留原稿外观；从带按钮的示例提取被动图形，不直接新增交互。"
+    },
+    {
       "nodeId": "730:82196",
       "tagName": "sipplay-chat-bubble-toggle",
       "source": "web-components/chat-bubble-toggle.js",
