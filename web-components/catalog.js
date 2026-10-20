@@ -1,14 +1,14 @@
-import { tapTabDemoMarkup } from "./tap-tab.js?v=20261020-tap-tab";
-import { whiteSelectionDemoMarkup } from "./white-selection-toggle.js?v=20261020-tap-tab";
-import { historyClockDemoMarkup } from "./history-clock.js?v=20261020-tap-tab";
-import { bellRingDemoMarkup } from "./bell-ring-toggle.js?v=20261020-tap-tab";
-import { voiceWaveDemoMarkup } from "./voice-wave.js?v=20261020-tap-tab";
-import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261020-tap-tab";
-import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261020-tap-tab";
-import { selectionDemoMarkup } from "./selection-toggle.js?v=20261020-tap-tab";
-import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261020-tap-tab";
-import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261020-tap-tab";
-import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261020-tap-tab";
+import { tapTabDemoMarkup } from "./tap-tab.js?v=20261020-tab-equal-line";
+import { whiteSelectionDemoMarkup } from "./white-selection-toggle.js?v=20261020-tab-equal-line";
+import { historyClockDemoMarkup } from "./history-clock.js?v=20261020-tab-equal-line";
+import { bellRingDemoMarkup } from "./bell-ring-toggle.js?v=20261020-tab-equal-line";
+import { voiceWaveDemoMarkup } from "./voice-wave.js?v=20261020-tab-equal-line";
+import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261020-tab-equal-line";
+import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261020-tab-equal-line";
+import { selectionDemoMarkup } from "./selection-toggle.js?v=20261020-tab-equal-line";
+import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261020-tab-equal-line";
+import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261020-tab-equal-line";
+import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261020-tab-equal-line";
 
 export const upstreamVersion = "1.3.0";
 export const upstreamURL = "https://github.com/tgomilar/motion-components";
@@ -100,8 +100,8 @@ const upstreamMotions = entries.map(([id, name, category, description, markup, c
 
 export const webMotions = [{
   id: "sipplay-tap-tab", name: "灵动 Tap Tab", category: "交互组件",
-  description: "将人物、图层、扳手三个已有动效组成互斥选中的 Tab。切换时图标播放原有动作，文字同步提亮，下划线先牵引伸展再收稳；再次点击当前项仅重播图标。保留 Character Setup、Intro、Advanced Settings 文案与必填星号。支持键盘、触屏、减少动态效果与独立 HTML 导出，通过 tab-change 事件连接页面内容。",
-  markup: tapTabDemoMarkup, controls: [number("duration", "切换时长（秒）", 0.48, 0.24, 1.2, 0.04), number("bounce", "下划线牵引", 0.18, 0, 0.4, 0.02)],
+  description: "将人物、图层、扳手三个已有动效组成互斥选中的 Tab。切换时图标播放原有动作，文字同步提亮，下划线保持等长，居中滑动并轻微回弹收稳；再次点击当前项仅重播图标。保留 Character Setup、Intro、Advanced Settings 文案与必填星号。支持键盘、触屏、减少动态效果与独立 HTML 导出，通过 tab-change 事件连接页面内容。",
+  markup: tapTabDemoMarkup, controls: [number("duration", "切换时长（秒）", 0.48, 0.24, 1.2, 0.04), number("bounce", "滑动回弹", 0.18, 0, 0.4, 0.02)],
   kind: "web", kindLabel: "Web 组件", fileName: "sipplay-tap-tab",
   file: "./web-components/preview.html?id=sipplay-tap-tab", docs: null, custom: true,
   tags: ["Tab", "tapTab", "标签页", "导航", "人物", "图层", "扳手", "下划线"], interactionType: "Tab 切换",

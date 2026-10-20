@@ -1,6 +1,6 @@
-import { motionMotions } from "./motion/catalog.js?v=20261020-tap-tab";
-import { webMotions } from "./web-components/catalog.js?v=20261020-tap-tab";
-import { createWebController, copyExample, downloadExample, setupWebDetail, getWebValues, syncWebBackgrounds } from "./web-components/integration.js?v=20261020-tap-tab";
+import { motionMotions } from "./motion/catalog.js?v=20261020-tab-equal-line";
+import { webMotions } from "./web-components/catalog.js?v=20261020-tab-equal-line";
+import { createWebController, copyExample, downloadExample, setupWebDetail, getWebValues, syncWebBackgrounds } from "./web-components/integration.js?v=20261020-tab-equal-line";
 
 if (import.meta.env?.DEV) document.querySelector("#motionStudioLocal").hidden = false;
 

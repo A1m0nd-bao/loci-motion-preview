@@ -1,17 +1,17 @@
-import { defineTapTab, tapTabDemoCSS } from "./tap-tab.js?v=20261020-tap-tab";
-import { defineWhiteSelectionToggle, whiteSelectionDemoCSS } from "./white-selection-toggle.js?v=20261020-tap-tab";
-import { defineHistoryClock, historyClockDemoCSS } from "./history-clock.js?v=20261020-tap-tab";
-import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261020-tap-tab";
-import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261020-tap-tab";
-import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261020-tap-tab";
-import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261020-tap-tab";
-import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-tap-tab";
-import { demoCSS } from "./demo-styles.js?v=20261020-tap-tab";
-import { bindDemoActions } from "./demo-actions.js?v=20261020-tap-tab";
-import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261020-tap-tab";
-import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261020-tap-tab";
-import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261020-tap-tab";
-import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261020-tap-tab";
+import { defineTapTab, tapTabDemoCSS } from "./tap-tab.js?v=20261020-tab-equal-line";
+import { defineWhiteSelectionToggle, whiteSelectionDemoCSS } from "./white-selection-toggle.js?v=20261020-tab-equal-line";
+import { defineHistoryClock, historyClockDemoCSS } from "./history-clock.js?v=20261020-tab-equal-line";
+import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261020-tab-equal-line";
+import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261020-tab-equal-line";
+import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261020-tab-equal-line";
+import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261020-tab-equal-line";
+import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-tab-equal-line";
+import { demoCSS } from "./demo-styles.js?v=20261020-tab-equal-line";
+import { bindDemoActions } from "./demo-actions.js?v=20261020-tab-equal-line";
+import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261020-tab-equal-line";
+import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261020-tab-equal-line";
+import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261020-tab-equal-line";
+import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261020-tab-equal-line";
 
 const params = new URLSearchParams(location.search);
 const entry = webMotions.find((item) => item.id === params.get("id"));
@@ -112,7 +112,7 @@ document.addEventListener("visibilitychange", () => { if (document.hidden) { run
 
 try {
   if (!entry) throw new Error("未找到此组件，请从动效库重新选择。");
-  runtime = await import("./vendor/motion-components.js?v=20261020-tap-tab");
+  runtime = await import("./vendor/motion-components.js?v=20261020-tab-equal-line");
   defineHistoryClock(runtime.animate);
   defineBellRingToggle(runtime.animate);
   defineVoiceWave(runtime.animate);

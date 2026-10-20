@@ -1,5 +1,5 @@
-import { exampleDocument } from "./examples.js?v=20261020-tap-tab";
-import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-tap-tab";
+import { exampleDocument } from "./examples.js?v=20261020-tab-equal-line";
+import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-tab-equal-line";
 
 const controllers = new Set();
 

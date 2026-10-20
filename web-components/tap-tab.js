@@ -111,16 +111,15 @@ export function defineTapTab(animate) {
       this.controls = [];
     }
     target() {
-      const content = this.contents[this.items.findIndex(item => item.value === this.value)];
-      const nav = this.nav.getBoundingClientRect(), rect = content.getBoundingClientRect();
-      return { x: rect.left - nav.left, width: rect.width };
+      const tab = this.tabs[this.items.findIndex(item => item.value === this.value)];
+      const nav = this.nav.getBoundingClientRect(), rect = tab.getBoundingClientRect();
+      const width = Math.min(170, Math.max(1, nav.width / this.items.length - 16));
+      return { x: rect.left - nav.left + (rect.width - width) / 2, width };
     }
     apply(instant = false) {
       if (!this.nav) return;
       const previous = this.current;
       const changed = previous !== this.value;
-      const matrix = new DOMMatrix(getComputedStyle(this.line).transform);
-      const from = { x: matrix.e, width: Math.abs(matrix.a) };
       this.stop();
       this.current = this.value;
       this.nav.setAttribute("aria-label", this.getAttribute("label") || "设置导航");
@@ -137,21 +136,10 @@ export function defineTapTab(animate) {
       }
       const target = this.target();
       this.line.style.opacity = "1";
-      if (instant || !previous || !changed) {
-        this.controls.push(animate(this.line, { x: target.x, scaleX: target.width }, { duration: 0 }));
-      } else {
-        const startRight = from.x + from.width, endRight = target.x + target.width;
-        const pull = 0.12 + this.bounce * 0.6;
-        const rightward = target.x > from.x;
-        const leftProgress = rightward ? 0.66 - pull : 0.66 + pull;
-        const rightProgress = rightward ? 0.66 + pull : 0.66 - pull;
-        const midLeft = from.x + (target.x - from.x) * leftProgress;
-        const midRight = startRight + (endRight - startRight) * rightProgress;
-        this.controls.push(animate(this.line, {
-          x: [from.x, midLeft, target.x],
-          scaleX: [from.width, Math.max(8, midRight - midLeft), target.width],
-        }, { duration: this.duration, times: [0, 0.58, 1], ease: [[0.25, 0.1, 0.3, 1], [0.2, 0.75, 0.25, 1]] }));
-      }
+      this.line.style.width = `${target.width}px`;
+      this.controls.push(animate(this.line, { x: target.x }, instant || !previous || !changed
+        ? { duration: 0 }
+        : { type: "spring", duration: this.duration, bounce: this.bounce }));
       const epoch = this.epoch;
       this.state = instant ? "finished" : "running";
       Promise.all([...this.controls, ...this.icons.flatMap(icon => icon.controls)].map(control => Promise.resolve(control))).then(() => {
