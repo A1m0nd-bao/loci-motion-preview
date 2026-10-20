@@ -34,7 +34,7 @@ export function defineSelectionToggle(animate) {
             button:focus-visible{outline:1px solid #ED78F4;outline-offset:-8px;border-radius:50%}
             svg{display:block;width:20px;height:20px;overflow:visible;pointer-events:none}
             .fill{transform-origin:10px 10px;opacity:0;transform:scale(.4)}
-            .check{stroke-dasharray:1 2;stroke-dashoffset:1.05;opacity:0}
+            .check{stroke-dasharray:1 2;stroke-dashoffset:1;opacity:0}
           </style>
           <button type="button" aria-pressed="false">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -76,8 +76,16 @@ export function defineSelectionToggle(animate) {
       this.controls = [];
     }
 
+    setCheckProgress(value) {
+      this.checkProgress = Math.min(1, Math.max(0, value));
+      this.check.style.strokeDashoffset = String(1 - this.checkProgress);
+      this.check.style.opacity = this.checkProgress > 0.001 ? "1" : "0";
+    }
+
     apply(instant = false) {
+      const from = this.checkProgress ?? 0;
       this.stop();
+      this.setCheckProgress(from);
       this.updateAccessibility();
       const on = this.active;
       const duration = instant ? 0 : this.duration;
@@ -91,21 +99,20 @@ export function defineSelectionToggle(animate) {
             opacity: { duration: duration * 0.28, ease: "easeOut" },
           }
         : { ...spring, delay: duration * 0.2 };
-      // Pause briefly after the fill settles, then draw with a spring and no overshoot.
-      const checkSpring = { type: "spring", bounce: 0, delay: instant ? 0 : duration * 0.85 };
-      const checkTiming = on
-        ? {
-            ...checkSpring,
-            duration: duration * 0.35,
-            // Let the short arm and turn read before the long arm settles.
-            strokeDashoffset: { ...checkSpring, duration: duration * 0.55 },
-          }
-        : { duration: duration * 0.7, ease: "easeIn" };
       this.controls = [
         animate(this.fill, { opacity: on ? 1 : 0, scale: fillScale }, fillTiming),
         animate(this.outline, { opacity: on ? 0 : 1 }, { duration: duration * 0.65, delay: !on && !instant ? duration * 0.18 : 0 }),
-        animate(this.check, { strokeDashoffset: on ? 0 : 1.05, opacity: on ? 1 : 0 }, checkTiming),
       ];
+      if (instant) {
+        this.setCheckProgress(on ? 1 : 0);
+      } else {
+        this.controls.push(animate(from, on ? 1 : 0, {
+          duration: duration * (on ? 0.85 : 0.7),
+          delay: on && from === 0 ? duration * 0.85 : 0,
+          ease: on ? [0.4, 0, 0.2, 1] : "easeIn",
+          onUpdate: value => this.setCheckProgress(value),
+        }));
+      }
       const epoch = this.epoch;
       this.state = instant ? "finished" : "running";
       Promise.all(this.controls.map((control) => Promise.resolve(control))).then(() => {
@@ -118,10 +125,14 @@ export function defineSelectionToggle(animate) {
       this.dispatchEvent(new CustomEvent("motion-change", { detail: { active: this.active }, bubbles: true, composed: true }));
     }
 
-    pause() { this.controls.forEach((control) => control.pause()); this.state = "paused"; }
+    pause() {
+      this.pausedControls = this.controls.filter(control => control.duration > 0 && control.state !== "finished");
+      this.pausedControls.forEach(control => control.pause());
+      if (this.pausedControls.length) this.state = "paused";
+    }
     play() {
       if (this.state !== "paused") return;
-      this.controls.forEach((control) => control.play());
+      this.pausedControls.forEach((control) => control.play());
       this.state = "running";
     }
     finish() { this.apply(true); }

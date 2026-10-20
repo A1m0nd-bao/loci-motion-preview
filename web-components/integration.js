@@ -1,5 +1,5 @@
-import { exampleDocument } from "./examples.js?v=20261020-tool-click";
-import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-tool-click";
+import { exampleDocument } from "./examples.js?v=20261020-check-path";
+import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261020-check-path";
 
 const controllers = new Set();
 
