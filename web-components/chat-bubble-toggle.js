@@ -35,7 +35,9 @@ export function defineChatBubbleToggle(animate) {
           </style>
           <button type="button" aria-pressed="false">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <defs><mask id="wave-cutout" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24" style="mask-type:luminance">
+              <defs>
+                <path class="wave-guide" d="M7 13.1338L7.212405 12.6968C8.176025 10.71817 10.96825 10.643125 12.0371 12.5669C13.0914 14.4641 15.83355 14.42385 16.83155 12.4966L17 12.1709"/>
+                <mask id="wave-cutout" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24" style="mask-type:luminance">
                 <rect width="24" height="24" fill="white"/>
                 <path class="wave" d="M12.9111 12.0811C11.4494 9.45025 7.6313 9.55304 6.31348 12.2588L6.10059 12.6963C5.85915 13.1927 6.06612 13.7915 6.5625 14.0332C7.05895 14.2747 7.65768 14.0677 7.89941 13.5713L8.11133 13.1348C8.72075 11.8833 10.4871 11.836 11.1631 13.0527C12.6047 15.6473 16.3551 15.592 17.7197 12.9561L17.8877 12.6309C18.1416 12.1405 17.9503 11.5372 17.46 11.2832C16.9697 11.0294 16.3664 11.2208 16.1123 11.7109L15.9434 12.0371C15.312 13.2557 13.5777 13.2809 12.9111 12.0811Z" fill="black" opacity="0"/>
               </mask></defs>
@@ -46,6 +48,10 @@ export function defineChatBubbleToggle(animate) {
             </svg>
           </button>`;
         for (const name of ["button", "bubble", "outline", "body", "wave"]) this[name] = this.shadowRoot.querySelector(name === "button" ? name : `.${name}`);
+        this.waveGuide = this.shadowRoot.querySelector(".wave-guide");
+        this.waveLength = this.waveGuide.getTotalLength();
+        const steps = Math.ceil(this.waveLength * 4);
+        this.wavePoints = Array.from({ length: steps + 1 }, (_, index) => this.wavePoint(this.waveLength * index / steps));
         this.button.addEventListener("click", () => this.toggle());
       }
       this.reducedMotion.addEventListener("change", this.onReducedMotion);
@@ -62,11 +68,43 @@ export function defineChatBubbleToggle(animate) {
       this.button.setAttribute("aria-label", this.getAttribute("label") || "切换对话状态");
     }
     stop() { this.epoch++; this.controls.forEach(control => control.stop()); this.controls = []; }
+    wavePoint(at) {
+      const point = this.waveGuide.getPointAtLength(at);
+      const before = this.waveGuide.getPointAtLength(Math.max(0, at - 0.01));
+      const after = this.waveGuide.getPointAtLength(Math.min(this.waveLength, at + 0.01));
+      return { at, x: point.x, y: point.y, angle: Math.atan2(after.y - before.y, after.x - before.x) };
+    }
     renderWave(value) {
-      this.waveProgress = value;
-      // Direct attributes repaint a single SVG mask reliably during the spring.
-      this.wave.setAttribute("opacity", Math.min(1, Math.max(0, value)));
-      this.wave.setAttribute("transform", value === 1 ? "" : `translate(12 12.4) translate(0 ${(1 - value) * 1.3}) scale(${0.88 + value * 0.12} ${0.3 + value * 0.7}) translate(-12 -12.4)`);
+      const clamped = Math.min(1, Math.max(0, value));
+      // Keep spring-driven drawing monotonic, including at the rounded tip.
+      const progress = this.active ? Math.max(this.waveProgress, clamped) : Math.min(this.waveProgress, clamped);
+      this.waveProgress = progress;
+      this.wave.setAttribute("opacity", "1");
+      if (progress >= 1) { this.wave.style.clipPath = "none"; return; }
+      if (progress <= 0) { this.wave.style.clipPath = "polygon(0px 0px,0px 0px,0px 0px)"; return; }
+      // Clip the exact cutout along its centreline; a single mask avoids stale
+      // rendering from nested SVG masks. Guide samples are cached on connection.
+      const distance = progress * this.waveLength;
+      const tip = this.wavePoint(distance);
+      const left = [], right = [], radius = 1.12;
+      const add = point => {
+        const dx = -Math.sin(point.angle) * radius, dy = Math.cos(point.angle) * radius;
+        left.push(`${point.x + dx}px ${point.y + dy}px`);
+        right.push(`${point.x - dx}px ${point.y - dy}px`);
+      };
+      for (const point of this.wavePoints) { if (point.at >= distance) break; add(point); }
+      add(tip);
+      for (let i = 1; i < 12; i++) {
+        const a = tip.angle + Math.PI / 2 - Math.PI * i / 12;
+        left.push(`${tip.x + Math.cos(a) * radius}px ${tip.y + Math.sin(a) * radius}px`);
+      }
+      left.push(...right.reverse());
+      const start = this.wavePoints[0];
+      for (let i = 1; i < 12; i++) {
+        const a = start.angle - Math.PI / 2 - Math.PI * i / 12;
+        left.push(`${start.x + Math.cos(a) * radius}px ${start.y + Math.sin(a) * radius}px`);
+      }
+      this.wave.style.clipPath = `polygon(${left.join(",")}) view-box`;
     }
     apply(instant = false) {
       this.stop();

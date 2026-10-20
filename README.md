@@ -10,7 +10,7 @@
 
 自定义「预览 Tab 滑动切换」保留提供的 312×37 SVG、Chat Preview / Feed Preview 字形与透明度。选中底片以弹簧平移、轻微拉伸并收稳，文字亮度同步过渡；点击已选项不重播，支持键盘左右键 / Home / End、快速反向、减少动态效果及 HTML 导出，切换时发出带 selected / value 的 `motion-change` 事件。实现位于 `web-components/preview-tabs.js`。
 
-自定义「对话气泡唤醒」保留两份 24×24 SVG。选中时气泡轻压、鼓起变实心，镂空波形错后弹出并收稳；取消时先收波形，再恢复 40% 白色线框。支持快速反向、暂停 / 继续、减少动态效果、参数调整和独立 HTML 导出。实现位于 `web-components/chat-bubble-toggle.js`。
+自定义「对话气泡唤醒」保留两份 24×24 SVG。选中时气泡轻压、鼓起变实心，镂空波形错后沿曲线从左到右绘出；取消时先反向收笔，再恢复 40% 白色线框。支持快速反向、暂停 / 继续、减少动态效果、参数调整和独立 HTML 导出。实现位于 `web-components/chat-bubble-toggle.js`。
 
 自定义「图层落下叠加」保留提供的 20×20 图层 SVG：选中时方片依次从上方落下叠加，取消选中时恢复灰色图标。可调整时长和回弹；预览及导出的 HTML 共用 `web-components/layer-stack-toggle.js`，支持键盘、减少动态效果和中途取消。
 

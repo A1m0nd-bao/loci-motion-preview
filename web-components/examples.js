@@ -1,20 +1,20 @@
-import { defineChatBubbleToggle, chatBubbleDemoCSS } from "./chat-bubble-toggle.js?v=20261020-chat-bubble";
-import { defineTapTab, tapTabDemoCSS } from "./tap-tab.js?v=20261020-chat-bubble";
-import { definePreviewTabs, previewTabsDemoCSS } from "./preview-tabs.js?v=20261020-chat-bubble";
-import { defineWhiteSelectionToggle, whiteSelectionDemoCSS } from "./white-selection-toggle.js?v=20261020-chat-bubble";
-import { defineHistoryClock, historyClockDemoCSS } from "./history-clock.js?v=20261020-chat-bubble";
-import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261020-chat-bubble";
-import { motionExampleDocument } from "../motion/examples.js?v=20261020-chat-bubble";
-import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261020-chat-bubble";
-import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261020-chat-bubble";
-import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261020-chat-bubble";
-import { exampleMarkup, upstreamURL, upstreamVersion } from "./catalog.js?v=20261020-chat-bubble";
-import { demoCSS } from "./demo-styles.js?v=20261020-chat-bubble";
-import { bindDemoActions } from "./demo-actions.js?v=20261020-chat-bubble";
-import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261020-chat-bubble";
-import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261020-chat-bubble";
-import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261020-chat-bubble";
-import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261020-chat-bubble";
+import { defineChatBubbleToggle, chatBubbleDemoCSS } from "./chat-bubble-toggle.js?v=20261020-chat-wave-path";
+import { defineTapTab, tapTabDemoCSS } from "./tap-tab.js?v=20261020-chat-wave-path";
+import { definePreviewTabs, previewTabsDemoCSS } from "./preview-tabs.js?v=20261020-chat-wave-path";
+import { defineWhiteSelectionToggle, whiteSelectionDemoCSS } from "./white-selection-toggle.js?v=20261020-chat-wave-path";
+import { defineHistoryClock, historyClockDemoCSS } from "./history-clock.js?v=20261020-chat-wave-path";
+import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261020-chat-wave-path";
+import { motionExampleDocument } from "../motion/examples.js?v=20261020-chat-wave-path";
+import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261020-chat-wave-path";
+import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261020-chat-wave-path";
+import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261020-chat-wave-path";
+import { exampleMarkup, upstreamURL, upstreamVersion } from "./catalog.js?v=20261020-chat-wave-path";
+import { demoCSS } from "./demo-styles.js?v=20261020-chat-wave-path";
+import { bindDemoActions } from "./demo-actions.js?v=20261020-chat-wave-path";
+import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261020-chat-wave-path";
+import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261020-chat-wave-path";
+import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261020-chat-wave-path";
+import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261020-chat-wave-path";
 
 export function exampleDocument(entry, values = {}) {
   if (entry.kind === "motion") return motionExampleDocument(entry, values);
