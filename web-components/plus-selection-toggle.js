@@ -6,7 +6,6 @@ export function definePlusSelectionToggle(animate) {
    * 动效：加号选中填白 / sipplay-plus-selection-toggle
    * 位置：移动 Web Feed 页底部四项导航的第三项：圆形加号，24×24。
    * Figma：移动 Web 底栏 / 添加 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-82199
-   * 核对依据：已核对图形和页面上下文
    * 适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套
    * 注释同步：此对应关系目前仅保存在网站和源码，尚未写回 Figma 画布
    * 触发：选中时圆形填白，加号保持透明镂空；取消时恢复灰态。

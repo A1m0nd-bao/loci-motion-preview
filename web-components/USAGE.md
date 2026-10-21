@@ -4,7 +4,7 @@
 
 ## 当前交付范围
 
-共 21 个自定义动效，21 个 Figma 节点记录（20 个已核对，1 个由设计师指定并确认单选）。其中原有 5 处画布注释已同步；新增 16 处记录暂存网站与源码，尚未写回画布。verification=user-specified 的对应关系来自设计师指定；selectionMode=single 时由父级唯一选择值驱动，重复点击当前项不取消；selectionMode=multiple 时每项独立增删选中集合，不影响其他项。contextStatus=needs-confirmation 的暂停自动业务绑定。读取每条 annotationStatus，website-only 不代表已写回画布；有 adaptation 的必须按说明适配；triggerStatus=needs-confirmation 的不能自行绑定播放触发。正式 Code Connect 因当前账号套餐限制未启用。figma-bindings.json 是本项目的节点对照记录，不是 Code Connect 格式。没有绑定的动效仅提供建议用途，不应按图形相似自动替换整页。
+共 21 个自定义动效，21 个 Figma 位置参考。位置说明保存在网站与源码，Figma 画布注释尚未全部同步。selectionMode=single 时由父级唯一选择值驱动，重复点击当前项不取消；selectionMode=multiple 时每项独立增删选中集合，不影响其他项。contextStatus=needs-confirmation 的暂停自动业务绑定。读取每条 annotationStatus，website-only 不代表已写回画布；有 adaptation 的必须按说明适配；triggerStatus=needs-confirmation 的不能自行绑定播放触发。正式 Code Connect 因当前账号套餐限制未启用。figma-bindings.json 是本项目的节点对照记录，不是 Code Connect 格式。没有绑定的动效仅提供建议用途，不应按图形相似自动替换整页。
 
 ## 研发 / AI 三步使用
 
@@ -44,7 +44,7 @@
 - [730:95319](https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-95319) → sipplay-profile-rise-toggle：仅图标；active = 当前步骤为 character
 - [730:95323](https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-95323) → sipplay-layer-stack-toggle：仅图标；active = 当前步骤为 intro
 - [730:82029](https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-82029) → sipplay-white-selection-toggle：反馈类型列表右侧的白色勾选；每项独立增删选中集合，不取消其他项
-- [730:102857](https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-102857) → sipplay-selection-toggle：设计师指定的粉色勾选；单选规则已确认；由父级唯一选择值统一驱动，重复点击当前项不取消
+- [730:102857](https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-102857) → sipplay-selection-toggle：粉色单选勾选；由父级唯一选择值统一驱动，重复点击当前项不取消
 
 ## 批量接入给 AI 的指令
 
@@ -58,7 +58,6 @@
 动效：括号工具单击高亮 / sipplay-brackets-tool
 位置：Web 聊天页：底部 Your message 输入框右侧，与图片工具并排的 26×26 圆形 ( ) 按钮。
 Figma：聊天输入框 / ( ) 工具 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-67212
-核对依据：已核对图形和页面上下文
 适配：原稿括号是 SF Pro 文本，组件为 SVG 字形；保持原稿视觉与字号，不要求逐路径一致。
 注释同步：此对应关系目前仅保存在网站和源码，尚未写回 Figma 画布
 触发：悬停提亮、点击短亮后自动恢复；不保留选中。
@@ -80,7 +79,6 @@ API 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.js
 动效：添加图片单击高亮 / sipplay-image-tool
 位置：Web 聊天页：底部 Your message 输入框右侧，26×26 圆形添加图片工具。内图形与源码路径一致。
 Figma：聊天输入框 / 添加图片 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-67209
-核对依据：已核对图形和页面上下文
 适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套
 注释同步：此对应关系目前仅保存在网站和源码，尚未写回 Figma 画布
 触发：悬停提亮、点击短亮后自动恢复；不保留选中。
@@ -102,7 +100,6 @@ API 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.js
 动效：四页动效底栏 / sipplay-bottom-bar
 位置：移动 Web Feed 页底部 Frame 3507 整组导航，375×48；四项依次为首页、聊天、添加、用户。不要替换旁边 Safari 的 Nav bar 或 Home Indicator。
 Figma：移动 Web / 四项底部导航 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-82191
-核对依据：已核对图形和页面上下文
 适配：保持原稿四项图标间距、底栏背景和安全区；聊天图标原稿是三点，组件选中态为波形，按页面视觉要求适配。
 注释同步：此对应关系目前仅保存在网站和源码，尚未写回 Figma 画布
 触发：互斥切换时播放相应图标；重复点击当前项只重播图标。
@@ -124,7 +121,6 @@ API 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.js
 动效：用户页探出选中 / sipplay-user-page-toggle
 位置：移动 Web Feed 页底部四项导航的第四项：用户头像轮廓，24×24。原图层名是 plus.circle 3，实际画的是人物。
 Figma：移动 Web 底栏 / 用户 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-82201
-核对依据：已核对图形和页面上下文
 适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套
 注释同步：此对应关系目前仅保存在网站和源码，尚未写回 Figma 画布
 触发：选中时头部、身体从底部先后探出；取消时恢复线框。
@@ -146,7 +142,6 @@ API 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.js
 动效：加号选中填白 / sipplay-plus-selection-toggle
 位置：移动 Web Feed 页底部四项导航的第三项：圆形加号，24×24。
 Figma：移动 Web 底栏 / 添加 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-82199
-核对依据：已核对图形和页面上下文
 适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套
 注释同步：此对应关系目前仅保存在网站和源码，尚未写回 Figma 画布
 触发：选中时圆形填白，加号保持透明镂空；取消时恢复灰态。
@@ -168,7 +163,6 @@ API 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.js
 动效：首页填白落定 / sipplay-home-settle-toggle
 位置：移动 Web Feed 页底部四项导航的第一项：首页图标，24×24。
 Figma：移动 Web 底栏 / 首页 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-82194
-核对依据：已核对图形和页面上下文
 适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套
 注释同步：此对应关系目前仅保存在网站和源码，尚未写回 Figma 画布
 触发：选中时轻提、填白并落定；取消时恢复线框。
@@ -190,7 +184,6 @@ API 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.js
 动效：警示牌弹性提醒 / sipplay-warning-nudge
 位置：Web 聊天页：消息操作浮层中的 Report（举报）入口，20×20 三角图标。
 Figma：聊天消息 / Report https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-67273
-核对依据：已核对图形和页面上下文
 适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套
 注释同步：此对应关系目前仅保存在网站和源码，尚未写回 Figma 画布
 触发：举报入口点击时单次提醒；不循环。不要因页面渲染、消息到达或鼠标经过就自动报警。
@@ -212,7 +205,6 @@ API 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.js
 动效：彩色液面升起流动 / sipplay-liquid-rise-toggle
 位置：创建页 Character Setup → Appearance：尚未设置角色图片时，Upload / Generate 两个入口上方的加号、杯子与渐变液面图标。位于“创建生成图片链路更新”的首次图片设置页面。
 Figma：创建页 Appearance / 图片设置引导图形 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-98165
-核对依据：已核对图形和页面上下文
 适配：Figma 选区为 40.04×40，整体透明度 80%；组件 SVG 为 41×40。保留原稿位置、尺寸、透明度及杯子/加号/渐变；不得把示例 44px 内部按钮直接替换进去。
 注释同步：此对应关系目前仅保存在网站和源码，尚未写回 Figma 画布
 触发：位置与图形已确认；何时开始注入、何时回落尚待设计确认。确认前保持设计稿静态外观，不因进入页面、悬停、点击 Upload / Generate 或请求进行中而自动播放。
@@ -234,7 +226,6 @@ API 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.js
 动效：对话气泡唤醒 / sipplay-chat-bubble-toggle
 位置：移动 Web Feed 页底部四项导航的第二项：聊天气泡，24×24。
 Figma：移动 Web 底栏 / 聊天 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-82196
-核对依据：已核对图形和页面上下文
 适配：原稿气泡内为三个点；动效组件选中态是波形。位置已确认，接入时保留原稿内符号或明确采用动效选中态，不能声称逐像素一致。
 注释同步：此对应关系目前仅保存在网站和源码，尚未写回 Figma 画布
 触发：选中时气泡填充并绘出波形，取消时反向收笔。
@@ -256,7 +247,6 @@ API 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.js
 动效：灵动 Tap Tab / sipplay-tap-tab
 位置：创建页 Character Setup / Intro / Advanced Settings 整组导航；保留 Figma 的 912×37 布局、文字与间距，复用组件交互与动画。示例的 44px 点击区和自适应布局需要按项目适配。
 Figma：创建页三项 Tab https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-95317
-核对依据：已核对图形和页面上下文
 适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套
 注释同步：Figma 画布与网站已同步
 触发：切换到新 Tab 时播放对应图标并移动下划线；再次点击当前项只重播图标。初次挂载直接显示当前业务状态。
@@ -278,7 +268,6 @@ API 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.js
 动效：预览 Tab 滑动切换 / sipplay-preview-tabs
 位置：创建页右侧 Chat Preview / Feed Preview 分段切换整组控件。
 Figma：创建页预览切换 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-95330
-核对依据：已核对图形和页面上下文
 适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套
 注释同步：Figma 画布与网站已同步
 触发：切换选项时，底片滑动、轻微拉伸回弹，文字亮度同步变化；重复点击当前项不重播。
@@ -300,7 +289,6 @@ API 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.js
 动效：历史时钟描绘旋转 / sipplay-history-clock
 位置：Web 聊天页：消息操作浮层中的 Backtrack（回溯）入口，20×20。不是通用历史记录列表入口。
 Figma：聊天消息 / Backtrack https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-67269
-核对依据：已核对图形和页面上下文
 适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套
 注释同步：此对应关系目前仅保存在网站和源码，尚未写回 Figma 画布
 触发：悬停或点击重播一次；外部可 replay()。
@@ -322,7 +310,6 @@ API 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.js
 动效：铃铛通知反馈 / sipplay-bell-ring-toggle
 位置：Web 首页顶栏 RecoilRoot 中的 36×36 通知铃铛，带独立未读提示层。已核对 bell SVG；创建页同名 Notification 图层是皇冠，不适用。
 Figma：Web 首页顶栏 / 通知铃铛 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-68771
-核对依据：已核对图形和页面上下文
 适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套
 注释同步：此对应关系目前仅保存在网站和源码，尚未写回 Figma 画布
 触发：鼠标移入轻摇一次，点击轻沉回位并立即发出通知请求。
@@ -344,7 +331,6 @@ API 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.js
 动效：灵动语音条 / sipplay-voice-wave
 位置：Web 聊天页：角色消息气泡左上方的五条声纹播放入口，可见于 Frame 3549；与消息气泡连接。
 Figma：角色聊天消息 / 语音入口 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-67162
-核对依据：已核对图形和页面上下文
 适配：此稿外框约 59×33，底色随消息主题；示例固定 58×28、深色。保留原稿位置、形状、底色和五条声纹节奏，不能整块覆盖为示例黑底。
 注释同步：此对应关系目前仅保存在网站和源码，尚未写回 Figma 画布
 触发：active=true 循环声纹；false 时平滑收稳。
@@ -366,7 +352,6 @@ API 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.js
 动效：图钉选中切换 / sipplay-pin-toggle
 位置：Web 聊天页 Frame 4675：取消置顶状态的斜杠图钉，18×18；与同屏消息角落的实心图钉区分。
 Figma：Web 聊天 / 图钉状态按钮 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-67903
-核对依据：已核对图形和页面上下文
 适配：原稿图钉含旋转和布尔裁切，保留该位置的尺寸及原有点击区。页面未说明接口时，不自行添加请求。
 注释同步：此对应关系目前仅保存在网站和源码，尚未写回 Figma 画布
 触发：选中时收起斜杠、实心图钉落下回弹；取消时恢复未置顶图形。
@@ -388,7 +373,6 @@ API 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.js
 动效：实心图钉出现 / sipplay-pin-reveal
 位置：Web 聊天页 Frame 4675：消息气泡右下角的实心图钉标记，18×18。它标识消息已置顶。
 Figma：Web 聊天 / 已置顶消息标记 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-67915
-核对依据：已核对图形和页面上下文
 适配：组件示例含内部按钮；这里的设计是消息状态标记，接入时改为被动图标，并保留原稿背景与透明度。
 注释同步：此对应关系目前仅保存在网站和源码，尚未写回 Figma 画布
 触发：active=true 时出现；带 active 挂载也会播放出现动画。
@@ -410,7 +394,6 @@ API 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.js
 动效：扳手拧动回弹 / sipplay-wrench-turn-toggle
 位置：Advanced Settings 左侧扳手图标。
 Figma：Advanced Settings / 扳手图标 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-95327
-核对依据：已核对图形和页面上下文
 适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套
 注释同步：Figma 画布与网站已同步
 触发：对应 Tab 选中时，以扳口为轴连续拧动两次、回弹收稳；取消选中置灰。
@@ -432,7 +415,6 @@ API 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.js
 动效：人物探出回弹 / sipplay-profile-rise-toggle
 位置：Character Setup 左侧人物图标。
 Figma：Character Setup / 人物图标 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-95319
-核对依据：已核对图形和页面上下文
 适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套
 注释同步：Figma 画布与网站已同步
 触发：对应 Tab 从未选中变为选中时，人物从底部探出并回弹；取消选中置灰。
@@ -454,7 +436,6 @@ API 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.js
 动效：图层落下叠加 / sipplay-layer-stack-toggle
 位置：Intro 左侧图层图标。
 Figma：Intro / 图层图标 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-95323
-核对依据：已核对图形和页面上下文
 适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套
 注释同步：Figma 画布与网站已同步
 触发：对应 Tab 从未选中变为选中时，方片依次落下叠合；取消选中置灰。
@@ -474,10 +455,9 @@ API 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.js
 
 ```text
 动效：白色勾选切换 / sipplay-white-selection-toggle
-位置：Web 设置 → Help & Feedback → Submit Feedback：反馈类型列表每行右侧的圆形勾选。节点 730:82029 是 Suggestion 行的已选状态；设计师确认此处为多选。
+位置：Web 设置 → Help & Feedback → Submit Feedback：反馈类型列表每行右侧的圆形勾选。节点 730:82029 是 Suggestion 行的已选状态，用于多选。
 Figma：Submit Feedback / Suggestion 多选勾选 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-82029
-核对依据：已核对图形和页面上下文
-选择规则：多选；每项独立切换，重复点击可取消，不影响其他项（设计师已确认）
+选择规则：多选；每项独立切换，重复点击可取消，不影响其他项
 适配：原稿选区为 20×20，白色圆底与镂空勾；保持原稿尺寸及列表间距。复用勾选动效视图接入现有 checkbox，避免把示例 44px 内部按钮嵌入已有控件或新增焦点入口。
 注释同步：此对应关系目前仅保存在网站和源码，尚未写回 Figma 画布
 触发：每个选项独立切换：选中时白色圆底弹出并画出镂空勾，取消时反向恢复。再次点击已选项可以取消；不改变其他项。初次挂载直接显示已有选中集合。
@@ -497,10 +477,9 @@ API 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.js
 
 ```text
 动效：粉色勾选切换 / sipplay-selection-toggle
-位置：设计师指定的粉色圆形勾选节点 730:102857，用于单选。对应节点由设计师确认；所在页面名称及实际业务字段尚未读取，接入时沿用项目已有字段。
-Figma：设计师指定 / 粉色勾选 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-102857
-核对依据：设计师指定节点并确认单选；接入时沿用项目实际字段
-选择规则：单选；父级唯一值驱动，重复点击当前项不取消（设计师已确认）
+位置：粉色圆形勾选用于单选，对应 Figma 节点 730:102857。接入现有单选组，沿用项目已有的业务字段。
+Figma：粉色勾选 / 单选 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-102857
+选择规则：单选；父级唯一值驱动，重复点击当前项不取消
 适配：组件 SVG 为 20×20、粉色 #ED78F4；节点实际尺寸与颜色尚未复核，按原稿核对。现成组件内部是独立 toggle 按钮，不能原样当作 radio 使用；应提取动效视图接入原有单选控件，避免按钮嵌套或新增焦点入口。
 注释同步：此对应关系目前仅保存在网站和源码，尚未写回 Figma 画布
 触发：单选组切换到新选项时，新项弹出粉色圆底并画勾，旧项恢复空心圆。再次点击当前项保持选中，不反向取消；初次挂载直接显示当前选项。

@@ -182,7 +182,7 @@
       "nodeId": "730:102857",
       "tagName": "sipplay-selection-toggle",
       "source": "web-components/selection-toggle.js",
-      "placement": "设计师指定的粉色勾选；单选规则已确认；由父级唯一选择值统一驱动，重复点击当前项不取消",
+      "placement": "粉色单选勾选；由父级唯一选择值统一驱动，重复点击当前项不取消",
       "url": "https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-102857",
       "annotationStatus": "website-only",
       "selectionMode": "single",

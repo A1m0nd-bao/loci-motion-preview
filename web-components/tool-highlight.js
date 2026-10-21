@@ -11,7 +11,6 @@ export function defineToolHighlight(animate) {
    * 动效：括号工具单击高亮 / sipplay-brackets-tool
    * 位置：Web 聊天页：底部 Your message 输入框右侧，与图片工具并排的 26×26 圆形 ( ) 按钮。
    * Figma：聊天输入框 / ( ) 工具 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-67212
-   * 核对依据：已核对图形和页面上下文
    * 适配：原稿括号是 SF Pro 文本，组件为 SVG 字形；保持原稿视觉与字号，不要求逐路径一致。
    * 注释同步：此对应关系目前仅保存在网站和源码，尚未写回 Figma 画布
    * 触发：悬停提亮、点击短亮后自动恢复；不保留选中。
@@ -29,7 +28,6 @@ export function defineToolHighlight(animate) {
    * 动效：添加图片单击高亮 / sipplay-image-tool
    * 位置：Web 聊天页：底部 Your message 输入框右侧，26×26 圆形添加图片工具。内图形与源码路径一致。
    * Figma：聊天输入框 / 添加图片 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-67209
-   * 核对依据：已核对图形和页面上下文
    * 适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套
    * 注释同步：此对应关系目前仅保存在网站和源码，尚未写回 Figma 画布
    * 触发：悬停提亮、点击短亮后自动恢复；不保留选中。

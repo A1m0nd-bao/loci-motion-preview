@@ -7,7 +7,6 @@ export function definePinReveal(animate) {
    * 动效：实心图钉出现 / sipplay-pin-reveal
    * 位置：Web 聊天页 Frame 4675：消息气泡右下角的实心图钉标记，18×18。它标识消息已置顶。
    * Figma：Web 聊天 / 已置顶消息标记 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-67915
-   * 核对依据：已核对图形和页面上下文
    * 适配：组件示例含内部按钮；这里的设计是消息状态标记，接入时改为被动图标，并保留原稿背景与透明度。
    * 注释同步：此对应关系目前仅保存在网站和源码，尚未写回 Figma 画布
    * 触发：active=true 时出现；带 active 挂载也会播放出现动画。

@@ -6,10 +6,9 @@ export function defineWhiteSelectionToggle(animate) {
   /**
    * @summary 白色勾选切换
    * 动效：白色勾选切换 / sipplay-white-selection-toggle
-   * 位置：Web 设置 → Help & Feedback → Submit Feedback：反馈类型列表每行右侧的圆形勾选。节点 730:82029 是 Suggestion 行的已选状态；设计师确认此处为多选。
+   * 位置：Web 设置 → Help & Feedback → Submit Feedback：反馈类型列表每行右侧的圆形勾选。节点 730:82029 是 Suggestion 行的已选状态，用于多选。
    * Figma：Submit Feedback / Suggestion 多选勾选 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-82029
-   * 核对依据：已核对图形和页面上下文
-   * 选择规则：多选；每项独立切换，重复点击可取消，不影响其他项（设计师已确认）
+   * 选择规则：多选；每项独立切换，重复点击可取消，不影响其他项
    * 适配：原稿选区为 20×20，白色圆底与镂空勾；保持原稿尺寸及列表间距。复用勾选动效视图接入现有 checkbox，避免把示例 44px 内部按钮嵌入已有控件或新增焦点入口。
    * 注释同步：此对应关系目前仅保存在网站和源码，尚未写回 Figma 画布
    * 触发：每个选项独立切换：选中时白色圆底弹出并画出镂空勾，取消时反向恢复。再次点击已选项可以取消；不改变其他项。初次挂载直接显示已有选中集合。

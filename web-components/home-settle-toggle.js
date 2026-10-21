@@ -8,7 +8,6 @@ export function defineHomeSettleToggle(animate) {
    * 动效：首页填白落定 / sipplay-home-settle-toggle
    * 位置：移动 Web Feed 页底部四项导航的第一项：首页图标，24×24。
    * Figma：移动 Web 底栏 / 首页 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-82194
-   * 核对依据：已核对图形和页面上下文
    * 适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套
    * 注释同步：此对应关系目前仅保存在网站和源码，尚未写回 Figma 画布
    * 触发：选中时轻提、填白并落定；取消时恢复线框。
