@@ -1,3 +1,4 @@
+import { defineImageSipLoading } from './image-sip-loading.js';
 import { defineToolHighlight } from './tool-highlight.js';
 import { defineBottomBar } from './bottom-bar.js';
 import { defineUserPageToggle } from './user-page-toggle.js';
@@ -20,6 +21,7 @@ import { defineWhiteSelectionToggle } from './white-selection-toggle.js';
 import { defineSelectionToggle } from './selection-toggle.js';
 
 const definitions = {
+  'sipplay-image-sip-loading': { define: defineImageSipLoading, dependencies: [] },
   'sipplay-brackets-tool': { define: defineToolHighlight, dependencies: [] },
   'sipplay-image-tool': { define: defineToolHighlight, dependencies: [] },
   'sipplay-bottom-bar': { define: defineBottomBar, dependencies: ["sipplay-home-settle-toggle","sipplay-chat-bubble-toggle","sipplay-plus-selection-toggle","sipplay-user-page-toggle"] },

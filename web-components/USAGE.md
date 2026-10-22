@@ -4,7 +4,7 @@
 
 ## 当前交付范围
 
-共 21 个自定义动效，21 个 Figma 位置参考。位置说明保存在网站与源码，Figma 画布注释尚未全部同步。selectionMode=single 时由父级唯一选择值驱动，重复点击当前项不取消；selectionMode=multiple 时每项独立增删选中集合，不影响其他项。contextStatus=needs-confirmation 的暂停自动业务绑定。读取每条 annotationStatus，website-only 不代表已写回画布；有 adaptation 的必须按说明适配；triggerStatus=needs-confirmation 的不能自行绑定播放触发。正式 Code Connect 因当前账号套餐限制未启用。figma-bindings.json 是本项目的节点对照记录，不是 Code Connect 格式。没有绑定的动效仅提供建议用途，不应按图形相似自动替换整页。
+共 22 个自定义动效，21 个 Figma 位置参考。位置说明保存在网站与源码，Figma 画布注释尚未全部同步。selectionMode=single 时由父级唯一选择值驱动，重复点击当前项不取消；selectionMode=multiple 时每项独立增删选中集合，不影响其他项。contextStatus=needs-confirmation 的暂停自动业务绑定。读取每条 annotationStatus，website-only 不代表已写回画布；有 adaptation 的必须按说明适配；triggerStatus=needs-confirmation 的不能自行绑定播放触发。正式 Code Connect 因当前账号套餐限制未启用。figma-bindings.json 是本项目的节点对照记录，不是 Code Connect 格式。没有绑定的动效仅提供建议用途，不应按图形相似自动替换整页。
 
 ## 研发 / AI 三步使用
 
@@ -51,6 +51,27 @@
 读取本文件、custom-elements.json 与 figma-bindings.json；精确匹配 Figma fileKey + nodeId 或已标注动效 ID。优先复用组合组件，保留设计稿尺寸，绑定真实业务状态和公开事件。没有确认位置的列为待绑定，不猜路由与接口、不批量替换相似图标。输出每个修改的设计节点、动效 ID、代码位置、状态字段和验证结果。
 
 ## 各组件交付注释
+
+### 生图流光吸饮
+
+```text
+动效：生图流光吸饮 / sipplay-image-sip-loading
+位置：正在生成图片的 125×125 占位图。使用本次提供的白底、圆角、粉橘渐变与杯形图片 SVG；替换生图中的占位内容，不覆盖 Upload / Generate 操作按钮。
+Figma：待绑定；仅凭图标相似不得批量替换
+适配：保留 125×125 画布与 rx=16 比例，图标中心和杯口、吸管的原始路径。预览中的 2× 放大仅便于观察，不进入产品布局。
+注释同步：位置待核对
+触发：生图请求开始时 active=true 循环：吸管插入 → 图片液面被吸空 → 空杯停顿 → 吸管收回 → 重新蓄满。成功、失败或取消时由业务移除加载态；减少动态效果时静态展示。
+状态：active；默认 true，接入时以业务状态覆盖
+事件：motion-cycle → { iteration: number }
+业务接入：纯展示组件，无内部按钮或点击切换。active 绑定真实请求的 loading 状态；动画循环不是进度或成功信号，不显示虚构百分比。成功后替换为生成图片，失败显示原有重试界面。卸载与浏览器后台会停止或暂停动画。
+参数：duration=5.8（吸饮周期（秒））；flow-duration=8（流光周期（秒））
+源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/image-sip-loading.js；初始化 defineImageSipLoading(animate)
+依赖：Motion animate
+API 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json
+预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-image-sip-loading
+注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。
+映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。
+```
 
 ### 括号工具单击高亮
 

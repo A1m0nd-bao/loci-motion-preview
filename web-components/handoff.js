@@ -477,12 +477,27 @@ export const definitions = {
         "annotationStatus": "website-only"
       }
     ]
+  },
+  "sipplay-image-sip-loading": {
+    "source": "image-sip-loading.js",
+    "initializer": "defineImageSipLoading",
+    "size": "125×125",
+    "state": "active",
+    "initial": "true",
+    "behavior": "loading",
+    "placement": "正在生成图片的 125×125 占位图。使用本次提供的白底、圆角、粉橘渐变与杯形图片 SVG；替换生图中的占位内容，不覆盖 Upload / Generate 操作按钮。",
+    "trigger": "生图请求开始时 active=true 循环：吸管插入 → 图片液面被吸空 → 空杯停顿 → 吸管收回 → 重新蓄满。成功、失败或取消时由业务移除加载态；减少动态效果时静态展示。",
+    "integration": "纯展示组件，无内部按钮或点击切换。active 绑定真实请求的 loading 状态；动画循环不是进度或成功信号，不显示虚构百分比。成功后替换为生成图片，失败显示原有重试界面。卸载与浏览器后台会停止或暂停动画。",
+    "adaptation": "保留 125×125 画布与 rx=16 比例，图标中心和杯口、吸管的原始路径。预览中的 2× 放大仅便于观察，不进入产品布局。",
+    "event": "motion-cycle",
+    "payload": "{ iteration: number }",
+    "figma": []
   }
 };
 
 export const commonNotes = [
   "原生 Web Components + SVG；Motion 13.5.1。公开 API 见 custom-elements.json；设计位置见本页节点链接。",
-  "组件已含交互按钮；不要嵌套在另一个 button 内。组合导航中的子图标由父级 inert 容器接管交互。独立复用到现有按钮时，需要提取图标视图并保留单一点击与焦点入口。",
+  "交互组件通常内含按钮；不要嵌套在另一个 button 内。生图加载态为无按钮的展示组件。组合导航中的子图标由父级 inert 容器接管交互。独立复用到现有按钮时，需要提取图标视图并保留单一点击与焦点入口。",
   "图形尺寸与点击区分别处理：多数独立图标的宿主/按钮为 44×44；仅修改 host 的 width 不会同步缩小内部按钮。不要把示例放大样式带到产品。",
   "active / expanded 是布尔属性：存在即 true，active=\"false\" 仍为 true。通过 el.active=false 或移除属性取消。先注册元素，再写 property；初始属性建议在挂载前设置。",
   "业务数据是状态来源；外部写入 active / selected / value 不会自动发出用户事件。请求失败时由业务层回滚；不要猜测接口或路由名。",
@@ -525,6 +540,14 @@ export function handoffText(entry, values = {}) {
 export function integrationSnippet(entry) {
   const d = getHandoff(entry);
   if (!d) return "";
+  if (d.behavior === "loading") return `<!-- 生图请求开始时挂载；成功、失败或取消时移除加载态。 -->
+<sipplay-image-sip-loading active duration="5.8" flow-duration="8" label="正在生成图片"></sipplay-image-sip-loading>
+<script type="module">
+  import { animate } from 'motion';
+  import { registerMotion } from './web-components/register.js';
+  registerMotion('sipplay-image-sip-loading', animate);
+  // active 绑定真实请求状态；不要用循环次数推算进度或触发成功。
+</script>`;
   if (d.selectionMode === "multiple") return `<!-- ${d.id}：多选。
 Figma：${d.figma[0].url}
 复用现有 checkbox，只替换勾选动效视图，不新增交互按钮。

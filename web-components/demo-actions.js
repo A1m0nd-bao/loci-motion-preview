@@ -1,6 +1,12 @@
 // This function is also embedded in downloaded examples: keep it self-contained.
 export function bindDemoActions(root) {
   const toggles = [...root.querySelectorAll("sipplay-user-page-toggle,sipplay-plus-selection-toggle,sipplay-home-settle-toggle,sipplay-liquid-rise-toggle,sipplay-chat-bubble-toggle,sipplay-preview-tabs,sipplay-white-selection-toggle,sipplay-selection-toggle,sipplay-layer-stack-toggle,sipplay-profile-rise-toggle,sipplay-wrench-turn-toggle,sipplay-pin-toggle,sipplay-pin-reveal,sipplay-voice-wave")];
+  const loaders = [...root.querySelectorAll('sipplay-image-sip-loading')];
+  for (const loader of loaders.slice(1)) {
+    for (const attribute of ['duration', 'flow-duration']) {
+      if (loaders[0].hasAttribute(attribute)) loader.setAttribute(attribute, loaders[0].getAttribute(attribute));
+    }
+  }
   const tools = [...root.querySelectorAll("sipplay-brackets-tool,sipplay-image-tool")];
   for (const tool of tools.slice(1)) {
     if (tools[0].hasAttribute("duration")) tool.setAttribute("duration", tools[0].getAttribute("duration"));

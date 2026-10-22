@@ -1,23 +1,24 @@
-import { bracketsToolDemoMarkup, imageToolDemoMarkup } from "./tool-highlight.js?v=20261020-check-path";
-import { bottomBarDemoMarkup } from "./bottom-bar.js?v=20261020-check-path";
-import { userPageDemoMarkup } from "./user-page-toggle.js?v=20261020-check-path";
-import { plusSelectionDemoMarkup } from "./plus-selection-toggle.js?v=20261020-check-path";
-import { homeSettleDemoMarkup } from "./home-settle-toggle.js?v=20261020-check-path";
-import { warningNudgeDemoMarkup } from "./warning-nudge.js?v=20261020-check-path";
-import { liquidRiseDemoMarkup } from "./liquid-rise-toggle.js?v=20261020-check-path";
-import { chatBubbleDemoMarkup } from "./chat-bubble-toggle.js?v=20261020-check-path";
-import { tapTabDemoMarkup } from "./tap-tab.js?v=20261020-check-path";
-import { previewTabsDemoMarkup } from "./preview-tabs.js?v=20261020-check-path";
-import { whiteSelectionDemoMarkup } from "./white-selection-toggle.js?v=20261020-check-path";
-import { historyClockDemoMarkup } from "./history-clock.js?v=20261020-check-path";
-import { bellRingDemoMarkup } from "./bell-ring-toggle.js?v=20261020-check-path";
-import { voiceWaveDemoMarkup } from "./voice-wave.js?v=20261020-check-path";
-import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261020-check-path";
-import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261020-check-path";
-import { selectionDemoMarkup } from "./selection-toggle.js?v=20261020-check-path";
-import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261020-check-path";
-import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261020-check-path";
-import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261020-check-path";
+import { imageSipLoadingDemoMarkup } from "./image-sip-loading.js?v=20261022-image-sip2";
+import { bracketsToolDemoMarkup, imageToolDemoMarkup } from "./tool-highlight.js?v=20261022-image-sip2";
+import { bottomBarDemoMarkup } from "./bottom-bar.js?v=20261022-image-sip2";
+import { userPageDemoMarkup } from "./user-page-toggle.js?v=20261022-image-sip2";
+import { plusSelectionDemoMarkup } from "./plus-selection-toggle.js?v=20261022-image-sip2";
+import { homeSettleDemoMarkup } from "./home-settle-toggle.js?v=20261022-image-sip2";
+import { warningNudgeDemoMarkup } from "./warning-nudge.js?v=20261022-image-sip2";
+import { liquidRiseDemoMarkup } from "./liquid-rise-toggle.js?v=20261022-image-sip2";
+import { chatBubbleDemoMarkup } from "./chat-bubble-toggle.js?v=20261022-image-sip2";
+import { tapTabDemoMarkup } from "./tap-tab.js?v=20261022-image-sip2";
+import { previewTabsDemoMarkup } from "./preview-tabs.js?v=20261022-image-sip2";
+import { whiteSelectionDemoMarkup } from "./white-selection-toggle.js?v=20261022-image-sip2";
+import { historyClockDemoMarkup } from "./history-clock.js?v=20261022-image-sip2";
+import { bellRingDemoMarkup } from "./bell-ring-toggle.js?v=20261022-image-sip2";
+import { voiceWaveDemoMarkup } from "./voice-wave.js?v=20261022-image-sip2";
+import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261022-image-sip2";
+import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261022-image-sip2";
+import { selectionDemoMarkup } from "./selection-toggle.js?v=20261022-image-sip2";
+import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261022-image-sip2";
+import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261022-image-sip2";
+import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261022-image-sip2";
 
 export const upstreamVersion = "1.3.0";
 export const upstreamURL = "https://github.com/tgomilar/motion-components";
@@ -108,6 +109,14 @@ const upstreamMotions = entries.map(([id, name, category, description, markup, c
 }));
 
 export const webMotions = [{
+  id: "sipplay-image-sip-loading", name: "生图流光吸饮", category: "加载状态",
+  description: "背景柔和流光，吸管斜插进杯中，白色圆点保持不动，山形液面逐步吸低，吸管随之伸向杯底；空杯稍停，重新蓄满后继续循环。沿用提供的 125 × 125 SVG，支持暂停、参数调整、减少动态效果和完整 HTML 下载。",
+  markup: imageSipLoadingDemoMarkup,
+  controls: [number("duration", "吸饮周期（秒）", 5.8, 3.6, 10, 0.2), number("flow-duration", "流光周期（秒）", 8, 4, 16, 0.5)],
+  kind: "web", kindLabel: "Web 组件", fileName: "sipplay-image-sip-loading",
+  file: "./web-components/preview.html?id=sipplay-image-sip-loading", docs: null, custom: true,
+  tags: ["加载", "生图", "流光", "图片", "吸管", "液体", "125px"], interactionType: "持续加载",
+}, {
   id: "sipplay-brackets-tool", name: "括号工具单击高亮", category: "鼠标交互",
   description: "独立的 26 × 26 括号工具。悬停临时提亮；单击时短暂加强边缘和底色，随后自动恢复到当前悬停或默认状态，不保留选中。保留原始路径、尺寸与灰态透明度，支持键盘、触屏、减少动态效果与独立 HTML 导出。",
   markup: bracketsToolDemoMarkup, controls: [number("duration", "提亮时长（秒）", 0.18, 0.08, 0.5, 0.02)],

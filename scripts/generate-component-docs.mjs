@@ -32,7 +32,7 @@ for (const [path, items] of groups) {
   const attributes = attrs.map(name => {
     const c = items[0].e.controls.find(c => c.attribute === name);
     const type = c ? 'number' : ['active', 'expanded'].includes(name) ? 'boolean' : 'string';
-    const description = c ? `${c.label}；范围 ${c.min}–${c.max}，步长 ${c.step}。` : name === first.state ? `${first.integration} 默认 ${first.initial}。` : name === 'label' ? '内部交互控件的可访问名称。' : name === 'icon' ? '基础工具图形；具体别名固定为 brackets 或 image。' : name;
+    const description = c ? `${c.label}；范围 ${c.min}–${c.max}，步长 ${c.step}。` : name === first.state ? `${first.integration} 默认 ${first.initial}。` : name === 'label' ? (first.behavior === 'loading' ? '加载图形的可访问名称。' : '内部交互控件的可访问名称。') : name === 'icon' ? '基础工具图形；具体别名固定为 brackets 或 image。' : name;
     return { name, type: { text: type }, description, ...(c ? { default: String(c.value) } : name === first.state ? { default: first.initial } : {}) };
   });
   const jsdoc = ['  /**', '   * @summary ' + items.map(({ e }) => e.name).join(' / '),
@@ -42,7 +42,7 @@ for (const [path, items] of groups) {
     ...events.map(e => `   * @fires {CustomEvent} ${e.name} - ${e.description}`),
     ...(first.slots ?? []).map(name => `   * @slot ${name} - ${name} 步骤的业务内容。`),
     '   */'].join('\n');
-  source = source.replace(/  \/\*\*\n   \* @summary[\s\S]*?\n   \*\/\n(?=  class)/, '');
+  source = source.replace(/  \/\*\*\n   \* @summary(?:(?!\*\/)[\s\S])*?\n   \*\/\n/g, '');
   source = source.replace(`  class ${className} extends HTMLElement`, `${jsdoc}\n  class ${className} extends HTMLElement`);
   await writeFile(new URL(path, root), source);
   const members = [];

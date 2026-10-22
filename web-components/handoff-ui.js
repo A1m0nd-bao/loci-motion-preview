@@ -1,4 +1,4 @@
-import { commonNotes, getHandoff, handoffText, integrationSnippet, siteURL } from './handoff.js?v=20261021-copy';
+import { commonNotes, getHandoff, handoffText, integrationSnippet, siteURL } from './handoff.js?v=20261022-image-sip2';
 
 export const batchPrompt = `请按 Figma 与现有动效组件完成页面接入：
 1. 先读取 ${siteURL}web-components/USAGE.md、${siteURL}custom-elements.json 和 ${siteURL}web-components/figma-bindings.json。
@@ -51,7 +51,7 @@ export function renderHandoff(host, entry, values = () => ({})) {
   const code = document.createElement('code'); code.textContent = integrationSnippet(entry); pre.append(code);
   example.append(summary, pre, copyButton('复制接入代码', integrationSnippet(entry)));
   const note = document.createElement('p'); note.className = 'handoff-footnote';
-  note.textContent = '组件内已有按钮；接入现有按钮时需适配，避免嵌套。初始状态读取业务数据；图形尺寸与点击区分开处理。完整 HTML 用于独立体验，接入代码用于项目集成。';
+  note.textContent = d.behavior === 'loading' ? '这是无按钮的展示组件；随真实生图请求挂载和移除。循环次数不代表进度或完成。' : '组件内已有按钮；接入现有按钮时需适配，避免嵌套。初始状态读取业务数据；图形尺寸与点击区分开处理。完整 HTML 用于独立体验，接入代码用于项目集成。';
   host.append(heading, badge, dl, sync, actions, example, note);
 }
 
