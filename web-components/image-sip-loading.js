@@ -3,6 +3,7 @@ export function defineImageSipLoading(animate) {
   if (customElements.get(tag)) return;
   const clamp = v => Math.max(0, Math.min(1, v));
   const smooth = v => { v = clamp(v); return v * v * (3 - 2 * v); };
+  const surfaceX = [48, 51.5, 55.5, 58.3, 61.2, 64.5, 67, 69, 71, 73];
   const surfaces = [
     [61.5681,64.1,66.2,63.2,61,60.9,62.6103,63.1,63.7,64.001],
     [64.7386,66.4343,67.7734,66.7085,65.2607,64.1817,65.5816,66.3,67,67.817],
@@ -17,7 +18,7 @@ export function defineImageSipLoading(animate) {
    * Figma：待绑定；仅凭图标相似不得批量替换
    * 适配：保留 125×125 画布与 rx=16 比例，图标中心和杯口、吸管的原始路径。预览中的 2× 放大仅便于观察，不进入产品布局。
    * 注释同步：位置待核对
-   * 触发：生图请求开始时 active=true 循环：吸管插入 → 图片液面被吸空 → 空杯停顿 → 吸管收回 → 重新蓄满。成功、失败或取消时由业务移除加载态；减少动态效果时静态展示。
+   * 触发：生图请求开始时 active=true 循环：吸管插入 → 翻滚的图片液面被吸空 → 空杯停顿 → 吸管收回 → 重新蓄满。成功、失败或取消时由业务移除加载态；减少动态效果时静态展示。
    * 状态：active；默认 false，接入时以业务状态覆盖
    * 事件：motion-cycle → { iteration: number }
    * 业务接入：纯展示组件，无内部按钮或点击切换。active 绑定真实请求的 loading 状态；动画循环不是进度或成功信号，不显示虚构百分比。成功后替换为生成图片，失败显示原有重试界面。卸载与浏览器后台会停止或暂停动画。
@@ -137,8 +138,15 @@ export function defineImageSipLoading(animate) {
       const index = Math.min(3, Math.floor(position));
       const blend = position - index;
       const a = surfaces[index], b = surfaces[index + 1], y = this.surface;
-      const ripple = rest ? 0 : Math.sin(p * Math.PI * 18) * .24 * Math.sin(Math.PI * drain);
-      for (let i = 0; i < 10; i++) y[i] = a[i] + (b[i] - a[i]) * blend + ripple;
+      // A traveling wave moves each surface point with a different phase.
+      // Its amplitude fades with the remaining liquid so the empty cup stays empty.
+      const amount = clamp(1 - drain + refill);
+      const amplitude = rest ? 0 : 1.8 * smooth(amount * 5);
+      for (let i = 0; i < 10; i++) {
+        const phase = (surfaceX[i] - 48) * Math.PI * 2 / 26 - p * Math.PI * 8;
+        const wave = Math.sin(phase) + .16 * Math.sin(phase * 2 + .8);
+        y[i] = a[i] + (b[i] - a[i]) * blend + amplitude * wave;
+      }
       const pull = moving ? Math.sin(Math.PI * drain) * .75 : 0;
       this.liquid.setAttribute('d', `M48 ${y[0]} C51.5 ${y[1]} 55.5 ${y[2]} 58.3 ${y[3]} C61.2 ${y[4]+pull} 64.5 ${y[5]+pull} 67 ${y[6]} C69 ${y[7]} 71 ${y[8]} 73 ${y[9]} L73 79 L48 79Z`);
       const tx = rest ? 0 : 5 * (1 - enter + leave);

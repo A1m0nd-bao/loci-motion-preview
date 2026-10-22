@@ -1,6 +1,6 @@
-import { motionMotions } from "./motion/catalog.js?v=20261022-image-sip2";
-import { webMotions } from "./web-components/catalog.js?v=20261022-image-sip2";
-import { createWebController, copyExample, downloadExample, setupWebDetail, getWebValues, syncWebBackgrounds } from "./web-components/integration.js?v=20261022-image-sip2";
+import { motionMotions } from "./motion/catalog.js?v=20261022-image-sip3";
+import { webMotions } from "./web-components/catalog.js?v=20261022-image-sip3";
+import { createWebController, copyExample, downloadExample, setupWebDetail, getWebValues, syncWebBackgrounds } from "./web-components/integration.js?v=20261022-image-sip3";
 
 if (import.meta.env?.DEV) document.querySelector("#motionStudioLocal").hidden = false;
 

@@ -1,6 +1,6 @@
-import { webMotions } from './catalog.js?v=20261022-image-sip2';
-import { getHandoff } from './handoff.js?v=20261022-image-sip2';
-import { batchPrompt, copyButton, renderHandoff, renderCommonNotes } from './handoff-ui.js?v=20261022-image-sip2';
+import { webMotions } from './catalog.js?v=20261022-image-sip3';
+import { getHandoff } from './handoff.js?v=20261022-image-sip3';
+import { batchPrompt, copyButton, renderHandoff, renderCommonNotes } from './handoff-ui.js?v=20261022-image-sip3';
 
 const entries = webMotions.filter(e => e.custom).sort((a,b) => getHandoff(b).figma.length - getHandoff(a).figma.length);
 const mapped = entries.filter(e => getHandoff(e).figma.length);
