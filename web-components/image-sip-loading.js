@@ -18,7 +18,7 @@ export function defineImageSipLoading(animate) {
    * 适配：保留 125×125 画布与 rx=16 比例，图标中心和杯口、吸管的原始路径。预览中的 2× 放大仅便于观察，不进入产品布局。
    * 注释同步：位置待核对
    * 触发：生图请求开始时 active=true 循环：吸管插入 → 图片液面被吸空 → 空杯停顿 → 吸管收回 → 重新蓄满。成功、失败或取消时由业务移除加载态；减少动态效果时静态展示。
-   * 状态：active；默认 true，接入时以业务状态覆盖
+   * 状态：active；默认 false，接入时以业务状态覆盖
    * 事件：motion-cycle → { iteration: number }
    * 业务接入：纯展示组件，无内部按钮或点击切换。active 绑定真实请求的 loading 状态；动画循环不是进度或成功信号，不显示虚构百分比。成功后替换为生成图片，失败显示原有重试界面。卸载与浏览器后台会停止或暂停动画。
    * 参数：duration=5.8（吸饮周期（秒））；flow-duration=8（流光周期（秒））
@@ -29,7 +29,7 @@ export function defineImageSipLoading(animate) {
    * 注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。
    * 映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。
    * @tag sipplay-image-sip-loading
-   * @attribute {boolean} active - 纯展示组件，无内部按钮或点击切换。active 绑定真实请求的 loading 状态；动画循环不是进度或成功信号，不显示虚构百分比。成功后替换为生成图片，失败显示原有重试界面。卸载与浏览器后台会停止或暂停动画。 默认 true。
+   * @attribute {boolean} active - 纯展示组件，无内部按钮或点击切换。active 绑定真实请求的 loading 状态；动画循环不是进度或成功信号，不显示虚构百分比。成功后替换为生成图片，失败显示原有重试界面。卸载与浏览器后台会停止或暂停动画。 默认 false。
    * @attribute {number} duration - 吸饮周期（秒）；范围 3.6–10，步长 0.2。
    * @attribute {number} flow-duration - 流光周期（秒）；范围 4–16，步长 0.5。
    * @attribute {string} label - 加载图形的可访问名称。

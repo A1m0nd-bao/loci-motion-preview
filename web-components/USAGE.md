@@ -10,14 +10,14 @@
 
 1. 从 Figma 图层名中的动效 ID 和画布交付注释，核对精确节点。三项创作 Tab 优先复用 sipplay-tap-tab；其子图标不要重复绑定。
 2. 阅读对应组件的属性、事件和交互范围。将 web-components 源码目录复制到项目，npm install motion@13.5.1，通过 registerMotion(tagName, animate) 初始化。此目录不是已经发布的 npm 包，不要安装虚构的 sipplay 包。
-3. 以业务状态初始化并调用 finish()；之后通过 property 更新状态、监听公开事件连接业务。保留原设计尺寸与已有业务功能。先验证一处，再批量复用。
+3. 交互组件以业务状态初始化并调用 finish()；之后通过 property 更新状态、监听公开事件连接业务。生图加载组件随请求设置 active=true，开始后不调用 finish()。保留原设计尺寸与已有业务功能。先验证一处，再批量复用。
 
 ## 项目集成
 
 - register.js 是浏览器初始化入口；在 SSR 项目客户端生命周期中调用。使用项目已有的 Motion 依赖，不要重复插入 CDN。
 - 单独下载的 HTML 联网可运行，包含预览样式；业务项目只取必要组件、初始化和参数，不复制放大预览布局。
-- 所有自定义控件都含内部按钮。不能直接放到另一个 button 内；接入已有按钮时应适配图标视图，保持单一点击与焦点入口。多数独立图标点击区是 44×44，与 SVG 原始图形尺寸不同。
-- active/expanded 是布尔属性，active="false" 仍会选中；取消用 el.active=false 或 removeAttribute。先注册，再设置 property。
+- 交互组件通常含内部按钮，不能直接放到另一个 button 内；生图加载组件为无按钮的展示组件。接入已有按钮时应适配图标视图，保持单一点击与焦点入口。多数独立图标点击区是 44×44，与 SVG 原始图形尺寸不同。
+- active/expanded 是布尔属性，active="false" 仍为 true；关闭用 el.active=false 或 removeAttribute。先注册，再设置 property。
 - 外部写入 active/selected/value 不发出用户事件；请求失败与回滚、路由、音频和弹窗由业务层控制。
 - React/Vue/SSR 要按项目配置识别自定义元素，事件用 DOM addEventListener 连接最明确；不要假定这是已经封装好的 React/Vue 组件。
 - 保留键盘、减少动态效果和卸载清理；不要让多个引擎同时写同一 SVG 属性。
@@ -61,7 +61,7 @@ Figma：待绑定；仅凭图标相似不得批量替换
 适配：保留 125×125 画布与 rx=16 比例，图标中心和杯口、吸管的原始路径。预览中的 2× 放大仅便于观察，不进入产品布局。
 注释同步：位置待核对
 触发：生图请求开始时 active=true 循环：吸管插入 → 图片液面被吸空 → 空杯停顿 → 吸管收回 → 重新蓄满。成功、失败或取消时由业务移除加载态；减少动态效果时静态展示。
-状态：active；默认 true，接入时以业务状态覆盖
+状态：active；默认 false，接入时以业务状态覆盖
 事件：motion-cycle → { iteration: number }
 业务接入：纯展示组件，无内部按钮或点击切换。active 绑定真实请求的 loading 状态；动画循环不是进度或成功信号，不显示虚构百分比。成功后替换为生成图片，失败显示原有重试界面。卸载与浏览器后台会停止或暂停动画。
 参数：duration=5.8（吸饮周期（秒））；flow-duration=8（流光周期（秒））

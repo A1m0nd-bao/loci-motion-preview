@@ -483,7 +483,7 @@ export const definitions = {
     "initializer": "defineImageSipLoading",
     "size": "125×125",
     "state": "active",
-    "initial": "true",
+    "initial": "false",
     "behavior": "loading",
     "placement": "正在生成图片的 125×125 占位图。使用本次提供的白底、圆角、粉橘渐变与杯形图片 SVG；替换生图中的占位内容，不覆盖 Upload / Generate 操作按钮。",
     "trigger": "生图请求开始时 active=true 循环：吸管插入 → 图片液面被吸空 → 空杯停顿 → 吸管收回 → 重新蓄满。成功、失败或取消时由业务移除加载态；减少动态效果时静态展示。",
