@@ -230,14 +230,46 @@ async function loadConfig() {
 }
 
 async function readSheet(config) {
-  const args = ["sheets", "+read", "--as", config.identity, "--range", config.range];
+  const args = ["sheets", "+cells-get", "--as", config.identity, "--range", config.range,
+    "--include", "value", "--max-chars", "2000000"];
   if (config.spreadsheetToken) args.push("--spreadsheet-token", config.spreadsheetToken);
   else if (config.spreadsheetUrl) args.push("--url", config.spreadsheetUrl);
   if (config.sheetId) args.push("--sheet-id", config.sheetId);
 
   const output = await run("lark-cli", args, { cwd: root });
-  const data = JSON.parse(output);
-  return data.values || data.data?.valueRange?.values || data.data?.values || [];
+  const response = JSON.parse(output);
+  const data = response.data;
+  if (!response.ok || !Array.isArray(data?.ranges) || !data.ranges.length || data.has_more || data.truncated) {
+    throw new Error(`Incomplete sheet response for ${config.sheetId}; sync stopped.`);
+  }
+
+  // Preserve physical sheet coordinates, including blank rows between attachments.
+  const rows = [];
+  const seenRows = new Set();
+  for (const range of data.ranges) {
+    if (range.truncated || !Array.isArray(range.row_indices) || !Array.isArray(range.col_indices)) {
+      throw new Error(`Incomplete sheet range for ${config.sheetId}; sync stopped.`);
+    }
+    for (const [index, rowNumber] of range.row_indices.entries()) {
+      const cells = range.cells?.[index];
+      if (!Array.isArray(cells) || cells.length !== range.col_indices.length) {
+        throw new Error(`Incomplete sheet row ${rowNumber}; sync stopped.`);
+      }
+      const row = rows[rowNumber - 1] ||= [];
+      seenRows.add(rowNumber);
+      for (const [columnIndex, letters] of range.col_indices.entries()) {
+        const columnNumber = [...letters].reduce((value, letter) => value * 26 + letter.charCodeAt(0) - 64, 0);
+        const cell = cells[columnIndex] || {};
+        row[columnNumber - 1] = cell.rich_text?.length ? cell.rich_text : (cell.value ?? "");
+      }
+    }
+  }
+  const bounds = config.range.match(/^[A-Z]+(\d+):[A-Z]+(\d+)$/i);
+  if (!bounds) throw new Error(`Unsupported sheet range: ${config.range}`);
+  for (let row = Number(bounds[1]); row <= Number(bounds[2]); row++) {
+    if (!seenRows.has(row)) throw new Error(`Missing sheet row ${row}; sync stopped.`);
+  }
+  return rows;
 }
 
 function parseRows(rows, config) {
@@ -343,7 +375,7 @@ function extractFileRefs(cell) {
     }
 
     if (typeof value === "object") {
-      const token = value.fileToken || value.file_token || value.token;
+      const token = value.attachment_token || value.fileToken || value.file_token || value.token;
       const url = value.url || value.link;
       const name = value.name || value.file_name || value.text;
       const size = Number(value.size || value.file_size || 0);

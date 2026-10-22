@@ -1,6 +1,66 @@
 {
   "items": [
     {
+      "name": "S logo - transparent chromatic idle 5s",
+      "fileName": "S_logo_待机5秒_透明_Lottie.json",
+      "file": "./lotties/未分类/S-logo-待机5秒-透明-Lottie-b23882ac.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [
+        "开屏页"
+      ],
+      "mimeType": "application/json",
+      "width": 1024,
+      "height": 1024,
+      "frameRate": 60,
+      "frames": 300,
+      "duration": 5,
+      "firstSeenAt": "",
+      "updatedAt": "2026-10-22T06:08:50.767Z"
+    },
+    {
+      "name": "S logo - transparent quick outro 1.2s",
+      "fileName": "02_短促片尾_1.2秒_Lottie.json",
+      "file": "./lotties/未分类/02-短促片尾-1-3967e688.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [
+        "开屏页"
+      ],
+      "mimeType": "application/json",
+      "width": 1024,
+      "height": 1024,
+      "frameRate": 60,
+      "frames": 72,
+      "duration": 1.2,
+      "firstSeenAt": "",
+      "updatedAt": "2026-10-22T06:08:49.727Z"
+    },
+    {
+      "name": "S logo - transparent path entrance 2s",
+      "fileName": "01_路径出场_2秒_Lottie.json",
+      "file": "./lotties/未分类/01-路径出场-2秒-Lottie-21dbac89.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [
+        "开屏页"
+      ],
+      "mimeType": "application/json",
+      "width": 1024,
+      "height": 1024,
+      "frameRate": 60,
+      "frames": 120,
+      "duration": 2,
+      "firstSeenAt": "",
+      "updatedAt": "2026-10-22T06:08:49.049Z"
+    },
+    {
       "name": "红宝石宝箱 · 500KB 优化版 v15",
       "fileName": "红宝石宝箱-500KB版-v15.json",
       "file": "./lotties/未分类/红宝石宝箱-500KB版-v15-44f28a79.json",
@@ -639,7 +699,7 @@
       "updatedAt": "2026-09-09T12:12:34.104Z"
     },
     {
-      "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0015b_8a5fb370-8f27-4176-bbba-6859757455ag~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
+      "name": "@白佳禄",
       "fileName": "sipplay2-original-quality.mp4",
       "file": "./motions/视频动效/开屏动效/sipplay2-original-quality-180e6071.mp4",
       "kind": "video",
@@ -659,7 +719,7 @@
       "updatedAt": "2026-09-08T09:05:41.118Z"
     },
     {
-      "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0015b_8a5fb370-8f27-4176-bbba-6859757455ag~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
+      "name": "@白佳禄",
       "fileName": "飞书20260908-163817-original-quality.mp4",
       "file": "./motions/video/开屏动效/飞书20260908-163817-original-quality-d29f6b3b.mp4",
       "kind": "video",
@@ -679,7 +739,7 @@
       "updatedAt": "2026-09-08T08:48:21.445Z"
     },
     {
-      "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0013s_d6ef2e8e-9317-45a0-90b8-ac6d15accc1g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
+      "name": "@白佳禄",
       "fileName": "LociWorldLottie-hevc-alpha-under-1mb.mov",
       "file": "./motions/HEVC-with-Alpha/app开屏页/LociWorldLottie-hevc-alpha-under-1mb-befb3fac.mov",
       "previewFile": "./motions/HEVC-with-Alpha/app开屏页/LociWorldLottie-hevc-alpha-under-1mb-befb3fac.mov.preview.mp4",
@@ -700,7 +760,7 @@
       "updatedAt": "2026-09-08T08:36:29.769Z"
     },
     {
-      "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0013s_d6ef2e8e-9317-45a0-90b8-ac6d15accc1g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
+      "name": "@白佳禄",
       "fileName": "LociWorldLottieLoading-hevc-alpha-under-1mb.mov",
       "file": "./motions/HEVC-with-Alpha/app开屏页/LociWorldLottieLoading-hevc-alpha-under-1mb-cd1d6fec.mov",
       "previewFile": "./motions/HEVC-with-Alpha/app开屏页/LociWorldLottieLoading-hevc-alpha-under-1mb-cd1d6fec.mov.preview.mp4",
@@ -901,7 +961,7 @@
       "updatedAt": "2026-09-08T05:19:06.891Z"
     },
     {
-      "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
+      "name": "@白佳禄",
       "fileName": "黑哥们豆豆眼.gif",
       "file": "./motions/GIF/风格选择页-黑哥们/黑哥们豆豆眼-6bc6340c.gif",
       "kind": "gif",
@@ -921,7 +981,7 @@
       "updatedAt": "2026-08-06T06:20:52.699Z"
     },
     {
-      "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
+      "name": "@白佳禄",
       "fileName": "黑哥们豆豆眼.mov",
       "file": "./motions/HEVC-with-Alpha/风格选择页-黑哥们/黑哥们豆豆眼-113dd6f0.mov",
       "previewFile": "./motions/HEVC-with-Alpha/风格选择页-黑哥们/黑哥们豆豆眼-113dd6f0.mov.preview.mp4",
@@ -1028,7 +1088,7 @@
       "updatedAt": "2026-07-31T08:27:27.507Z"
     },
     {
-      "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
+      "name": "@白佳禄",
       "fileName": "7月20日 (3).gif",
       "file": "./motions/GIF/风格选择页-哥特/7月20日-3-94b2d657.gif",
       "kind": "gif",
@@ -1048,7 +1108,7 @@
       "updatedAt": "2026-07-29T08:04:03.982Z"
     },
     {
-      "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
+      "name": "@白佳禄",
       "fileName": "7月20日 (3).mov",
       "file": "./motions/HEVC-with-Alpha/风格选择页-哥特/7月20日-3-f78f7b4f.mov",
       "previewFile": "./motions/HEVC-with-Alpha/风格选择页-哥特/7月20日-3-f78f7b4f.mov.preview.mp4",
@@ -1111,7 +1171,7 @@
       "updatedAt": "2026-07-27T10:43:45.263Z"
     },
     {
-      "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
+      "name": "@白佳禄",
       "fileName": "mc.gif",
       "file": "./motions/GIF/风格选择页-mc/mc-9c1b6c04.gif",
       "kind": "gif",
@@ -1131,7 +1191,7 @@
       "updatedAt": "2026-07-27T09:44:58.503Z"
     },
     {
-      "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
+      "name": "@白佳禄",
       "fileName": "mc.mov",
       "file": "./motions/HEVC-with-Alpha/风格选择页-mc/mc-11fa66e3.mov",
       "previewFile": "./motions/HEVC-with-Alpha/风格选择页-mc/mc-11fa66e3.mov.preview.mp4",
@@ -1152,7 +1212,7 @@
       "updatedAt": "2026-07-27T09:44:57.823Z"
     },
     {
-      "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0013s_d6ef2e8e-9317-45a0-90b8-ac6d15accc1g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
+      "name": "@白佳禄",
       "fileName": "LogoMascotScaleIntro-hevc-alpha-under-1mb.mov",
       "file": "./motions/HEVC-with-Alpha/loci生长动画/LogoMascotScaleIntro-hevc-alpha-under-1mb-458dc4e5.mov",
       "previewFile": "./motions/HEVC-with-Alpha/loci生长动画/LogoMascotScaleIntro-hevc-alpha-under-1mb-458dc4e5.mov.preview.mp4",
@@ -1173,7 +1233,7 @@
       "updatedAt": "2026-07-27T04:47:00.554Z"
     },
     {
-      "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0013s_d6ef2e8e-9317-45a0-90b8-ac6d15accc1g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
+      "name": "@白佳禄",
       "fileName": "LogoMascotIntro-hevc-alpha-under-1mb.mov",
       "file": "./motions/HEVC-with-Alpha/loci生长动画/LogoMascotIntro-hevc-alpha-under-1mb-d50df632.mov",
       "previewFile": "./motions/HEVC-with-Alpha/loci生长动画/LogoMascotIntro-hevc-alpha-under-1mb-d50df632.mov.preview.mp4",
@@ -1194,7 +1254,7 @@
       "updatedAt": "2026-07-27T04:46:59.971Z"
     },
     {
-      "name": "@白佳禄 白佳禄 https://s1-imfile.feishucdn.com/static-resource/v1/v3_0013s_d6ef2e8e-9317-45a0-90b8-ac6d15accc1g~?image_size=72x72&cut_type=default-face&quality=&format=jpeg&sticker_format=.webp 7647501131957947344",
+      "name": "@白佳禄",
       "fileName": "LogoMascot-hevc-alpha-under-1mb.mov",
       "file": "./motions/HEVC-with-Alpha/loci生长动画/LogoMascot-hevc-alpha-under-1mb-c3dc4eb8.mov",
       "previewFile": "./motions/HEVC-with-Alpha/loci生长动画/LogoMascot-hevc-alpha-under-1mb-c3dc4eb8.mov.preview.mp4",
@@ -1275,7 +1335,7 @@
       "updatedAt": "2026-07-22T18:56:57.856Z"
     },
     {
-      "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
+      "name": "@白佳禄",
       "fileName": "7月20日 (3)(1)q版.gif",
       "file": "./motions/GIF/风格选择页-q版/7月20日-3-1-q版-559038c6.gif",
       "kind": "gif",
@@ -1295,7 +1355,7 @@
       "updatedAt": "2026-07-21T12:18:04.911Z"
     },
     {
-      "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
+      "name": "@白佳禄",
       "fileName": "7月20日 (3)豆豆眼.gif",
       "file": "./motions/GIF/风格选择页-豆豆眼/7月20日-3-豆豆眼-4bb1f014.gif",
       "kind": "gif",
@@ -1315,7 +1375,7 @@
       "updatedAt": "2026-07-21T12:18:03.636Z"
     },
     {
-      "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
+      "name": "@白佳禄",
       "fileName": "7月20日 (3)(1)牛仔.gif",
       "file": "./motions/GIF/风格选择页-牛仔/7月20日-3-1-牛仔-aeeb1f0d.gif",
       "kind": "gif",
@@ -1335,7 +1395,7 @@
       "updatedAt": "2026-07-21T12:18:02.999Z"
     },
     {
-      "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
+      "name": "@白佳禄",
       "fileName": "7月20日 (3)(1)q版.mov",
       "file": "./motions/HEVC-with-Alpha/风格选择页-q版/7月20日-3-1-q版-8e00a579.mov",
       "previewFile": "./motions/HEVC-with-Alpha/风格选择页-q版/7月20日-3-1-q版-8e00a579.mov.preview.mp4",
@@ -1356,7 +1416,7 @@
       "updatedAt": "2026-07-21T12:18:02.409Z"
     },
     {
-      "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
+      "name": "@白佳禄",
       "fileName": "7月20日 (3)豆豆眼.mov",
       "file": "./motions/HEVC-with-Alpha/风格选择页-豆豆眼/7月20日-3-豆豆眼-75909e80.mov",
       "previewFile": "./motions/HEVC-with-Alpha/风格选择页-豆豆眼/7月20日-3-豆豆眼-75909e80.mov.preview.mp4",
@@ -1377,7 +1437,7 @@
       "updatedAt": "2026-07-21T12:18:00.884Z"
     },
     {
-      "name": "@白佳禄 白佳禄 https://s3-imfile.feishucdn.com/static-resource/avatar/v3_0013q_0bd66f7c-f843-47f4-af3a-b078f4338a7g_64.webp 7647501131957947344",
+      "name": "@白佳禄",
       "fileName": "7月20日 (3)(1).mov",
       "file": "./motions/HEVC-with-Alpha/风格选择页-牛仔/7月20日-3-1-d0485996.mov",
       "previewFile": "./motions/HEVC-with-Alpha/风格选择页-牛仔/7月20日-3-1-d0485996.mov.preview.mp4",
