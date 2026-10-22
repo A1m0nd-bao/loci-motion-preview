@@ -141,13 +141,13 @@ export function defineImageSipLoading(animate) {
       // A traveling wave moves each surface point with a different phase.
       // Its amplitude fades with the remaining liquid so the empty cup stays empty.
       const amount = clamp(1 - drain + refill);
-      const amplitude = rest ? 0 : 1.8 * smooth(amount * 5);
+      const amplitude = rest ? 0 : .55 * smooth(amount * 5);
       for (let i = 0; i < 10; i++) {
-        const phase = (surfaceX[i] - 48) * Math.PI * 2 / 26 - p * Math.PI * 8;
-        const wave = Math.sin(phase) + .16 * Math.sin(phase * 2 + .8);
+        const phase = (surfaceX[i] - 48) * Math.PI * 2 / 26 - p * Math.PI * 4;
+        const wave = Math.sin(phase) + .08 * Math.sin(phase * 2 + .8);
         y[i] = a[i] + (b[i] - a[i]) * blend + amplitude * wave;
       }
-      const pull = moving ? Math.sin(Math.PI * drain) * .75 : 0;
+      const pull = moving ? Math.sin(Math.PI * drain) * .3 : 0;
       this.liquid.setAttribute('d', `M48 ${y[0]} C51.5 ${y[1]} 55.5 ${y[2]} 58.3 ${y[3]} C61.2 ${y[4]+pull} 64.5 ${y[5]+pull} 67 ${y[6]} C69 ${y[7]} 71 ${y[8]} 73 ${y[9]} L73 79 L48 79Z`);
       const tx = rest ? 0 : 5 * (1 - enter + leave);
       const ty = rest ? 0 : -14 * (1 - enter + leave);
