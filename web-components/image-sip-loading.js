@@ -3,7 +3,15 @@ export function defineImageSipLoading(animate) {
   if (customElements.get(tag)) return;
   const clamp = v => Math.max(0, Math.min(1, v));
   const smooth = v => { v = clamp(v); return v * v * (3 - 2 * v); };
-  const surfaceX = [48, 51.5, 55.5, 58.3, 61.2, 64.5, 67, 69, 71, 73];
+  const settleIn = t => { t = clamp(t) - 1; return 1 + 2.5 * t * t * t + 1.5 * t * t; };
+  const waveValue = (x, phase) => {
+    const t = (x - 48) * Math.PI * 2 / 29 - phase;
+    return Math.sin(t) + .08 * Math.sin(t * 2 + .8);
+  };
+  const waveSlope = (x, phase) => {
+    const t = (x - 48) * Math.PI * 2 / 29 - phase;
+    return Math.PI * 2 / 29 * (Math.cos(t) + .16 * Math.cos(t * 2 + .8));
+  };
   const surfaces = [
     [61.5681,64.1,66.2,63.2,61,60.9,62.6103,63.1,63.7,64.001],
     [64.7386,66.4343,67.7734,66.7085,65.2607,64.1817,65.5816,66.3,67,67.817],
@@ -18,7 +26,7 @@ export function defineImageSipLoading(animate) {
    * Figma：待绑定；仅凭图标相似不得批量替换
    * 适配：保留 125×125 画布与 rx=16 比例，图标中心和杯口、吸管的原始路径。预览中的 2× 放大仅便于观察，不进入产品布局。
    * 注释同步：位置待核对
-   * 触发：生图请求开始时 active=true 循环：吸管插入 → 翻滚的图片液面被吸空 → 空杯停顿 → 吸管收回 → 重新蓄满。成功、失败或取消时由业务移除加载态；减少动态效果时静态展示。
+   * 触发：生图请求开始时 active=true 循环：吸管柔和插入 → 连续波纹随吸饮降低 → 吸空后弹出两滴水 → 吸管收回 → 重新蓄满。成功、失败或取消时由业务移除加载态；减少动态效果时静态展示。
    * 状态：active；默认 false，接入时以业务状态覆盖
    * 事件：motion-cycle → { iteration: number }
    * 业务接入：纯展示组件，无内部按钮或点击切换。active 绑定真实请求的 loading 状态；动画循环不是进度或成功信号，不显示虚构百分比。成功后替换为生成图片，失败显示原有重试界面。卸载与浏览器后台会停止或暂停动画。
@@ -83,6 +91,7 @@ export function defineImageSipLoading(animate) {
             svg{position:absolute;inset:0;display:block;width:100%;height:100%;overflow:visible}
             .straw,.liquid,.sun,.sun-hole{transform-box:view-box;transform-origin:0 0}
             .stream{stroke-dasharray:2.4 6;opacity:0}
+            .drop{opacity:0;fill:white}
           </style>
           <div class="tile" role="img" aria-label="正在生成图片">
             <div class="reference"></div><div class="flow"></div><div class="gleam"></div>
@@ -100,12 +109,15 @@ export function defineImageSipLoading(animate) {
               </g>
               <path d="M66.5766 50.3462H52.1738C49.9647 50.3462 48.1738 52.1371 48.1738 54.3462V70.999C48.1738 73.2081 49.9647 74.999 52.1738 74.999H68.653C70.8621 74.999 72.653 73.2081 72.653 70.999V60.5892" stroke-width="2.66667" stroke-linecap="round" stroke="white"/>
               <circle class="sun" cx="55.2895" cy="57.29" r="2.77778" fill="white"/>
+              <path class="drop" d="M0 -1.7C.45 -.8 1.15 -.15 1.15 .55A1.15 1.15 0 0 1 -1.15 .55C-1.15 -.15 -.45 -.8 0 -1.7Z"/>
+              <path class="drop" d="M0 -1.7C.45 -.8 1.15 -.15 1.15 .55A1.15 1.15 0 0 1 -1.15 .55C-1.15 -.15 -.45 -.8 0 -1.7Z"/>
             </svg>
           </div>`;
         const find = s => this.shadowRoot.querySelector(s);
         this.tile = find('.tile'); this.flow = find('.flow'); this.gleam = find('.gleam');
         this.straw = find('.straw'); this.liquid = find('.liquid'); this.sun = find('.sun');
         this.tube = this.straw.querySelector('path'); this.stream = find('.stream');
+        this.drops = [...this.shadowRoot.querySelectorAll('.drop')];
       }
       this.reducedMotion.addEventListener('change', this.onReducedMotion);
       document.addEventListener('visibilitychange', this.onVisibility);
@@ -129,40 +141,63 @@ export function defineImageSipLoading(animate) {
       this.state = 'idle';
     }
     renderPhase(p, rest = false) {
-      const enter = smooth((p - .025) / .135);
+      const enterT = clamp((p - .025) / .165);
+      const enter = settleIn(enterT);
       const drain = smooth((p - .22) / .48);
-      const leave = smooth((p - .79) / .10);
+      const leave = smooth((p - .85) / .10);
       const refill = smooth((p - .88) / .12);
-      const moving = p >= .22 && p < .70;
-      const position = rest ? 1 : clamp(drain - refill) * 4;
-      const index = Math.min(3, Math.floor(position));
-      const blend = position - index;
-      const a = surfaces[index], b = surfaces[index + 1], y = this.surface;
-      // A traveling wave moves each surface point with a different phase.
-      // Its amplitude fades with the remaining liquid so the empty cup stays empty.
       const amount = clamp(1 - drain + refill);
-      const amplitude = rest ? 0 : .55 * smooth(amount * 5);
-      for (let i = 0; i < 10; i++) {
-        const phase = (surfaceX[i] - 48) * Math.PI * 2 / 26 - p * Math.PI * 4;
-        const wave = Math.sin(phase) + .08 * Math.sin(phase * 2 + .8);
-        y[i] = a[i] + (b[i] - a[i]) * blend + amplitude * wave;
+      const moving = p >= .22 && p < .70;
+      const y = this.surface;
+      if (rest) {
+        y.set(surfaces[1]);
+        this.liquid.setAttribute('d', `M48 ${y[0]} C51.5 ${y[1]} 55.5 ${y[2]} 58.3 ${y[3]} C61.2 ${y[4]} 64.5 ${y[5]} 67 ${y[6]} C69 ${y[7]} 71 ${y[8]} 73 ${y[9]} L73 79 L48 79Z`);
+      } else {
+        // Sample one continuous traveling surface with analytic tangents.
+        // Adjacent Beziers share their slope, so crests never hinge at a join.
+        const level = 62.8 + 13.8 * clamp(drain - refill);
+        const amplitude = .9 * smooth(amount * 5);
+        const phase = p * Math.PI * 4;
+        const step = 25 / 3;
+        y[0] = level + amplitude * waveValue(48, phase);
+        for (let i = 0; i < 3; i++) {
+          const x0 = 48 + i * step, x1 = x0 + step;
+          const end = level + amplitude * waveValue(x1, phase);
+          y[i * 3 + 1] = y[i * 3] + amplitude * waveSlope(x0, phase) * step / 3;
+          y[i * 3 + 2] = end - amplitude * waveSlope(x1, phase) * step / 3;
+          y[i * 3 + 3] = end;
+        }
+        this.liquid.setAttribute('d', `M48 ${y[0]} C50.7777778 ${y[1]} 53.5555556 ${y[2]} 56.3333333 ${y[3]} C59.1111111 ${y[4]} 61.8888889 ${y[5]} 64.6666667 ${y[6]} C67.4444444 ${y[7]} 70.2222222 ${y[8]} 73 ${y[9]} L73 79 L48 79Z`);
       }
-      const pull = moving ? Math.sin(Math.PI * drain) * .3 : 0;
-      this.liquid.setAttribute('d', `M48 ${y[0]} C51.5 ${y[1]} 55.5 ${y[2]} 58.3 ${y[3]} C61.2 ${y[4]+pull} 64.5 ${y[5]+pull} 67 ${y[6]} C69 ${y[7]} 71 ${y[8]} 73 ${y[9]} L73 79 L48 79Z`);
-      const tx = rest ? 0 : 5 * (1 - enter + leave);
-      const ty = rest ? 0 : -14 * (1 - enter + leave);
-      const settle = !rest && moving ? Math.sin(p * Math.PI * 9) * .28 : 0;
-      const depth = rest ? 0 : smooth((drain - .18) / .72);
+      const breathe = Math.sin(p * Math.PI * 4) * Math.sin(Math.PI * drain);
+      const landing = Math.sin(Math.PI * enterT) * Math.sin(Math.PI * enterT * 2);
+      const pop = Math.sin(Math.PI * clamp((p - .70) / .15));
+      const tx = rest ? 0 : 5 * (1 - enter) + 4 * leave;
+      const ty = rest ? 0 : -14 * (1 - enter) - 14 * leave + breathe * .18;
+      const angle = rest ? 0 : -9 * (1 - enter) + 7 * leave + breathe * .9 + pop * 1.3;
+      const depth = rest ? 0 : smooth((drain - .08) / .88);
       const tipX = 63.9707 - depth * 2.47;
       const tipY = 67.187 + depth * 6.85;
-      const tube = `M${tipX} ${tipY}L71.4785 51.8302C71.5619 51.6596 71.7141 51.5326 71.8969 51.4812L77.1651 49.9995`;
+      const bend = rest ? 0 : breathe * .65 + landing * .55 - pop * .35;
+      const tube = `M${tipX} ${tipY} C${tipX + 2.6 + bend} ${tipY - 5.2} ${69.8 + bend} 55.6 71.4785 51.8302 Q71.62 51.55 71.8969 51.4812 L77.1651 49.9995`;
       this.tube.setAttribute('d', tube);
       this.stream.setAttribute('d', tube);
-      this.straw.setAttribute('transform', `translate(${tx} ${ty}) rotate(${settle} 71.5 52)`);
-      this.straw.style.opacity = rest ? '1' : String(enter * (1 - leave));
-      this.stream.style.opacity = moving && !rest ? '.6' : '0';
-      this.stream.style.strokeDashoffset = String(-p * 135);
-      const phase = rest ? '静止' : p < .22 ? '吸管插入' : p < .70 ? '吸取图片' : p < .79 ? '空杯停顿' : p < .88 ? '吸管收回' : '重新蓄满';
+      this.straw.setAttribute('transform', `translate(${tx} ${ty}) rotate(${angle} 71.5 52)`);
+      this.straw.style.opacity = rest ? '1' : String(clamp(enterT * 5) * (1 - leave));
+      this.stream.style.opacity = moving && !rest ? '.45' : '0';
+      this.stream.style.strokeDashoffset = String(-p * 110);
+      for (let i = 0; i < 2; i++) {
+        const u = (p - .70 - i * .025) / .135;
+        const visible = !rest && u > 0 && u < 1;
+        this.drops[i].style.opacity = visible ? String(smooth(u / .15) * (1 - smooth((u - .58) / .42))) : '0';
+        if (visible) {
+          const dx = (i === 0 ? 5.2 : -2.8) * u;
+          const dy = -29 * u + 25 * u * u;
+          const scale = (i === 0 ? .9 : .7) * (.7 + .3 * Math.sin(Math.PI * u));
+          this.drops[i].setAttribute('transform', `translate(${77.1651 + dx} ${49.9995 + dy}) rotate(${(i === 0 ? 25 : -22) * u}) scale(${scale} ${scale * (1 + .22 * Math.sin(Math.PI * u))})`);
+        }
+      }
+      const phase = rest ? '静止' : p < .22 ? '吸管插入' : p < .70 ? '吸取图片' : p < .85 ? '水滴弹出' : p < .88 ? '吸管收回' : '重新蓄满';
       if (this.tile.dataset.phase !== phase) this.tile.dataset.phase = phase;
     }
     start() {
@@ -225,7 +260,7 @@ export const imageSipLoadingDemoMarkup = `
   <section class="image-sip-demo">
     <div class="image-sip-large"><sipplay-image-sip-loading data-motion active duration="5.8" flow-duration="8"></sipplay-image-sip-loading></div>
     <p class="image-sip-title">正在生成图片</p>
-    <p class="image-sip-caption">流光 · 插入 · 吸空 · 蓄满</p>
+    <p class="image-sip-caption">流光 · 吸饮 · 水滴 · 蓄满</p>
     <div class="image-sip-original"><sipplay-image-sip-loading active duration="5.8" flow-duration="8"></sipplay-image-sip-loading><span>原始尺寸 · 125 × 125</span></div>
   </section>`;
 

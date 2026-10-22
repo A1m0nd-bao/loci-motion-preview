@@ -1,24 +1,24 @@
-import { imageSipLoadingDemoMarkup } from "./image-sip-loading.js?v=20261022-image-sip4";
-import { bracketsToolDemoMarkup, imageToolDemoMarkup } from "./tool-highlight.js?v=20261022-image-sip4";
-import { bottomBarDemoMarkup } from "./bottom-bar.js?v=20261022-image-sip4";
-import { userPageDemoMarkup } from "./user-page-toggle.js?v=20261022-image-sip4";
-import { plusSelectionDemoMarkup } from "./plus-selection-toggle.js?v=20261022-image-sip4";
-import { homeSettleDemoMarkup } from "./home-settle-toggle.js?v=20261022-image-sip4";
-import { warningNudgeDemoMarkup } from "./warning-nudge.js?v=20261022-image-sip4";
-import { liquidRiseDemoMarkup } from "./liquid-rise-toggle.js?v=20261022-image-sip4";
-import { chatBubbleDemoMarkup } from "./chat-bubble-toggle.js?v=20261022-image-sip4";
-import { tapTabDemoMarkup } from "./tap-tab.js?v=20261022-image-sip4";
-import { previewTabsDemoMarkup } from "./preview-tabs.js?v=20261022-image-sip4";
-import { whiteSelectionDemoMarkup } from "./white-selection-toggle.js?v=20261022-image-sip4";
-import { historyClockDemoMarkup } from "./history-clock.js?v=20261022-image-sip4";
-import { bellRingDemoMarkup } from "./bell-ring-toggle.js?v=20261022-image-sip4";
-import { voiceWaveDemoMarkup } from "./voice-wave.js?v=20261022-image-sip4";
-import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261022-image-sip4";
-import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261022-image-sip4";
-import { selectionDemoMarkup } from "./selection-toggle.js?v=20261022-image-sip4";
-import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261022-image-sip4";
-import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261022-image-sip4";
-import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261022-image-sip4";
+import { imageSipLoadingDemoMarkup } from "./image-sip-loading.js?v=20261022-image-sip5";
+import { bracketsToolDemoMarkup, imageToolDemoMarkup } from "./tool-highlight.js?v=20261022-image-sip5";
+import { bottomBarDemoMarkup } from "./bottom-bar.js?v=20261022-image-sip5";
+import { userPageDemoMarkup } from "./user-page-toggle.js?v=20261022-image-sip5";
+import { plusSelectionDemoMarkup } from "./plus-selection-toggle.js?v=20261022-image-sip5";
+import { homeSettleDemoMarkup } from "./home-settle-toggle.js?v=20261022-image-sip5";
+import { warningNudgeDemoMarkup } from "./warning-nudge.js?v=20261022-image-sip5";
+import { liquidRiseDemoMarkup } from "./liquid-rise-toggle.js?v=20261022-image-sip5";
+import { chatBubbleDemoMarkup } from "./chat-bubble-toggle.js?v=20261022-image-sip5";
+import { tapTabDemoMarkup } from "./tap-tab.js?v=20261022-image-sip5";
+import { previewTabsDemoMarkup } from "./preview-tabs.js?v=20261022-image-sip5";
+import { whiteSelectionDemoMarkup } from "./white-selection-toggle.js?v=20261022-image-sip5";
+import { historyClockDemoMarkup } from "./history-clock.js?v=20261022-image-sip5";
+import { bellRingDemoMarkup } from "./bell-ring-toggle.js?v=20261022-image-sip5";
+import { voiceWaveDemoMarkup } from "./voice-wave.js?v=20261022-image-sip5";
+import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261022-image-sip5";
+import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261022-image-sip5";
+import { selectionDemoMarkup } from "./selection-toggle.js?v=20261022-image-sip5";
+import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261022-image-sip5";
+import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261022-image-sip5";
+import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261022-image-sip5";
 
 export const upstreamVersion = "1.3.0";
 export const upstreamURL = "https://github.com/tgomilar/motion-components";
@@ -110,7 +110,7 @@ const upstreamMotions = entries.map(([id, name, category, description, markup, c
 
 export const webMotions = [{
   id: "sipplay-image-sip-loading", name: "生图流光吸饮", category: "加载状态",
-  description: "背景柔和流光，吸管斜插进杯中，白色圆点保持不动，山形液面横向翻滚并逐步吸低，吸管随之伸向杯底；空杯稍停，重新蓄满后继续循环。沿用提供的 125 × 125 SVG，支持暂停、参数调整、减少动态效果和完整 HTML 下载。",
+  description: "背景柔和流光，吸管带轻微回弹插入，白色圆点保持不动，连续柔和的波纹随吸饮降低，吸管自然弯曲并伸向杯底；吸空后从吸管口弹出两滴水，重新蓄满后继续循环。沿用提供的 125 × 125 SVG，支持暂停、参数调整、减少动态效果和完整 HTML 下载。",
   markup: imageSipLoadingDemoMarkup,
   controls: [number("duration", "吸饮周期（秒）", 5.8, 3.6, 10, 0.2), number("flow-duration", "流光周期（秒）", 8, 4, 16, 0.5)],
   kind: "web", kindLabel: "Web 组件", fileName: "sipplay-image-sip-loading",
