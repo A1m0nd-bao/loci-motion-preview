@@ -21,7 +21,7 @@ export function defineImageSipLoading(animate) {
    * Figma：待绑定；仅凭图标相似不得批量替换
    * 适配：保留 125×125 画布与 rx=16 比例，图标中心和杯口、吸管的原始路径。预览中的 2× 放大仅便于观察，不进入产品布局。
    * 注释同步：位置待核对
-   * 触发：生图请求开始时 active=true 循环：吸管柔和插入 → 按四档设计波形柔和过渡并降低 → 吸空后两滴水沿吸管口向右飞出并下落 → 吸管收回 → 重新蓄满。成功、失败或取消时由业务移除加载态；减少动态效果时静态展示。
+   * 触发：生图请求开始时 active=true 循环：吸管柔和插入 → 按四档设计波形缓慢横向流动并降低 → 吸空后两滴水沿吸管口向右飞出并下落 → 吸管收回 → 重新蓄满。成功、失败或取消时由业务移除加载态；减少动态效果时静态展示。
    * 状态：active；默认 false，接入时以业务状态覆盖
    * 事件：motion-cycle → { iteration: number }
    * 业务接入：纯展示组件，无内部按钮或点击切换。active 绑定真实请求的 loading 状态；动画循环不是进度或成功信号，不显示虚构百分比。成功后替换为生成图片，失败显示原有重试界面。卸载与浏览器后台会停止或暂停动画。
@@ -159,7 +159,25 @@ export function defineImageSipLoading(animate) {
             + (-2 * t3 + 3 * t2) * b[i] + (t3 - t2) * m1;
         }
       }
-      this.liquid.setAttribute('d', `M${y[0]} ${y[1]} L${y[2]} ${y[3]} C${y[4]} ${y[5]} ${y[6]} ${y[7]} ${y[8]} ${y[9]} L${y[10]} ${y[11]} C${y[12]} ${y[13]} ${y[14]} ${y[15]} ${y[16]} ${y[17]} L${y[18]} ${y[19]} L73 79 L48 79Z`);
+      // Translate a repeated strip of the designer's profile behind a fixed cup clip.
+      // A tangent-matched bridge joins copies without a visible seam or height jump.
+      const period = 33;
+      let path = `M${y[0]} ${y[1]}`;
+      const copies = rest ? 1 : 2;
+      for (let copy = 0; copy < copies; copy++) {
+        const x = copy * period;
+        path += ` L${y[2] + x} ${y[3]} C${y[4] + x} ${y[5]} ${y[6] + x} ${y[7]} ${y[8] + x} ${y[9]} L${y[10] + x} ${y[11]} C${y[12] + x} ${y[13]} ${y[14] + x} ${y[15]} ${y[16] + x} ${y[17]} L${y[18] + x} ${y[19]}`;
+        if (copy < copies - 1) {
+          const endX = y[18] + x, nextX = y[0] + x + period;
+          const bridge = (nextX - endX) / 3;
+          const endSlope = (y[19] - y[17]) / (y[18] - y[16]);
+          const startSlope = (y[3] - y[1]) / (y[2] - y[0]);
+          path += ` C${endX + bridge} ${y[19] + endSlope * bridge} ${nextX - bridge} ${y[1] - startSlope * bridge} ${nextX} ${y[1]}`;
+        }
+      }
+      const lastX = y[18] + (copies - 1) * period;
+      this.liquid.setAttribute('d', path + ` L${lastX} 79 L${y[0]} 79Z`);
+      this.liquid.setAttribute('transform', `translate(${rest ? 0 : p * period - period} 0)`);
       const breathe = Math.sin(p * Math.PI * 4) * Math.sin(Math.PI * drain);
       const landing = Math.sin(Math.PI * enterT) * Math.sin(Math.PI * enterT * 2);
       const pop = Math.sin(Math.PI * clamp((p - .70) / .15));
