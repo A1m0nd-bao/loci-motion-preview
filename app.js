@@ -1,6 +1,6 @@
-import { motionMotions } from "./motion/catalog.js?v=20261023-image-sip8";
-import { webMotions } from "./web-components/catalog.js?v=20261023-image-sip8";
-import { createWebController, copyExample, downloadExample, setupWebDetail, getWebValues, syncWebBackgrounds } from "./web-components/integration.js?v=20261023-image-sip8";
+import { motionMotions } from "./motion/catalog.js?v=20261023-sipplay-only";
+import { webMotions } from "./web-components/catalog.js?v=20261023-sipplay-only";
+import { createWebController, copyExample, downloadExample, setupWebDetail, getWebValues, syncWebBackgrounds } from "./web-components/integration.js?v=20261023-sipplay-only";
 
 if (import.meta.env?.DEV) document.querySelector("#motionStudioLocal").hidden = false;
 
@@ -422,20 +422,13 @@ function getUpdatedTime(motion) {
 
 function renderGalleryCards(items, selectedKind) {
   if (selectedKind === "web") {
-    const groups = [
-      { label: "sipplay", items: items.filter(item => item.custom) },
-      { label: "第三方示例", items: items.filter(item => !item.custom) },
-    ];
-    let hasPreviousGroup = false;
-    for (const group of groups) {
-      if (!group.items.length) continue;
+    if (items.length) {
       const heading = document.createElement("h2");
-      heading.className = "web-source-heading" + (hasPreviousGroup ? " has-divider" : "");
-      heading.textContent = group.label;
+      heading.className = "web-source-heading";
+      heading.textContent = "sipplay";
       gallery.append(heading);
-      for (const motion of group.items) gallery.append(createCard(motion));
-      hasPreviousGroup = true;
     }
+    for (const motion of items) gallery.append(createCard(motion));
     return;
   }
 

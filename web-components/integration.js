@@ -1,6 +1,6 @@
-import { exampleDocument } from "./examples.js?v=20261023-image-sip8";
-import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261023-image-sip8";
-import { renderHandoff } from "./handoff-ui.js?v=20261023-image-sip8";
+import { exampleDocument } from "./examples.js?v=20261023-sipplay-only";
+import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261023-sipplay-only";
+import { renderHandoff } from "./handoff-ui.js?v=20261023-sipplay-only";
 
 const controllers = new Set();
 
