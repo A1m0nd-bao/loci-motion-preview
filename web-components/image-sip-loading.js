@@ -14,6 +14,12 @@ export function defineImageSipLoading(animate) {
     [48,76.6,51.71676,76.6,53.67593,76.6,55.71307,76.6,57.6891,76.6,62.3626,76.6,64.3681,76.6,66.4362,76.6,68.4216,76.6,73,76.6],
   ];
   const tangent = (a, b) => a * b > 0 ? 2 * a * b / (a + b) : 0;
+  // Same cubic wave and 3.2s leftward loop as the supplied liquid-rise reference,
+  // scaled from its 21.6926px cup to this 24.4792px cup.
+  const waveScale = 24.4792 / 21.6926;
+  const wavePeriod = 16 * waveScale;
+  const waveAmplitude = 4 * waveScale;
+  const waveDuration = 3.2;
   /**
    * @summary 生图流光吸饮
    * 动效：生图流光吸饮 / sipplay-image-sip-loading
@@ -21,7 +27,7 @@ export function defineImageSipLoading(animate) {
    * Figma：待绑定；仅凭图标相似不得批量替换
    * 适配：保留 125×125 画布与 rx=16 比例，图标中心和杯口、吸管的原始路径。预览中的 2× 放大仅便于观察，不进入产品布局。
    * 注释同步：位置待核对
-   * 触发：生图请求开始时 active=true 循环：吸管柔和插入 → 按四档设计波形缓慢横向流动并降低 → 吸空后两滴水沿吸管口向右飞出并下落 → 吸管收回 → 重新蓄满。成功、失败或取消时由业务移除加载态；减少动态效果时静态展示。
+   * 触发：生图请求开始时 active=true 循环：吸管柔和插入 → 沿用彩色液面参考的连续波纹与 3.2 秒向左流动节奏，同时按设计液位降低 → 吸空后两滴水沿吸管口向右飞出并下落 → 吸管收回 → 重新蓄满。成功、失败或取消时由业务移除加载态；减少动态效果时静态展示。
    * 状态：active；默认 false，接入时以业务状态覆盖
    * 事件：motion-cycle → { iteration: number }
    * 业务接入：纯展示组件，无内部按钮或点击切换。active 绑定真实请求的 loading 状态；动画循环不是进度或成功信号，不显示虚构百分比。成功后替换为生成图片，失败显示原有重试界面。卸载与浏览器后台会停止或暂停动画。
@@ -132,6 +138,7 @@ export function defineImageSipLoading(animate) {
       for (const control of this.controls) control.cancel();
       this.controls.length = 0;
       this.state = 'idle';
+      this.iteration = 0;
     }
     renderPhase(p, rest = false) {
       const enterT = clamp((p - .025) / .165);
@@ -149,8 +156,8 @@ export function defineImageSipLoading(animate) {
         const a = surfaces[index], b = surfaces[index + 1];
         const before = surfaces[Math.max(0, index - 1)];
         const after = surfaces[Math.min(4, index + 2)];
-        // Monotone Hermite interpolation keeps the supplied silhouettes exact,
-        // with matching velocity at every keyframe and no added sine waves.
+        // Interpolate the supplied design levels with matching velocity at each keyframe.
+        // The flowing surface below reuses the user-provided liquid-rise wave.
         for (let i = 0; i < 20; i++) {
           const delta = b[i] - a[i];
           const m0 = index === 0 ? delta : tangent(a[i] - before[i], delta);
@@ -159,25 +166,24 @@ export function defineImageSipLoading(animate) {
             + (-2 * t3 + 3 * t2) * b[i] + (t3 - t2) * m1;
         }
       }
-      // Translate a repeated strip of the designer's profile behind a fixed cup clip.
-      // A tangent-matched bridge joins copies without a visible seam or height jump.
-      const period = 33;
-      let path = `M${y[0]} ${y[1]}`;
-      const copies = rest ? 1 : 2;
-      for (let copy = 0; copy < copies; copy++) {
-        const x = copy * period;
-        path += ` L${y[2] + x} ${y[3]} C${y[4] + x} ${y[5]} ${y[6] + x} ${y[7]} ${y[8] + x} ${y[9]} L${y[10] + x} ${y[11]} C${y[12] + x} ${y[13]} ${y[14] + x} ${y[15]} ${y[16] + x} ${y[17]} L${y[18] + x} ${y[19]}`;
-        if (copy < copies - 1) {
-          const endX = y[18] + x, nextX = y[0] + x + period;
-          const bridge = (nextX - endX) / 3;
-          const endSlope = (y[19] - y[17]) / (y[18] - y[16]);
-          const startSlope = (y[3] - y[1]) / (y[2] - y[0]);
-          path += ` C${endX + bridge} ${y[19] + endSlope * bridge} ${nextX - bridge} ${y[1] - startSlope * bridge} ${nextX} ${y[1]}`;
+      if (rest) {
+        this.liquid.setAttribute('d', `M${y[0]} ${y[1]} L${y[2]} ${y[3]} C${y[4]} ${y[5]} ${y[6]} ${y[7]} ${y[8]} ${y[9]} L${y[10]} ${y[11]} C${y[12]} ${y[13]} ${y[14]} ${y[15]} ${y[16]} ${y[17]} L${y[18]} ${y[19]} L73 79 L48 79Z`);
+        this.liquid.setAttribute('transform', 'translate(0 0)');
+      } else {
+        const level = (y[1] + y[19]) / 2;
+        const amplitude = waveAmplitude * smooth(clamp(1 - drain + refill) * 5);
+        const left = 48 - wavePeriod * 2;
+        let path = `M${left} ${level}`;
+        for (let i = 0; i < 6; i++) {
+          const x = left + i * wavePeriod;
+          path += ` C${x + wavePeriod / 2} ${level - amplitude} ${x + wavePeriod / 2} ${level + amplitude} ${x + wavePeriod} ${level}`;
         }
+        this.liquid.setAttribute('d', path + ` L${left + wavePeriod * 6} 79 H${left}Z`);
+        // Carry time through loading-loop boundaries so the wave never resets mid-flow.
+        const elapsed = ((this.iteration || 0) + p) * this.duration;
+        const offset = -(elapsed / waveDuration % 1) * wavePeriod;
+        this.liquid.setAttribute('transform', `translate(${offset} 0)`);
       }
-      const lastX = y[18] + (copies - 1) * period;
-      this.liquid.setAttribute('d', path + ` L${lastX} 79 L${y[0]} 79Z`);
-      this.liquid.setAttribute('transform', `translate(${rest ? 0 : p * period - period} 0)`);
       const breathe = Math.sin(p * Math.PI * 4) * Math.sin(Math.PI * drain);
       const landing = Math.sin(Math.PI * enterT) * Math.sin(Math.PI * enterT * 2);
       const pop = Math.sin(Math.PI * clamp((p - .70) / .15));
