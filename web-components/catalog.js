@@ -1,30 +1,38 @@
-import { imageSipLoadingDemoMarkup } from "./image-sip-loading.js?v=20261023-sipplay-only";
-import { bracketsToolDemoMarkup, imageToolDemoMarkup } from "./tool-highlight.js?v=20261023-sipplay-only";
-import { bottomBarDemoMarkup } from "./bottom-bar.js?v=20261023-sipplay-only";
-import { userPageDemoMarkup } from "./user-page-toggle.js?v=20261023-sipplay-only";
-import { plusSelectionDemoMarkup } from "./plus-selection-toggle.js?v=20261023-sipplay-only";
-import { homeSettleDemoMarkup } from "./home-settle-toggle.js?v=20261023-sipplay-only";
-import { warningNudgeDemoMarkup } from "./warning-nudge.js?v=20261023-sipplay-only";
-import { liquidRiseDemoMarkup } from "./liquid-rise-toggle.js?v=20261023-sipplay-only";
-import { chatBubbleDemoMarkup } from "./chat-bubble-toggle.js?v=20261023-sipplay-only";
-import { tapTabDemoMarkup } from "./tap-tab.js?v=20261023-sipplay-only";
-import { previewTabsDemoMarkup } from "./preview-tabs.js?v=20261023-sipplay-only";
-import { whiteSelectionDemoMarkup } from "./white-selection-toggle.js?v=20261023-sipplay-only";
-import { historyClockDemoMarkup } from "./history-clock.js?v=20261023-sipplay-only";
-import { bellRingDemoMarkup } from "./bell-ring-toggle.js?v=20261023-sipplay-only";
-import { voiceWaveDemoMarkup } from "./voice-wave.js?v=20261023-sipplay-only";
-import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261023-sipplay-only";
-import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261023-sipplay-only";
-import { selectionDemoMarkup } from "./selection-toggle.js?v=20261023-sipplay-only";
-import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261023-sipplay-only";
-import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261023-sipplay-only";
-import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261023-sipplay-only";
+import { billingTabsDemoMarkup } from "./billing-tabs.js?v=20261023-billing-tabs";
+import { imageSipLoadingDemoMarkup } from "./image-sip-loading.js?v=20261023-billing-tabs";
+import { bracketsToolDemoMarkup, imageToolDemoMarkup } from "./tool-highlight.js?v=20261023-billing-tabs";
+import { bottomBarDemoMarkup } from "./bottom-bar.js?v=20261023-billing-tabs";
+import { userPageDemoMarkup } from "./user-page-toggle.js?v=20261023-billing-tabs";
+import { plusSelectionDemoMarkup } from "./plus-selection-toggle.js?v=20261023-billing-tabs";
+import { homeSettleDemoMarkup } from "./home-settle-toggle.js?v=20261023-billing-tabs";
+import { warningNudgeDemoMarkup } from "./warning-nudge.js?v=20261023-billing-tabs";
+import { liquidRiseDemoMarkup } from "./liquid-rise-toggle.js?v=20261023-billing-tabs";
+import { chatBubbleDemoMarkup } from "./chat-bubble-toggle.js?v=20261023-billing-tabs";
+import { tapTabDemoMarkup } from "./tap-tab.js?v=20261023-billing-tabs";
+import { previewTabsDemoMarkup } from "./preview-tabs.js?v=20261023-billing-tabs";
+import { whiteSelectionDemoMarkup } from "./white-selection-toggle.js?v=20261023-billing-tabs";
+import { historyClockDemoMarkup } from "./history-clock.js?v=20261023-billing-tabs";
+import { bellRingDemoMarkup } from "./bell-ring-toggle.js?v=20261023-billing-tabs";
+import { voiceWaveDemoMarkup } from "./voice-wave.js?v=20261023-billing-tabs";
+import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261023-billing-tabs";
+import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261023-billing-tabs";
+import { selectionDemoMarkup } from "./selection-toggle.js?v=20261023-billing-tabs";
+import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261023-billing-tabs";
+import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261023-billing-tabs";
+import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261023-billing-tabs";
 
 export const upstreamVersion = "1.3.0";
 export const upstreamURL = "https://github.com/tgomilar/motion-components";
 
 const number = (attribute, label, value, min, max, step = 0.1) => ({ attribute, label, value, min, max, step });
 export const webMotions = [{
+  id: "sipplay-billing-tabs", name: "订阅积分滑动 Tab", category: "状态切换",
+  description: "保留提供的 250 × 35 毛玻璃胶囊、原始 Subscription / Credits 字形与白色底片。沿用预览 Tab 的弹簧滑动、轻微拉伸回弹和文字亮度变化；重复点击当前项不重播，支持快速反向、键盘、减少动态效果与完整 HTML 下载。默认选中 Credits。",
+  markup: billingTabsDemoMarkup, controls: [number("duration", "时长（秒）", 0.46, 0.18, 1.2, 0.02), number("bounce", "回弹程度", 0.14, 0, 0.35, 0.01)],
+  kind: "web", kindLabel: "Web 组件", fileName: "sipplay-billing-tabs",
+  file: "./web-components/preview.html?id=sipplay-billing-tabs", docs: null, custom: true,
+  tags: ["自定义 SVG", "Tab", "订阅", "积分", "Subscription", "Credits", "滑动", "毛玻璃", "250px"], interactionType: "点击切换",
+}, {
   id: "sipplay-image-sip-loading", name: "生图流光吸饮", category: "加载状态",
   description: "背景柔和流光，吸管带轻微回弹插入，白色圆点保持不动，液面沿用彩色液面参考的连续波纹与 3.2 秒向左平移节奏，同时按设计液位柔和降低，吸管自然弯曲并伸向杯底；吸空后两滴水沿吸管口向右飞出并自然下落，重新蓄满后继续循环。沿用提供的 125 × 125 SVG，支持暂停、参数调整、减少动态效果和完整 HTML 下载。",
   markup: imageSipLoadingDemoMarkup,

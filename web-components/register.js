@@ -1,3 +1,4 @@
+import { defineBillingTabs } from './billing-tabs.js';
 import { defineImageSipLoading } from './image-sip-loading.js';
 import { defineToolHighlight } from './tool-highlight.js';
 import { defineBottomBar } from './bottom-bar.js';
@@ -21,6 +22,7 @@ import { defineWhiteSelectionToggle } from './white-selection-toggle.js';
 import { defineSelectionToggle } from './selection-toggle.js';
 
 const definitions = {
+  'sipplay-billing-tabs': { define: defineBillingTabs, dependencies: [] },
   'sipplay-image-sip-loading': { define: defineImageSipLoading, dependencies: [] },
   'sipplay-brackets-tool': { define: defineToolHighlight, dependencies: [] },
   'sipplay-image-tool': { define: defineToolHighlight, dependencies: [] },

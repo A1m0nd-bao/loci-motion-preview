@@ -1,40 +1,41 @@
-import { defineImageSipLoading, imageSipLoadingDemoCSS } from "./image-sip-loading.js?v=20261023-sipplay-only";
-import { defineToolHighlight, toolHighlightDemoCSS } from "./tool-highlight.js?v=20261023-sipplay-only";
-import { defineBottomBar, bottomBarDemoCSS } from "./bottom-bar.js?v=20261023-sipplay-only";
-import { defineUserPageToggle, userPageDemoCSS } from "./user-page-toggle.js?v=20261023-sipplay-only";
-import { definePlusSelectionToggle, plusSelectionDemoCSS } from "./plus-selection-toggle.js?v=20261023-sipplay-only";
-import { defineHomeSettleToggle, homeSettleDemoCSS } from "./home-settle-toggle.js?v=20261023-sipplay-only";
-import { defineWarningNudge, warningNudgeDemoCSS } from "./warning-nudge.js?v=20261023-sipplay-only";
-import { defineLiquidRiseToggle, liquidRiseDemoCSS } from "./liquid-rise-toggle.js?v=20261023-sipplay-only";
-import { defineChatBubbleToggle, chatBubbleDemoCSS } from "./chat-bubble-toggle.js?v=20261023-sipplay-only";
-import { defineTapTab, tapTabDemoCSS } from "./tap-tab.js?v=20261023-sipplay-only";
-import { definePreviewTabs, previewTabsDemoCSS } from "./preview-tabs.js?v=20261023-sipplay-only";
-import { defineWhiteSelectionToggle, whiteSelectionDemoCSS } from "./white-selection-toggle.js?v=20261023-sipplay-only";
-import { defineHistoryClock, historyClockDemoCSS } from "./history-clock.js?v=20261023-sipplay-only";
-import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261023-sipplay-only";
-import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261023-sipplay-only";
-import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261023-sipplay-only";
-import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261023-sipplay-only";
-import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261023-sipplay-only";
-import { demoCSS } from "./demo-styles.js?v=20261023-sipplay-only";
-import { bindDemoActions } from "./demo-actions.js?v=20261023-sipplay-only";
-import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261023-sipplay-only";
-import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261023-sipplay-only";
-import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261023-sipplay-only";
-import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261023-sipplay-only";
+import { defineBillingTabs, billingTabsDemoCSS } from "./billing-tabs.js?v=20261023-billing-tabs";
+import { defineImageSipLoading, imageSipLoadingDemoCSS } from "./image-sip-loading.js?v=20261023-billing-tabs";
+import { defineToolHighlight, toolHighlightDemoCSS } from "./tool-highlight.js?v=20261023-billing-tabs";
+import { defineBottomBar, bottomBarDemoCSS } from "./bottom-bar.js?v=20261023-billing-tabs";
+import { defineUserPageToggle, userPageDemoCSS } from "./user-page-toggle.js?v=20261023-billing-tabs";
+import { definePlusSelectionToggle, plusSelectionDemoCSS } from "./plus-selection-toggle.js?v=20261023-billing-tabs";
+import { defineHomeSettleToggle, homeSettleDemoCSS } from "./home-settle-toggle.js?v=20261023-billing-tabs";
+import { defineWarningNudge, warningNudgeDemoCSS } from "./warning-nudge.js?v=20261023-billing-tabs";
+import { defineLiquidRiseToggle, liquidRiseDemoCSS } from "./liquid-rise-toggle.js?v=20261023-billing-tabs";
+import { defineChatBubbleToggle, chatBubbleDemoCSS } from "./chat-bubble-toggle.js?v=20261023-billing-tabs";
+import { defineTapTab, tapTabDemoCSS } from "./tap-tab.js?v=20261023-billing-tabs";
+import { definePreviewTabs, previewTabsDemoCSS } from "./preview-tabs.js?v=20261023-billing-tabs";
+import { defineWhiteSelectionToggle, whiteSelectionDemoCSS } from "./white-selection-toggle.js?v=20261023-billing-tabs";
+import { defineHistoryClock, historyClockDemoCSS } from "./history-clock.js?v=20261023-billing-tabs";
+import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261023-billing-tabs";
+import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261023-billing-tabs";
+import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261023-billing-tabs";
+import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261023-billing-tabs";
+import { webMotions, exampleMarkup, normalizeValues } from "./catalog.js?v=20261023-billing-tabs";
+import { demoCSS } from "./demo-styles.js?v=20261023-billing-tabs";
+import { bindDemoActions } from "./demo-actions.js?v=20261023-billing-tabs";
+import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261023-billing-tabs";
+import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261023-billing-tabs";
+import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261023-billing-tabs";
+import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261023-billing-tabs";
 
 const params = new URLSearchParams(location.search);
 const requestedId = params.get("id") === "sipplay-tool-highlight" ? "sipplay-brackets-tool" : params.get("id");
 const entry = webMotions.find((item) => item.id === requestedId);
 const root = document.querySelector("#demo");
 const style = document.createElement("style");
-style.textContent = demoCSS + imageSipLoadingDemoCSS + toolHighlightDemoCSS + bottomBarDemoCSS + userPageDemoCSS + plusSelectionDemoCSS + homeSettleDemoCSS + liquidRiseDemoCSS + warningNudgeDemoCSS + chatBubbleDemoCSS + previewTabsDemoCSS + selectionDemoCSS + whiteSelectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS + wrenchTurnDemoCSS + pinToggleDemoCSS + pinRevealDemoCSS + voiceWaveDemoCSS + bellRingDemoCSS + historyClockDemoCSS + tapTabDemoCSS;
+style.textContent = demoCSS + billingTabsDemoCSS + imageSipLoadingDemoCSS + toolHighlightDemoCSS + bottomBarDemoCSS + userPageDemoCSS + plusSelectionDemoCSS + homeSettleDemoCSS + liquidRiseDemoCSS + warningNudgeDemoCSS + chatBubbleDemoCSS + previewTabsDemoCSS + selectionDemoCSS + whiteSelectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS + wrenchTurnDemoCSS + pinToggleDemoCSS + pinRevealDemoCSS + voiceWaveDemoCSS + bellRingDemoCSS + historyClockDemoCSS + tapTabDemoCSS;
 document.head.append(style);
 let runtime;
 let values = {};
 let isPaused = false;
 let cleanupDemo;
-const customElementsInDemo = () => [...root.querySelectorAll("sipplay-image-sip-loading,sipplay-brackets-tool,sipplay-image-tool,sipplay-bottom-bar,sipplay-user-page-toggle,sipplay-plus-selection-toggle,sipplay-home-settle-toggle,sipplay-liquid-rise-toggle,sipplay-chat-bubble-toggle,sipplay-preview-tabs,sipplay-white-selection-toggle,sipplay-selection-toggle,sipplay-layer-stack-toggle,sipplay-profile-rise-toggle,sipplay-wrench-turn-toggle,sipplay-pin-toggle,sipplay-pin-reveal,sipplay-voice-wave,sipplay-bell-ring-toggle,sipplay-history-clock,sipplay-tap-tab,sipplay-warning-nudge")];
+const customElementsInDemo = () => [...root.querySelectorAll("sipplay-billing-tabs,sipplay-image-sip-loading,sipplay-brackets-tool,sipplay-image-tool,sipplay-bottom-bar,sipplay-user-page-toggle,sipplay-plus-selection-toggle,sipplay-home-settle-toggle,sipplay-liquid-rise-toggle,sipplay-chat-bubble-toggle,sipplay-preview-tabs,sipplay-white-selection-toggle,sipplay-selection-toggle,sipplay-layer-stack-toggle,sipplay-profile-rise-toggle,sipplay-wrench-turn-toggle,sipplay-pin-toggle,sipplay-pin-reveal,sipplay-voice-wave,sipplay-bell-ring-toggle,sipplay-history-clock,sipplay-tap-tab,sipplay-warning-nudge")];
 
 function notify(status, message = "") {
   parent.postMessage({ type: "sipplay-web-preview", id: entry?.id, status, message }, location.origin);
@@ -62,6 +63,8 @@ function compactPointerPreview(active) {
     else element.hoverOut();
   } else if (entry.id === "sipplay-pin-reveal") {
     if (active) element.apply(element.reducedMotion.matches);
+  } else if (entry.id === "sipplay-billing-tabs") {
+    element.select(active ? 0 : 1);
   } else if (entry.id === "sipplay-image-sip-loading") {
     if (active) element.play(); else element.pause();
   } else if (entry.custom && element.active !== active) element.toggle();
@@ -129,7 +132,8 @@ document.addEventListener("visibilitychange", () => { if (document.hidden) { run
 
 try {
   if (!entry) throw new Error("未找到此组件，请从动效库重新选择。");
-  runtime = await import("./vendor/motion-components.js?v=20261023-sipplay-only");
+  runtime = await import("./vendor/motion-components.js?v=20261023-billing-tabs");
+  defineBillingTabs(runtime.animate);
   defineImageSipLoading(runtime.animate);
   defineHistoryClock(runtime.animate);
   defineWarningNudge(runtime.animate);

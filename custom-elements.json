@@ -4,6 +4,176 @@
   "modules": [
     {
       "kind": "javascript-module",
+      "path": "web-components/billing-tabs.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "defineBillingTabs",
+          "description": "在浏览器中注册组件；animate 由调用方从 motion 导入。组合组件依赖可通过 registerMotion 初始化。",
+          "parameters": [
+            {
+              "name": "animate",
+              "type": {
+                "text": "Function"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "class",
+          "name": "BillingTabs",
+          "customElement": true,
+          "tagName": "sipplay-billing-tabs",
+          "description": "动效：订阅积分滑动 Tab / sipplay-billing-tabs\n位置：Subscription / Credits 两项分段切换控件。对应本次提供的 SVG；尚未绑定具体 Figma 节点。\nFigma：待绑定；仅凭图标相似不得批量替换\n适配：保留 250×35、17.5 圆角、6px 背景模糊和原始字形。两项宽度分别为 130 / 120，底片随目标项宽度适配；默认按 SVG 选中 Credits。\n注释同步：位置待核对\n触发：沿用提供 HTML：切换时底片以 0.46 秒、bounce=0.14 的弹簧滑动，短暂 scaleX=1.055、scaleY=0.965 后复位；文字亮度 1 / 0.48 同步过渡。重复点击当前项不重播。\n状态：selected；默认 1，接入时以业务状态覆盖\n事件：motion-change → { active, selected, value }\n业务接入：selected=0 / value=subscription；selected=1 / value=credits。value 是只读派生值；外部设置 selected 不发用户事件。监听 motion-change 切换业务内容，组件本身不发起支付或积分操作。保留左右方向键、Home / End、唯一 Tab 焦点与减少动态效果。\n参数：duration=0.46（时长（秒））；bounce=0.14（回弹程度）\n源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/billing-tabs.js；初始化 defineBillingTabs(animate)\n依赖：Motion animate\nAPI 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json\n预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-billing-tabs\n注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。\n映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。",
+          "superclass": {
+            "name": "HTMLElement"
+          },
+          "attributes": [
+            {
+              "name": "selected",
+              "type": {
+                "text": "string"
+              },
+              "description": "selected=0 / value=subscription；selected=1 / value=credits。value 是只读派生值；外部设置 selected 不发用户事件。监听 motion-change 切换业务内容，组件本身不发起支付或积分操作。保留左右方向键、Home / End、唯一 Tab 焦点与减少动态效果。 默认 1。",
+              "default": "1"
+            },
+            {
+              "name": "duration",
+              "type": {
+                "text": "number"
+              },
+              "description": "时长（秒）；范围 0.18–1.2，步长 0.02。",
+              "default": "0.46"
+            },
+            {
+              "name": "bounce",
+              "type": {
+                "text": "number"
+              },
+              "description": "回弹程度；范围 0–0.35，步长 0.01。",
+              "default": "0.14"
+            },
+            {
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "description": "内部交互控件的可访问名称。"
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "selected",
+              "readonly": false,
+              "type": {
+                "text": "number"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "active",
+              "readonly": false,
+              "type": {
+                "text": "boolean"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "readonly": true,
+              "type": {
+                "text": "string"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "duration",
+              "readonly": true,
+              "type": {
+                "text": "number"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "bounce",
+              "readonly": true,
+              "type": {
+                "text": "number"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "playState",
+              "readonly": true,
+              "type": {
+                "text": "string"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "pause",
+              "description": "pause()；语义见组件交付说明。"
+            },
+            {
+              "kind": "method",
+              "name": "play",
+              "description": "恢复暂停的动画；单次反馈组件的重播请按组件说明调用 replay/trigger。"
+            },
+            {
+              "kind": "method",
+              "name": "finish",
+              "description": "直接落在当前状态或静止终态。"
+            },
+            {
+              "kind": "method",
+              "name": "cancel",
+              "description": "cancel()；语义见组件交付说明。"
+            },
+            {
+              "kind": "method",
+              "name": "toggle",
+              "description": "toggle()；语义见组件交付说明。"
+            },
+            {
+              "kind": "method",
+              "name": "select",
+              "description": "select(index)；语义见组件交付说明。"
+            }
+          ],
+          "events": [
+            {
+              "name": "motion-change",
+              "description": "detail: { active, selected, value }。selected=0 / value=subscription；selected=1 / value=credits。value 是只读派生值；外部设置 selected 不发用户事件。监听 motion-change 切换业务内容，组件本身不发起支付或积分操作。保留左右方向键、Home / End、唯一 Tab 焦点与减少动态效果。",
+              "type": {
+                "text": "CustomEvent"
+              }
+            }
+          ],
+          "slots": []
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "defineBillingTabs",
+          "declaration": {
+            "name": "defineBillingTabs",
+            "module": "web-components/billing-tabs.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "sipplay-billing-tabs",
+          "declaration": {
+            "name": "BillingTabs",
+            "module": "web-components/billing-tabs.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "web-components/image-sip-loading.js",
       "declarations": [
         {

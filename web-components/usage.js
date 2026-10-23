@@ -1,6 +1,6 @@
-import { webMotions } from './catalog.js?v=20261023-sipplay-only';
-import { getHandoff } from './handoff.js?v=20261023-sipplay-only';
-import { batchPrompt, copyButton, renderHandoff, renderCommonNotes } from './handoff-ui.js?v=20261023-sipplay-only';
+import { webMotions } from './catalog.js?v=20261023-billing-tabs';
+import { getHandoff } from './handoff.js?v=20261023-billing-tabs';
+import { batchPrompt, copyButton, renderHandoff, renderCommonNotes } from './handoff-ui.js?v=20261023-billing-tabs';
 
 const entries = webMotions.filter(e => e.custom).sort((a,b) => getHandoff(b).figma.length - getHandoff(a).figma.length);
 const mapped = entries.filter(e => getHandoff(e).figma.length);

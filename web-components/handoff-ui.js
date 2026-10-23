@@ -1,4 +1,4 @@
-import { commonNotes, getHandoff, handoffText, integrationSnippet, siteURL } from './handoff.js?v=20261023-sipplay-only';
+import { commonNotes, getHandoff, handoffText, integrationSnippet, siteURL } from './handoff.js?v=20261023-billing-tabs';
 
 export const batchPrompt = `请按 Figma 与现有动效组件完成页面接入：
 1. 先读取 ${siteURL}web-components/USAGE.md、${siteURL}custom-elements.json 和 ${siteURL}web-components/figma-bindings.json。

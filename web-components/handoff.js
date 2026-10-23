@@ -93,6 +93,16 @@ export const definitions = {
       }
     ]
   },
+  "sipplay-billing-tabs": {
+    "source": "billing-tabs.js", "initializer": "defineBillingTabs", "size": "250×35",
+    "state": "selected", "initial": "1", "values": ["0", "1"],
+    "placement": "Subscription / Credits 两项分段切换控件。对应本次提供的 SVG；尚未绑定具体 Figma 节点。",
+    "adaptation": "保留 250×35、17.5 圆角、6px 背景模糊和原始字形。两项宽度分别为 130 / 120，底片随目标项宽度适配；默认按 SVG 选中 Credits。",
+    "trigger": "沿用提供 HTML：切换时底片以 0.46 秒、bounce=0.14 的弹簧滑动，短暂 scaleX=1.055、scaleY=0.965 后复位；文字亮度 1 / 0.48 同步过渡。重复点击当前项不重播。",
+    "event": "motion-change", "payload": "{ active, selected, value }",
+    "integration": "selected=0 / value=subscription；selected=1 / value=credits。value 是只读派生值；外部设置 selected 不发用户事件。监听 motion-change 切换业务内容，组件本身不发起支付或积分操作。保留左右方向键、Home / End、唯一 Tab 焦点与减少动态效果。",
+    "figma": []
+  },
   "sipplay-preview-tabs": {
     "source": "preview-tabs.js",
     "initializer": "definePreviewTabs",
@@ -569,7 +579,7 @@ Figma：${d.figma[0].url}
 ${d.adaptation}
 不要直接挂载示例的交互按钮，也不要将 active 绑定生成进度。
 触发策略确认后再接入动画；当前不提供自动播放代码。 -->`;
-  const state = !d.state ? "// 无持久状态；按业务事件调用，不要每次渲染都重播。" : d.state === "value" ? `el.value = '${d.initial}'; // 替换为实际业务状态` : d.state === "selected" ? "el.selected = 0; // 0=chat，1=feed；用实际预览模式覆盖" : `el.${d.state} = false; // 用实际业务状态覆盖；不要写 active=\"false\"`;
+  const state = !d.state ? "// 无持久状态；按业务事件调用，不要每次渲染都重播。" : d.state === "value" ? `el.value = '${d.initial}'; // 替换为实际业务状态` : d.state === "selected" ? (d.id === "sipplay-billing-tabs" ? "el.selected = 1; // 0=subscription，1=credits；用业务状态覆盖" : "el.selected = 0; // 0=chat，1=feed；用实际预览模式覆盖") : `el.${d.state} = false; // 用实际业务状态覆盖；不要写 active=\"false\"`;
   const slotMarkup = d.slots.map(s => `\n  <div slot="${s}"><!-- ${s} 实际面板内容 --></div>`).join("");
   return `<!-- 将 web-components 源码目录放入项目；复用现有 Motion 依赖。 -->\n<${d.id} id="motion-control" label="${d.name}">${slotMarkup}</${d.id}>\n\n<script type="module">\n  import { animate } from 'motion';\n  import { registerMotion } from './web-components/register.js';\n  registerMotion('${d.id}', animate);\n  const el = document.querySelector('#motion-control');\n  ${state}\n  el.finish(); // 初始化落在当前状态；后续状态变化保留动画\n  el.addEventListener('${d.event}', (event) => {\n    // ${d.payload}\n    // ${d.integration}\n  });\n</script>`;
 }
