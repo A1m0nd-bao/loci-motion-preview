@@ -4,21 +4,16 @@ export function defineImageSipLoading(animate) {
   const clamp = v => Math.max(0, Math.min(1, v));
   const smooth = v => { v = clamp(v); return v * v * (3 - 2 * v); };
   const settleIn = t => { t = clamp(t) - 1; return 1 + 2.5 * t * t * t + 1.5 * t * t; };
-  const waveValue = (x, phase) => {
-    const t = (x - 48) * Math.PI * 2 / 29 - phase;
-    return Math.sin(t) + .08 * Math.sin(t * 2 + .8);
-  };
-  const waveSlope = (x, phase) => {
-    const t = (x - 48) * Math.PI * 2 / 29 - phase;
-    return Math.PI * 2 / 29 * (Math.cos(t) + .16 * Math.cos(t * 2 + .8));
-  };
+  // The four supplied SVGs, translated into the 125px tile coordinates.
+  // Each top boundary has the same M / L / C / L / C / L topology.
   const surfaces = [
-    [61.5681,64.1,66.2,63.2,61,60.9,62.6103,63.1,63.7,64.001],
-    [64.7386,66.4343,67.7734,66.7085,65.2607,64.1817,65.5816,66.3,67,67.817],
-    [68.7323,69.8071,70.6297,69.9914,68.9951,68.3476,69.212,70,70.2,70.6129],
-    [70.5234,71.4116,71.9197,71.5286,70.6036,70.2067,70.7416,71.2,71.5,71.8666],
-    [76.6,76.6,76.6,76.6,76.6,76.6,76.6,76.6,76.6,76.6],
+    [48,61.5681,49.3778,62.5561,52.6058,64.8699,56.8958,65.0549,60.3108,63.0275,60.5938,62.8592,63.5848,61.0834,67.2828,60.9891,70.3608,62.6103,73,64.001],
+    [48,64.7386,51.0531,66.4343,53.281,67.6716,55.9651,67.7734,58.2803,66.7085,61.428,65.2607,63.7738,64.1817,66.496,64.3012,68.7382,65.5816,72.6528,67.817],
+    [48,68.7323,51.2124,69.8071,53.4791,70.5655,55.9208,70.6297,58.2242,69.9914,61.8198,68.9951,64.1566,68.3476,66.6348,68.4232,68.9278,69.212,73,70.6129],
+    [48,70.5234,51.71676,71.4116,53.67593,71.8798,55.71307,71.9197,57.6891,71.5286,62.3626,70.6036,64.3681,70.2067,66.4362,70.2538,68.4216,70.7416,73,71.8666],
+    [48,76.6,51.71676,76.6,53.67593,76.6,55.71307,76.6,57.6891,76.6,62.3626,76.6,64.3681,76.6,66.4362,76.6,68.4216,76.6,73,76.6],
   ];
+  const tangent = (a, b) => a * b > 0 ? 2 * a * b / (a + b) : 0;
   /**
    * @summary 生图流光吸饮
    * 动效：生图流光吸饮 / sipplay-image-sip-loading
@@ -26,7 +21,7 @@ export function defineImageSipLoading(animate) {
    * Figma：待绑定；仅凭图标相似不得批量替换
    * 适配：保留 125×125 画布与 rx=16 比例，图标中心和杯口、吸管的原始路径。预览中的 2× 放大仅便于观察，不进入产品布局。
    * 注释同步：位置待核对
-   * 触发：生图请求开始时 active=true 循环：吸管柔和插入 → 连续波纹随吸饮降低 → 吸空后弹出两滴水 → 吸管收回 → 重新蓄满。成功、失败或取消时由业务移除加载态；减少动态效果时静态展示。
+   * 触发：生图请求开始时 active=true 循环：吸管柔和插入 → 按四档设计波形柔和过渡并降低 → 吸空后两滴水沿吸管口向右飞出并下落 → 吸管收回 → 重新蓄满。成功、失败或取消时由业务移除加载态；减少动态效果时静态展示。
    * 状态：active；默认 false，接入时以业务状态覆盖
    * 事件：motion-cycle → { iteration: number }
    * 业务接入：纯展示组件，无内部按钮或点击切换。active 绑定真实请求的 loading 状态；动画循环不是进度或成功信号，不显示虚构百分比。成功后替换为生成图片，失败显示原有重试界面。卸载与浏览器后台会停止或暂停动画。
@@ -50,7 +45,7 @@ export function defineImageSipLoading(animate) {
       super();
       this.attachShadow({mode:'open'});
       this.controls = [];
-      this.surface = new Float64Array(10);
+      this.surface = new Float64Array(20);
       this.state = 'idle';
       this.epoch = 0;
       this.reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
@@ -90,7 +85,6 @@ export function defineImageSipLoading(animate) {
             .gleam{inset:-35%;background:linear-gradient(110deg,transparent 34%,#fff0 39%,#fff9 48%,#fff0 57%,transparent 65%);mix-blend-mode:soft-light;opacity:.7;transform:translateX(-90%) rotate(-12deg)}
             svg{position:absolute;inset:0;display:block;width:100%;height:100%;overflow:visible}
             .straw,.liquid,.sun,.sun-hole{transform-box:view-box;transform-origin:0 0}
-            .stream{stroke-dasharray:2.4 6;opacity:0}
             .drop{opacity:0;fill:white}
           </style>
           <div class="tile" role="img" aria-label="正在生成图片">
@@ -102,7 +96,6 @@ export function defineImageSipLoading(animate) {
               </defs>
               <g class="straw">
                 <path d="M63.9707 67.187L71.4785 51.8302C71.5619 51.6596 71.7141 51.5326 71.8969 51.4812L77.1651 49.9995" stroke-width="2" stroke-linecap="round" stroke="white"/>
-                <path class="stream" d="M63.9707 67.187L71.4785 51.8302C71.5619 51.6596 71.7141 51.5326 71.8969 51.4812L77.1651 49.9995" stroke-width=".9" stroke-linecap="round" stroke="#ED78F4"/>
               </g>
               <g clip-path="url(#sip-cup)">
                 <path class="liquid" d="M51.0531 66.4343L48 64.7386V70.9998C48 73.209 49.7909 74.9998 52 74.9998H68.6528C70.8619 74.9998 72.6528 73.209 72.6528 70.9998V67.817L68.7382 65.5816C66.496 64.3012 63.7738 64.1817 61.428 65.2607L58.2803 66.7085C55.9651 67.7734 53.281 67.6716 51.0531 66.4343Z" fill="white"/>
@@ -116,7 +109,7 @@ export function defineImageSipLoading(animate) {
         const find = s => this.shadowRoot.querySelector(s);
         this.tile = find('.tile'); this.flow = find('.flow'); this.gleam = find('.gleam');
         this.straw = find('.straw'); this.liquid = find('.liquid'); this.sun = find('.sun');
-        this.tube = this.straw.querySelector('path'); this.stream = find('.stream');
+        this.tube = this.straw.querySelector('path');
         this.drops = [...this.shadowRoot.querySelectorAll('.drop')];
       }
       this.reducedMotion.addEventListener('change', this.onReducedMotion);
@@ -146,29 +139,27 @@ export function defineImageSipLoading(animate) {
       const drain = smooth((p - .22) / .48);
       const leave = smooth((p - .85) / .10);
       const refill = smooth((p - .88) / .12);
-      const amount = clamp(1 - drain + refill);
-      const moving = p >= .22 && p < .70;
       const y = this.surface;
       if (rest) {
         y.set(surfaces[1]);
-        this.liquid.setAttribute('d', `M48 ${y[0]} C51.5 ${y[1]} 55.5 ${y[2]} 58.3 ${y[3]} C61.2 ${y[4]} 64.5 ${y[5]} 67 ${y[6]} C69 ${y[7]} 71 ${y[8]} 73 ${y[9]} L73 79 L48 79Z`);
       } else {
-        // Sample one continuous traveling surface with analytic tangents.
-        // Adjacent Beziers share their slope, so crests never hinge at a join.
-        const level = 62.8 + 13.8 * clamp(drain - refill);
-        const amplitude = .9 * smooth(amount * 5);
-        const phase = p * Math.PI * 4;
-        const step = 25 / 3;
-        y[0] = level + amplitude * waveValue(48, phase);
-        for (let i = 0; i < 3; i++) {
-          const x0 = 48 + i * step, x1 = x0 + step;
-          const end = level + amplitude * waveValue(x1, phase);
-          y[i * 3 + 1] = y[i * 3] + amplitude * waveSlope(x0, phase) * step / 3;
-          y[i * 3 + 2] = end - amplitude * waveSlope(x1, phase) * step / 3;
-          y[i * 3 + 3] = end;
+        const position = clamp(drain - refill) * 4;
+        const index = Math.min(3, Math.floor(position));
+        const t = position - index, t2 = t * t, t3 = t2 * t;
+        const a = surfaces[index], b = surfaces[index + 1];
+        const before = surfaces[Math.max(0, index - 1)];
+        const after = surfaces[Math.min(4, index + 2)];
+        // Monotone Hermite interpolation keeps the supplied silhouettes exact,
+        // with matching velocity at every keyframe and no added sine waves.
+        for (let i = 0; i < 20; i++) {
+          const delta = b[i] - a[i];
+          const m0 = index === 0 ? delta : tangent(a[i] - before[i], delta);
+          const m1 = index === 3 ? delta : tangent(delta, after[i] - b[i]);
+          y[i] = (2 * t3 - 3 * t2 + 1) * a[i] + (t3 - 2 * t2 + t) * m0
+            + (-2 * t3 + 3 * t2) * b[i] + (t3 - t2) * m1;
         }
-        this.liquid.setAttribute('d', `M48 ${y[0]} C50.7777778 ${y[1]} 53.5555556 ${y[2]} 56.3333333 ${y[3]} C59.1111111 ${y[4]} 61.8888889 ${y[5]} 64.6666667 ${y[6]} C67.4444444 ${y[7]} 70.2222222 ${y[8]} 73 ${y[9]} L73 79 L48 79Z`);
       }
+      this.liquid.setAttribute('d', `M${y[0]} ${y[1]} L${y[2]} ${y[3]} C${y[4]} ${y[5]} ${y[6]} ${y[7]} ${y[8]} ${y[9]} L${y[10]} ${y[11]} C${y[12]} ${y[13]} ${y[14]} ${y[15]} ${y[16]} ${y[17]} L${y[18]} ${y[19]} L73 79 L48 79Z`);
       const breathe = Math.sin(p * Math.PI * 4) * Math.sin(Math.PI * drain);
       const landing = Math.sin(Math.PI * enterT) * Math.sin(Math.PI * enterT * 2);
       const pop = Math.sin(Math.PI * clamp((p - .70) / .15));
@@ -181,20 +172,28 @@ export function defineImageSipLoading(animate) {
       const bend = rest ? 0 : breathe * .65 + landing * .55 - pop * .35;
       const tube = `M${tipX} ${tipY} C${tipX + 2.6 + bend} ${tipY - 5.2} ${69.8 + bend} 55.6 71.4785 51.8302 Q71.62 51.55 71.8969 51.4812 L77.1651 49.9995`;
       this.tube.setAttribute('d', tube);
-      this.stream.setAttribute('d', tube);
       this.straw.setAttribute('transform', `translate(${tx} ${ty}) rotate(${angle} 71.5 52)`);
       this.straw.style.opacity = rest ? '1' : String(clamp(enterT * 5) * (1 - leave));
-      this.stream.style.opacity = moving && !rest ? '.45' : '0';
-      this.stream.style.strokeDashoffset = String(-p * 110);
       for (let i = 0; i < 2; i++) {
         const u = (p - .70 - i * .025) / .135;
         const visible = !rest && u > 0 && u < 1;
         this.drops[i].style.opacity = visible ? String(smooth(u / .15) * (1 - smooth((u - .58) / .42))) : '0';
         if (visible) {
-          const dx = (i === 0 ? 5.2 : -2.8) * u;
-          const dy = -29 * u + 25 * u * u;
+          // Leave along the actual outlet tangent; both drops travel right.
+          // The nozzle recoil is included in each drop's launch origin.
+          const recoil = 1.3 * Math.sin(Math.PI * (i * .025) / .15) * Math.PI / 180;
+          const direction = Math.atan2(-1.4817, 5.2682) + recoil;
+          const speed = i === 0 ? 13.5 : 10.5;
+          const vx = Math.cos(direction) * speed;
+          const vy = Math.sin(direction) * speed;
+          const gravity = 6.5;
+          const originX = 71.5 + 5.6651 * Math.cos(recoil) + 2.0005 * Math.sin(recoil);
+          const originY = 52 + 5.6651 * Math.sin(recoil) - 2.0005 * Math.cos(recoil);
+          const x = originX + vx * u;
+          const y = originY + vy * u + gravity * u * u;
+          const rotation = Math.atan2(vy + 2 * gravity * u, vx) * 180 / Math.PI - 90;
           const scale = (i === 0 ? .9 : .7) * (.7 + .3 * Math.sin(Math.PI * u));
-          this.drops[i].setAttribute('transform', `translate(${77.1651 + dx} ${49.9995 + dy}) rotate(${(i === 0 ? 25 : -22) * u}) scale(${scale} ${scale * (1 + .22 * Math.sin(Math.PI * u))})`);
+          this.drops[i].setAttribute('transform', `translate(${x} ${y}) rotate(${rotation}) scale(${scale} ${scale * (1 + .18 * (1 - u))})`);
         }
       }
       const phase = rest ? '静止' : p < .22 ? '吸管插入' : p < .70 ? '吸取图片' : p < .85 ? '水滴弹出' : p < .88 ? '吸管收回' : '重新蓄满';
