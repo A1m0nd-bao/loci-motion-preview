@@ -1172,6 +1172,21 @@ output {
   grid-template-columns: 1fr;
 }
 
+.web-source-heading {
+  grid-column: 1 / -1;
+  margin: 8px 0 2px;
+  color: var(--text);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.web-source-heading.has-divider {
+  margin-top: 24px;
+  padding-top: 26px;
+  border-top: 1px solid var(--line);
+}
+
 .history-divider {
   grid-column: 1 / -1;
   display: grid;

@@ -421,6 +421,24 @@ function getUpdatedTime(motion) {
 }
 
 function renderGalleryCards(items, selectedKind) {
+  if (selectedKind === "web") {
+    const groups = [
+      { label: "sipplay", items: items.filter(item => item.custom) },
+      { label: "第三方示例", items: items.filter(item => !item.custom) },
+    ];
+    let hasPreviousGroup = false;
+    for (const group of groups) {
+      if (!group.items.length) continue;
+      const heading = document.createElement("h2");
+      heading.className = "web-source-heading" + (hasPreviousGroup ? " has-divider" : "");
+      heading.textContent = group.label;
+      gallery.append(heading);
+      for (const motion of group.items) gallery.append(createCard(motion));
+      hasPreviousGroup = true;
+    }
+    return;
+  }
+
   if (selectedKind !== "lottie") {
     for (const motion of items) gallery.append(createCard(motion));
     return;
