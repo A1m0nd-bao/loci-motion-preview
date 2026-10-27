@@ -8,7 +8,7 @@ export function defineUserPageToggle(animate) {
    * Figma：移动 Web 底栏 / 用户 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-82201
    * 适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套
    * 注释同步：此对应关系目前仅保存在网站和源码，尚未写回 Figma 画布
-   * 触发：选中时头部、身体从底部先后探出，人物可见后，白色匀速由身体底部向上填满，再到头部；取消时恢复线框。
+   * 触发：选中时头部、身体从底部先后探出，白色伴随探出匀速由身体底部向上填满，再到头部；取消时恢复线框。
    * 状态：active；默认 false，接入时以业务状态覆盖
    * 事件：motion-change → { active: boolean }
    * 业务接入：在底栏中由父级导航驱动；与创建页 20px 的人物图标分别使用。
@@ -133,7 +133,7 @@ export function defineUserPageToggle(animate) {
       this.setFillProgress(rising ? 0 : on ? 1 : 0);
       const epoch = this.epoch;
       const fillControls = rising ? [animate(0, 1, {
-        duration: d * 0.92, delay: d * 0.28, ease: "linear",
+        duration: d * 0.48, delay: d * 0.22, ease: "linear",
         onUpdate: progress => { if (epoch === this.epoch) this.setFillProgress(progress); },
       })] : [];
       // Keep short fades separate from the longer transform controls, so a pause
@@ -198,7 +198,7 @@ export function defineUserPageToggle(animate) {
 
 export const userPageDemoMarkup = `
   <div class="selection-demo user-page-demo">
-    <p class="selection-demo-hint">点击选中 · 人物探出后，白色缓缓向上填满</p>
+    <p class="selection-demo-hint">点击选中 · 人物探出，白色向上填满</p>
     <div class="selection-demo-zoom"><sipplay-user-page-toggle data-motion duration="0.64" strength="1" label="切换用户页选中状态（放大预览）"></sipplay-user-page-toggle></div>
     <p class="selection-demo-caption">4× 细节预览</p>
     <div class="selection-demo-original"><sipplay-user-page-toggle label="切换用户页选中状态（原始尺寸）"></sipplay-user-page-toggle><span>原始尺寸 · 24 × 24</span></div>
