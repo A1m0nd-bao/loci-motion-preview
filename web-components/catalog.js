@@ -1,25 +1,25 @@
-import { billingTabsDemoMarkup } from "./billing-tabs.js?v=20261023-billing-tabs";
-import { imageSipLoadingDemoMarkup } from "./image-sip-loading.js?v=20261023-billing-tabs";
-import { bracketsToolDemoMarkup, imageToolDemoMarkup } from "./tool-highlight.js?v=20261023-billing-tabs";
-import { bottomBarDemoMarkup } from "./bottom-bar.js?v=20261023-billing-tabs";
-import { userPageDemoMarkup } from "./user-page-toggle.js?v=20261023-billing-tabs";
-import { plusSelectionDemoMarkup } from "./plus-selection-toggle.js?v=20261023-billing-tabs";
-import { homeSettleDemoMarkup } from "./home-settle-toggle.js?v=20261023-billing-tabs";
-import { warningNudgeDemoMarkup } from "./warning-nudge.js?v=20261023-billing-tabs";
-import { liquidRiseDemoMarkup } from "./liquid-rise-toggle.js?v=20261023-billing-tabs";
-import { chatBubbleDemoMarkup } from "./chat-bubble-toggle.js?v=20261023-billing-tabs";
-import { tapTabDemoMarkup } from "./tap-tab.js?v=20261023-billing-tabs";
-import { previewTabsDemoMarkup } from "./preview-tabs.js?v=20261023-billing-tabs";
-import { whiteSelectionDemoMarkup } from "./white-selection-toggle.js?v=20261023-billing-tabs";
-import { historyClockDemoMarkup } from "./history-clock.js?v=20261023-billing-tabs";
-import { bellRingDemoMarkup } from "./bell-ring-toggle.js?v=20261023-billing-tabs";
-import { voiceWaveDemoMarkup } from "./voice-wave.js?v=20261023-billing-tabs";
-import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261023-billing-tabs";
-import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261023-billing-tabs";
-import { selectionDemoMarkup } from "./selection-toggle.js?v=20261023-billing-tabs";
-import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261023-billing-tabs";
-import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261023-billing-tabs";
-import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261023-billing-tabs";
+import { billingTabsDemoMarkup } from "./billing-tabs.js?v=20261027-home-jump";
+import { imageSipLoadingDemoMarkup } from "./image-sip-loading.js?v=20261027-home-jump";
+import { bracketsToolDemoMarkup, imageToolDemoMarkup } from "./tool-highlight.js?v=20261027-home-jump";
+import { bottomBarDemoMarkup } from "./bottom-bar.js?v=20261027-home-jump";
+import { userPageDemoMarkup } from "./user-page-toggle.js?v=20261027-home-jump";
+import { plusSelectionDemoMarkup } from "./plus-selection-toggle.js?v=20261027-home-jump";
+import { homeSettleDemoMarkup } from "./home-settle-toggle.js?v=20261027-home-jump";
+import { warningNudgeDemoMarkup } from "./warning-nudge.js?v=20261027-home-jump";
+import { liquidRiseDemoMarkup } from "./liquid-rise-toggle.js?v=20261027-home-jump";
+import { chatBubbleDemoMarkup } from "./chat-bubble-toggle.js?v=20261027-home-jump";
+import { tapTabDemoMarkup } from "./tap-tab.js?v=20261027-home-jump";
+import { previewTabsDemoMarkup } from "./preview-tabs.js?v=20261027-home-jump";
+import { whiteSelectionDemoMarkup } from "./white-selection-toggle.js?v=20261027-home-jump";
+import { historyClockDemoMarkup } from "./history-clock.js?v=20261027-home-jump";
+import { bellRingDemoMarkup } from "./bell-ring-toggle.js?v=20261027-home-jump";
+import { voiceWaveDemoMarkup } from "./voice-wave.js?v=20261027-home-jump";
+import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261027-home-jump";
+import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261027-home-jump";
+import { selectionDemoMarkup } from "./selection-toggle.js?v=20261027-home-jump";
+import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261027-home-jump";
+import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261027-home-jump";
+import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261027-home-jump";
 
 export const upstreamVersion = "1.3.0";
 export const upstreamURL = "https://github.com/tgomilar/motion-components";
@@ -77,7 +77,7 @@ export const webMotions = [{
   tags: ["自定义 SVG", "添加", "选中", "加号", "Plus", "实心", "镂空", "双形态", "24px"], interactionType: "点击切换",
 }, {
   id: "sipplay-home-settle-toggle", name: "首页填白落定", category: "动态图标",
-  description: "保留原始 24 × 24 双态 SVG。选中时房屋整体轻提，白色从底部展开，随后轻落收稳；轮廓使用原始单一路径直接提亮；取消时填白收回，恢复 40% 白色线框。门洞始终镂空，支持快速反向、键盘、触屏、减少动态效果、暂停恢复和独立 HTML 导出。",
+  description: "保留原始 24 × 24 双态 SVG。选中时房屋轻压后起跳，白色从底部展开，随后轻微回弹落定；轮廓使用原始单一路径直接提亮；取消时填白收回，恢复 40% 白色线框。门洞始终镂空，支持快速反向、键盘、触屏、减少动态效果、暂停恢复和独立 HTML 导出。",
   markup: homeSettleDemoMarkup, controls: [number("duration", "切换时长（秒）", 0.56, 0.24, 1.2, 0.02), number("strength", "回弹幅度", 1, 0.4, 1.4, 0.05)],
   kind: "web", kindLabel: "Web 组件", fileName: "sipplay-home-settle-toggle",
   file: "./web-components/preview.html?id=sipplay-home-settle-toggle", docs: null, custom: true,

@@ -1,6 +1,6 @@
-import { exampleDocument } from "./examples.js?v=20261023-billing-tabs";
-import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261023-billing-tabs";
-import { renderHandoff } from "./handoff-ui.js?v=20261023-billing-tabs";
+import { exampleDocument } from "./examples.js?v=20261027-home-jump";
+import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261027-home-jump";
+import { renderHandoff } from "./handoff-ui.js?v=20261027-home-jump";
 
 const controllers = new Set();
 

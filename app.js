@@ -1,6 +1,6 @@
-import { motionMotions } from "./motion/catalog.js?v=20261023-billing-tabs";
-import { webMotions } from "./web-components/catalog.js?v=20261023-billing-tabs";
-import { createWebController, copyExample, downloadExample, setupWebDetail, getWebValues, syncWebBackgrounds } from "./web-components/integration.js?v=20261023-billing-tabs";
+import { motionMotions } from "./motion/catalog.js?v=20261027-home-jump";
+import { webMotions } from "./web-components/catalog.js?v=20261027-home-jump";
+import { createWebController, copyExample, downloadExample, setupWebDetail, getWebValues, syncWebBackgrounds } from "./web-components/integration.js?v=20261027-home-jump";
 
 if (import.meta.env?.DEV) document.querySelector("#motionStudioLocal").hidden = false;
 

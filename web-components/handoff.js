@@ -286,7 +286,7 @@ export const definitions = {
     "size": "24×24",
     "state": "active",
     "placement": "移动 Web Feed 页底部四项导航的第一项：首页图标，24×24。",
-    "trigger": "选中时轻提、填白并落定；取消时恢复线框。",
+    "trigger": "选中时轻压起跳、填白并回弹落定；取消时恢复线框。",
     "integration": "在底栏中由父级导航驱动；独立使用时 active 绑定当前路由。",
     "figma": [
       {

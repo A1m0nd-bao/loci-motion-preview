@@ -10,7 +10,7 @@ export function defineHomeSettleToggle(animate) {
    * Figma：移动 Web 底栏 / 首页 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-82194
    * 适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套
    * 注释同步：此对应关系目前仅保存在网站和源码，尚未写回 Figma 画布
-   * 触发：选中时轻提、填白并落定；取消时恢复线框。
+   * 触发：选中时轻压起跳、填白并回弹落定；取消时恢复线框。
    * 状态：active；默认 false，接入时以业务状态覆盖
    * 事件：motion-change → { active: boolean }
    * 业务接入：在底栏中由父级导航驱动；独立使用时 active 绑定当前路由。
@@ -68,7 +68,7 @@ export function defineHomeSettleToggle(animate) {
             :host{display:inline-block;width:44px;height:44px;vertical-align:middle}
             button{display:grid;place-items:center;width:44px;height:44px;margin:0;padding:10px;border:0;border-radius:10px;background:transparent;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
             button:focus-visible{outline:1px solid #d4d4d8;outline-offset:1px}
-            svg{display:block;width:24px;height:24px;overflow:hidden;pointer-events:none}
+            svg{display:block;width:24px;height:24px;overflow:visible;pointer-events:none}
             .house{transform-box:view-box!important;transform-origin:12px 22.5629px!important}
             .reveal{transform:scaleY(0);transform-box:view-box!important;transform-origin:0px 24px!important}
             .outline{opacity:0.4}
@@ -118,7 +118,7 @@ export function defineHomeSettleToggle(animate) {
       this.outline.setAttribute("d", on ? selectedOutline : emptyOutline);
       const timing = instant ? { duration: 0 } : { duration: on ? d : d * 0.6, ease: [0.22, 1, 0.36, 1] };
       this.controls = [
-        animate(this.house, { y: instant ? 0 : on ? [null, 0.18 * s, -0.72 * s, 0.12 * s, 0] : [null, 0.22 * s, 0], scale: instant ? 1 : on ? [null, 0.98, 1, 1, 1] : 1 }, instant ? timing : on ? { duration: d, times: [0, 0.13, 0.43, 0.77, 1], ease: ["easeOut", [0.2, 0.8, 0.25, 1], "easeInOut", "easeOut"] } : { duration: d * 0.6, y: { times: [0, 0.4, 1], ease: "easeInOut" }, scale: { ease: "easeOut" } }),
+        animate(this.house, { y: instant ? 0 : on ? [null, 0.24 * s, -1.05 * s, 0.18 * s, 0] : [null, 0.22 * s, 0], scale: instant ? 1 : on ? [null, 0.97, 1, 1, 1] : 1 }, instant ? timing : on ? { duration: d, times: [0, 0.13, 0.43, 0.77, 1], ease: ["easeOut", [0.2, 0.8, 0.25, 1], "easeInOut", "easeOut"] } : { duration: d * 0.6, y: { times: [0, 0.4, 1], ease: "easeInOut" }, scale: { ease: "easeOut" } }),
         animate(this.reveal, { scaleY: on ? 1 : 0 }, instant ? timing : { duration: on ? d * 0.65 : d * 0.48, delay: on ? d * 0.08 : 0, ease: on ? [0.22, 0.75, 0.25, 1] : [0.4, 0, 0.7, 1] }),
         animate(this.outline, { opacity: on ? 1 : 0.4 }, { duration: instant ? 0 : d * 0.4, ease: "easeOut" }),
       ];
@@ -154,7 +154,7 @@ export function defineHomeSettleToggle(animate) {
 
 export const homeSettleDemoMarkup = `
   <div class="selection-demo home-settle-demo">
-    <p class="selection-demo-hint">点击回家 · 轻提填白，落定收稳</p>
+    <p class="selection-demo-hint">点击回家 · 轻压起跳，填白落定</p>
     <div class="selection-demo-zoom"><sipplay-home-settle-toggle data-motion duration="0.56" strength="1" label="切换首页选中状态（放大预览）"></sipplay-home-settle-toggle></div>
     <p class="selection-demo-caption">4× 细节预览</p>
     <div class="selection-demo-original"><sipplay-home-settle-toggle label="切换首页选中状态（原始尺寸）"></sipplay-home-settle-toggle><span>原始尺寸 · 24 × 24</span></div>

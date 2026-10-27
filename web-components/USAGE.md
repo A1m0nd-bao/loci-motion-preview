@@ -207,7 +207,7 @@ API 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.js
 Figma：移动 Web 底栏 / 首页 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-82194
 适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套
 注释同步：此对应关系目前仅保存在网站和源码，尚未写回 Figma 画布
-触发：选中时轻提、填白并落定；取消时恢复线框。
+触发：选中时轻压起跳、填白并回弹落定；取消时恢复线框。
 状态：active；默认 false，接入时以业务状态覆盖
 事件：motion-change → { active: boolean }
 业务接入：在底栏中由父级导航驱动；独立使用时 active 绑定当前路由。
