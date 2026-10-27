@@ -4,6 +4,33 @@ export const siteURL = "https://a1m0nd-bao.github.io/loci-motion-preview/";
 export const figmaFile = "KZyY9qkYbf0yiwqcovRKy3";
 export const figmaURL = id => `https://www.figma.com/design/${figmaFile}/Untitled?node-id=${id.replace(":", "-")}`;
 export const definitions = {
+  "sipplay-strength-cup": {
+    "source": "strength-cup.js",
+    "initializer": "defineStrengthCup",
+    "size": "343×280",
+    "state": "value",
+    "initial": "0",
+    "values": [
+        0,
+        1,
+        2,
+        3
+    ],
+    "placement": "强度设置区域：酒杯液面与右侧 Basic / Standard / Extended / Maximum 滑块。按本次上传的四份 SVG 接入，统一为含柠檬的 343×280 画布；具体 Figma 节点待绑定。",
+    "adaptation": "杯底与杯体固定，保留原始渐变、颗粒、英文路径和柠檬。宿主为整组交互控件，按 343×280 等比缩放；不要嵌套到另一个按钮内。",
+    "trigger": "拖动时滑块自由跟手，松手吸附最近档位；文字点击与键盘直接选档。液面独立以约 0.54 秒 S 型缓动升降，拖动时柔和跟随；到位轻晃，接近杯口后柠檬旋转弹入并收稳。初次挂载直接显示已有业务档位。",
+    "event": "strength-change",
+    "payload": "{ value: 0 | 1 | 2 | 3, name: string }",
+    "integration": "value 是最终业务档位：0=Basic，1=Standard，2=Extended，3=Maximum。监听 strength-change 更新已有强度字段；外部写入 el.value 或调用 select(index) 只更新视图，不再发出用户事件。拖动中 strength-input 的 progress 为 0–1，只用于预览，不按每帧保存业务档位。百分比是滑块位置，不代表费用、生成进度或模型能力；不猜接口与路由。初始化设置实际档位后调用 finish()。",
+    "extraEvents": [
+        {
+            "name": "strength-input",
+            "payload": "{ progress: number }",
+            "description": "用户自由拖动时发出 0–1 的连续位置；松手后 strength-change 提交最近档位。"
+        }
+    ],
+    "figma": []
+},
   "sipplay-tap-tab": {
     "source": "tap-tab.js",
     "initializer": "defineTapTab",
@@ -579,6 +606,19 @@ Figma：${d.figma[0].url}
 ${d.adaptation}
 不要直接挂载示例的交互按钮，也不要将 active 绑定生成进度。
 触发策略确认后再接入动画；当前不提供自动播放代码。 -->`;
+  if (d.id === 'sipplay-strength-cup') return `<!-- 强度控件：0=Basic，1=Standard，2=Extended，3=Maximum。 -->
+<sipplay-strength-cup id="strength-control" value="0" duration="0.54" label="强度"></sipplay-strength-cup>
+<script type="module">
+  import { animate } from 'motion';
+  import { registerMotion } from './web-components/register.js';
+  registerMotion('sipplay-strength-cup', animate);
+  const el = document.querySelector('#strength-control');
+  el.value = 0; // 用当前业务强度覆盖
+  el.finish();
+  el.addEventListener('strength-change', ({ detail }) => {
+    // 用 detail.value 更新现有强度字段；拖动中的 progress 不作为最终档位保存。
+  });
+</script>`;
   const state = !d.state ? "// 无持久状态；按业务事件调用，不要每次渲染都重播。" : d.state === "value" ? `el.value = '${d.initial}'; // 替换为实际业务状态` : d.state === "selected" ? (d.id === "sipplay-billing-tabs" ? "el.selected = 1; // 0=subscription，1=credits；用业务状态覆盖" : "el.selected = 0; // 0=chat，1=feed；用实际预览模式覆盖") : `el.${d.state} = false; // 用实际业务状态覆盖；不要写 active=\"false\"`;
   const slotMarkup = d.slots.map(s => `\n  <div slot="${s}"><!-- ${s} 实际面板内容 --></div>`).join("");
   return `<!-- 将 web-components 源码目录放入项目；复用现有 Motion 依赖。 -->\n<${d.id} id="motion-control" label="${d.name}">${slotMarkup}</${d.id}>\n\n<script type="module">\n  import { animate } from 'motion';\n  import { registerMotion } from './web-components/register.js';\n  registerMotion('${d.id}', animate);\n  const el = document.querySelector('#motion-control');\n  ${state}\n  el.finish(); // 初始化落在当前状态；后续状态变化保留动画\n  el.addEventListener('${d.event}', (event) => {\n    // ${d.payload}\n    // ${d.integration}\n  });\n</script>`;

@@ -1,6 +1,6 @@
-import { exampleDocument } from "./examples.js?v=20261027-clock-slower1";
-import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261027-clock-slower1";
-import { renderHandoff } from "./handoff-ui.js?v=20261027-clock-slower1";
+import { exampleDocument } from "./examples.js?v=20261027-strength-cup1";
+import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261027-strength-cup1";
+import { renderHandoff } from "./handoff-ui.js?v=20261027-strength-cup1";
 
 const controllers = new Set();
 

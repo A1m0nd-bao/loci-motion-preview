@@ -1,36 +1,38 @@
-import { defineBillingTabs, billingTabsDemoCSS } from "./billing-tabs.js?v=20261027-clock-slower1";
-import { defineImageSipLoading, imageSipLoadingDemoCSS } from "./image-sip-loading.js?v=20261027-clock-slower1";
-import { defineToolHighlight, toolHighlightDemoCSS } from "./tool-highlight.js?v=20261027-clock-slower1";
-import { defineBottomBar, bottomBarDemoCSS } from "./bottom-bar.js?v=20261027-clock-slower1";
-import { defineUserPageToggle, userPageDemoCSS } from "./user-page-toggle.js?v=20261027-clock-slower1";
-import { definePlusSelectionToggle, plusSelectionDemoCSS } from "./plus-selection-toggle.js?v=20261027-clock-slower1";
-import { defineHomeSettleToggle, homeSettleDemoCSS } from "./home-settle-toggle.js?v=20261027-clock-slower1";
-import { defineWarningNudge, warningNudgeDemoCSS } from "./warning-nudge.js?v=20261027-clock-slower1";
-import { defineLiquidRiseToggle, liquidRiseDemoCSS } from "./liquid-rise-toggle.js?v=20261027-clock-slower1";
-import { defineChatBubbleToggle, chatBubbleDemoCSS } from "./chat-bubble-toggle.js?v=20261027-clock-slower1";
-import { defineTapTab, tapTabDemoCSS } from "./tap-tab.js?v=20261027-clock-slower1";
-import { definePreviewTabs, previewTabsDemoCSS } from "./preview-tabs.js?v=20261027-clock-slower1";
-import { defineWhiteSelectionToggle, whiteSelectionDemoCSS } from "./white-selection-toggle.js?v=20261027-clock-slower1";
-import { defineHistoryClock, historyClockDemoCSS } from "./history-clock.js?v=20261027-clock-slower1";
-import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261027-clock-slower1";
-import { motionExampleDocument } from "../motion/examples.js?v=20261027-clock-slower1";
-import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261027-clock-slower1";
-import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261027-clock-slower1";
-import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261027-clock-slower1";
-import { exampleMarkup, upstreamURL, upstreamVersion } from "./catalog.js?v=20261027-clock-slower1";
-import { demoCSS } from "./demo-styles.js?v=20261027-clock-slower1";
-import { bindDemoActions } from "./demo-actions.js?v=20261027-clock-slower1";
-import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261027-clock-slower1";
-import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261027-clock-slower1";
-import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261027-clock-slower1";
-import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261027-clock-slower1";
-import { handoffText } from "./handoff.js?v=20261027-clock-slower1";
+import { defineStrengthCup, strengthCupDemoCSS } from "./strength-cup.js?v=20261027-strength-cup1";
+import { defineBillingTabs, billingTabsDemoCSS } from "./billing-tabs.js?v=20261027-strength-cup1";
+import { defineImageSipLoading, imageSipLoadingDemoCSS } from "./image-sip-loading.js?v=20261027-strength-cup1";
+import { defineToolHighlight, toolHighlightDemoCSS } from "./tool-highlight.js?v=20261027-strength-cup1";
+import { defineBottomBar, bottomBarDemoCSS } from "./bottom-bar.js?v=20261027-strength-cup1";
+import { defineUserPageToggle, userPageDemoCSS } from "./user-page-toggle.js?v=20261027-strength-cup1";
+import { definePlusSelectionToggle, plusSelectionDemoCSS } from "./plus-selection-toggle.js?v=20261027-strength-cup1";
+import { defineHomeSettleToggle, homeSettleDemoCSS } from "./home-settle-toggle.js?v=20261027-strength-cup1";
+import { defineWarningNudge, warningNudgeDemoCSS } from "./warning-nudge.js?v=20261027-strength-cup1";
+import { defineLiquidRiseToggle, liquidRiseDemoCSS } from "./liquid-rise-toggle.js?v=20261027-strength-cup1";
+import { defineChatBubbleToggle, chatBubbleDemoCSS } from "./chat-bubble-toggle.js?v=20261027-strength-cup1";
+import { defineTapTab, tapTabDemoCSS } from "./tap-tab.js?v=20261027-strength-cup1";
+import { definePreviewTabs, previewTabsDemoCSS } from "./preview-tabs.js?v=20261027-strength-cup1";
+import { defineWhiteSelectionToggle, whiteSelectionDemoCSS } from "./white-selection-toggle.js?v=20261027-strength-cup1";
+import { defineHistoryClock, historyClockDemoCSS } from "./history-clock.js?v=20261027-strength-cup1";
+import { defineBellRingToggle, bellRingDemoCSS } from "./bell-ring-toggle.js?v=20261027-strength-cup1";
+import { motionExampleDocument } from "../motion/examples.js?v=20261027-strength-cup1";
+import { defineVoiceWave, voiceWaveDemoCSS } from "./voice-wave.js?v=20261027-strength-cup1";
+import { definePinToggle, pinToggleDemoCSS } from "./pin-toggle.js?v=20261027-strength-cup1";
+import { definePinReveal, pinRevealDemoCSS } from "./pin-reveal.js?v=20261027-strength-cup1";
+import { exampleMarkup, upstreamURL, upstreamVersion } from "./catalog.js?v=20261027-strength-cup1";
+import { demoCSS } from "./demo-styles.js?v=20261027-strength-cup1";
+import { bindDemoActions } from "./demo-actions.js?v=20261027-strength-cup1";
+import { defineSelectionToggle, selectionDemoCSS } from "./selection-toggle.js?v=20261027-strength-cup1";
+import { defineLayerStackToggle, layerStackDemoCSS } from "./layer-stack-toggle.js?v=20261027-strength-cup1";
+import { defineProfileRiseToggle, profileRiseDemoCSS } from "./profile-rise-toggle.js?v=20261027-strength-cup1";
+import { defineWrenchTurnToggle, wrenchTurnDemoCSS } from "./wrench-turn-toggle.js?v=20261027-strength-cup1";
+import { handoffText } from "./handoff.js?v=20261027-strength-cup1";
 
 export function exampleDocument(entry, values = {}) {
   if (entry.kind === "motion") return motionExampleDocument(entry, values);
   const font = "https://cdn.jsdelivr.net/npm/@fontsource-variable/inter@5.3.0/files/inter-latin-wght-normal.woff2";
-  const styles = (demoCSS + billingTabsDemoCSS + imageSipLoadingDemoCSS + (entry.custom ? toolHighlightDemoCSS + bottomBarDemoCSS + userPageDemoCSS + plusSelectionDemoCSS + homeSettleDemoCSS + liquidRiseDemoCSS + warningNudgeDemoCSS + chatBubbleDemoCSS + previewTabsDemoCSS + selectionDemoCSS + whiteSelectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS + wrenchTurnDemoCSS + pinToggleDemoCSS + pinRevealDemoCSS + voiceWaveDemoCSS + bellRingDemoCSS + historyClockDemoCSS + tapTabDemoCSS : "")).replace('./vendor/inter-latin-wght-normal.woff2', font);
+  const styles = (strengthCupDemoCSS + demoCSS + billingTabsDemoCSS + imageSipLoadingDemoCSS + (entry.custom ? toolHighlightDemoCSS + bottomBarDemoCSS + userPageDemoCSS + plusSelectionDemoCSS + homeSettleDemoCSS + liquidRiseDemoCSS + warningNudgeDemoCSS + chatBubbleDemoCSS + previewTabsDemoCSS + selectionDemoCSS + whiteSelectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS + wrenchTurnDemoCSS + pinToggleDemoCSS + pinRevealDemoCSS + voiceWaveDemoCSS + bellRingDemoCSS + historyClockDemoCSS + tapTabDemoCSS : "")).replace('./vendor/inter-latin-wght-normal.woff2', font);
   const defineCustom = {
+    "sipplay-strength-cup": defineStrengthCup,
     "sipplay-billing-tabs": defineBillingTabs,
     "sipplay-image-sip-loading": defineImageSipLoading,
     "sipplay-warning-nudge": defineWarningNudge,

@@ -1,3 +1,4 @@
+import { defineStrengthCup } from './strength-cup.js';
 import { defineBillingTabs } from './billing-tabs.js';
 import { defineImageSipLoading } from './image-sip-loading.js';
 import { defineToolHighlight } from './tool-highlight.js';
@@ -22,6 +23,7 @@ import { defineWhiteSelectionToggle } from './white-selection-toggle.js';
 import { defineSelectionToggle } from './selection-toggle.js';
 
 const definitions = {
+  'sipplay-strength-cup': { define: defineStrengthCup, dependencies: [] },
   'sipplay-billing-tabs': { define: defineBillingTabs, dependencies: [] },
   'sipplay-image-sip-loading': { define: defineImageSipLoading, dependencies: [] },
   'sipplay-brackets-tool': { define: defineToolHighlight, dependencies: [] },

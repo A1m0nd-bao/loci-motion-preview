@@ -4,6 +4,162 @@
   "modules": [
     {
       "kind": "javascript-module",
+      "path": "web-components/strength-cup.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "defineStrengthCup",
+          "description": "在浏览器中注册组件；animate 由调用方从 motion 导入。组合组件依赖可通过 registerMotion 初始化。",
+          "parameters": [
+            {
+              "name": "animate",
+              "type": {
+                "text": "Function"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "class",
+          "name": "StrengthCup",
+          "customElement": true,
+          "tagName": "sipplay-strength-cup",
+          "description": "动效：强度滑块液面联动 / sipplay-strength-cup\n位置：强度设置区域：酒杯液面与右侧 Basic / Standard / Extended / Maximum 滑块。按本次上传的四份 SVG 接入，统一为含柠檬的 343×280 画布；具体 Figma 节点待绑定。\nFigma：待绑定；仅凭图标相似不得批量替换\n适配：杯底与杯体固定，保留原始渐变、颗粒、英文路径和柠檬。宿主为整组交互控件，按 343×280 等比缩放；不要嵌套到另一个按钮内。\n注释同步：位置待核对\n触发：拖动时滑块自由跟手，松手吸附最近档位；文字点击与键盘直接选档。液面独立以约 0.54 秒 S 型缓动升降，拖动时柔和跟随；到位轻晃，接近杯口后柠檬旋转弹入并收稳。初次挂载直接显示已有业务档位。\n状态：value；默认 0，接入时以业务状态覆盖\n事件：strength-change → { value: 0 | 1 | 2 | 3, name: string }\n业务接入：value 是最终业务档位：0=Basic，1=Standard，2=Extended，3=Maximum。监听 strength-change 更新已有强度字段；外部写入 el.value 或调用 select(index) 只更新视图，不再发出用户事件。拖动中 strength-input 的 progress 为 0–1，只用于预览，不按每帧保存业务档位。百分比是滑块位置，不代表费用、生成进度或模型能力；不猜接口与路由。初始化设置实际档位后调用 finish()。\n参数：value=0（初始档位（0–3））；duration=0.54（液面缓动（秒））\n源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/strength-cup.js；初始化 defineStrengthCup(animate)\n依赖：Motion animate\nAPI 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json\n预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-strength-cup\n注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。\n映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。",
+          "superclass": {
+            "name": "HTMLElement"
+          },
+          "attributes": [
+            {
+              "name": "value",
+              "type": {
+                "text": "number"
+              },
+              "description": "初始档位（0–3）；范围 0–3，步长 1。",
+              "default": "0"
+            },
+            {
+              "name": "duration",
+              "type": {
+                "text": "number"
+              },
+              "description": "液面缓动（秒）；范围 0.2–1.2，步长 0.02。",
+              "default": "0.54"
+            },
+            {
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "description": "内部交互控件的可访问名称。"
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "progress",
+              "readonly": true,
+              "type": {
+                "text": "number"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "readonly": false,
+              "type": {
+                "text": "number"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "duration",
+              "readonly": true,
+              "type": {
+                "text": "number"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "progress",
+              "readonly": true,
+              "type": {
+                "text": "number"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "playState",
+              "readonly": true,
+              "type": {
+                "text": "string"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "pause",
+              "description": "pause()；语义见组件交付说明。"
+            },
+            {
+              "kind": "method",
+              "name": "play",
+              "description": "恢复暂停的动画；单次反馈组件的重播请按组件说明调用 replay/trigger。"
+            },
+            {
+              "kind": "method",
+              "name": "finish",
+              "description": "直接落在当前状态或静止终态。"
+            },
+            {
+              "kind": "method",
+              "name": "cancel",
+              "description": "cancel()；语义见组件交付说明。"
+            },
+            {
+              "kind": "method",
+              "name": "select",
+              "description": "select(index)；语义见组件交付说明。"
+            }
+          ],
+          "events": [
+            {
+              "name": "strength-change",
+              "description": "detail: { value: 0 | 1 | 2 | 3, name: string }。value 是最终业务档位：0=Basic，1=Standard，2=Extended，3=Maximum。监听 strength-change 更新已有强度字段；外部写入 el.value 或调用 select(index) 只更新视图，不再发出用户事件。拖动中 strength-input 的 progress 为 0–1，只用于预览，不按每帧保存业务档位。百分比是滑块位置，不代表费用、生成进度或模型能力；不猜接口与路由。初始化设置实际档位后调用 finish()。",
+              "type": {
+                "text": "CustomEvent"
+              }
+            },
+            {
+              "name": "strength-input",
+              "description": "detail: { progress: number }。用户自由拖动时发出 0–1 的连续位置；松手后 strength-change 提交最近档位。",
+              "type": {
+                "text": "CustomEvent"
+              }
+            }
+          ],
+          "slots": []
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "defineStrengthCup",
+          "declaration": {
+            "name": "defineStrengthCup",
+            "module": "web-components/strength-cup.js"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "sipplay-strength-cup",
+          "declaration": {
+            "name": "StrengthCup",
+            "module": "web-components/strength-cup.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "web-components/billing-tabs.js",
       "declarations": [
         {

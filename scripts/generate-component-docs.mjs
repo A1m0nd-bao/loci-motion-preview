@@ -50,8 +50,8 @@ for (const [path, items] of groups) {
   // invented by converting attribute names (e.g. value can be read-only).
   for (const match of source.matchAll(/^    get (\w+)\(\)/gm)) {
     const name = match[1];
-    if (!['active','expanded','value','selected','duration','bounce','strength','speed','flowDuration','clickDuration','playState'].includes(name)) continue;
-    members.push({ kind: 'field', name, readonly: !source.includes(`set ${name}(`), type: { text: ['active','expanded'].includes(name) ? 'boolean' : ['value','playState'].includes(name) ? 'string' : 'number' } });
+    if (!['active','expanded','value','selected','duration','bounce','strength','speed','progress','flowDuration','clickDuration','playState'].includes(name)) continue;
+    members.push({ kind: 'field', name, readonly: !source.includes(`set ${name}(`), type: { text: ['active','expanded'].includes(name) ? 'boolean' : (name === 'playState' || (name === 'value' && !items[0].e.controls.some(c => c.attribute === 'value'))) ? 'string' : 'number' } });
   }
   for (const name of ['pause','play','finish','cancel','toggle','select','replay','trigger']) {
     const match = source.match(new RegExp(`^    ${name}\\(([^)]*)\\)`, 'm'));

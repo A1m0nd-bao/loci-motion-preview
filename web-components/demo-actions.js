@@ -1,5 +1,18 @@
 // This function is also embedded in downloaded examples: keep it self-contained.
 export function bindDemoActions(root) {
+  const strengthNames = ['Basic', 'Standard', 'Extended', 'Maximum'];
+  const onStrength = event => {
+    if (event.target.localName !== 'sipplay-strength-cup') return;
+    const output = root.querySelector('[data-strength-status]');
+    const progress = event.type === 'strength-input' ? event.detail.progress : event.detail.value / 3;
+    if (output) output.textContent = `${strengthNames[Math.round(progress * 3)]} · ${Number((progress * 100).toFixed(1))}%`;
+  };
+  root.addEventListener('strength-input', onStrength);
+  root.addEventListener('strength-change', onStrength);
+  const strengthCup = root.querySelector('sipplay-strength-cup');
+  const strengthStatus = root.querySelector('[data-strength-status]');
+  if (strengthCup && strengthStatus) strengthStatus.textContent = `${strengthNames[strengthCup.value]} · ${Number((strengthCup.value * 100 / 3).toFixed(1))}%`;
+
   const toggles = [...root.querySelectorAll("sipplay-billing-tabs,sipplay-user-page-toggle,sipplay-home-settle-toggle,sipplay-liquid-rise-toggle,sipplay-chat-bubble-toggle,sipplay-preview-tabs,sipplay-white-selection-toggle,sipplay-selection-toggle,sipplay-layer-stack-toggle,sipplay-profile-rise-toggle,sipplay-wrench-turn-toggle,sipplay-pin-toggle,sipplay-pin-reveal,sipplay-voice-wave")];
   const loaders = [...root.querySelectorAll('sipplay-image-sip-loading')];
   for (const loader of loaders.slice(1)) {
@@ -119,6 +132,8 @@ export function bindDemoActions(root) {
     }
   };
   return () => {
+    root.removeEventListener('strength-input', onStrength);
+    root.removeEventListener('strength-change', onStrength);
     root.removeEventListener("tool-activate", onToolActivate);
     root.removeEventListener("nav-change", onBottomNavChange);
     root.removeEventListener("motion-change", onSelectionChange);
