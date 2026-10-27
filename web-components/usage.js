@@ -1,6 +1,6 @@
-import { webMotions } from './catalog.js?v=20261027-home-jump';
-import { getHandoff } from './handoff.js?v=20261027-home-jump';
-import { batchPrompt, copyButton, renderHandoff, renderCommonNotes } from './handoff-ui.js?v=20261027-home-jump';
+import { webMotions } from './catalog.js?v=20261027-user-fill';
+import { getHandoff } from './handoff.js?v=20261027-user-fill';
+import { batchPrompt, copyButton, renderHandoff, renderCommonNotes } from './handoff-ui.js?v=20261027-user-fill';
 
 const entries = webMotions.filter(e => e.custom).sort((a,b) => getHandoff(b).figma.length - getHandoff(a).figma.length);
 const mapped = entries.filter(e => getHandoff(e).figma.length);

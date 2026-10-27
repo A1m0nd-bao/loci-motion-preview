@@ -8,7 +8,7 @@ export function defineUserPageToggle(animate) {
    * Figma：移动 Web 底栏 / 用户 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-82201
    * 适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套
    * 注释同步：此对应关系目前仅保存在网站和源码，尚未写回 Figma 画布
-   * 触发：选中时头部、身体从底部先后探出；取消时恢复线框。
+   * 触发：选中时头部、身体从底部先后探出，白色由身体底部向上填满，再到头部；取消时恢复线框。
    * 状态：active；默认 false，接入时以业务状态覆盖
    * 事件：motion-change → { active: boolean }
    * 业务接入：在底栏中由父级导航驱动；与创建页 20px 的人物图标分别使用。
@@ -68,14 +68,20 @@ export function defineUserPageToggle(animate) {
             button:focus-visible{outline:1px solid #d4d4d8;outline-offset:1px}
             svg{display:block;width:24px;height:24px;overflow:hidden;pointer-events:none}
             .ink{opacity:0.4}
-            .body,.head{fill-opacity:0;transform-box:view-box!important}
+            .body,.head{transform-box:view-box!important}
             .body{transform-origin:12px 22.0018px!important}
             .head{transform-origin:11.999px 7.79004px!important}
           </style>
           <button type="button" aria-pressed="false">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <defs><clipPath id="user-window"><rect width="24" height="24"/></clipPath></defs>
-              <g clip-path="url(#user-window)"><g class="ink" stroke="white" stroke-width="1.5" fill="white">
+              <defs>
+                <clipPath id="user-window"><rect width="24" height="24"/></clipPath>
+                <linearGradient id="user-fill" x1="0" y1="24" x2="0" y2="0" gradientUnits="userSpaceOnUse">
+                  <stop class="fill-front" offset="0" stop-color="white"/>
+                  <stop class="fill-clear" offset="0" stop-color="white" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <g clip-path="url(#user-window)"><g class="ink" stroke="white" stroke-width="1.5" fill="url(#user-fill)">
                 <g class="head"><path d="M11.999 2.75C14.8052 2.75 17.0732 5.01068 17.0732 7.79004C17.0732 10.5693 14.8051 12.8301 11.999 12.8301C9.19307 12.8299 6.92587 10.5692 6.92578 7.79004C6.92578 5.01078 9.19302 2.75015 11.999 2.75Z"/></g>
                 <g class="body"><path d="M19.6573 22.0018H4.34272C3.6655 22.0018 3.17279 21.3591 3.34861 20.7051L3.61077 19.73C4.57784 16.1329 7.8389 13.6328 11.5637 13.6328H12.4363C16.1611 13.6328 19.4222 16.1329 20.3892 19.73L20.6514 20.7051C20.8272 21.3591 20.3345 22.0018 19.6573 22.0018Z" stroke-linecap="round"/></g>
               </g></g>
@@ -83,6 +89,7 @@ export function defineUserPageToggle(animate) {
           </button>`;
         this.button = this.shadowRoot.querySelector("button");
         for (const name of ["ink", "body", "head"]) this[name] = this.shadowRoot.querySelector(`.${name}`);
+        this.fillStops = [...this.shadowRoot.querySelectorAll(".fill-front,.fill-clear")];
         this.button.addEventListener("click", () => this.toggle());
       }
       this.reducedMotion.addEventListener("change", this.onReducedMotion);
@@ -103,6 +110,11 @@ export function defineUserPageToggle(animate) {
       this.button.setAttribute("aria-pressed", String(this.active));
       this.button.setAttribute("aria-label", this.getAttribute("label") || (this.active ? "取消选中用户页" : "选中用户页"));
     }
+    setFillProgress(progress) {
+      // A shared hard-stop gradient moves from y=24 to y=0. The original paths
+      // retain their single stroke while the fill rises through body and head.
+      for (const stop of this.fillStops) stop.setAttribute("offset", progress);
+    }
     stop() {
       this.resumeAfterVisibility = false;
       this.epoch++;
@@ -118,31 +130,41 @@ export function defineUserPageToggle(animate) {
       const times = [0, 0.56, 0.8, 1];
       const ease = [[0.16, 1, 0.3, 1], "easeInOut", "easeOut"];
       this.head.style.opacity = this.body.style.opacity = rising ? "0" : "1";
-      this.body.style.fillOpacity = this.head.style.fillOpacity = on ? "1" : "0";
-      const resting = { y: 0, scaleX: 1, scaleY: 1, opacity: 1 };
+      this.setFillProgress(rising ? 0 : on ? 1 : 0);
+      const epoch = this.epoch;
+      const fillControls = rising ? [animate(0, 1, {
+        duration: d * 0.82, delay: d * 0.10, ease: [0.22, 0.75, 0.25, 1],
+        onUpdate: progress => { if (epoch === this.epoch) this.setFillProgress(progress); },
+      })] : [];
+      // Keep short fades separate from the longer transform controls, so a pause
+      // in the fill does not rewind already completed visibility fades.
+      const opacityControls = rising ? [
+        animate(0, 1, { duration: d * 0.055, delay: d * 0.06, ease: "linear",
+          onUpdate: opacity => { if (epoch === this.epoch) this.body.style.opacity = String(opacity); } }),
+        animate(0, 1, { duration: d * 0.055, delay: d * 0.11, ease: "linear",
+          onUpdate: opacity => { if (epoch === this.epoch) this.head.style.opacity = String(opacity); } }),
+      ] : [];
+      const resting = { y: 0, scaleX: 1, scaleY: 1 };
       this.controls = [
         animate(this.ink, { opacity: on ? 1 : 0.4 }, { duration: instant ? 0 : d * 0.18 }),
+        ...fillControls,
+        ...opacityControls,
         animate(this.body, rising ? {
           y: [24, -2.2 * bounce * 1.2, 0.8 * bounce * 1.2, 0],
           scaleY: [0.74, 1 + 0.4 * bounce, 1 - 0.2 * bounce, 1],
           scaleX: [1.1, 1 - 0.12 * bounce, 1 + 0.1 * bounce, 1],
-          opacity: [0, 1],
         } : resting, rising ? {
           duration: d * 0.82, delay: d * 0.06, times, ease,
-          opacity: { duration: d * 0.055, delay: d * 0.06, times: [0, 1], ease: "linear" },
         } : { duration: 0 }),
         animate(this.head, rising ? {
           y: [31.2, -Math.min(1.65, 4.8 * bounce * 1.2), 1.6 * bounce * 1.2, 0],
           scaleY: [0.86, 1 + 0.1 * bounce, 1 - 0.06 * bounce, 1],
           scaleX: [1.04, 1 - 0.06 * bounce, 1 + 0.03 * bounce, 1],
-          opacity: [0, 1],
         } : resting, rising ? {
           duration: d * 0.96, delay: d * 0.11, times, ease,
-          opacity: { duration: d * 0.055, delay: d * 0.11, times: [0, 1], ease: "linear" },
         } : { duration: 0 }),
       ];
       if (!rising) this.controls = this.controls.slice(0, 1);
-      const epoch = this.epoch;
       this.state = instant ? "finished" : "running";
       Promise.all(this.controls.map(control => Promise.resolve(control))).then(() => {
         if (epoch === this.epoch) this.state = "finished";
@@ -176,7 +198,7 @@ export function defineUserPageToggle(animate) {
 
 export const userPageDemoMarkup = `
   <div class="selection-demo user-page-demo">
-    <p class="selection-demo-hint">点击选中 · 底部探出，头部跟随回弹</p>
+    <p class="selection-demo-hint">点击选中 · 人物探出，由下向上填白</p>
     <div class="selection-demo-zoom"><sipplay-user-page-toggle data-motion duration="0.64" strength="1" label="切换用户页选中状态（放大预览）"></sipplay-user-page-toggle></div>
     <p class="selection-demo-caption">4× 细节预览</p>
     <div class="selection-demo-original"><sipplay-user-page-toggle label="切换用户页选中状态（原始尺寸）"></sipplay-user-page-toggle><span>原始尺寸 · 24 × 24</span></div>
