@@ -1,25 +1,25 @@
-import { billingTabsDemoMarkup } from "./billing-tabs.js?v=20261027-user-fill4";
-import { imageSipLoadingDemoMarkup } from "./image-sip-loading.js?v=20261027-user-fill4";
-import { bracketsToolDemoMarkup, imageToolDemoMarkup } from "./tool-highlight.js?v=20261027-user-fill4";
-import { bottomBarDemoMarkup } from "./bottom-bar.js?v=20261027-user-fill4";
-import { userPageDemoMarkup } from "./user-page-toggle.js?v=20261027-user-fill4";
-import { plusSelectionDemoMarkup } from "./plus-selection-toggle.js?v=20261027-user-fill4";
-import { homeSettleDemoMarkup } from "./home-settle-toggle.js?v=20261027-user-fill4";
-import { warningNudgeDemoMarkup } from "./warning-nudge.js?v=20261027-user-fill4";
-import { liquidRiseDemoMarkup } from "./liquid-rise-toggle.js?v=20261027-user-fill4";
-import { chatBubbleDemoMarkup } from "./chat-bubble-toggle.js?v=20261027-user-fill4";
-import { tapTabDemoMarkup } from "./tap-tab.js?v=20261027-user-fill4";
-import { previewTabsDemoMarkup } from "./preview-tabs.js?v=20261027-user-fill4";
-import { whiteSelectionDemoMarkup } from "./white-selection-toggle.js?v=20261027-user-fill4";
-import { historyClockDemoMarkup } from "./history-clock.js?v=20261027-user-fill4";
-import { bellRingDemoMarkup } from "./bell-ring-toggle.js?v=20261027-user-fill4";
-import { voiceWaveDemoMarkup } from "./voice-wave.js?v=20261027-user-fill4";
-import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261027-user-fill4";
-import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261027-user-fill4";
-import { selectionDemoMarkup } from "./selection-toggle.js?v=20261027-user-fill4";
-import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261027-user-fill4";
-import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261027-user-fill4";
-import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261027-user-fill4";
+import { billingTabsDemoMarkup } from "./billing-tabs.js?v=20261027-user-fill5";
+import { imageSipLoadingDemoMarkup } from "./image-sip-loading.js?v=20261027-user-fill5";
+import { bracketsToolDemoMarkup, imageToolDemoMarkup } from "./tool-highlight.js?v=20261027-user-fill5";
+import { bottomBarDemoMarkup } from "./bottom-bar.js?v=20261027-user-fill5";
+import { userPageDemoMarkup } from "./user-page-toggle.js?v=20261027-user-fill5";
+import { plusSelectionDemoMarkup } from "./plus-selection-toggle.js?v=20261027-user-fill5";
+import { homeSettleDemoMarkup } from "./home-settle-toggle.js?v=20261027-user-fill5";
+import { warningNudgeDemoMarkup } from "./warning-nudge.js?v=20261027-user-fill5";
+import { liquidRiseDemoMarkup } from "./liquid-rise-toggle.js?v=20261027-user-fill5";
+import { chatBubbleDemoMarkup } from "./chat-bubble-toggle.js?v=20261027-user-fill5";
+import { tapTabDemoMarkup } from "./tap-tab.js?v=20261027-user-fill5";
+import { previewTabsDemoMarkup } from "./preview-tabs.js?v=20261027-user-fill5";
+import { whiteSelectionDemoMarkup } from "./white-selection-toggle.js?v=20261027-user-fill5";
+import { historyClockDemoMarkup } from "./history-clock.js?v=20261027-user-fill5";
+import { bellRingDemoMarkup } from "./bell-ring-toggle.js?v=20261027-user-fill5";
+import { voiceWaveDemoMarkup } from "./voice-wave.js?v=20261027-user-fill5";
+import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261027-user-fill5";
+import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261027-user-fill5";
+import { selectionDemoMarkup } from "./selection-toggle.js?v=20261027-user-fill5";
+import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261027-user-fill5";
+import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261027-user-fill5";
+import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261027-user-fill5";
 
 export const upstreamVersion = "1.3.0";
 export const upstreamURL = "https://github.com/tgomilar/motion-components";
@@ -63,7 +63,7 @@ export const webMotions = [{
   tags: ["底栏", "底部导航", "Bottom Bar", "首页", "聊天", "添加", "用户", "375px"], interactionType: "底部导航切换",
 }, {
   id: "sipplay-user-page-toggle", name: "用户页探出选中", category: "动态图标",
-  description: "保留提供的 24 × 24 人像路径、1.5px 描边和 40% 灰态透明度。选中时头部和身体先完全藏到画布底部，再以参考人物组件的节奏先后探出；身体拉伸、压缩收稳，头部稍晚并带更大的回弹；伴随人物探出，白色平滑从身体底部向上填满，再到头部。取消时恢复原始灰色线框。头部与身体各保留单一路径，描边始终清晰，填充单独向上展开。支持快速反向、键盘、触屏、减少动态效果、暂停恢复和独立 HTML 导出。",
+  description: "保留提供的 24 × 24 人像路径、1.5px 描边和 40% 灰态透明度。选中时头部和身体先完全藏到画布底部，再以参考人物组件的节奏先后探出；身体拉伸、压缩收稳，头部稍晚并带更大的回弹；伴随人物探出，白色以轻启、中段加速、柔和收尾的节奏从身体底部向上填满，再到头部。取消时恢复原始灰色线框。头部与身体各保留单一路径，描边始终清晰，填充单独向上展开。支持快速反向、键盘、触屏、减少动态效果、暂停恢复和独立 HTML 导出。",
   markup: userPageDemoMarkup, controls: [number("duration", "切换时长（秒）", 0.64, 0.24, 1.2, 0.02), number("strength", "回弹幅度", 1, 0.4, 1.4, 0.05)],
   kind: "web", kindLabel: "Web 组件", fileName: "sipplay-user-page-toggle",
   file: "./web-components/preview.html?id=sipplay-user-page-toggle", docs: null, custom: true,
