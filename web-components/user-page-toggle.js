@@ -8,7 +8,7 @@ export function defineUserPageToggle(animate) {
    * Figma：移动 Web 底栏 / 用户 https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-82201
    * 适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套
    * 注释同步：此对应关系目前仅保存在网站和源码，尚未写回 Figma 画布
-   * 触发：选中时头部、身体从底部先后探出，白色伴随探出匀速由身体底部向上填满，再到头部；取消时恢复线框。
+   * 触发：选中时头部、身体从底部先后探出，白色伴随探出平滑由身体底部向上填满，再到头部；取消时恢复线框。
    * 状态：active；默认 false，接入时以业务状态覆盖
    * 事件：motion-change → { active: boolean }
    * 业务接入：在底栏中由父级导航驱动；与创建页 20px 的人物图标分别使用。
@@ -128,12 +128,15 @@ export function defineUserPageToggle(animate) {
       const on = this.active, d = this.duration, bounce = 0.3 * this.strength;
       const rising = on && !instant;
       const times = [0, 0.56, 0.8, 1];
-      const ease = [[0.16, 1, 0.3, 1], "easeInOut", "easeOut"];
+      const smoothCurve = [0.33, 0, 0.67, 1];
+      // Every rebound segment begins and ends at zero velocity, including the
+      // final settle. This avoids a speed jump at the last direction change.
+      const ease = [[0.22, 1, 0.36, 1], smoothCurve, smoothCurve];
       this.head.style.opacity = this.body.style.opacity = rising ? "0" : "1";
       this.setFillProgress(rising ? 0 : on ? 1 : 0);
       const epoch = this.epoch;
       const fillControls = rising ? [animate(0, 1, {
-        duration: d * 0.48, delay: d * 0.22, ease: "linear",
+        duration: d * 0.48, delay: d * 0.22, ease: smoothCurve,
         onUpdate: progress => { if (epoch === this.epoch) this.setFillProgress(progress); },
       })] : [];
       // Keep short fades separate from the longer transform controls, so a pause
