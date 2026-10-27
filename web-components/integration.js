@@ -1,6 +1,6 @@
-import { exampleDocument } from "./examples.js?v=20261027-user-fill5";
-import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261027-user-fill5";
-import { renderHandoff } from "./handoff-ui.js?v=20261027-user-fill5";
+import { exampleDocument } from "./examples.js?v=20261027-white-path1";
+import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261027-white-path1";
+import { renderHandoff } from "./handoff-ui.js?v=20261027-white-path1";
 
 const controllers = new Set();
 

@@ -1,25 +1,25 @@
-import { billingTabsDemoMarkup } from "./billing-tabs.js?v=20261027-user-fill5";
-import { imageSipLoadingDemoMarkup } from "./image-sip-loading.js?v=20261027-user-fill5";
-import { bracketsToolDemoMarkup, imageToolDemoMarkup } from "./tool-highlight.js?v=20261027-user-fill5";
-import { bottomBarDemoMarkup } from "./bottom-bar.js?v=20261027-user-fill5";
-import { userPageDemoMarkup } from "./user-page-toggle.js?v=20261027-user-fill5";
-import { plusSelectionDemoMarkup } from "./plus-selection-toggle.js?v=20261027-user-fill5";
-import { homeSettleDemoMarkup } from "./home-settle-toggle.js?v=20261027-user-fill5";
-import { warningNudgeDemoMarkup } from "./warning-nudge.js?v=20261027-user-fill5";
-import { liquidRiseDemoMarkup } from "./liquid-rise-toggle.js?v=20261027-user-fill5";
-import { chatBubbleDemoMarkup } from "./chat-bubble-toggle.js?v=20261027-user-fill5";
-import { tapTabDemoMarkup } from "./tap-tab.js?v=20261027-user-fill5";
-import { previewTabsDemoMarkup } from "./preview-tabs.js?v=20261027-user-fill5";
-import { whiteSelectionDemoMarkup } from "./white-selection-toggle.js?v=20261027-user-fill5";
-import { historyClockDemoMarkup } from "./history-clock.js?v=20261027-user-fill5";
-import { bellRingDemoMarkup } from "./bell-ring-toggle.js?v=20261027-user-fill5";
-import { voiceWaveDemoMarkup } from "./voice-wave.js?v=20261027-user-fill5";
-import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261027-user-fill5";
-import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261027-user-fill5";
-import { selectionDemoMarkup } from "./selection-toggle.js?v=20261027-user-fill5";
-import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261027-user-fill5";
-import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261027-user-fill5";
-import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261027-user-fill5";
+import { billingTabsDemoMarkup } from "./billing-tabs.js?v=20261027-white-path1";
+import { imageSipLoadingDemoMarkup } from "./image-sip-loading.js?v=20261027-white-path1";
+import { bracketsToolDemoMarkup, imageToolDemoMarkup } from "./tool-highlight.js?v=20261027-white-path1";
+import { bottomBarDemoMarkup } from "./bottom-bar.js?v=20261027-white-path1";
+import { userPageDemoMarkup } from "./user-page-toggle.js?v=20261027-white-path1";
+import { plusSelectionDemoMarkup } from "./plus-selection-toggle.js?v=20261027-white-path1";
+import { homeSettleDemoMarkup } from "./home-settle-toggle.js?v=20261027-white-path1";
+import { warningNudgeDemoMarkup } from "./warning-nudge.js?v=20261027-white-path1";
+import { liquidRiseDemoMarkup } from "./liquid-rise-toggle.js?v=20261027-white-path1";
+import { chatBubbleDemoMarkup } from "./chat-bubble-toggle.js?v=20261027-white-path1";
+import { tapTabDemoMarkup } from "./tap-tab.js?v=20261027-white-path1";
+import { previewTabsDemoMarkup } from "./preview-tabs.js?v=20261027-white-path1";
+import { whiteSelectionDemoMarkup } from "./white-selection-toggle.js?v=20261027-white-path1";
+import { historyClockDemoMarkup } from "./history-clock.js?v=20261027-white-path1";
+import { bellRingDemoMarkup } from "./bell-ring-toggle.js?v=20261027-white-path1";
+import { voiceWaveDemoMarkup } from "./voice-wave.js?v=20261027-white-path1";
+import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261027-white-path1";
+import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261027-white-path1";
+import { selectionDemoMarkup } from "./selection-toggle.js?v=20261027-white-path1";
+import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261027-white-path1";
+import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261027-white-path1";
+import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261027-white-path1";
 
 export const upstreamVersion = "1.3.0";
 export const upstreamURL = "https://github.com/tgomilar/motion-components";
@@ -179,7 +179,7 @@ export const webMotions = [{
   tags: ["自定义 SVG", "图层", "叠片", "选中状态", "20px"], interactionType: "点击切换",
 }, {
   id: "sipplay-white-selection-toggle", name: "白色勾选切换", category: "动态图标",
-  description: "白色圆底先弹出，稍停后画出镂空勾。与粉色勾选保持相同的时间曲线，保留原始 20 × 20 SVG 造型，支持双向切换。",
+  description: "白色圆底先弹出，镂空勾从左侧短笔连续画到右上长笔，收尾回到原始 SVG 轮廓。取消时沿原路径收回，支持快速反复切换。",
   markup: whiteSelectionDemoMarkup, controls: [number("duration", "时长（秒）", 0.32, 0.12, 1.5, 0.02), number("bounce", "回弹程度", 0.15, 0, 0.5, 0.05)],
   kind: "web", kindLabel: "Web 组件", fileName: "sipplay-white-selection-toggle",
   file: "./web-components/preview.html?id=sipplay-white-selection-toggle",

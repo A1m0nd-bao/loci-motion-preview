@@ -11,7 +11,7 @@ export function defineWhiteSelectionToggle(animate) {
    * 选择规则：多选；每项独立切换，重复点击可取消，不影响其他项
    * 适配：原稿选区为 20×20，白色圆底与镂空勾；保持原稿尺寸及列表间距。复用勾选动效视图接入现有 checkbox，避免把示例 44px 内部按钮嵌入已有控件或新增焦点入口。
    * 注释同步：此对应关系目前仅保存在网站和源码，尚未写回 Figma 画布
-   * 触发：每个选项独立切换：选中时白色圆底弹出并画出镂空勾，取消时反向恢复。再次点击已选项可以取消；不改变其他项。初次挂载直接显示已有选中集合。
+   * 触发：每个选项独立切换：选中时白色圆底弹出，镂空勾从左侧短笔连续画到右上长笔，取消时沿原路径收回。再次点击已选项可以取消；不改变其他项。初次挂载直接显示已有选中集合。
    * 状态：active；默认 false，接入时以业务状态覆盖
    * 事件：motion-change → { active: boolean }
    * 业务接入：沿用项目现有的反馈类型多选数组或集合；active = 已选集合是否包含本项 ID。选中只添加本项，取消只移除本项，不清空其他项、不使用单一 selectedId，也不根据选中动画自动提交反馈。保留原有 checkbox 语义、Space 键操作与焦点管理。提交时读取真实集合；数量限制、必选规则等沿用既有业务，不额外猜测。
@@ -66,7 +66,7 @@ export function defineWhiteSelectionToggle(animate) {
               <circle class="outline" cx="10" cy="10" r="9.5" stroke="white"/>
               <defs>
                 <!-- Reveal the supplied cutout, keeping the check transparent on any background. -->
-                <path class="check" visibility="hidden" stroke-dasharray="1 2" stroke-dashoffset="1.05" opacity="0" pathLength="1" d="M5.922 10.134L8.116 12.676Q8.745 13.405 9.374 12.676L13.922 7.408"/>
+                <path class="check" visibility="hidden" d="M5.922 10.134L8.116 12.676Q8.745 13.405 9.374 12.676L13.922 7.408"/>
                 <mask id="circle-cutout" maskUnits="userSpaceOnUse" x="0" y="0" width="20" height="20" style="mask-type:luminance">
                   <rect width="20" height="20" fill="white"/>
                   <path d="M14.5273 6.70508C14.1402 6.37103 13.5547 6.41457 13.2207 6.80176L8.74512 11.9893L6.62305 9.52832C6.28902 9.14137 5.70451 9.09878 5.31738 9.43262C4.93024 9.76662 4.8868 10.3511 5.2207 10.7383L7.41309 13.2803C8.11475 14.0935 9.37532 14.0933 10.0771 13.2803L14.623 8.01074C14.9569 7.6236 14.9143 7.03911 14.5273 6.70508Z" class="cutout" fill="black" opacity="0"/>
@@ -83,6 +83,13 @@ export function defineWhiteSelectionToggle(animate) {
         this.check = this.shadowRoot.querySelector(".check");
         this.cutout = this.shadowRoot.querySelector(".cutout");
         this.checkLength = this.check.getTotalLength();
+        this.cutoutShape = this.cutout.getAttribute("d");
+        const steps = Math.ceil(this.checkLength / 0.12);
+        this.checkSamples = Array.from({ length: steps + 1 }, (_, i) => {
+          const distance = this.checkLength * i / steps;
+          const point = this.check.getPointAtLength(distance);
+          return { distance, command: `${i ? "L" : "M"}${point.x} ${point.y}` };
+        });
         this.button.addEventListener("click", () => this.toggle());
       }
       this.reducedMotion.addEventListener("change", this.onReducedMotion);
@@ -112,45 +119,36 @@ export function defineWhiteSelectionToggle(animate) {
       this.controls = [];
     }
 
-    syncCutout() {
-      const dash = Number(this.check.getAttribute("stroke-dashoffset"));
-      this.cutout.setAttribute("opacity", this.check.getAttribute("opacity"));
-      if (dash <= 0) { this.cutout.style.clipPath = "none"; return; }
-      const distance = Math.max(0, 1 - dash) * this.checkLength;
-      if (distance === 0) { this.cutout.style.clipPath = "polygon(0px 0px,0px 0px,0px 0px)"; return; }
-      // A short rounded ribbon reveals the exact supplied cutout. Inline clipping
-      // avoids stale rendering from a mask nested inside another SVG mask.
-      const left = [], right = [], radius = 1.8;
-      const steps = Math.max(2, Math.ceil(distance * 3));
-      let angle = 0;
-      for (let i = 0; i <= steps; i++) {
-        const at = distance * i / steps;
-        const p = this.check.getPointAtLength(at);
-        const before = this.check.getPointAtLength(Math.max(0, at - 0.01));
-        const after = this.check.getPointAtLength(Math.min(this.checkLength, at + 0.01));
-        angle = Math.atan2(after.y - before.y, after.x - before.x);
-        const dx = -Math.sin(angle) * radius, dy = Math.cos(angle) * radius;
-        left.push(`${p.x + dx}px ${p.y + dy}px`);
-        right.push(`${p.x - dx}px ${p.y - dy}px`);
+    setCheckProgress(value) {
+      const progress = this.checkProgress = Math.min(1, Math.max(0, value));
+      this.cutout.setAttribute("opacity", progress > 0 ? "1" : "0");
+      if (progress >= 1) {
+        this.cutout.setAttribute("d", this.cutoutShape);
+        this.cutout.setAttribute("fill", "black");
+        this.cutout.setAttribute("stroke", "none");
+        return;
+      }
+      // Draw the mask geometry itself: CSS clipping inside a mask can skip intermediate frames.
+      const distance = this.checkLength * progress;
+      let path = this.checkSamples[0].command;
+      for (let i = 1; i < this.checkSamples.length; i++) {
+        const sample = this.checkSamples[i];
+        if (sample.distance >= distance) break;
+        path += sample.command;
       }
       const tip = this.check.getPointAtLength(distance);
-      for (let i = 1; i < 12; i++) {
-        const a = angle + Math.PI / 2 - Math.PI * i / 12;
-        left.push(`${tip.x + Math.cos(a) * radius}px ${tip.y + Math.sin(a) * radius}px`);
-      }
-      left.push(...right.reverse());
-      const start = this.check.getPointAtLength(0);
-      const next = this.check.getPointAtLength(0.01);
-      const firstAngle = Math.atan2(next.y - start.y, next.x - start.x);
-      for (let i = 1; i < 12; i++) {
-        const a = firstAngle - Math.PI / 2 - Math.PI * i / 12;
-        left.push(`${start.x + Math.cos(a) * radius}px ${start.y + Math.sin(a) * radius}px`);
-      }
-      this.cutout.style.clipPath = `polygon(${left.join(",")})`;
+      this.cutout.setAttribute("d", `${path}L${tip.x} ${tip.y}`);
+      this.cutout.setAttribute("fill", "none");
+      this.cutout.setAttribute("stroke", "black");
+      this.cutout.setAttribute("stroke-width", "1.85");
+      this.cutout.setAttribute("stroke-linecap", "round");
+      this.cutout.setAttribute("stroke-linejoin", "round");
     }
 
     apply(instant = false) {
       this.stop();
+      const from = this.checkProgress ?? 0;
+      const epoch = this.epoch;
       this.updateAccessibility();
       const on = this.active;
       const duration = instant ? 0 : this.duration;
@@ -164,24 +162,20 @@ export function defineWhiteSelectionToggle(animate) {
             opacity: { duration: duration * 0.28, ease: "easeOut" },
           }
         : { ...spring, delay: duration * 0.2 };
-      // Pause briefly after the fill settles, then draw with a spring and no overshoot.
-      const checkSpring = { type: "spring", bounce: 0, delay: instant ? 0 : duration * 0.85 };
-      const checkTiming = on
-        ? { ...checkSpring, duration: duration * 0.35 }
-        : { duration: duration * 0.7, ease: "easeIn" };
-      const strokeTiming = on
-        ? { ...checkSpring, duration: duration * 0.55 }
-        : checkTiming;
-      // Update the SVG cutout directly so Chromium repaints the mask during playback.
-      const dash = Number(this.check.getAttribute("stroke-dashoffset"));
-      const opacity = Number(this.check.getAttribute("opacity"));
       this.controls = [
         animate(this.fill, { opacity: on ? 1 : 0, scale: fillScale }, fillTiming),
         animate(this.outline, { opacity: on ? 0 : 1 }, { duration: duration * 0.65, delay: !on && !instant ? duration * 0.18 : 0 }),
-        animate(dash, on ? 0 : 1.05, { ...strokeTiming, onUpdate: value => { this.check.setAttribute("stroke-dashoffset", value); this.syncCutout(); } }),
-        animate(opacity, on ? 1 : 0, { ...checkTiming, onUpdate: value => { this.check.setAttribute("opacity", value); this.syncCutout(); } }),
       ];
-      const epoch = this.epoch;
+      if (instant) {
+        this.setCheckProgress(on ? 1 : 0);
+      } else {
+        this.controls.push(animate(from, on ? 1 : 0, {
+          duration: duration * (on ? 0.85 : 0.6),
+          delay: on && from === 0 ? duration * 0.65 : 0,
+          ease: on ? [0.4, 0, 0.2, 1] : [0.4, 0, 1, 1],
+          onUpdate: value => { if (this.epoch === epoch) this.setCheckProgress(value); },
+        }));
+      }
       this.state = instant ? "finished" : "running";
       Promise.all(this.controls.map((control) => Promise.resolve(control))).then(() => {
         if (this.epoch === epoch) this.state = "finished";
@@ -193,10 +187,14 @@ export function defineWhiteSelectionToggle(animate) {
       this.dispatchEvent(new CustomEvent("motion-change", { detail: { active: this.active }, bubbles: true, composed: true }));
     }
 
-    pause() { this.controls.forEach((control) => control.pause()); this.state = "paused"; }
+    pause() {
+      this.pausedControls = this.controls.filter(control => control.duration > 0 && control.state !== "finished");
+      this.pausedControls.forEach(control => control.pause());
+      if (this.pausedControls.length) this.state = "paused";
+    }
     play() {
       if (this.state !== "paused") return;
-      this.controls.forEach((control) => control.play());
+      this.pausedControls.forEach((control) => control.play());
       this.state = "running";
     }
     finish() { this.apply(true); }
