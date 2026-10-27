@@ -337,7 +337,7 @@ Figma：聊天消息 / Backtrack https://www.figma.com/design/KZyY9qkYbf0yiwqcov
 状态：无持久状态；默认 静止，接入时以业务状态覆盖
 事件：motion-replay → 无 detail
 业务接入：没有 active 状态。保留既有 Backtrack 点击与回溯流程；hover/click 播放动画，motion-replay 仅表示动画开始，不触发或确认回溯。
-参数：duration=0.8（总时长（秒））；bounce=0.4（填白回弹）
+参数：duration=0.92（总时长（秒））；bounce=0.4（填白回弹）
 源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/history-clock.js；初始化 defineHistoryClock(animate)
 依赖：Motion animate
 API 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json

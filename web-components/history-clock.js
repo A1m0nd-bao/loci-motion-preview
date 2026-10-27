@@ -13,7 +13,7 @@ export function defineHistoryClock(animate) {
    * 状态：无持久状态；默认 静止，接入时以业务状态覆盖
    * 事件：motion-replay → 无 detail
    * 业务接入：没有 active 状态。保留既有 Backtrack 点击与回溯流程；hover/click 播放动画，motion-replay 仅表示动画开始，不触发或确认回溯。
-   * 参数：duration=0.8（总时长（秒））；bounce=0.4（填白回弹）
+   * 参数：duration=0.92（总时长（秒））；bounce=0.4（填白回弹）
    * 源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/history-clock.js；初始化 defineHistoryClock(animate)
    * 依赖：Motion animate
    * API 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json
@@ -21,7 +21,7 @@ export function defineHistoryClock(animate) {
    * 注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。
    * 映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。
    * @tag sipplay-history-clock
-   * @attribute {number} duration - 总时长（秒）；范围 0.3–1.6，步长 0.05。
+   * @attribute {number} duration - 总时长（秒）；范围 0.3–1.6，步长 0.02。
    * @attribute {number} bounce - 填白回弹；范围 0–0.5，步长 0.05。
    * @attribute {string} label - 内部交互控件的可访问名称。
    * @fires {CustomEvent} motion-replay - detail: 无 detail。没有 active 状态。保留既有 Backtrack 点击与回溯流程；hover/click 播放动画，motion-replay 仅表示动画开始，不触发或确认回溯。
@@ -41,8 +41,8 @@ export function defineHistoryClock(animate) {
       this.onVisibility = () => { if (document.hidden) this.finish(); };
     }
     get duration() {
-      const value = Number(this.getAttribute("duration") ?? 0.8);
-      return Number.isFinite(value) ? Math.min(1.6, Math.max(0.3, value)) : 0.8;
+      const value = Number(this.getAttribute("duration") ?? 0.92);
+      return Number.isFinite(value) ? Math.min(1.6, Math.max(0.3, value)) : 0.92;
     }
     get bounce() {
       const value = Number(this.getAttribute("bounce") ?? 0.4);
@@ -167,7 +167,7 @@ export const historyClockDemoMarkup = `
   <div class="selection-demo history-clock-demo">
     <p class="selection-demo-hint">悬停或点击 · 逆时针绘制与旋转 · 以圆环中心为轴</p>
     <div class="selection-demo-zoom">
-      <sipplay-history-clock data-motion duration="0.8" bounce="0.4" label="重播历史时钟动效（放大预览）"></sipplay-history-clock>
+      <sipplay-history-clock data-motion duration="0.92" bounce="0.4" label="重播历史时钟动效（放大预览）"></sipplay-history-clock>
     </div>
     <p class="selection-demo-caption">4× 细节预览</p>
     <div class="selection-demo-original">

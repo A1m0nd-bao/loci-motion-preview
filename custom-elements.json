@@ -1850,7 +1850,7 @@
           "name": "HistoryClock",
           "customElement": true,
           "tagName": "sipplay-history-clock",
-          "description": "动效：历史时钟描绘旋转 / sipplay-history-clock\n位置：Web 聊天页：消息操作浮层中的 Backtrack（回溯）入口，20×20。不是通用历史记录列表入口。\nFigma：聊天消息 / Backtrack https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-67269\n适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套\n注释同步：此对应关系目前仅保存在网站和源码，尚未写回 Figma 画布\n触发：悬停或点击重播一次；外部可 replay()。\n状态：无持久状态；默认 静止，接入时以业务状态覆盖\n事件：motion-replay → 无 detail\n业务接入：没有 active 状态。保留既有 Backtrack 点击与回溯流程；hover/click 播放动画，motion-replay 仅表示动画开始，不触发或确认回溯。\n参数：duration=0.8（总时长（秒））；bounce=0.4（填白回弹）\n源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/history-clock.js；初始化 defineHistoryClock(animate)\n依赖：Motion animate\nAPI 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json\n预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-history-clock\n注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。\n映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。",
+          "description": "动效：历史时钟描绘旋转 / sipplay-history-clock\n位置：Web 聊天页：消息操作浮层中的 Backtrack（回溯）入口，20×20。不是通用历史记录列表入口。\nFigma：聊天消息 / Backtrack https://www.figma.com/design/KZyY9qkYbf0yiwqcovRKy3/Untitled?node-id=730-67269\n适配：保留原稿尺寸、背景和原业务点击区；示例内部按钮不得直接嵌套\n注释同步：此对应关系目前仅保存在网站和源码，尚未写回 Figma 画布\n触发：悬停或点击重播一次；外部可 replay()。\n状态：无持久状态；默认 静止，接入时以业务状态覆盖\n事件：motion-replay → 无 detail\n业务接入：没有 active 状态。保留既有 Backtrack 点击与回溯流程；hover/click 播放动画，motion-replay 仅表示动画开始，不触发或确认回溯。\n参数：duration=0.92（总时长（秒））；bounce=0.4（填白回弹）\n源码：https://github.com/a1m0nd-bao/loci-motion-preview/blob/main/web-components/history-clock.js；初始化 defineHistoryClock(animate)\n依赖：Motion animate\nAPI 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.json\n预览：https://a1m0nd-bao.github.io/loci-motion-preview/web-components/preview.html?id=sipplay-history-clock\n注意：已有按钮不要嵌套；保留 SVG 路径、设计尺寸、键盘和减少动态效果逻辑。\n映射状态：已核对的节点链接属于项目交付记录；正式 Code Connect 未启用（账号权限限制）。",
           "superclass": {
             "name": "HTMLElement"
           },
@@ -1860,8 +1860,8 @@
               "type": {
                 "text": "number"
               },
-              "description": "总时长（秒）；范围 0.3–1.6，步长 0.05。",
-              "default": "0.8"
+              "description": "总时长（秒）；范围 0.3–1.6，步长 0.02。",
+              "default": "0.92"
             },
             {
               "name": "bounce",
