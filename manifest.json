@@ -1,6 +1,24 @@
 {
   "items": [
     {
+      "name": "sipplay · 生图流光吸饮 · 深棕灰",
+      "fileName": "image-sip-dark.json",
+      "file": "./lotties/未分类/image-sip-dark-18159f38.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "",
+      "tags": [],
+      "mimeType": "application/json",
+      "width": 125,
+      "height": 125,
+      "frameRate": 60,
+      "frames": 348,
+      "duration": 5.8,
+      "firstSeenAt": "",
+      "updatedAt": "2026-10-28T05:33:39.452Z"
+    },
+    {
       "name": "S logo - transparent chromatic idle 5s",
       "fileName": "S_logo_待机5秒_透明_Lottie.json",
       "file": "./lotties/未分类/S-logo-待机5秒-透明-Lottie-b23882ac.json",
