@@ -98,7 +98,7 @@ API 清单：https://a1m0nd-bao.github.io/loci-motion-preview/custom-elements.js
 
 ```text
 动效：生图流光吸饮 / sipplay-image-sip-loading
-位置：正在生成图片的 125×125 占位图。使用本次提供的白底、圆角、粉橘渐变与杯形图片 SVG；替换生图中的占位内容，不覆盖 Upload / Generate 操作按钮。
+位置：正在生成图片的 125×125 占位图。使用本次提供的圆角、深棕到黑渐变与 #D2D0D0 灰色杯形图片 SVG；替换生图中的占位内容，不覆盖 Upload / Generate 操作按钮。
 Figma：待绑定；仅凭图标相似不得批量替换
 适配：保留 125×125 画布与 rx=16 比例，图标中心和杯口、吸管的原始路径。预览中的 2× 放大仅便于观察，不进入产品布局。
 注释同步：位置待核对

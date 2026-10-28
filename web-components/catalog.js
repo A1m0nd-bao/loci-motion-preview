@@ -1,26 +1,26 @@
-import { strengthCupDemoMarkup } from "./strength-cup.js?v=20261027-strength-cup1";
-import { billingTabsDemoMarkup } from "./billing-tabs.js?v=20261027-strength-cup1";
-import { imageSipLoadingDemoMarkup } from "./image-sip-loading.js?v=20261027-strength-cup1";
-import { bracketsToolDemoMarkup, imageToolDemoMarkup } from "./tool-highlight.js?v=20261027-strength-cup1";
-import { bottomBarDemoMarkup } from "./bottom-bar.js?v=20261027-strength-cup1";
-import { userPageDemoMarkup } from "./user-page-toggle.js?v=20261027-strength-cup1";
-import { plusSelectionDemoMarkup } from "./plus-selection-toggle.js?v=20261027-strength-cup1";
-import { homeSettleDemoMarkup } from "./home-settle-toggle.js?v=20261027-strength-cup1";
-import { warningNudgeDemoMarkup } from "./warning-nudge.js?v=20261027-strength-cup1";
-import { liquidRiseDemoMarkup } from "./liquid-rise-toggle.js?v=20261027-strength-cup1";
-import { chatBubbleDemoMarkup } from "./chat-bubble-toggle.js?v=20261027-strength-cup1";
-import { tapTabDemoMarkup } from "./tap-tab.js?v=20261027-strength-cup1";
-import { previewTabsDemoMarkup } from "./preview-tabs.js?v=20261027-strength-cup1";
-import { whiteSelectionDemoMarkup } from "./white-selection-toggle.js?v=20261027-strength-cup1";
-import { historyClockDemoMarkup } from "./history-clock.js?v=20261027-strength-cup1";
-import { bellRingDemoMarkup } from "./bell-ring-toggle.js?v=20261027-strength-cup1";
-import { voiceWaveDemoMarkup } from "./voice-wave.js?v=20261027-strength-cup1";
-import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261027-strength-cup1";
-import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261027-strength-cup1";
-import { selectionDemoMarkup } from "./selection-toggle.js?v=20261027-strength-cup1";
-import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261027-strength-cup1";
-import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261027-strength-cup1";
-import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261027-strength-cup1";
+import { strengthCupDemoMarkup } from "./strength-cup.js?v=20261028-image-dark1";
+import { billingTabsDemoMarkup } from "./billing-tabs.js?v=20261028-image-dark1";
+import { imageSipLoadingDemoMarkup } from "./image-sip-loading.js?v=20261028-image-dark1";
+import { bracketsToolDemoMarkup, imageToolDemoMarkup } from "./tool-highlight.js?v=20261028-image-dark1";
+import { bottomBarDemoMarkup } from "./bottom-bar.js?v=20261028-image-dark1";
+import { userPageDemoMarkup } from "./user-page-toggle.js?v=20261028-image-dark1";
+import { plusSelectionDemoMarkup } from "./plus-selection-toggle.js?v=20261028-image-dark1";
+import { homeSettleDemoMarkup } from "./home-settle-toggle.js?v=20261028-image-dark1";
+import { warningNudgeDemoMarkup } from "./warning-nudge.js?v=20261028-image-dark1";
+import { liquidRiseDemoMarkup } from "./liquid-rise-toggle.js?v=20261028-image-dark1";
+import { chatBubbleDemoMarkup } from "./chat-bubble-toggle.js?v=20261028-image-dark1";
+import { tapTabDemoMarkup } from "./tap-tab.js?v=20261028-image-dark1";
+import { previewTabsDemoMarkup } from "./preview-tabs.js?v=20261028-image-dark1";
+import { whiteSelectionDemoMarkup } from "./white-selection-toggle.js?v=20261028-image-dark1";
+import { historyClockDemoMarkup } from "./history-clock.js?v=20261028-image-dark1";
+import { bellRingDemoMarkup } from "./bell-ring-toggle.js?v=20261028-image-dark1";
+import { voiceWaveDemoMarkup } from "./voice-wave.js?v=20261028-image-dark1";
+import { pinToggleDemoMarkup } from "./pin-toggle.js?v=20261028-image-dark1";
+import { pinRevealDemoMarkup } from "./pin-reveal.js?v=20261028-image-dark1";
+import { selectionDemoMarkup } from "./selection-toggle.js?v=20261028-image-dark1";
+import { layerStackDemoMarkup } from "./layer-stack-toggle.js?v=20261028-image-dark1";
+import { profileRiseDemoMarkup } from "./profile-rise-toggle.js?v=20261028-image-dark1";
+import { wrenchTurnDemoMarkup } from "./wrench-turn-toggle.js?v=20261028-image-dark1";
 
 export const upstreamVersion = "1.3.0";
 export const upstreamURL = "https://github.com/tgomilar/motion-components";
@@ -42,7 +42,7 @@ export const webMotions = [{
   tags: ["自定义 SVG", "Tab", "订阅", "积分", "Subscription", "Credits", "滑动", "毛玻璃", "250px"], interactionType: "点击切换",
 }, {
   id: "sipplay-image-sip-loading", name: "生图流光吸饮", category: "加载状态",
-  description: "背景柔和流光，吸管带轻微回弹插入，白色圆点保持不动，液面沿用彩色液面参考的连续波纹与 3.2 秒向左平移节奏，同时按设计液位柔和降低，吸管自然弯曲并伸向杯底；吸空后两滴水沿吸管口向右飞出并自然下落，重新蓄满后继续循环。沿用提供的 125 × 125 SVG，支持暂停、参数调整、减少动态效果和完整 HTML 下载。",
+  description: "深棕到黑的背景柔和流光，图标、液体与水滴统一为 #D2D0D0；吸管带轻微回弹插入，圆点保持不动，液面沿用彩色液面参考的连续波纹与 3.2 秒向左平移节奏，同时按设计液位柔和降低，吸管自然弯曲并伸向杯底；吸空后两滴水沿吸管口向右飞出并自然下落，重新蓄满后继续循环。沿用提供的 125 × 125 SVG，支持暂停、参数调整、减少动态效果和完整 HTML 下载。",
   markup: imageSipLoadingDemoMarkup,
   controls: [number("duration", "吸饮周期（秒）", 5.8, 3.6, 10, 0.2), number("flow-duration", "流光周期（秒）", 8, 4, 16, 0.5)],
   kind: "web", kindLabel: "Web 组件", fileName: "sipplay-image-sip-loading",

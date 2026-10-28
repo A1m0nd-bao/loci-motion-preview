@@ -1,6 +1,6 @@
-import { motionMotions } from "./motion/catalog.js?v=20261027-strength-cup1";
-import { webMotions } from "./web-components/catalog.js?v=20261027-strength-cup1";
-import { createWebController, copyExample, downloadExample, setupWebDetail, getWebValues, syncWebBackgrounds } from "./web-components/integration.js?v=20261027-strength-cup1";
+import { motionMotions } from "./motion/catalog.js?v=20261028-image-dark1";
+import { webMotions } from "./web-components/catalog.js?v=20261028-image-dark1";
+import { createWebController, copyExample, downloadExample, setupWebDetail, getWebValues, syncWebBackgrounds } from "./web-components/integration.js?v=20261028-image-dark1";
 
 if (import.meta.env?.DEV) document.querySelector("#motionStudioLocal").hidden = false;
 

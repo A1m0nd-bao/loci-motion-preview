@@ -23,7 +23,7 @@ export function defineImageSipLoading(animate) {
   /**
    * @summary 生图流光吸饮
    * 动效：生图流光吸饮 / sipplay-image-sip-loading
-   * 位置：正在生成图片的 125×125 占位图。使用本次提供的白底、圆角、粉橘渐变与杯形图片 SVG；替换生图中的占位内容，不覆盖 Upload / Generate 操作按钮。
+   * 位置：正在生成图片的 125×125 占位图。使用本次提供的圆角、深棕到黑渐变与 #D2D0D0 灰色杯形图片 SVG；替换生图中的占位内容，不覆盖 Upload / Generate 操作按钮。
    * Figma：待绑定；仅凭图标相似不得批量替换
    * 适配：保留 125×125 画布与 rx=16 比例，图标中心和杯口、吸管的原始路径。预览中的 2× 放大仅便于观察，不进入产品布局。
    * 注释同步：位置待核对
@@ -86,28 +86,28 @@ export function defineImageSipLoading(animate) {
             :host{display:inline-block;width:125px;height:125px;vertical-align:middle}
             .tile{position:relative;width:100%;height:100%;overflow:hidden;border-radius:12.8%;isolation:isolate;background:#fff;contain:paint}
             .reference,.flow,.gleam{position:absolute;pointer-events:none}
-            .reference{inset:0;background:linear-gradient(135deg,#f4b07866 0%,#ed78f499 50%,#ec584466 100%)}
-            .flow{inset:-55%;background:radial-gradient(ellipse at 22% 30%,#f7ad7ae6 0%,transparent 47%),radial-gradient(ellipse at 72% 27%,#ed78f4d9 0%,transparent 45%),radial-gradient(ellipse at 72% 78%,#ed716499 0%,transparent 45%),radial-gradient(ellipse at 26% 80%,#dd9df299 0%,transparent 42%);filter:blur(12px);opacity:.9}
-            .gleam{inset:-35%;background:linear-gradient(110deg,transparent 34%,#fff0 39%,#fff9 48%,#fff0 57%,transparent 65%);mix-blend-mode:soft-light;opacity:.7;transform:translateX(-90%) rotate(-12deg)}
+            .reference{inset:0}
+            .flow{inset:-55%;background:radial-gradient(ellipse at 22% 30%,#4c333366 0%,transparent 47%),radial-gradient(ellipse at 72% 27%,#30202099 0%,transparent 45%),radial-gradient(ellipse at 72% 78%,#00000080 0%,transparent 45%),radial-gradient(ellipse at 26% 80%,#4c333333 0%,transparent 42%);filter:blur(12px);opacity:.9}
+            .gleam{inset:-35%;background:linear-gradient(110deg,transparent 34%,#fff0 39%,#d2d0d040 48%,#fff0 57%,transparent 65%);mix-blend-mode:soft-light;opacity:.7;transform:translateX(-90%) rotate(-12deg)}
             svg{position:absolute;inset:0;display:block;width:100%;height:100%;overflow:visible}
             .straw,.liquid,.sun,.sun-hole{transform-box:view-box;transform-origin:0 0}
-            .drop{opacity:0;fill:white}
+            .drop{opacity:0;fill:#D2D0D0}
           </style>
           <div class="tile" role="img" aria-label="正在生成图片">
-            <div class="reference"></div><div class="flow"></div><div class="gleam"></div>
+            <div class="reference"><svg viewBox="0 0 125 125" width="125" height="125" aria-hidden="true"><defs><linearGradient id="sip-dark-background" x1="62.5" y1="-2.86965e-06" x2="8.83226" y2="94.5316" gradientUnits="userSpaceOnUse"><stop stop-color="#4C3333"/><stop offset="1" stop-color="#000000"/></linearGradient></defs><rect width="125" height="125" rx="16" fill="url(#sip-dark-background)"/></svg></div><div class="flow"></div><div class="gleam"></div>
             <svg width="125" height="125" viewBox="0 0 125 125" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <defs>
                 <clipPath id="sip-cup"><rect x="48.1738" y="50.3462" width="24.4792" height="24.6528" rx="4"/></clipPath>
 
               </defs>
               <g class="straw">
-                <path d="M63.9707 67.187L71.4785 51.8302C71.5619 51.6596 71.7141 51.5326 71.8969 51.4812L77.1651 49.9995" stroke-width="2" stroke-linecap="round" stroke="white"/>
+                <path d="M63.9707 67.187L71.4785 51.8302C71.5619 51.6596 71.7141 51.5326 71.8969 51.4812L77.1651 49.9995" stroke-width="2" stroke-linecap="round" stroke="#D2D0D0"/>
               </g>
               <g clip-path="url(#sip-cup)">
-                <path class="liquid" d="M51.0531 66.4343L48 64.7386V70.9998C48 73.209 49.7909 74.9998 52 74.9998H68.6528C70.8619 74.9998 72.6528 73.209 72.6528 70.9998V67.817L68.7382 65.5816C66.496 64.3012 63.7738 64.1817 61.428 65.2607L58.2803 66.7085C55.9651 67.7734 53.281 67.6716 51.0531 66.4343Z" fill="white"/>
+                <path class="liquid" d="M51.0531 66.4343L48 64.7386V70.9998C48 73.209 49.7909 74.9998 52 74.9998H68.6528C70.8619 74.9998 72.6528 73.209 72.6528 70.9998V67.817L68.7382 65.5816C66.496 64.3012 63.7738 64.1817 61.428 65.2607L58.2803 66.7085C55.9651 67.7734 53.281 67.6716 51.0531 66.4343Z" fill="#D2D0D0"/>
               </g>
-              <path d="M66.5766 50.3462H52.1738C49.9647 50.3462 48.1738 52.1371 48.1738 54.3462V70.999C48.1738 73.2081 49.9647 74.999 52.1738 74.999H68.653C70.8621 74.999 72.653 73.2081 72.653 70.999V60.5892" stroke-width="2.66667" stroke-linecap="round" stroke="white"/>
-              <circle class="sun" cx="55.2895" cy="57.29" r="2.77778" fill="white"/>
+              <path d="M66.5766 50.3462H52.1738C49.9647 50.3462 48.1738 52.1371 48.1738 54.3462V70.999C48.1738 73.2081 49.9647 74.999 52.1738 74.999H68.653C70.8621 74.999 72.653 73.2081 72.653 70.999V60.5892" stroke-width="2.66667" stroke-linecap="round" stroke="#D2D0D0"/>
+              <circle class="sun" cx="55.2895" cy="57.29" r="2.77778" fill="#D2D0D0"/>
               <path class="drop" d="M0 -1.7C.45 -.8 1.15 -.15 1.15 .55A1.15 1.15 0 0 1 -1.15 .55C-1.15 -.15 -.45 -.8 0 -1.7Z"/>
               <path class="drop" d="M0 -1.7C.45 -.8 1.15 -.15 1.15 .55A1.15 1.15 0 0 1 -1.15 .55C-1.15 -.15 -.45 -.8 0 -1.7Z"/>
             </svg>
