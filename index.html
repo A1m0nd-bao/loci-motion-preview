@@ -5,7 +5,7 @@
     <link rel="icon" href="data:," />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>SipPlay Motion Library</title>
-    <link rel="stylesheet" href="./styles.css?v=sipplay-motion-20261028-image-dark1" />
+    <link rel="stylesheet" href="./styles.css?v=sipplay-releases-v1-23" />
     <link rel="stylesheet" href="./web-components/handoff.css?v=20261028-image-dark1" />
     <script type="importmap">{"imports":{"motion":"./motion/vendor/motion.js"}}</script>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@2.0.8/dist/lottie-player.js"></script>
@@ -160,6 +160,17 @@
             </details>
           </div>
         </section>
+        <section id="webReleaseSection" class="web-release-section" aria-label="动效版本" hidden>
+          <div class="release-switch" role="group" aria-label="选择动效版本">
+            <button type="button" data-web-release="v1" aria-pressed="true">v1 <span>正式交付</span></button>
+            <button type="button" data-web-release="v2" aria-pressed="false">v2 <span>筹备中</span></button>
+          </div>
+          <div class="release-summary">
+            <div><h3 id="webReleaseTitle">动效 v1</h3><p id="webReleaseNote">23 个 Web 组件 · 19 项 / 38 个 Lottie JSON</p></div>
+            <a id="v1Download" class="release-download" href="./releases/v1/sipplay-motion-v1.zip" download="Sipplay-Motion-v1.zip">下载 v1 研发交付包 <span>ZIP · 3.5 MB ↓</span></a>
+          </div>
+        </section>
+        <section id="v2Drafts" class="v2-drafts" aria-label="动效 v2 候选" hidden></section>
         <section id="motionLibraryIntro" class="web-library-intro" aria-label="Motion 动效库介绍" hidden>
           <div><h2>用 Motion，找到动效的手感。</h2><p>6 个原生 JavaScript 示例：弹簧、手势、错峰入场、时间线、SVG 描边与滚动进度。直接体验、调整参数，复制完整 HTML 即可使用。</p></div>
           <p class="web-attribution">基于 <a href="https://motion.dev/" target="_blank" rel="noopener noreferrer">Motion 13.5.1 ↗</a><br><a href="https://motion.dev/docs/quick-start" target="_blank" rel="noopener noreferrer">官方文档</a> · <a href="https://motion.dev/docs/studio" target="_blank" rel="noopener noreferrer">Studio 官方说明</a> · <a id="motionStudioLocal" href="./motion/studio.html" target="_blank" hidden>打开本地 Studio ↗</a> · <a href="./web-components/vendor/THIRD-PARTY-NOTICES.txt" target="_blank" rel="noopener noreferrer">MIT 与第三方许可</a></p>
@@ -309,7 +320,7 @@
       </div>
     </dialog>
 
-    <script src="./app.js?v=sipplay-motion-20261028-image-dark1" type="module"></script>
+    <script src="./app.js?v=sipplay-releases-v1-23" type="module"></script>
     <script src="./scripts/line-waves-static.mjs?v=20260802a" type="module"></script>
   </body>
 </html>

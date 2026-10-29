@@ -5,6 +5,13 @@ import { createWebController, copyExample, downloadExample, setupWebDetail, getW
 if (import.meta.env?.DEV) document.querySelector("#motionStudioLocal").hidden = false;
 
 const isInteractiveKind = kind => kind === "web" || kind === "motion";
+const isLocalPreview = ["localhost", "127.0.0.1", "[::1]"].includes(location.hostname);
+let selectedWebRelease = "v1";
+const localDrafts = isLocalPreview ? [
+  { name: "心动点赞", note: "按图片校准轮廓 · 16 / 20 像素", file: "./offline/motion-v2/like-heart/like-heart-trial.html", symbol: "♡", tags: "点赞 爱心 心动" },
+  { name: "强度滑块液面联动", note: "本次上传的 HTML 版本", file: "./offline/motion-v2/strength-cup/strength-cup.html", symbol: "◒", tags: "强度 液面 滑块 酒杯" }
+] : [];
+
 
 const gallery = document.querySelector("#gallery");
 const quickRail = document.querySelector("#quickRail");
@@ -353,6 +360,8 @@ function render() {
   const query = search.value.trim().toLowerCase();
   const selectedKind = kindSelect.value;
   const selectedCategory = category.value;
+  const showV2 = !isHome && selectedKind === "web" && selectedWebRelease === "v2";
+  const filteredDrafts = localDrafts.filter(item => !query || `${item.name} ${item.note} ${item.tags}`.toLowerCase().includes(query));
 
   document.body.classList.toggle("is-home-view", isHome);
   visibleMotions = isHome ? motions : motions.filter((item) => {
@@ -374,14 +383,26 @@ function render() {
   previewControllers.delete(videoSpotlightPlayer);
   videoSpotlight.hidden = isHome || selectedKind !== "video" || visibleMotions.length === 0;
   videoSpotlightPlayer.replaceChildren();
-  count.textContent = String(visibleMotions.length);
-  empty.hidden = visibleMotions.length > 0;
+  count.textContent = String(showV2 ? filteredDrafts.length : visibleMotions.length);
+  empty.hidden = showV2 || visibleMotions.length > 0;
   homeView.hidden = !isHome;
   quickSection.hidden = isHome || isInteractiveKind(selectedKind);
   document.querySelector("#webLibraryIntro").hidden = isHome || selectedKind !== "web";
   document.querySelector("#motionLibraryIntro").hidden = isHome || selectedKind !== "motion";
   document.querySelectorAll("[data-library-media-only]").forEach((el) => { el.hidden = isInteractiveKind(selectedKind); });
   libraryView.hidden = isHome;
+  document.querySelector("#webReleaseSection").hidden = isHome || selectedKind !== "web";
+  document.querySelector("#v2Drafts").hidden = !showV2;
+  gallery.hidden = showV2;
+  category.disabled = showV2;
+  document.querySelector("#webReleaseTitle").textContent = showV2 ? "动效 v2 · 待发布" : "动效 v1 · 正式交付";
+  document.querySelector("#webReleaseNote").textContent = showV2
+    ? (isLocalPreview ? "仅本地预览 · 候选内容未上线，也未计入 v1 交付包" : "筹备中，候选动效尚未上线。")
+    : "23 个 Web 组件 · 19 项 / 38 个 Lottie JSON · 接入说明与组件 API";
+  document.querySelector("#v1Download").hidden = showV2;
+  document.querySelectorAll("[data-web-release]").forEach(button => button.setAttribute("aria-pressed", String(button.dataset.webRelease === selectedWebRelease)));
+  if (showV2) renderDrafts(filteredDrafts);
+
 
   if (isHome) {
     updateFormatActiveState();
@@ -396,7 +417,7 @@ function render() {
     .sort((a, b) => getUpdatedTime(b) - getUpdatedTime(a))
     .slice(0, 8);
 
-  renderGalleryCards(visibleMotions, selectedKind);
+  if (!showV2) renderGalleryCards(visibleMotions, selectedKind);
 
   for (const motion of quickMotions.filter((item) => !isInteractiveKind(item.kind))) {
     quickRail.append(createQuickCard(motion));
@@ -425,7 +446,7 @@ function renderGalleryCards(items, selectedKind) {
     if (items.length) {
       const heading = document.createElement("h2");
       heading.className = "web-source-heading";
-      heading.textContent = "sipplay";
+      heading.textContent = "sipplay / v1";
       gallery.append(heading);
     }
     for (const motion of items) gallery.append(createCard(motion));
@@ -1349,3 +1370,33 @@ document.querySelectorAll(".tab").forEach((button) => {
 
 loadManifest().then(() => { if (["#web", "#motion"].includes(location.hash)) enterModule(location.hash.slice(1)); });
 window.setInterval(loadManifest, 30000);
+
+function renderDrafts(items) {
+  const root = document.querySelector("#v2Drafts");
+  root.replaceChildren();
+  if (!items.length) {
+    const message = document.createElement("p");
+    message.className = "release-placeholder";
+    message.textContent = isLocalPreview ? "没有匹配的 v2 候选动效。" : "v2 暂未上线，确认后会在这里更新。";
+    root.append(message);
+    return;
+  }
+  for (const item of items) {
+    const card = document.createElement("article");
+    card.className = "release-draft-card";
+    card.innerHTML = `<div class="draft-symbol" aria-hidden="true"></div><span class="draft-status">v2 · 仅本地</span><h3></h3><p></p><a target="_blank" rel="noopener">打开候选预览 ↗</a>`;
+    card.querySelector(".draft-symbol").textContent = item.symbol;
+    card.querySelector("h3").textContent = item.name;
+    card.querySelector("p").textContent = item.note;
+    card.querySelector("a").href = item.file;
+    root.append(card);
+  }
+}
+document.querySelectorAll("[data-web-release]").forEach(button => {
+  button.addEventListener("click", () => {
+    selectedWebRelease = button.dataset.webRelease;
+    search.value = "";
+    category.value = "all";
+    render();
+  });
+});

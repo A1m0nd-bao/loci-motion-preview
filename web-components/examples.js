@@ -1,4 +1,3 @@
-import { defineStrengthCup, strengthCupDemoCSS } from "./strength-cup.js?v=20261028-image-dark1";
 import { defineBillingTabs, billingTabsDemoCSS } from "./billing-tabs.js?v=20261028-image-dark1";
 import { defineImageSipLoading, imageSipLoadingDemoCSS } from "./image-sip-loading.js?v=20261028-image-dark1";
 import { defineToolHighlight, toolHighlightDemoCSS } from "./tool-highlight.js?v=20261028-image-dark1";
@@ -30,9 +29,8 @@ import { handoffText } from "./handoff.js?v=20261028-image-dark1";
 export function exampleDocument(entry, values = {}) {
   if (entry.kind === "motion") return motionExampleDocument(entry, values);
   const font = "https://cdn.jsdelivr.net/npm/@fontsource-variable/inter@5.3.0/files/inter-latin-wght-normal.woff2";
-  const styles = (strengthCupDemoCSS + demoCSS + billingTabsDemoCSS + imageSipLoadingDemoCSS + (entry.custom ? toolHighlightDemoCSS + bottomBarDemoCSS + userPageDemoCSS + plusSelectionDemoCSS + homeSettleDemoCSS + liquidRiseDemoCSS + warningNudgeDemoCSS + chatBubbleDemoCSS + previewTabsDemoCSS + selectionDemoCSS + whiteSelectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS + wrenchTurnDemoCSS + pinToggleDemoCSS + pinRevealDemoCSS + voiceWaveDemoCSS + bellRingDemoCSS + historyClockDemoCSS + tapTabDemoCSS : "")).replace('./vendor/inter-latin-wght-normal.woff2', font);
+  const styles = (demoCSS + billingTabsDemoCSS + imageSipLoadingDemoCSS + (entry.custom ? toolHighlightDemoCSS + bottomBarDemoCSS + userPageDemoCSS + plusSelectionDemoCSS + homeSettleDemoCSS + liquidRiseDemoCSS + warningNudgeDemoCSS + chatBubbleDemoCSS + previewTabsDemoCSS + selectionDemoCSS + whiteSelectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS + wrenchTurnDemoCSS + pinToggleDemoCSS + pinRevealDemoCSS + voiceWaveDemoCSS + bellRingDemoCSS + historyClockDemoCSS + tapTabDemoCSS : "")).replace('./vendor/inter-latin-wght-normal.woff2', font);
   const defineCustom = {
-    "sipplay-strength-cup": defineStrengthCup,
     "sipplay-billing-tabs": defineBillingTabs,
     "sipplay-image-sip-loading": defineImageSipLoading,
     "sipplay-warning-nudge": defineWarningNudge,

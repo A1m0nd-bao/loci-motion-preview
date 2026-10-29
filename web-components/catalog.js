@@ -1,4 +1,3 @@
-import { strengthCupDemoMarkup } from "./strength-cup.js?v=20261028-image-dark1";
 import { billingTabsDemoMarkup } from "./billing-tabs.js?v=20261028-image-dark1";
 import { imageSipLoadingDemoMarkup } from "./image-sip-loading.js?v=20261028-image-dark1";
 import { bracketsToolDemoMarkup, imageToolDemoMarkup } from "./tool-highlight.js?v=20261028-image-dark1";
@@ -27,13 +26,6 @@ export const upstreamURL = "https://github.com/tgomilar/motion-components";
 
 const number = (attribute, label, value, min, max, step = 0.1) => ({ attribute, label, value, min, max, step });
 export const webMotions = [{
-  id: "sipplay-strength-cup", name: "强度滑块液面联动", category: "交互组件",
-  description: "保留 343 × 280 酒杯、渐变颗粒和柠檬原稿。右侧自由拖动，松手吸附 Basic / Standard / Extended / Maximum，点击档位文字直接选档。滑块跟手，液面独立以 0.54 秒缓动升降并轻晃收稳，接近杯口时柠檬旋转弹入、回弹落位。支持键盘、触屏、减少动态效果与完整 HTML 下载。",
-  markup: strengthCupDemoMarkup, controls: [number("value", "初始档位（0–3）", 0, 0, 3, 1), number("duration", "液面缓动（秒）", 0.54, 0.2, 1.2, 0.02)],
-  kind: "web", kindLabel: "Web 组件", fileName: "sipplay-strength-cup",
-  file: "./web-components/preview.html?id=sipplay-strength-cup", docs: null, custom: true,
-  tags: ["滑块", "强度", "吸附", "液面", "液体", "酒杯", "柠檬", "343px"], interactionType: "拖动／点击选档",
-}, {
   id: "sipplay-billing-tabs", name: "订阅积分滑动 Tab", category: "状态切换",
   description: "保留提供的 250 × 35 毛玻璃胶囊、原始 Subscription / Credits 字形与白色底片。沿用预览 Tab 的弹簧滑动、轻微拉伸回弹和文字亮度变化；重复点击当前项不重播，支持快速反向、键盘、减少动态效果与完整 HTML 下载。默认选中 Credits。",
   markup: billingTabsDemoMarkup, controls: [number("duration", "时长（秒）", 0.46, 0.18, 1.2, 0.02), number("bounce", "回弹程度", 0.14, 0, 0.35, 0.01)],

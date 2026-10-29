@@ -1,4 +1,3 @@
-import { defineStrengthCup, strengthCupDemoCSS } from "./strength-cup.js?v=20261028-image-dark1";
 import { defineBillingTabs, billingTabsDemoCSS } from "./billing-tabs.js?v=20261028-image-dark1";
 import { defineImageSipLoading, imageSipLoadingDemoCSS } from "./image-sip-loading.js?v=20261028-image-dark1";
 import { defineToolHighlight, toolHighlightDemoCSS } from "./tool-highlight.js?v=20261028-image-dark1";
@@ -30,13 +29,13 @@ const requestedId = params.get("id") === "sipplay-tool-highlight" ? "sipplay-bra
 const entry = webMotions.find((item) => item.id === requestedId);
 const root = document.querySelector("#demo");
 const style = document.createElement("style");
-style.textContent = strengthCupDemoCSS + demoCSS + billingTabsDemoCSS + imageSipLoadingDemoCSS + toolHighlightDemoCSS + bottomBarDemoCSS + userPageDemoCSS + plusSelectionDemoCSS + homeSettleDemoCSS + liquidRiseDemoCSS + warningNudgeDemoCSS + chatBubbleDemoCSS + previewTabsDemoCSS + selectionDemoCSS + whiteSelectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS + wrenchTurnDemoCSS + pinToggleDemoCSS + pinRevealDemoCSS + voiceWaveDemoCSS + bellRingDemoCSS + historyClockDemoCSS + tapTabDemoCSS;
+style.textContent = demoCSS + billingTabsDemoCSS + imageSipLoadingDemoCSS + toolHighlightDemoCSS + bottomBarDemoCSS + userPageDemoCSS + plusSelectionDemoCSS + homeSettleDemoCSS + liquidRiseDemoCSS + warningNudgeDemoCSS + chatBubbleDemoCSS + previewTabsDemoCSS + selectionDemoCSS + whiteSelectionDemoCSS + layerStackDemoCSS + profileRiseDemoCSS + wrenchTurnDemoCSS + pinToggleDemoCSS + pinRevealDemoCSS + voiceWaveDemoCSS + bellRingDemoCSS + historyClockDemoCSS + tapTabDemoCSS;
 document.head.append(style);
 let runtime;
 let values = {};
 let isPaused = false;
 let cleanupDemo;
-const customElementsInDemo = () => [...root.querySelectorAll("sipplay-strength-cup,sipplay-billing-tabs,sipplay-image-sip-loading,sipplay-brackets-tool,sipplay-image-tool,sipplay-bottom-bar,sipplay-user-page-toggle,sipplay-plus-selection-toggle,sipplay-home-settle-toggle,sipplay-liquid-rise-toggle,sipplay-chat-bubble-toggle,sipplay-preview-tabs,sipplay-white-selection-toggle,sipplay-selection-toggle,sipplay-layer-stack-toggle,sipplay-profile-rise-toggle,sipplay-wrench-turn-toggle,sipplay-pin-toggle,sipplay-pin-reveal,sipplay-voice-wave,sipplay-bell-ring-toggle,sipplay-history-clock,sipplay-tap-tab,sipplay-warning-nudge")];
+const customElementsInDemo = () => [...root.querySelectorAll("sipplay-billing-tabs,sipplay-image-sip-loading,sipplay-brackets-tool,sipplay-image-tool,sipplay-bottom-bar,sipplay-user-page-toggle,sipplay-plus-selection-toggle,sipplay-home-settle-toggle,sipplay-liquid-rise-toggle,sipplay-chat-bubble-toggle,sipplay-preview-tabs,sipplay-white-selection-toggle,sipplay-selection-toggle,sipplay-layer-stack-toggle,sipplay-profile-rise-toggle,sipplay-wrench-turn-toggle,sipplay-pin-toggle,sipplay-pin-reveal,sipplay-voice-wave,sipplay-bell-ring-toggle,sipplay-history-clock,sipplay-tap-tab,sipplay-warning-nudge")];
 
 function notify(status, message = "") {
   parent.postMessage({ type: "sipplay-web-preview", id: entry?.id, status, message }, location.origin);
@@ -50,9 +49,7 @@ function compactPointerPreview(active) {
   if (!element) return;
   const rect = element.getBoundingClientRect();
   const point = { clientX: rect.left + rect.width * 0.8, clientY: rect.top + rect.height * 0.25 };
-  if (entry.id === "sipplay-strength-cup") {
-    element.preview(active);
-  } else if (["sipplay-brackets-tool", "sipplay-image-tool"].includes(entry.id)) {
+  if (["sipplay-brackets-tool", "sipplay-image-tool"].includes(entry.id)) {
     root.querySelectorAll("sipplay-brackets-tool,sipplay-image-tool").forEach(icon => icon.preview(active));
   } else if (entry.id === "sipplay-warning-nudge") {
     element.preview(active);
@@ -131,12 +128,11 @@ window.addEventListener("message", async (event) => {
 });
 
 // Voice loops and notification feedback manage their own visibility behavior.
-document.addEventListener("visibilitychange", () => { if (document.hidden) { runtime?.pauseAll(root); customElementsInDemo().filter(el => !["sipplay-strength-cup", "sipplay-image-sip-loading", "sipplay-voice-wave", "sipplay-bell-ring-toggle", "sipplay-liquid-rise-toggle", "sipplay-home-settle-toggle", "sipplay-plus-selection-toggle", "sipplay-user-page-toggle", "sipplay-bottom-bar", "sipplay-brackets-tool", "sipplay-image-tool"].includes(el.localName)).forEach(el => el.pause()); } });
+document.addEventListener("visibilitychange", () => { if (document.hidden) { runtime?.pauseAll(root); customElementsInDemo().filter(el => !["sipplay-image-sip-loading", "sipplay-voice-wave", "sipplay-bell-ring-toggle", "sipplay-liquid-rise-toggle", "sipplay-home-settle-toggle", "sipplay-plus-selection-toggle", "sipplay-user-page-toggle", "sipplay-bottom-bar", "sipplay-brackets-tool", "sipplay-image-tool"].includes(el.localName)).forEach(el => el.pause()); } });
 
 try {
   if (!entry) throw new Error("未找到此组件，请从动效库重新选择。");
   runtime = await import("./vendor/motion-components.js?v=20261028-image-dark1");
-  defineStrengthCup(runtime.animate);
   defineBillingTabs(runtime.animate);
   defineImageSipLoading(runtime.animate);
   defineHistoryClock(runtime.animate);

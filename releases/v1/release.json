@@ -1,0 +1,109 @@
+{
+  "version": "v1",
+  "date": "2026-10-29",
+  "webCommit": "14b7fedb6ddb39ebcc214fec3112cfa1ae362d0f",
+  "webComponents": 23,
+  "lottieComponents": 19,
+  "lottieFiles": 38,
+  "lottiePending": 4,
+  "excludedV2": [
+    "sipplay-like-heart",
+    "sipplay-strength-cup (all versions)"
+  ],
+  "components": [
+    {
+      "id": "sipplay-billing-tabs",
+      "name": "订阅积分滑动 Tab"
+    },
+    {
+      "id": "sipplay-image-sip-loading",
+      "name": "生图流光吸饮"
+    },
+    {
+      "id": "sipplay-brackets-tool",
+      "name": "括号工具单击高亮"
+    },
+    {
+      "id": "sipplay-image-tool",
+      "name": "添加图片单击高亮"
+    },
+    {
+      "id": "sipplay-bottom-bar",
+      "name": "四页动效底栏"
+    },
+    {
+      "id": "sipplay-user-page-toggle",
+      "name": "用户页探出选中"
+    },
+    {
+      "id": "sipplay-plus-selection-toggle",
+      "name": "加号选中填白"
+    },
+    {
+      "id": "sipplay-home-settle-toggle",
+      "name": "首页填白落定"
+    },
+    {
+      "id": "sipplay-warning-nudge",
+      "name": "警示牌弹性提醒"
+    },
+    {
+      "id": "sipplay-liquid-rise-toggle",
+      "name": "彩色液面升起流动"
+    },
+    {
+      "id": "sipplay-chat-bubble-toggle",
+      "name": "对话气泡唤醒"
+    },
+    {
+      "id": "sipplay-tap-tab",
+      "name": "灵动 Tap Tab"
+    },
+    {
+      "id": "sipplay-preview-tabs",
+      "name": "预览 Tab 滑动切换"
+    },
+    {
+      "id": "sipplay-history-clock",
+      "name": "历史时钟描绘旋转"
+    },
+    {
+      "id": "sipplay-bell-ring-toggle",
+      "name": "铃铛通知反馈"
+    },
+    {
+      "id": "sipplay-voice-wave",
+      "name": "灵动语音条"
+    },
+    {
+      "id": "sipplay-pin-toggle",
+      "name": "图钉选中切换"
+    },
+    {
+      "id": "sipplay-pin-reveal",
+      "name": "实心图钉出现"
+    },
+    {
+      "id": "sipplay-wrench-turn-toggle",
+      "name": "扳手拧动回弹"
+    },
+    {
+      "id": "sipplay-profile-rise-toggle",
+      "name": "人物探出回弹"
+    },
+    {
+      "id": "sipplay-layer-stack-toggle",
+      "name": "图层落下叠加"
+    },
+    {
+      "id": "sipplay-white-selection-toggle",
+      "name": "白色勾选切换"
+    },
+    {
+      "id": "sipplay-selection-toggle",
+      "name": "粉色勾选切换"
+    }
+  ],
+  "nativeRuntimeVerification": "not-verified",
+  "revisionNote": "按用户要求，强度滑块液面联动整项从 v1 移出。"
+}
