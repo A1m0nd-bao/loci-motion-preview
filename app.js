@@ -39,6 +39,16 @@ const publishedV2 = [
     "symbol": "◒",
     "tags": "强度 液面 滑块 酒杯 冰块 柠檬",
     "published": true
+  },
+  {
+    "id": "sipplay-mic-keyboard-toggle",
+    "name": "麦克风与键盘切换",
+    "note": "话筒收拢为按键，支架展为空格键 · 0.42 秒自然衔接",
+    "file": "./releases/v2/mic-keyboard/index.html",
+    "download": "./releases/v2/mic-keyboard/mic-keyboard.html",
+    "symbol": "◉",
+    "tags": "麦克风 键盘 语音 输入 切换",
+    "published": true
   }
 ];
 const localDrafts = [];

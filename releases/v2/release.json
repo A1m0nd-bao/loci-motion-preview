@@ -48,6 +48,21 @@
         "Maximum"
       ],
       "size": "343×294"
+    },
+    {
+      "id": "sipplay-mic-keyboard-toggle",
+      "name": "麦克风与键盘切换",
+      "preview": "mic-keyboard/index.html",
+      "download": "mic-keyboard/mic-keyboard.html",
+      "source": "mic-keyboard/mic-keyboard-toggle.js",
+      "package": "mic-keyboard/source.zip",
+      "usage": "mic-keyboard/USAGE.md",
+      "states": [
+        "mic",
+        "keyboard"
+      ],
+      "duration": 0.42,
+      "size": "30×30"
     }
   ]
 }
