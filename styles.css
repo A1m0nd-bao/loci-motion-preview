@@ -2074,3 +2074,9 @@ code {
 .draft-status{display:inline-block;font-size:10px;color:var(--accent);padding:4px 8px;background:var(--panel-2);border-radius:5px}
 .release-draft-card h3{margin:14px 0 8px;font-size:17px}.release-draft-card p,.release-placeholder{font-size:12px;color:var(--muted);line-height:1.8}
 .release-draft-card a{display:inline-block;margin-top:24px;font-size:12px;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line-strong);padding-bottom:4px}
+
+/* Published v2 motion previews. */
+.release-card-preview{display:block;width:100%;height:220px;border:0;border-radius:12px;background:#0a0c10}
+.release-draft-card a+a{margin-left:20px}
+
+.v2-drafts{grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr))}

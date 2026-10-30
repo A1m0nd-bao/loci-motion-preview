@@ -9,10 +9,23 @@ if (import.meta.env?.DEV) document.querySelector("#motionStudioLocal").hidden = 
 const isInteractiveKind = kind => kind === "web" || kind === "motion";
 const isLocalPreview = ["localhost", "127.0.0.1", "[::1]"].includes(location.hostname);
 let selectedWebRelease = "v1";
+const publishedV2 = [
+  {
+    "id": "sipplay-plus-arrow-toggle",
+    "name": "加号与发送箭头 · 三态切换",
+    "note": "加号 / 不可发送 / 可发送 · 原位变形，0.36 秒利落起步、柔和收尾",
+    "file": "./releases/v2/plus-arrow/index.html",
+    "download": "./releases/v2/plus-arrow/plus-arrow.html",
+    "symbol": "↑",
+    "tags": "加号 发送 箭头 三态",
+    "published": true
+  }
+];
 const localDrafts = isLocalPreview ? [
   { name: "心动点赞", note: "按图片校准轮廓 · 16 / 20 像素", file: "./offline/motion-v2/like-heart/like-heart-trial.html", symbol: "♡", tags: "点赞 爱心 心动" },
   { name: "强度滑块液面联动", note: "本次上传的 HTML 版本", file: "./offline/motion-v2/strength-cup/strength-cup.html", symbol: "◒", tags: "强度 液面 滑块 酒杯" }
 ] : [];
+const v2Entries = [...publishedV2, ...localDrafts];
 
 
 const gallery = document.querySelector("#gallery");
@@ -298,7 +311,7 @@ function enterModule(kind) {
   }
   activeKind = kind;
   kindSelect.value = kind;
-  history.replaceState(null, "", `${location.pathname}${location.search}${isInteractiveKind(kind) ? `#${kind}` : ""}`);
+  history.replaceState(null, "", `${location.pathname}${location.search}${isInteractiveKind(kind) ? (kind === "web" && selectedWebRelease === "v2" ? "#web-v2" : `#${kind}`) : ""}`);
   populateCategories();
   render();
 }
@@ -368,7 +381,7 @@ function render() {
   showConvertedEntry(!isHome && selectedKind === 'lottie');
   const selectedCategory = category.value;
   const showV2 = !isHome && selectedKind === "web" && selectedWebRelease === "v2";
-  const filteredDrafts = localDrafts.filter(item => !query || `${item.name} ${item.note} ${item.tags}`.toLowerCase().includes(query));
+  const filteredDrafts = v2Entries.filter(item => !query || `${item.name} ${item.note} ${item.tags}`.toLowerCase().includes(query));
 
   document.body.classList.toggle("is-home-view", isHome);
   visibleMotions = isHome ? motions : motions.filter((item) => {
@@ -402,9 +415,9 @@ function render() {
   document.querySelector("#v2Drafts").hidden = !showV2;
   gallery.hidden = showV2;
   category.disabled = showV2;
-  document.querySelector("#webReleaseTitle").textContent = showV2 ? "动效 v2 · 待发布" : "动效 v1 · 正式交付";
+  document.querySelector("#webReleaseTitle").textContent = showV2 ? "动效 v2" : "动效 v1 · 正式交付";
   document.querySelector("#webReleaseNote").textContent = showV2
-    ? (isLocalPreview ? "仅本地预览 · 候选内容未上线，也未计入 v1 交付包" : "筹备中，候选动效尚未上线。")
+    ? `${publishedV2.length} 个已上线动效 · 可交互预览与 HTML 下载${isLocalPreview && localDrafts.length ? ` · ${localDrafts.length} 个本地候选` : ""}`
     : "23 个 Web 组件 · 19 项 / 38 个 Lottie JSON · 接入说明与组件 API";
   document.querySelector("#v1Download").hidden = showV2;
   document.querySelectorAll("[data-web-release]").forEach(button => button.setAttribute("aria-pressed", String(button.dataset.webRelease === selectedWebRelease)));
@@ -1378,7 +1391,10 @@ document.querySelectorAll(".tab").forEach((button) => {
   });
 });
 
-loadManifest().then(() => { if (["#web", "#motion"].includes(location.hash)) enterModule(location.hash.slice(1)); });
+loadManifest().then(() => {
+  if (location.hash === '#web-v2') { selectedWebRelease = 'v2'; enterModule('web'); }
+  else if (["#web", "#motion"].includes(location.hash)) enterModule(location.hash.slice(1));
+});
 window.setInterval(loadManifest, 30000);
 
 function renderDrafts(items) {
@@ -1387,7 +1403,7 @@ function renderDrafts(items) {
   if (!items.length) {
     const message = document.createElement("p");
     message.className = "release-placeholder";
-    message.textContent = isLocalPreview ? "没有匹配的 v2 候选动效。" : "v2 暂未上线，确认后会在这里更新。";
+    message.textContent = "没有匹配的 v2 动效。";
     root.append(message);
     return;
   }
@@ -1395,16 +1411,30 @@ function renderDrafts(items) {
     const card = document.createElement("article");
     card.className = "release-draft-card";
     card.innerHTML = `<div class="draft-symbol" aria-hidden="true"></div><span class="draft-status">v2 · 仅本地</span><h3></h3><p></p><a target="_blank" rel="noopener">打开候选预览 ↗</a>`;
+    card.querySelector(".draft-status").textContent = item.published ? "v2 · 已上线" : "v2 · 仅本地";
     card.querySelector(".draft-symbol").textContent = item.symbol;
+    if (item.published) {
+      const preview = document.createElement('iframe');
+      preview.className = 'release-card-preview'; preview.title = `${item.name} · 交互预览`;
+      preview.loading = 'lazy'; preview.src = `${item.file}?compact=1`;
+      card.querySelector('.draft-symbol').replaceWith(preview);
+    }
     card.querySelector("h3").textContent = item.name;
     card.querySelector("p").textContent = item.note;
     card.querySelector("a").href = item.file;
+    card.querySelector("a").textContent = item.published ? '打开交互预览 ↗' : '打开候选预览 ↗';
+    if (item.download) {
+      const download = document.createElement('a'); download.href = item.download;
+      download.download = 'Sipplay-v2-plus-arrow.html'; download.textContent = '下载 HTML ↓';
+      card.append(download);
+    }
     root.append(card);
   }
 }
 document.querySelectorAll("[data-web-release]").forEach(button => {
   button.addEventListener("click", () => {
     selectedWebRelease = button.dataset.webRelease;
+    history.replaceState(null, '', `${location.pathname}${location.search}${selectedWebRelease === 'v2' ? '#web-v2' : '#web'}`);
     search.value = "";
     category.value = "all";
     render();

@@ -1,0 +1,134 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>加号与发送箭头 · Sipplay v2</title><style>
+:root{color-scheme:dark;background:#0a0c10;color:#f5f2fa;font:14px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}*{box-sizing:border-box}body{margin:0;min-height:100svh;display:grid;place-items:center;padding:32px 16px}main{display:flex;flex-direction:column;align-items:center;width:100%}h1{font-size:17px;font-weight:550;margin:0 0 12px}.hint{color:#8e8e98;margin:0;text-align:center;line-height:1.6}.zoom{display:grid;place-items:center;width:210px;height:210px;margin-top:18px}.zoom sipplay-plus-arrow-toggle{transform:scale(4)}.caption{color:#76717e;font-size:11px;margin:0 0 30px}.original{display:flex;align-items:center;gap:16px;color:#99949f;font-size:12px}output{font-size:12px;color:#c5c0cc;margin-top:24px}.notes{max-width:300px;line-height:1.7;color:#68636e;font-size:11px;text-align:center;margin:14px 0 0}
+.states{display:flex;gap:6px;margin-top:24px;padding:4px;border:1px solid #2e2c35;border-radius:12px;background:#131218}.states button{border:0;border-radius:8px;padding:9px 15px;font:inherit;font-size:12px;color:#8e8997;background:transparent;cursor:pointer}.states button[aria-pressed=true]{background:#302738;color:#f6e3ff}.states button:focus-visible{outline:1px solid #d7b3ed;outline-offset:1px}
+
+.downloads{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-top:22px}.downloads a{font-size:11px;color:#bcb4c5;text-decoration:none;border-bottom:1px solid #51475b;padding-bottom:3px}.downloads a:focus-visible{outline:1px solid #d7b3ed;outline-offset:4px}
+.compact body{min-height:0;height:220px;padding:0}.compact h1,.compact .hint,.compact .caption,.compact .original,.compact .states,.compact #state,.compact .notes,.compact .downloads{display:none}.compact .zoom{height:220px;margin:0}.compact main{height:220px}
+</style><script>if(new URLSearchParams(location.search).has('compact'))document.documentElement.classList.add('compact');</script></head><body><main><h1>加号 ↔ 发送箭头</h1><p class="hint">点击图标循环切换，或选择下方状态</p><div class="zoom"><sipplay-plus-arrow-toggle label="切换图标形态（放大预览）"></sipplay-plus-arrow-toggle></div><p class="caption">4× 细节预览</p><div class="original"><sipplay-plus-arrow-toggle label="切换图标形态（原始尺寸）"></sipplay-plus-arrow-toggle><span>原始尺寸 · 30 × 30</span></div><div class="states" role="group" aria-label="图标状态"><button type="button" data-value="add" aria-pressed="true">加号</button><button type="button" data-value="disabled" aria-pressed="false">不可发送</button><button type="button" data-value="ready" aria-pressed="false">可发送</button></div><output id="state" aria-live="polite">加号</output><p class="notes">原位变形 · 利落起步 · 柔和收尾</p><nav class="downloads" aria-label="下载与接入"><a href="./plus-arrow.html" download="Sipplay-v2-plus-arrow.html">下载 HTML</a><a href="./plus-arrow-toggle.js" download>组件源码</a><a href="./USAGE.md">接入说明</a></nav></main><script type="module">
+import{animate}from'https://cdn.jsdelivr.net/npm/motion@13.5.1/+esm';
+function definePlusArrowToggle(animate) {
+  const tag = 'sipplay-plus-arrow-toggle';
+  if (customElements.get(tag)) return;
+  const mix = (a, b, p) => a + (b - a) * p;
+  const clamp = p => Math.max(0, Math.min(1, p));
+  const smooth = p => { p = clamp(p); return p * p * (3 - 2 * p); };
+  const labels = { add: '加号', disabled: '不可发送', ready: '可发送' };
+  class PlusArrowToggle extends HTMLElement {
+    static observedAttributes = ['value', 'duration', 'label'];
+    constructor() {
+      super(); this.attachShadow({ mode: 'open' });
+      this.shape = 0; this.inkOpacity = 1; this.readyAmount = 0;
+      this.controls = []; this.epoch = 0; this.state = 'finished';
+      this.reduced = matchMedia('(prefers-reduced-motion: reduce)');
+      this.onReduced = () => { if (this.reduced.matches) this.finish(); };
+    }
+    get value() { const value = this.getAttribute('value'); return Object.hasOwn(labels, value) ? value : 'add'; }
+    set value(next) { this.setAttribute('value', Object.hasOwn(labels, next) ? next : 'add'); }
+    get duration() { return Math.min(1.2, Math.max(.2, Number(this.getAttribute('duration')) || .36)); }
+    get playState() { return this.state; }
+    connectedCallback() {
+      if (!this.button) {
+        this.shadowRoot.innerHTML = `<style>
+          :host{display:inline-block;width:44px;height:44px;vertical-align:middle}
+          button{display:grid;place-items:center;width:44px;height:44px;padding:7px;border:0;border-radius:50%;background:transparent;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+          button:focus-visible{outline:1px solid #d2d0d0;outline-offset:1px}
+          .art{position:relative;display:block;width:30px;height:30px;pointer-events:none}
+          .glass{position:absolute;inset:0;border-radius:50%;backdrop-filter:blur(10.71px);-webkit-backdrop-filter:blur(10.71px)}
+          svg{position:relative;display:block;width:30px;height:30px;overflow:visible}
+        
+.downloads{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-top:22px}.downloads a{font-size:11px;color:#bcb4c5;text-decoration:none;border-bottom:1px solid #51475b;padding-bottom:3px}.downloads a:focus-visible{outline:1px solid #d7b3ed;outline-offset:4px}
+.compact body{min-height:0;height:220px;padding:0}.compact h1,.compact .hint,.compact .caption,.compact .original,.compact .states,.compact #state,.compact .notes,.compact .downloads{display:none}.compact .zoom{height:220px;margin:0}.compact main{height:220px}
+</style><button type="button"><span class="art"><span class="glass"></span>
+          <svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="send-gradient" x1="-8.95998" y1="-5.33866" x2="2.76873" y2="45.8263" gradientUnits="userSpaceOnUse"><stop stop-color="#CF78F4"/><stop offset="1" stop-color="#EC5844"/></linearGradient>
+              <mask id="glyph-silhouette" x="0" y="0" width="30" height="30" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type:alpha">
+                <g class="stencil" stroke="white" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none">
+                  <path class="shaft" d="M15 9.375L15 20.625"/>
+                  <path class="arms" d="M9.375 15L15 15L20.625 15"/>
+                </g>
+              </mask>
+            </defs>
+            <rect class="neutral" width="30" height="30" rx="15" fill="white" fill-opacity=".15"/>
+            <rect class="ready" width="30" height="30" rx="15" fill="url(#send-gradient)" opacity="0"/>
+            <rect class="glyph" width="30" height="30" fill="white" mask="url(#glyph-silhouette)"/>
+          </svg>
+        </span></button>`;
+        this.button = this.shadowRoot.querySelector('button');
+        this.stencil = this.shadowRoot.querySelector('.stencil');
+        this.glyph = this.shadowRoot.querySelector('.glyph');
+        this.shaft = this.shadowRoot.querySelector('.shaft');
+        this.arms = this.shadowRoot.querySelector('.arms');
+        this.neutral = this.shadowRoot.querySelector('.neutral');
+        this.ready = this.shadowRoot.querySelector('.ready');
+        this.button.addEventListener('click', () => this.toggle());
+      }
+      this.reduced.addEventListener('change', this.onReduced); this.apply(true);
+    }
+    disconnectedCallback() { this.stop(); this.reduced.removeEventListener('change', this.onReduced); }
+    attributeChangedCallback(name) {
+      if (!this.button) return;
+      if (name === 'value') this.apply(this.reduced.matches);
+      else this.accessibility();
+    }
+    accessibility() {
+      this.button.setAttribute('aria-label', `${this.getAttribute('label') || '图标状态'}：${labels[this.value]}。点击切换下一状态`);
+    }
+    render() {
+      const p = clamp(this.shape);
+      const fold = smooth((p - .1) / .9);
+      const x = mix(15, 14.999, fold), junction = mix(15, 9.02832, fold);
+      const width = mix(1.3, 1.5, fold);
+      // Retract the upper arm before folding, so no vertical prong crosses the apex.
+      const upper = 5.625 * (1 - smooth(p / .3));
+      const start = junction - upper + width * .45 * fold;
+      this.shaft.setAttribute('d', `M${x} ${start}L${x} ${mix(20.625, 21.0283, fold)}`);
+      this.arms.setAttribute('d', `M${mix(9.375, 8.99902, fold)} ${mix(15, 14.0283, fold)}L${x} ${junction}L${mix(20.625, 20.999, fold)} ${mix(15, 14.0283, fold)}`);
+      this.stencil.setAttribute('stroke-width', width);
+      // Paint the merged silhouette once; overlapping stencil lines cannot double the opacity.
+      this.glyph.setAttribute('opacity', clamp(this.inkOpacity));
+      const ready = clamp(this.readyAmount);
+      this.ready.setAttribute('opacity', ready);
+      this.neutral.setAttribute('fill-opacity', .15 * (1 - ready));
+    }
+
+    stop() { this.epoch++; for (const control of this.controls) control.stop(); this.controls = []; }
+    apply(instant = false) {
+      this.stop(); this.accessibility();
+      const target = { shape: this.value === 'add' ? 0 : 1, inkOpacity: this.value === 'disabled' ? .2 : 1, readyAmount: this.value === 'ready' ? 1 : 0 };
+      if (instant) { Object.assign(this, target); this.render(); this.state = 'finished'; return; }
+      const run = this.epoch, d = this.duration; this.state = 'running';
+      for (const key of ['shape', 'inkOpacity', 'readyAmount']) {
+        if (Math.abs(this[key] - target[key]) < .00001) continue;
+        this.controls.push(animate(this[key], target[key], {
+          duration: key === 'shape' ? d : d * .7,
+          delay: key === 'inkOpacity' && this.value === 'disabled' ? d * .15 : 0,
+          ease: key === 'shape' ? [.22, 1, .36, 1] : [.4, 0, .2, 1],
+          onUpdate: value => { if (run === this.epoch) { this[key] = value; this.render(); } },
+        }));
+      }
+      Promise.all(this.controls.map(c => Promise.resolve(c))).then(() => {
+        if (run !== this.epoch) return;
+        Object.assign(this, target); this.render(); this.state = 'finished';
+      });
+    }
+    toggle() {
+      const values = ['add', 'disabled', 'ready'], previous = this.value;
+      this.value = values[(values.indexOf(previous) + 1) % values.length];
+      this.dispatchEvent(new CustomEvent('motion-change', { detail: { value: this.value, previous }, bubbles: true, composed: true }));
+    }
+    pause() { if (this.state === 'running') { this.controls.forEach(c => c.pause()); this.state = 'paused'; } }
+    play() { if (this.state === 'paused') { this.controls.forEach(c => c.play()); this.state = 'running'; } }
+    finish() { this.apply(true); }
+    cancel() { this.value = 'add'; this.apply(true); }
+  }
+  customElements.define(tag, PlusArrowToggle);
+}
+
+definePlusArrowToggle(animate);
+const icons=[...document.querySelectorAll('sipplay-plus-arrow-toggle')];const names={add:'加号',disabled:'不可发送',ready:'可发送'};
+function choose(value){for(const icon of icons)if(icon.value!==value)icon.value=value;for(const button of document.querySelectorAll('[data-value]'))button.setAttribute('aria-pressed',String(button.dataset.value===value));document.querySelector('#state').textContent=names[value];}
+document.addEventListener('motion-change',event=>{if(icons.includes(event.target))choose(event.detail.value);});
+for(const button of document.querySelectorAll('[data-value]'))button.addEventListener('click',()=>choose(button.dataset.value));
+if(new URLSearchParams(location.search).has('compact')){for(const icon of icons){icon.value='ready';icon.finish();}}
+</script></body></html>

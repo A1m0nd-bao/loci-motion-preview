@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "1.0.0",
+  "readme": "USAGE.md",
+  "modules": [
+    {
+      "kind": "javascript-module",
+      "path": "plus-arrow-toggle.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "definePlusArrowToggle",
+          "parameters": [
+            {
+              "name": "animate",
+              "type": {
+                "text": "Function"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "class",
+          "name": "PlusArrowToggle",
+          "customElement": true,
+          "tagName": "sipplay-plus-arrow-toggle",
+          "attributes": [
+            {
+              "name": "value",
+              "type": {
+                "text": "'add' | 'disabled' | 'ready'"
+              },
+              "default": "add"
+            },
+            {
+              "name": "duration",
+              "type": {
+                "text": "number"
+              },
+              "default": "0.36"
+            },
+            {
+              "name": "label",
+              "type": {
+                "text": "string"
+              }
+            }
+          ],
+          "events": [
+            {
+              "name": "motion-change",
+              "type": {
+                "text": "CustomEvent<{ value: string, previous: string }>"
+              }
+            }
+          ],
+          "members": [
+            {
+              "kind": "method",
+              "name": "toggle"
+            },
+            {
+              "kind": "method",
+              "name": "pause"
+            },
+            {
+              "kind": "method",
+              "name": "play"
+            },
+            {
+              "kind": "method",
+              "name": "finish"
+            },
+            {
+              "kind": "method",
+              "name": "cancel"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

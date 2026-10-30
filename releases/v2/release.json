@@ -1,0 +1,23 @@
+{
+  "version": "v2",
+  "date": "2026-10-30",
+  "components": [
+    {
+      "id": "sipplay-plus-arrow-toggle",
+      "name": "加号与发送箭头 · 三态切换",
+      "preview": "plus-arrow/index.html",
+      "download": "plus-arrow/plus-arrow.html",
+      "source": "plus-arrow/plus-arrow-toggle.js",
+      "usage": "plus-arrow/USAGE.md",
+      "api": "plus-arrow/custom-elements.json",
+      "states": [
+        "add",
+        "disabled",
+        "ready"
+      ],
+      "duration": 0.36,
+      "size": "30×30",
+      "figma": []
+    }
+  ]
+}
