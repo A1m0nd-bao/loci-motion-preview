@@ -1444,8 +1444,17 @@ loadManifest().then(() => {
 });
 window.setInterval(loadManifest, 30000);
 
+const releaseCanvasObserver = new ResizeObserver(entries => {
+  for (const {target, contentRect} of entries) {
+    const width = Number(target.dataset.sceneWidth), height = Number(target.dataset.sceneHeight);
+    const scale = Math.min((contentRect.width - 24) / width, (contentRect.height - 24) / height, 1);
+    target.firstElementChild.style.transform = `translate(-50%, -50%) scale(${Math.max(.01, scale)})`;
+  }
+});
+
 function renderDrafts(items) {
   const root = document.querySelector("#v2Drafts");
+  for (const canvas of root.querySelectorAll('.release-preview-canvas')) releaseCanvasObserver.unobserve(canvas);
   root.replaceChildren();
   if (!items.length) {
     const message = document.createElement("p");
@@ -1462,9 +1471,19 @@ function renderDrafts(items) {
     card.querySelector(".draft-symbol").textContent = item.symbol;
     if (item.published) {
       const preview = document.createElement('iframe');
+      const canvas = document.createElement('div');
+      canvas.className = 'release-preview-canvas';
+      const scene = item.id === 'sipplay-prop-spotlight' ? [375, 812]
+        : item.id === 'sipplay-voice-input-wave' ? [269, 220] : [260, 220];
+      canvas.dataset.sceneWidth = scene[0]; canvas.dataset.sceneHeight = scene[1];
       preview.className = 'release-card-preview'; preview.title = `${item.name} · 交互预览`;
-      preview.loading = 'lazy'; preview.src = `${item.file}?compact=1`;
-      card.querySelector('.draft-symbol').replaceWith(preview);
+      preview.width = scene[0]; preview.height = scene[1];
+      preview.style.width = `${scene[0]}px`; preview.style.height = `${scene[1]}px`;
+      preview.loading = 'lazy'; preview.scrolling = 'no';
+      preview.src = `${item.file}?compact=1&fit=contain&v=canvas-fit1`;
+      canvas.append(preview);
+      card.querySelector('.draft-symbol').replaceWith(canvas);
+      releaseCanvasObserver.observe(canvas);
     }
     card.querySelector("h3").textContent = item.name;
     card.querySelector("p").textContent = item.note;

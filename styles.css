@@ -2080,3 +2080,8 @@ code {
 .release-draft-card a+a{margin-left:20px}
 
 .v2-drafts{grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr))}
+
+/* Fit each preview's complete scene inside a shared canvas, with equal safe margins. */
+.release-preview-canvas{position:relative;width:100%;height:220px;overflow:hidden;border-radius:12px;background:#0a0c10}
+.release-preview-canvas .release-card-preview{position:absolute;left:50%;top:50%;width:auto;height:auto;max-width:none;border-radius:0;transform:translate(-50%,-50%);transform-origin:center}
+.release-draft-card .draft-status{margin-top:12px}
