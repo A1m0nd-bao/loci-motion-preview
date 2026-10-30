@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>心动点赞 · Sipplay</title>
+<style>
+:root{color-scheme:dark;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#101014;color:#fff}*{box-sizing:border-box}body{margin:0;min-height:100svh;display:grid;place-items:center;padding:24px}main{width:min(100%,560px)}header{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#8d8d99;letter-spacing:.06em}h1{font-size:27px;font-weight:550;letter-spacing:-.04em;margin:26px 0 8px}p{color:#9999a5;font-size:13px;line-height:1.7;margin:0}.sizes{display:flex;gap:6px;margin:22px 0 12px}.sizes button{padding:8px 14px;border-radius:8px;background:transparent;border:1px solid #303038;color:#9999a5;cursor:pointer}.sizes button[aria-pressed=true]{color:#fff;background:#303038;border-color:#666672}.stage{height:240px;display:grid;grid-template-columns:1fr 1fr;background:#18181e;border:1px solid #28282f;border-radius:20px;position:relative}.pane{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;min-width:0}.pane+.pane{border-left:1px solid #28282f}.zoom{height:86px;display:grid;place-items:center}.zoom sipplay-like-heart{transform:scale(4)}.source{width:64px;height:64px;display:block}.caption{color:#858591;font-size:11px}.note{margin:12px 0 18px;font-size:11px;color:#777783}.samples{display:flex;align-items:center;justify-content:space-between;gap:8px}.actual{display:flex;align-items:center;color:#9999a5;font-size:11px}.actual sipplay-like-heart{flex-shrink:0}output{display:block;font-size:12px;color:#ddd;margin-top:16px}.replay{white-space:nowrap;border:1px solid #383840;background:#23232a;color:#eee;border-radius:9px;padding:10px 12px;font-size:12px;cursor:pointer}.replay:hover{background:#303038}button:focus-visible{outline:2px solid white;outline-offset:3px}footer{margin-top:22px;padding-top:16px;border-top:1px solid #28282f;font-size:11px;color:#72727f;line-height:1.8}
+.downloads{display:flex;flex-wrap:wrap;gap:18px;margin:22px 0 0}.downloads a{color:#bcb4c5;font-size:12px;text-decoration:none;border-bottom:1px solid #51475b;padding-bottom:3px}.compact body{height:220px;min-height:0;padding:0;overflow:hidden}.compact main{width:100%;height:220px}.compact header,.compact h1,.compact .intro,.compact main>p,.compact .samples,.compact .sizes,.compact footer,.compact output,.compact .downloads,.compact .references,.compact .readout,.compact .level-tabs{display:none}.compact .stage{height:220px;margin:0;border:0;border-radius:0;background:#0a0c10;display:grid;grid-template-columns:1fr}.compact .pane:first-child,.compact .caption{display:none}.compact .pane+.pane{border:0}.compact .zoom{height:220px}.compact .zoom sipplay-like-heart{transform:scale(4)}</style><script>if(new URLSearchParams(location.search).has("compact"))document.documentElement.classList.add("compact");</script>
+<main>
+<header><span>SIPPLAY / MOTION</span><span>动效 v2</span></header>
+<h1>心动点赞</h1><p>轻收、小跳、轻摆，再落回原来的爱心。</p>
+<div class="sizes" aria-label="预览图标尺寸"><button type="button" aria-pressed="true" data-size="16">16 × 16</button><button type="button" aria-pressed="false" data-size="20">20 × 20</button></div>
+<div class="stage">
+<div class="pane"><div class="zoom"><img class="source" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAKKADAAQAAAABAAAAKAAAAAB65masAAACrklEQVRYCe2Wi3XaQBBFTSqghC2BEtRB6MDqIHQAHTgdQCdyKqCEdQdOB+Q+rJFHq9Un4hOfE+ac59mdnXnz9gPm6elh//sJnE6nJdiCCrwDb0cmL2CVOyfiqi3qHOVavXxVx4tc7WiMYpGr+VSrSAwixtumTNAYR7TaUWF1gxUFKppje4qmCkv5t6MCqZC4tEFFrATBCBjrlHR9BzBk4toB5Z7r8UO1/SJFACIwE3lhovo8OWmd6iNY99VYnBzVHoG3wtZbnoy9y4qMQythZEL+z7pefjmS3iwrF3iRx2bRBiRoJ94KW/sbD0H2Ez3GQZ3668bM2v2J2u6VsB8jvMU6fXdqXltbA0F/xG31t1CT4USDv8X3VorJrv3k99MiucKE/v6awzdxSrnjflssFr/d/N7DN9dweRboAl9h6A/nSwr0z+tDLFes76HG/uUxIsK/wU+xLMRG4czvsks3Rv+V0xDF59/gL9dg7cb3HPq+r2rsBZ4DCmLfP9zd/z67jv7Amt9w/v4Ll3zzIVdbptfbaUqC/1dTdRJuFKCvPqQRmO2yrVhVoj/FTTbxykF6boFZZBB6W7DoT1Fi+5N7WaYvwL8G3srBajLT446KDRbNXIQ3AH9j7V8wfbwUrZLCq7/HWlzEm0UGoU9TJ06y/1SJZNruOkzdgISACMzmPSWq/XsU2RFcdN3U63YiMJO4VXcbEyMUpyIjsTCxvJVG3TPwb+4yccYOaU5kaetTPBwvwNt1xFlzmDeevR6r6eCVs673dqzzzUUGwbiv5kUKRO4tMilzTYj/ADopbxWTwU3luCbHIJfIA0htTyCICF+A9NQInTaTG12aSLMSRJBaTphi8z+pc8XSNIBDqtDNdb33O7W+jSAiJ3RP/HZvrU/MULwWupMfynusPU7AncAfeXCG/dWdpNYAAAAASUVORK5CYII=" alt="用户提供的爱心图片"></div><span class="caption">图片参考 · 4×</span></div>
+<div class="pane"><div class="zoom"><sipplay-like-heart id="large" label="切换点赞（放大预览）"></sipplay-like-heart></div><span class="caption">点击体验 · 4×</span></div>
+</div>
+<p class="note">按最新图片校准饱满弧线，16 / 20 两档等比显示。</p>
+<div class="samples"><div class="actual"><sipplay-like-heart size="16" label="切换点赞（16像素）"></sipplay-like-heart><span>16 px</span></div><div class="actual"><sipplay-like-heart size="20" label="切换点赞（20像素）"></sipplay-like-heart><span>20 px</span></div><button class="replay" type="button">重播点赞</button></div>
+<output aria-live="polite">未点赞</output>
+<footer>按图片校准轮廓 · 等比缩放 · 约 0.56 秒<br>再次点击取消点赞</footer>
+<nav class="downloads" aria-label="下载与接入"><a download href="./like-heart.html">下载 HTML</a><a download href="./source.zip">下载源码包</a><a href="./USAGE.md">接入说明</a></nav></main>
+<script type="module">
+import {animate} from '../vendor/motion-components.js';
+import {defineLikeHeart} from './like-heart.js';
+defineLikeHeart(animate);
+const hearts=[...document.querySelectorAll('sipplay-like-heart')],status=document.querySelector('output');
+for(const heart of hearts)heart.addEventListener('motion-change',e=>{
+ for(const other of hearts)if(other!==heart)other.active=e.detail.active;
+ status.textContent=e.detail.active?'已点赞':'未点赞';
+});
+document.querySelector('.replay').onclick=()=>{hearts.forEach(h=>h.replay());status.textContent='已点赞';};
+for(const button of document.querySelectorAll('[data-size]'))button.onclick=()=>{
+ const size=button.dataset.size;
+ for(const b of document.querySelectorAll('[data-size]'))b.setAttribute('aria-pressed',String(b===button));
+ document.querySelector('#large').setAttribute('size',size);
+ const ref=document.querySelector('.source');ref.style.width=ref.style.height=(Number(size)*4)+'px';
+};
+</script>
+</html>

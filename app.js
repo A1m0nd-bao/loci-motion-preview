@@ -19,12 +19,29 @@ const publishedV2 = [
     "symbol": "↑",
     "tags": "加号 发送 箭头 三态",
     "published": true
+  },
+  {
+    "id": "sipplay-like-heart",
+    "name": "心动点赞",
+    "note": "16 / 20 像素 · 轻收、小跳与自下而上填充",
+    "file": "./releases/v2/like-heart/index.html",
+    "download": "./releases/v2/like-heart/like-heart.html",
+    "symbol": "♡",
+    "tags": "点赞 爱心 心动",
+    "published": true
+  },
+  {
+    "id": "sipplay-strength-cup",
+    "name": "强度滑块液面联动",
+    "note": "自由拖动、松手吸附 · 液面缓动、冰块与柠檬联动",
+    "file": "./releases/v2/strength-cup/index.html",
+    "download": "./releases/v2/strength-cup/strength-cup.html",
+    "symbol": "◒",
+    "tags": "强度 液面 滑块 酒杯 冰块 柠檬",
+    "published": true
   }
 ];
-const localDrafts = isLocalPreview ? [
-  { name: "心动点赞", note: "按图片校准轮廓 · 16 / 20 像素", file: "./offline/motion-v2/like-heart/like-heart-trial.html", symbol: "♡", tags: "点赞 爱心 心动" },
-  { name: "强度滑块液面联动", note: "本次上传的 HTML 版本", file: "./offline/motion-v2/strength-cup/strength-cup.html", symbol: "◒", tags: "强度 液面 滑块 酒杯" }
-] : [];
+const localDrafts = [];
 const v2Entries = [...publishedV2, ...localDrafts];
 
 
@@ -1425,7 +1442,7 @@ function renderDrafts(items) {
     card.querySelector("a").textContent = item.published ? '打开交互预览 ↗' : '打开候选预览 ↗';
     if (item.download) {
       const download = document.createElement('a'); download.href = item.download;
-      download.download = 'Sipplay-v2-plus-arrow.html'; download.textContent = '下载 HTML ↓';
+      download.download = `Sipplay-v2-${item.id.replace('sipplay-', '')}.html`; download.textContent = '下载 HTML ↓';
       card.append(download);
     }
     root.append(card);

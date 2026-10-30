@@ -18,6 +18,36 @@
       "duration": 0.36,
       "size": "30×30",
       "figma": []
+    },
+    {
+      "id": "sipplay-like-heart",
+      "name": "心动点赞",
+      "preview": "like-heart/index.html",
+      "download": "like-heart/like-heart.html",
+      "package": "like-heart/source.zip",
+      "source": "like-heart/like-heart.js",
+      "usage": "like-heart/USAGE.md",
+      "states": [
+        "off",
+        "on"
+      ],
+      "size": "16 / 20"
+    },
+    {
+      "id": "sipplay-strength-cup",
+      "name": "强度滑块液面联动",
+      "preview": "strength-cup/index.html",
+      "download": "strength-cup/strength-cup.html",
+      "package": "strength-cup/source.zip",
+      "source": "strength-cup/controller.js",
+      "usage": "strength-cup/USAGE.md",
+      "states": [
+        "Basic",
+        "Standard",
+        "Extended",
+        "Maximum"
+      ],
+      "size": "343×294"
     }
   ]
 }
