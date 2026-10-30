@@ -1,4 +1,5 @@
 import { motionMotions } from "./motion/catalog.js?v=20261029-release-v1";
+import { groupLottieFamilies, renderFamilyPanel } from "./lottie-families.js?v=20261030";
 import { webMotions } from "./web-components/catalog.js?v=20261029-release-v1";
 import { createWebController, copyExample, downloadExample, setupWebDetail, getWebValues, syncWebBackgrounds } from "./web-components/integration.js?v=20261029-release-v1";
 
@@ -135,7 +136,7 @@ async function loadManifest() {
     const signature = JSON.stringify([items, remoteLabels]);
     if (signature === manifestSignature) return;
     manifestSignature = signature;
-    motions = items.map(normalizeMotion);
+    motions = groupLottieFamilies(items.map(normalizeMotion));
   } catch {
     if (motions.length) return;
     motions = [];
@@ -663,9 +664,10 @@ function bindPreviewFocusPlayback(host, motion) {
   target.addEventListener("focusout", deactivate);
 }
 
-async function openDetail(motion) {
+async function openDetail(motion, family = motion.variants ? motion : null) {
+  if (family && motion.variants) motion = family.variants.find(v => v.file === family.file) || family.variants[0];
   activeMotion = motion;
-  const title = getMotionTitle(motion);
+  const title = family ? family.name : getMotionTitle(motion);
   detailTitle.textContent = title;
   detailPath.textContent = motion.file;
   detailPath.title = motion.file;
@@ -680,6 +682,8 @@ async function openDetail(motion) {
   detailDownload.download = getDownloadName(motion);
   detailHost.dataset.kind = motion.kind;
   setupWebDetail(motion, () => detailController);
+  renderFamilyPanel(family, motion, (variant, group) => openDetail(variant, group));
+  if (family) detailLoop.checked = motion.playbackSegment === "loop" || motion.sourceComponent === "sipplay-voice-wave";
   detailTags.replaceChildren();
 
   const tags = (isInteractiveKind(motion.kind) ? [motion.category, motion.interactionType] : [motion.kindLabel || labelForKind(motion.kind), motion.category, motion.interactionType, ...(motion.tags || [])]).filter(Boolean);
