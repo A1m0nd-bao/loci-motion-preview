@@ -63,6 +63,36 @@
       ],
       "duration": 0.42,
       "size": "30×30"
+    },
+    {
+      "id": "sipplay-voice-input-wave",
+      "name": "语音正在输入",
+      "preview": "voice-input/index.html",
+      "download": "voice-input/voice-input.html",
+      "source": "voice-input/voice-input-wave.js",
+      "package": "voice-input/source.zip",
+      "usage": "voice-input/USAGE.md",
+      "states": [
+        "speaking",
+        "quiet",
+        "paused"
+      ],
+      "size": "217×25"
+    },
+    {
+      "id": "sipplay-prop-spotlight",
+      "name": "选中道具聚光高亮",
+      "preview": "prop-spotlight/index.html",
+      "download": "prop-spotlight/prop-spotlight.html",
+      "source": "prop-spotlight/relic-spotlight-source.html",
+      "package": "prop-spotlight/source.zip",
+      "usage": "prop-spotlight/USAGE.md",
+      "states": [
+        "locked",
+        "owned",
+        "selected"
+      ],
+      "size": "375×812"
     }
   ]
 }

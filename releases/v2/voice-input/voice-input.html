@@ -1,0 +1,134 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>语音正在输入 · Sipplay v2</title><style>
+:root{color-scheme:dark;background:#0a0c10;color:#f5f2fa;font:14px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}*{box-sizing:border-box}body{margin:0;min-height:100svh;display:grid;place-items:center;padding:32px 20px}main{width:min(100%,620px)}header{display:flex;justify-content:space-between;color:#77717e;font-size:11px;letter-spacing:.07em}h1{font-size:24px;letter-spacing:-.035em;font-weight:550;margin:28px 0 10px}.intro{font-size:13px;line-height:1.8;color:#918c99;margin:0}.panel{margin-top:24px;border:1px solid #292630;border-radius:22px;background:#121116;overflow:hidden}.large{height:180px;display:flex;align-items:center;justify-content:center;padding:26px}.large sipplay-voice-input-wave{--voice-wave-width:434px}.caption{color:#706b79;font-size:11px;text-align:center;margin:0 0 24px}.actual{border-top:1px solid #292630;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;min-height:132px;padding:20px}.actual span{color:#77717e;font-size:11px}.controls{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:22px}output{font-size:12px;color:#cbc4d3}.actions{display:flex;gap:8px}button{padding:10px 15px;border:1px solid #36303e;background:#211b2a;border-radius:10px;font:inherit;font-size:12px;color:#e3d6ee;cursor:pointer}button:hover{background:#30263b}button:focus-visible,summary:focus-visible{outline:1px solid #e3c4f8;outline-offset:3px}.notes{font-size:11px;line-height:1.8;color:#77717e;margin:22px 0 0}details{border-top:1px solid #292630;margin-top:20px;padding-top:18px;font-size:12px;color:#918c99}summary{cursor:pointer}details img{display:block;max-width:100%;margin:24px auto}
+.release-downloads{display:flex;justify-content:center;flex-wrap:wrap;gap:18px;margin:24px 0}.release-downloads a{font-size:12px;color:#bcb4c5;text-decoration:none;border-bottom:1px solid #51475b;padding-bottom:3px}.compact body{height:220px;min-height:0;padding:0;overflow:hidden}.compact main{width:100%;height:220px}.compact header,.compact h1,.compact .intro,.compact .caption,.compact .actual,.compact .controls,.compact .notes,.compact details,.compact .release-downloads{display:none}.compact .panel{height:220px;margin:0;border:0;border-radius:0;background:#0a0c10}.compact .large{height:220px;padding:20px}.compact .large sipplay-voice-input-wave{--voice-wave-width:217px}</style><script>if(new URLSearchParams(location.search).has("compact"))document.documentElement.classList.add("compact");</script></head><body><main><header><span>SIPPLAY / MOTION</span><span>语音输入 · v2</span></header><h1>语音正在输入</h1><p class="intro">各根声波错峰起落，轻重和快慢跟随说话节奏。</p><section class="panel" aria-label="声波预览"><div class="large"><sipplay-voice-input-wave label="语音输入声波放大预览"></sipplay-voice-input-wave></div><p class="caption">2× 细节预览</p><div class="actual"><sipplay-voice-input-wave label="语音输入声波原始尺寸"></sipplay-voice-input-wave><span>原始尺寸 · 217 × 25</span></div></section><div class="controls"><output aria-live="polite">语音正在输入</output><div class="actions"><button type="button" id="pause">暂停预览</button><button type="button" id="speech">模拟停顿</button></div></div><p class="notes">模拟说话与停顿 · 中线固定<br>当前为动效演示，可在接入时用真实音量驱动。</p><details><summary>查看静态原稿</summary><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjE3IiBoZWlnaHQ9IjI1IiB2aWV3Qm94PSIwIDAgMjE3IDI1IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cGF0aCBkPSJNMTA1Ljc1IDBDMTA2LjE2NCAxLjgxMDU5ZS0wOCAxMDYuNSAwLjMzNTc4NiAxMDYuNSAwLjc1VjI0LjI1QzEwNi41IDI0LjY2NDIgMTA2LjE2NCAyNSAxMDUuNzUgMjVDMTA1LjMzNiAyNSAxMDUgMjQuNjY0MiAxMDUgMjQuMjVWMC43NUMxMDUgMC4zMzU3ODYgMTA1LjMzNiAtMS44MTA1OWUtMDggMTA1Ljc1IDBaTTEwLjc1IDAuNUMxMS4xNjQyIDAuNSAxMS41IDAuODM1Nzg2IDExLjUgMS4yNVYyMy43NUMxMS41IDI0LjE2NDIgMTEuMTY0MiAyNC41IDEwLjc1IDI0LjVDMTAuMzM1OCAyNC41IDEwIDI0LjE2NDIgMTAgMjMuNzVWMS4yNUMxMCAwLjgzNTc4NyAxMC4zMzU4IDAuNSAxMC43NSAwLjVaTTM1Ljc1IDAuNUMzNi4xNjQyIDAuNSAzNi41IDAuODM1Nzg2IDM2LjUgMS4yNVYyMy43NUMzNi41IDI0LjE2NDIgMzYuMTY0MiAyNC41IDM1Ljc1IDI0LjVDMzUuMzM1OCAyNC41IDM1IDI0LjE2NDIgMzUgMjMuNzVWMS4yNUMzNSAwLjgzNTc4NiAzNS4zMzU4IDAuNSAzNS43NSAwLjVaTTgwLjc1IDAuNUM4MS4xNjQyIDAuNSA4MS41IDAuODM1Nzg2IDgxLjUgMS4yNVYyMy43NUM4MS41IDI0LjE2NDIgODEuMTY0MiAyNC41IDgwLjc1IDI0LjVDODAuMzM1OCAyNC41IDgwIDI0LjE2NDIgODAgMjMuNzVWMS4yNUM4MCAwLjgzNTc4NiA4MC4zMzU4IDAuNSA4MC43NSAwLjVaTTE1MC43NSAwLjVDMTUxLjE2NCAwLjUgMTUxLjUgMC44MzU3ODYgMTUxLjUgMS4yNVYyMy43NUMxNTEuNSAyNC4xNjQyIDE1MS4xNjQgMjQuNSAxNTAuNzUgMjQuNUMxNTAuMzM2IDI0LjUgMTUwIDI0LjE2NDIgMTUwIDIzLjc1VjEuMjVDMTUwIDAuODM1Nzg2IDE1MC4zMzYgMC41IDE1MC43NSAwLjVaTTE3NS43NSAwLjVDMTc2LjE2NCAwLjUgMTc2LjUgMC44MzU3ODYgMTc2LjUgMS4yNVYyMy43NUMxNzYuNSAyNC4xNjQyIDE3Ni4xNjQgMjQuNSAxNzUuNzUgMjQuNUMxNzUuMzM2IDI0LjUgMTc1IDI0LjE2NDIgMTc1IDIzLjc1VjEuMjVDMTc1IDAuODM1Nzg2IDE3NS4zMzYgMC41IDE3NS43NSAwLjVaTTE5MC43NSAwLjVDMTkxLjE2NCAwLjUgMTkxLjUgMC44MzU3ODYgMTkxLjUgMS4yNVYyMy43NUMxOTEuNSAyNC4xNjQyIDE5MS4xNjQgMjQuNSAxOTAuNzUgMjQuNUMxOTAuMzM2IDI0LjUgMTkwIDI0LjE2NDIgMTkwIDIzLjc1VjEuMjVDMTkwIDAuODM1Nzg2IDE5MC4zMzYgMC41IDE5MC43NSAwLjVaTTIxNS43NSAwLjVDMjE2LjE2NCAwLjUgMjE2LjUgMC44MzU3ODYgMjE2LjUgMS4yNVYyMy43NUMyMTYuNSAyNC4xNjQyIDIxNi4xNjQgMjQuNSAyMTUuNzUgMjQuNUMyMTUuMzM2IDI0LjUgMjE1IDI0LjE2NDIgMjE1IDIzLjc1VjEuMjVDMjE1IDAuODM1Nzg2IDIxNS4zMzYgMC41IDIxNS43NSAwLjVaTTQwLjc1IDIuOTAwMzlDNDEuMTY0MiAyLjkwMDM5IDQxLjUgMy4yMzYxOCA0MS41IDMuNjUwMzlWMjEuMzUwNkM0MS40OTk3IDIxLjc2NDUgNDEuMTY0IDIyLjEwMDYgNDAuNzUgMjIuMTAwNkM0MC4zMzYgMjIuMTAwNiA0MC4wMDAzIDIxLjc2NDUgNDAgMjEuMzUwNlYzLjY1MDM5QzQwIDMuMjM2MTggNDAuMzM1OCAyLjkwMDM5IDQwLjc1IDIuOTAwMzlaTTExMC43NSAyLjkwMDM5QzExMS4xNjQgMi45MDAzOSAxMTEuNSAzLjIzNjE4IDExMS41IDMuNjUwMzlWMjEuMzUwNkMxMTEuNSAyMS43NjQ1IDExMS4xNjQgMjIuMTAwNiAxMTAuNzUgMjIuMTAwNkMxMTAuMzM2IDIyLjEwMDYgMTEwIDIxLjc2NDUgMTEwIDIxLjM1MDZWMy42NTAzOUMxMTAgMy4yMzYxOCAxMTAuMzM2IDIuOTAwMzkgMTEwLjc1IDIuOTAwMzlaTTUuNzUgNi4wOTk2MUM2LjE2NDA4IDYuMDk5NjEgNi40OTk3OSA2LjQzNTU4IDYuNSA2Ljg0OTYxVjE4LjE0OTRDNi41IDE4LjU2MzYgNi4xNjQyMSAxOC44OTk0IDUuNzUgMTguODk5NEM1LjMzNTc5IDE4Ljg5OTQgNSAxOC41NjM2IDUgMTguMTQ5NFY2Ljg0OTYxQzUuMDAwMjEgNi40MzU1OCA1LjMzNTkyIDYuMDk5NjEgNS43NSA2LjA5OTYxWk0yNS43NSA2LjA5OTYxQzI2LjE2NDEgNi4wOTk2MSAyNi40OTk4IDYuNDM1NTggMjYuNSA2Ljg0OTYxVjE4LjE0OTRDMjYuNSAxOC41NjM2IDI2LjE2NDIgMTguODk5NCAyNS43NSAxOC44OTk0QzI1LjMzNTggMTguODk5NCAyNSAxOC41NjM2IDI1IDE4LjE0OTRWNi44NDk2MUMyNS4wMDAyIDYuNDM1NTggMjUuMzM1OSA2LjA5OTYxIDI1Ljc1IDYuMDk5NjFaTTMwLjc1IDYuMDk5NjFDMzEuMTY0MSA2LjA5OTYxIDMxLjQ5OTggNi40MzU1OCAzMS41IDYuODQ5NjFWMTguMTQ5NEMzMS41IDE4LjU2MzYgMzEuMTY0MiAxOC44OTk0IDMwLjc1IDE4Ljg5OTRDMzAuMzM1OCAxOC44OTk0IDMwIDE4LjU2MzYgMzAgMTguMTQ5NFY2Ljg0OTYxQzMwLjAwMDIgNi40MzU1OCAzMC4zMzU5IDYuMDk5NjEgMzAuNzUgNi4wOTk2MVpNNzUuNzUgNi4wOTk2MUM3Ni4xNjQxIDYuMDk5NjEgNzYuNDk5OCA2LjQzNTU4IDc2LjUgNi44NDk2MVYxOC4xNDk0Qzc2LjUgMTguNTYzNiA3Ni4xNjQyIDE4Ljg5OTQgNzUuNzUgMTguODk5NEM3NS4zMzU4IDE4Ljg5OTQgNzUgMTguNTYzNiA3NSAxOC4xNDk0VjYuODQ5NjFDNzUuMDAwMiA2LjQzNTU4IDc1LjMzNTkgNi4wOTk2MSA3NS43NSA2LjA5OTYxWk05NS43NSA2LjA5OTYxQzk2LjE2NDEgNi4wOTk2MSA5Ni40OTk4IDYuNDM1NTggOTYuNSA2Ljg0OTYxVjE4LjE0OTRDOTYuNSAxOC41NjM2IDk2LjE2NDIgMTguODk5NCA5NS43NSAxOC44OTk0Qzk1LjMzNTggMTguODk5NCA5NSAxOC41NjM2IDk1IDE4LjE0OTRWNi44NDk2MUM5NS4wMDAyIDYuNDM1NTggOTUuMzM1OSA2LjA5OTYxIDk1Ljc1IDYuMDk5NjFaTTEwMC43NSA2LjA5OTYxQzEwMS4xNjQgNi4wOTk2MSAxMDEuNSA2LjQzNTU4IDEwMS41IDYuODQ5NjFWMTguMTQ5NEMxMDEuNSAxOC41NjM2IDEwMS4xNjQgMTguODk5NCAxMDAuNzUgMTguODk5NEMxMDAuMzM2IDE4Ljg5OTQgMTAwIDE4LjU2MzYgMTAwIDE4LjE0OTRWNi44NDk2MUMxMDAgNi40MzU1OCAxMDAuMzM2IDYuMDk5NjEgMTAwLjc1IDYuMDk5NjFaTTE0NS43NSA2LjA5OTYxQzE0Ni4xNjQgNi4wOTk2MSAxNDYuNSA2LjQzNTU4IDE0Ni41IDYuODQ5NjFWMTguMTQ5NEMxNDYuNSAxOC41NjM2IDE0Ni4xNjQgMTguODk5NCAxNDUuNzUgMTguODk5NEMxNDUuMzM2IDE4Ljg5OTQgMTQ1IDE4LjU2MzYgMTQ1IDE4LjE0OTRWNi44NDk2MUMxNDUgNi40MzU1OCAxNDUuMzM2IDYuMDk5NjEgMTQ1Ljc1IDYuMDk5NjFaTTE2NS43NSA2LjA5OTYxQzE2Ni4xNjQgNi4wOTk2MSAxNjYuNSA2LjQzNTU4IDE2Ni41IDYuODQ5NjFWMTguMTQ5NEMxNjYuNSAxOC41NjM2IDE2Ni4xNjQgMTguODk5NCAxNjUuNzUgMTguODk5NEMxNjUuMzM2IDE4Ljg5OTQgMTY1IDE4LjU2MzYgMTY1IDE4LjE0OTRWNi44NDk2MUMxNjUgNi40MzU1OCAxNjUuMzM2IDYuMDk5NjEgMTY1Ljc1IDYuMDk5NjFaTTE3MC43NSA2LjA5OTYxQzE3MS4xNjQgNi4wOTk2MSAxNzEuNSA2LjQzNTU4IDE3MS41IDYuODQ5NjFWMTguMTQ5NEMxNzEuNSAxOC41NjM2IDE3MS4xNjQgMTguODk5NCAxNzAuNzUgMTguODk5NEMxNzAuMzM2IDE4Ljg5OTQgMTcwIDE4LjU2MzYgMTcwIDE4LjE0OTRWNi44NDk2MUMxNzAgNi40MzU1OCAxNzAuMzM2IDYuMDk5NjEgMTcwLjc1IDYuMDk5NjFaTTE4NS43NSA2LjA5OTYxQzE4Ni4xNjQgNi4wOTk2MSAxODYuNSA2LjQzNTU4IDE4Ni41IDYuODQ5NjFWMTguMTQ5NEMxODYuNSAxOC41NjM2IDE4Ni4xNjQgMTguODk5NCAxODUuNzUgMTguODk5NEMxODUuMzM2IDE4Ljg5OTQgMTg1IDE4LjU2MzYgMTg1IDE4LjE0OTRWNi44NDk2MUMxODUgNi40MzU1OCAxODUuMzM2IDYuMDk5NjEgMTg1Ljc1IDYuMDk5NjFaTTIwNS43NSA2LjA5OTYxQzIwNi4xNjQgNi4wOTk2MSAyMDYuNSA2LjQzNTU4IDIwNi41IDYuODQ5NjFWMTguMTQ5NEMyMDYuNSAxOC41NjM2IDIwNi4xNjQgMTguODk5NCAyMDUuNzUgMTguODk5NEMyMDUuMzM2IDE4Ljg5OTQgMjA1IDE4LjU2MzYgMjA1IDE4LjE0OTRWNi44NDk2MUMyMDUgNi40MzU1OCAyMDUuMzM2IDYuMDk5NjEgMjA1Ljc1IDYuMDk5NjFaTTIxMC43NSA2LjA5OTYxQzIxMS4xNjQgNi4wOTk2MSAyMTEuNSA2LjQzNTU4IDIxMS41IDYuODQ5NjFWMTguMTQ5NEMyMTEuNSAxOC41NjM2IDIxMS4xNjQgMTguODk5NCAyMTAuNzUgMTguODk5NEMyMTAuMzM2IDE4Ljg5OTQgMjEwIDE4LjU2MzYgMjEwIDE4LjE0OTRWNi44NDk2MUMyMTAgNi40MzU1OCAyMTAuMzM2IDYuMDk5NjEgMjEwLjc1IDYuMDk5NjFaTTQ1Ljc1IDdDNDYuMTY0MiA3IDQ2LjUgNy4zMzU3OSA0Ni41IDcuNzVWMTcuMjVDNDYuNSAxNy42NjQyIDQ2LjE2NDIgMTggNDUuNzUgMThDNDUuMzM1OCAxOCA0NSAxNy42NjQyIDQ1IDE3LjI1VjcuNzVDNDUgNy4zMzU3OSA0NS4zMzU4IDcgNDUuNzUgN1pNMTE1Ljc1IDdDMTE2LjE2NCA3IDExNi41IDcuMzM1NzkgMTE2LjUgNy43NVYxNy4yNUMxMTYuNSAxNy42NjQyIDExNi4xNjQgMTggMTE1Ljc1IDE4QzExNS4zMzYgMTggMTE1IDE3LjY2NDIgMTE1IDE3LjI1VjcuNzVDMTE1IDcuMzM1NzkgMTE1LjMzNiA3IDExNS43NSA3Wk0xMjAuNzUgN0MxMjEuMTY0IDcgMTIxLjUgNy4zMzU3OSAxMjEuNSA3Ljc1VjE3LjI1QzEyMS41IDE3LjY2NDIgMTIxLjE2NCAxOCAxMjAuNzUgMThDMTIwLjMzNiAxOCAxMjAgMTcuNjY0MiAxMjAgMTcuMjVWNy43NUMxMjAgNy4zMzU3OSAxMjAuMzM2IDcgMTIwLjc1IDdaTTAuNzUgOC41QzEuMTY0MjEgOC41IDEuNSA4LjgzNTc5IDEuNSA5LjI1VjE1Ljc1QzEuNSAxNi4xNjQyIDEuMTY0MjEgMTYuNSAwLjc1IDE2LjVDMC4zMzU3ODYgMTYuNSAtMS4xMzE2MmUtMDggMTYuMTY0MiAwIDE1Ljc1VjkuMjVDMS4xMzE2MmUtMDggOC44MzU3OSAwLjMzNTc4NyA4LjUgMC43NSA4LjVaTTE1Ljc1IDguNUMxNi4xNjQyIDguNSAxNi41IDguODM1NzkgMTYuNSA5LjI1VjE1Ljc1QzE2LjUgMTYuMTY0MiAxNi4xNjQyIDE2LjUgMTUuNzUgMTYuNUMxNS4zMzU4IDE2LjUgMTUgMTYuMTY0MiAxNSAxNS43NVY5LjI1QzE1IDguODM1NzkgMTUuMzM1OCA4LjUgMTUuNzUgOC41Wk0yMC43NSA4LjVDMjEuMTY0MiA4LjUgMjEuNSA4LjgzNTc5IDIxLjUgOS4yNVYxNS43NUMyMS41IDE2LjE2NDIgMjEuMTY0MiAxNi41IDIwLjc1IDE2LjVDMjAuMzM1OCAxNi41IDIwIDE2LjE2NDIgMjAgMTUuNzVWOS4yNUMyMCA4LjgzNTc5IDIwLjMzNTggOC41IDIwLjc1IDguNVpNODUuNzUgOC41Qzg2LjE2NDIgOC41IDg2LjUgOC44MzU3OSA4Ni41IDkuMjVWMTUuNzVDODYuNSAxNi4xNjQyIDg2LjE2NDIgMTYuNSA4NS43NSAxNi41Qzg1LjMzNTggMTYuNSA4NSAxNi4xNjQyIDg1IDE1Ljc1VjkuMjVDODUgOC44MzU3OSA4NS4zMzU4IDguNSA4NS43NSA4LjVaTTkwLjc1IDguNUM5MS4xNjQyIDguNSA5MS41IDguODM1NzkgOTEuNSA5LjI1VjE1Ljc1QzkxLjUgMTYuMTY0MiA5MS4xNjQyIDE2LjUgOTAuNzUgMTYuNUM5MC4zMzU4IDE2LjUgOTAgMTYuMTY0MiA5MCAxNS43NVY5LjI1QzkwIDguODM1NzkgOTAuMzM1OCA4LjUgOTAuNzUgOC41Wk0xNDAuNzUgOC41QzE0MS4xNjQgOC41IDE0MS41IDguODM1NzkgMTQxLjUgOS4yNVYxNS43NUMxNDEuNSAxNi4xNjQyIDE0MS4xNjQgMTYuNSAxNDAuNzUgMTYuNUMxNDAuMzM2IDE2LjUgMTQwIDE2LjE2NDIgMTQwIDE1Ljc1VjkuMjVDMTQwIDguODM1NzkgMTQwLjMzNiA4LjUgMTQwLjc1IDguNVpNMTU1Ljc1IDguNUMxNTYuMTY0IDguNSAxNTYuNSA4LjgzNTc5IDE1Ni41IDkuMjVWMTUuNzVDMTU2LjUgMTYuMTY0MiAxNTYuMTY0IDE2LjUgMTU1Ljc1IDE2LjVDMTU1LjMzNiAxNi41IDE1NSAxNi4xNjQyIDE1NSAxNS43NVY5LjI1QzE1NSA4LjgzNTc5IDE1NS4zMzYgOC41IDE1NS43NSA4LjVaTTE2MC43NSA4LjVDMTYxLjE2NCA4LjUgMTYxLjUgOC44MzU3OSAxNjEuNSA5LjI1VjE1Ljc1QzE2MS41IDE2LjE2NDIgMTYxLjE2NCAxNi41IDE2MC43NSAxNi41QzE2MC4zMzYgMTYuNSAxNjAgMTYuMTY0MiAxNjAgMTUuNzVWOS4yNUMxNjAgOC44MzU3OSAxNjAuMzM2IDguNSAxNjAuNzUgOC41Wk0xODAuNzUgOC41QzE4MS4xNjQgOC41IDE4MS41IDguODM1NzkgMTgxLjUgOS4yNVYxNS43NUMxODEuNSAxNi4xNjQyIDE4MS4xNjQgMTYuNSAxODAuNzUgMTYuNUMxODAuMzM2IDE2LjUgMTgwIDE2LjE2NDIgMTgwIDE1Ljc1VjkuMjVDMTgwIDguODM1NzkgMTgwLjMzNiA4LjUgMTgwLjc1IDguNVpNMTk1Ljc1IDguNUMxOTYuMTY0IDguNSAxOTYuNSA4LjgzNTc5IDE5Ni41IDkuMjVWMTUuNzVDMTk2LjUgMTYuMTY0MiAxOTYuMTY0IDE2LjUgMTk1Ljc1IDE2LjVDMTk1LjMzNiAxNi41IDE5NSAxNi4xNjQyIDE5NSAxNS43NVY5LjI1QzE5NSA4LjgzNTc5IDE5NS4zMzYgOC41IDE5NS43NSA4LjVaTTIwMC43NSA4LjVDMjAxLjE2NCA4LjUgMjAxLjUgOC44MzU3OSAyMDEuNSA5LjI1VjE1Ljc1QzIwMS41IDE2LjE2NDIgMjAxLjE2NCAxNi41IDIwMC43NSAxNi41QzIwMC4zMzYgMTYuNSAyMDAgMTYuMTY0MiAyMDAgMTUuNzVWOS4yNUMyMDAgOC44MzU3OSAyMDAuMzM2IDguNSAyMDAuNzUgOC41Wk01MC43NSAxMC41QzUxLjE2NDIgMTAuNSA1MS41IDEwLjgzNTggNTEuNSAxMS4yNVYxMy43NUM1MS41IDE0LjE2NDIgNTEuMTY0MiAxNC41IDUwLjc1IDE0LjVDNTAuMzM1OCAxNC41IDUwIDE0LjE2NDIgNTAgMTMuNzVWMTEuMjVDNTAgMTAuODM1OCA1MC4zMzU4IDEwLjUgNTAuNzUgMTAuNVpNNjUuNzUgMTAuNUM2Ni4xNjQyIDEwLjUgNjYuNSAxMC44MzU4IDY2LjUgMTEuMjVWMTMuNzVDNjYuNSAxNC4xNjQyIDY2LjE2NDIgMTQuNSA2NS43NSAxNC41QzY1LjMzNTggMTQuNSA2NSAxNC4xNjQyIDY1IDEzLjc1VjExLjI1QzY1IDEwLjgzNTggNjUuMzM1OCAxMC41IDY1Ljc1IDEwLjVaTTEyNS43NSAxMC41QzEyNi4xNjQgMTAuNSAxMjYuNSAxMC44MzU4IDEyNi41IDExLjI1VjEzLjc1QzEyNi41IDE0LjE2NDIgMTI2LjE2NCAxNC41IDEyNS43NSAxNC41QzEyNS4zMzYgMTQuNSAxMjUgMTQuMTY0MiAxMjUgMTMuNzVWMTEuMjVDMTI1IDEwLjgzNTggMTI1LjMzNiAxMC41IDEyNS43NSAxMC41Wk01NS43NSAxMS41QzU2LjE2NDIgMTEuNSA1Ni41IDExLjgzNTggNTYuNSAxMi4yNVYxMi43NUM1Ni41IDEzLjE2NDIgNTYuMTY0MiAxMy41IDU1Ljc1IDEzLjVDNTUuMzM1OCAxMy41IDU1IDEzLjE2NDIgNTUgMTIuNzVWMTIuMjVDNTUgMTEuODM1OCA1NS4zMzU4IDExLjUgNTUuNzUgMTEuNVpNNjAuNzUgMTEuNUM2MS4xNjQyIDExLjUgNjEuNSAxMS44MzU4IDYxLjUgMTIuMjVWMTIuNzVDNjEuNSAxMy4xNjQyIDYxLjE2NDIgMTMuNSA2MC43NSAxMy41QzYwLjMzNTggMTMuNSA2MCAxMy4xNjQyIDYwIDEyLjc1VjEyLjI1QzYwIDExLjgzNTggNjAuMzM1OCAxMS41IDYwLjc1IDExLjVaTTcwLjc1IDExLjVDNzEuMTY0MiAxMS41IDcxLjUgMTEuODM1OCA3MS41IDEyLjI1VjEyLjc1QzcxLjUgMTMuMTY0MiA3MS4xNjQyIDEzLjUgNzAuNzUgMTMuNUM3MC4zMzU4IDEzLjUgNzAgMTMuMTY0MiA3MCAxMi43NVYxMi4yNUM3MCAxMS44MzU4IDcwLjMzNTggMTEuNSA3MC43NSAxMS41Wk0xMzAuNzUgMTEuNUMxMzEuMTY0IDExLjUgMTMxLjUgMTEuODM1OCAxMzEuNSAxMi4yNVYxMi43NUMxMzEuNSAxMy4xNjQyIDEzMS4xNjQgMTMuNSAxMzAuNzUgMTMuNUMxMzAuMzM2IDEzLjUgMTMwIDEzLjE2NDIgMTMwIDEyLjc1VjEyLjI1QzEzMCAxMS44MzU4IDEzMC4zMzYgMTEuNSAxMzAuNzUgMTEuNVpNMTM1Ljc1IDExLjVDMTM2LjE2NCAxMS41IDEzNi41IDExLjgzNTggMTM2LjUgMTIuMjVWMTIuNzVDMTM2LjUgMTMuMTY0MiAxMzYuMTY0IDEzLjUgMTM1Ljc1IDEzLjVDMTM1LjMzNiAxMy41IDEzNSAxMy4xNjQyIDEzNSAxMi43NVYxMi4yNUMxMzUgMTEuODM1OCAxMzUuMzM2IDExLjUgMTM1Ljc1IDExLjVaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K" width="217" height="25" alt="语音声波静态设计原稿"></details></main><script type="module">
+const designHeights = [8,12.80078,24,8,8,12.80078,12.80078,24,19.19922,11,4,2,2,4,2,12.80078,24,8,8,12.80078,12.80078,25,19.19922,11,11,4,2,2,8,12.80078,24,8,8,12.80078,12.80078,24,8,12.80078,24,8,8,12.80078,12.80078,24];
+
+export function defineVoiceInputWave() {
+  if (customElements.get('sipplay-voice-input-wave')) return;
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  const mix = (a, b, p) => a + (b - a) * p;
+  const random = (n, seed) => {
+    const v = Math.sin(n * 127.1 + seed * 311.7) * 43758.5453;
+    return v - Math.floor(v);
+  };
+  const noise = (t, seed) => {
+    const n = Math.floor(t), p = t - n, ease = p * p * (3 - 2 * p);
+    return mix(random(n, seed), random(n + 1, seed), ease);
+  };
+  class VoiceInputWave extends HTMLElement {
+    static observedAttributes = ['paused', 'quiet', 'speed', 'mode', 'level', 'label'];
+    constructor() {
+      super(); this.attachShadow({mode:'open'}); this.heights = [];
+      this.time = .3; this.raf = 0; this.last = 0;
+      this.voices = Array.from({length:44},(_,i)=>({
+        rate:2.7+random(i,4)*2.5,phase:random(i,7)*17,
+        delay:random(i,11)*.13,attack:30+random(i,19)*24,
+        release:9+random(i,23)*10,
+      }));
+      this.externalLevel = 0; this.smoothedLevel = 0; this.inView = true;
+      this.reduced = matchMedia('(prefers-reduced-motion: reduce)');
+      this.onEnvironment = () => this.sync(); this.frame = this.frame.bind(this);
+    }
+    get speed() { return clamp(Number(this.getAttribute('speed')) || 1, .4, 2); }
+    get mode() { return this.getAttribute('mode') === 'live' ? 'live' : 'demo'; }
+    set mode(value) { this.setAttribute('mode', value === 'live' ? 'live' : 'demo'); }
+    get level() { return this.externalLevel; }
+    set level(value) {
+      if (Number.isFinite(Number(value))) this.externalLevel = clamp(Number(value), 0, 1);
+      if (this.group && this.reduced.matches) this.renderStatic();
+    }
+    connectedCallback() {
+      if (!this.group) {
+        this.shadowRoot.innerHTML = `<style>
+          :host{display:inline-block;width:var(--voice-wave-width,217px);max-width:100%;aspect-ratio:217/25;vertical-align:middle;color:#fff}
+          svg{display:block;width:100%;height:100%;overflow:hidden}
+        </style><svg width="217" height="25" viewBox="0 0 217 25" fill="currentColor" aria-hidden="true"><g>${Array.from({length:44},(_,i)=>`<rect x="${i*5}" y="11.5" width="1.5" height="2" rx=".75"/>`).join('')}</g></svg>`;
+        this.group = this.shadowRoot.querySelector('g');
+        this.bars = this.shadowRoot.querySelectorAll('rect');
+        this.restart();
+      }
+      this.setAttribute('role','img'); this.accessibility();
+      if (this.hasAttribute('level')) this.level = this.getAttribute('level');
+      this.reduced.addEventListener('change',this.onEnvironment);
+      document.addEventListener('visibilitychange',this.onEnvironment);
+      this.observer = new IntersectionObserver(entries=>{this.inView=entries[0].isIntersecting;this.sync();});
+      this.observer.observe(this); this.sync();
+    }
+    disconnectedCallback() {
+      this.stopFrame(); this.observer?.disconnect();
+      this.reduced.removeEventListener('change',this.onEnvironment);
+      document.removeEventListener('visibilitychange',this.onEnvironment);
+    }
+    attributeChangedCallback(name) {
+      if (name === 'level') this.level = this.getAttribute('level');
+      if (!this.group) return;
+      if (name === 'label') this.accessibility();
+      else this.sync();
+    }
+    accessibility() { this.setAttribute('aria-label',this.getAttribute('label') || '语音正在输入'); }
+    stopFrame() { cancelAnimationFrame(this.raf);this.raf=0;this.last=0; }
+    sync() {
+      if (this.reduced.matches && this.group) this.renderStatic();
+      if (!this.isConnected || this.hasAttribute('paused') || document.hidden || !this.inView || this.reduced.matches) this.stopFrame();
+      else if (!this.raf) { this.last=0;this.raf=requestAnimationFrame(this.frame); }
+    }
+    renderStatic() {
+      const amount=this.hasAttribute('quiet')?0:this.mode==='live'?this.externalLevel:.65;
+      for(let i=0;i<44;i++)this.heights[i]=2+(designHeights[i]-2)*amount;
+      this.paint();
+    }
+    paint() {
+      for(let i=0;i<44;i++) {
+        const h=this.heights[i];this.bars[i].setAttribute('y',(25-h)/2);this.bars[i].setAttribute('height',h);
+      }
+    }
+    restart() {
+      this.time=.3;this.smoothedLevel=this.mode==='live'?this.externalLevel:.65;
+      this.heights=designHeights.map(h=>2+(h-2)*this.smoothedLevel);
+      if(this.group){this.group.removeAttribute('transform');this.paint();this.sync();}
+    }
+    demoLevel(t) {
+      t=((t%6.9)+6.9)%6.9;
+      const beat=(center,width,gain)=>gain*Math.exp(-(((t-center)/width)**2));
+      return clamp(beat(.28,.14,.9)+beat(.64,.19,.75)+beat(1.02,.13,1)
+        +beat(1.37,.22,.72)+beat(1.86,.12,.94)+beat(2.13,.18,.82)
+        +beat(2.61,.17,.95)+beat(3.18,.18,.77)+beat(3.51,.12,1)
+        +beat(3.94,.21,.82)+beat(4.23,.14,.66)+beat(4.82,.19,.96)
+        +beat(5.16,.12,.78)+beat(5.43,.15,.92)+beat(6.19,.22,.87),0,1);
+    }
+    frame(now) {
+      this.raf=0;
+      const dt=this.last?Math.min((now-this.last)/1000,.05):0;this.last=now;
+      this.time+=dt*this.speed;
+      const level=this.hasAttribute('quiet')?0:this.mode==='live'?this.externalLevel:this.demoLevel(this.time);
+      const response=level>this.smoothedLevel?28:12;
+      this.smoothedLevel+=(level-this.smoothedLevel)*(1-Math.exp(-dt*response));
+      for(let i=0;i<44;i++) {
+        const voice=this.voices[i],region=i/5,band=Math.floor(region);
+        const broad=mix(noise(this.time*2.35,band+41),noise(this.time*2.35,band+42),region-band);
+        const grain=noise(this.time*voice.rate+voice.phase,i+101);
+        const accent=noise(this.time*6.3+voice.phase,i+203);
+        const local=.04+.35*broad**1.5+.72*grain**2.2+.2*accent*grain;
+        const contour=.19*(designHeights[i]-2)/23+.81*local;
+        const presence=.35+.65*noise(this.time*.93+voice.phase,i+307);
+        const delayed=this.mode==='demo'&&!this.hasAttribute('quiet')?this.demoLevel(this.time-voice.delay):level;
+        const strength=.36*this.smoothedLevel+.64*delayed;
+        const target=clamp(2+23*strength*contour**1.7*presence*2.8,2,25);
+        const rate=target>this.heights[i]?voice.attack:voice.release;
+        this.heights[i]+=(target-this.heights[i])*(1-Math.exp(-dt*rate));
+      }
+      this.paint();
+      this.raf=requestAnimationFrame(this.frame);
+    }
+    pause() { this.setAttribute('paused',''); }
+    play() { this.removeAttribute('paused'); }
+  }
+  customElements.define('sipplay-voice-input-wave',VoiceInputWave);
+}
+
+defineVoiceInputWave();
+const waves=[...document.querySelectorAll('sipplay-voice-input-wave')],pause=document.querySelector('#pause'),speech=document.querySelector('#speech'),status=document.querySelector('output');let paused=false,quiet=false;
+function updateStatus(){status.textContent=paused?'预览已暂停':quiet?'等待继续说话':'语音正在输入';}
+pause.addEventListener('click',()=>{paused=!paused;for(const wave of waves)paused?wave.pause():wave.play();pause.textContent=paused?'继续预览':'暂停预览';updateStatus();});
+speech.addEventListener('click',()=>{quiet=!quiet;for(const wave of waves){wave.toggleAttribute('quiet',quiet);wave.play();}paused=false;pause.textContent='暂停预览';speech.textContent=quiet?'模拟说话':'模拟停顿';updateStatus();});
+</script></body></html>

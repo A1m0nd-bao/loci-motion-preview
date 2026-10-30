@@ -49,6 +49,26 @@ const publishedV2 = [
     "symbol": "◉",
     "tags": "麦克风 键盘 语音 输入 切换",
     "published": true
+  },
+  {
+    "id": "sipplay-voice-input-wave",
+    "name": "语音正在输入",
+    "note": "声波原位错峰起落 · 强弱交替，停顿柔和收低",
+    "file": "./releases/v2/voice-input/index.html",
+    "download": "./releases/v2/voice-input/voice-input.html",
+    "symbol": "≋",
+    "tags": "语音 输入 声波 说话",
+    "published": true
+  },
+  {
+    "id": "sipplay-prop-spotlight",
+    "name": "选中道具聚光高亮",
+    "note": "等级解锁与选中联动 · 金色聚光、光环与星尘",
+    "file": "./releases/v2/prop-spotlight/index.html",
+    "download": "./releases/v2/prop-spotlight/prop-spotlight.html",
+    "symbol": "✦",
+    "tags": "道具 聚光 高亮 选中 等级 解锁",
+    "published": true
   }
 ];
 const localDrafts = [];
