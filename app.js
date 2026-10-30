@@ -1,5 +1,6 @@
 import { motionMotions } from "./motion/catalog.js?v=20261029-release-v1";
-import { groupLottieFamilies, renderFamilyPanel } from "./lottie-families.js?v=20261030";
+import { renderFamilyPanel } from "./lottie-families.js?v=20261030-isolated";
+import { setupConvertedWindow, showConvertedEntry } from "./motion-lottie-window.js?v=20261030-isolated";
 import { webMotions } from "./web-components/catalog.js?v=20261029-release-v1";
 import { createWebController, copyExample, downloadExample, setupWebDetail, getWebValues, syncWebBackgrounds } from "./web-components/integration.js?v=20261029-release-v1";
 
@@ -136,7 +137,11 @@ async function loadManifest() {
     const signature = JSON.stringify([items, remoteLabels]);
     if (signature === manifestSignature) return;
     manifestSignature = signature;
-    motions = groupLottieFamilies(items.map(normalizeMotion));
+    motions = items.map(normalizeMotion);
+    try {
+      const convertedResponse = await fetch('./motion-lottie-v1.json?v=20261030-isolated');
+      if (convertedResponse.ok) setupConvertedWindow((await convertedResponse.json()).items.map(normalizeMotion), openDetail);
+    } catch { /* The original library remains available if this separate collection cannot load. */ }
   } catch {
     if (motions.length) return;
     motions = [];
@@ -360,6 +365,7 @@ function render() {
   const isHome = currentView === "home";
   const query = search.value.trim().toLowerCase();
   const selectedKind = kindSelect.value;
+  showConvertedEntry(!isHome && selectedKind === 'lottie');
   const selectedCategory = category.value;
   const showV2 = !isHome && selectedKind === "web" && selectedWebRelease === "v2";
   const filteredDrafts = localDrafts.filter(item => !query || `${item.name} ${item.note} ${item.tags}`.toLowerCase().includes(query));

@@ -35,6 +35,8 @@ const supportedExtensions = new Set([
 const hiddenMotionFilePattern = /^shaker-loader-(?:purple-)?(?:standard|energetic)-web-safe-[a-f0-9]{8}\.json$/i;
 
 async function collectFiles(dir) {
+  // This converted collection has its own catalog and must not enter the original library.
+  if (dir.replaceAll('\\', '/') === 'lotties/动效 v1') return [];
   const fullDir = join(root, dir);
   try {
     await stat(fullDir);
