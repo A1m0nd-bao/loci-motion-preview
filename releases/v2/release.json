@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "date": "2026-10-30",
+  "date": "2026-11-02",
   "components": [
     {
       "id": "sipplay-plus-arrow-toggle",
@@ -93,6 +93,21 @@
         "selected"
       ],
       "size": "375×812"
+    },
+    {
+      "id": "sipplay-gift-pop",
+      "name": "礼盒轻弹",
+      "preview": "gift-pop/index.html",
+      "download": "gift-pop/gift-pop.html",
+      "source": "gift-pop/gift-pop.js",
+      "package": "gift-pop/source.zip",
+      "usage": "gift-pop/USAGE.md",
+      "states": [
+        "idle-sparkle",
+        "opening"
+      ],
+      "duration": 0.92,
+      "size": "31×26"
     }
   ]
 }
