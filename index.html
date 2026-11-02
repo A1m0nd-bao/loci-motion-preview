@@ -5,7 +5,7 @@
     <link rel="icon" href="data:," />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>SipPlay Motion Library</title>
-    <link rel="stylesheet" href="./styles.css?v=sipplay-v2-canvas-fit-20261030" />
+    <link rel="stylesheet" href="./styles.css?v=sipplay-v2-detail-20261102" />
     <link rel="stylesheet" href="./lottie-families.css?v=20261030-isolated" />
     <link rel="stylesheet" href="./web-components/handoff.css?v=20261029-release-v1" />
     <script type="importmap">{"imports":{"motion":"./motion/vendor/motion.js"}}</script>
@@ -245,6 +245,28 @@
       </button>
     </template>
 
+    <dialog id="releaseDetailDialog" class="release-detail-dialog" aria-labelledby="releaseDetailTitle" aria-describedby="releaseDetailNote">
+      <div class="release-detail-shell">
+        <header class="release-detail-header">
+          <div><p class="eyebrow">SIPPLAY · V2</p><h2 id="releaseDetailTitle"></h2><p id="releaseDetailNote"></p></div>
+          <button id="releaseDetailClose" class="icon-button" type="button" aria-label="关闭 v2 详情" autofocus>×</button>
+        </header>
+        <div class="release-detail-body">
+          <section id="releaseDetailStage" class="release-detail-stage" aria-label="完整动效预览"></section>
+          <aside class="release-detail-aside" aria-label="动效信息与使用说明">
+            <dl id="releaseDetailFacts" class="release-detail-facts"></dl>
+            <nav class="release-detail-actions" aria-label="文件与下载">
+              <a id="releaseDetailDownload" download>下载 HTML</a>
+              <a id="releaseDetailSource" download hidden>下载源码包</a>
+              <a id="releaseDetailOpen" target="_blank" rel="noopener noreferrer">独立打开预览 ↗</a>
+              <a id="releaseDetailDocs" target="_blank" rel="noopener noreferrer" hidden>打开说明原文件 ↗</a>
+            </nav>
+            <section class="release-detail-docs"><h3>接入说明</h3><div id="releaseDetailUsage" class="release-detail-usage"></div></section>
+          </aside>
+        </div>
+      </div>
+    </dialog>
+
     <dialog id="detailDialog" class="detail-dialog" aria-labelledby="detailTitle">
       <div class="detail-shell">
         <header class="detail-header">
@@ -322,7 +344,7 @@
       </div>
     </dialog>
 
-    <script src="./app.js?v=sipplay-v2-canvas-fit-20261030" type="module"></script>
+    <script src="./app.js?v=sipplay-v2-detail-20261102" type="module"></script>
     <script src="./scripts/line-waves-static.mjs?v=20260802a" type="module"></script>
   </body>
 </html>

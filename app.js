@@ -1453,6 +1453,7 @@ const releaseCanvasObserver = new ResizeObserver(entries => {
 });
 
 function renderDrafts(items) {
+  if (document.querySelector('#releaseDetailDialog')?.open) return;
   const root = document.querySelector("#v2Drafts");
   for (const canvas of root.querySelectorAll('.release-preview-canvas')) releaseCanvasObserver.unobserve(canvas);
   root.replaceChildren();
@@ -1466,7 +1467,7 @@ function renderDrafts(items) {
   for (const item of items) {
     const card = document.createElement("article");
     card.className = "release-draft-card";
-    card.innerHTML = `<div class="draft-symbol" aria-hidden="true"></div><span class="draft-status">v2 · 仅本地</span><h3></h3><p></p><a target="_blank" rel="noopener">打开候选预览 ↗</a>`;
+    card.innerHTML = `<div class="draft-symbol" aria-hidden="true"></div><span class="draft-status">v2 · 仅本地</span><h3><button type="button" class="release-title-button"></button></h3><p></p><div class="release-card-actions"><button type="button" class="release-detail-button">查看详情</button></div>`;
     card.querySelector(".draft-status").textContent = item.published ? "v2 · 已上线" : "v2 · 仅本地";
     card.querySelector(".draft-symbol").textContent = item.symbol;
     if (item.published) {
@@ -1481,18 +1482,23 @@ function renderDrafts(items) {
       preview.style.width = `${scene[0]}px`; preview.style.height = `${scene[1]}px`;
       preview.loading = 'lazy'; preview.scrolling = 'no';
       preview.src = `${item.file}?compact=1&fit=contain&v=canvas-fit1`;
-      canvas.append(preview);
+      preview.tabIndex = -1; preview.setAttribute('aria-hidden', 'true');
+      const trigger = document.createElement('button'); trigger.type = 'button'; trigger.className = 'release-preview-open';
+      trigger.setAttribute('aria-label', `查看${item.name}详情`);
+      const hint = document.createElement('span'); hint.textContent = '查看详情'; hint.setAttribute('aria-hidden', 'true'); trigger.append(hint);
+      trigger.addEventListener('click', () => openReleaseDetail(item));
+      canvas.append(preview, trigger);
       card.querySelector('.draft-symbol').replaceWith(canvas);
       releaseCanvasObserver.observe(canvas);
     }
-    card.querySelector("h3").textContent = item.name;
+    card.querySelector('.release-title-button').textContent = item.name;
+    card.querySelector('.release-title-button').addEventListener('click', () => openReleaseDetail(item));
+    card.querySelector('.release-detail-button').addEventListener('click', () => openReleaseDetail(item));
     card.querySelector("p").textContent = item.note;
-    card.querySelector("a").href = item.file;
-    card.querySelector("a").textContent = item.published ? '打开交互预览 ↗' : '打开候选预览 ↗';
     if (item.download) {
       const download = document.createElement('a'); download.href = item.download;
       download.download = `Sipplay-v2-${item.id.replace('sipplay-', '')}.html`; download.textContent = '下载 HTML ↓';
-      card.append(download);
+      card.querySelector('.release-card-actions').append(download);
     }
     root.append(card);
   }
@@ -1506,3 +1512,90 @@ document.querySelectorAll("[data-web-release]").forEach(button => {
     render();
   });
 });
+
+const releaseDetailDialog = document.querySelector('#releaseDetailDialog');
+const releaseDetailTitle = document.querySelector('#releaseDetailTitle');
+const releaseDetailNote = document.querySelector('#releaseDetailNote');
+const releaseDetailStage = document.querySelector('#releaseDetailStage');
+const releaseDetailFacts = document.querySelector('#releaseDetailFacts');
+const releaseDetailUsage = document.querySelector('#releaseDetailUsage');
+let releaseDetailEpoch = 0, releaseManifestPromise;
+
+function releaseAsset(path) {
+  if (!path) return null;
+  const base = new URL('./releases/v2/', location.href), url = new URL(path, base);
+  return url.origin === base.origin && url.pathname.startsWith(base.pathname) ? url.href : null;
+}
+
+function renderReleaseUsage(host, markdown) {
+  host.replaceChildren();
+  const paragraph = [], code = []; let inCode = false, list = null;
+  const inline = value => value.replace(/`([^`]+)`/g, '$1');
+  const flush = () => {
+    if (!paragraph.length) return;
+    const p = document.createElement('p'); p.textContent = inline(paragraph.join(' ')); host.append(p); paragraph.length = 0;
+  };
+  const flushCode = () => {
+    const pre = document.createElement('pre'), node = document.createElement('code');
+    node.textContent = code.join('\n'); pre.append(node); host.append(pre); code.length = 0;
+  };
+  for (const line of markdown.split(/\r?\n/)) {
+    if (line.trim().startsWith('```')) { flush(); list = null; if (inCode) flushCode(); inCode = !inCode; continue; }
+    if (inCode) { code.push(line); continue; }
+    if (!line.trim()) { flush(); list = null; continue; }
+    const heading = line.match(/^#{1,6}\s+(.+)/), bullet = line.match(/^[-*]\s+(.+)/);
+    if (heading) { flush(); list = null; const h = document.createElement('h4'); h.textContent = inline(heading[1]); host.append(h); }
+    else if (bullet) { flush(); if (!list) { list = document.createElement('ul'); host.append(list); } const li = document.createElement('li'); li.textContent = inline(bullet[1]); list.append(li); }
+    else { list = null; paragraph.push(line.trim()); }
+  }
+  flush(); if (inCode) flushCode();
+}
+
+async function openReleaseDetail(item) {
+  const epoch = ++releaseDetailEpoch;
+  document.querySelector('.release-detail-aside').scrollTop = 0;
+  document.querySelector('.release-detail-body').scrollTop = 0;
+  releaseDetailTitle.textContent = item.name; releaseDetailNote.textContent = item.note;
+  releaseDetailFacts.replaceChildren(); releaseDetailStage.replaceChildren();
+  releaseDetailUsage.textContent = '正在加载接入说明…'; releaseDetailUsage.setAttribute('aria-busy', 'true');
+  document.querySelector('#releaseDetailOpen').href = item.file;
+  const download = document.querySelector('#releaseDetailDownload');
+  download.href = item.download || item.file; download.download = `Sipplay-v2-${item.id.replace('sipplay-', '')}.html`;
+  const source = document.querySelector('#releaseDetailSource'), docs = document.querySelector('#releaseDetailDocs');
+  source.hidden = docs.hidden = true; source.removeAttribute('href'); docs.removeAttribute('href');
+  const loading = document.createElement('p'); loading.className = 'release-detail-loading'; loading.textContent = '正在载入交互预览…';
+  const frame = document.createElement('iframe'); frame.id = 'releaseDetailFrame'; frame.title = `${item.name} · 完整交互预览`;
+  frame.addEventListener('load', () => { loading.hidden = true; }, {once:true});
+  releaseDetailStage.append(loading, frame); frame.src = item.file;
+  if (!releaseDetailDialog.open) releaseDetailDialog.showModal();
+  try {
+    releaseManifestPromise ||= fetch('./releases/v2/release.json?v=detail-20261102').then(response => {
+      if (!response.ok) throw new Error('manifest'); return response.json();
+    }).catch(error => { releaseManifestPromise = null; throw error; });
+    const manifest = await releaseManifestPromise;
+    if (epoch !== releaseDetailEpoch || !releaseDetailDialog.open) return;
+    const entry = manifest.components.find(component => component.id === item.id);
+    if (!entry) throw new Error('component');
+    const facts = [['版本', 'v2'], ['尺寸', entry.size], ['切换时长', entry.duration ? `${entry.duration} 秒` : null]];
+    for (const [label, value] of facts) {
+      if (!value) continue; const term = document.createElement('dt'), definition = document.createElement('dd');
+      term.textContent = label; definition.textContent = value; releaseDetailFacts.append(term, definition);
+    }
+    const sourceUrl = releaseAsset(entry.package || entry.source), docsUrl = releaseAsset(entry.usage);
+    if (sourceUrl) { source.href = sourceUrl; source.hidden = false; source.textContent = entry.package ? '下载源码包' : '下载组件源码'; }
+    if (!docsUrl) throw new Error('usage');
+    docs.href = docsUrl; docs.hidden = false;
+    const response = await fetch(docsUrl); if (!response.ok) throw new Error('usage');
+    const markdown = await response.text();
+    if (epoch !== releaseDetailEpoch || !releaseDetailDialog.open) return;
+    renderReleaseUsage(releaseDetailUsage, markdown);
+  } catch {
+    if (epoch === releaseDetailEpoch && releaseDetailDialog.open) releaseDetailUsage.textContent = '接入说明暂时未能加载，可在独立预览中查看或稍后重试。';
+  } finally {
+    if (epoch === releaseDetailEpoch) releaseDetailUsage.removeAttribute('aria-busy');
+  }
+}
+
+document.querySelector('#releaseDetailClose').addEventListener('click', () => releaseDetailDialog.close());
+releaseDetailDialog.addEventListener('click', event => { if (event.target === releaseDetailDialog) releaseDetailDialog.close(); });
+releaseDetailDialog.addEventListener('close', () => { releaseDetailEpoch++; releaseDetailStage.replaceChildren(); });
