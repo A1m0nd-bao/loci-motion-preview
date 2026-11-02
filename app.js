@@ -1565,8 +1565,15 @@ async function openReleaseDetail(item) {
   source.hidden = docs.hidden = true; source.removeAttribute('href'); docs.removeAttribute('href');
   const loading = document.createElement('p'); loading.className = 'release-detail-loading'; loading.textContent = '正在载入交互预览…';
   const frame = document.createElement('iframe'); frame.id = 'releaseDetailFrame'; frame.title = `${item.name} · 完整交互预览`;
-  frame.addEventListener('load', () => { loading.hidden = true; }, {once:true});
-  releaseDetailStage.append(loading, frame); frame.src = item.file;
+  frame.addEventListener('load', () => {
+    loading.hidden = true;
+    frame.contentDocument?.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && !event.defaultPrevented && releaseDetailDialog.open) {
+        event.preventDefault(); releaseDetailDialog.close();
+      }
+    });
+  });
+  frame.src = item.file; releaseDetailStage.append(loading, frame);
   if (!releaseDetailDialog.open) releaseDetailDialog.showModal();
   try {
     releaseManifestPromise ||= fetch('./releases/v2/release.json?v=detail-20261102').then(response => {
