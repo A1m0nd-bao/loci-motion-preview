@@ -1,11 +1,11 @@
 <!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>道具聚光高亮 · Sipplay v2</title><style>
 :root{color-scheme:dark;background:#0a0c10;color:#f5f2fa;font:14px -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif}*{box-sizing:border-box}body{margin:0;padding:26px 16px}.preview-header{max-width:440px;margin:0 auto 12px;text-align:center}.preview-header h1{font-size:19px;font-weight:550;margin:0 0 10px}.preview-header p{font-size:12px;line-height:1.8;color:#938b9c;margin:0}.relic-preview-controls{display:flex;align-items:center;gap:12px;font-size:12px;color:#b9afc2}.relic-preview-controls select{padding:8px 12px;border:1px solid #4b3c55;border-radius:9px;background:#211b2a;color:#f8e9d7;font:inherit}button:focus-visible,select:focus-visible,a:focus-visible{outline:1px solid #e3c4f8;outline-offset:3px}
 .compact body{height:220px;padding:0;overflow:hidden}.compact .preview-header,.compact .release-downloads,.compact .relic-preview-controls{display:none}.compact #relic-spotlight{gap:0;padding:0;transform:translateY(-55px)}.compact #relic-spotlight .relic-phone{width:min(300px,100%);flex-shrink:0}
-.release-downloads{display:flex;justify-content:center;flex-wrap:wrap;gap:18px;margin:24px 0}.release-downloads a{font-size:12px;color:#bcb4c5;text-decoration:none;border-bottom:1px solid #51475b;padding-bottom:3px}</style><script>if(new URLSearchParams(location.search).has("compact"))document.documentElement.classList.add("compact");</script></head><body><header class="preview-header"><h1>选中道具 · 聚光高亮</h1><p>先调整预览等级，再点击已解锁的道具。<br>聚光随选中切换，首次获得时播放开锁。</p></header><div id="relic-spotlight" class="viz-dotted-background">
+.release-downloads{display:flex;justify-content:center;flex-wrap:wrap;gap:18px;margin:24px 0}.release-downloads a{font-size:12px;color:#bcb4c5;text-decoration:none;border-bottom:1px solid #51475b;padding-bottom:3px}.compact.contain body{height:100vh;padding:0;overflow:hidden}.compact.contain #relic-spotlight{transform:none;gap:0;padding:0}.compact.contain #relic-spotlight .relic-phone{width:375px;max-width:none;flex-shrink:0;border-radius:0}</style><script>if(new URLSearchParams(location.search).has("compact"))document.documentElement.classList.add("compact");if(new URLSearchParams(location.search).get("fit")==="contain")document.documentElement.classList.add("contain");</script></head><body><header class="preview-header"><h1>选中道具 · 聚光高亮</h1><p>先调整预览等级，再点击已解锁的道具。<br>聚光随选中切换，首次获得时播放开锁。</p></header><div id="relic-spotlight" class="viz-dotted-background">
   <div class="viz-controls relic-preview-controls">
     <label class="form-label" for="relic-preview-level">预览等级</label>
     <select id="relic-preview-level" class="form-select" aria-label="预览等级">
-      <option value="0" selected>Lv 0</option><option value="2">Lv 2</option><option value="5">Lv 5</option><option value="10">Lv 10</option><option value="12">Lv 12</option><option value="15">Lv 15</option><option value="20">Lv 20</option>
+      <option value="0" selected>Lv 0</option><option value="1">Lv 1</option><option value="2">Lv 2</option><option value="3">Lv 3</option><option value="4">Lv 4</option><option value="5">Lv 5</option><option value="6">Lv 6</option><option value="7">Lv 7</option><option value="8">Lv 8</option><option value="9">Lv 9</option><option value="10">Lv 10</option><option value="11">Lv 11</option><option value="12">Lv 12</option><option value="13">Lv 13</option><option value="14">Lv 14</option><option value="15">Lv 15</option><option value="16">Lv 16</option><option value="17">Lv 17</option><option value="18">Lv 18</option><option value="19">Lv 19</option><option value="20">Lv 20</option>
     </select>
   </div>
   <div class="relic-phone" aria-label="道具聚光效果预览">
@@ -606,6 +606,7 @@
 #relic-spotlight .relic-props,#relic-spotlight .relic-labels,#relic-spotlight .relic-avatar,#relic-spotlight .relic-locks {pointer-events:none;}
 #relic-spotlight .relic-prop {filter:brightness(.5) saturate(.5);transform-box:view-box;transform-origin:var(--ox) var(--oy);}
 #relic-spotlight .relic-prop.is-owned {filter:brightness(1) saturate(1);}
+#relic-spotlight .relic-prop.is-dimmed {filter:brightness(.5) saturate(.5);}
 #relic-spotlight .relic-prop.is-teaser {filter:brightness(1.07) saturate(1.08) drop-shadow(0 0 10px #f0ba7045);}
 #relic-spotlight.relic-ready .relic-prop {transition:filter .35s,transform .6s cubic-bezier(.18,.8,.25,1.12);}
 #relic-spotlight .relic-prop.is-active {filter:brightness(1.12) saturate(1.04) drop-shadow(0 0 1.3px #ffdeb6b0) drop-shadow(0 0 7px #f9bd6a60) drop-shadow(0 0 18px #ffc26730);transform:translateY(-3px) scale(1.025);}
@@ -614,6 +615,7 @@
 #relic-spotlight .relic-beam>svg {display:block;width:100%;height:100%;}
 #relic-spotlight .relic-label {opacity:.46;transform:translateY(0);filter:drop-shadow(0 1px 2px #120910);}
 #relic-spotlight .relic-label.is-owned {opacity:.88;}
+#relic-spotlight .relic-label.is-dimmed {opacity:.46;}
 #relic-spotlight .relic-copy-owned {display:none;}
 #relic-spotlight .relic-label.is-owned .relic-copy-default {display:none;}
 #relic-spotlight .relic-label.is-owned .relic-copy-owned {display:inline;}
@@ -713,6 +715,7 @@
  }
  function paintRoute(n,flowing=false){
   routeValue=Math.max(0,Math.min(1000,n));
+  phone.dataset.routeProgress=routeValue.toFixed(4);
   moveAvatar(routeValue);
   waxMask.setAttribute('stroke-dashoffset',String(1000-routeValue));
   for(let i=0;i<waxDrops.length;i++){
@@ -731,8 +734,25 @@
   waxFront.setAttribute('d',`M${lx},${ly} C${lx+tx*advance},${ly+ty*advance} ${rx+tx*advance},${ry+ty*advance} ${rx},${ry} L${rx-tx*back},${ry-ty*back} L${lx-tx*back},${ly-ty*back} Z`);
   waxShine.setAttribute('d',`M${x-nx*w*.5-.2},${y-ny*w*.5-.18} Q${x+tx*.6-.2},${y+ty*.6-.18} ${x+nx*w*.1},${y+ny*w*.1-.2}`);
  }
- function showRoute(index,animate){
-  const target=index>=0?waxData.ends[index]:0;
+ function progressForLevel(level){
+  let previousLevel=0,previousProgress=0;
+  for(let i=0;i<items.length;i++){
+   if(level<=items[i].level)return previousProgress+(waxData.ends[i]-previousProgress)*Math.max(0,level-previousLevel)/(items[i].level-previousLevel);
+   previousLevel=items[i].level;previousProgress=waxData.ends[i];
+  }
+  return previousProgress;
+ }
+ function paintRewardBrightness(){
+  let latest=-1;
+  for(let i=0;i<items.length;i++)if(items[i].level<=currentLevel)latest=i;
+  for(let i=0;i<items.length;i++){
+   const dimmed=i!==5&&i!==selected&&(items[i].level>currentLevel||i<latest);
+   props[i].classList.toggle('is-dimmed',dimmed);
+   labels[i].classList.toggle('is-dimmed',dimmed);
+  }
+ }
+ function showRoute(level,animate){
+  const target=progressForLevel(level);
   if(Math.abs(target-routeTarget)<.001){
    if(reduced.matches){cancelAnimationFrame(routeFrame);routeMoving=false;paintRoute(target);}
    return;
@@ -773,7 +793,7 @@
   {name:'特别心意',level:20,x:117,y:706,s:.97,l:1.1,foot:752,bounds:[23,644,189,122]}
  ];
  const settings={strength:1,dust:true};
- let selected=-1,currentLevel=0,newlyUnlocked=-1;let activeAnimations=[];
+ let selected=-1,currentLevel=0,newlyUnlocked=-1,reviewing=false;let activeAnimations=[];
  const openingLocks=new Set(),unlockRuns=new Map();
  function clearUnlockAnimations(){
   for(const run of unlockRuns.values()){clearTimeout(run.timer);run.animations.forEach(animation=>animation.cancel());}
@@ -816,8 +836,8 @@
   });
   levelControl.value=String(currentLevel);
   phone.dataset.level=String(currentLevel);
-  showRoute(selected,animate);
-  root.querySelector('.relic-selected-name').textContent=selected<0?'Lv 0，尚未解锁道具，头像位于路线起点':`Lv ${currentLevel}，${items[selected].name}${newlyUnlocked===selected?'刚解锁，高亮显示':'已解锁，选中高亮'}`;
+  showRoute(currentLevel,animate);paintRewardBrightness();
+  root.querySelector('.relic-selected-name').textContent=selected<0?`Lv ${currentLevel}，${currentLevel<2?'尚未解锁道具':'当前阶段道具常亮，可点击已获道具回看'}`:`Lv ${currentLevel}，${items[selected].name}${newlyUnlocked===selected?'刚解锁，高亮显示':'已解锁，选中高亮'}`;
   activeAnimations.forEach(a=>a.cancel());activeAnimations=[];
   beam.style.opacity=focus>=0?settings.strength:'0';halo.style.opacity=focus>=0?'1':'0';sparks.style.opacity=focus>=0?'1':'0';
   if(focus<0)return;
@@ -845,20 +865,25 @@
   }
  }
  function saveState(){
-  if(window.openai?.setWidgetState)window.openai.setWidgetState({modelContent:{selectedItem:selected>=0?items[selected].name:null,level:currentLevel,newlyUnlocked:newlyUnlocked>=0?items[newlyUnlocked].name:null,ownedItems:items.filter(item=>item.level<=currentLevel).map(item=>item.name)},privateContent:{selected,level:currentLevel,newlyUnlocked}}).catch(()=>{});
+  if(window.openai?.setWidgetState)window.openai.setWidgetState({modelContent:{selectedItem:selected>=0?items[selected].name:null,level:currentLevel,newlyUnlocked:newlyUnlocked>=0?items[newlyUnlocked].name:null,ownedItems:items.filter(item=>item.level<=currentLevel).map(item=>item.name)},privateContent:{selected,level:currentLevel,newlyUnlocked,reviewing}}).catch(()=>{});
  }
  buttons.forEach((button,i)=>button.addEventListener('click',()=>{
   if(i===selected)return;
-  selected=i;newlyUnlocked=-1;render(true);
+  selected=i;newlyUnlocked=-1;reviewing=true;render(true);
   saveState();
  }));
  levelControl.addEventListener('change',()=>{
   const level=Number(levelControl.value);
   if(level===currentLevel)return;
-  const previousLevel=currentLevel;clearUnlockAnimations();
+  const previousLevel=currentLevel;
+  const previousLatest=items.reduce((last,item,i)=>item.level<=previousLevel?i:last,-1);
   currentLevel=level;
-  selected=items.reduce((last,item,i)=>item.level<=currentLevel?i:last,-1);
-  newlyUnlocked=selected;
+  const latest=items.reduce((last,item,i)=>item.level<=currentLevel?i:last,-1);
+  selected=latest>=0&&items[latest].level===level?latest:-1;reviewing=false;
+  newlyUnlocked=level>previousLevel?selected:-1;
+  if(level<previousLevel||latest!==previousLatest){
+   clearUnlockAnimations();
+  }
   if(level>previousLevel){let delay=0;items.forEach((item,i)=>{if(item.level>previousLevel&&item.level<=level&&i!==5){animateUnlock(i,delay);delay+=180;}});}
   render(true);saveState();
  });
@@ -866,18 +891,18 @@
   let i=s?.privateContent?.selected;
   if(!Number.isInteger(i)||i< -1||i>=items.length)return false;
   const savedLevel=s?.privateContent?.level;
-  const level=[0,2,5,10,12,15,20].includes(savedLevel)?savedLevel:0;
-  if(i<0||items[i].level>level)i=items.reduce((last,item,index)=>item.level<=level?index:last,-1);
+  const level=Number.isInteger(savedLevel)&&savedLevel>=0&&savedLevel<=20?savedLevel:0;
+  const review=s?.privateContent?.reviewing===true;
+  if(i>=0&&(items[i].level>level||(!review&&items[i].level!==level)))i=-1;
   if(initial||i!==selected||level!==currentLevel){
-   clearUnlockAnimations();selected=i;currentLevel=level;
+   clearUnlockAnimations();selected=i;currentLevel=level;reviewing=review&&i>=0;
    const newest=s?.privateContent?.newlyUnlocked;
-   newlyUnlocked=level===0?-1:Number.isInteger(newest)&&newest>=-1&&newest<items.length?newest:items.reduce((last,item,index)=>item.level<=level?index:last,-1);
+   newlyUnlocked=Number.isInteger(newest)&&newest>=0&&newest<items.length&&items[newest].level===level?newest:-1;
    render(false);
   }
   return true;
  }
  const saved=window.openai?.widgetState;if(!restore(saved,true))render(false);
- if(document.documentElement.classList.contains('compact')){currentLevel=5;selected=1;newlyUnlocked=-1;render(false);}
  window.addEventListener('openai:set_globals',e=>{if(e.detail?.globals?.widgetState)restore(e.detail.globals.widgetState);});
  let lastWidth=phone.getBoundingClientRect().width;
  new ResizeObserver(()=>{const w=phone.getBoundingClientRect().width;if(Math.abs(w-lastWidth)>.5){lastWidth=w;render(false);}}).observe(phone);
@@ -886,4 +911,5 @@
  if(globalThis.Tweak){const tweak=new Tweak({container:phone,onChange:()=>render(false)});tweak.addSlider(settings,'strength',{label:'聚光强度',min:.35,max:1.6,step:.05});tweak.addToggle(settings,'dust',{label:'金色星尘'});}
 })();
 </script>
-</body></html>
+
+<nav class="release-downloads" aria-label="下载与接入"><a href="./prop-spotlight.html" download>下载 HTML</a><a href="./source.zip" download>下载源码包</a><a href="./USAGE.md">接入说明</a></nav></body></html>
