@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "date": "2026-11-02",
+  "date": "2026-11-03",
   "components": [
     {
       "id": "sipplay-plus-arrow-toggle",
@@ -108,6 +108,21 @@
       ],
       "duration": 0.92,
       "size": "31×26"
+    },
+    {
+      "id": "sipplay-paper-plane",
+      "name": "纸飞机起飞",
+      "preview": "paper-plane/index.html",
+      "download": "paper-plane/paper-plane.html",
+      "source": "paper-plane/paper-plane.js",
+      "package": "paper-plane/source.zip",
+      "usage": "paper-plane/USAGE.md",
+      "states": [
+        "idle",
+        "flying"
+      ],
+      "duration": 0.76,
+      "size": "24×24"
     }
   ]
 }

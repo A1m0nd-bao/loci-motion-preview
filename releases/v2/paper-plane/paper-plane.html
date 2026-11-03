@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>纸飞机起飞 · 动效试版</title>
+<style>
+:root{color-scheme:dark;font:14px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#0a0c10;color:#f5f2fa}*{box-sizing:border-box}body{margin:0;min-height:100svh;display:grid;place-items:center;padding:32px 18px}main{width:min(100%,460px);text-align:center}h1{font-size:19px;font-weight:550;margin:0 0 12px}.hint{color:#9c96a3;font-size:13px;line-height:1.7;margin:0}.zoom{display:grid;place-items:center;height:248px;margin:22px 0 0;border:1px solid #24212b;border-radius:24px;background:radial-gradient(ellipse at 50% 55%,#1a2030 0%,#101217 70%)}.zoom sipplay-paper-plane{transform:scale(4)}.caption{font-size:11px;color:#79737f;margin:12px 0 28px}.originals{display:flex;justify-content:center;gap:48px}.sample{display:grid;justify-items:center;gap:8px;color:#928b99;font-size:12px}.reference{width:44px;height:44px;display:grid;place-items:center}.reference img{display:block}.note{font-size:11px;color:#79737f;line-height:1.8;margin:30px 0 0}@media(max-width:380px){.originals{gap:32px}}
+</style>
+</head>
+<body><main>
+<h1>纸飞机起飞</h1>
+<p class="hint">点击纸飞机<br>轻轻蓄力，向右上飞出，再从左下柔和归位</p>
+<div class="zoom"><sipplay-paper-plane label="播放纸飞机动效，四倍预览"></sipplay-paper-plane></div>
+<p class="caption">4× 细节预览</p>
+<div class="originals">
+  <div class="sample"><sipplay-paper-plane label="播放纸飞机动效，原始尺寸"></sipplay-paper-plane><span>原始尺寸 · 24 × 24</span></div>
+  <div class="sample"><div class="reference"><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTIxLjk5MDQgMi4zOTA5OUwxOS4xMzM3IDE5LjUzMzFDMTkuMDk2NiAxOS43NDgxIDE4Ljk3NTUgMTkuOTE2MSAxOC43NzYyIDIwLjAzNTNDMTguNjcyNiAyMC4wOTIgMTguNTU1NCAyMC4xMjUyIDE4LjQzMDMgMjAuMTI1MkMxOC4zNDgyIDIwLjEyNTIgMTguMjU4NCAyMC4xMDU2IDE4LjE2MjYgMjAuMDY4NUwxMy41MzU2IDE4LjE3NzFDMTMuMjgxNiAxOC4wNzM1IDEyLjk5MDUgMTguMTQ3OCAxMi44MTY2IDE4LjM1ODhMMTAuNDA3MyAyMS4yOTc2QzEwLjI3MjUgMjEuNDY5NSAxMC4wODg4IDIxLjU1MzUgOS44NjAyMSAyMS41NTM1QzkuNzY0NDcgMjEuNTUzNSA5LjY4MjQgMjEuNTM3OSA5LjYxMjA2IDIxLjUwODZDOS40NzEzNyAyMS40NTU4IDkuMzU4MDQgMjEuMzcxOCA5LjI3MjA3IDIxLjI0NjhDOS4xODYwOSAyMS4xMjM3IDkuMTQxMTUgMjAuOTg4OCA5LjE0MTE1IDIwLjgzODRWMTcuMzkxNkM5LjE0MTE1IDE3LjEwMjQgOS4yNDA4IDE2LjgyNDkgOS40MjI1MiAxNi42MDAyTDE4Ljc4NCA1LjEyNDU4TDYuOTk5NjEgMTUuMzI0M0M2LjkwOTcyIDE1LjQwMDUgNi43ODQ2NyAxNS40MjIgNi42NzcyIDE1LjM3N0wyLjQ0Njg2IDEzLjY0MzlDMi4xNzEzNSAxMy41NDAzIDIuMDIwOSAxMy4zMzcxIDIuMDAxMzYgMTMuMDI4NEMxLjk4NTczIDEyLjczMTQgMi4xMDQ5MiAxMi41MTA2IDIuMzU4OTQgMTIuMzY3OUwyMC45Mjk0IDEuNjU0MzRDMjEuMDQyOCAxLjU4NTk1IDIxLjE2IDEuNTU0NjkgMjEuMjg3IDEuNTU0NjlDMjEuNDM3NSAxLjU1NDY5IDIxLjU3MjMgMS41OTc2NyAyMS42OTE1IDEuNjc5NzRDMjEuOTM5NiAxLjg1NTYgMjIuMDM1NCAyLjA5NTk0IDIxLjk5MDQgMi4zOTA5OVoiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPg==" width="24" height="24" alt="纸飞机原始设计稿"></div><span>原稿对照</span></div>
+</div>
+<p class="note">单次约 0.76 秒 · 常态静止，交互触发</p>
+</main><script type="module">
+const planePath = 'M21.9904 2.39099L19.1337 19.5331C19.0966 19.7481 18.9755 19.9161 18.7762 20.0353C18.6726 20.092 18.5554 20.1252 18.4303 20.1252C18.3482 20.1252 18.2584 20.1056 18.1626 20.0685L13.5356 18.1771C13.2816 18.0735 12.9905 18.1478 12.8166 18.3588L10.4073 21.2976C10.2725 21.4695 10.0888 21.5535 9.86021 21.5535C9.76447 21.5535 9.6824 21.5379 9.61206 21.5086C9.47137 21.4558 9.35804 21.3718 9.27207 21.2468C9.18609 21.1237 9.14115 20.9888 9.14115 20.8384V17.3916C9.14115 17.1024 9.2408 16.8249 9.42252 16.6002L18.784 5.12458L6.99961 15.3243C6.90972 15.4005 6.78467 15.422 6.6772 15.377L2.44686 13.6439C2.17135 13.5403 2.0209 13.3371 2.00136 13.0284C1.98573 12.7314 2.10492 12.5106 2.35894 12.3679L20.9294 1.65434C21.0428 1.58595 21.16 1.55469 21.287 1.55469C21.4375 1.55469 21.5723 1.59767 21.6915 1.67974C21.9396 1.8556 22.0354 2.09594 21.9904 2.39099Z';
+
+class SipplayPaperPlane extends HTMLElement {
+  static observedAttributes = ['label', 'duration'];
+  constructor() {
+    super();
+    this.attachShadow({mode:'open'}).innerHTML = `<style>
+      :host{display:inline-block;width:44px;height:44px;vertical-align:middle;color:#fff}
+      button{display:grid;place-items:center;width:100%;height:100%;padding:0;border:0;border-radius:10px;background:none;color:inherit;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+      button:focus-visible{outline:1px solid currentColor;outline-offset:3px}
+      svg{display:block;width:24px;height:24px;overflow:visible;pointer-events:none;transform-origin:12px 12px}
+      .playing svg{animation:plane-flight var(--duration) both}
+      .paused svg{animation-play-state:paused}
+      @keyframes plane-flight{
+        0%{transform:translate(0,0) scale(1);opacity:1;animation-timing-function:cubic-bezier(.4,0,.6,1)}
+        15%{transform:translate(-1.1px,1.1px) scale(.94);opacity:1;animation-timing-function:cubic-bezier(.55,0,.85,.45)}
+        30%{transform:translate(7.5px,-7.5px) scale(.98);opacity:1;animation-timing-function:cubic-bezier(.4,0,.8,.5)}
+        40%{transform:translate(18px,-18px) scale(.86);opacity:0;animation-timing-function:linear}
+        41%{transform:translate(-9px,9px) scale(.87);opacity:0;animation-timing-function:cubic-bezier(.16,1,.3,1)}
+        88%{transform:translate(0,0) scale(1);opacity:1;animation-timing-function:ease-out}
+        100%{transform:translate(0,0) scale(1);opacity:1}
+      }
+      @media(prefers-reduced-motion:reduce){.playing svg{animation:none}}
+    </style><button type="button"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="${planePath}" fill="currentColor"/></svg></button>`;
+    this.button = this.shadowRoot.querySelector('button');
+    this.reduced = matchMedia('(prefers-reduced-motion: reduce)');
+    this.running = false;
+    this.button.addEventListener('click', () => this.play());
+    this.button.addEventListener('animationend', event => { if (event.animationName === 'plane-flight') this.finish(); });
+    this.onReduced = () => { if (this.reduced.matches) this.finish(); };
+  }
+  connectedCallback() { this.sync(); this.reduced.addEventListener('change',this.onReduced); }
+  disconnectedCallback() { this.finish(); this.reduced.removeEventListener('change',this.onReduced); }
+  attributeChangedCallback() { this.sync(); }
+  sync() {
+    if (!this.button) return;
+    this.button.setAttribute('aria-label',this.getAttribute('label') || '播放纸飞机动效');
+    this.style.setProperty('--duration',`${Math.max(.35,Math.min(2,Number(this.getAttribute('duration')) || .76))}s`);
+  }
+  play() {
+    if (this.running || this.reduced.matches) return;
+    this.running = true;
+    this.button.classList.add('playing');
+    this.dispatchEvent(new CustomEvent('motion-start',{bubbles:true,composed:true}));
+  }
+  pause() { this.button.classList.add('paused'); }
+  resume() { this.button.classList.remove('paused'); }
+  finish() {
+    const wasRunning = this.running;
+    this.running = false;
+    this.button.classList.remove('playing');
+    if (wasRunning) this.dispatchEvent(new CustomEvent('motion-finish',{bubbles:true,composed:true}));
+  }
+}
+if (!customElements.get('sipplay-paper-plane')) customElements.define('sipplay-paper-plane',SipplayPaperPlane);
+
+const icons=[...document.querySelectorAll('sipplay-paper-plane')];
+document.addEventListener('visibilitychange',()=>{
+  for(const icon of icons){
+    if(document.visibilityState==='visible')icon.resume();
+    else icon.pause();
+  }
+});
+</script></body></html>

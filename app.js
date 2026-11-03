@@ -79,6 +79,16 @@ const publishedV2 = [
     "symbol": "✧",
     "tags": "礼物 礼盒 星光 悬停 点击 斜开",
     "published": true
+  },
+  {
+    "id": "sipplay-paper-plane",
+    "name": "纸飞机起飞",
+    "note": "点击触发 · 向右上飞出，从左下柔和归位",
+    "file": "./releases/v2/paper-plane/index.html",
+    "download": "./releases/v2/paper-plane/paper-plane.html",
+    "symbol": "➤",
+    "tags": "纸飞机 发送 点击 消息",
+    "published": true
   }
 ];
 const localDrafts = [];
@@ -1586,7 +1596,7 @@ async function openReleaseDetail(item) {
   frame.src = item.file; releaseDetailStage.append(loading, frame);
   if (!releaseDetailDialog.open) releaseDetailDialog.showModal();
   try {
-    releaseManifestPromise ||= fetch('./releases/v2/release.json?v=gift-pop-20261102').then(response => {
+    releaseManifestPromise ||= fetch('./releases/v2/release.json?v=plane-20261103').then(response => {
       if (!response.ok) throw new Error('manifest'); return response.json();
     }).catch(error => { releaseManifestPromise = null; throw error; });
     const manifest = await releaseManifestPromise;
