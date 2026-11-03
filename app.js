@@ -99,6 +99,16 @@ const publishedV2 = [
     "symbol": "↔",
     "tags": "图片 箭头 切换 左右",
     "published": true
+  },
+  {
+    "id": "sipplay-relic-journey",
+    "name": "Relic Journey · 活动页",
+    "note": "活动页最终定稿 · 完整页面与交互预览",
+    "file": "./releases/v2/relic-journey/index.html",
+    "download": "./releases/v2/relic-journey/index.html",
+    "symbol": "✦",
+    "tags": "活动页 遗物 Relic Journey",
+    "published": true
   }
 ];
 const localDrafts = [];
@@ -1504,7 +1514,7 @@ function renderDrafts(items) {
       const preview = document.createElement('iframe');
       const canvas = document.createElement('div');
       canvas.className = 'release-preview-canvas';
-      const scene = item.id === 'sipplay-prop-spotlight' ? [375, 812]
+      const scene = ['sipplay-prop-spotlight', 'sipplay-relic-journey'].includes(item.id) ? [375, 812]
         : item.id === 'sipplay-voice-input-wave' ? [269, 220] : [260, 220];
       canvas.dataset.sceneWidth = scene[0]; canvas.dataset.sceneHeight = scene[1];
       preview.className = 'release-card-preview'; preview.title = `${item.name} · 交互预览`;
@@ -1606,7 +1616,7 @@ async function openReleaseDetail(item) {
   frame.src = item.file; releaseDetailStage.append(loading, frame);
   if (!releaseDetailDialog.open) releaseDetailDialog.showModal();
   try {
-    releaseManifestPromise ||= fetch('./releases/v2/release.json?v=image-arrow-20261103').then(response => {
+    releaseManifestPromise ||= fetch('./releases/v2/release.json?v=relic-journey-20261103').then(response => {
       if (!response.ok) throw new Error('manifest'); return response.json();
     }).catch(error => { releaseManifestPromise = null; throw error; });
     const manifest = await releaseManifestPromise;

@@ -138,6 +138,16 @@
       ],
       "duration": 0.46,
       "size": "32×32"
+    },
+    {
+      "id": "sipplay-relic-journey",
+      "name": "Relic Journey · 活动页",
+      "preview": "relic-journey/index.html",
+      "download": "relic-journey/index.html",
+      "source": "relic-journey/index.html",
+      "package": "relic-journey/source.zip",
+      "usage": "relic-journey/USAGE.md",
+      "size": "375×812"
     }
   ]
 }
