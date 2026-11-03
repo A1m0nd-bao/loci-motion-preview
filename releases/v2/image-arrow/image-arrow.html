@@ -1,0 +1,35 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>图片箭头切换 · Sipplay v2</title><style>
+:root{color-scheme:dark;background:#0a0c10;color:#f5f2fa;font:14px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}*{box-sizing:border-box}body{margin:0;min-height:100svh;display:grid;place-items:center;padding:32px 18px}main{text-align:center;width:min(100%,460px)}h1{font-size:19px;font-weight:550;margin:0 0 12px}.hint{color:#9c96a3;font-size:13px;line-height:1.7;margin:0}.stage{display:grid;place-items:center;height:230px;margin:24px 0 0;border:1px solid #27252d;border-radius:24px;background:radial-gradient(ellipse at 50% 55%,#292632,#131318 70%)}button.icon{display:grid;place-items:center;border:0;padding:0;width:44px;height:44px;background:none;cursor:pointer;border-radius:50%;-webkit-tap-highlight-color:transparent}button.icon:focus-visible{outline:1px solid white;outline-offset:4px}.stage button{transform:scale(4)}svg{width:32px;height:32px;overflow:visible}.arrow{transform-origin:18px 12px}.playing .arrow{animation:nudge .58s both}@keyframes nudge{0%{transform:translateX(0);animation-timing-function:cubic-bezier(.4,0,.7,1)}18%{transform:translateX(.55px);animation-timing-function:cubic-bezier(.16,1,.3,1)}51%{transform:translateX(-2px);animation-timing-function:cubic-bezier(.3,0,.2,1)}100%{transform:translateX(0)}}.caption{font-size:11px;color:#79737f;margin:12px 0 28px}.actual{display:flex;align-items:center;justify-content:center;gap:12px;color:#928b99;font-size:12px}.note{font-size:11px;color:#79737f;margin:28px 0 0}@media(prefers-reduced-motion:reduce){.playing .arrow{animation:none}}
+</style></head><body><main><h1>图片箭头</h1><p class="hint">点击图标，箭头在向左和向右之间切换</p><div class="stage"><button class="icon" aria-label="播放图片箭头动效，四倍预览"></button></div><p class="caption">4× 细节预览</p><div class="actual"><button class="icon" aria-label="播放图片箭头动效，原始尺寸"></button><span>原始尺寸 · 32 × 32</span></div><p class="note">单次约 0.46 秒 · 再次点击切回</p></main><script>
+const art=`<svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M0 16C0 7.16344 7.16344 0 16 0V0C24.8366 0 32 7.16344 32 16V16C32 24.8366 24.8366 32 16 32V32C7.16344 32 0 24.8366 0 16V16Z" fill="black" fill-opacity="0.1"/><path d="M16 0.400391C24.6156 0.400391 31.5996 7.38436 31.5996 16C31.5996 24.6156 24.6156 31.5996 16 31.5996C7.38436 31.5996 0.400391 24.6156 0.400391 16C0.400391 7.38436 7.38436 0.400391 16 0.400391Z" stroke="white" stroke-opacity="0.4" stroke-width="0.8"/><g opacity="0.8"><path d="M11.7629 22.8006L18.9879 17.502L22.8129 19.7784M11.7629 22.8006H20.2629C21.6712 22.8006 22.8129 21.659 22.8129 20.2506V19.7784M11.7629 22.8006C10.3546 22.8006 9.21289 21.659 9.21289 20.2506V11.7506C9.21289 10.3423 10.3546 9.20064 11.7629 9.20064H12.2879M22.8129 19.7784V16.6229" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path class="arrow" d="M16.7021 14.5003L13.9879 11.7865L16.7021 9.07227M13.9879 11.7865H23.2379" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></g></svg>`;
+const buttons=[...document.querySelectorAll('button.icon')];
+let progress=0,target=0,raf=0, offset=0, squeeze=0;
+const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+function render(){
+  const tip=13.9879+9.25*progress, end=16.7021+3.8216*progress;
+  for(const button of buttons){
+    const arrow=button.querySelector('.arrow'), height=2.71405*(1-.24*squeeze);
+    arrow.setAttribute('d',`M${end} ${11.7865+height}L${tip} 11.7865L${end} ${11.7865-height}M13.9879 11.7865H23.2379`);
+    arrow.setAttribute('transform',`translate(${offset} 0)`);
+    button.setAttribute('aria-pressed',String(target===1));
+  }
+}
+function change(){
+  target=target?0:1; cancelAnimationFrame(raf);
+  const start=progress, initialOffset=offset, direction=target>start?1:-1, distance=Math.abs(target-start), started=performance.now(), duration=460*Math.max(.5,distance);
+  if(reduced.matches){progress=target;offset=0;squeeze=0;render();return;}
+  function tick(now){
+    const t=Math.min(1,(now-started)/duration);
+    const eased=t*t*t*(t*(t*6-15)+10);
+    const arc=Math.sin(Math.PI*eased);
+    progress=start+(target-start)*eased;
+    offset=initialOffset*(1-eased)+direction*.72*arc*arc;
+    squeeze=arc*arc*.65;
+    render();
+    if(t<1)raf=requestAnimationFrame(tick);
+  }
+  raf=requestAnimationFrame(tick);render();
+}
+for(const button of buttons){button.innerHTML=art;button.addEventListener('click',change)}
+render();
+</script></body></html>

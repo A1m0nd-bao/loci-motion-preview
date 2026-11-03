@@ -123,6 +123,21 @@
       ],
       "duration": 0.76,
       "size": "24×24"
+    },
+    {
+      "id": "sipplay-image-arrow-toggle",
+      "name": "图片箭头切换",
+      "preview": "image-arrow/index.html",
+      "download": "image-arrow/image-arrow.html",
+      "source": "image-arrow/image-arrow.html",
+      "package": "image-arrow/source.zip",
+      "usage": "image-arrow/USAGE.md",
+      "states": [
+        "left",
+        "right"
+      ],
+      "duration": 0.46,
+      "size": "32×32"
     }
   ]
 }

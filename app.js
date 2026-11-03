@@ -89,6 +89,16 @@ const publishedV2 = [
     "symbol": "➤",
     "tags": "纸飞机 发送 点击 消息",
     "published": true
+  },
+  {
+    "id": "sipplay-image-arrow-toggle",
+    "name": "图片箭头切换",
+    "note": "点击切换左右方向 · 箭头自然变向、柔和落位",
+    "file": "./releases/v2/image-arrow/index.html",
+    "download": "./releases/v2/image-arrow/image-arrow.html",
+    "symbol": "↔",
+    "tags": "图片 箭头 切换 左右",
+    "published": true
   }
 ];
 const localDrafts = [];
@@ -1596,7 +1606,7 @@ async function openReleaseDetail(item) {
   frame.src = item.file; releaseDetailStage.append(loading, frame);
   if (!releaseDetailDialog.open) releaseDetailDialog.showModal();
   try {
-    releaseManifestPromise ||= fetch('./releases/v2/release.json?v=plane-20261103').then(response => {
+    releaseManifestPromise ||= fetch('./releases/v2/release.json?v=image-arrow-20261103').then(response => {
       if (!response.ok) throw new Error('manifest'); return response.json();
     }).catch(error => { releaseManifestPromise = null; throw error; });
     const manifest = await releaseManifestPromise;
