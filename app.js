@@ -61,16 +61,6 @@ const publishedV2 = [
     "published": true
   },
   {
-    "id": "sipplay-prop-spotlight",
-    "name": "选中道具聚光高亮",
-    "note": "等级解锁与选中联动 · 金色聚光、光环与星尘",
-    "file": "./releases/v2/prop-spotlight/index.html",
-    "download": "./releases/v2/prop-spotlight/prop-spotlight.html",
-    "symbol": "✦",
-    "tags": "道具 聚光 高亮 选中 等级 解锁",
-    "published": true
-  },
-  {
     "id": "sipplay-gift-pop",
     "name": "礼盒轻弹",
     "note": "常态星光错落闪烁 · 鼠标移入或点击，盒盖斜开后柔和落回",
@@ -1626,7 +1616,7 @@ async function openReleaseDetail(item) {
   frame.src = item.file; releaseDetailStage.append(loading, frame);
   if (!releaseDetailDialog.open) releaseDetailDialog.showModal();
   try {
-    releaseManifestPromise ||= fetch('./releases/v2/release.json?v=paid-reward-20261104').then(response => {
+    releaseManifestPromise ||= fetch('./releases/v2/release.json?v=v2-dedup-20261104').then(response => {
       if (!response.ok) throw new Error('manifest'); return response.json();
     }).catch(error => { releaseManifestPromise = null; throw error; });
     const manifest = await releaseManifestPromise;
