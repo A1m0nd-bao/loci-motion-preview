@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "date": "2026-11-03",
+  "date": "2026-11-04",
   "components": [
     {
       "id": "sipplay-plus-arrow-toggle",
@@ -148,6 +148,21 @@
       "package": "relic-journey/source.zip",
       "usage": "relic-journey/USAGE.md",
       "size": "375×812"
+    },
+    {
+      "id": "sipplay-paid-reward",
+      "name": "付费权益奖励",
+      "preview": "paid-reward/index.html",
+      "download": "paid-reward/paid-reward.html",
+      "source": "paid-reward/index.html",
+      "package": "paid-reward/source.zip",
+      "usage": "paid-reward/USAGE.md",
+      "states": [
+        "locked",
+        "ready",
+        "claimed"
+      ],
+      "size": "67×70"
     }
   ]
 }

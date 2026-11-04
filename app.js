@@ -109,6 +109,16 @@ const publishedV2 = [
     "symbol": "✦",
     "tags": "活动页 遗物 Relic Journey",
     "published": true
+  },
+  {
+    "id": "sipplay-paid-reward",
+    "name": "付费权益奖励",
+    "note": "锁扣解锁、待领取与已领取 · 宝石光束与横向流光",
+    "file": "./releases/v2/paid-reward/index.html",
+    "download": "./releases/v2/paid-reward/paid-reward.html",
+    "symbol": "✦",
+    "tags": "付费 权益 会员 战令 解锁 领取 宝石 光效",
+    "published": true
   }
 ];
 const localDrafts = [];
@@ -1616,7 +1626,7 @@ async function openReleaseDetail(item) {
   frame.src = item.file; releaseDetailStage.append(loading, frame);
   if (!releaseDetailDialog.open) releaseDetailDialog.showModal();
   try {
-    releaseManifestPromise ||= fetch('./releases/v2/release.json?v=relic-journey-20261103').then(response => {
+    releaseManifestPromise ||= fetch('./releases/v2/release.json?v=paid-reward-20261104').then(response => {
       if (!response.ok) throw new Error('manifest'); return response.json();
     }).catch(error => { releaseManifestPromise = null; throw error; });
     const manifest = await releaseManifestPromise;
