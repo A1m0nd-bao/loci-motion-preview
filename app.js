@@ -109,6 +109,16 @@ const publishedV2 = [
     "symbol": "✦",
     "tags": "付费 权益 会员 战令 解锁 领取 宝石 光效",
     "published": true
+  },
+  {
+    "id": "sipplay-pin-toggle-v2",
+    "name": "图钉选中切换",
+    "note": "点击切换固定状态 · 已固定使用新版空心图钉",
+    "file": "./releases/v2/pin-toggle/index.html",
+    "download": "./releases/v2/pin-toggle/pin-toggle.html",
+    "symbol": "⌖",
+    "tags": "图钉 置顶 固定 pin 空心 切换",
+    "published": true
   }
 ];
 const localDrafts = [];
@@ -1616,7 +1626,7 @@ async function openReleaseDetail(item) {
   frame.src = item.file; releaseDetailStage.append(loading, frame);
   if (!releaseDetailDialog.open) releaseDetailDialog.showModal();
   try {
-    releaseManifestPromise ||= fetch('./releases/v2/release.json?v=v2-dedup-20261104').then(response => {
+    releaseManifestPromise ||= fetch('./releases/v2/release.json?v=pin-outline-20261105').then(response => {
       if (!response.ok) throw new Error('manifest'); return response.json();
     }).catch(error => { releaseManifestPromise = null; throw error; });
     const manifest = await releaseManifestPromise;

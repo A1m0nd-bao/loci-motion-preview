@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "date": "2026-11-04",
+  "date": "2026-11-05",
   "components": [
     {
       "id": "sipplay-plus-arrow-toggle",
@@ -148,6 +148,21 @@
         "claimed"
       ],
       "size": "67×70"
+    },
+    {
+      "id": "sipplay-pin-toggle-v2",
+      "name": "图钉选中切换",
+      "preview": "pin-toggle/index.html",
+      "download": "pin-toggle/pin-toggle.html",
+      "source": "pin-toggle/pin-toggle.js",
+      "package": "pin-toggle/source.zip",
+      "usage": "pin-toggle/USAGE.md",
+      "states": [
+        "unpinned",
+        "pinned"
+      ],
+      "duration": 0.52,
+      "size": "18×18"
     }
   ]
 }
