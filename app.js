@@ -119,6 +119,16 @@ const publishedV2 = [
     "symbol": "⌖",
     "tags": "图钉 置顶 固定 pin 空心 切换",
     "published": true
+  },
+  {
+    "id": "sipplay-reward-ticket",
+    "name": "邀请奖励卡券",
+    "note": "常态月光银丝微芒 · 悬停礼盒轻弹掀盖、标签微摆、彩带向右伸展、白色斜光穿梭",
+    "file": "./releases/v2/reward-ticket/index.html",
+    "download": "./releases/v2/reward-ticket/reward-ticket.html",
+    "symbol": "🎟",
+    "tags": "邀请 奖励 卡券 礼盒 彩带 流光 礼物 ticket reward",
+    "published": true
   }
 ];
 const localDrafts = [];
@@ -1626,7 +1636,7 @@ async function openReleaseDetail(item) {
   frame.src = item.file; releaseDetailStage.append(loading, frame);
   if (!releaseDetailDialog.open) releaseDetailDialog.showModal();
   try {
-    releaseManifestPromise ||= fetch('./releases/v2/release.json?v=pin-outline-20261105').then(response => {
+    releaseManifestPromise ||= fetch('./releases/v2/release.json?v=reward-ticket-20261110').then(response => {
       if (!response.ok) throw new Error('manifest'); return response.json();
     }).catch(error => { releaseManifestPromise = null; throw error; });
     const manifest = await releaseManifestPromise;

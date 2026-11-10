@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "date": "2026-11-05",
+  "date": "2026-11-10",
   "components": [
     {
       "id": "sipplay-plus-arrow-toggle",
@@ -163,6 +163,21 @@
       ],
       "duration": 0.52,
       "size": "18×18"
+    },
+    {
+      "id": "sipplay-reward-ticket",
+      "name": "邀请奖励卡券",
+      "preview": "reward-ticket/index.html",
+      "download": "reward-ticket/reward-ticket.html",
+      "source": "reward-ticket/reward-ticket.js",
+      "package": "reward-ticket/source.zip",
+      "usage": "reward-ticket/USAGE.md",
+      "states": [
+        "idle-shimmer",
+        "hover-active"
+      ],
+      "duration": 0.85,
+      "size": "166×36"
     }
   ]
 }
