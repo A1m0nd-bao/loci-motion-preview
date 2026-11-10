@@ -1,6 +1,31 @@
 {
   "items": [
     {
+      "name": "左向引导箭头 · 呼吸拖尾发光",
+      "fileName": "arrow_left_breathing_glow.json",
+      "file": "./lotties/未分类/arrow_left_breathing_glow.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "引导",
+      "tags": [
+        "箭头",
+        "引导",
+        "呼吸发光",
+        "拖尾辉光",
+        "arrow",
+        "glow"
+      ],
+      "mimeType": "application/json",
+      "width": 36,
+      "height": 36,
+      "frameRate": 60,
+      "frames": 90,
+      "duration": 1.5,
+      "firstSeenAt": "2026-11-10T17:55:00+08:00",
+      "updatedAt": "2026-11-10T17:55:00.000Z"
+    },
+    {
       "name": "sipplay · 生图流光吸饮 · 深棕灰",
       "fileName": "image-sip-dark.json",
       "file": "./lotties/未分类/image-sip-dark-18159f38.json",
