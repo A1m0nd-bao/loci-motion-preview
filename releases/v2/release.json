@@ -178,6 +178,39 @@
       ],
       "duration": 0.85,
       "size": "166×36"
+    },
+    {
+      "id": "sipplay-chest-burst",
+      "name": "独立宝箱错落展开",
+      "preview": "chest-burst/index.html",
+      "download": "chest-burst/chest-burst.html",
+      "source": "chest-burst/chest-burst.html",
+      "package": "chest-burst/source.zip",
+      "usage": "chest-burst/USAGE.md",
+      "states": [
+        "closed",
+        "opening",
+        "open",
+        "closing"
+      ],
+      "duration": 0.75,
+      "size": "260×300"
+    },
+    {
+      "id": "sipplay-confetti-fireworks",
+      "name": "物理礼花庆典系统",
+      "preview": "confetti-fireworks/index.html",
+      "download": "confetti-fireworks/confetti-fireworks.html",
+      "source": "confetti-fireworks/confetti-fireworks.html",
+      "package": "confetti-fireworks/source.zip",
+      "usage": "confetti-fireworks/USAGE.md",
+      "states": [
+        "cannons",
+        "radial",
+        "slow-motion"
+      ],
+      "duration": 1.8,
+      "size": "558×454"
     }
   ]
 }

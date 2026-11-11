@@ -129,6 +129,26 @@ const publishedV2 = [
     "symbol": "🎟",
     "tags": "邀请 奖励 卡券 礼盒 彩带 流光 礼物 ticket reward",
     "published": true
+  },
+  {
+    "id": "sipplay-chest-burst",
+    "name": "独立宝箱错落展开",
+    "note": "蓄力微蹲・弹开物理・彩带纸屑从中心错落升腾展开与优雅吸回",
+    "file": "./releases/v2/chest-burst/index.html",
+    "download": "./releases/v2/chest-burst/chest-burst.html",
+    "symbol": "🎁",
+    "tags": "宝箱 礼盒 展开 开启 弹出 彩带 纸屑 错落 礼物 chest box",
+    "published": true
+  },
+  {
+    "id": "sipplay-confetti-fireworks",
+    "name": "物理礼花庆典系统",
+    "note": "真实物理礼花庆典 · 四角礼花筒与中心放射双模式，彩带翻卷飘落与重力漫天消散",
+    "file": "./releases/v2/confetti-fireworks/index.html",
+    "download": "./releases/v2/confetti-fireworks/confetti-fireworks.html",
+    "symbol": "🎉",
+    "tags": "礼花 烟花 庆典 彩带 纸屑 粒子 喷射 爆开 物理 confetti fireworks",
+    "published": true
   }
 ];
 const localDrafts = [];
@@ -1636,7 +1656,7 @@ async function openReleaseDetail(item) {
   frame.src = item.file; releaseDetailStage.append(loading, frame);
   if (!releaseDetailDialog.open) releaseDetailDialog.showModal();
   try {
-    releaseManifestPromise ||= fetch('./releases/v2/release.json?v=gift-pop-v2-20261111').then(response => {
+    releaseManifestPromise ||= fetch('./releases/v2/release.json?v=v2-chest-fireworks-20261111').then(response => {
       if (!response.ok) throw new Error('manifest'); return response.json();
     }).catch(error => { releaseManifestPromise = null; throw error; });
     const manifest = await releaseManifestPromise;

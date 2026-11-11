@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>原动效：独立宝箱错落展开 (260×300)</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      border: none;
+      outline: none;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #000000;
+      overflow: hidden;
+      user-select: none;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    .chest-container {
+      width: min(85vw, 260px);
+      aspect-ratio: 260 / 300;
+      height: auto;
+      cursor: pointer;
+      transition: transform 0.3s cubic-bezier(0.18, 1, 0.32, 1);
+    }
+    .chest-container:hover {
+      transform: translateY(-5px) scale(1.02);
+    }
+    .chest-container:active {
+      transform: translateY(1.5px) scale(0.99);
+    }
+
+    /* ========================================================= */
+    /* ========== 爆出物：从宝箱中心 (114, 160) 错落爆出展开 ========== */
+    /* ========================================================= */
+
+    .burst-item {
+      transform-box: view-box;
+      transform-origin: 114px 160px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* 弹出通用动画：从宝箱开口中心 (114px, 160px) 优雅喷薄升起展开并伴随微回弹，无扭曲 */
+    .chest-open .burst-item {
+      animation: popFromCenter 0.65s cubic-bezier(0.18, 1.2, 0.32, 1) forwards;
+    }
+    @keyframes popFromCenter {
+      0% {
+        transform: scale(0.08) translateY(14px);
+        opacity: 0;
+      }
+      40% {
+        opacity: 1;
+      }
+      75% {
+        transform: scale(1.05) translateY(-2px);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+      }
+    }
+
+    /* 收回通用动画：原路优雅吸回宝箱中心 */
+    .chest-close .burst-item {
+      animation: retractToCenter 0.3s cubic-bezier(0.4, 0, 0.7, 0.2) forwards;
+    }
+    @keyframes retractToCenter {
+      0% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.8;
+      }
+      100% {
+        transform: scale(0.08) translateY(14px);
+        opacity: 0;
+      }
+    }
+
+    /* 错落出现时序（左右彩带与纸屑错落从中心射出） */
+    .chest-open .burst-ribbon-l { animation-delay: 0.08s; } /* 1. 左彩带率先从中心飞出 */
+    .chest-open .b-chip-1       { animation-delay: 0.12s; }
+    .chest-open .b-chip-4       { animation-delay: 0.16s; }
+    .chest-open .burst-ribbon-r { animation-delay: 0.22s; } /* 2. 右彩带错落从中心飞出 */
+    .chest-open .b-chip-2       { animation-delay: 0.26s; }
+    .chest-open .b-chip-3       { animation-delay: 0.30s; }
+
+    /* ========================================================= */
+    /* ========== 箱盖、箱体与细节物理反馈 ========== */
+    /* ========================================================= */
+
+    .chest-lid {
+      transform-origin: 119.25px 145.39px;
+      transform: translate(0px, 0px) rotate(0deg);
+    }
+    .chest-open .chest-lid {
+      animation: lidBounceOpen 0.75s cubic-bezier(0.18, 0.95, 0.3, 1) forwards;
+    }
+    @keyframes lidBounceOpen {
+      0% { transform: translate(0px, 0px) rotate(0deg); }
+      12% { transform: translate(0px, 1.8px) rotate(0.6deg); } /* 预备蓄力微压 Anticipation */
+      42% { transform: translate(2.5px, -35px) rotate(-11.5deg) scale(1.03); } /* 爆发弹起 Spring Up */
+      70% { transform: translate(1.3px, -23.5px) rotate(-7.0deg) scale(0.99); }
+      100% { transform: translate(1.64px, -25.95px) rotate(-8.17deg) scale(1); }
+    }
+    .chest-close .chest-lid {
+      animation: lidBounceClose 0.55s cubic-bezier(0.2, 0.9, 0.3, 1) forwards;
+    }
+    @keyframes lidBounceClose {
+      0% { transform: translate(1.64px, -25.95px) rotate(-8.17deg); }
+      50% { transform: translate(0px, 2px) rotate(0.8deg); }
+      100% { transform: translate(0px, 0px) rotate(0deg); }
+    }
+
+    .chest-body {
+      transform-origin: 115px 240px;
+    }
+    .chest-open .chest-body {
+      animation: bodySquashOpen 0.68s cubic-bezier(0.2, 0.9, 0.3, 1) forwards;
+    }
+    @keyframes bodySquashOpen {
+      0% { transform: scale(1, 1) translateY(0); }
+      14% { transform: scale(1.06, 0.92) translateY(3.5px); } /* 预备蓄力微蹲 Anticipation */
+      36% { transform: scale(0.95, 1.07) translateY(-4px); }  /* 向上爆发弹跳 Spring! */
+      65% { transform: scale(1.02, 0.98) translateY(1px); }   /* 弹性回落缓冲 */
+      100% { transform: scale(1, 1) translateY(0); }          /* 稳稳就位 */
+    }
+    .chest-close .chest-body {
+      animation: bodySquashClose 0.5s ease-out forwards;
+    }
+    @keyframes bodySquashClose {
+      0% { transform: scale(1, 1) translateY(0); }
+      48% { transform: scale(1.03, 0.96) translateY(1.5px); }
+      100% { transform: scale(1, 1) translateY(0); }
+    }
+
+    .chest-tag {
+      transform-origin: 168px 178px;
+    }
+    .chest-open .chest-tag {
+      animation: tagSwayOpen 0.9s cubic-bezier(0.25, 1, 0.35, 1) forwards;
+    }
+    @keyframes tagSwayOpen {
+      0% { transform: rotate(0deg); }
+      28% { transform: rotate(18deg); }
+      55% { transform: rotate(-10deg); }
+      100% { transform: rotate(0deg); }
+    }
+    .chest-close .chest-tag {
+      animation: tagSwayClose 0.65s cubic-bezier(0.25, 1, 0.35, 1) forwards;
+    }
+    @keyframes tagSwayClose {
+      0% { transform: rotate(0deg); }
+      30% { transform: rotate(-10deg); }
+      65% { transform: rotate(5deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    /* 盒内光芒 */
+    .box-inner-glow {
+      transform-origin: 114px 165px;
+      opacity: 0;
+      transform: scale(0.4);
+      transition: opacity 0.4s ease, transform 0.6s cubic-bezier(0.18, 1.2, 0.32, 1);
+      pointer-events: none;
+    }
+    .chest-open .box-inner-glow {
+      opacity: 0.95;
+      transform: scale(1);
+    }
+    .chest-close .box-inner-glow {
+      opacity: 0;
+      transform: scale(0.4);
+      transition: opacity 0.25s ease, transform 0.3s ease;
+    }
+
+    /* 顶部控制栏 */
+    .top-bar {
+      position: fixed;
+      top: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 100;
+      background: rgba(18, 16, 26, 0.82);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 6px 18px;
+      border-radius: 20px;
+      border: 1px solid rgba(249, 222, 167, 0.25);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.55);
+    }
+    .status-text {
+      color: #F9DEA7;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+
+    .hint {
+      position: absolute;
+      bottom: 36px;
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 13px;
+      letter-spacing: 1px;
+      pointer-events: none;
+      transition: opacity 0.3s;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 6px 14px;
+      border-radius: 16px;
+    }
+
+    .box-star {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: boxStarFade 2.6s ease-in-out infinite;
+    }
+    @keyframes boxStarFade {
+      0%, 100% { transform: scale(0.72); opacity: 0.35; }
+      50% { transform: scale(1.05); opacity: 1; }
+    }
+
+    .box-dot {
+      transform-box: fill-box;
+      transform-origin: center;
+      transform: scale(1);
+      opacity: 0.65;
+    }
+    .chest-open .box-dot {
+      animation: boxDotPulse 0.65s cubic-bezier(0.18, 1.35, 0.32, 1) forwards 0.08s;
+    }
+    @keyframes boxDotPulse {
+      0% { transform: scale(1); opacity: 0.65; }
+      50% { transform: scale(1.4); opacity: 1; }
+      100% { transform: scale(1.1); opacity: 0.9; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 顶部控制栏 -->
+  <div class="top-bar">
+    <span class="status-text">独立宝箱：蓄力微蹲・弹开物理・悬浮微动</span>
+  </div>
+
+  <div class="chest-container" id="chestScene">
+    <svg width="260" height="300" viewBox="0 0 260 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- 爆出物渐变色 -->
+        <linearGradient id="paint0_linear_1025_6833" x1="8" y1="58.25" x2="72.7013" y2="108.586" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#FFF1C4"/>
+          <stop offset="0.48" stop-color="#E5C381"/>
+          <stop offset="1" stop-color="#F9DEA7"/>
+        </linearGradient>
+        <linearGradient id="paint1_linear_1025_6833" x1="196.029" y1="62.1797" x2="252.828" y2="117.532" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#F2CDE1"/>
+          <stop offset="0.55" stop-color="#C69DC7"/>
+          <stop offset="1" stop-color="#9270AB"/>
+        </linearGradient>
+
+        <!-- 地面与箱体渐变 -->
+        <radialGradient id="paint0_radial_1029_8789" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(115.365 153) scale(60 48)">
+          <stop stop-color="#F9E8AD" stop-opacity="0.36"/>
+          <stop offset="1" stop-color="#F9E8AD" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="paint1_radial_1029_8789" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(112.215 163.723) scale(50.75 15.325)">
+          <stop stop-color="#F9E8AD" stop-opacity="0.36"/>
+          <stop offset="1" stop-color="#F9E8AD" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="paint2_linear_1029_8789" x1="54.6786" y1="146.357" x2="99.7499" y2="250.312" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#A882BF"/>
+          <stop offset="0.55" stop-color="#9270AB"/>
+          <stop offset="1" stop-color="#8862A6"/>
+        </linearGradient>
+        <linearGradient id="paint3_linear_1029_8789" x1="118.662" y1="184.28" x2="156.19" y2="256.782" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#8760A5"/>
+          <stop offset="1" stop-color="#724D95"/>
+        </linearGradient>
+        <linearGradient id="paint4_linear_1029_8789" x1="82.7963" y1="138.876" x2="73.8729" y2="237.935" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#F9E8AD"/>
+          <stop offset="0.6" stop-color="#F5D798"/>
+          <stop offset="1" stop-color="#D6B574"/>
+        </linearGradient>
+        <linearGradient id="paint5_linear_1029_8789" x1="155.608" y1="178.827" x2="190.797" y2="259.921" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#F8E6B4"/>
+          <stop offset="1" stop-color="#DEBB82"/>
+        </linearGradient>
+        <linearGradient id="paint6_linear_1029_8789" x1="78.5825" y1="127.698" x2="104.101" y2="177.349" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#F2CDE1"/>
+          <stop offset="0.5" stop-color="#DBB1CE"/>
+          <stop offset="1" stop-color="#C29AC0"/>
+        </linearGradient>
+        <linearGradient id="paint7_linear_1029_8789" x1="59.7157" y1="60.8227" x2="106.902" y2="241.662" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#FFF1C4"/>
+          <stop offset="0.38" stop-color="#EDD69E"/>
+          <stop offset="0.7" stop-color="#F9DEA7"/>
+          <stop offset="1" stop-color="#DDBA7B"/>
+        </linearGradient>
+        <linearGradient id="paint8_linear_1029_8789" x1="78.9883" y1="72.6896" x2="126.175" y2="253.529" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#FFF1C4"/>
+          <stop offset="0.38" stop-color="#EDD69E"/>
+          <stop offset="0.7" stop-color="#F9DEA7"/>
+          <stop offset="1" stop-color="#DDBA7B"/>
+        </linearGradient>
+        <linearGradient id="paint9_linear_1029_8789" x1="78.994" y1="72.6743" x2="126.181" y2="253.514" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#FFF1C4"/>
+          <stop offset="0.38" stop-color="#EDD69E"/>
+          <stop offset="0.7" stop-color="#F9DEA7"/>
+          <stop offset="1" stop-color="#DDBA7B"/>
+        </linearGradient>
+        <linearGradient id="paint10_linear_1029_8789" x1="78.985" y1="72.6757" x2="126.172" y2="253.515" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#FFF1C4"/>
+          <stop offset="0.38" stop-color="#EDD69E"/>
+          <stop offset="0.7" stop-color="#F9DEA7"/>
+          <stop offset="1" stop-color="#DDBA7B"/>
+        </linearGradient>
+
+        <!-- 开箱内衬璀璨光晕 -->
+        <radialGradient id="boxInnerGlowGrad" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(114 165) scale(60 35)">
+          <stop stop-color="#FFF3D1" stop-opacity="0.85"/>
+          <stop offset="0.45" stop-color="#F5D798" stop-opacity="0.45"/>
+          <stop offset="1" stop-color="#F9DEA7" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+
+      <!-- 地面光晕 -->
+      <path d="M115.365 201C148.502 201 175.365 179.51 175.365 153C175.365 126.49 148.502 105 115.365 105C82.2281 105 55.3652 126.49 55.3652 153C55.3652 179.51 82.2281 201 115.365 201Z" fill="url(#paint0_radial_1029_8789)"/>
+
+      <!-- 盒内开启光晕 -->
+      <ellipse class="box-inner-glow" cx="114" cy="165" rx="60" ry="35" fill="url(#boxInnerGlowGrad)"/>
+
+      <!-- 盒内爆出物（双彩带与4碎屑干净错落出现） -->
+      <g id="chestBurstGroup">
+        <!-- 1. 左侧金色彩带（第一梯队 0.08s 出现） -->
+        <path class="burst-item burst-ribbon-l" d="M38.0303 117.001C15.0303 102.001 14.0303 79.0011 33.0303 71.0011C47.0303 65.0011 56.0303 73.0011 51.0303 81.0011C47.0303 87.0011 39.0303 84.0011 39.0303 79.0011C35.0303 84.0011 39.0303 89.0011 46.0303 88.0011C64.0303 85.0011 64.0303 65.0011 49.0303 60.0011C31.0303 53.0011 7.03025 68.0011 8.03025 87.0011C9.03025 105.001 25.0303 120.001 36.0303 125.001L38.0303 117.001Z" fill="url(#paint0_linear_1025_6833)"/>
+        
+        <!-- 2. 右侧紫色彩带（第二梯队 0.22s 错落出现） -->
+        <path class="burst-item burst-ribbon-r" d="M200.029 79.9971C220.029 61.9971 236.029 65.9971 240.029 77.9971C244.029 90.9971 230.029 94.9971 225.029 88.9971C220.029 83.9971 229.029 78.9971 232.029 81.9971C229.029 72.9971 217.029 73.9971 207.029 85.9971C199.029 96.9971 202.029 112.997 217.029 118.997L220.029 110.997C207.029 104.997 207.029 91.9971 216.029 84.9971C227.029 75.9971 230.029 78.9971 228.029 80.9971C220.029 84.9971 222.029 93.9971 231.029 97.9971C250.029 103.997 258.029 81.9971 245.029 68.9971C234.029 56.9971 215.029 61.9971 196.029 74.9971L200.029 79.9971Z" fill="url(#paint1_linear_1025_6833)"/>
+        
+        <!-- 3. 4块彩纸屑错落出现 -->
+        <path class="burst-item b-chip-1" d="M64.0293 43L73.0293 39L82.0293 55L72.0293 59L64.0293 43Z" fill="#EDD69E"/>
+        <path class="burst-item b-chip-2" d="M172.029 38L182.029 41L177.029 58L168.029 54L172.029 38Z" fill="#CBA5D0"/>
+        <path class="burst-item b-chip-3" d="M220.029 145L230.029 140L238.029 153L229.029 159L220.029 145Z" fill="#F9DEA7"/>
+        <path class="burst-item b-chip-4" d="M46.0293 153L53.0293 149L59.0293 159L52.0293 164L46.0293 153Z" fill="#E7BED5"/>
+      </g>
+
+      <!-- 箱体 -->
+      <g class="chest-body">
+        <path d="M53.0332 145.858L107.013 145.508L173.688 180.508L119.698 180.845L53.0332 145.858Z" fill="#745083"/>
+        <path d="M61.4648 148.598L104.965 148.398L162.965 178.848L120.965 179.048L61.4648 148.598Z" fill="#3E254F"/>
+        <path d="M61.4648 148.598L104.965 148.398L162.965 178.848L120.965 179.048L61.4648 148.598Z" fill="url(#paint1_radial_1029_8789)"/>
+        <path d="M53.0327 145.859L119.697 180.846L98.6373 250.529L33 212.143L53.0327 145.859Z" fill="url(#paint2_linear_1029_8789)"/>
+        <path d="M119.689 180.881L173.689 180.508L152.629 250.191L98.6289 250.564L119.689 180.881Z" fill="url(#paint3_linear_1029_8789)"/>
+        <path opacity="0.27" d="M54.1444 148.125L119.163 182.614L117.109 189.412L52.0898 154.923L54.1444 148.125Z" fill="#55386F"/>
+        <path opacity="0.3" d="M119.184 182.545L173.184 182.172L171.129 188.97L117.129 189.344L119.184 182.545Z" fill="#3E254F"/>
+        <path d="M73.8058 156.758L93.9558 167.338L73.2758 235.748L53.4258 224.188L73.8058 156.758Z" fill="url(#paint4_linear_1029_8789)"/>
+        <path opacity="0.6" d="M92.0659 166.203L95.2659 167.203L74.8059 236.663L71.7559 234.853L92.0659 166.203Z" fill="#FDEBB7"/>
+        <path d="M53.0332 145.852L119.698 180.839L173.688 180.502" stroke-width="1.3" stroke="#E7BED5" stroke-opacity="0.7"/>
+
+        <!-- 吊牌 -->
+        <g class="chest-tag">
+          <path d="M168.445 178C166.445 183 160.445 184 157.445 190" stroke-width="2" stroke="#BD945F"/>
+          <path d="M160.137 187.615L177.518 183.594L184.72 189.48L198.727 238.229L193.38 244.033L195.645 248.427L155.431 256.676L149.874 251.287L145.555 253.691L137 204.735L160.137 187.615Z" fill="url(#paint5_linear_1029_8789)" stroke-width="1.21165" stroke="#DBB276"/>
+          <path d="M159.738 194.871L175.473 190.352L181.03 195.741L189.994 237.402L186.807 242.003L155.849 249.34L151.939 244.449L143.594 206.685L159.738 194.871Z" stroke-width="1.21165" stroke="#946B98"/>
+          <path d="M179.979 224L180.084 229.596L185.021 231.088L179.879 233.244L179.161 238.591L176.074 233.949L171.445 234.405L174.632 229.803L172.368 225.409L177.305 226.902L179.979 224Z" fill="#9B73A1"/>
+          <path d="M162.342 193.146C163.685 193.552 165.104 192.787 165.512 191.437C165.92 190.086 165.162 188.663 163.82 188.257C162.477 187.851 161.058 188.617 160.65 189.967C160.242 191.317 160.999 192.74 162.342 193.146Z" fill="#8E658D"/>
+          <path d="M162.778 210.406L162.883 216.002L167.82 217.494L162.678 219.65L161.96 224.997L158.873 220.355L154.244 220.811L157.431 216.209L155.167 211.815L160.104 213.308L162.778 210.406Z" fill="#9B73A1"/>
+        </g>
+      </g>
+
+      <!-- 箱盖 -->
+      <g class="chest-lid">
+        <path d="M52.2949 126.203L112.442 127.506L184.77 163.283L127.489 164.579L52.2949 126.203Z" fill="#E7BED5"/>
+        <path d="M52.2884 126.215L127.482 164.591L120.179 192.044L45.4415 151.952L52.2884 126.215Z" fill="url(#paint6_linear_1029_8789)"/>
+        <path d="M127.5 164.563L184.781 163.266L178.39 187.287L120.197 192.017L127.5 164.563Z" fill="#B48EB7"/>
+        <path opacity="0.7" d="M52.2891 126.217L127.483 164.593L184.764 163.297" stroke-width="1.1251" stroke="#FFE3EC"/>
+        <path d="M82.2855 116.433L102.974 125.611L127.113 148.569L102.025 149.243L80.1312 137.907L112.323 137.285L82.2855 116.433Z" fill="url(#paint7_linear_1029_8789)"/>
+        
+        <!-- 蝴蝶结 -->
+        <path d="M121.954 131.889C114.467 93.1516 101.502 75.0046 84.7218 77.8895C66.2797 80.3322 62.9201 99.6485 73.4745 113.48C83.5723 129.027 102.599 137.763 120.585 137.036L121.954 131.889Z" fill="url(#paint8_linear_1029_8789)"/>
+        <path opacity="0.75" d="M114.105 127.974C100.391 105.953 87.7189 93.3955 75.1744 93.7328C72.4356 104.028 91.2981 120.069 114.105 127.974Z" fill="#876040"/>
+        <path d="M125.283 132.758C152.69 103.303 171.753 91.8395 187 101.407C203.909 111.417 196.314 133.281 180.281 140.04C160.47 147.63 141.279 146.199 123.914 137.905L125.283 132.758Z" fill="url(#paint9_linear_1029_8789)"/>
+        <path opacity="0.72" d="M134.043 133.255C160.665 120.128 181.225 116.411 190.282 122.495C185.426 134.064 157.762 137.728 134.043 133.255Z" fill="#9E7550"/>
+        <path d="M118.007 140.012C132.798 151.296 138.367 163.801 144.228 181.896L157.065 187.148C148.501 159.148 142.019 150.074 128.89 139.233L118.007 140.012Z" fill="url(#paint10_linear_1029_8789)"/>
+        <path d="M113.486 136.936C104.557 143.747 93.9662 150.116 83.0834 150.895L90.0223 158.253C103.48 154.484 114.07 148.115 119.676 140.42L113.486 136.936Z" fill="#F1DCA5"/>
+        <path d="M114.554 126.25C122.113 124.587 128.608 126.927 134.037 133.271L131.298 143.566C122.935 143.791 116.593 140.879 112.272 134.83L114.554 126.25Z" fill="#FBEAB9"/>
+      </g>
+
+      <!-- 星星与常驻小点 -->
+      <g id="boxInnerStars">
+        <path class="box-star" d="M105 38L107 45L114 47L107 49L105 56L103 49L96 47L103 45L105 38Z" fill="#FBEAB9"/>
+        <path class="box-star" style="animation-delay: 0.8s;" d="M188 122L189.5 127L194.5 128.5L189.5 130L188 135L186.5 130L181.5 128.5L186.5 127L188 122Z" fill="#E7BED5"/>
+        <path class="box-star" style="animation-delay: 1.4s;" d="M91 166L92 170L96 171L92 172L91 176L90 172L86 171L90 170L91 166Z" fill="#FFECC3"/>
+        <path class="box-star" style="animation-delay: 0.4s;" d="M149 153L150.5 158L155.5 159.5L150.5 161L149 166L147.5 161L142.5 159.5L147.5 158L149 153Z" fill="#FFECC3"/>
+
+        <path class="box-dot" d="M61 93C62.1046 93 63 92.1046 63 91C63 89.8954 62.1046 89 61 89C59.8954 89 59 89.8954 59 91C59 92.1046 59.8954 93 61 93Z" fill="#FBEAB9"/>
+        <path class="box-dot" style="animation-delay: 0.12s;" d="M195 56C196.105 56 197 55.1046 197 54C197 52.8954 196.105 52 195 52C193.895 52 193 52.8954 193 54C193 55.1046 193.895 56 195 56Z" fill="#F2CDE1"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="hint">点击宝箱开启 / 合上</div>
+
+  <script>
+    const chestScene = document.getElementById("chestScene");
+    let isChestOpen = false;
+
+    function toggleChest() {
+      isChestOpen = !isChestOpen;
+      chestScene.classList.remove("chest-open", "chest-close");
+      void chestScene.offsetWidth;
+
+      if (isChestOpen) {
+        chestScene.classList.add("chest-open");
+      } else {
+        chestScene.classList.add("chest-close");
+      }
+    }
+
+    document.body.addEventListener("click", toggleChest);
+  </script>
+</body>
+</html>

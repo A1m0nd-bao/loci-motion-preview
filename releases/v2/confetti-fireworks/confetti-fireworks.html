@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>真实物理礼花庆典系统 (双模式对比)</title>
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      border: none;
+      outline: none;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #0B0813;
+      overflow: hidden;
+      user-select: none;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", sans-serif;
+    }
+
+    /* 顶部控制栏 */
+    .top-bar {
+      position: fixed;
+      top: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 100;
+      background: rgba(18, 14, 28, 0.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 6px 14px;
+      border-radius: 22px;
+      border: 1px solid rgba(249, 222, 167, 0.25);
+      box-shadow: 0 10px 36px rgba(0, 0, 0, 0.6);
+      max-width: 95vw;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .mode-group {
+      display: flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 14px;
+      padding: 2px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .mode-btn {
+      background: transparent;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      padding: 5px 13px;
+      border-radius: 12px;
+      transition: all 0.25s cubic-bezier(0.18, 1, 0.32, 1);
+    }
+    .mode-btn:hover {
+      color: #FFF;
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .mode-btn.active {
+      background: linear-gradient(135deg, #F9DEA7, #C69DC7);
+      color: #120B1D;
+      font-weight: 700;
+      box-shadow: 0 2px 12px rgba(249, 222, 167, 0.35);
+    }
+
+    .action-btn {
+      background: rgba(249, 222, 167, 0.18);
+      color: #FFF2CE;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 5px 13px;
+      border-radius: 12px;
+      border: 1px solid rgba(249, 222, 167, 0.45);
+      transition: all 0.2s ease;
+    }
+    .action-btn:hover {
+      background: rgba(249, 222, 167, 0.32);
+      transform: translateY(-1px);
+    }
+
+    .toggle-btn {
+      background: rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      padding: 5px 11px;
+      border-radius: 12px;
+      transition: all 0.2s ease;
+    }
+    .toggle-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: #FFF;
+    }
+    .toggle-btn.active {
+      background: rgba(249, 222, 167, 0.2);
+      color: #FFF3D1;
+      border: 1px solid rgba(249, 222, 167, 0.4);
+    }
+
+    /* 主舞台 */
+    .ribbon-wrapper {
+      position: relative;
+      width: min(90vw, 760px);
+      aspect-ratio: 558 / 454;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+
+    /* 元素基础：默认隐藏，严格按几何中心进行位移旋转 */
+    .ribbon-elem {
+      opacity: 0;
+      pointer-events: none;
+      transform-box: fill-box;
+      transform-origin: center center;
+      will-change: transform, opacity;
+    }
+
+    /* 慢动作倍速 */
+    .slow-motion .ribbon-elem {
+      animation-duration: 3.8s !important;
+    }
+
+    /* 底部物理特性浮条说明 */
+    .bottom-hint {
+      position: fixed;
+      bottom: 24px;
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 12.5px;
+      letter-spacing: 0.5px;
+      pointer-events: none;
+      background: rgba(18, 14, 28, 0.82);
+      padding: 7px 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .bottom-hint strong {
+      color: #F9DEA7;
+      font-weight: 600;
+    }
+
+
+    /* --------------------------------------------------------- */
+
+    /* 【模式一：四角礼花筒】抛物冲天 ➜ 顶峰减速 ➜ 单调极速顺滑重力沉降 */
+
+    /* 仅设单拐点双阶段 (0%->32%->100%)，无中间折返抽搐，100% 满帧丝滑 */
+
+    /* --------------------------------------------------------- */
+
+    .mode-cannons .ribbon-bl {
+      animation: cannonBLRibbon 1.60s forwards 0.01s;
+    }
+
+    @keyframes cannonBLRibbon {
+      0% {
+        transform: translate(-15px, 20px) scale(0.15) rotate(-22deg);
+        opacity: 0;
+        animation-timing-function: cubic-bezier(0.12, 0.92, 0.22, 1);
+      }
+      10% {
+        opacity: 1;
+      }
+      32% {
+        transform: translate(95px, -180px) scale(1.12) rotate(8deg);
+        opacity: 1;
+        animation-timing-function: cubic-bezier(0.28, 0.82, 0.45, 1);
+      }
+      100% {
+        transform: translate(145px, -55px) scale(0.9) rotate(24deg);
+        opacity: 0;
+      }
+    }
+
+    .mode-cannons .ch-bl-1 {
+      animation: cannonBLChip1 1.56s forwards 0.03s;
+    }
+
+    @keyframes cannonBLChip1 {
+      0% {
+        transform: translate(-10px, 15px) scale(0.15) rotate(-35deg);
+        opacity: 0;
+        animation-timing-function: cubic-bezier(0.12, 0.92, 0.22, 1);
+      }
+      10% {
+        opacity: 1;
+      }
+      32% {
+        transform: translate(110px, -200px) scale(1.2) rotate(25deg);
+        opacity: 1;
+        animation-timing-function: cubic-bezier(0.28, 0.82, 0.45, 1);
+      }
+      100% {
+        transform: translate(160px, -60px) scale(0.85) rotate(75deg);
+        opacity: 0;
+      }
+    }
+
+    .mode-cannons .ch-bl-2 {
+      animation: cannonBLChip2 1.54s forwards 0.04s;
+    }
+
+    @keyframes cannonBLChip2 {
+      0% {
+        transform: translate(-10px, 20px) scale(0.15) rotate(25deg);
+        opacity: 0;
+        animation-timing-function: cubic-bezier(0.12, 0.92, 0.22, 1);
+      }
+      10% {
+        opacity: 1;
+      }
+      32% {
+        transform: translate(80px, -170px) scale(1.15) rotate(-15deg);
+        opacity: 1;
+        animation-timing-function: cubic-bezier(0.28, 0.82, 0.45, 1);
+      }
+      100% {
+        transform: translate(125px, -50px) scale(0.85) rotate(-55deg);
+        opacity: 0;
+      }
+    }
+
+    .mode-cannons .ribbon-br1 {
+      animation: cannonBRRibbon1 1.62s forwards 0.02s;
+    }
+
+    @keyframes cannonBRRibbon1 {
+      0% {
+        transform: translate(15px, 20px) scale(0.15) rotate(22deg);
+        opacity: 0;
+        animation-timing-function: cubic-bezier(0.12, 0.92, 0.22, 1);
+      }
+      10% {
+        opacity: 1;
+      }
+      32% {
+        transform: translate(-95px, -180px) scale(1.12) rotate(-8deg);
+        opacity: 1;
+        animation-timing-function: cubic-bezier(0.28, 0.82, 0.45, 1);
+      }
+      100% {
+        transform: translate(-145px, -55px) scale(0.9) rotate(-24deg);
+        opacity: 0;
+      }
+    }
+
+    .mode-cannons .ribbon-br2 {
+      animation: cannonBRRibbon2 1.56s forwards 0.04s;
+    }
+
+    @keyframes cannonBRRibbon2 {
+      0% {
+        transform: translate(5px, 5px) scale(0.15) rotate(18deg);
+        opacity: 0;
+        animation-timing-function: cubic-bezier(0.12, 0.92, 0.22, 1);
+      }
+      10% {
+        opacity: 1;
+      }
+      32% {
+        transform: translate(-85px, -170px) scale(1.1) rotate(-10deg);
+        opacity: 1;
+        animation-timing-function: cubic-bezier(0.28, 0.82, 0.45, 1);
+      }
+      100% {
+        transform: translate(-130px, -50px) scale(0.88) rotate(15deg);
+        opacity: 0;
+      }
+    }
+
+    .mode-cannons .st-br {
+      animation: cannonBRStar 1.58s forwards 0.02s;
+    }
+
+    @keyframes cannonBRStar {
+      0% {
+        transform: translate(10px, 15px) scale(0.1) rotate(-20deg);
+        opacity: 0;
+        animation-timing-function: cubic-bezier(0.12, 0.92, 0.22, 1);
+      }
+      10% {
+        opacity: 1;
+      }
+      32% {
+        transform: translate(-65px, -190px) scale(1.35) rotate(25deg);
+        opacity: 1;
+        animation-timing-function: cubic-bezier(0.28, 0.82, 0.45, 1);
+      }
+      100% {
+        transform: translate(-110px, -70px) scale(0.8) rotate(70deg);
+        opacity: 0;
+      }
+    }
+
+    .mode-cannons .ch-br-1 {
+      animation: cannonBRChip1 1.54s forwards 0.05s;
+    }
+
+    @keyframes cannonBRChip1 {
+      0% {
+        transform: translate(10px, 15px) scale(0.15) rotate(-30deg);
+        opacity: 0;
+        animation-timing-function: cubic-bezier(0.12, 0.92, 0.22, 1);
+      }
+      10% {
+        opacity: 1;
+      }
+      32% {
+        transform: translate(-100px, -195px) scale(1.2) rotate(35deg);
+        opacity: 1;
+        animation-timing-function: cubic-bezier(0.28, 0.82, 0.45, 1);
+      }
+      100% {
+        transform: translate(-150px, -60px) scale(0.85) rotate(95deg);
+        opacity: 0;
+      }
+    }
+
+    .mode-cannons .ch-br-2 {
+      animation: cannonBRChip2 1.52s forwards 0.04s;
+    }
+
+    @keyframes cannonBRChip2 {
+      0% {
+        transform: translate(5px, 5px) scale(0.15) rotate(20deg);
+        opacity: 0;
+        animation-timing-function: cubic-bezier(0.12, 0.92, 0.22, 1);
+      }
+      10% {
+        opacity: 1;
+      }
+      32% {
+        transform: translate(-80px, -175px) scale(1.15) rotate(-25deg);
+        opacity: 1;
+        animation-timing-function: cubic-bezier(0.28, 0.82, 0.45, 1);
+      }
+      100% {
+        transform: translate(-125px, -55px) scale(0.85) rotate(-70deg);
+        opacity: 0;
+      }
+    }
+
+    .mode-cannons .dt-4 {
+      animation: cannonBRDot4 1.48s forwards 0.03s;
+    }
+
+    @keyframes cannonBRDot4 {
+      0% {
+        transform: translate(0px, 5px) scale(0.1);
+        opacity: 0;
+        animation-timing-function: cubic-bezier(0.12, 0.92, 0.22, 1);
+      }
+      10% {
+        opacity: 1;
+      }
+      32% {
+        transform: translate(-55px, -185px) scale(1.3);
+        opacity: 1;
+        animation-timing-function: cubic-bezier(0.28, 0.82, 0.45, 1);
+      }
+      100% {
+        transform: translate(-95px, -70px) scale(0.8);
+        opacity: 0;
+      }
+    }
+
+    .mode-cannons .dt-5 {
+      animation: cannonBRDot5 1.50s forwards 0.04s;
+    }
+
+    @keyframes cannonBRDot5 {
+      0% {
+        transform: translate(10px, 15px) scale(0.1);
+        opacity: 0;
+        animation-timing-function: cubic-bezier(0.12, 0.92, 0.22, 1);
+      }
+      10% {
+        opacity: 1;
+      }
+      32% {
+        transform: translate(-85px, -180px) scale(1.3);
+        opacity: 1;
+        animation-timing-function: cubic-bezier(0.28, 0.82, 0.45, 1);
+      }
+      100% {
+        transform: translate(-130px, -65px) scale(0.8);
+        opacity: 0;
+      }
+    }
+
+    .mode-cannons .st-tl {
+      animation: cannonTLStar 1.60s forwards 0.02s;
+    }
+
+    @keyframes cannonTLStar {
+      0% {
+        transform: translate(-15px, -10px) scale(0.1) rotate(-25deg);
+        opacity: 0;
+        animation-timing-function: cubic-bezier(0.12, 0.92, 0.22, 1);
+      }
+      10% {
+        opacity: 1;
+      }
+      32% {
+        transform: translate(45px, 60px) scale(1.35) rotate(20deg);
+        opacity: 1;
+        animation-timing-function: cubic-bezier(0.28, 0.82, 0.45, 1);
+      }
+      100% {
+        transform: translate(95px, 175px) scale(0.8) rotate(65deg);
+        opacity: 0;
+      }
+    }
+
+    .mode-cannons .ch-tl {
+      animation: cannonTLChip 1.56s forwards 0.04s;
+    }
+
+    @keyframes cannonTLChip {
+      0% {
+        transform: translate(-15px, -10px) scale(0.15) rotate(-35deg);
+        opacity: 0;
+        animation-timing-function: cubic-bezier(0.12, 0.92, 0.22, 1);
+      }
+      10% {
+        opacity: 1;
+      }
+      32% {
+        transform: translate(55px, 70px) scale(1.2) rotate(25deg);
+        opacity: 1;
+        animation-timing-function: cubic-bezier(0.28, 0.82, 0.45, 1);
+      }
+      100% {
+        transform: translate(105px, 185px) scale(0.8) rotate(85deg);
+        opacity: 0;
+      }
+    }
+
+    .mode-cannons .dt-1 {
+      animation: cannonTLDot1 1.48s forwards 0.03s;
+    }
+
+    @keyframes cannonTLDot1 {
+      0% {
+        transform: translate(2px, -5px) scale(0.1);
+        opacity: 0;
+        animation-timing-function: cubic-bezier(0.12, 0.92, 0.22, 1);
+      }
+      10% {
+        opacity: 1;
+      }
+      32% {
+        transform: translate(35px, 50px) scale(1.3);
+        opacity: 1;
+        animation-timing-function: cubic-bezier(0.28, 0.82, 0.45, 1);
+      }
+      100% {
+        transform: translate(75px, 150px) scale(0.8);
+        opacity: 0;
+      }
+    }
+
+    .mode-cannons .dt-2 {
+      animation: cannonTLDot2 1.50s forwards 0.04s;
+    }
+
+    @keyframes cannonTLDot2 {
+      0% {
+        transform: translate(0px, 2px) scale(0.1);
+        opacity: 0;
+        animation-timing-function: cubic-bezier(0.12, 0.92, 0.22, 1);
+      }
+      10% {
+        opacity: 1;
+      }
+      32% {
+        transform: translate(40px, 55px) scale(1.3);
+        opacity: 1;
+        animation-timing-function: cubic-bezier(0.28, 0.82, 0.45, 1);
+      }
+      100% {
+        transform: translate(80px, 155px) scale(0.8);
+        opacity: 0;
+      }
+    }
+
+    .mode-cannons .st-tr {
+      animation: cannonTRStar 1.60s forwards 0.02s;
+    }
+
+    @keyframes cannonTRStar {
+      0% {
+        transform: translate(15px, -10px) scale(0.1) rotate(25deg);
+        opacity: 0;
+        animation-timing-function: cubic-bezier(0.12, 0.92, 0.22, 1);
+      }
+      10% {
+        opacity: 1;
+      }
+      32% {
+        transform: translate(-45px, 60px) scale(1.35) rotate(-20deg);
+        opacity: 1;
+        animation-timing-function: cubic-bezier(0.28, 0.82, 0.45, 1);
+      }
+      100% {
+        transform: translate(-95px, 175px) scale(0.8) rotate(-65deg);
+        opacity: 0;
+      }
+    }
+
+    .mode-cannons .ch-tr {
+      animation: cannonTRChip 1.56s forwards 0.04s;
+    }
+
+    @keyframes cannonTRChip {
+      0% {
+        transform: translate(15px, -10px) scale(0.15) rotate(35deg);
+        opacity: 0;
+        animation-timing-function: cubic-bezier(0.12, 0.92, 0.22, 1);
+      }
+      10% {
+        opacity: 1;
+      }
+      32% {
+        transform: translate(-55px, 70px) scale(1.2) rotate(-25deg);
+        opacity: 1;
+        animation-timing-function: cubic-bezier(0.28, 0.82, 0.45, 1);
+      }
+      100% {
+        transform: translate(-105px, 185px) scale(0.8) rotate(-85deg);
+        opacity: 0;
+      }
+    }
+
+    .mode-cannons .dt-3 {
+      animation: cannonTRDot3 1.48s forwards 0.03s;
+    }
+
+    @keyframes cannonTRDot3 {
+      0% {
+        transform: translate(5px, -5px) scale(0.1);
+        opacity: 0;
+        animation-timing-function: cubic-bezier(0.12, 0.92, 0.22, 1);
+      }
+      10% {
+        opacity: 1;
+      }
+      32% {
+        transform: translate(-35px, 50px) scale(1.3);
+        opacity: 1;
+        animation-timing-function: cubic-bezier(0.28, 0.82, 0.45, 1);
+      }
+      100% {
+        transform: translate(-75px, 150px) scale(0.8);
+        opacity: 0;
+      }
+    }
+
+    /* --------------------------------------------------------- */
+
+    /* 【模式二：中心放射爆开】中心弹芯 ➜ 360°爆散 (安全画框内) ➜ 单调重力沉降 */
+
+    /* 严格限制位移在画布 [15, 540] 内，绝不出界；单拐点连续曲线，零卡顿 */
+
+    /* --------------------------------------------------------- */
+
+    .mode-radial .ribbon-bl {
+      animation: radialBLRibbon 1.60s forwards 0.01s;
+    }
+
+    @keyframes radialBLRibbon {
+      0% {
+        transform: translate(246px, -189px) scale(0.08) rotate(45deg);
+        opacity: 0;
+        animation-timing-function: cubic-bezier(0.12, 0.92, 0.22, 1);
+      }
+      10% {
+        opacity: 1;
+      }
+      34% {
+        transform: translate(18px, -25px) scale(1.08) rotate(-10deg);
+        opacity: 1;
+        animation-timing-function: cubic-bezier(0.28, 0.82, 0.45, 1);
+      }
+      100% {
+        transform: translate(32px, 10px) scale(0.9) rotate(15deg);
+        opacity: 0;
+      }
+    }
+
+    .mode-radial .ch-bl-1 {
+      animation: radialBLChip1 1.56s forwards 0.03s;
+    }
+
+    @keyframes radialBLChip1 {
+      0% {
+        transform: translate(219px, -204px) scale(0.08) rotate(35deg);
+        opacity: 0;
+        animation-timing-function: cubic-bezier(0.12, 0.92, 0.22, 1);
+      }
+      10% {
+        opacity: 1;
+      }
+      34% {
+        transform: translate(5px, -30px) scale(1.15) rotate(-25deg);
+        opacity: 1;
+        animation-timing-function: cubic-bezier(0.28, 0.82, 0.45, 1);
+      }
+      100% {
+        transform: translate(22px, 5px) scale(0.85) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    .mode-radial .ch-bl-2 {
+      animation: radialBLChip2 1.54s forwards 0.04s;
+    }
+
+    @keyframes radialBLChip2 {
+      0% {
+        transform: translate(260px, -163px) scale(0.08) rotate(-25deg);
+        opacity: 0;
+        animation-timing-function: cubic-bezier(0.12, 0.92, 0.22, 1);
+      }
+      10% {
+        opacity: 1;
+      }
+      34% {
+        transform: translate(16px, -18px) scale(1.12) rotate(25deg);
+        opacity: 1;
+        animation-timing-function: cubic-bezier(0.28, 0.82, 0.45, 1);
+      }
+      100% {
+        transform: translate(32px, 12px) scale(0.85) rotate(-35deg);
+        opacity: 0;
+      }
+    }
+
+    .mode-radial .ribbon-br1 {
+      animation: radialBRRibbon1 1.62s forwards 0.02s;
+    }
+
+    @keyframes radialBRRibbon1 {
+      0% {
+        transform: translate(-254px, -186px) scale(0.08) rotate(-45deg);
+        opacity: 0;
+        animation-timing-function: cubic-bezier(0.12, 0.92, 0.22, 1);
+      }
+      10% {
+        opacity: 1;
+      }
+      34% {
+        transform: translate(-22px, -25px) scale(1.08) rotate(10deg);
+        opacity: 1;
+        animation-timing-function: cubic-bezier(0.28, 0.82, 0.45, 1);
+      }
+      100% {
+        transform: translate(-38px, 10px) scale(0.9) rotate(-15deg);
+        opacity: 0;
+      }
+    }
+
+    .mode-radial .ribbon-br2 {
+      animation: radialBRRibbon2 1.56s forwards 0.04s;
+    }
+
+    @keyframes radialBRRibbon2 {
+      0% {
+        transform: translate(-239px, -215px) scale(0.08) rotate(-30deg);
+        opacity: 0;
+        animation-timing-function: cubic-bezier(0.12, 0.92, 0.22, 1);
+      }
+      10% {
+        opacity: 1;
+      }
+      34% {
+        transform: translate(-18px, -30px) scale(1.08) rotate(15deg);
+        opacity: 1;
+        animation-timing-function: cubic-bezier(0.28, 0.82, 0.45, 1);
+      }
+      100% {
+        transform: translate(-32px, 5px) scale(0.88) rotate(-20deg);
+        opacity: 0;
+      }
+    }
+
+    .mode-radial .st-br {
+      animation: radialBRStar 1.58s forwards 0.02s;
+    }
+
+    @keyframes radialBRStar {
+      0% {
+        transform: translate(-111px, -200px) scale(0.08) rotate(30deg);
+        opacity: 0;
+        animation-timing-function: cubic-bezier(0.12, 0.92, 0.22, 1);
+      }
+      10% {
+        opacity: 1;
+      }
+      34% {
+        transform: translate(-10px, -20px) scale(1.3) rotate(-20deg);
+        opacity: 1;
+        animation-timing-function: cubic-bezier(0.28, 0.82, 0.45, 1);
+      }
+      100% {
+        transform: translate(-20px, 10px) scale(0.8) rotate(40deg);
+        opacity: 0;
+      }
+    }
+
+    .mode-radial .ch-br-1 {
+      animation: radialBRChip1 1.54s forwards 0.05s;
+    }
+
+    @keyframes radialBRChip1 {
+      0% {
+        transform: translate(-222px, -194px) scale(0.08) rotate(30deg);
+        opacity: 0;
+        animation-timing-function: cubic-bezier(0.12, 0.92, 0.22, 1);
+      }
+      10% {
+        opacity: 1;
+      }
+      34% {
+        transform: translate(-20px, -25px) scale(1.15) rotate(-30deg);
+        opacity: 1;
+        animation-timing-function: cubic-bezier(0.28, 0.82, 0.45, 1);
+      }
+      100% {
+        transform: translate(-35px, 10px) scale(0.85) rotate(50deg);
+        opacity: 0;
+      }
+    }
+
+    .mode-radial .ch-br-2 {
+      animation: radialBRChip2 1.52s forwards 0.04s;
+    }
+
+    @keyframes radialBRChip2 {
+      0% {
+        transform: translate(-163px, -219px) scale(0.08) rotate(-25deg);
+        opacity: 0;
+        animation-timing-function: cubic-bezier(0.12, 0.92, 0.22, 1);
+      }
+      10% {
+        opacity: 1;
+      }
+      34% {
+        transform: translate(-16px, -25px) scale(1.12) rotate(30deg);
+        opacity: 1;
+        animation-timing-function: cubic-bezier(0.28, 0.82, 0.45, 1);
+      }
+      100% {
+        transform: translate(-28px, 8px) scale(0.85) rotate(-45deg);
+        opacity: 0;
+      }
+    }
+
+    .mode-radial .dt-4 {
+      animation: radialBRDot4 1.48s forwards 0.03s;
+    }
+
+    @keyframes radialBRDot4 {
+      0% {
+        transform: translate(-78px, -219px) scale(0.08);
+        opacity: 0;
+        animation-timing-function: cubic-bezier(0.12, 0.92, 0.22, 1);
+      }
+      10% {
+        opacity: 1;
+      }
+      34% {
+        transform: translate(-10px, -22px) scale(1.25);
+        opacity: 1;
+        animation-timing-function: cubic-bezier(0.28, 0.82, 0.45, 1);
+      }
+      100% {
+        transform: translate(-18px, 5px) scale(0.8);
+        opacity: 0;
+      }
+    }
+
+    .mode-radial .dt-5 {
+      animation: radialBRDot5 1.50s forwards 0.04s;
+    }
+
+    @keyframes radialBRDot5 {
+      0% {
+        transform: translate(-195px, -171px) scale(0.08);
+        opacity: 0;
+        animation-timing-function: cubic-bezier(0.12, 0.92, 0.22, 1);
+      }
+      10% {
+        opacity: 1;
+      }
+      34% {
+        transform: translate(-18px, -20px) scale(1.25);
+        opacity: 1;
+        animation-timing-function: cubic-bezier(0.28, 0.82, 0.45, 1);
+      }
+      100% {
+        transform: translate(-30px, 8px) scale(0.8);
+        opacity: 0;
+      }
+    }
+
+    .mode-radial .st-tl {
+      animation: radialTLStar 1.60s forwards 0.02s;
+    }
+
+    @keyframes radialTLStar {
+      0% {
+        transform: translate(245px, 196px) scale(0.08) rotate(35deg);
+        opacity: 0;
+        animation-timing-function: cubic-bezier(0.12, 0.92, 0.22, 1);
+      }
+      10% {
+        opacity: 1;
+      }
+      34% {
+        transform: translate(18px, 18px) scale(1.3) rotate(-20deg);
+        opacity: 1;
+        animation-timing-function: cubic-bezier(0.28, 0.82, 0.45, 1);
+      }
+      100% {
+        transform: translate(35px, 65px) scale(0.8) rotate(40deg);
+        opacity: 0;
+      }
+    }
+
+    .mode-radial .ch-tl {
+      animation: radialTLChip 1.56s forwards 0.04s;
+    }
+
+    @keyframes radialTLChip {
+      0% {
+        transform: translate(192px, 177px) scale(0.08) rotate(-30deg);
+        opacity: 0;
+        animation-timing-function: cubic-bezier(0.12, 0.92, 0.22, 1);
+      }
+      10% {
+        opacity: 1;
+      }
+      34% {
+        transform: translate(8px, 15px) scale(1.15) rotate(25deg);
+        opacity: 1;
+        animation-timing-function: cubic-bezier(0.28, 0.82, 0.45, 1);
+      }
+      100% {
+        transform: translate(25px, 60px) scale(0.8) rotate(75deg);
+        opacity: 0;
+      }
+    }
+
+    .mode-radial .dt-1 {
+      animation: radialTLDot1 1.48s forwards 0.03s;
+    }
+
+    @keyframes radialTLDot1 {
+      0% {
+        transform: translate(277px, 177px) scale(0.08);
+        opacity: 0;
+        animation-timing-function: cubic-bezier(0.12, 0.92, 0.22, 1);
+      }
+      10% {
+        opacity: 1;
+      }
+      34% {
+        transform: translate(22px, 15px) scale(1.25);
+        opacity: 1;
+        animation-timing-function: cubic-bezier(0.28, 0.82, 0.45, 1);
+      }
+      100% {
+        transform: translate(38px, 55px) scale(0.8);
+        opacity: 0;
+      }
+    }
+
+    .mode-radial .dt-2 {
+      animation: radialTLDot2 1.50s forwards 0.04s;
+    }
+
+    @keyframes radialTLDot2 {
+      0% {
+        transform: translate(160px, 225px) scale(0.08);
+        opacity: 0;
+        animation-timing-function: cubic-bezier(0.12, 0.92, 0.22, 1);
+      }
+      10% {
+        opacity: 1;
+      }
+      34% {
+        transform: translate(10px, 20px) scale(1.25);
+        opacity: 1;
+        animation-timing-function: cubic-bezier(0.28, 0.82, 0.45, 1);
+      }
+      100% {
+        transform: translate(25px, 65px) scale(0.8);
+        opacity: 0;
+      }
+    }
+
+    .mode-radial .st-tr {
+      animation: radialTRStar 1.60s forwards 0.02s;
+    }
+
+    @keyframes radialTRStar {
+      0% {
+        transform: translate(-198px, 193px) scale(0.08) rotate(-35deg);
+        opacity: 0;
+        animation-timing-function: cubic-bezier(0.12, 0.92, 0.22, 1);
+      }
+      10% {
+        opacity: 1;
+      }
+      34% {
+        transform: translate(-18px, 18px) scale(1.3) rotate(20deg);
+        opacity: 1;
+        animation-timing-function: cubic-bezier(0.28, 0.82, 0.45, 1);
+      }
+      100% {
+        transform: translate(-35px, 65px) scale(0.8) rotate(-40deg);
+        opacity: 0;
+      }
+    }
+
+    .mode-radial .ch-tr {
+      animation: radialTRChip 1.56s forwards 0.04s;
+    }
+
+    @keyframes radialTRChip {
+      0% {
+        transform: translate(-231px, 206px) scale(0.08) rotate(30deg);
+        opacity: 0;
+        animation-timing-function: cubic-bezier(0.12, 0.92, 0.22, 1);
+      }
+      10% {
+        opacity: 1;
+      }
+      34% {
+        transform: translate(-18px, 18px) scale(1.15) rotate(-25deg);
+        opacity: 1;
+        animation-timing-function: cubic-bezier(0.28, 0.82, 0.45, 1);
+      }
+      100% {
+        transform: translate(-32px, 60px) scale(0.8) rotate(-75deg);
+        opacity: 0;
+      }
+    }
+
+    .mode-radial .dt-3 {
+      animation: radialTRDot3 1.48s forwards 0.03s;
+    }
+
+    @keyframes radialTRDot3 {
+      0% {
+        transform: translate(-179px, 181px) scale(0.08);
+        opacity: 0;
+        animation-timing-function: cubic-bezier(0.12, 0.92, 0.22, 1);
+      }
+      10% {
+        opacity: 1;
+      }
+      34% {
+        transform: translate(-15px, 15px) scale(1.25);
+        opacity: 1;
+        animation-timing-function: cubic-bezier(0.28, 0.82, 0.45, 1);
+      }
+      100% {
+        transform: translate(-28px, 55px) scale(0.8);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 顶部控制栏：支持模式一/模式二无缝切换对比 -->
+  <div class="top-bar">
+    <div class="mode-group">
+      <button class="mode-btn active" id="btnModeCannons">🎉 模式一：四角礼花筒 (抛物冲天飘落)</button>
+      <button class="mode-btn" id="btnModeRadial">💥 模式二：中心放射爆开 (漫天炸裂)</button>
+    </div>
+    <button class="action-btn" id="btnSpray">✨ 触发礼花</button>
+    <button class="toggle-btn" id="btnSlow">⏱ 慢放: 关</button>
+    <button class="toggle-btn" id="btnAuto">自动连喷: 关</button>
+  </div>
+
+  <div class="ribbon-wrapper mode-cannons" id="ribbonScene">
+    <svg viewBox="0 0 558 454" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- 原官方专属渐变色值 -->
+        <linearGradient id="paint0_linear_5422_72577" x1="13.9062" y1="395.711" x2="55.5763" y2="395.711" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#FFF1C4"/>
+          <stop offset="0.42" stop-color="#DDC08C"/>
+          <stop offset="1" stop-color="#F9DEA7"/>
+        </linearGradient>
+        <linearGradient id="paint1_linear_5422_72577" x1="513.259" y1="384" x2="558" y2="384" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#E7BED5"/>
+          <stop offset="0.58" stop-color="#B48EB7"/>
+          <stop offset="1" stop-color="#806193"/>
+        </linearGradient>
+        <linearGradient id="paint2_linear_5422_72577" x1="511.213" y1="430" x2="528" y2="430" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#FFF1C4"/>
+          <stop offset="0.42" stop-color="#DDC08C"/>
+          <stop offset="1" stop-color="#F9DEA7"/>
+        </linearGradient>
+      </defs>
+
+      <!-- ========================================================= -->
+      <!-- 1. [左下角] 金色彩带 + 纸屑（从左下角向上喷洒飘散） -->
+      <!-- ========================================================= -->
+      <path class="ribbon-elem ribbon-bl" d="M34.9999 431C13.9999 422 19.9999 406 32.9999 403C47.9999 399 56.9999 412 50.9999 421C46.9999 428 37.9999 424 38.9999 418C32.9999 423 39.9999 431 47.9999 426C61.9999 418 54.9999 397 39.9999 396C19.9999 393 4.99989 414 19.9999 429C25.9999 435 33.9999 438 41.9999 439L34.9999 431Z" fill="url(#paint0_linear_5422_72577)"/>
+      <path class="ribbon-elem ch-bl-1" d="M57 422L67 425L62 439L53 435L57 422Z" fill="#D6B5D8"/>
+      <path class="ribbon-elem ch-bl-2" d="M13 391L17 385L24 389L20 395L13 391Z" fill="#F9DEA7"/>
+
+      <!-- ========================================================= -->
+      <!-- 2. [右下角] 双彩带 + 纸屑 + 星火（从右下角向内喷洒飘散） -->
+      <!-- ========================================================= -->
+      <path class="ribbon-elem ribbon-br1" d="M540 391C559 403 549 422 536 423C523 424 519 412 526 408C532 404 537 410 534 414C542 413 540 402 532 401C515 397 507 416 519 427C533 441 558 424 558 408C558 398 550 389 543 384L540 391Z" fill="url(#paint1_linear_5422_72577)"/>
+      <path class="ribbon-elem ribbon-br2" d="M523 430C512 437 508 446 514 454L524 453C518 447 520 441 528 436L523 430Z" fill="url(#paint2_linear_5422_72577)"/>
+      <path class="ribbon-elem ch-br-1" d="M494 417L502 413L508 423L500 428L494 417Z" fill="#EDD69E"/>
+      <g class="ribbon-elem st-br">
+        <path d="M390 421L391.5 426L396.5 427.5L391.5 429L390 434L388.5 429L383.5 427.5L388.5 426L390 421Z" fill="#FBEAB9"/>
+      </g>
+      <path class="ribbon-elem ch-br-2" d="M437 444L443 441L447 448L441 451L437 444Z" fill="#D3AAD3"/>
+      <path class="ribbon-elem dt-4" d="M357 447.5C357.828 447.5 358.5 446.828 358.5 446C358.5 445.172 357.828 444.5 357 444.5C356.172 444.5 355.5 445.172 355.5 446C355.5 446.828 356.172 447.5 357 447.5Z" fill="#FBEAB9"/>
+      <path class="ribbon-elem dt-5" d="M474 399.5C474.828 399.5 475.5 398.828 475.5 398C475.5 397.172 474.828 396.5 474 396.5C473.172 396.5 472.5 397.172 472.5 398C472.5 398.828 473.172 399.5 474 399.5Z" fill="#E7BED5"/>
+
+      <!-- ========================================================= -->
+      <!-- 3. [左上角] 氛围星火与碎屑（从左上角向内喷洒飘散） -->
+      <!-- ========================================================= -->
+      <g class="ribbon-elem st-tl">
+        <path d="M34.5 24.5L36 29.5L41 31L36 32.5L34.5 37.5L33 32.5L28 31L33 29.5L34.5 24.5Z" fill="#FBEAB9"/>
+      </g>
+      <path class="ribbon-elem ch-tl" d="M81.5 47.5L87.5 44.5L91.5 51.5L85.5 54.5L81.5 47.5Z" fill="#D3AAD3"/>
+      <path class="ribbon-elem dt-1" d="M1.5 51C2.32843 51 3 50.3284 3 49.5C3 48.6716 2.32843 48 1.5 48C0.671573 48 0 48.6716 0 49.5C0 50.3284 0.671573 51 1.5 51Z" fill="#FBEAB9"/>
+      <path class="ribbon-elem dt-2" d="M118.5 3C119.328 3 120 2.32843 120 1.5C120 0.671573 119.328 0 118.5 0C117.672 0 117 0.671573 117 1.5C117 2.32843 117.672 3 118.5 3Z" fill="#E7BED5"/>
+
+      <!-- ========================================================= -->
+      <!-- 4. [右上角] 氛围星火与碎屑（从右上角向内喷洒飘散） -->
+      <!-- ========================================================= -->
+      <g class="ribbon-elem st-tr">
+        <path d="M477 26L479 32L485 34L479 36L477 42L475 36L469 34L475 32L477 26Z" fill="#F9E8AD"/>
+      </g>
+      <path class="ribbon-elem ch-tr" d="M508 15L515 18L511 27L504 24L508 15Z" fill="#D6B5D8"/>
+      <path class="ribbon-elem dt-3" d="M458 47.5C458.828 47.5 459.5 46.8284 459.5 46C459.5 45.1716 458.828 44.5 458 44.5C457.172 44.5 456.5 45.1716 456.5 46C456.5 46.8284 457.172 47.5 458 47.5Z" fill="#FBEAB9"/>
+    </svg>
+  </div>
+
+  <div class="bottom-hint" id="hintBar">
+    <strong>【四角礼花筒】</strong> 0.3s 极速斜冲高空 (-220px) ➜ 滞空翻卷 ➜ 重力优雅飘落漫天消散 (点击屏幕触发)
+  </div>
+
+  <script>
+    const ribbonScene = document.getElementById("ribbonScene");
+    const btnModeCannons = document.getElementById("btnModeCannons");
+    const btnModeRadial = document.getElementById("btnModeRadial");
+    const btnSpray = document.getElementById("btnSpray");
+    const btnSlow = document.getElementById("btnSlow");
+    const btnAuto = document.getElementById("btnAuto");
+    const hintBar = document.getElementById("hintBar");
+
+    let currentMode = "cannons"; // 'cannons' | 'radial'
+    let isSlow = false;
+    let isAuto = false;
+    let autoInterval = null;
+
+    // 触发单次礼花动效
+    function triggerSpray() {
+      ribbonScene.classList.remove("mode-cannons", "mode-radial");
+      void ribbonScene.offsetWidth; // 触发回流重绘
+      ribbonScene.classList.add(currentMode === "cannons" ? "mode-cannons" : "mode-radial");
+    }
+
+    // 模式切换
+    function setMode(mode) {
+      currentMode = mode;
+      btnModeCannons.classList.toggle("active", mode === "cannons");
+      btnModeRadial.classList.toggle("active", mode === "radial");
+      if (mode === "cannons") {
+        hintBar.innerHTML = "<strong>【四角礼花筒】</strong> 0.3s 极速斜冲高空 (-220px) ➜ 滞空翻卷 ➜ 重力优雅飘落漫天消散 (点击屏幕触发)";
+      } else {
+        hintBar.innerHTML = "<strong>【中心放射爆开】</strong> 所有图元从中心弹芯 360° 爆射展开 ➜ 舒展翻飞 ➜ 重力漫天消散 (点击屏幕触发)";
+      }
+      triggerSpray();
+    }
+
+    btnModeCannons.addEventListener("click", (e) => {
+      e.stopPropagation();
+      setMode("cannons");
+    });
+
+    btnModeRadial.addEventListener("click", (e) => {
+      e.stopPropagation();
+      setMode("radial");
+    });
+
+    // 慢动作切换
+    btnSlow.addEventListener("click", (e) => {
+      e.stopPropagation();
+      isSlow = !isSlow;
+      btnSlow.classList.toggle("active", isSlow);
+      btnSlow.textContent = "⏱ 慢放: " + (isSlow ? "开 (0.4x)" : "关");
+      ribbonScene.classList.toggle("slow-motion", isSlow);
+      triggerSpray();
+    });
+
+    // 触发按钮
+    btnSpray.addEventListener("click", (e) => {
+      e.stopPropagation();
+      triggerSpray();
+    });
+
+    // 自动连续喷出
+    btnAuto.addEventListener("click", (e) => {
+      e.stopPropagation();
+      isAuto = !isAuto;
+      btnAuto.classList.toggle("active", isAuto);
+      btnAuto.textContent = "自动连喷: " + (isAuto ? "开" : "关");
+      if (isAuto) {
+        triggerSpray();
+        autoInterval = setInterval(triggerSpray, isSlow ? 4500 : 2200);
+      } else {
+        clearInterval(autoInterval);
+      }
+    });
+
+    // 点击背景任意位置喷出
+    document.body.addEventListener("click", () => {
+      triggerSpray();
+    });
+
+    // 初始进入页面播放一次
+    setTimeout(triggerSpray, 180);
+  </script>
+</body>
+</html>
