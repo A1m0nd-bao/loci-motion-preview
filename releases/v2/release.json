@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "date": "2026-11-10",
+  "date": "2026-11-11",
   "components": [
     {
       "id": "sipplay-plus-arrow-toggle",
@@ -89,10 +89,10 @@
       "usage": "gift-pop/USAGE.md",
       "states": [
         "idle-sparkle",
-        "opening"
+        "burst-sparkles"
       ],
-      "duration": 0.92,
-      "size": "31×26"
+      "duration": 0.48,
+      "size": "32×26"
     },
     {
       "id": "sipplay-paper-plane",

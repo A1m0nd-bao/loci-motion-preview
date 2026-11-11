@@ -5,22 +5,23 @@
 <title>礼盒轻弹 · Sipplay v2</title>
 <style>
 :root{color-scheme:dark;font:14px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#0a0c10;color:#f5f2fa}*{box-sizing:border-box}body{margin:0;min-height:100svh;display:grid;place-items:center;padding:32px 18px}main{width:min(100%,460px);text-align:center}h1{font-size:19px;font-weight:550;margin:0 0 12px}.hint{color:#9c96a3;font-size:13px;line-height:1.7;margin:0}.zoom{display:grid;place-items:center;height:228px;margin:22px 0 0;border:1px solid #24212b;border-radius:24px;background:radial-gradient(ellipse at 50% 60%,#251d2d 0%,#121117 65%)}.zoom sipplay-gift-pop{transform:scale(4)}.caption{font-size:11px;color:#79737f;margin:12px 0 28px}.originals{display:flex;justify-content:center;gap:48px}.sample{display:grid;justify-items:center;gap:8px;color:#928b99;font-size:12px}.reference{width:44px;height:44px;display:grid;place-items:center}.reference img{display:block}.controls{display:flex;justify-content:center;gap:10px;margin:30px 0 16px}.controls button{border:1px solid #3d3447;background:#211b29;color:#f0e6f7;border-radius:10px;padding:10px 18px;font:inherit;font-size:12px;cursor:pointer}.controls button:focus-visible{outline:1px solid #dbc48a;outline-offset:3px}.controls button[aria-pressed=false]{background:transparent;color:#aaa0b2}.note{margin-top:30px!important;font-size:11px;color:#79737f;line-height:1.8;margin:0} @media(max-width:380px){.originals{gap:32px}}
-.release-downloads{display:flex;justify-content:center;flex-wrap:wrap;gap:18px;margin-top:24px}.release-downloads a{font-size:12px;color:#bcb4c5;text-decoration:none;border-bottom:1px solid #51475b;padding-bottom:3px}.compact body{width:260px;height:220px;min-height:0;padding:0;overflow:hidden}.compact main{width:260px;height:220px}.compact h1,.compact .hint,.compact .caption,.compact .originals,.compact .note,.compact .release-downloads{display:none}.compact .zoom{width:260px;height:220px;margin:0;border:0;border-radius:0;background:#0a0c10}</style><script>if(new URLSearchParams(location.search).has("compact"))document.documentElement.classList.add("compact");</script>
+.release-downloads{display:flex;justify-content:center;flex-wrap:wrap;gap:18px;margin-top:24px}.release-downloads a{font-size:12px;color:#bcb4c5;text-decoration:none;border-bottom:1px solid #51475b;padding-bottom:3px}
+.compact body{width:260px;height:220px;min-height:0;padding:0;overflow:hidden}.compact main{width:260px;height:220px}.compact h1,.compact .hint,.compact .caption,.compact .originals,.compact .note,.compact .release-downloads{display:none}.compact .zoom{width:260px;height:220px;margin:0;border:0;border-radius:0;background:#0a0c10}</style><script>if(new URLSearchParams(location.search).has("compact"))document.documentElement.classList.add("compact");</script>
 </head>
 <body>
 <main>
   <h1>礼盒轻弹</h1>
-  <p class="hint">常态星星持续闪烁<br>鼠标移入或点击礼盒，盒盖斜开再落回</p>
+  <p class="hint">常态三颗星辰持续闪烁<br>快节奏自动轻弹迸发璀璨星芒与光斑，点击亦可立即触发</p>
   <div class="zoom"><sipplay-gift-pop label="播放礼盒动效，四倍预览"></sipplay-gift-pop></div>
   <p class="caption">4× 细节预览</p>
   <div class="originals">
-    <div class="sample"><sipplay-gift-pop label="播放礼盒动效，原始尺寸"></sipplay-gift-pop><span>原始尺寸 · 31 × 26</span></div>
-    <div class="sample"><div class="reference"><img src="./reference.svg" width="31" height="26" alt="礼盒原始设计稿"></div><span>原稿对照</span></div>
+    <div class="sample"><sipplay-gift-pop label="播放礼盒动效，原始尺寸"></sipplay-gift-pop><span>原始尺寸 · 32 × 26</span></div>
+    <div class="sample"><div class="reference"><img src="./reference.svg" width="32" height="26" alt="礼盒原始设计稿"></div><span>原稿对照</span></div>
   </div>
-  <p class="note">盒盖约 0.92 秒 · 星光持续闪烁</p>
-<nav class="release-downloads" aria-label="下载与接入"><a href="./gift-pop.html" download>下载 HTML</a><a href="./source.zip" download>下载源码包</a><a href="./USAGE.md">接入说明</a></nav></main>
+  <p class="note">盒盖约 0.48 秒轻快轻弹 · 约 1.4 秒周期性迸发 · 璀璨星芒与光斑高能漫溢</p>
+<nav class="release-downloads" aria-label="下载与接入"><a href="./gift-pop.html" download>下载 HTML</a><a href="./source.zip" download>下载源码包</a><a href="./sipplay-v2-gift-pop.json" download>下载 Lottie JSON</a><a href="./USAGE.md">接入说明</a></nav></main>
 <script type="module">
-import './gift-pop.js?v=hover3';
+import './gift-pop.js?v=v2-burst-20261111';
 const icons=[...document.querySelectorAll('sipplay-gift-pop')];
 document.addEventListener('visibilitychange',()=>{
   for(const icon of icons){

@@ -63,11 +63,11 @@ const publishedV2 = [
   {
     "id": "sipplay-gift-pop",
     "name": "礼盒轻弹",
-    "note": "常态星光错落闪烁 · 鼠标移入或点击，盒盖斜开后柔和落回",
+    "note": "常态三颗星辰错落闪烁 · 快节奏轻弹迸发璀璨星芒与光斑",
     "file": "./releases/v2/gift-pop/index.html",
     "download": "./releases/v2/gift-pop/gift-pop.html",
     "symbol": "✧",
-    "tags": "礼物 礼盒 星光 悬停 点击 斜开",
+    "tags": "礼物 礼盒 星光 星辰 悬停 点击 斜开 迸发 闪烁 星芒 gift pop",
     "published": true
   },
   {
@@ -1636,7 +1636,7 @@ async function openReleaseDetail(item) {
   frame.src = item.file; releaseDetailStage.append(loading, frame);
   if (!releaseDetailDialog.open) releaseDetailDialog.showModal();
   try {
-    releaseManifestPromise ||= fetch('./releases/v2/release.json?v=reward-ticket-20261110').then(response => {
+    releaseManifestPromise ||= fetch('./releases/v2/release.json?v=gift-pop-v2-20261111').then(response => {
       if (!response.ok) throw new Error('manifest'); return response.json();
     }).catch(error => { releaseManifestPromise = null; throw error; });
     const manifest = await releaseManifestPromise;

@@ -1,6 +1,36 @@
 {
   "items": [
     {
+      "name": "礼盒轻弹 · 星芒迸发与常态星辰",
+      "fileName": "sipplay-v2-gift-pop.json",
+      "file": "./lotties/未分类/sipplay-v2-gift-pop.json",
+      "kind": "lottie",
+      "kindLabel": "Lottie",
+      "category": "未分类",
+      "interactionType": "轻弹迸发",
+      "tags": [
+        "礼盒",
+        "礼物",
+        "星芒",
+        "迸发",
+        "轻弹",
+        "星辰",
+        "gift",
+        "pop",
+        "sparkle",
+        "sipplay",
+        "v2"
+      ],
+      "mimeType": "application/json",
+      "width": 32,
+      "height": 26,
+      "frameRate": 60,
+      "frames": 84,
+      "duration": 1.4,
+      "firstSeenAt": "2026-11-11T19:58:00+08:00",
+      "updatedAt": "2026-11-11T19:58:00.000Z"
+    },
+    {
       "name": "左向引导箭头 · 呼吸拖尾发光",
       "fileName": "arrow_left_breathing_glow.json",
       "file": "./lotties/未分类/arrow_left_breathing_glow.json",
