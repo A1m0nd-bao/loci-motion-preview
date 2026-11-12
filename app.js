@@ -9,6 +9,8 @@ if (import.meta.env?.DEV) document.querySelector("#motionStudioLocal").hidden = 
 const isInteractiveKind = kind => kind === "web" || kind === "motion";
 const isLocalPreview = ["localhost", "127.0.0.1", "[::1]"].includes(location.hostname);
 let selectedWebRelease = "v1";
+let selectedLottieColumn = "all";
+let selectedRefFilter = "all";
 const publishedV2 = [
   {
     "id": "sipplay-plus-arrow-toggle",
@@ -507,8 +509,33 @@ function render() {
   const selectedKind = kindSelect.value;
   showConvertedEntry(!isHome && selectedKind === 'lottie');
   const selectedCategory = category.value;
+  const isLottie = !isHome && selectedKind === "lottie";
   const showV2 = !isHome && selectedKind === "web" && selectedWebRelease === "v2";
   const filteredDrafts = v2Entries.filter(item => !query || `${item.name} ${item.note} ${item.tags}`.toLowerCase().includes(query));
+
+  // Lottie reference column & filter controls
+  const lottieReleaseSection = document.querySelector("#lottieReleaseSection");
+  const lottieReferenceIntro = document.querySelector("#lottieReferenceIntro");
+  if (lottieReleaseSection) lottieReleaseSection.hidden = !isLottie;
+  if (lottieReferenceIntro) lottieReferenceIntro.hidden = !isLottie || selectedLottieColumn !== "reference";
+
+  const allLotties = motions.filter((m) => m.kind === "lottie");
+  const refLotties = allLotties.filter((m) => m.category === "精选参考" || m.isReference);
+  const prodLotties = allLotties.filter((m) => m.category !== "精选参考" && !m.isReference);
+
+  const elAll = document.querySelector("#lottieTabCountAll");
+  const elRef = document.querySelector("#lottieTabCountRef");
+  const elProd = document.querySelector("#lottieTabCountProd");
+  if (elAll) elAll.textContent = String(allLotties.length);
+  if (elRef) elRef.textContent = String(refLotties.length);
+  if (elProd) elProd.textContent = String(prodLotties.length);
+
+  document.querySelectorAll("[data-lottie-tab]").forEach((btn) => {
+    btn.setAttribute("aria-pressed", String(btn.dataset.lottieTab === selectedLottieColumn));
+  });
+  document.querySelectorAll("[data-ref-filter]").forEach((btn) => {
+    btn.classList.toggle("active", btn.dataset.refFilter === selectedRefFilter);
+  });
 
   document.body.classList.toggle("is-home-view", isHome);
   visibleMotions = isHome ? motions : motions.filter((item) => {
@@ -518,7 +545,24 @@ function render() {
     const matchesSearch = !query || haystack.includes(query);
     const matchesKind = selectedKind === "all" || item.kind === selectedKind;
     const matchesCategory = selectedCategory === "all" || item.category === selectedCategory;
-    return matchesSearch && matchesKind && matchesCategory;
+
+    let matchesLottieColumn = true;
+    if (isLottie) {
+      const isRef = item.category === "精选参考" || item.isReference;
+      if (selectedLottieColumn === "reference") {
+        matchesLottieColumn = isRef;
+        if (matchesLottieColumn && selectedRefFilter !== "all") {
+          if (selectedRefFilter === "sm") matchesLottieColumn = Boolean(item.hasStateMachine);
+          else if (selectedRefFilter === "guide") matchesLottieColumn = item.subcategory === "引导与微反馈";
+          else if (selectedRefFilter === "load") matchesLottieColumn = item.subcategory === "加载与形态变换";
+          else if (selectedRefFilter === "celebrate") matchesLottieColumn = item.subcategory === "庆典与特效";
+        }
+      } else if (selectedLottieColumn === "product") {
+        matchesLottieColumn = !isRef;
+      }
+    }
+
+    return matchesSearch && matchesKind && matchesCategory && matchesLottieColumn;
   });
 
   // Embedded component runtimes must be torn down when filters replace their cards.
@@ -664,8 +708,16 @@ function createCard(motion) {
   title.textContent = getMotionTitle(motion);
   path.textContent = motion.file;
   path.title = motion.file;
-  resolution.textContent = "规格 --";
-  badge.textContent = motion.kindLabel || labelForKind(motion.kind);
+  resolution.textContent = motion.width && motion.height ? `${motion.width} × ${motion.height}` : "规格 --";
+  if (motion.hasStateMachine) {
+    badge.textContent = "⚡ 状态机";
+    badge.classList.add("badge-state-machine");
+  } else if (motion.isReference || motion.isDotLottie) {
+    badge.textContent = "dotLottie";
+    badge.classList.add("badge-reference");
+  } else {
+    badge.textContent = motion.kindLabel || labelForKind(motion.kind);
+  }
   openLink.href = motion.file;
   downloadLink.href = motion.file;
   downloadLink.download = getDownloadName(motion);
@@ -829,6 +881,8 @@ async function openDetail(motion, family = motion.variants ? motion : null) {
   detailHost.dataset.kind = motion.kind;
   setupWebDetail(motion, () => detailController);
   renderFamilyPanel(family, motion, (variant, group) => openDetail(variant, group));
+  renderStateMachinePanel(motion, () => detailController);
+  setupDotLottieActions(motion);
   if (family) detailLoop.checked = motion.playbackSegment === "loop" || motion.sourceComponent === "sipplay-voice-wave";
   detailTags.replaceChildren();
 
@@ -864,6 +918,48 @@ function createMediaController(host, motion, options = {}) {
 }
 
 function createLottieController(host, motion, options = {}) {
+  if (motion.file?.endsWith(".lottie") || motion.isDotLottie) {
+    const player = document.createElement("dotlottie-wc");
+    player.setAttribute("src", motion.file);
+    player.setAttribute("autoplay", "");
+    if (motion.hasStateMachine && motion.stateMachineId) {
+      player.setAttribute("stateMachineId", motion.stateMachineId);
+    } else {
+      player.setAttribute("loop", "");
+    }
+    player.style.width = "100%";
+    player.style.height = "100%";
+    player.style.display = "block";
+    host.append(player);
+
+    const readyPromise = new Promise((resolve) => {
+      player.addEventListener("load", () => resolve(), { once: true });
+      player.addEventListener("ready", () => resolve(), { once: true });
+      setTimeout(resolve, 800);
+    });
+
+    return {
+      element: player,
+      ready: () => readyPromise,
+      play: () => player.play?.(),
+      pause: () => player.pause?.(),
+      showPoster: () => {},
+      setLoop: (value) => player.toggleAttribute("loop", value),
+      setSpeed: (value) => player.setSpeed?.(value),
+      seek: (frame) => player.setFrame?.(frame),
+      getFrame: () => Number(player.currentFrame || 0),
+      destroy: () => player.pause?.(),
+      stateMachineLoad: (id) => player.stateMachineLoad?.(id),
+      stateMachineStart: () => player.stateMachineStart?.(),
+      stateMachineStop: () => player.stateMachineStop?.(),
+      stateMachineFireEvent: (name) => player.stateMachineFireEvent?.(name),
+      stateMachineSetBooleanInput: (name, val) => player.stateMachineSetBooleanInput?.(name, val),
+      stateMachineSetNumericInput: (name, val) => player.stateMachineSetNumericInput?.(name, val),
+      stateMachineGetCurrentState: () => player.stateMachineGetCurrentState?.(),
+      stateMachineGetInputs: () => player.stateMachineGetInputs?.(),
+    };
+  }
+
   const player = document.createElement("lottie-player");
   player.setAttribute("background", "transparent");
   player.setAttribute("loading", "lazy");
@@ -1158,7 +1254,17 @@ function fitWithin(width, height, maxWidth, maxHeight) {
 async function getMotionInfo(motion) {
   if (motionInfoCache.has(motion.file)) return motionInfoCache.get(motion.file);
   let info;
-  if (motion.kind === "lottie") info = await getLottieInfo(motion.file);
+  if (motion.width && motion.height && motion.duration) {
+    info = {
+      width: motion.width,
+      height: motion.height,
+      frameRate: motion.frameRate || 60,
+      frames: motion.frames || Math.round(motion.duration * (motion.frameRate || 60)),
+      duration: motion.duration,
+      inPoint: 0,
+      outPoint: motion.frames || Math.round(motion.duration * (motion.frameRate || 60))
+    };
+  } else if (motion.kind === "lottie") info = await getLottieInfo(motion.file);
   else if (motion.kind === "hevc" || motion.kind === "video") info = await getVideoInfo(motion.previewFile || motion.file);
   else if (motion.kind === "gif") info = await getImageInfo(motion.file);
   else info = { width: 0, height: 0, frames: 0, duration: 0, frameRate: 0 };
@@ -1518,9 +1624,30 @@ document.querySelectorAll(".tab").forEach((button) => {
   });
 });
 
+// Bind Lottie Column and Reference filter buttons
+document.querySelectorAll("[data-lottie-tab]").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    selectedLottieColumn = btn.dataset.lottieTab;
+    if (selectedLottieColumn === "reference") {
+      history.replaceState(null, "", `${location.pathname}${location.search}#lottie-reference`);
+    } else {
+      history.replaceState(null, "", `${location.pathname}${location.search}#lottie`);
+    }
+    render();
+  });
+});
+
+document.querySelectorAll("[data-ref-filter]").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    selectedRefFilter = btn.dataset.refFilter;
+    render();
+  });
+});
+
 loadManifest().then(() => {
   if (location.hash === '#web-v2') { selectedWebRelease = 'v2'; enterModule('web'); }
-  else if (["#web", "#motion"].includes(location.hash)) enterModule(location.hash.slice(1));
+  else if (location.hash === '#lottie-reference' || location.hash === '#reference') { selectedLottieColumn = 'reference'; enterModule('lottie'); }
+  else if (["#web", "#motion", "#lottie"].includes(location.hash)) enterModule(location.hash.slice(1));
 });
 window.setInterval(loadManifest, 30000);
 
@@ -1686,3 +1813,144 @@ async function openReleaseDetail(item) {
 document.querySelector('#releaseDetailClose').addEventListener('click', () => releaseDetailDialog.close());
 releaseDetailDialog.addEventListener('click', event => { if (event.target === releaseDetailDialog) releaseDetailDialog.close(); });
 releaseDetailDialog.addEventListener('close', () => { releaseDetailEpoch++; releaseDetailStage.replaceChildren(); });
+
+function renderStateMachinePanel(motion, getController) {
+  const panel = document.querySelector("#dotLottieStateMachinePanel");
+  if (!panel) return;
+  if (!motion || !motion.hasStateMachine || !motion.stateMachines?.length) {
+    panel.hidden = true;
+    panel.replaceChildren();
+    return;
+  }
+
+  panel.hidden = false;
+  panel.replaceChildren();
+
+  let activeSm = motion.stateMachines[0];
+
+  const header = document.createElement("div");
+  header.className = "sm-panel-header";
+
+  const titleWrap = document.createElement("div");
+  titleWrap.className = "sm-title";
+  titleWrap.innerHTML = `<span>⚡ State Machine 状态机交互响应</span>`;
+
+  const stateBadge = document.createElement("span");
+  stateBadge.className = "sm-state-badge";
+  stateBadge.id = "smCurrentState";
+  stateBadge.textContent = `当前状态: ${activeSm.initial || "Running"}`;
+
+  header.append(titleWrap, stateBadge);
+
+  if (motion.stateMachines.length > 1) {
+    const tabs = document.createElement("div");
+    tabs.className = "sm-tabs";
+    for (const sm of motion.stateMachines) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = `sm-tab-btn${sm.id === activeSm.id ? " active" : ""}`;
+      btn.textContent = sm.name || sm.id;
+      btn.addEventListener("click", () => {
+        activeSm = sm;
+        tabs.querySelectorAll(".sm-tab-btn").forEach((b) => b.classList.toggle("active", b === btn));
+        stateBadge.textContent = `当前状态: ${sm.initial || "Running"}`;
+        const ctrl = getController();
+        ctrl?.stateMachineLoad?.(sm.id);
+        ctrl?.stateMachineStart?.();
+        renderInputs();
+      });
+      tabs.append(btn);
+    }
+    header.append(tabs);
+  }
+
+  const controlsGrid = document.createElement("div");
+  controlsGrid.className = "sm-controls-grid";
+
+  const hint = document.createElement("p");
+  hint.className = "sm-hint";
+  hint.textContent = "💡 提示：在上方画面中直接点击、长按或悬停可触发真实状态机转换；亦可使用下方按钮精准调用输入事件。";
+
+  function renderInputs() {
+    controlsGrid.replaceChildren();
+    const inputs = activeSm.inputs || [];
+    for (const input of inputs) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "sm-trigger-btn";
+
+      if (input.type === "Event") {
+        btn.textContent = input.label || `触发 ${input.name}`;
+        btn.addEventListener("click", () => {
+          const ctrl = getController();
+          ctrl?.stateMachineFireEvent?.(input.name);
+          btn.classList.add("active");
+          setTimeout(() => btn.classList.remove("active"), 220);
+          updateCurrentState();
+        });
+      } else if (input.type === "Boolean") {
+        let val = Boolean(input.value);
+        btn.textContent = `${input.label || input.name}: ${val ? "开" : "关"}`;
+        btn.addEventListener("click", () => {
+          val = !val;
+          btn.textContent = `${input.label || input.name}: ${val ? "开" : "关"}`;
+          btn.classList.toggle("active", val);
+          const ctrl = getController();
+          ctrl?.stateMachineSetBooleanInput?.(input.name, val);
+          updateCurrentState();
+        });
+      } else if (input.type === "String") {
+        btn.textContent = input.label || `输入 ${input.name}`;
+        btn.addEventListener("click", () => {
+          const ctrl = getController();
+          ctrl?.stateMachineFireEvent?.(input.name);
+          btn.classList.add("active");
+          setTimeout(() => btn.classList.remove("active"), 220);
+          updateCurrentState();
+        });
+      }
+      controlsGrid.append(btn);
+    }
+  }
+
+  function updateCurrentState() {
+    const ctrl = getController();
+    try {
+      const state = ctrl?.stateMachineGetCurrentState?.();
+      if (state) stateBadge.textContent = `当前状态: ${state}`;
+    } catch {}
+  }
+
+  renderInputs();
+  panel.append(header, controlsGrid, hint);
+}
+
+function setupDotLottieActions(motion) {
+  const container = document.querySelector("#dotLottieActions");
+  const dlLottie = document.querySelector("#detailDownloadLottie");
+  const dlJson = document.querySelector("#detailDownloadJson");
+  const lottieLink = document.querySelector("#detailLottieFilesLink");
+  if (!container) return;
+
+  if (motion?.isReference || motion?.isDotLottie) {
+    container.hidden = false;
+    if (dlLottie) {
+      dlLottie.href = motion.lottieFile || motion.file;
+      dlLottie.download = motion.fileName || "animation.lottie";
+    }
+    if (dlJson) {
+      dlJson.href = motion.jsonFile || motion.file.replace(".lottie", ".json");
+      dlJson.download = (motion.fileName || "animation").replace(".lottie", ".json");
+    }
+    if (lottieLink) {
+      if (motion.sourceUrl) {
+        lottieLink.href = motion.sourceUrl;
+        lottieLink.hidden = false;
+      } else {
+        lottieLink.hidden = true;
+      }
+    }
+  } else {
+    container.hidden = true;
+  }
+}

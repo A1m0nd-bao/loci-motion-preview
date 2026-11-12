@@ -5,11 +5,12 @@
     <link rel="icon" href="data:," />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>SipPlay Motion Library</title>
-    <link rel="stylesheet" href="./styles.css?v=sipplay-gift-pop-20261102" />
+    <link rel="stylesheet" href="./styles.css?v=dotlottie-ref-20261112" />
     <link rel="stylesheet" href="./lottie-families.css?v=20261030-isolated" />
     <link rel="stylesheet" href="./web-components/handoff.css?v=20261029-release-v1" />
     <script type="importmap">{"imports":{"motion":"./motion/vendor/motion.js"}}</script>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@2.0.8/dist/lottie-player.js"></script>
+    <script type="module" src="https://unpkg.com/@lottiefiles/dotlottie-wc@latest/dist/dotlottie-wc.js"></script>
     <script src="https://unpkg.com/@rive-app/canvas@2.24.0/rive.js"></script>
   </head>
   <body class="home-opening">
@@ -172,6 +173,28 @@
           </div>
         </section>
         <section id="v2Drafts" class="v2-drafts" aria-label="动效 v2" hidden></section>
+        <section id="lottieReleaseSection" class="lottie-release-section" aria-label="Lottie 专栏与分类" hidden>
+          <div class="lottie-switch" role="group" aria-label="选择 Lottie 专栏">
+            <button type="button" data-lottie-tab="all" aria-pressed="true">全部 Lottie <span class="tab-badge" id="lottieTabCountAll">143</span></button>
+            <button type="button" data-lottie-tab="reference" aria-pressed="false">⭐ 精选参考专栏 <span class="tab-badge" id="lottieTabCountRef">37</span></button>
+            <button type="button" data-lottie-tab="product" aria-pressed="false">📌 业务交付资产 <span class="tab-badge" id="lottieTabCountProd">106</span></button>
+          </div>
+          <div id="lottieReferenceIntro" class="lottie-reference-intro" hidden>
+            <div class="reference-intro-header">
+              <div>
+                <h3>Lottie 精选参考专栏 · 状态机与微交互</h3>
+                <p>精选 37 项交互动效，全面支持 <strong>dotLottie</strong> 紧凑容器与 <strong>State Machine</strong> 状态机响应机制。点击卡片可实时体验状态转换与操控。</p>
+              </div>
+              <div class="reference-quick-filters" id="refQuickFilters">
+                <button type="button" class="ref-filter-pill active" data-ref-filter="all">全部参考 (37)</button>
+                <button type="button" class="ref-filter-pill" data-ref-filter="sm">⚡ 状态机交互 (3)</button>
+                <button type="button" class="ref-filter-pill" data-ref-filter="guide">✨ 引导与微反馈 (8)</button>
+                <button type="button" class="ref-filter-pill" data-ref-filter="load">⏳ 加载与形态变换 (19)</button>
+                <button type="button" class="ref-filter-pill" data-ref-filter="celebrate">🎉 庆典与特效 (7)</button>
+              </div>
+            </div>
+          </div>
+        </section>
         <section id="motionLibraryIntro" class="web-library-intro" aria-label="Motion 动效库介绍" hidden>
           <div><h2>用 Motion，找到动效的手感。</h2><p>6 个原生 JavaScript 示例：弹簧、手势、错峰入场、时间线、SVG 描边与滚动进度。直接体验、调整参数，复制完整 HTML 即可使用。</p></div>
           <p class="web-attribution">基于 <a href="https://motion.dev/" target="_blank" rel="noopener noreferrer">Motion 13.5.1 ↗</a><br><a href="https://motion.dev/docs/quick-start" target="_blank" rel="noopener noreferrer">官方文档</a> · <a href="https://motion.dev/docs/studio" target="_blank" rel="noopener noreferrer">Studio 官方说明</a> · <a id="motionStudioLocal" href="./motion/studio.html" target="_blank" hidden>打开本地 Studio ↗</a> · <a href="./web-components/vendor/THIRD-PARTY-NOTICES.txt" target="_blank" rel="noopener noreferrer">MIT 与第三方许可</a></p>
@@ -293,6 +316,7 @@
             </div>
 
             <section id="lottieFamilyPanel" class="lottie-family-panel" aria-label="Lottie 播放段与使用说明" hidden></section>
+            <section id="dotLottieStateMachinePanel" class="lottie-sm-panel" aria-label="dotLottie 状态机交互控制台" hidden></section>
             <section id="webCodePanel" class="web-code-panel" aria-label="组件代码与用法" hidden>
               <div class="web-code-heading"><h3>组件代码</h3><button id="webReset" type="button">重置参数</button></div>
               <p id="webDescription"></p>
@@ -335,6 +359,11 @@
             <div id="webParameters" class="web-parameters" hidden></div>
 
             <div id="detailTags" class="tags"></div>
+            <div id="dotLottieActions" class="dotlottie-actions" hidden>
+              <a id="detailDownloadLottie" class="dotlottie-action-btn" download>下载 .lottie 格式</a>
+              <a id="detailDownloadJson" class="dotlottie-action-btn" download>下载 .json 格式</a>
+              <a id="detailLottieFilesLink" class="dotlottie-action-btn external" target="_blank" rel="noopener noreferrer">LottieFiles 原稿 ↗</a>
+            </div>
             <button id="detailCopy" type="button">复制路径</button>
             <a id="detailOpen" target="_blank" rel="noreferrer">打开文件</a>
             <a id="detailDownload" download>下载文件</a>
@@ -344,7 +373,7 @@
       </div>
     </dialog>
 
-    <script src="./app.js?v=v2-chest-fireworks-20261111" type="module"></script>
+    <script src="./app.js?v=dotlottie-ref-20261112" type="module"></script>
     <script src="./scripts/line-waves-static.mjs?v=20260802a" type="module"></script>
   </body>
 </html>
