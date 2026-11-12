@@ -9,8 +9,11 @@ if (import.meta.env?.DEV) document.querySelector("#motionStudioLocal").hidden = 
 const isInteractiveKind = kind => kind === "web" || kind === "motion";
 const isLocalPreview = ["localhost", "127.0.0.1", "[::1]"].includes(location.hostname);
 let selectedWebRelease = "v1";
-let selectedLottieColumn = "all";
+let selectedLottieColumn = "product";
 let selectedRefFilter = "all";
+
+const isReferenceItem = (item) => Boolean(item && (item.isReference || item.category === "精选参考"));
+const getDeliveryMotions = () => motions.filter((item) => !isReferenceItem(item));
 const publishedV2 = [
   {
     "id": "sipplay-plus-arrow-toggle",
@@ -150,6 +153,16 @@ const publishedV2 = [
     "download": "./releases/v2/confetti-fireworks/confetti-fireworks.html",
     "symbol": "🎉",
     "tags": "礼花 烟花 庆典 彩带 纸屑 粒子 喷射 爆开 物理 confetti fireworks",
+    "published": true
+  },
+  {
+    "id": "sipplay-ticket-tear",
+    "name": "票券撕副券 · 动态名额联动",
+    "note": "521×285 撕开副券 · 物理网格弯折算法、Motion 规范弹簧名额槽波浪传递、一键复制邀请码",
+    "file": "./releases/v2/ticket-tear/index.html",
+    "download": "./releases/v2/ticket-tear/ticket-tear.html",
+    "symbol": "🎟",
+    "tags": "票券 撕票 兑换 邀请码 名额 弹簧 动效 ticket tear",
     "published": true
   }
 ];
@@ -312,7 +325,8 @@ function normalizeMotion(item) {
 
 function populateKinds() {
   const selected = kindSelect.value || "all";
-  const counts = countBy(motions, (item) => item.kind || "practice");
+  const deliveryMotions = getDeliveryMotions();
+  const counts = countBy(deliveryMotions, (item) => item.kind || "practice");
   const kinds = getOrderedKinds(counts);
 
   kindSelect.innerHTML = '<option value="all">全部格式</option>';
@@ -325,7 +339,7 @@ function populateKinds() {
   kindSelect.value = kinds.includes(selected) ? selected : "all";
 
   formatNav.replaceChildren();
-  formatNav.append(createFormatButton("all", "全部格式", motions.length, "总览所有动效资产"));
+  formatNav.append(createFormatButton("all", "全部格式", deliveryMotions.length, "总览业务动效资产"));
   for (const kind of kinds) {
     formatNav.append(createFormatButton(kind, labelForKind(kind), counts[kind], formatDescription(kind)));
   }
@@ -378,14 +392,15 @@ function renderHomeModules(kinds, counts) {
 }
 
 function renderHomeIndex(kinds, counts) {
-  const categories = new Set(motions.map((item) => item.category || "未分类"));
-  homeTotal.textContent = String(motions.length);
+  const deliveryMotions = getDeliveryMotions();
+  const categories = new Set(deliveryMotions.map((item) => item.category || "未分类"));
+  homeTotal.textContent = String(deliveryMotions.length);
   homeFormats.textContent = String(kinds.length);
   homeCategories.textContent = String(categories.size);
-  homePanelTotal.textContent = String(motions.length);
+  homePanelTotal.textContent = String(deliveryMotions.length);
 
   homeBreakdown.replaceChildren();
-  const total = Math.max(1, motions.length);
+  const total = Math.max(1, deliveryMotions.length);
   const rows = kinds.length ? kinds : ["lottie"];
   for (const kind of rows.slice(0, 5)) {
     const amount = counts[kind] || 0;
@@ -487,7 +502,17 @@ function scheduleHomeVisualWake(returning) {
 function populateCategories() {
   const selected = category.value || "all";
   const selectedKind = kindSelect.value;
-  const source = selectedKind === "all" ? motions : motions.filter((item) => item.kind === selectedKind);
+  const deliveryMotions = getDeliveryMotions();
+  let source;
+  if (selectedKind === "all") {
+    source = deliveryMotions;
+  } else if (selectedKind === "lottie") {
+    source = selectedLottieColumn === "reference"
+      ? motions.filter((item) => item.kind === "lottie" && isReferenceItem(item))
+      : deliveryMotions.filter((item) => item.kind === "lottie");
+  } else {
+    source = deliveryMotions.filter((item) => item.kind === selectedKind);
+  }
   const categories = [...new Set(source.map((item) => item.category || "未分类"))].sort((a, b) =>
     a.localeCompare(b, "zh-Hans-CN"),
   );
@@ -520,13 +545,13 @@ function render() {
   if (lottieReferenceIntro) lottieReferenceIntro.hidden = !isLottie || selectedLottieColumn !== "reference";
 
   const allLotties = motions.filter((m) => m.kind === "lottie");
-  const refLotties = allLotties.filter((m) => m.category === "精选参考" || m.isReference);
-  const prodLotties = allLotties.filter((m) => m.category !== "精选参考" && !m.isReference);
+  const refLotties = allLotties.filter((m) => isReferenceItem(m));
+  const prodLotties = allLotties.filter((m) => !isReferenceItem(m));
 
   const elAll = document.querySelector("#lottieTabCountAll");
   const elRef = document.querySelector("#lottieTabCountRef");
   const elProd = document.querySelector("#lottieTabCountProd");
-  if (elAll) elAll.textContent = String(allLotties.length);
+  if (elAll) elAll.textContent = String(prodLotties.length);
   if (elRef) elRef.textContent = String(refLotties.length);
   if (elProd) elProd.textContent = String(prodLotties.length);
 
@@ -537,8 +562,9 @@ function render() {
     btn.classList.toggle("active", btn.dataset.refFilter === selectedRefFilter);
   });
 
+  const deliveryMotions = getDeliveryMotions();
   document.body.classList.toggle("is-home-view", isHome);
-  visibleMotions = isHome ? motions : motions.filter((item) => {
+  visibleMotions = isHome ? deliveryMotions : motions.filter((item) => {
     const haystack = [item.name, item.file, item.kindLabel, item.category, item.interactionType, ...(item.tags || [])]
       .join(" ")
       .toLowerCase();
@@ -546,9 +572,11 @@ function render() {
     const matchesKind = selectedKind === "all" || item.kind === selectedKind;
     const matchesCategory = selectedCategory === "all" || item.category === selectedCategory;
 
+    const isRef = isReferenceItem(item);
+    if (selectedKind === "all" && isRef) return false;
+
     let matchesLottieColumn = true;
     if (isLottie) {
-      const isRef = item.category === "精选参考" || item.isReference;
       if (selectedLottieColumn === "reference") {
         matchesLottieColumn = isRef;
         if (matchesLottieColumn && selectedRefFilter !== "all") {
@@ -557,7 +585,7 @@ function render() {
           else if (selectedRefFilter === "load") matchesLottieColumn = item.subcategory === "加载与形态变换";
           else if (selectedRefFilter === "celebrate") matchesLottieColumn = item.subcategory === "庆典与特效";
         }
-      } else if (selectedLottieColumn === "product") {
+      } else {
         matchesLottieColumn = !isRef;
       }
     }
@@ -605,6 +633,7 @@ function render() {
   }
 
   const quickMotions = [...visibleMotions]
+    .filter((item) => !isReferenceItem(item))
     .sort((a, b) => getUpdatedTime(b) - getUpdatedTime(a))
     .slice(0, 8);
 
@@ -1633,6 +1662,7 @@ document.querySelectorAll("[data-lottie-tab]").forEach((btn) => {
     } else {
       history.replaceState(null, "", `${location.pathname}${location.search}#lottie`);
     }
+    populateCategories();
     render();
   });
 });
@@ -1647,7 +1677,8 @@ document.querySelectorAll("[data-ref-filter]").forEach((btn) => {
 loadManifest().then(() => {
   if (location.hash === '#web-v2') { selectedWebRelease = 'v2'; enterModule('web'); }
   else if (location.hash === '#lottie-reference' || location.hash === '#reference') { selectedLottieColumn = 'reference'; enterModule('lottie'); }
-  else if (["#web", "#motion", "#lottie"].includes(location.hash)) enterModule(location.hash.slice(1));
+  else if (location.hash === '#lottie' || location.hash === '#lottie-product') { selectedLottieColumn = 'product'; enterModule('lottie'); }
+  else if (["#web", "#motion"].includes(location.hash)) enterModule(location.hash.slice(1));
 });
 window.setInterval(loadManifest, 30000);
 

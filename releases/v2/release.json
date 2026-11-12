@@ -211,6 +211,23 @@
       ],
       "duration": 1.8,
       "size": "558×454"
+    },
+    {
+      "id": "sipplay-ticket-tear",
+      "name": "票券撕副券 · 动态名额联动",
+      "preview": "ticket-tear/index.html",
+      "download": "ticket-tear/ticket-tear.html",
+      "source": "ticket-tear/ticket-tear.html",
+      "package": "ticket-tear/source.zip",
+      "usage": "ticket-tear/USAGE.md",
+      "states": [
+        "intact",
+        "quota-change",
+        "tearing",
+        "torn"
+      ],
+      "duration": 1.25,
+      "size": "521×285"
     }
   ]
 }
