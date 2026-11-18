@@ -108,11 +108,11 @@ const publishedV2 = [
   {
     "id": "sipplay-paid-reward",
     "name": "付费权益奖励",
-    "note": "锁扣解锁、待领取与已领取 · 宝石光束与横向流光",
+    "note": "锁扣解锁、待领取与已领取 · 6款宝石与双色系切换、会员联动、红点与横向流光",
     "file": "./releases/v2/paid-reward/index.html",
     "download": "./releases/v2/paid-reward/paid-reward.html",
     "symbol": "✦",
-    "tags": "付费 权益 会员 战令 解锁 领取 宝石 光效",
+    "tags": "付费 权益 会员 战令 签到 宝石 解锁 领取 光效 gem reward",
     "published": true
   },
   {
