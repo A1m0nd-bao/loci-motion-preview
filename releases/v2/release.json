@@ -228,6 +228,24 @@
       ],
       "duration": 1.25,
       "size": "521×285"
+    },
+    {
+      "id": "sipplay-character-select",
+      "name": "页面入场与角色选择",
+      "preview": "character-select/index.html",
+      "download": "character-select/character-select.html",
+      "source": "character-select/character-select.html",
+      "package": "character-select/source.zip",
+      "usage": "character-select/USAGE.md",
+      "states": [
+        "entrance",
+        "male-select",
+        "female-select",
+        "non-binary",
+        "char-focus"
+      ],
+      "duration": 2.0,
+      "size": "750×504"
     }
   ]
 }

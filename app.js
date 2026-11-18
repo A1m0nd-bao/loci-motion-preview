@@ -164,6 +164,16 @@ const publishedV2 = [
     "symbol": "🎟",
     "tags": "票券 撕票 兑换 邀请码 名额 弹簧 动效 ticket tear",
     "published": true
+  },
+  {
+    "id": "sipplay-character-select",
+    "name": "页面入场与角色选择",
+    "note": "750×504 完整页面编排 · 两批减速平滑入场、全员不置灰自然光感、男女随机智能高亮与 Non-binary 角色库无缝切换",
+    "file": "./releases/v2/character-select/index.html",
+    "download": "./releases/v2/character-select/character-select.html",
+    "symbol": "👥",
+    "tags": "角色选择 性别 入场 分镜 立绘 自然光感 non-binary character select",
+    "published": true
   }
 ];
 const localDrafts = [];
@@ -1713,7 +1723,8 @@ function renderDrafts(items) {
       const canvas = document.createElement('div');
       canvas.className = 'release-preview-canvas';
       const scene = ['sipplay-prop-spotlight', 'sipplay-relic-journey'].includes(item.id) ? [375, 812]
-        : item.id === 'sipplay-voice-input-wave' ? [269, 220] : [260, 220];
+        : item.id === 'sipplay-voice-input-wave' ? [269, 220]
+        : item.id === 'sipplay-character-select' ? [750, 504] : [260, 220];
       canvas.dataset.sceneWidth = scene[0]; canvas.dataset.sceneHeight = scene[1];
       preview.className = 'release-card-preview'; preview.title = `${item.name} · 交互预览`;
       preview.width = scene[0]; preview.height = scene[1];
