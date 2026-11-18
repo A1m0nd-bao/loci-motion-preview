@@ -174,6 +174,16 @@ const publishedV2 = [
     "symbol": "👥",
     "tags": "角色选择 性别 入场 分镜 立绘 自然光感 non-binary character select",
     "published": true
+  },
+  {
+    "id": "sipplay-reward-celebration",
+    "name": "奖励庆祝与聚光背光",
+    "note": "双宝石与单宝石动态聚光庆祝 · 644×644 绚丽聚光背光、星芒散射与数字步进",
+    "file": "./releases/v2/reward-celebration/index.html",
+    "download": "./releases/v2/reward-celebration/reward-celebration.html",
+    "symbol": "✨",
+    "tags": "奖励 庆祝 聚光 背光 宝石 结算 弹窗 celebration backglow reward",
+    "published": true
   }
 ];
 const localDrafts = [];
@@ -1724,7 +1734,8 @@ function renderDrafts(items) {
       canvas.className = 'release-preview-canvas';
       const scene = ['sipplay-prop-spotlight', 'sipplay-relic-journey'].includes(item.id) ? [375, 812]
         : item.id === 'sipplay-voice-input-wave' ? [269, 220]
-        : item.id === 'sipplay-character-select' ? [750, 504] : [260, 220];
+        : item.id === 'sipplay-character-select' ? [750, 504]
+        : item.id === 'sipplay-reward-celebration' ? [644, 644] : [260, 220];
       canvas.dataset.sceneWidth = scene[0]; canvas.dataset.sceneHeight = scene[1];
       preview.className = 'release-card-preview'; preview.title = `${item.name} · 交互预览`;
       preview.width = scene[0]; preview.height = scene[1];

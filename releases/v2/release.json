@@ -248,6 +248,23 @@
       ],
       "duration": 2.0,
       "size": "750×504"
+    },
+    {
+      "id": "sipplay-reward-celebration",
+      "name": "奖励庆祝与聚光背光",
+      "preview": "reward-celebration/index.html",
+      "download": "reward-celebration/reward-celebration.html",
+      "source": "reward-celebration/reward-celebration.html",
+      "package": "reward-celebration/source.zip",
+      "usage": "reward-celebration/USAGE.md",
+      "states": [
+        "entrance",
+        "breathe",
+        "dual-cluster",
+        "single-cluster"
+      ],
+      "duration": 1.8,
+      "size": "644×644"
     }
   ]
 }
