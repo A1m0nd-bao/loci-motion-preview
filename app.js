@@ -206,6 +206,17 @@ const publishedV2 = [
     "tags": "邀请码 信封 火漆 蓝宝石 奖励 兑换 状态机 invitation code sapphire",
     "published": true
   }
+,
+  {
+    "id": "sipplay-reward-ticket-harvest",
+    "name": "奖励票券 · 红金南瓜 Ease-Out",
+    "note": "橙色红金款 · 可见生长全程先快后慢（ease-out），连点轻弹微震，飘带至多排队一轮无卡外空等",
+    "file": "./releases/v2/reward-ticket-harvest/index.html",
+    "download": "./releases/v2/reward-ticket-harvest/reward-ticket-orange-easeout.html",
+    "symbol": "🎃",
+    "tags": "奖励 票券 卡券 南瓜 红金 飘带 easeout ticket harvest reward",
+    "published": true
+  }
 ];
 const localDrafts = [];
 const v2Entries = [...publishedV2, ...localDrafts];

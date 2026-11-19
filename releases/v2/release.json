@@ -303,6 +303,24 @@
       ],
       "duration": 2.8,
       "size": "375×812"
+    },
+    {
+      "id": "sipplay-reward-ticket-harvest",
+      "name": "奖励票券 · 红金南瓜 Ease-Out",
+      "preview": "reward-ticket-harvest/index.html",
+      "download": "reward-ticket-harvest/reward-ticket-orange-easeout.html",
+      "source": "reward-ticket-harvest/reward-ticket-orange-easeout.html",
+      "package": "reward-ticket-harvest/source.zip",
+      "usage": "reward-ticket-harvest/USAGE.md",
+      "states": [
+        "idle",
+        "hover",
+        "pulse",
+        "ribbon-easeout",
+        "finish"
+      ],
+      "duration": 1.36,
+      "size": "167×36"
     }
   ]
 }
