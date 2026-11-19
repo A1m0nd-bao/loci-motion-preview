@@ -283,6 +283,26 @@
       ],
       "duration": 2.6,
       "size": "760×685"
+    },
+    {
+      "id": "sipplay-invitation-code",
+      "name": "输入邀请码 · 邀请信函与蓝宝石雨",
+      "preview": "invitation-code/index.html",
+      "download": "invitation-code/invitation-code-motion.html",
+      "source": "invitation-code/invitation-code-motion.html",
+      "package": "invitation-code/source.zip",
+      "usage": "invitation-code/USAGE.md",
+      "states": [
+        "normal",
+        "error",
+        "seal-dissolve",
+        "flap-unfold",
+        "card-slide",
+        "badge-pop",
+        "sapphire-fall"
+      ],
+      "duration": 2.8,
+      "size": "375×812"
     }
   ]
 }

@@ -195,6 +195,17 @@ const publishedV2 = [
     "tags": "宝箱 奖励 迸发 开盖 迎新 礼包 卡券 动效 chest welcome gift burst",
     "published": true
   }
+,
+  {
+    "id": "sipplay-invitation-code",
+    "name": "输入邀请码 · 邀请信函与蓝宝石雨",
+    "note": "375×812 移动端端内流程 · 初始输入态、错误抖动提示、火漆印章物理溶解、信纸滑出、蓝宝石高脚杯粒子碰撞",
+    "file": "./releases/v2/invitation-code/index.html",
+    "download": "./releases/v2/invitation-code/invitation-code-motion.html",
+    "symbol": "✉️",
+    "tags": "邀请码 信封 火漆 蓝宝石 奖励 兑换 状态机 invitation code sapphire",
+    "published": true
+  }
 ];
 const localDrafts = [];
 const v2Entries = [...publishedV2, ...localDrafts];
@@ -1742,7 +1753,7 @@ function renderDrafts(items) {
       const preview = document.createElement('iframe');
       const canvas = document.createElement('div');
       canvas.className = 'release-preview-canvas';
-      const scene = ['sipplay-prop-spotlight', 'sipplay-relic-journey'].includes(item.id) ? [375, 812]
+      const scene = ['sipplay-prop-spotlight', 'sipplay-relic-journey', 'sipplay-invitation-code'].includes(item.id) ? [375, 812]
         : item.id === 'sipplay-voice-input-wave' ? [269, 220]
         : item.id === 'sipplay-character-select' ? [750, 504]
         : item.id === 'sipplay-reward-celebration' ? [644, 644]
