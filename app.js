@@ -184,6 +184,16 @@ const publishedV2 = [
     "symbol": "✨",
     "tags": "奖励 庆祝 聚光 背光 宝石 结算 弹窗 celebration backglow reward",
     "published": true
+  },
+  {
+    "id": "sipplay-chest-two-state",
+    "name": "豪华奖励迸发 · 宝箱两态",
+    "note": "760×685 完整两态编排 · 内部蓄力挤压、开盖全屏震颤、光柱爆发、卡券与水晶离散迸发",
+    "file": "./releases/v2/chest-two-state/index.html",
+    "download": "./releases/v2/chest-two-state/chest-two-state-motion.html",
+    "symbol": "🎁",
+    "tags": "宝箱 奖励 迸发 开盖 迎新 礼包 卡券 动效 chest welcome gift burst",
+    "published": true
   }
 ];
 const localDrafts = [];
@@ -1735,7 +1745,8 @@ function renderDrafts(items) {
       const scene = ['sipplay-prop-spotlight', 'sipplay-relic-journey'].includes(item.id) ? [375, 812]
         : item.id === 'sipplay-voice-input-wave' ? [269, 220]
         : item.id === 'sipplay-character-select' ? [750, 504]
-        : item.id === 'sipplay-reward-celebration' ? [644, 644] : [260, 220];
+        : item.id === 'sipplay-reward-celebration' ? [644, 644]
+        : item.id === 'sipplay-chest-two-state' ? [760, 685] : [260, 220];
       canvas.dataset.sceneWidth = scene[0]; canvas.dataset.sceneHeight = scene[1];
       preview.className = 'release-card-preview'; preview.title = `${item.name} · 交互预览`;
       preview.width = scene[0]; preview.height = scene[1];

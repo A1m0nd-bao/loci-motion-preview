@@ -265,6 +265,24 @@
       ],
       "duration": 1.8,
       "size": "644×644"
+    },
+    {
+      "id": "sipplay-chest-two-state",
+      "name": "豪华奖励迸发 · 宝箱两态",
+      "preview": "chest-two-state/index.html",
+      "download": "chest-two-state/chest-two-state-motion.html",
+      "source": "chest-two-state/chest-two-state-motion.html",
+      "package": "chest-two-state/source.zip",
+      "usage": "chest-two-state/USAGE.md",
+      "states": [
+        "initial",
+        "rumble",
+        "burst",
+        "settle",
+        "claim"
+      ],
+      "duration": 2.6,
+      "size": "760×685"
     }
   ]
 }
