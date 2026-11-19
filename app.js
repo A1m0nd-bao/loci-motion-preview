@@ -1763,7 +1763,7 @@ function renderDrafts(items) {
       preview.width = scene[0]; preview.height = scene[1];
       preview.style.width = `${scene[0]}px`; preview.style.height = `${scene[1]}px`;
       preview.loading = 'lazy'; preview.scrolling = 'no';
-      preview.src = `${item.file}?compact=1&fit=contain&v=canvas-fit1`;
+      preview.src = `${item.file}?compact=1&fit=contain&v=canvas-manual2`;
       preview.tabIndex = -1; preview.setAttribute('aria-hidden', 'true');
       const trigger = document.createElement('button'); trigger.type = 'button'; trigger.className = 'release-preview-open';
       trigger.setAttribute('aria-label', `查看${item.name}详情`);
