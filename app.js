@@ -230,7 +230,7 @@ const publishedV2 = [
   {
     "id": "sipplay-reward-ticket-pumpkin",
     "name": "奖励票券 · 红金南瓜弹跳",
-    "note": "167×36 红金票，独立于邀请奖励卡券和红金南瓜 Ease-Out。南瓜弹簧弹跳，吊牌跟随摆动，飘带 ease-out。浏览器核对了 1× 茎尖约 1.62px 间隙、放大票面、重播、慢速、连点、Enter 与 reduced-motion。",
+    "note": "167×36 红金票，独立于邀请奖励卡券和红金南瓜 Ease-Out。一次蓄力、一次起跳、一个顶点，落地后停住。吊牌只轻轻跟一下。悬停加点击不会再排第二跳；稍后再点会重开这一下。",
     "file": "./releases/v2/reward-ticket-pumpkin/index.html",
     "download": "./releases/v2/reward-ticket-pumpkin/reward-ticket-pumpkin.html",
     "symbol": "🎃",

@@ -10,12 +10,12 @@
 .compact .ticket-scale{transform:scale(1.4);transform-origin:center}
 
 </style></head><body><main>
-<header><h1>Harvest Reward Ticket</h1><p>橙色红金款。可见生长全程先快后慢（ease-out）；连点轻弹，飘带最多排队一轮。</p></header>
+<header><h1>Harvest Reward Ticket</h1><p>橙色红金款。可见生长全程先快后慢（ease-out）；点一下只跳一下，再点会重开这一下。</p></header>
 <article class="panel"><div class="meta"><span>红金南瓜</span><span>HARVEST · EASE-OUT</span></div>
 <div class="stage"><div class="ticket-scale"><sipplay-reward-ticket id="harvest-ticket" variant="harvest" label="红金南瓜奖励票卡" ribbon-duration="1.36"></sipplay-reward-ticket></div></div>
 <div class="foot"><span id="harvest-status" aria-live="polite">就绪</span><button class="replay" type="button" id="replay">重播</button></div></article>
 <div class="tools"><label><input type="checkbox" id="slow">慢速查看路径</label></div>
-<p class="hint">悬停、点击或键盘激活。生长对可见弧长做 easeOutCubic；长满即结束，无卡外空等。</p>
+<p class="hint">悬停、点击或键盘激活，同一次操作只跳一下。生长对可见弧长做 easeOutCubic；长满即结束，无卡外空等。</p>
 </main><script>
 /**
  * sipplay reward ticket runtime orange-easeout (full visible easeOutCubic grow)
@@ -568,14 +568,12 @@ ${RIBBON_SEL} {
   }
 
   /**
-   * Character bounce: anticipation squash, takeoff stretch, slight aerial
-   * arc/attitude, landing squash, then a decaying second hop into rest.
-   * Leaf/stem stay in .harvest-art (no structural split); hanging .harvest-tag
-   * follows with lagged swing only.
+   * One hop: anticipation squash, takeoff, a single apex, one landing squash, then settle.
+   * No second hop and no rebound after the landing. Leaf/stem stay in .harvest-art.
+   * The hanging tag makes one small lagged swing and returns, without extra swings.
    */
   function pulseHarvestIcons(root, giftMs) {
     if (!root) return;
-    // Track gift / slow-mo duration; keep a floor so the hops can read.
     var ms = Math.max(800, giftMs || 850);
     var art = root.querySelector(".harvest-art");
     var tag = root.querySelector(".harvest-tag");
@@ -583,63 +581,38 @@ ${RIBBON_SEL} {
       art,
       [
         {
-          transform: pumpkinPose(0, 0, -0.8, 1.04, 0.96),
-          offset: 0.1,
-          easing: "cubic-bezier(0.4, 0, 0.7, 1)",
+          transform: pumpkinPose(0, 0.25, -0.4, 1.05, 0.94),
+          offset: 0.12,
+          easing: "cubic-bezier(0.45, 0, 0.75, 1)",
         },
         {
-          transform: pumpkinPose(0.05, 0, -2.2, 1.13, 0.86),
-          offset: 0.2,
-          easing: "cubic-bezier(0.33, 0, 0.2, 1)",
-        },
-        {
-          transform: pumpkinPose(0.05, 0, -2.4, 1.14, 0.85),
+          transform: pumpkinPose(0, 0.45, -1.1, 1.12, 0.84),
           offset: 0.24,
-          easing: "cubic-bezier(0.15, 0, 0.2, 1)",
+          easing: "cubic-bezier(0.2, 0.45, 0.2, 1)",
         },
         {
-          transform: pumpkinPose(0.35, -1.55, -0.6, 0.91, 1.055),
-          offset: 0.34,
-          easing: "cubic-bezier(0.2, 0.4, 0.3, 1)",
-        },
-        {
-          transform: pumpkinPose(0.5, -2.55, 1.8, 0.94, 1.03),
+          transform: pumpkinPose(0.1, -1.35, 0.2, 0.96, 1.035),
           offset: 0.4,
-          easing: "cubic-bezier(0.22, 0.6, 0.35, 1)",
+          easing: "cubic-bezier(0.22, 0.4, 0.3, 1)",
         },
         {
-          transform: pumpkinPose(0.6, -3.15, 3.2, 1.02, 0.975),
-          offset: 0.48,
-          easing: "cubic-bezier(0.45, 0, 0.7, 0.4)",
+          transform: pumpkinPose(0.2, -2.85, 1.35, 0.985, 1.012),
+          offset: 0.54,
+          easing: "cubic-bezier(0.4, 0, 0.75, 0.55)",
         },
         {
-          transform: pumpkinPose(0.2, -1.35, 1.4, 0.93, 1.05),
-          offset: 0.58,
-          easing: "cubic-bezier(0.4, 0, 1, 0.35)",
+          transform: pumpkinPose(0.05, -0.55, 0.3, 0.99, 1.015),
+          offset: 0.68,
+          easing: "cubic-bezier(0.45, 0, 0.9, 0.7)",
         },
         {
-          transform: pumpkinPose(0, 0, -1.6, 1.14, 0.84),
-          offset: 0.66,
-          easing: "cubic-bezier(0.2, 0.7, 0.25, 1)",
+          transform: pumpkinPose(0, 0.4, -0.7, 1.09, 0.88),
+          offset: 0.78,
+          easing: "cubic-bezier(0.25, 0.7, 0.3, 1)",
         },
         {
-          transform: pumpkinPose(0.15, -1.05, 0.6, 0.95, 1.04),
-          offset: 0.74,
-          easing: "cubic-bezier(0.22, 0.55, 0.35, 1)",
-        },
-        {
-          transform: pumpkinPose(0.2, -1.55, 1.8, 1.015, 0.985),
-          offset: 0.82,
-          easing: "cubic-bezier(0.45, 0, 0.7, 0.45)",
-        },
-        {
-          transform: pumpkinPose(0, 0, -0.7, 1.07, 0.93),
-          offset: 0.88,
-          easing: "cubic-bezier(0.25, 0.6, 0.3, 1)",
-        },
-        {
-          transform: pumpkinPose(0, 0, 0.5, 1.025, 0.98),
-          offset: 0.94,
+          transform: pumpkinPose(0, 0, 0.15, 1.025, 0.98),
+          offset: 0.9,
           easing: "cubic-bezier(0.33, 0, 0.2, 1)",
         },
       ],
@@ -649,53 +622,18 @@ ${RIBBON_SEL} {
       tag,
       [
         {
-          transform: "rotate(3deg)",
-          offset: 0.12,
-          easing: "cubic-bezier(0.4, 0, 0.6, 1)",
+          transform: "rotate(1.5deg)",
+          offset: 0.22,
+          easing: "cubic-bezier(0.35, 0, 0.4, 1)",
         },
         {
-          transform: "rotate(7deg)",
-          offset: 0.24,
-          easing: "cubic-bezier(0.33, 0, 0.2, 1)",
+          transform: "rotate(-5.5deg)",
+          offset: 0.58,
+          easing: "cubic-bezier(0.4, 0, 0.7, 1)",
         },
         {
-          transform: "rotate(-2deg)",
-          offset: 0.34,
-          easing: "cubic-bezier(0.2, 0.3, 0.3, 1)",
-        },
-        {
-          transform: "rotate(-8deg)",
-          offset: 0.42,
-          easing: "cubic-bezier(0.22, 0.5, 0.35, 1)",
-        },
-        {
-          transform: "rotate(-11deg)",
-          offset: 0.52,
-          easing: "cubic-bezier(0.4, 0, 0.65, 0.5)",
-        },
-        {
-          transform: "rotate(-3deg)",
-          offset: 0.62,
-          easing: "cubic-bezier(0.3, 0, 0.7, 1)",
-        },
-        {
-          transform: "rotate(10deg)",
-          offset: 0.7,
-          easing: "cubic-bezier(0.2, 0.6, 0.25, 1)",
-        },
-        {
-          transform: "rotate(-6deg)",
+          transform: "rotate(-1deg)",
           offset: 0.82,
-          easing: "cubic-bezier(0.3, 0.4, 0.35, 1)",
-        },
-        {
-          transform: "rotate(5deg)",
-          offset: 0.9,
-          easing: "cubic-bezier(0.25, 0.5, 0.3, 1)",
-        },
-        {
-          transform: "rotate(-1.5deg)",
-          offset: 0.96,
           easing: "cubic-bezier(0.33, 0, 0.2, 1)",
         },
       ],
@@ -928,8 +866,14 @@ ${RIBBON_SEL} {
         this._applyReducedStatic();
         return Promise.resolve();
       }
-      // Icon feedback on every activation — decoupled from ribbon.
-      // Must never throw into play() or ribbon _runCycle would be skipped.
+      var now = Date.now();
+      // Hover and the click/Enter that follow it are one activation.
+      if (this._running && now - (this._activatedAt || 0) < 400) {
+        return Promise.resolve();
+      }
+      var restarting = this._running;
+      this._activatedAt = now;
+      if (restarting) this._teardownMotion(true);
       var btn = this._button();
       if (btn && this._variant() === "harvest") {
         try {
@@ -938,11 +882,7 @@ ${RIBBON_SEL} {
           try { console.warn("[sipplay-reward-ticket] icon pulse failed", err); } catch (_) {}
         }
       }
-      if (this._running) {
-        // At most one follow-up ribbon cycle; do not stack.
-        this._queued = true;
-        return Promise.resolve();
-      }
+      this._queued = false;
       return this._runCycle();
     }
 
@@ -1128,7 +1068,7 @@ ${RIBBON_SEL} {
           this._emit("motion-finish");
         }
 
-        const again = this._queued || this._isContinuous();
+        const again = this._isContinuous();
         this._queued = false;
         if (again && !prefersReducedMotion()) {
           return this._runCycle();
