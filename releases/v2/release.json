@@ -335,6 +335,25 @@
       ],
       "duration": 0.48,
       "size": "35×29"
+    },
+    {
+      "id": "sipplay-reward-ticket-pumpkin",
+      "name": "奖励票券 · 红金南瓜弹跳",
+      "preview": "reward-ticket-pumpkin/index.html",
+      "download": "reward-ticket-pumpkin/reward-ticket-pumpkin.html",
+      "source": "reward-ticket-pumpkin/reward-ticket-pumpkin.html",
+      "package": "reward-ticket-pumpkin/source.zip",
+      "usage": "reward-ticket-pumpkin/USAGE.md",
+      "states": [
+        "idle",
+        "hover",
+        "pumpkin-bounce",
+        "tag-swing",
+        "ribbon-easeout",
+        "finish"
+      ],
+      "duration": 1.36,
+      "size": "167×36"
     }
   ]
 }
