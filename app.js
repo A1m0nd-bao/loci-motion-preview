@@ -265,6 +265,16 @@ const publishedV2 = [
     "symbol": "✦",
     "tags": "弹窗 优惠券 宝石 50% OFF gems pack coupon popup",
     "published": true
+  },
+  {
+    "id": "sipplay-welcome-gift-collect",
+    "name": "豪华奖励迸发 · 收取",
+    "note": "Claim 后盒子缩成光点，沿贝塞尔飞向可配置终点。1× 为 280ms 收缩、840ms 飞行、360ms 追尾。375×812 两次收取和中间重播成功，终态无残留。慢放长轨迹未见明显台阶。360ms 追尾没有完整实播记录。",
+    "file": "./releases/v2/welcome-gift-collect/index.html",
+    "download": "./releases/v2/welcome-gift-collect/welcome-gift-collect.html",
+    "symbol": "🎁",
+    "tags": "迎新 礼盒 收取 宝箱 贝塞尔 Claim welcome gift collect",
+    "published": true
   }
 ];
 const localDrafts = [];
@@ -1813,7 +1823,7 @@ function renderDrafts(items) {
       const preview = document.createElement('iframe');
       const canvas = document.createElement('div');
       canvas.className = 'release-preview-canvas';
-      const scene = ['sipplay-prop-spotlight', 'sipplay-relic-journey', 'sipplay-invitation-code', 'sipplay-invitation-code-autumn', 'sipplay-gems-pack-popup'].includes(item.id) ? [375, 812]
+      const scene = ['sipplay-prop-spotlight', 'sipplay-relic-journey', 'sipplay-invitation-code', 'sipplay-invitation-code-autumn', 'sipplay-gems-pack-popup', 'sipplay-welcome-gift-collect'].includes(item.id) ? [375, 812]
         : item.id === 'sipplay-voice-input-wave' ? [269, 220]
         : item.id === 'sipplay-character-select' ? [750, 504]
         : item.id === 'sipplay-reward-celebration' ? [644, 644]
@@ -1921,7 +1931,7 @@ async function openReleaseDetail(item) {
   frame.src = item.file; releaseDetailStage.append(loading, frame);
   if (!releaseDetailDialog.open) releaseDetailDialog.showModal();
   try {
-    releaseManifestPromise ||= fetch('./releases/v2/release.json?v=v2-popup-split-20261123').then(response => {
+    releaseManifestPromise ||= fetch('./releases/v2/release.json?v=v2-welcome-gift-collect-20261123').then(response => {
       if (!response.ok) throw new Error('manifest'); return response.json();
     }).catch(error => { releaseManifestPromise = null; throw error; });
     const manifest = await releaseManifestPromise;

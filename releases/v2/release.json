@@ -404,6 +404,24 @@
       ],
       "duration": 0.78,
       "size": "铺满视口"
+    },
+    {
+      "id": "sipplay-welcome-gift-collect",
+      "name": "豪华奖励迸发 · 收取",
+      "preview": "welcome-gift-collect/index.html",
+      "download": "welcome-gift-collect/welcome-gift-collect.html",
+      "source": "welcome-gift-collect/welcome-gift-collect.html",
+      "package": "welcome-gift-collect/source.zip",
+      "usage": "welcome-gift-collect/USAGE.md",
+      "states": [
+        "opening",
+        "claim",
+        "shrink",
+        "fly",
+        "coast"
+      ],
+      "duration": 1.48,
+      "size": "760×685"
     }
   ]
 }
