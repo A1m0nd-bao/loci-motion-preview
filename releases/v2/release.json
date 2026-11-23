@@ -336,6 +336,21 @@
       ],
       "duration": 1.36,
       "size": "167×36"
+    },
+    {
+      "id": "sipplay-autumn-transparent-leaves",
+      "name": "秋日落叶 · 透明图层",
+      "preview": "autumn-transparent-leaves/index.html",
+      "download": "autumn-transparent-leaves/autumn-motion-transparent.html",
+      "source": "autumn-transparent-leaves/autumn-motion-transparent.html",
+      "package": "autumn-transparent-leaves/source.zip",
+      "usage": "autumn-transparent-leaves/USAGE.md",
+      "states": [
+        "falling",
+        "paused",
+        "reduced-motion"
+      ],
+      "size": "铺满容器"
     }
   ]
 }

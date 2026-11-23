@@ -225,6 +225,16 @@ const publishedV2 = [
     "symbol": "🎃",
     "tags": "奖励 票券 南瓜 弹跳 吊牌 红金 飘带 pumpkin bounce ticket harvest",
     "published": true
+  },
+  {
+    "id": "sipplay-autumn-transparent-leaves",
+    "name": "秋日落叶 · 透明图层",
+    "note": "独立透明落叶层，铺满容器，不挡点击。目录预览是黑色底；下载文件背景透明。不是邀请函、礼盒或票券。",
+    "file": "./releases/v2/autumn-transparent-leaves/index.html",
+    "download": "./releases/v2/autumn-transparent-leaves/autumn-motion-transparent.html",
+    "symbol": "🍂",
+    "tags": "秋叶 落叶 透明 图层 autumn leaves transparent",
+    "published": true
   }
 ];
 const localDrafts = [];
