@@ -479,6 +479,21 @@
       "size": "1040×660",
       "duration": 7.2,
       "fileSize": 326577
+    },
+    {
+      "id": "sipplay-red-gold-chest-v3",
+      "name": "红金宝箱 · 跃起开箱",
+      "preview": "red-gold-chest-v3/index.html",
+      "download": "red-gold-chest-v3/red-gold-chest-opening-v3.html",
+      "source": "red-gold-chest-v3/red-gold-chest-opening-v3.html",
+      "usage": "red-gold-chest-v3/USAGE.md",
+      "states": [
+        "closed",
+        "opening",
+        "opened"
+      ],
+      "size": "1340×1190",
+      "fileSize": 8725372
     }
   ]
 }

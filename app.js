@@ -304,6 +304,16 @@ const publishedV2 = [
     "symbol": "✦",
     "tags": "宝石 加赠 合成 奖励 档位 时间轴 重播 gem bonus composite",
     "published": true
+  },
+  {
+    "id": "sipplay-red-gold-chest-v3",
+    "name": "红金宝箱 · 跃起开箱",
+    "note": "v3 · 红金宝箱开盖，蓝宝石与枫叶跃出，支持点击播放和重播。",
+    "file": "./releases/v2/red-gold-chest-v3/index.html",
+    "download": "./releases/v2/red-gold-chest-v3/red-gold-chest-opening-v3.html",
+    "symbol": "✦",
+    "tags": "红金 宝箱 开箱 蓝宝石 枫叶 奖励 chest opening red gold v3",
+    "published": true
   }
 ];
 const localDrafts = [];
@@ -1858,6 +1868,7 @@ function renderDrafts(items) {
         : item.id === 'sipplay-reward-celebration' ? [644, 644]
         : item.id === 'sipplay-invite-ticket-v13' ? [1000, 480]
         : item.id === 'sipplay-gem-bonus-composite' ? [1040, 660]
+        : item.id === 'sipplay-red-gold-chest-v3' ? [1340, 1190]
         : item.id === 'sipplay-battlepass-pack-textured' ? [560, 558]
         : item.id === 'sipplay-chest-two-state' ? [760, 685] : [260, 220];
       canvas.dataset.sceneWidth = scene[0]; canvas.dataset.sceneHeight = scene[1];
@@ -1963,7 +1974,7 @@ async function openReleaseDetail(item) {
   frame.src = item.file; releaseDetailStage.append(loading, frame);
   if (!releaseDetailDialog.open) releaseDetailDialog.showModal();
   try {
-    releaseManifestPromise ||= fetch('./releases/v2/release.json?v=gem-bonus-composite-20261123').then(response => {
+    releaseManifestPromise ||= fetch('./releases/v2/release.json?v=red-gold-chest-v3-20261123').then(response => {
       if (!response.ok) throw new Error('manifest'); return response.json();
     }).catch(error => { releaseManifestPromise = null; throw error; });
     const manifest = await releaseManifestPromise;
