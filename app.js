@@ -284,6 +284,16 @@ const publishedV2 = [
     "symbol": "✦",
     "tags": "战令 礼包 宝箱 红宝石 开盖 领取 贴图 均衡 battlepass pack textured",
     "published": true
+  },
+  {
+    "id": "sipplay-invite-ticket-v13",
+    "name": "邀请码奖券 · 向下撕开",
+    "note": "v13 · 输入邀请码后向下撕开奖励副券，支持重播与过期状态切换。",
+    "file": "./releases/v2/invite-ticket-v13/index.html",
+    "download": "./releases/v2/invite-ticket-v13/invite-ticket-demo-v13.html",
+    "symbol": "✦",
+    "tags": "邀请码 奖券 撕票 撕券 向下 副券 蓝宝石 invite ticket v13",
+    "published": true
   }
 ];
 const localDrafts = [];
@@ -1836,6 +1846,7 @@ function renderDrafts(items) {
         : item.id === 'sipplay-voice-input-wave' ? [269, 220]
         : item.id === 'sipplay-character-select' ? [750, 504]
         : item.id === 'sipplay-reward-celebration' ? [644, 644]
+        : item.id === 'sipplay-invite-ticket-v13' ? [1000, 480]
         : item.id === 'sipplay-battlepass-pack-textured' ? [560, 558]
         : item.id === 'sipplay-chest-two-state' ? [760, 685] : [260, 220];
       canvas.dataset.sceneWidth = scene[0]; canvas.dataset.sceneHeight = scene[1];
@@ -1941,7 +1952,7 @@ async function openReleaseDetail(item) {
   frame.src = item.file; releaseDetailStage.append(loading, frame);
   if (!releaseDetailDialog.open) releaseDetailDialog.showModal();
   try {
-    releaseManifestPromise ||= fetch('./releases/v2/release.json?v=battlepass-textured-20261123').then(response => {
+    releaseManifestPromise ||= fetch('./releases/v2/release.json?v=invite-ticket-v13-20261123').then(response => {
       if (!response.ok) throw new Error('manifest'); return response.json();
     }).catch(error => { releaseManifestPromise = null; throw error; });
     const manifest = await releaseManifestPromise;

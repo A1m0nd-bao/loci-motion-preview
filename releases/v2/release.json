@@ -441,6 +441,25 @@
       "duration": 1.35,
       "fileSize": 285515,
       "pixelRatio": 1.5
+    },
+    {
+      "id": "sipplay-invite-ticket-v13",
+      "name": "邀请码奖券 · 向下撕开",
+      "preview": "invite-ticket-v13/index.html",
+      "download": "invite-ticket-v13/invite-ticket-demo-v13.html",
+      "source": "invite-ticket-v13/invite-ticket-demo-v13.html",
+      "package": "invite-ticket-v13/source.zip",
+      "usage": "invite-ticket-v13/USAGE.md",
+      "states": [
+        "idle",
+        "pending",
+        "tearing",
+        "done",
+        "expired"
+      ],
+      "size": "852×220",
+      "duration": 1.25,
+      "fileSize": 628923
     }
   ]
 }
