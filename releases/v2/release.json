@@ -286,22 +286,20 @@
     },
     {
       "id": "sipplay-invitation-code",
-      "name": "输入邀请码 · 邀请信函与蓝宝石雨",
+      "name": "输入邀请码 · 秋日邀请函",
       "preview": "invitation-code/index.html",
       "download": "invitation-code/invitation-code-motion.html",
       "source": "invitation-code/invitation-code-motion.html",
       "package": "invitation-code/source.zip",
       "usage": "invitation-code/USAGE.md",
       "states": [
+        "closed",
+        "empty",
         "normal",
         "error",
-        "seal-dissolve",
-        "flap-unfold",
-        "card-slide",
-        "badge-pop",
-        "sapphire-fall"
+        "success"
       ],
-      "duration": 2.8,
+      "duration": 2.0,
       "size": "375×812"
     },
     {
@@ -321,6 +319,22 @@
       ],
       "duration": 1.36,
       "size": "167×36"
+    },
+    {
+      "id": "sipplay-maple-gift-pop",
+      "name": "枫叶礼盒轻弹",
+      "preview": "maple-gift-pop/index.html",
+      "download": "maple-gift-pop/maple-gift-pop.html",
+      "source": "maple-gift-pop/maple-gift-pop.html",
+      "package": "maple-gift-pop/source.zip",
+      "usage": "maple-gift-pop/USAGE.md",
+      "states": [
+        "idle-sparkle",
+        "leaf-flutter",
+        "burst-sparkles"
+      ],
+      "duration": 0.48,
+      "size": "35×29"
     }
   ]
 }

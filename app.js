@@ -198,12 +198,12 @@ const publishedV2 = [
 ,
   {
     "id": "sipplay-invitation-code",
-    "name": "输入邀请码 · 邀请信函与蓝宝石雨",
-    "note": "375×812 移动端端内流程 · 初始输入态、错误抖动提示、火漆印章物理溶解、信纸滑出、蓝宝石高脚杯粒子碰撞",
+    "name": "输入邀请码 · 秋日邀请函",
+    "note": "375×812 v5 离线单文件 · 闭合、空输入、已填、成功与错误态。8 位 ASCII 字母数字。浏览器核对了四态、彩带半透明、侧叶错峰、背景落叶、输入与混合粘贴、视口。IME 与 reduced-motion 未测。579588 字节，仍大于先前 384809。",
     "file": "./releases/v2/invitation-code/index.html",
     "download": "./releases/v2/invitation-code/invitation-code-motion.html",
     "symbol": "✉️",
-    "tags": "邀请码 信封 火漆 蓝宝石 奖励 兑换 状态机 invitation code sapphire",
+    "tags": "邀请码 信封 火漆 蓝宝石 奖励 兑换 秋日 落叶 invitation code sapphire",
     "published": true
   }
 ,
@@ -215,6 +215,16 @@ const publishedV2 = [
     "download": "./releases/v2/reward-ticket-harvest/reward-ticket-orange-easeout.html",
     "symbol": "🎃",
     "tags": "奖励 票券 卡券 南瓜 红金 飘带 easeout ticket harvest reward",
+    "published": true
+  },
+  {
+    "id": "sipplay-maple-gift-pop",
+    "name": "枫叶礼盒轻弹",
+    "note": "35×29 枫叶礼盒，独立于 32×26 原礼盒。星辰闪烁，0.48 秒轻弹，枫叶轻颤。浏览器核对了重复播放、四次连点、375px 布局与 Enter 重播。一次窄屏鼠标自动化超时未解决。不是穷尽或逐帧验收。",
+    "file": "./releases/v2/maple-gift-pop/index.html",
+    "download": "./releases/v2/maple-gift-pop/maple-gift-pop.html",
+    "symbol": "🍁",
+    "tags": "枫叶 礼盒 星辰 轻弹 点击 迸发 maple gift leaf",
     "published": true
   }
 ];
@@ -1774,7 +1784,10 @@ function renderDrafts(items) {
       preview.width = scene[0]; preview.height = scene[1];
       preview.style.width = `${scene[0]}px`; preview.style.height = `${scene[1]}px`;
       preview.loading = 'lazy'; preview.scrolling = 'no';
-      preview.src = `${item.file}?compact=1&fit=contain&v=canvas-manual2`;
+      const previewQuery = item.id === 'sipplay-invitation-code'
+        ? 'embed=1&fit=contain&v=canvas-manual2'
+        : 'compact=1&fit=contain&v=canvas-manual2';
+      preview.src = `${item.file}?${previewQuery}`;
       preview.tabIndex = -1; preview.setAttribute('aria-hidden', 'true');
       const trigger = document.createElement('button'); trigger.type = 'button'; trigger.className = 'release-preview-open';
       trigger.setAttribute('aria-label', `查看${item.name}详情`);
@@ -1869,7 +1882,7 @@ async function openReleaseDetail(item) {
   frame.src = item.file; releaseDetailStage.append(loading, frame);
   if (!releaseDetailDialog.open) releaseDetailDialog.showModal();
   try {
-    releaseManifestPromise ||= fetch('./releases/v2/release.json?v=v2-chest-fireworks-20261111').then(response => {
+    releaseManifestPromise ||= fetch('./releases/v2/release.json?v=v2-invite-maple-20261123').then(response => {
       if (!response.ok) throw new Error('manifest'); return response.json();
     }).catch(error => { releaseManifestPromise = null; throw error; });
     const manifest = await releaseManifestPromise;
