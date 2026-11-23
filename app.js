@@ -294,6 +294,16 @@ const publishedV2 = [
     "symbol": "✦",
     "tags": "邀请码 奖券 撕票 撕券 向下 副券 蓝宝石 invite ticket v13",
     "published": true
+  },
+  {
+    "id": "sipplay-gem-bonus-composite",
+    "name": "宝石加赠合成 · 单文件版",
+    "note": "单文件交互演示 · 支持档位切换、标准数量与加赠数量合成、时间轴跳转和完整重播。",
+    "file": "./releases/v2/gem-bonus-composite/index.html",
+    "download": "./releases/v2/gem-bonus-composite/gem-bonus-composite.html",
+    "symbol": "✦",
+    "tags": "宝石 加赠 合成 奖励 档位 时间轴 重播 gem bonus composite",
+    "published": true
   }
 ];
 const localDrafts = [];
@@ -1847,6 +1857,7 @@ function renderDrafts(items) {
         : item.id === 'sipplay-character-select' ? [750, 504]
         : item.id === 'sipplay-reward-celebration' ? [644, 644]
         : item.id === 'sipplay-invite-ticket-v13' ? [1000, 480]
+        : item.id === 'sipplay-gem-bonus-composite' ? [1040, 660]
         : item.id === 'sipplay-battlepass-pack-textured' ? [560, 558]
         : item.id === 'sipplay-chest-two-state' ? [760, 685] : [260, 220];
       canvas.dataset.sceneWidth = scene[0]; canvas.dataset.sceneHeight = scene[1];
@@ -1952,7 +1963,7 @@ async function openReleaseDetail(item) {
   frame.src = item.file; releaseDetailStage.append(loading, frame);
   if (!releaseDetailDialog.open) releaseDetailDialog.showModal();
   try {
-    releaseManifestPromise ||= fetch('./releases/v2/release.json?v=invite-ticket-v13-20261123').then(response => {
+    releaseManifestPromise ||= fetch('./releases/v2/release.json?v=gem-bonus-composite-20261123').then(response => {
       if (!response.ok) throw new Error('manifest'); return response.json();
     }).catch(error => { releaseManifestPromise = null; throw error; });
     const manifest = await releaseManifestPromise;

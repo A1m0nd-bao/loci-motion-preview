@@ -460,6 +460,25 @@
       "size": "852×220",
       "duration": 1.25,
       "fileSize": 628923
+    },
+    {
+      "id": "sipplay-gem-bonus-composite",
+      "name": "宝石加赠合成 · 单文件版",
+      "preview": "gem-bonus-composite/index.html",
+      "download": "gem-bonus-composite/gem-bonus-composite.html",
+      "source": "gem-bonus-composite/gem-bonus-composite.html",
+      "package": "gem-bonus-composite/source.zip",
+      "usage": "gem-bonus-composite/USAGE.md",
+      "states": [
+        "tier-select",
+        "addition",
+        "total",
+        "timeline",
+        "replay"
+      ],
+      "size": "1040×660",
+      "duration": 7.2,
+      "fileSize": 326577
     }
   ]
 }
