@@ -216,7 +216,7 @@
     },
     {
       "id": "sipplay-ticket-tear",
-      "name": "票券撕副券 · 动态名额联动",
+      "name": "票券撕副券 · 秋叶",
       "preview": "ticket-tear/index.html",
       "download": "ticket-tear/ticket-tear.html",
       "source": "ticket-tear/ticket-tear.html",
@@ -229,7 +229,7 @@
         "torn"
       ],
       "duration": 1.25,
-      "size": "521×285"
+      "size": "541×289"
     },
     {
       "id": "sipplay-character-select",

@@ -157,8 +157,8 @@ const publishedV2 = [
   },
   {
     "id": "sipplay-ticket-tear",
-    "name": "票券撕副券 · 动态名额联动",
-    "note": "521×285 撕开副券 · 物理网格弯折算法、Motion 规范弹簧名额槽波浪传递、一键复制邀请码",
+    "name": "票券撕副券 · 秋叶",
+    "note": "541×289 秋叶撕副券。YOUR INVITE CODE、320146、Invites used / Sapphires earned、上下 +200/+100，下联 Have a friend’s code? 为字体文字。浏览器看过 541、375、compact 和撕票，没有明显白边或双字。compact 很小。Linux 未测真正的 Apple SF Pro，走系统回退，字体未内嵌。",
     "file": "./releases/v2/ticket-tear/index.html",
     "download": "./releases/v2/ticket-tear/ticket-tear.html",
     "symbol": "🎟",
@@ -1881,7 +1881,7 @@ async function openReleaseDetail(item) {
   frame.src = item.file; releaseDetailStage.append(loading, frame);
   if (!releaseDetailDialog.open) releaseDetailDialog.showModal();
   try {
-    releaseManifestPromise ||= fetch('./releases/v2/release.json?v=v2-invite-maple-20261123').then(response => {
+    releaseManifestPromise ||= fetch('./releases/v2/release.json?v=v2-ticket-tear-text-20261123').then(response => {
       if (!response.ok) throw new Error('manifest'); return response.json();
     }).catch(error => { releaseManifestPromise = null; throw error; });
     const manifest = await releaseManifestPromise;
