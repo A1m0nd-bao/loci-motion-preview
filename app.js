@@ -157,8 +157,8 @@ const publishedV2 = [
   },
   {
     "id": "sipplay-ticket-tear",
-    "name": "票券撕副券 · 秋叶",
-    "note": "541×289 秋叶撕副券。YOUR INVITE CODE、320146、Invites used / Sapphires earned、上下 +200/+100，下联 Have a friend’s code? 为字体文字。浏览器看过 541、375、compact 和撕票，没有明显白边或双字。compact 很小。Linux 未测真正的 Apple SF Pro，走系统回退，字体未内嵌。",
+    "name": "票券撕副券 · 动态名额联动",
+    "note": "521×285 撕开副券 · 物理网格弯折算法、Motion 规范弹簧名额槽波浪传递、一键复制邀请码",
     "file": "./releases/v2/ticket-tear/index.html",
     "download": "./releases/v2/ticket-tear/ticket-tear.html",
     "symbol": "🎟",
@@ -198,8 +198,8 @@ const publishedV2 = [
 ,
   {
     "id": "sipplay-invitation-code",
-    "name": "输入邀请码 · 秋日邀请函",
-    "note": "375×812 v5 离线单文件 · 闭合、空输入、已填、成功与错误态。8 位 ASCII 字母数字。浏览器核对了四态、彩带半透明、侧叶错峰、背景落叶、输入与混合粘贴、视口。IME 与 reduced-motion 未测。579588 字节，仍大于先前 384809。",
+    "name": "输入邀请码 · 邀请信函与蓝宝石雨",
+    "note": "375×812 移动端端内流程 · 初始输入态、错误抖动提示、火漆印章物理溶解、信纸滑出、蓝宝石高脚杯粒子碰撞",
     "file": "./releases/v2/invitation-code/index.html",
     "download": "./releases/v2/invitation-code/invitation-code-motion.html",
     "symbol": "✉️",
@@ -234,6 +234,36 @@ const publishedV2 = [
     "download": "./releases/v2/autumn-transparent-leaves/autumn-motion-transparent.html",
     "symbol": "🍂",
     "tags": "秋叶 落叶 透明 图层 autumn leaves transparent",
+    "published": true
+  },
+  {
+    "id": "sipplay-invitation-code-autumn",
+    "name": "输入邀请码 · 秋日邀请函",
+    "note": "375×812 v5 离线单文件，独立于原来的邀请信函。闭合、空输入、已填、成功与错误态。浏览器核对了四态、彩带半透明、侧叶错峰、背景落叶、8 位输入与混合粘贴、视口。IME 与 reduced-motion 未测。579588 字节，大于原件 384809。",
+    "file": "./releases/v2/invitation-code-autumn/index.html",
+    "download": "./releases/v2/invitation-code-autumn/invitation-code-motion.html",
+    "symbol": "✉️",
+    "tags": "邀请码 秋日 信封 落叶 蓝宝石 invitation autumn",
+    "published": true
+  },
+  {
+    "id": "sipplay-ticket-tear-autumn",
+    "name": "票券撕副券 · 秋叶",
+    "note": "541×289 秋叶撕副券，独立于原来的 521×285 撕副券。字体文字。浏览器看过 541、375、compact 和撕票，没有明显白边或双字。compact 很小。Linux 未测真正的 Apple SF Pro。",
+    "file": "./releases/v2/ticket-tear-autumn/index.html",
+    "download": "./releases/v2/ticket-tear-autumn/ticket-tear.html",
+    "symbol": "🎟",
+    "tags": "票券 撕票 秋叶 邀请码 320146 ticket tear autumn",
+    "published": true
+  },
+  {
+    "id": "sipplay-gems-pack-popup",
+    "name": "50% OFF · Gems Pack Coupon",
+    "note": "主窗口 0–400ms 先出现，400ms 起按钮和光一起进入。按钮单段，光只改透明度。v2 修了循环交接跳动。核对了初始和 3 次重播、375 和 reduced-motion。关闭热区仍会被 CTA 挡住，Enter 可用。不是全部交互都通过。",
+    "file": "./releases/v2/gems-pack-popup/index.html",
+    "download": "./releases/v2/gems-pack-popup/gems-pack-popup.html",
+    "symbol": "✦",
+    "tags": "弹窗 优惠券 宝石 50% OFF gems pack coupon popup",
     "published": true
   }
 ];
@@ -1783,7 +1813,7 @@ function renderDrafts(items) {
       const preview = document.createElement('iframe');
       const canvas = document.createElement('div');
       canvas.className = 'release-preview-canvas';
-      const scene = ['sipplay-prop-spotlight', 'sipplay-relic-journey', 'sipplay-invitation-code'].includes(item.id) ? [375, 812]
+      const scene = ['sipplay-prop-spotlight', 'sipplay-relic-journey', 'sipplay-invitation-code', 'sipplay-invitation-code-autumn', 'sipplay-gems-pack-popup'].includes(item.id) ? [375, 812]
         : item.id === 'sipplay-voice-input-wave' ? [269, 220]
         : item.id === 'sipplay-character-select' ? [750, 504]
         : item.id === 'sipplay-reward-celebration' ? [644, 644]
@@ -1793,7 +1823,7 @@ function renderDrafts(items) {
       preview.width = scene[0]; preview.height = scene[1];
       preview.style.width = `${scene[0]}px`; preview.style.height = `${scene[1]}px`;
       preview.loading = 'lazy'; preview.scrolling = 'no';
-      const previewQuery = item.id === 'sipplay-invitation-code'
+      const previewQuery = item.id === 'sipplay-invitation-code-autumn'
         ? 'embed=1&fit=contain&v=canvas-manual2'
         : 'compact=1&fit=contain&v=canvas-manual2';
       preview.src = `${item.file}?${previewQuery}`;
@@ -1891,7 +1921,7 @@ async function openReleaseDetail(item) {
   frame.src = item.file; releaseDetailStage.append(loading, frame);
   if (!releaseDetailDialog.open) releaseDetailDialog.showModal();
   try {
-    releaseManifestPromise ||= fetch('./releases/v2/release.json?v=v2-ticket-tear-text-20261123').then(response => {
+    releaseManifestPromise ||= fetch('./releases/v2/release.json?v=v2-popup-split-20261123').then(response => {
       if (!response.ok) throw new Error('manifest'); return response.json();
     }).catch(error => { releaseManifestPromise = null; throw error; });
     const manifest = await releaseManifestPromise;

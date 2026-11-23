@@ -1,48 +1,41 @@
-# 票券撕副券 · 秋叶文字修复 v3
+# 票券撕副券 · 动态名额联动组件接入说明
 
-同一条目 `sipplay-ticket-tear`。这不是邀请函信封 `sipplay-invitation-code`，也不是枫叶礼盒或 32×26 原礼盒，也不是红金南瓜票券。
+Sipplay 邀请票券交互与物理副券撕下动效组件，基于纯 Web 标准（HTML5 + Canvas 2D + SVG + 原生 Motion 规范弹簧物理引擎），零外部依赖，极速加载。
 
-预览 `index.html`、目录下载 `ticket-tear.html`、页面内下载 `ticket-tear-restyle.html` 是同一份离线 HTML。
+## 规格与特性
 
-- **字节**: `242752`
-- **SHA256**: `ee8f0a8a71ca2f5430919100214e6f76668e609ce3a9d01848949b872cee333c`
-- **票面**: `541 × 289`（`aspect-ratio: 541/289`）
-- **撕开时长**: `1.25` 秒
-- 直接打开即可。可选 `?compact` 进入 260×220 缩略图，票面缩放 `0.44`。
+- **尺寸**：521 × 285（标准自适应卡片）
+- **撕副券时长**：1.25 秒（包含纸张弯折受光、纤维阻力拉扯、撕裂线高光与倾斜下落收拢）
+- **动态名额联动**：
+  - 10 段槽位（Slot）波浪递增 / 递减动画
+  - Motion 物理弹簧解算器（`stiffness: 320, damping: 25, mass: 0.8`）
+  - 带有弹性缓冲震荡（Bounce）与数值跳动反馈
+  - 支持直接点击数字切换、点击各个槽位吸附、滑块与预设按钮调节
+- **一键复制邀请码**：点击「COPY」按钮自适应缩放微动效、绿色高光反馈与剪贴板静默复制
+- **兑换按钮交互**：输入激活码后触发按钮点亮，回车或点击按钮均可触发物理撕票动画
 
-页面上可见的文案包括 `YOUR INVITE CODE`、`320146`、`Invites used`、`Sapphires earned`、上联与下联的 `+200` / `+100`，以及下联 `Have a friend’s code?`。副券可以撕下。名额、复制和兑换控件仍在这一份文件里。
+## 状态定义
 
-## 这次文字与边缘
+1. `intact`：完整票券展示（上联邀请码与名额，下联副券激活码输入框）
+2. `quota-change`：名额 0~10 档位动态调节，伴随槽位逐级弹性点亮与高光 Shimmer
+3. `tearing`：副券物理网格沿分割中线撕开，受光高光过渡与纸张弯曲
+4. `torn`：副券脱离收拢，主券保持完整可用
 
-描边 SVG 字和低分辨率烤进图里的字，改成了字体文字。没有 `@font-face`，也没有内嵌字体文件。
+## 核心算法
 
-只有 `Have a friend’s code?`（`#labelHaveFriendsCode` 和撕票 canvas 的 `famTitle`）把 `SF Pro Text` / `SF Pro Display` 放在字体栈前面，字重 600。其余文字回到原来的系统字体栈：`-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif`。
+### 1. Motion 规范原生弹簧解算器
+```javascript
+function createMotionSpring({ stiffness = 320, damping = 25, mass = 0.8, onUpdate, onComplete }) {
+  // 基于二阶齐次微分方程的解析解算，零延迟、零卡顿、零依赖
+}
+```
 
-这只是字体名称的优先顺序。Linux 上会落到系统无衬线，不能把它说成已经嵌入 Apple SF Pro，也不能说成各系统字形一致。真正的 Apple SF Pro 没有在 Linux 上测过。
+### 2. Canvas 纸张网格连续弯折渲染
+副券在撕下过程中切分为 4px 垂直条带，基于非对称贝塞尔曲率求解器实现纸张向外凸起与倾斜位移。
 
-下联票面清掉了外轮廓的白色垫边。原来的 alpha 轮廓还在，形状和撕裂边没有改。
+## 目录结构
 
-## 浏览器核对范围
-
-已看过：
-
-- 541 宽
-- 375 宽
-- `?compact`
-- 撕票过程
-
-这几项里没有看到明显的白边或双重文字。`?compact` 里的票很小，这个限制还在。
-
-没有把这次核对说成逐帧验收，也没有把系统字体说成和设计稿逐字重合。
-
-## 文件
-
-- `index.html`：目录预览。
-- `ticket-tear.html`：目录下载。
-- `ticket-tear-restyle.html`：页面里「下载 HTML」指向的同一份文件。
-- `USAGE.md`：本说明。
-- `QA.md`：页面里「交互清单」指向的核对记录。
-- `AUDIT.md`、`TEXT-V3.md`：审计与 v3 说明原文。
-- `source.zip`：上述材料。页面里的 `ticket-page-restyle.zip` 与它相同。
-
-`AUDIT.md` 和 `TEXT-V3.md` 是说明，不是完整重建工程。`TEXT-V3.md` 里的「无浏览器验收」已被上面列出的核对范围接上，范围就这些。
+- `index.html`：交互试版与展示舞台
+- `ticket-tear.html`：单文件独立版（内置 Base64 矢量纹理，可直接离线打开）
+- `reference-full.svg`：高清 521×285 矢量原稿与底联背景定义
+- `source.zip`：完整源码与资源打包
