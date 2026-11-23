@@ -194,8 +194,7 @@ const publishedV2 = [
     "symbol": "🎁",
     "tags": "宝箱 奖励 迸发 开盖 迎新 礼包 卡券 动效 chest welcome gift burst",
     "published": true
-  }
-,
+  },
   {
     "id": "sipplay-invitation-code",
     "name": "输入邀请码 · 邀请信函与蓝宝石雨",
@@ -274,6 +273,16 @@ const publishedV2 = [
     "download": "./releases/v2/welcome-gift-collect/welcome-gift-collect.html",
     "symbol": "🎁",
     "tags": "迎新 礼盒 收取 宝箱 贝塞尔 Claim welcome gift collect",
+    "published": true
+  },
+  {
+    "id": "sipplay-battlepass-pack-textured",
+    "name": "战令礼包 · 贴图均衡版",
+    "note": "279 KB · 宝箱蓄力开盖，红宝石错峰弹出与悬浮，领取按钮带按压和流光反馈。",
+    "file": "./releases/v2/battlepass-pack-textured/index.html",
+    "download": "./releases/v2/battlepass-pack-textured/battlepass-pack-motion-textured.html",
+    "symbol": "✦",
+    "tags": "战令 礼包 宝箱 红宝石 开盖 领取 贴图 均衡 battlepass pack textured",
     "published": true
   }
 ];
@@ -1827,6 +1836,7 @@ function renderDrafts(items) {
         : item.id === 'sipplay-voice-input-wave' ? [269, 220]
         : item.id === 'sipplay-character-select' ? [750, 504]
         : item.id === 'sipplay-reward-celebration' ? [644, 644]
+        : item.id === 'sipplay-battlepass-pack-textured' ? [560, 558]
         : item.id === 'sipplay-chest-two-state' ? [760, 685] : [260, 220];
       canvas.dataset.sceneWidth = scene[0]; canvas.dataset.sceneHeight = scene[1];
       preview.className = 'release-card-preview'; preview.title = `${item.name} · 交互预览`;
@@ -1931,7 +1941,7 @@ async function openReleaseDetail(item) {
   frame.src = item.file; releaseDetailStage.append(loading, frame);
   if (!releaseDetailDialog.open) releaseDetailDialog.showModal();
   try {
-    releaseManifestPromise ||= fetch('./releases/v2/release.json?v=v2-welcome-gift-collect-20261123').then(response => {
+    releaseManifestPromise ||= fetch('./releases/v2/release.json?v=battlepass-textured-20261123').then(response => {
       if (!response.ok) throw new Error('manifest'); return response.json();
     }).catch(error => { releaseManifestPromise = null; throw error; });
     const manifest = await releaseManifestPromise;

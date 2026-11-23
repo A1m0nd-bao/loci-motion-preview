@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "date": "2026-11-11",
+  "date": "2026-11-23",
   "components": [
     {
       "id": "sipplay-plus-arrow-toggle",
@@ -246,7 +246,7 @@
         "non-binary",
         "char-focus"
       ],
-      "duration": 2.0,
+      "duration": 2,
       "size": "750×504"
     },
     {
@@ -369,7 +369,7 @@
         "error",
         "success"
       ],
-      "duration": 2.0,
+      "duration": 2,
       "size": "375×812"
     },
     {
@@ -422,6 +422,25 @@
       ],
       "duration": 1.48,
       "size": "760×685"
+    },
+    {
+      "id": "sipplay-battlepass-pack-textured",
+      "name": "战令礼包 · 贴图均衡版",
+      "preview": "battlepass-pack-textured/index.html",
+      "download": "battlepass-pack-textured/battlepass-pack-motion-textured.html",
+      "source": "battlepass-pack-textured/battlepass-pack-motion-textured.html",
+      "package": "battlepass-pack-textured/source.zip",
+      "usage": "battlepass-pack-textured/USAGE.md",
+      "states": [
+        "entrance",
+        "opening",
+        "standby",
+        "claim"
+      ],
+      "size": "560×558",
+      "duration": 1.35,
+      "fileSize": 285515,
+      "pixelRatio": 1.5
     }
   ]
 }
