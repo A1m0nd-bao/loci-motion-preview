@@ -226,6 +226,16 @@ const publishedV2 = [
     "symbol": "🍁",
     "tags": "枫叶 礼盒 星辰 轻弹 点击 迸发 maple gift leaf",
     "published": true
+  },
+  {
+    "id": "sipplay-reward-ticket-pumpkin",
+    "name": "奖励票券 · 红金南瓜弹跳",
+    "note": "167×36 红金票，独立于邀请奖励卡券和红金南瓜 Ease-Out。南瓜弹簧弹跳，吊牌跟随摆动，飘带 ease-out。浏览器核对了 1× 茎尖约 1.62px 间隙、放大票面、重播、慢速、连点、Enter 与 reduced-motion。",
+    "file": "./releases/v2/reward-ticket-pumpkin/index.html",
+    "download": "./releases/v2/reward-ticket-pumpkin/reward-ticket-pumpkin.html",
+    "symbol": "🎃",
+    "tags": "奖励 票券 南瓜 弹跳 吊牌 红金 飘带 pumpkin bounce ticket harvest",
+    "published": true
   }
 ];
 const localDrafts = [];
