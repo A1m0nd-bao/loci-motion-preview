@@ -216,7 +216,7 @@
     },
     {
       "id": "sipplay-ticket-tear",
-      "name": "票券撕副券 · 秋叶",
+      "name": "票券撕副券 · 动态名额联动",
       "preview": "ticket-tear/index.html",
       "download": "ticket-tear/ticket-tear.html",
       "source": "ticket-tear/ticket-tear.html",
@@ -229,7 +229,7 @@
         "torn"
       ],
       "duration": 1.25,
-      "size": "541×289"
+      "size": "521×285"
     },
     {
       "id": "sipplay-character-select",
@@ -286,20 +286,22 @@
     },
     {
       "id": "sipplay-invitation-code",
-      "name": "输入邀请码 · 秋日邀请函",
+      "name": "输入邀请码 · 邀请信函与蓝宝石雨",
       "preview": "invitation-code/index.html",
       "download": "invitation-code/invitation-code-motion.html",
       "source": "invitation-code/invitation-code-motion.html",
       "package": "invitation-code/source.zip",
       "usage": "invitation-code/USAGE.md",
       "states": [
-        "closed",
-        "empty",
         "normal",
         "error",
-        "success"
+        "seal-dissolve",
+        "flap-unfold",
+        "card-slide",
+        "badge-pop",
+        "sapphire-fall"
       ],
-      "duration": 2.0,
+      "duration": 2.8,
       "size": "375×812"
     },
     {
@@ -351,6 +353,57 @@
         "reduced-motion"
       ],
       "size": "铺满容器"
+    },
+    {
+      "id": "sipplay-invitation-code-autumn",
+      "name": "输入邀请码 · 秋日邀请函",
+      "preview": "invitation-code-autumn/index.html",
+      "download": "invitation-code-autumn/invitation-code-motion.html",
+      "source": "invitation-code-autumn/invitation-code-motion.html",
+      "package": "invitation-code-autumn/source.zip",
+      "usage": "invitation-code-autumn/USAGE.md",
+      "states": [
+        "closed",
+        "empty",
+        "normal",
+        "error",
+        "success"
+      ],
+      "duration": 2.0,
+      "size": "375×812"
+    },
+    {
+      "id": "sipplay-ticket-tear-autumn",
+      "name": "票券撕副券 · 秋叶",
+      "preview": "ticket-tear-autumn/index.html",
+      "download": "ticket-tear-autumn/ticket-tear.html",
+      "source": "ticket-tear-autumn/ticket-tear.html",
+      "package": "ticket-tear-autumn/source.zip",
+      "usage": "ticket-tear-autumn/USAGE.md",
+      "states": [
+        "intact",
+        "quota-change",
+        "tearing",
+        "torn"
+      ],
+      "duration": 1.25,
+      "size": "541×289"
+    },
+    {
+      "id": "sipplay-gems-pack-popup",
+      "name": "50% OFF · Gems Pack Coupon",
+      "preview": "gems-pack-popup/index.html",
+      "download": "gems-pack-popup/gems-pack-popup.html",
+      "source": "gems-pack-popup/gems-pack-popup.html",
+      "package": "gems-pack-popup/source.zip",
+      "usage": "gems-pack-popup/USAGE.md",
+      "states": [
+        "window",
+        "cta-light",
+        "rays-loop"
+      ],
+      "duration": 0.78,
+      "size": "铺满视口"
     }
   ]
 }
