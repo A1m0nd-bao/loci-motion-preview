@@ -447,22 +447,20 @@
     },
     {
       "id": "sipplay-invite-ticket-v13",
-      "name": "邀请码奖券 · 向下撕开",
-      "preview": "invite-ticket-v13/index.html",
-      "download": "invite-ticket-v13/invite-ticket-demo-v13.html",
-      "source": "invite-ticket-v13/invite-ticket-demo-v13.html",
-      "package": "invite-ticket-v13/source.zip",
-      "usage": "invite-ticket-v13/USAGE.md",
+      "name": "活动页兑换码 · 自适应奖券",
+      "preview": "invite-ticket-v13/index.html?v=responsive-v15-20261124",
+      "download": "invite-ticket-v13/invite-ticket-responsive-v15.html?v=20261124",
+      "source": "invite-ticket-v13/invite-ticket-responsive-v15.html?v=20261124",
+      "package": "invite-ticket-v13/source.zip?v=responsive-v15-20261124",
+      "usage": "invite-ticket-v13/USAGE.md?v=responsive-v15-20261124",
       "states": [
-        "idle",
         "pending",
-        "tearing",
-        "done",
+        "redeemed",
         "expired"
       ],
-      "size": "852×220",
+      "size": "桌面 852×220 / 手机 356×120",
       "duration": 1.25,
-      "fileSize": 628923
+      "fileSize": 486337
     },
     {
       "id": "sipplay-gem-bonus-composite",
