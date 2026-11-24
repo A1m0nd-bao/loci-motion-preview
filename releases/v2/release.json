@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "date": "2026-11-23",
+  "date": "2026-11-24",
   "components": [
     {
       "id": "sipplay-plus-arrow-toggle",
@@ -22,16 +22,19 @@
     {
       "id": "sipplay-like-heart",
       "name": "心动点赞",
-      "preview": "like-heart/index.html",
-      "download": "like-heart/like-heart.html",
-      "package": "like-heart/source.zip",
-      "source": "like-heart/like-heart.js",
-      "usage": "like-heart/USAGE.md",
+      "preview": "like-heart/index.html?v=red-20261124",
+      "download": "like-heart/like-heart.html?v=red-20261124",
+      "package": "like-heart/source.zip?v=red-20261124",
+      "source": "like-heart/like-heart.js?v=red-20261124",
+      "usage": "like-heart/USAGE.md?v=red-20261124",
       "states": [
         "off",
         "on"
       ],
-      "size": "16 / 20"
+      "size": "16 / 18 / 20",
+      "duration": 0.56,
+      "fileSize": 451033,
+      "color": "#EB5A4E"
     },
     {
       "id": "sipplay-strength-cup",

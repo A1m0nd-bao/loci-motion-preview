@@ -28,11 +28,11 @@ const publishedV2 = [
   {
     "id": "sipplay-like-heart",
     "name": "心动点赞",
-    "note": "16 / 20 像素 · 轻收、小跳与自下而上填充",
-    "file": "./releases/v2/like-heart/index.html",
-    "download": "./releases/v2/like-heart/like-heart.html",
+    "note": "16 / 18 / 20 像素 · 红色 #EB5A4E，轻收、小跳与自下而上填充",
+    "file": "./releases/v2/like-heart/index.html?v=red-20261124",
+    "download": "./releases/v2/like-heart/like-heart.html?v=red-20261124",
     "symbol": "♡",
-    "tags": "点赞 爱心 心动",
+    "tags": "点赞 爱心 心动 红色 18px",
     "published": true
   },
   {
@@ -1879,7 +1879,11 @@ function renderDrafts(items) {
       const previewQuery = item.id === 'sipplay-invitation-code-autumn'
         ? 'embed=1&fit=contain&v=canvas-manual2'
         : 'compact=1&fit=contain&v=canvas-manual2';
-      preview.src = `${item.file}?${previewQuery}`;
+      const previewUrl = new URL(item.file, document.baseURI);
+      for (const [key, value] of new URLSearchParams(previewQuery)) {
+        if (!previewUrl.searchParams.has(key)) previewUrl.searchParams.set(key, value);
+      }
+      preview.src = previewUrl.href;
       preview.tabIndex = -1; preview.setAttribute('aria-hidden', 'true');
       const trigger = document.createElement('button'); trigger.type = 'button'; trigger.className = 'release-preview-open';
       trigger.setAttribute('aria-label', `查看${item.name}详情`);
@@ -1974,7 +1978,7 @@ async function openReleaseDetail(item) {
   frame.src = item.file; releaseDetailStage.append(loading, frame);
   if (!releaseDetailDialog.open) releaseDetailDialog.showModal();
   try {
-    releaseManifestPromise ||= fetch('./releases/v2/release.json?v=red-gold-chest-v3-20261123').then(response => {
+    releaseManifestPromise ||= fetch('./releases/v2/release.json?v=like-heart-red-20261124').then(response => {
       if (!response.ok) throw new Error('manifest'); return response.json();
     }).catch(error => { releaseManifestPromise = null; throw error; });
     const manifest = await releaseManifestPromise;
