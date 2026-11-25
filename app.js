@@ -308,9 +308,9 @@ const publishedV2 = [
   {
     "id": "sipplay-red-gold-chest-v3",
     "name": "红金宝箱 · 跃起开箱",
-    "note": "v5 · 点击开箱，红金宝箱跃起、开盖与蓝宝石错峰弹出，支持重新打开。",
-    "file": "./releases/v2/red-gold-chest-v3/index.html?v=chest-v5-20261125",
-    "download": "./releases/v2/red-gold-chest-v3/red-gold-chest-v5.html?v=20261125",
+    "note": "v10 · 点击开箱，固定铰链开盖与厚度箱体，支持重新打开。",
+    "file": "./releases/v2/red-gold-chest-v3/index.html?v=chest-v10-20261125",
+    "download": "./releases/v2/red-gold-chest-v3/red-gold-chest-v10.html?v=20261125",
     "symbol": "✦",
     "tags": "红金 宝箱 点击 开箱 蓝宝石 枫叶 奖励 chest opening red gold v5",
     "published": true
@@ -1931,7 +1931,7 @@ function renderDrafts(items, version = "v2") {
         : item.id === 'sipplay-reward-celebration' ? [644, 644]
         : item.id === 'sipplay-invite-ticket-v13' ? [1000, 480]
         : item.id === 'sipplay-gem-bonus-composite' ? [1040, 660]
-        : item.id === 'sipplay-red-gold-chest-v3' ? [420, 440]
+        : item.id === 'sipplay-red-gold-chest-v3' ? [420, 510]
         : item.id === 'sipplay-battlepass-pack-textured' ? [560, 558]
         : item.id === 'sipplay-chest-two-state' ? [760, 685] : [260, 220];
       canvas.dataset.sceneWidth = scene[0]; canvas.dataset.sceneHeight = scene[1];
@@ -2044,7 +2044,7 @@ async function openReleaseDetail(item, version = "v2") {
   if (!releaseDetailDialog.open) releaseDetailDialog.showModal();
   try {
     if (!releaseManifestPromises.has(version)) {
-      releaseManifestPromises.set(version, fetch(`./releases/${version}/release.json?v=tie-fixed-20261125`).then(response => {
+      releaseManifestPromises.set(version, fetch(`./releases/${version}/release.json?v=chest-v10-20261125 => {
         if (!response.ok) throw new Error('manifest'); return response.json();
       }).catch(error => { releaseManifestPromises.delete(version); throw error; }));
     }
