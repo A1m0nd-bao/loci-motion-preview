@@ -314,6 +314,26 @@ const publishedV2 = [
     "symbol": "✦",
     "tags": "红金 宝箱 点击 开箱 蓝宝石 枫叶 奖励 chest opening red gold v5",
     "published": true
+  },
+  {
+    "id": "sipplay-billionaire-button-lite",
+    "name": "Billionaire · 按钮选中切换",
+    "note": "轻量版 · 红金按钮轮廓与文字弹簧切换，支持重播和慢速。",
+    "file": "./releases/v2/billionaire-button-lite/index.html?v=clean-20261125",
+    "download": "./releases/v2/billionaire-button-lite/billionaire-button-lite.html?v=clean-20261125",
+    "symbol": "✦",
+    "tags": "billionaire 按钮 选中 切换 弹簧 轻量 重播 慢速 button lite",
+    "published": true
+  },
+  {
+    "id": "sipplay-ice-hockey-button-lite",
+    "name": "Ice Hockey · 按钮选中切换",
+    "note": "轻量版 · 冰球按钮轮廓、文字与底图过渡，支持重播和慢速。",
+    "file": "./releases/v2/ice-hockey-button-lite/index.html?v=clean-20261125",
+    "download": "./releases/v2/ice-hockey-button-lite/ice-hockey-button-lite.html?v=clean-20261125",
+    "symbol": "✦",
+    "tags": "ice-hockey 按钮 选中 切换 弹簧 轻量 重播 慢速 button lite",
+    "published": true
   }
 ];
 const localDrafts = [];
@@ -1863,6 +1883,7 @@ function renderDrafts(items) {
       const canvas = document.createElement('div');
       canvas.className = 'release-preview-canvas';
       const scene = ['sipplay-prop-spotlight', 'sipplay-relic-journey', 'sipplay-invitation-code', 'sipplay-invitation-code-autumn', 'sipplay-gems-pack-popup', 'sipplay-welcome-gift-collect'].includes(item.id) ? [375, 812]
+        : ['sipplay-billionaire-button-lite', 'sipplay-ice-hockey-button-lite'].includes(item.id) ? [380, 220]
         : item.id === 'sipplay-voice-input-wave' ? [269, 220]
         : item.id === 'sipplay-character-select' ? [750, 504]
         : item.id === 'sipplay-reward-celebration' ? [644, 644]
@@ -1978,7 +1999,7 @@ async function openReleaseDetail(item) {
   frame.src = item.file; releaseDetailStage.append(loading, frame);
   if (!releaseDetailDialog.open) releaseDetailDialog.showModal();
   try {
-    releaseManifestPromise ||= fetch('./releases/v2/release.json?v=red-gold-chest-v5-20261125').then(response => {
+    releaseManifestPromise ||= fetch('./releases/v2/release.json?v=buttons-lite-clean-20261125').then(response => {
       if (!response.ok) throw new Error('manifest'); return response.json();
     }).catch(error => { releaseManifestPromise = null; throw error; });
     const manifest = await releaseManifestPromise;
