@@ -358,7 +358,18 @@ const publishedV2 = [
 ];
 const localDrafts = [];
 const v2Entries = [...publishedV2, ...localDrafts];
-const publishedV3 = [];
+const publishedV3 = [
+  {
+    "id": "sipplay-auto-photos",
+    "name": "Auto Photos · 主动收图引导",
+    "note": "v4 压缩版 · 收图引导循环、独立开关与引导展开/收起，支持暂停、重播和变速。",
+    "file": "./releases/v3/auto-photos/index.html?v=20261125",
+    "download": "./releases/v3/auto-photos/auto-photos.html?v=20261125",
+    "symbol": "✦",
+    "tags": "auto photos 主动 收图 照片 引导 开关 v4",
+    "published": true
+  }
+];
 const v3Entries = [...publishedV3];
 
 
@@ -811,7 +822,7 @@ function render() {
   category.disabled = showVersioned;
   document.querySelector("#webReleaseTitle").textContent = showVersioned ? `动效 ${selectedWebRelease}` : "动效 v1 · 正式交付";
   document.querySelector("#webReleaseNote").textContent = showV3
-    ? `${publishedV3.length} 个动效 · 新批次`
+    ? `${publishedV3.length} 个已上线动效 · 可交互预览与 HTML 下载`
     : showV2
     ? `${publishedV2.length} 个已上线动效 · 可交互预览与 HTML 下载${isLocalPreview && localDrafts.length ? ` · ${localDrafts.length} 个本地候选` : ""}`
     : "23 个 Web 组件 · 19 项 / 38 个 Lottie JSON · 接入说明与组件 API";
@@ -1914,6 +1925,7 @@ function renderDrafts(items, version = "v2") {
         : ['sipplay-billionaire-button-lite', 'sipplay-ice-hockey-button-lite'].includes(item.id) ? [380, 220]
         : item.id === 'sipplay-lifecycle-item-counter' ? [1040, 850]
         : item.id === 'sipplay-cheers-popup' ? [500, 640]
+        : item.id === 'sipplay-auto-photos' ? [600, 760]
         : item.id === 'sipplay-voice-input-wave' ? [269, 220]
         : item.id === 'sipplay-character-select' ? [750, 504]
         : item.id === 'sipplay-reward-celebration' ? [644, 644]
@@ -2032,7 +2044,7 @@ async function openReleaseDetail(item, version = "v2") {
   if (!releaseDetailDialog.open) releaseDetailDialog.showModal();
   try {
     if (!releaseManifestPromises.has(version)) {
-      releaseManifestPromises.set(version, fetch(`./releases/${version}/release.json?v=v3-open-20261125`).then(response => {
+      releaseManifestPromises.set(version, fetch(`./releases/${version}/release.json?v=auto-photos-20261125`).then(response => {
         if (!response.ok) throw new Error('manifest'); return response.json();
       }).catch(error => { releaseManifestPromises.delete(version); throw error; }));
     }

@@ -1,0 +1,14 @@
+{
+  "originalBytes": 2212807,
+  "compressedBytes": 164540,
+  "reductionPercent": 92.56,
+  "image": {
+    "from": "PNG",
+    "to": "WebP",
+    "quality": 88,
+    "width": 1254,
+    "height": 1254
+  },
+  "svgGeometryUnchanged": true,
+  "animationScriptUnchanged": true
+}

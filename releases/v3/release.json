@@ -2,5 +2,25 @@
   "version": "v3",
   "date": "2026-11-25",
   "status": "open",
-  "components": []
+  "components": [
+    {
+      "id": "sipplay-auto-photos",
+      "name": "Auto Photos · 主动收图引导",
+      "preview": "auto-photos/index.html?v=20261125",
+      "download": "auto-photos/auto-photos.html?v=20261125",
+      "source": "auto-photos/auto-photos.html?v=20261125",
+      "usage": "auto-photos/USAGE.md",
+      "states": [
+        "loop",
+        "paused",
+        "guide-expanded",
+        "guide-collapsed",
+        "switch-off",
+        "switch-on"
+      ],
+      "size": "226×213",
+      "duration": 3.6,
+      "fileSize": 164540
+    }
+  ]
 }
