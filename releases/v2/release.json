@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "date": "2026-11-24",
+  "date": "2026-11-25",
   "components": [
     {
       "id": "sipplay-plus-arrow-toggle",
@@ -448,11 +448,11 @@
     {
       "id": "sipplay-invite-ticket-v13",
       "name": "活动页兑换码 · 自适应奖券",
-      "preview": "invite-ticket-v13/index.html?v=responsive-v15-20261124",
-      "download": "invite-ticket-v13/invite-ticket-responsive-v15.html?v=20261124",
-      "source": "invite-ticket-v13/invite-ticket-responsive-v15.html?v=20261124",
-      "package": "invite-ticket-v13/source.zip?v=responsive-v15-20261124",
-      "usage": "invite-ticket-v13/USAGE.md?v=responsive-v15-20261124",
+      "preview": "invite-ticket-v13/index.html?v=responsive-v17-20261125",
+      "download": "invite-ticket-v13/invite-ticket-responsive-v17.html?v=20261125",
+      "source": "invite-ticket-v13/invite-ticket-responsive-v17.html?v=20261125",
+      "package": "invite-ticket-v13/source.zip?v=responsive-v17-20261125",
+      "usage": "invite-ticket-v13/USAGE.md?v=responsive-v17-20261125",
       "states": [
         "pending",
         "redeemed",
@@ -460,7 +460,7 @@
       ],
       "size": "桌面 852×220 / 手机 356×120",
       "duration": 1.25,
-      "fileSize": 486337
+      "fileSize": 486246
     },
     {
       "id": "sipplay-gem-bonus-composite",

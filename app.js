@@ -288,11 +288,11 @@ const publishedV2 = [
   {
     "id": "sipplay-invite-ticket-v13",
     "name": "活动页兑换码 · 自适应奖券",
-    "note": "v15 · 桌面与手机自适应，支持待兑换、已兑换、已过期三态，以及兑换撕券和重播。",
-    "file": "./releases/v2/invite-ticket-v13/index.html?v=responsive-v15-20261124",
-    "download": "./releases/v2/invite-ticket-v13/invite-ticket-responsive-v15.html?v=20261124",
+    "note": "v17 · 桌面与手机自适应，支持待兑换、已兑换、已过期三态，以及兑换撕券和重播。",
+    "file": "./releases/v2/invite-ticket-v13/index.html?v=responsive-v17-20261125",
+    "download": "./releases/v2/invite-ticket-v13/invite-ticket-responsive-v17.html?v=20261125",
     "symbol": "✦",
-    "tags": "活动页 兑换码 邀请码 奖券 撕券 自适应 桌面 手机 invite ticket responsive v15",
+    "tags": "活动页 兑换码 邀请码 奖券 撕券 自适应 桌面 手机 invite ticket responsive v17",
     "published": true
   },
   {
@@ -1978,7 +1978,7 @@ async function openReleaseDetail(item) {
   frame.src = item.file; releaseDetailStage.append(loading, frame);
   if (!releaseDetailDialog.open) releaseDetailDialog.showModal();
   try {
-    releaseManifestPromise ||= fetch('./releases/v2/release.json?v=invite-ticket-v15-20261124').then(response => {
+    releaseManifestPromise ||= fetch('./releases/v2/release.json?v=invite-ticket-v17-20261125').then(response => {
       if (!response.ok) throw new Error('manifest'); return response.json();
     }).catch(error => { releaseManifestPromise = null; throw error; });
     const manifest = await releaseManifestPromise;

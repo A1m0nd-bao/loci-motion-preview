@@ -1,6 +1,6 @@
-# 活动页兑换码 · 自适应奖券（v15）
+# 活动页兑换码 · 自适应奖券（v17）
 
-- 打开 `index.html` 预览；`invite-ticket-responsive-v15.html` 为原始单文件。
+- 打开 `index.html` 预览；`invite-ticket-responsive-v17.html` 为原始单文件。
 - 窗口宽度不超过 720 px 时使用手机布局，否则使用桌面布局。
 - 切换“待兑换 / 已兑换 / 已过期”查看三种状态。
 - 输入非空好友邀请码并点击奖励副券，或按 Enter，播放兑换撕券动效。
