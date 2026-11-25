@@ -2044,7 +2044,7 @@ async function openReleaseDetail(item, version = "v2") {
   if (!releaseDetailDialog.open) releaseDetailDialog.showModal();
   try {
     if (!releaseManifestPromises.has(version)) {
-      releaseManifestPromises.set(version, fetch(`./releases/${version}/release.json?v=chest-v10-20261125 => {
+      releaseManifestPromises.set(version, fetch(`./releases/${version}/release.json?v=chest-v10-fix-20261125`).then(response => {
         if (!response.ok) throw new Error('manifest'); return response.json();
       }).catch(error => { releaseManifestPromises.delete(version); throw error; }));
     }
