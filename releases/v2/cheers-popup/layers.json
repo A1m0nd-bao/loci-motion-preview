@@ -1,0 +1,54 @@
+[
+  {
+    "name": "left-hand-glass",
+    "canvas": [
+      868,
+      1012
+    ],
+    "display_canvas": [
+      434,
+      506
+    ],
+    "source": "exec-901a2e08-bbeb-437c-9086-cc55bd0135b8.png",
+    "scale": [
+      0.19,
+      0.2
+    ],
+    "translate": [
+      23,
+      8
+    ],
+    "alpha_bbox": [
+      53,
+      29,
+      529,
+      485
+    ]
+  },
+  {
+    "name": "right-hand-glass",
+    "canvas": [
+      868,
+      1012
+    ],
+    "display_canvas": [
+      434,
+      506
+    ],
+    "source": "exec-38dd4032-543c-4acd-a8f8-1ddf5a9a94a1.png",
+    "scale": [
+      0.21,
+      0.212
+    ],
+    "translate": [
+      146,
+      -11
+    ],
+    "alpha_bbox": [
+      309,
+      2,
+      855,
+      472
+    ]
+  }
+]

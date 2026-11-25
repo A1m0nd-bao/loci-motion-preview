@@ -168,9 +168,9 @@ const publishedV2 = [
   {
     "id": "sipplay-character-select",
     "name": "页面入场与角色选择",
-    "note": "750×504 完整页面编排 · 两批减速平滑入场、全员不置灰自然光感、男女随机智能高亮与 Non-binary 角色库无缝切换",
-    "file": "./releases/v2/character-select/index.html",
-    "download": "./releases/v2/character-select/character-select.html",
+    "note": "轻量版 · 442 KB 单文件，三种性别、人物高亮、选择后启用 Play Now 与重置。",
+    "file": "./releases/v2/character-select/index.html?v=final-sync-20261125",
+    "download": "./releases/v2/character-select/character-select.html?v=final-sync-20261125",
     "symbol": "👥",
     "tags": "角色选择 性别 入场 分镜 立绘 自然光感 non-binary character select",
     "published": true
@@ -268,9 +268,9 @@ const publishedV2 = [
   {
     "id": "sipplay-welcome-gift-collect",
     "name": "豪华奖励迸发 · 收取",
-    "note": "Claim 后盒子缩成光点，沿贝塞尔飞向可配置终点。1× 为 280ms 收缩、840ms 飞行、360ms 追尾。375×812 两次收取和中间重播成功，终态无残留。慢放长轨迹未见明显台阶。360ms 追尾没有完整实播记录。",
-    "file": "./releases/v2/welcome-gift-collect/index.html",
-    "download": "./releases/v2/welcome-gift-collect/welcome-gift-collect.html",
+    "note": "压缩更新版 · 奖励开箱、领取后收缩飞入目标，支持终点与收取速度配置。",
+    "file": "./releases/v2/welcome-gift-collect/index.html?v=final-sync-20261125",
+    "download": "./releases/v2/welcome-gift-collect/welcome-gift-collect.html?v=final-sync-20261125",
     "symbol": "🎁",
     "tags": "迎新 礼盒 收取 宝箱 贝塞尔 Claim welcome gift collect",
     "published": true
@@ -333,6 +333,26 @@ const publishedV2 = [
     "download": "./releases/v2/ice-hockey-button-lite/ice-hockey-button-lite.html?v=clean-20261125",
     "symbol": "✦",
     "tags": "ice-hockey 按钮 选中 切换 弹簧 轻量 重播 慢速 button lite",
+    "published": true
+  },
+  {
+    "id": "sipplay-lifecycle-item-counter",
+    "name": "Lifecycle Link · 道具数量",
+    "note": "压缩版 · 蓝红道具独立计数、跨位数滚动与外框伸缩，支持连续更新和半速预览。",
+    "file": "./releases/v2/lifecycle-item-counter/index.html?v=final-sync-20261125",
+    "download": "./releases/v2/lifecycle-item-counter/item-counter.html?v=final-sync-20261125",
+    "symbol": "✦",
+    "tags": "Lifecycle Link · 道具数量 道具 数量 碰杯 弹窗",
+    "published": true
+  },
+  {
+    "id": "sipplay-cheers-popup",
+    "name": "Sipplay Plus · 碰杯弹窗",
+    "note": "双手碰杯与星光循环，Done 关闭弹窗；附分层图、SVG 和评审视频。",
+    "file": "./releases/v2/cheers-popup/index.html?v=final-sync-20261125",
+    "download": "./releases/v2/cheers-popup/cheers-popup.html?v=final-sync-20261125",
+    "symbol": "✦",
+    "tags": "Sipplay Plus · 碰杯弹窗 道具 数量 碰杯 弹窗",
     "published": true
   }
 ];
@@ -789,6 +809,7 @@ function render() {
     ? `${publishedV2.length} 个已上线动效 · 可交互预览与 HTML 下载${isLocalPreview && localDrafts.length ? ` · ${localDrafts.length} 个本地候选` : ""}`
     : "23 个 Web 组件 · 19 项 / 38 个 Lottie JSON · 接入说明与组件 API";
   document.querySelector("#v1Download").hidden = showV2;
+  document.querySelector("#v2Download").hidden = !showV2;
   document.querySelectorAll("[data-web-release]").forEach(button => button.setAttribute("aria-pressed", String(button.dataset.webRelease === selectedWebRelease)));
   if (showV2) renderDrafts(filteredDrafts);
 
@@ -1884,6 +1905,8 @@ function renderDrafts(items) {
       canvas.className = 'release-preview-canvas';
       const scene = ['sipplay-prop-spotlight', 'sipplay-relic-journey', 'sipplay-invitation-code', 'sipplay-invitation-code-autumn', 'sipplay-gems-pack-popup', 'sipplay-welcome-gift-collect'].includes(item.id) ? [375, 812]
         : ['sipplay-billionaire-button-lite', 'sipplay-ice-hockey-button-lite'].includes(item.id) ? [380, 220]
+        : item.id === 'sipplay-lifecycle-item-counter' ? [1040, 850]
+        : item.id === 'sipplay-cheers-popup' ? [500, 640]
         : item.id === 'sipplay-voice-input-wave' ? [269, 220]
         : item.id === 'sipplay-character-select' ? [750, 504]
         : item.id === 'sipplay-reward-celebration' ? [644, 644]
@@ -1999,7 +2022,7 @@ async function openReleaseDetail(item) {
   frame.src = item.file; releaseDetailStage.append(loading, frame);
   if (!releaseDetailDialog.open) releaseDetailDialog.showModal();
   try {
-    releaseManifestPromise ||= fetch('./releases/v2/release.json?v=billionaire-first-fixed-20261125').then(response => {
+    releaseManifestPromise ||= fetch('./releases/v2/release.json?v=final-sync-20261125').then(response => {
       if (!response.ok) throw new Error('manifest'); return response.json();
     }).catch(error => { releaseManifestPromise = null; throw error; });
     const manifest = await releaseManifestPromise;

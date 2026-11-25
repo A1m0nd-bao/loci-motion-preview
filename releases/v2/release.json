@@ -237,11 +237,11 @@
     {
       "id": "sipplay-character-select",
       "name": "页面入场与角色选择",
-      "preview": "character-select/index.html",
-      "download": "character-select/character-select.html",
-      "source": "character-select/character-select.html",
-      "package": "character-select/source.zip",
-      "usage": "character-select/USAGE.md",
+      "preview": "character-select/index.html?v=final-sync-20261125",
+      "download": "character-select/character-select.html?v=final-sync-20261125",
+      "source": "character-select/character-select.html?v=final-sync-20261125",
+      "package": "character-select/source.zip?v=final-sync-20261125",
+      "usage": "character-select/USAGE.md?v=final-sync-20261125",
       "states": [
         "entrance",
         "male-select",
@@ -250,7 +250,8 @@
         "char-focus"
       ],
       "duration": 2,
-      "size": "750×504"
+      "size": "750×504",
+      "fileSize": 442369
     },
     {
       "id": "sipplay-reward-celebration",
@@ -411,11 +412,11 @@
     {
       "id": "sipplay-welcome-gift-collect",
       "name": "豪华奖励迸发 · 收取",
-      "preview": "welcome-gift-collect/index.html",
-      "download": "welcome-gift-collect/welcome-gift-collect.html",
-      "source": "welcome-gift-collect/welcome-gift-collect.html",
-      "package": "welcome-gift-collect/source.zip",
-      "usage": "welcome-gift-collect/USAGE.md",
+      "preview": "welcome-gift-collect/index.html?v=final-sync-20261125",
+      "download": "welcome-gift-collect/welcome-gift-collect.html?v=final-sync-20261125",
+      "source": "welcome-gift-collect/welcome-gift-collect.html?v=final-sync-20261125",
+      "package": "welcome-gift-collect/source.zip?v=final-sync-20261125",
+      "usage": "welcome-gift-collect/USAGE.md?v=final-sync-20261125",
       "states": [
         "opening",
         "claim",
@@ -424,7 +425,8 @@
         "coast"
       ],
       "duration": 1.48,
-      "size": "760×685"
+      "size": "760×685",
+      "fileSize": 686544
     },
     {
       "id": "sipplay-battlepass-pack-textured",
@@ -528,6 +530,48 @@
       ],
       "size": "165×51",
       "fileSize": 68321
+    },
+    {
+      "id": "sipplay-lifecycle-item-counter",
+      "name": "Lifecycle Link · 道具数量",
+      "preview": "lifecycle-item-counter/index.html?v=final-sync-20261125",
+      "download": "lifecycle-item-counter/item-counter.html?v=final-sync-20261125",
+      "source": "lifecycle-item-counter/item-counter.html?v=final-sync-20261125",
+      "package": "lifecycle-item-counter/source.zip?v=final-sync-20261125",
+      "usage": "lifecycle-item-counter/USAGE.md?v=final-sync-20261125",
+      "states": [
+        "increase",
+        "decrease",
+        "digit-change",
+        "rapid-update"
+      ],
+      "size": "胶囊高 36 px",
+      "fileSize": 65408
+    },
+    {
+      "id": "sipplay-cheers-popup",
+      "name": "Sipplay Plus · 碰杯弹窗",
+      "preview": "cheers-popup/index.html?v=final-sync-20261125",
+      "download": "cheers-popup/cheers-popup.html?v=final-sync-20261125",
+      "source": "cheers-popup/cheers-popup.html?v=final-sync-20261125",
+      "package": "cheers-popup/source.zip?v=final-sync-20261125",
+      "usage": "cheers-popup/USAGE.md?v=final-sync-20261125",
+      "states": [
+        "loop",
+        "clink",
+        "dismiss",
+        "replay"
+      ],
+      "size": "434×506",
+      "fileSize": 377561
     }
-  ]
+  ],
+  "handoff": {
+    "file": "sipplay-motion-v2.zip",
+    "date": "2026-11-25",
+    "webComponents": 34,
+    "size": 24348906,
+    "sha256": "be8071db3cf252cf293c671e8bf51cc54bfe605a422c1cd37298feda1b78d8fa",
+    "downloadUrl": "https://github.com/A1m0nd-bao/loci-motion-preview/releases/download/motion-v2-20261125/sipplay-motion-v2.zip"
+  }
 }
