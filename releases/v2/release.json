@@ -502,34 +502,36 @@
     {
       "id": "sipplay-billionaire-button-lite",
       "name": "Billionaire · 按钮选中切换",
-      "preview": "billionaire-button-lite/index.html?v=first-fixed-20261125",
-      "download": "billionaire-button-lite/billionaire-button-lite.html?v=first-fixed-20261125",
-      "source": "billionaire-button-lite/billionaire-button-lite.html?v=first-fixed-20261125",
-      "usage": "billionaire-button-lite/USAGE.md?v=20261125",
+      "preview": "billionaire-button-lite/index.html?v=tie-fixed-20261125",
+      "download": "billionaire-button-lite/billionaire-button-lite.html?v=tie-fixed-20261125",
+      "source": "billionaire-button-lite/billionaire-button-lite.html?v=tie-fixed-20261125",
+      "usage": "billionaire-button-lite/USAGE.md?v=tie-fixed-20261125",
       "states": [
         "unselected",
         "selected",
         "replay",
         "slow"
       ],
-      "size": "156×51",
-      "fileSize": 23913
+      "size": "173×51",
+      "fileSize": 60478,
+      "revision": "tie-fixed"
     },
     {
       "id": "sipplay-ice-hockey-button-lite",
       "name": "Ice Hockey · 按钮选中切换",
-      "preview": "ice-hockey-button-lite/index.html?v=clean-20261125",
-      "download": "ice-hockey-button-lite/ice-hockey-button-lite.html?v=clean-20261125",
-      "source": "ice-hockey-button-lite/ice-hockey-button-lite.html?v=clean-20261125",
-      "usage": "ice-hockey-button-lite/USAGE.md?v=20261125",
+      "preview": "ice-hockey-button-lite/index.html?v=tie-fixed-20261125",
+      "download": "ice-hockey-button-lite/ice-hockey-button-lite.html?v=tie-fixed-20261125",
+      "source": "ice-hockey-button-lite/ice-hockey-button-lite.html?v=tie-fixed-20261125",
+      "usage": "ice-hockey-button-lite/USAGE.md?v=tie-fixed-20261125",
       "states": [
         "unselected",
         "selected",
         "replay",
         "slow"
       ],
-      "size": "165×51",
-      "fileSize": 68321
+      "size": "167×51",
+      "fileSize": 72880,
+      "revision": "tie-fixed"
     },
     {
       "id": "sipplay-lifecycle-item-counter",
@@ -573,5 +575,7 @@
     "size": 24348906,
     "sha256": "be8071db3cf252cf293c671e8bf51cc54bfe605a422c1cd37298feda1b78d8fa",
     "downloadUrl": "https://github.com/A1m0nd-bao/loci-motion-preview/releases/download/motion-v2-20261125/sipplay-motion-v2.zip"
-  }
+  },
+  "catalogRevision": "2026-11-25-tie-fixed",
+  "handoffSnapshotNote": "已发布交付包保持原冻结快照；本轮仅替换网站两个按钮及其单文件下载。"
 }
