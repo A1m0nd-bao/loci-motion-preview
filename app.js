@@ -358,6 +358,8 @@ const publishedV2 = [
 ];
 const localDrafts = [];
 const v2Entries = [...publishedV2, ...localDrafts];
+const publishedV3 = [];
+const v3Entries = [...publishedV3];
 
 
 const gallery = document.querySelector("#gallery");
@@ -645,7 +647,7 @@ function enterModule(kind) {
   }
   activeKind = kind;
   kindSelect.value = kind;
-  history.replaceState(null, "", `${location.pathname}${location.search}${isInteractiveKind(kind) ? (kind === "web" && selectedWebRelease === "v2" ? "#web-v2" : `#${kind}`) : ""}`);
+  history.replaceState(null, "", `${location.pathname}${location.search}${isInteractiveKind(kind) ? (kind === "web" && selectedWebRelease !== "v1" ? `#web-${selectedWebRelease}` : `#${kind}`) : ""}`);
   populateCategories();
   render();
 }
@@ -726,7 +728,9 @@ function render() {
   const selectedCategory = category.value;
   const isLottie = !isHome && selectedKind === "lottie";
   const showV2 = !isHome && selectedKind === "web" && selectedWebRelease === "v2";
-  const filteredDrafts = v2Entries.filter(item => !query || `${item.name} ${item.note} ${item.tags}`.toLowerCase().includes(query));
+  const showV3 = !isHome && selectedKind === "web" && selectedWebRelease === "v3";
+  const showVersioned = showV2 || showV3;
+  const filteredDrafts = (showV3 ? v3Entries : v2Entries).filter(item => !query || `${item.name} ${item.note} ${item.tags}`.toLowerCase().includes(query));
 
   // Lottie reference column & filter controls
   const lottieReleaseSection = document.querySelector("#lottieReleaseSection");
@@ -792,8 +796,8 @@ function render() {
   previewControllers.delete(videoSpotlightPlayer);
   videoSpotlight.hidden = isHome || selectedKind !== "video" || visibleMotions.length === 0;
   videoSpotlightPlayer.replaceChildren();
-  count.textContent = String(showV2 ? filteredDrafts.length : visibleMotions.length);
-  empty.hidden = showV2 || visibleMotions.length > 0;
+  count.textContent = String(showVersioned ? filteredDrafts.length : visibleMotions.length);
+  empty.hidden = showVersioned || visibleMotions.length > 0;
   homeView.hidden = !isHome;
   quickSection.hidden = isHome || isInteractiveKind(selectedKind);
   document.querySelector("#webLibraryIntro").hidden = isHome || selectedKind !== "web";
@@ -801,17 +805,20 @@ function render() {
   document.querySelectorAll("[data-library-media-only]").forEach((el) => { el.hidden = isInteractiveKind(selectedKind); });
   libraryView.hidden = isHome;
   document.querySelector("#webReleaseSection").hidden = isHome || selectedKind !== "web";
-  document.querySelector("#v2Drafts").hidden = !showV2;
-  gallery.hidden = showV2;
-  category.disabled = showV2;
-  document.querySelector("#webReleaseTitle").textContent = showV2 ? "动效 v2" : "动效 v1 · 正式交付";
-  document.querySelector("#webReleaseNote").textContent = showV2
+  document.querySelector("#v2Drafts").hidden = !showVersioned;
+  document.querySelector("#v2Drafts").setAttribute("aria-label", `动效 ${selectedWebRelease}`);
+  gallery.hidden = showVersioned;
+  category.disabled = showVersioned;
+  document.querySelector("#webReleaseTitle").textContent = showVersioned ? `动效 ${selectedWebRelease}` : "动效 v1 · 正式交付";
+  document.querySelector("#webReleaseNote").textContent = showV3
+    ? `${publishedV3.length} 个动效 · 新批次`
+    : showV2
     ? `${publishedV2.length} 个已上线动效 · 可交互预览与 HTML 下载${isLocalPreview && localDrafts.length ? ` · ${localDrafts.length} 个本地候选` : ""}`
     : "23 个 Web 组件 · 19 项 / 38 个 Lottie JSON · 接入说明与组件 API";
-  document.querySelector("#v1Download").hidden = showV2;
+  document.querySelector("#v1Download").hidden = showVersioned;
   document.querySelector("#v2Download").hidden = !showV2;
   document.querySelectorAll("[data-web-release]").forEach(button => button.setAttribute("aria-pressed", String(button.dataset.webRelease === selectedWebRelease)));
-  if (showV2) renderDrafts(filteredDrafts);
+  if (showVersioned) renderDrafts(filteredDrafts, selectedWebRelease);
 
 
   if (isHome) {
@@ -828,7 +835,7 @@ function render() {
     .sort((a, b) => getUpdatedTime(b) - getUpdatedTime(a))
     .slice(0, 8);
 
-  if (!showV2) renderGalleryCards(visibleMotions, selectedKind);
+  if (!showVersioned) renderGalleryCards(visibleMotions, selectedKind);
 
   for (const motion of quickMotions.filter((item) => !isInteractiveKind(item.kind))) {
     quickRail.append(createQuickCard(motion));
@@ -1866,7 +1873,7 @@ document.querySelectorAll("[data-ref-filter]").forEach((btn) => {
 });
 
 loadManifest().then(() => {
-  if (location.hash === '#web-v2') { selectedWebRelease = 'v2'; enterModule('web'); }
+  if (['#web-v2', '#web-v3'].includes(location.hash)) { selectedWebRelease = location.hash.slice(5); enterModule('web'); }
   else if (location.hash === '#lottie-reference' || location.hash === '#reference') { selectedLottieColumn = 'reference'; enterModule('lottie'); }
   else if (location.hash === '#lottie' || location.hash === '#lottie-product') { selectedLottieColumn = 'product'; enterModule('lottie'); }
   else if (["#web", "#motion"].includes(location.hash)) enterModule(location.hash.slice(1));
@@ -1881,7 +1888,7 @@ const releaseCanvasObserver = new ResizeObserver(entries => {
   }
 });
 
-function renderDrafts(items) {
+function renderDrafts(items, version = "v2") {
   if (document.querySelector('#releaseDetailDialog')?.open) return;
   const root = document.querySelector("#v2Drafts");
   for (const canvas of root.querySelectorAll('.release-preview-canvas')) releaseCanvasObserver.unobserve(canvas);
@@ -1889,7 +1896,7 @@ function renderDrafts(items) {
   if (!items.length) {
     const message = document.createElement("p");
     message.className = "release-placeholder";
-    message.textContent = "没有匹配的 v2 动效。";
+    message.textContent = version === "v3" && !publishedV3.length ? "v3 暂无动效" : `没有匹配的 ${version} 动效。`;
     root.append(message);
     return;
   }
@@ -1897,7 +1904,7 @@ function renderDrafts(items) {
     const card = document.createElement("article");
     card.className = "release-draft-card";
     card.innerHTML = `<div class="draft-symbol" aria-hidden="true"></div><span class="draft-status">v2 · 仅本地</span><h3><button type="button" class="release-title-button"></button></h3><p></p><div class="release-card-actions"><button type="button" class="release-detail-button">查看详情</button></div>`;
-    card.querySelector(".draft-status").textContent = item.published ? "v2 · 已上线" : "v2 · 仅本地";
+    card.querySelector(".draft-status").textContent = item.published ? `${version} · 已上线` : `${version} · 仅本地`;
     card.querySelector(".draft-symbol").textContent = item.symbol;
     if (item.published) {
       const preview = document.createElement('iframe');
@@ -1932,18 +1939,18 @@ function renderDrafts(items) {
       const trigger = document.createElement('button'); trigger.type = 'button'; trigger.className = 'release-preview-open';
       trigger.setAttribute('aria-label', `查看${item.name}详情`);
       const hint = document.createElement('span'); hint.textContent = '查看详情'; hint.setAttribute('aria-hidden', 'true'); trigger.append(hint);
-      trigger.addEventListener('click', () => openReleaseDetail(item));
+      trigger.addEventListener('click', () => openReleaseDetail(item, version));
       canvas.append(preview, trigger);
       card.querySelector('.draft-symbol').replaceWith(canvas);
       releaseCanvasObserver.observe(canvas);
     }
     card.querySelector('.release-title-button').textContent = item.name;
-    card.querySelector('.release-title-button').addEventListener('click', () => openReleaseDetail(item));
-    card.querySelector('.release-detail-button').addEventListener('click', () => openReleaseDetail(item));
+    card.querySelector('.release-title-button').addEventListener('click', () => openReleaseDetail(item, version));
+    card.querySelector('.release-detail-button').addEventListener('click', () => openReleaseDetail(item, version));
     card.querySelector("p").textContent = item.note;
     if (item.download) {
       const download = document.createElement('a'); download.href = item.download;
-      download.download = `Sipplay-v2-${item.id.replace('sipplay-', '')}.html`; download.textContent = '下载 HTML ↓';
+      download.download = `Sipplay-${version}-${item.id.replace('sipplay-', '')}.html`; download.textContent = '下载 HTML ↓';
       card.querySelector('.release-card-actions').append(download);
     }
     root.append(card);
@@ -1952,7 +1959,7 @@ function renderDrafts(items) {
 document.querySelectorAll("[data-web-release]").forEach(button => {
   button.addEventListener("click", () => {
     selectedWebRelease = button.dataset.webRelease;
-    history.replaceState(null, '', `${location.pathname}${location.search}${selectedWebRelease === 'v2' ? '#web-v2' : '#web'}`);
+    history.replaceState(null, '', `${location.pathname}${location.search}${selectedWebRelease === 'v1' ? '#web' : `#web-${selectedWebRelease}`}`);
     search.value = "";
     category.value = "all";
     render();
@@ -1965,11 +1972,12 @@ const releaseDetailNote = document.querySelector('#releaseDetailNote');
 const releaseDetailStage = document.querySelector('#releaseDetailStage');
 const releaseDetailFacts = document.querySelector('#releaseDetailFacts');
 const releaseDetailUsage = document.querySelector('#releaseDetailUsage');
-let releaseDetailEpoch = 0, releaseManifestPromise;
+let releaseDetailEpoch = 0;
+const releaseManifestPromises = new Map();
 
-function releaseAsset(path) {
+function releaseAsset(path, version = "v2") {
   if (!path) return null;
-  const base = new URL('./releases/v2/', location.href), url = new URL(path, base);
+  const base = new URL(`./releases/${version}/`, location.href), url = new URL(path, base);
   return url.origin === base.origin && url.pathname.startsWith(base.pathname) ? url.href : null;
 }
 
@@ -1997,16 +2005,17 @@ function renderReleaseUsage(host, markdown) {
   flush(); if (inCode) flushCode();
 }
 
-async function openReleaseDetail(item) {
+async function openReleaseDetail(item, version = "v2") {
   const epoch = ++releaseDetailEpoch;
   document.querySelector('.release-detail-aside').scrollTop = 0;
   document.querySelector('.release-detail-body').scrollTop = 0;
+  document.querySelector("#releaseDetailVersion").textContent = `SIPPLAY · ${version.toUpperCase()}`;
   releaseDetailTitle.textContent = item.name; releaseDetailNote.textContent = item.note;
   releaseDetailFacts.replaceChildren(); releaseDetailStage.replaceChildren();
   releaseDetailUsage.textContent = '正在加载接入说明…'; releaseDetailUsage.setAttribute('aria-busy', 'true');
   document.querySelector('#releaseDetailOpen').href = item.file;
   const download = document.querySelector('#releaseDetailDownload');
-  download.href = item.download || item.file; download.download = `Sipplay-v2-${item.id.replace('sipplay-', '')}.html`;
+  download.href = item.download || item.file; download.download = `Sipplay-${version}-${item.id.replace('sipplay-', '')}.html`;
   const source = document.querySelector('#releaseDetailSource'), docs = document.querySelector('#releaseDetailDocs');
   source.hidden = docs.hidden = true; source.removeAttribute('href'); docs.removeAttribute('href');
   const loading = document.createElement('p'); loading.className = 'release-detail-loading'; loading.textContent = '正在载入交互预览…';
@@ -2022,19 +2031,21 @@ async function openReleaseDetail(item) {
   frame.src = item.file; releaseDetailStage.append(loading, frame);
   if (!releaseDetailDialog.open) releaseDetailDialog.showModal();
   try {
-    releaseManifestPromise ||= fetch('./releases/v2/release.json?v=final-sync-20261125').then(response => {
-      if (!response.ok) throw new Error('manifest'); return response.json();
-    }).catch(error => { releaseManifestPromise = null; throw error; });
-    const manifest = await releaseManifestPromise;
+    if (!releaseManifestPromises.has(version)) {
+      releaseManifestPromises.set(version, fetch(`./releases/${version}/release.json?v=v3-open-20261125`).then(response => {
+        if (!response.ok) throw new Error('manifest'); return response.json();
+      }).catch(error => { releaseManifestPromises.delete(version); throw error; }));
+    }
+    const manifest = await releaseManifestPromises.get(version);
     if (epoch !== releaseDetailEpoch || !releaseDetailDialog.open) return;
     const entry = manifest.components.find(component => component.id === item.id);
     if (!entry) throw new Error('component');
-    const facts = [['版本', 'v2'], ['尺寸', entry.size], ['切换时长', entry.duration ? `${entry.duration} 秒` : null]];
+    const facts = [['版本', version], ['尺寸', entry.size], ['切换时长', entry.duration ? `${entry.duration} 秒` : null]];
     for (const [label, value] of facts) {
       if (!value) continue; const term = document.createElement('dt'), definition = document.createElement('dd');
       term.textContent = label; definition.textContent = value; releaseDetailFacts.append(term, definition);
     }
-    const sourceUrl = releaseAsset(entry.package || entry.source), docsUrl = releaseAsset(entry.usage);
+    const sourceUrl = releaseAsset(entry.package || entry.source, version), docsUrl = releaseAsset(entry.usage, version);
     if (sourceUrl) { source.href = sourceUrl; source.hidden = false; source.textContent = entry.package ? '下载源码包' : '下载组件源码'; }
     if (!docsUrl) throw new Error('usage');
     docs.href = docsUrl; docs.hidden = false;

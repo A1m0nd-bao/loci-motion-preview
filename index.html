@@ -166,6 +166,7 @@
           <div class="release-switch" role="group" aria-label="选择动效版本">
             <button type="button" data-web-release="v1" aria-pressed="true">v1 <span>正式交付</span></button>
             <button type="button" data-web-release="v2" aria-pressed="false">v2 <span>34 项已上线</span></button>
+            <button type="button" data-web-release="v3" aria-pressed="false">v3 <span>新批次</span></button>
           </div>
           <div class="release-summary">
             <div><h3 id="webReleaseTitle">动效 v1</h3><p id="webReleaseNote">23 个 Web 组件 · 19 项 / 38 个 Lottie JSON</p></div>
@@ -271,8 +272,8 @@
     <dialog id="releaseDetailDialog" class="release-detail-dialog" aria-labelledby="releaseDetailTitle" aria-describedby="releaseDetailNote">
       <div class="release-detail-shell">
         <header class="release-detail-header">
-          <div><p class="eyebrow">SIPPLAY · V2</p><h2 id="releaseDetailTitle"></h2><p id="releaseDetailNote"></p></div>
-          <button id="releaseDetailClose" class="icon-button" type="button" aria-label="关闭 v2 详情" autofocus>×</button>
+          <div><p class="eyebrow" id="releaseDetailVersion">SIPPLAY · V2</p><h2 id="releaseDetailTitle"></h2><p id="releaseDetailNote"></p></div>
+          <button id="releaseDetailClose" class="icon-button" type="button" aria-label="关闭动效详情" autofocus>×</button>
         </header>
         <div class="release-detail-body">
           <section id="releaseDetailStage" class="release-detail-stage" aria-label="完整动效预览"></section>
@@ -373,7 +374,7 @@
       </div>
     </dialog>
 
-    <script src="./app.js?v=v2-handoff-20261125" type="module"></script>
+    <script src="./app.js?v=v3-open-20261125" type="module"></script>
     <script src="./scripts/line-waves-static.mjs?v=20260802a" type="module"></script>
   </body>
 </html>
