@@ -318,9 +318,9 @@ const publishedV2 = [
   {
     "id": "sipplay-billionaire-button-lite",
     "name": "Billionaire · 按钮选中切换",
-    "note": "轻量版 · 红金按钮轮廓与文字弹簧切换，支持重播和慢速。",
-    "file": "./releases/v2/billionaire-button-lite/index.html?v=clean-20261125",
-    "download": "./releases/v2/billionaire-button-lite/billionaire-button-lite.html?v=clean-20261125",
+    "note": "修正版 · 织物背景随轮廓变形，支持选中切换、重播和慢放。",
+    "file": "./releases/v2/billionaire-button-lite/index.html?v=first-fixed-20261125",
+    "download": "./releases/v2/billionaire-button-lite/billionaire-button-lite.html?v=first-fixed-20261125",
     "symbol": "✦",
     "tags": "billionaire 按钮 选中 切换 弹簧 轻量 重播 慢速 button lite",
     "published": true
@@ -1999,7 +1999,7 @@ async function openReleaseDetail(item) {
   frame.src = item.file; releaseDetailStage.append(loading, frame);
   if (!releaseDetailDialog.open) releaseDetailDialog.showModal();
   try {
-    releaseManifestPromise ||= fetch('./releases/v2/release.json?v=buttons-lite-clean-20261125').then(response => {
+    releaseManifestPromise ||= fetch('./releases/v2/release.json?v=billionaire-first-fixed-20261125').then(response => {
       if (!response.ok) throw new Error('manifest'); return response.json();
     }).catch(error => { releaseManifestPromise = null; throw error; });
     const manifest = await releaseManifestPromise;
