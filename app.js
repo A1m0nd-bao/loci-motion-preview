@@ -319,8 +319,8 @@ const publishedV2 = [
     "id": "sipplay-billionaire-button-lite",
     "name": "Billionaire · 按钮选中切换",
     "note": "自适应版 · 桌面 / 手机独立版式，点击选中切换，支持重播与慢放。",
-    "file": "./releases/v2/billionaire-button-lite/index.html?v=responsive-buttons-r2-20261125",
-    "download": "./releases/v2/billionaire-button-lite/billionaire-button-lite.html?v=responsive-buttons-r2-20261125",
+    "file": "./releases/v2/billionaire-button-lite/index.html?v=responsive-buttons-r3-20261125",
+    "download": "./releases/v2/billionaire-button-lite/billionaire-button-lite.html?v=responsive-buttons-r3-20261125",
     "symbol": "✦",
     "tags": "billionaire 按钮 选中 切换 弹簧 轻量 重播 慢速 button lite",
     "published": true
@@ -329,8 +329,8 @@ const publishedV2 = [
     "id": "sipplay-ice-hockey-button-lite",
     "name": "Ice Hockey · 按钮选中切换",
     "note": "自适应版 · 桌面 / 手机独立版式，点击选中切换，支持重播与慢放。",
-    "file": "./releases/v2/ice-hockey-button-lite/index.html?v=responsive-buttons-r2-20261125",
-    "download": "./releases/v2/ice-hockey-button-lite/ice-hockey-button-lite.html?v=responsive-buttons-r2-20261125",
+    "file": "./releases/v2/ice-hockey-button-lite/index.html?v=responsive-buttons-r3-20261125",
+    "download": "./releases/v2/ice-hockey-button-lite/ice-hockey-button-lite.html?v=responsive-buttons-r3-20261125",
     "symbol": "✦",
     "tags": "ice-hockey 按钮 选中 切换 弹簧 轻量 重播 慢速 button lite",
     "published": true
@@ -2044,7 +2044,7 @@ async function openReleaseDetail(item, version = "v2") {
   if (!releaseDetailDialog.open) releaseDetailDialog.showModal();
   try {
     if (!releaseManifestPromises.has(version)) {
-      releaseManifestPromises.set(version, fetch(`./releases/${version}/release.json?v=responsive-buttons-r2-20261125`).then(response => {
+      releaseManifestPromises.set(version, fetch(`./releases/${version}/release.json?v=responsive-buttons-r3-20261125`).then(response => {
         if (!response.ok) throw new Error('manifest'); return response.json();
       }).catch(error => { releaseManifestPromises.delete(version); throw error; }));
     }

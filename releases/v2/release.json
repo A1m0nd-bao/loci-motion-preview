@@ -503,10 +503,10 @@
     {
       "id": "sipplay-billionaire-button-lite",
       "name": "Billionaire · 按钮选中切换",
-      "preview": "billionaire-button-lite/index.html?v=responsive-buttons-r2-20261125",
-      "download": "billionaire-button-lite/billionaire-button-lite.html?v=responsive-buttons-r2-20261125",
-      "source": "billionaire-button-lite/billionaire-button-lite.html?v=responsive-buttons-r2-20261125",
-      "usage": "billionaire-button-lite/USAGE.md?v=responsive-buttons-r2-20261125",
+      "preview": "billionaire-button-lite/index.html?v=responsive-buttons-r3-20261125",
+      "download": "billionaire-button-lite/billionaire-button-lite.html?v=responsive-buttons-r3-20261125",
+      "source": "billionaire-button-lite/billionaire-button-lite.html?v=responsive-buttons-r3-20261125",
+      "usage": "billionaire-button-lite/USAGE.md?v=responsive-buttons-r3-20261125",
       "states": [
         "unselected",
         "selected",
@@ -523,10 +523,10 @@
     {
       "id": "sipplay-ice-hockey-button-lite",
       "name": "Ice Hockey · 按钮选中切换",
-      "preview": "ice-hockey-button-lite/index.html?v=responsive-buttons-r2-20261125",
-      "download": "ice-hockey-button-lite/ice-hockey-button-lite.html?v=responsive-buttons-r2-20261125",
-      "source": "ice-hockey-button-lite/ice-hockey-button-lite.html?v=responsive-buttons-r2-20261125",
-      "usage": "ice-hockey-button-lite/USAGE.md?v=responsive-buttons-r2-20261125",
+      "preview": "ice-hockey-button-lite/index.html?v=responsive-buttons-r3-20261125",
+      "download": "ice-hockey-button-lite/ice-hockey-button-lite.html?v=responsive-buttons-r3-20261125",
+      "source": "ice-hockey-button-lite/ice-hockey-button-lite.html?v=responsive-buttons-r3-20261125",
+      "usage": "ice-hockey-button-lite/USAGE.md?v=responsive-buttons-r3-20261125",
       "states": [
         "unselected",
         "selected",
