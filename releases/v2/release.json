@@ -503,10 +503,10 @@
     {
       "id": "sipplay-billionaire-button-lite",
       "name": "Billionaire · 按钮选中切换",
-      "preview": "billionaire-button-lite/index.html?v=tie-fixed-20261125",
-      "download": "billionaire-button-lite/billionaire-button-lite.html?v=tie-fixed-20261125",
-      "source": "billionaire-button-lite/billionaire-button-lite.html?v=tie-fixed-20261125",
-      "usage": "billionaire-button-lite/USAGE.md?v=tie-fixed-20261125",
+      "preview": "billionaire-button-lite/index.html?v=responsive-buttons-20261125",
+      "download": "billionaire-button-lite/billionaire-button-lite.html?v=responsive-buttons-20261125",
+      "source": "billionaire-button-lite/billionaire-button-lite.html?v=responsive-buttons-20261125",
+      "usage": "billionaire-button-lite/USAGE.md?v=responsive-buttons-20261125",
       "states": [
         "unselected",
         "selected",
@@ -514,16 +514,19 @@
         "slow"
       ],
       "size": "173×51",
-      "fileSize": 60478,
-      "revision": "tie-fixed"
+      "fileSize": 98778,
+      "revision": "responsive",
+      "desktopSize": "173×51",
+      "mobileSize": "128.529×42",
+      "breakpoint": 640
     },
     {
       "id": "sipplay-ice-hockey-button-lite",
       "name": "Ice Hockey · 按钮选中切换",
-      "preview": "ice-hockey-button-lite/index.html?v=tie-fixed-20261125",
-      "download": "ice-hockey-button-lite/ice-hockey-button-lite.html?v=tie-fixed-20261125",
-      "source": "ice-hockey-button-lite/ice-hockey-button-lite.html?v=tie-fixed-20261125",
-      "usage": "ice-hockey-button-lite/USAGE.md?v=tie-fixed-20261125",
+      "preview": "ice-hockey-button-lite/index.html?v=responsive-buttons-20261125",
+      "download": "ice-hockey-button-lite/ice-hockey-button-lite.html?v=responsive-buttons-20261125",
+      "source": "ice-hockey-button-lite/ice-hockey-button-lite.html?v=responsive-buttons-20261125",
+      "usage": "ice-hockey-button-lite/USAGE.md?v=responsive-buttons-20261125",
       "states": [
         "unselected",
         "selected",
@@ -531,8 +534,11 @@
         "slow"
       ],
       "size": "167×51",
-      "fileSize": 72880,
-      "revision": "tie-fixed"
+      "fileSize": 121258,
+      "revision": "responsive",
+      "desktopSize": "167×51",
+      "mobileSize": "137.118×42",
+      "breakpoint": 640
     },
     {
       "id": "sipplay-lifecycle-item-counter",
@@ -577,6 +583,6 @@
     "sha256": "be8071db3cf252cf293c671e8bf51cc54bfe605a422c1cd37298feda1b78d8fa",
     "downloadUrl": "https://github.com/A1m0nd-bao/loci-motion-preview/releases/download/motion-v2-20261125/sipplay-motion-v2.zip"
   },
-  "catalogRevision": "2026-11-25-chest-v10",
-  "handoffSnapshotNote": "已发布交付包保持原冻结快照；本轮更新红金宝箱网站预览及单文件下载。"
+  "catalogRevision": "2026-11-25-responsive-buttons",
+  "handoffSnapshotNote": "已发布交付包保持原冻结快照；本轮分别更新两个自适应按钮的网站预览与单文件下载。"
 }
