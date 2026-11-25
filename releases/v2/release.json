@@ -484,17 +484,18 @@
     {
       "id": "sipplay-red-gold-chest-v3",
       "name": "红金宝箱 · 跃起开箱",
-      "preview": "red-gold-chest-v3/index.html",
-      "download": "red-gold-chest-v3/red-gold-chest-opening-v3.html",
-      "source": "red-gold-chest-v3/red-gold-chest-opening-v3.html",
-      "usage": "red-gold-chest-v3/USAGE.md",
+      "preview": "red-gold-chest-v3/index.html?v=chest-v5-20261125",
+      "download": "red-gold-chest-v3/red-gold-chest-v5.html?v=20261125",
+      "source": "red-gold-chest-v3/red-gold-chest-v5.html?v=20261125",
+      "usage": "red-gold-chest-v3/USAGE.md?v=chest-v5-20261125",
       "states": [
         "closed",
         "opening",
         "opened"
       ],
       "size": "1340×1190",
-      "fileSize": 8725372
+      "fileSize": 172778,
+      "duration": 1.4
     }
   ]
 }
