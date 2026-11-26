@@ -1550,7 +1550,7 @@ output {
 }
 
 .detail-shell {
-  overflow: hidden;
+  overflow: auto;
   width: 100%;
   max-height: inherit;
   color: var(--ink);
@@ -2114,10 +2114,7 @@ code {
 .release-detail-usage pre code{padding:0;border:0;background:none;color:inherit;font:inherit;white-space:inherit}
 .release-detail-aside,.release-detail-body{overscroll-behavior:contain}
 
-/* Shared v2/v3 controls, preserving the flat gallery layout. */
-.is-versioned-web #webLibraryIntro{display:none}
-.is-versioned-web .web-release-section{margin-top:0;padding-top:0}
-.is-versioned-web .toolbar{margin:16px 0}
+/* Shared release-card rules. The Web window itself uses the same gallery for v1, v2, and v3. */
 .v2-drafts .release-draft-card{display:flex;flex-direction:column;min-width:0;padding:14px;border-radius:8px}
 .v2-drafts .release-preview-canvas{height:220px;border-radius:6px;background:var(--preview-bg)}
 .v2-drafts .release-preview-open{border-radius:6px}
@@ -2398,4 +2395,90 @@ code {
 .dotlottie-action-btn.external:hover {
   background: rgba(168, 85, 247, 0.15);
   border-color: #a855f7;
+}
+
+/* Per-item notes sit under the preview and scroll with the dialog. */
+.detail-header,
+.release-detail-header {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.detail-header {
+  background: #10141b;
+}
+
+.release-detail-header {
+  background: var(--panel);
+}
+
+.release-detail-shell {
+  grid-template-rows: auto minmax(min(560px, 68dvh), 1fr) auto;
+  overflow: auto;
+}
+
+.detail-shell,
+.release-detail-shell {
+  overscroll-behavior: contain;
+}
+
+.item-comments {
+  margin: 0;
+  padding: 16px 18px 18px;
+  background: #0b0e13;
+  border-top: 1px solid var(--line);
+  color: var(--ink);
+}
+
+.detail-shell > .item-comments {
+  margin: 0 18px 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.item-comments h3 {
+  margin: 0 0 6px;
+  font-size: 14px;
+  font-weight: 720;
+}
+
+.item-comments p {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.item-comments-key {
+  color: var(--soft);
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 11px;
+}
+
+.item-comments-note {
+  margin-bottom: 0;
+}
+
+.item-comments-frame:empty {
+  display: none;
+}
+
+.item-comments .giscus,
+.item-comments .giscus-frame {
+  width: 100%;
+}
+
+@media (max-width: 760px) {
+  .release-detail-shell {
+    display: block;
+    overflow: auto;
+  }
+
+  .release-detail-body {
+    display: block;
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+  }
 }
