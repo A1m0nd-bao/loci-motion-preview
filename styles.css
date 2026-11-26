@@ -2487,10 +2487,10 @@ code {
   }
 }
 
-/* Web detail: one tall preview that contain-fits the whole scene, with notes in view. */
+/* Web detail: the iframe is the page's viewport and fills the stage. Notes stay in view. */
 .detail-dialog.is-web-detail {
-  height: min(940px, calc(100dvh - 16px));
-  max-height: calc(100dvh - 16px);
+  height: min(960px, calc(100dvh - 12px));
+  max-height: calc(100dvh - 12px);
 }
 
 .is-web-detail .detail-shell {
@@ -2498,13 +2498,19 @@ code {
   grid-template-rows: auto minmax(0, 1fr) auto;
   height: 100%;
   max-height: none;
-  overflow: hidden;
+  overflow: auto;
+}
+
+.is-web-detail .detail-header {
+  padding: 14px 18px;
 }
 
 .is-web-detail .detail-body {
   min-height: 0;
   overflow: hidden;
   align-items: stretch;
+  gap: 14px;
+  padding: 12px 14px;
 }
 
 .is-web-detail .detail-stage {
@@ -2516,12 +2522,13 @@ code {
 
 .is-web-detail .detail-preview {
   flex: 1 1 auto;
-  min-height: 0;
+  min-height: min(52dvh, 640px);
   height: auto;
 }
 
 .is-web-detail .detail-preview .media-host,
-.is-web-detail .detail-preview .media-host.is-page-fit {
+.is-web-detail .detail-preview .media-host.is-page-fit,
+.is-web-detail .detail-preview .media-host.is-page-viewport {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -2551,8 +2558,21 @@ code {
   margin: 0;
   border-width: 1px 0 0;
   border-radius: 0;
-  max-height: min(220px, 30dvh);
+  max-height: min(152px, 24dvh);
+  padding: 10px 16px 12px;
   overflow: auto;
+}
+
+.is-web-detail .item-comments h3 {
+  margin-bottom: 4px;
+}
+
+.is-web-detail .item-comments p {
+  margin-bottom: 4px;
+}
+
+.is-web-detail .item-comments-frame {
+  min-height: 0;
 }
 
 .media-host.is-page-fit {
@@ -2574,4 +2594,54 @@ code {
   max-height: none;
   border: 0;
   background: var(--preview-bg);
+}
+
+/* Detail pages fill the stage. The document scrolls inside the iframe. */
+.media-host.is-page-viewport > .web-component-frame {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  border: 0;
+  border-radius: 0;
+  transform: none;
+  background: var(--preview-bg);
+}
+
+@media (max-width: 760px) {
+  .detail-dialog.is-web-detail {
+    height: auto;
+    max-height: calc(100dvh - 16px);
+  }
+
+  .is-web-detail .detail-shell {
+    display: block;
+    height: auto;
+    max-height: calc(100dvh - 16px);
+    overflow: auto;
+  }
+
+  .is-web-detail .detail-body {
+    display: block;
+    height: auto;
+    overflow: visible;
+  }
+
+  .is-web-detail .detail-stage {
+    display: flex;
+    height: auto;
+  }
+
+  .is-web-detail .detail-preview {
+    flex: none;
+    height: min(68dvh, 640px);
+    min-height: 400px;
+  }
+
+  .is-web-detail .detail-shell > .item-comments {
+    max-height: none;
+  }
 }

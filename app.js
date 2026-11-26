@@ -2,9 +2,9 @@ import { motionMotions } from "./motion/catalog.js?v=20261029-release-v1";
 import { renderFamilyPanel } from "./lottie-families.js?v=20261030-isolated";
 import { setupConvertedWindow, showConvertedEntry } from "./motion-lottie-window.js?v=20261030-isolated";
 import { webMotions } from "./web-components/catalog.js?v=20261029-release-v1";
-import { createWebController, copyExample, downloadExample, setupWebDetail, getWebValues, syncWebBackgrounds } from "./web-components/integration.js?v=preview-fit-20261126";
+import { createWebController, copyExample, downloadExample, setupWebDetail, getWebValues, syncWebBackgrounds } from "./web-components/integration.js?v=preview-viewport-20261126";
 import { clearItemComments, mountItemComments } from "./comments/item-comments.js?v=preview-fit-20261126";
-import { fitWebFrame, pagePreviewURL, pageSceneSize } from "./page-preview.js";
+import { fitWebFrame, pagePreviewURL, pageSceneSize } from "./page-preview.js?v=preview-viewport-20261126";
 
 if (import.meta.env?.DEV) document.querySelector("#motionStudioLocal").hidden = false;
 
@@ -1555,8 +1555,8 @@ async function updateDetailInfo(motion) {
 function applyMediaSizing(host, info) {
   if (!host || !info?.width || !info?.height) return;
   host.style.setProperty("--media-aspect", `${info.width} / ${info.height}`);
-  // Web documents keep a full-bleed host. The iframe is sized to the scene and
-  // scaled with contain, so shrinking the host here would crop the page again.
+  // Web documents keep a full-bleed host. Detail uses it as a real viewport.
+  // Gallery cards scale the scene inside the same host.
   if (host.dataset.kind === "web" || info.kind === "web-page") return;
   const bounds = getMediaBounds(host);
   const fitted = fitWithin(info.width, info.height, bounds.width, bounds.height);
