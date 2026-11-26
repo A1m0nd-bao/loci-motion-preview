@@ -39,8 +39,9 @@ assert.equal(commentTerm({ sourceComponent: "sipplay-bell-ring-toggle", file: ".
 
 assert.equal(giscusConfig.repo, "A1m0nd-bao/loci-motion-preview");
 assert.equal(giscusConfig.repoId, "R_kgDOS8X1yg");
-assert.equal(giscusConfig.categoryId, "");
-assert.equal(isGiscusConfigured(), false);
+assert.equal(giscusConfig.category, "Announcements");
+assert.equal(giscusConfig.categoryId, "DIC_kwDOS8X1ys4DMA0U");
+assert.equal(isGiscusConfigured(), true);
 assert.equal(isGiscusConfigured({ ...giscusConfig, category: "动效备注", categoryId: "not-an-id" }), false);
 
 console.log(`comment terms ok (${terms.size} manifest paths)`);
