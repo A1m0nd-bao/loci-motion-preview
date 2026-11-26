@@ -362,11 +362,11 @@ const publishedV3 = [
   {
     "id": "sipplay-auto-photos",
     "name": "Auto Photos · 主动收图引导",
-    "note": "v4 压缩版 · 收图引导循环、独立开关与引导展开/收起，支持暂停、重播和变速。",
-    "file": "./releases/v3/auto-photos/index.html?v=20261125",
-    "download": "./releases/v3/auto-photos/auto-photos.html?v=20261125",
+    "note": "引导重构 · 窗口保持显示，引导约 5.6 秒后停在末帧；重播只刷新内容。流光与实际开关独立，支持暂停、重播和变速。",
+    "file": "./releases/v3/auto-photos/index.html?v=20261126",
+    "download": "./releases/v3/auto-photos/auto-photos.html?v=20261126",
     "symbol": "✦",
-    "tags": "auto photos 主动 收图 照片 引导 开关 v4",
+    "tags": "auto photos 主动 收图 照片 引导 开关 引导重构",
     "published": true
   }
 ];
@@ -2095,7 +2095,7 @@ async function openReleaseDetail(item, version = "v2") {
   if (releaseComments?.dataset.term !== previousComment) releaseComments.closest(".release-detail-shell")?.scrollTo?.(0, 0);
   try {
     if (!releaseManifestPromises.has(version)) {
-      releaseManifestPromises.set(version, fetch(`./releases/${version}/release.json?v=cheers-3900-20261126`).then(response => {
+      releaseManifestPromises.set(version, fetch(`./releases/${version}/release.json?v=auto-photos-20261126`).then(response => {
         if (!response.ok) throw new Error('manifest'); return response.json();
       }).catch(error => { releaseManifestPromises.delete(version); throw error; }));
     }
