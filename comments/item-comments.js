@@ -3,7 +3,10 @@ import { giscusConfig, isGiscusConfigured } from "./giscus-config.js";
 
 const GISCUS_ORIGIN = "https://giscus.app";
 const observers = new WeakMap();
+const cleanups = new WeakMap();
 let desiredTerm = "";
+
+const LOAD_ERROR = "评论没有加载。若 Giscus GitHub App 还没安装到这个仓库，或 giscus.app 暂时访问不了，这里不会出现输入框。浏览和播放不需要登录。";
 
 function hintText(version) {
   const close = "处理完成后回复「已在 vX 处理」。浏览和播放不需要登录。";
@@ -14,6 +17,8 @@ function hintText(version) {
 function disconnect(slot) {
   observers.get(slot)?.disconnect();
   observers.delete(slot);
+  cleanups.get(slot)?.();
+  cleanups.delete(slot);
 }
 
 export function clearItemComments(slot) {
@@ -76,6 +81,10 @@ export function mountItemComments(slot, item, options = {}) {
   const frame = document.createElement("div");
   frame.className = "item-comments-frame";
   frame.dataset.term = term;
+  const status = document.createElement("p");
+  status.className = "item-comments-status";
+  status.textContent = "正在连接评论…";
+  frame.append(status);
   slot.append(frame);
   whenVisible(slot, frame, term);
 }
@@ -85,10 +94,10 @@ function whenVisible(slot, frame, term) {
   const load = () => {
     if (frame.isConnected && frame.dataset.term === term) ensureGiscus(frame, term);
   };
-  if (!("IntersectionObserver" in window)) {
-    load();
-    return;
-  }
+  // Load as soon as the dialog paints. An empty frame used to be display:none,
+  // so an IntersectionObserver on that frame never ran and Giscus never started.
+  requestAnimationFrame(load);
+  if (!("IntersectionObserver" in window)) return;
   const observer = new IntersectionObserver(
     (entries) => {
       if (!entries.some((entry) => entry.isIntersecting)) return;
@@ -96,10 +105,10 @@ function whenVisible(slot, frame, term) {
       observers.delete(slot);
       load();
     },
-    { root: root instanceof Element ? root : null, rootMargin: "160px 0px", threshold: 0.01 },
+    { root: root instanceof Element ? root : null, rootMargin: "240px 0px", threshold: 0.01 },
   );
   observers.set(slot, observer);
-  observer.observe(frame);
+  observer.observe(slot);
 }
 
 function ensureGiscus(frame, term) {
@@ -108,11 +117,43 @@ function ensureGiscus(frame, term) {
   const iframe = frame.querySelector("iframe.giscus-frame");
   if (iframe) {
     retarget(iframe, term);
+    frame.querySelector(".item-comments-status")?.remove();
     return;
   }
   if (pending?.dataset.term === term) return;
   pending?.remove();
-  frame.replaceChildren(createScript(term));
+  const status = frame.querySelector(".item-comments-status") || document.createElement("p");
+  status.className = "item-comments-status";
+  if (!status.textContent) status.textContent = "正在连接评论…";
+  frame.replaceChildren(status, createScript(term));
+  watchFrame(frame);
+}
+
+function watchFrame(frame) {
+  const slot = frame.closest(".item-comments");
+  cleanups.get(slot)?.();
+  const finish = (message) => {
+    const status = frame.querySelector(".item-comments-status");
+    if (frame.querySelector("iframe.giscus-frame")) {
+      status?.remove();
+      cleanups.get(slot)?.();
+      cleanups.delete(slot);
+      return;
+    }
+    if (message && status) status.textContent = message;
+  };
+  const observer = new MutationObserver(() => finish());
+  observer.observe(frame, { childList: true, subtree: true });
+  const timer = window.setTimeout(() => finish(LOAD_ERROR), 8000);
+  const script = frame.querySelector("script[data-giscus-client]");
+  const onError = () => finish(LOAD_ERROR);
+  script?.addEventListener("error", onError);
+  const stop = () => {
+    observer.disconnect();
+    window.clearTimeout(timer);
+    script?.removeEventListener("error", onError);
+  };
+  if (slot) cleanups.set(slot, stop);
 }
 
 function retarget(iframe, term) {
@@ -147,7 +188,7 @@ function createScript(term) {
   script.dataset.inputPosition = "bottom";
   script.dataset.theme = giscusConfig.theme;
   script.dataset.lang = giscusConfig.lang;
-  script.dataset.loading = "lazy";
+  script.dataset.loading = "eager";
   script.addEventListener("load", () => {
     const iframe = script.parentElement?.querySelector("iframe.giscus-frame");
     if (!iframe || !desiredTerm || desiredTerm === term) return;

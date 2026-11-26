@@ -2,8 +2,9 @@ import { motionMotions } from "./motion/catalog.js?v=20261029-release-v1";
 import { renderFamilyPanel } from "./lottie-families.js?v=20261030-isolated";
 import { setupConvertedWindow, showConvertedEntry } from "./motion-lottie-window.js?v=20261030-isolated";
 import { webMotions } from "./web-components/catalog.js?v=20261029-release-v1";
-import { createWebController, copyExample, downloadExample, setupWebDetail, getWebValues, syncWebBackgrounds } from "./web-components/integration.js?v=web-peers-1";
-import { clearItemComments, mountItemComments } from "./comments/item-comments.js?v=item-comments-1";
+import { createWebController, copyExample, downloadExample, setupWebDetail, getWebValues, syncWebBackgrounds } from "./web-components/integration.js?v=preview-fit-20261126";
+import { clearItemComments, mountItemComments } from "./comments/item-comments.js?v=preview-fit-20261126";
+import { fitWebFrame, pagePreviewURL, pageSceneSize } from "./page-preview.js";
 
 if (import.meta.env?.DEV) document.querySelector("#motionStudioLocal").hidden = false;
 
@@ -383,6 +384,7 @@ function pageCategory(item) {
 }
 function toPageMotion(item) {
   const tags = String(item.tags || "").split(/\s+/).filter(Boolean);
+  const scene = pageSceneSize(item.id);
   return {
     id: item.id,
     name: item.name,
@@ -394,6 +396,8 @@ function toPageMotion(item) {
     file: item.file,
     download: item.download || item.file,
     fileName: `${item.id}.html`,
+    width: scene.width,
+    height: scene.height,
   };
 }
 function webVersionItems() {
@@ -1219,18 +1223,6 @@ async function copyPageHtml(button, motion) {
   window.setTimeout(() => { if (button.isConnected) button.textContent = label; }, 1600);
 }
 
-function pagePreviewURL(file, detail) {
-  if (detail) return file;
-  const [path, query = ""] = String(file).split("?");
-  const params = new URLSearchParams(query);
-  if (!params.has("compact") && !params.has("embed")) {
-    params.set("compact", "1");
-    params.set("fit", "contain");
-  }
-  const text = params.toString();
-  return text ? `${path}?${text}` : path;
-}
-
 function createPagePreview(host, motion, options = {}) {
   const frame = document.createElement("iframe");
   frame.className = "web-component-frame";
@@ -1239,6 +1231,11 @@ function createPagePreview(host, motion, options = {}) {
   frame.setAttribute("referrerpolicy", "no-referrer");
   host.dataset.kind = "web";
   host.append(frame);
+  const scene = pageSceneSize(motion.id);
+  const releaseFit = fitWebFrame(frame, host, {
+    scene: { width: motion.width || scene.width, height: motion.height || scene.height },
+    detail: Boolean(options.detail),
+  });
   const src = pagePreviewURL(motion.file, options.detail);
   const show = () => { frame.src = src; };
   show();
@@ -1250,7 +1247,7 @@ function createPagePreview(host, motion, options = {}) {
     replay() { frame.src = "about:blank"; show(); },
     setLoop() {},
     setSpeed() {},
-    destroy() { frame.removeAttribute("src"); },
+    destroy() { releaseFit(); frame.removeAttribute("src"); },
   };
 }
 
@@ -1557,11 +1554,14 @@ async function updateDetailInfo(motion) {
 
 function applyMediaSizing(host, info) {
   if (!host || !info?.width || !info?.height) return;
+  host.style.setProperty("--media-aspect", `${info.width} / ${info.height}`);
+  // Web documents keep a full-bleed host. The iframe is sized to the scene and
+  // scaled with contain, so shrinking the host here would crop the page again.
+  if (host.dataset.kind === "web" || info.kind === "web-page") return;
   const bounds = getMediaBounds(host);
   const fitted = fitWithin(info.width, info.height, bounds.width, bounds.height);
   host.style.width = `${fitted.width}px`;
   host.style.height = `${fitted.height}px`;
-  host.style.setProperty("--media-aspect", `${info.width} / ${info.height}`);
 }
 
 function getMediaBounds(host) {
@@ -1602,7 +1602,9 @@ function fitWithin(width, height, maxWidth, maxHeight) {
 async function getMotionInfo(motion) {
   if (motionInfoCache.has(motion.file)) return motionInfoCache.get(motion.file);
   let info;
-  if (motion.width && motion.height && motion.duration) {
+  if (motion.kind === "web-page" && motion.width && motion.height) {
+    info = { width: motion.width, height: motion.height, kind: "web-page", frameRate: 0, frames: 0, duration: 0, inPoint: 0, outPoint: 0 };
+  } else if (motion.width && motion.height && motion.duration) {
     info = {
       width: motion.width,
       height: motion.height,
