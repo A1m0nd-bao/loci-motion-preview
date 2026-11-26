@@ -4,6 +4,7 @@ import { renderFamilyPanel } from "./lottie-families.js?v=20261030-isolated";
 import { setupConvertedWindow, showConvertedEntry } from "./motion-lottie-window.js?v=20261030-isolated";
 import { webMotions } from "./web-components/catalog.js?v=20261029-release-v1";
 import { createWebController, copyExample, downloadExample, setupWebDetail, getWebValues, syncWebBackgrounds } from "./web-components/integration.js?v=20261029-release-v1";
+import { clearItemComments, mountItemComments } from "./comments/item-comments.js?v=item-comments-1";
 
 if (import.meta.env?.DEV) document.querySelector("#motionStudioLocal").hidden = false;
 
@@ -434,6 +435,7 @@ const detailTotalDuration = document.querySelector("#detailTotalDuration");
 const detailCopy = document.querySelector("#detailCopy");
 const detailOpen = document.querySelector("#detailOpen");
 const detailDownload = document.querySelector("#detailDownload");
+const detailComments = document.querySelector("#detailComments");
 
 let motions = [];
 let visibleMotions = [];
@@ -1147,6 +1149,9 @@ async function openDetail(motion, family = motion.variants ? motion : null) {
   }
 
   detailDialog.showModal();
+  const previousComment = detailComments?.dataset.term;
+  mountItemComments(detailComments, motion, { family });
+  if (detailComments?.dataset.term !== previousComment) detailComments.closest(".detail-shell")?.scrollTo?.(0, 0);
   updateDetailInfo(motion);
   await nextFrame();
   if (!detailDialog.open || activeMotion !== motion) return;
@@ -1856,6 +1861,7 @@ detailDialog.addEventListener("close", () => {
   detailController?.destroy?.();
   detailController = null;
   stopTimelineLoop();
+  clearItemComments(detailComments);
 });
 
 dropzone.addEventListener("dragover", (event) => {
@@ -2000,6 +2006,10 @@ async function openReleaseDetail(item, version = "v2") {
   releaseDetailStage.append(loading, frame);
   mountReleaseDetail(frame, item);
   if (!releaseDetailDialog.open) releaseDetailDialog.showModal();
+  const releaseComments = document.querySelector("#releaseComments");
+  const previousComment = releaseComments?.dataset.term;
+  mountItemComments(releaseComments, item, { version });
+  if (releaseComments?.dataset.term !== previousComment) releaseComments.closest(".release-detail-shell")?.scrollTo?.(0, 0);
   try {
     if (!releaseManifestPromises.has(version)) {
       releaseManifestPromises.set(version, fetch(`./releases/${version}/release.json?v=cheers-3900-20261126`).then(response => {
@@ -2032,7 +2042,7 @@ async function openReleaseDetail(item, version = "v2") {
 
 document.querySelector('#releaseDetailClose').addEventListener('click', () => releaseDetailDialog.close());
 releaseDetailDialog.addEventListener('click', event => { if (event.target === releaseDetailDialog) releaseDetailDialog.close(); });
-releaseDetailDialog.addEventListener('close', () => { releaseDetailEpoch++; destroyReleaseDetail(); releaseDetailStage.replaceChildren(); });
+releaseDetailDialog.addEventListener('close', () => { releaseDetailEpoch++; destroyReleaseDetail(); releaseDetailStage.replaceChildren(); clearItemComments(document.querySelector("#releaseComments")); });
 
 function renderStateMachinePanel(motion, getController) {
   const panel = document.querySelector("#dotLottieStateMachinePanel");
