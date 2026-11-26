@@ -5,7 +5,7 @@
     <link rel="icon" href="data:," />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>SipPlay Motion Library</title>
-    <link rel="stylesheet" href="./styles.css?v=web-peers-1" />
+    <link rel="stylesheet" href="./styles.css?v=preview-fit-20261126" />
     <link rel="stylesheet" href="./lottie-families.css?v=20261030-isolated" />
     <link rel="stylesheet" href="./web-components/handoff.css?v=20261029-release-v1" />
     <script type="importmap">{"imports":{"motion":"./motion/vendor/motion.js"}}</script>
@@ -319,13 +319,6 @@
 
             <section id="lottieFamilyPanel" class="lottie-family-panel" aria-label="Lottie 播放段与使用说明" hidden></section>
             <section id="dotLottieStateMachinePanel" class="lottie-sm-panel" aria-label="dotLottie 状态机交互控制台" hidden></section>
-            <section id="webCodePanel" class="web-code-panel" aria-label="组件代码与用法" hidden>
-              <div class="web-code-heading"><h3>组件代码</h3><button id="webReset" type="button">重置参数</button></div>
-              <p id="webDescription"></p>
-              <section id="webHandoffPanel" class="handoff-panel" aria-label="研发和 AI 接入说明" hidden></section>
-              <pre tabindex="0" aria-label="组件接入代码"><code id="webCode"></code></pre>
-              <p class="web-code-note">「复制 HTML」包含示例样式与初始化脚本；下载的 HTML 联网即可运行。Web 组件用于网页，不是 Lottie JSON。</p>
-            </section>
           </div>
 
           <aside class="detail-controls" aria-label="详情控制">
@@ -370,13 +363,20 @@
             <a id="detailOpen" target="_blank" rel="noreferrer">打开文件</a>
             <a id="detailDownload" download>下载文件</a>
             <a id="webDocs" target="_blank" rel="noopener noreferrer" hidden>原始组件文档 ↗</a>
+            <section id="webCodePanel" class="web-code-panel" aria-label="组件代码与用法" hidden>
+              <div class="web-code-heading"><h3>组件代码</h3><button id="webReset" type="button">重置参数</button></div>
+              <p id="webDescription"></p>
+              <section id="webHandoffPanel" class="handoff-panel" aria-label="研发和 AI 接入说明" hidden></section>
+              <pre tabindex="0" aria-label="组件接入代码"><code id="webCode"></code></pre>
+              <p class="web-code-note">「复制 HTML」包含示例样式与初始化脚本；下载的 HTML 联网即可运行。Web 组件用于网页，不是 Lottie JSON。</p>
+            </section>
           </aside>
         </div>
         <section id="detailComments" class="item-comments" hidden></section>
       </div>
     </dialog>
 
-    <script src="./app.js?v=auto-photos-20261126" type="module"></script>
+    <script src="./app.js?v=preview-fit-20261126" type="module"></script>
     <script src="./scripts/line-waves-static.mjs?v=20260802a" type="module"></script>
   </body>
 </html>

@@ -1,6 +1,7 @@
 import { exampleDocument } from "./examples.js?v=20261029-release-v1";
 import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261029-release-v1";
 import { renderHandoff } from "./handoff-ui.js?v=20261029-release-v1";
+import { fitWebFrame, pageSceneSize } from "../page-preview.js";
 
 const controllers = new Set();
 
@@ -13,6 +14,7 @@ export function createWebController(host, entry, { detail = false } = {}) {
   frame.tabIndex = detail ? 0 : -1;
   host.dataset.kind = "web";
   host.append(frame);
+  const releaseFit = fitWebFrame(frame, host, { scene: pageSceneSize(entry.id), detail, fluid: true });
   let loaded = false;
   let disposed = false;
   let state = detail ? "play" : "poster";
@@ -69,6 +71,7 @@ export function createWebController(host, entry, { detail = false } = {}) {
       clearTimeout(timeout);
       window.removeEventListener("message", listener);
       controllers.delete(controller);
+      releaseFit();
       frame.remove();
       resolveReady();
     },
