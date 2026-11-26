@@ -2,18 +2,17 @@
  * Giscus connection for per-item motion notes.
  *
  * `repo` and `repoId` were read from GitHub on 2026-11-26
- * (repository node id R_kgDOS8X1yg). Discussions were disabled, so this
- * repo has no discussion category and no category id to read.
- * Leave `category` and `categoryId` empty until an admin pastes them.
- * The widget does not load while `categoryId` is blank. Do not invent ids.
+ * (repository node id R_kgDOS8X1yg).
+ * `category` and `categoryId` are the Announcements discussion category
+ * read from this repo (DIC_kwDOS8X1ys4DMA0U). Do not invent ids.
  *
  * Steps: comments/SETUP.md
  */
 export const giscusConfig = {
   repo: "A1m0nd-bao/loci-motion-preview",
   repoId: "R_kgDOS8X1yg",
-  category: "",
-  categoryId: "",
+  category: "Announcements",
+  categoryId: "DIC_kwDOS8X1ys4DMA0U",
   theme: "transparent_dark",
   lang: "zh-CN",
 };
