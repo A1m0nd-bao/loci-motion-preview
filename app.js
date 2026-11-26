@@ -1,3 +1,4 @@
+import { renderReleaseCards, releaseCategory, syncReleaseSettings, setReleaseView, clearReleaseCards, mountReleaseDetail, destroyReleaseDetail } from './release-library.js?v=unified-20261126';
 import { motionMotions } from "./motion/catalog.js?v=20261029-release-v1";
 import { renderFamilyPanel } from "./lottie-families.js?v=20261030-isolated";
 import { setupConvertedWindow, showConvertedEntry } from "./motion-lottie-window.js?v=20261030-isolated";
@@ -707,7 +708,9 @@ function populateCategories() {
   const selectedKind = kindSelect.value;
   const deliveryMotions = getDeliveryMotions();
   let source;
-  if (selectedKind === "all") {
+  if (selectedKind === 'web' && selectedWebRelease !== 'v1') {
+    source = (selectedWebRelease === 'v3' ? v3Entries : v2Entries).map(item => ({category:releaseCategory(item)}));
+  } else if (selectedKind === "all") {
     source = deliveryMotions;
   } else if (selectedKind === "lottie") {
     source = selectedLottieColumn === "reference"
@@ -741,7 +744,9 @@ function render() {
   const showV2 = !isHome && selectedKind === "web" && selectedWebRelease === "v2";
   const showV3 = !isHome && selectedKind === "web" && selectedWebRelease === "v3";
   const showVersioned = showV2 || showV3;
-  const filteredDrafts = (showV3 ? v3Entries : v2Entries).filter(item => !query || `${item.name} ${item.note} ${item.tags}`.toLowerCase().includes(query));
+  const filteredDrafts = (showV3 ? v3Entries : v2Entries).filter(item =>
+    (!query || `${item.name} ${item.note} ${item.tags} ${item.id}`.toLowerCase().includes(query)) &&
+    (selectedCategory === 'all' || releaseCategory(item) === selectedCategory));
 
   // Lottie reference column & filter controls
   const lottieReleaseSection = document.querySelector("#lottieReleaseSection");
@@ -813,13 +818,23 @@ function render() {
   quickSection.hidden = isHome || isInteractiveKind(selectedKind);
   document.querySelector("#webLibraryIntro").hidden = isHome || selectedKind !== "web";
   document.querySelector("#motionLibraryIntro").hidden = isHome || selectedKind !== "motion";
-  document.querySelectorAll("[data-library-media-only]").forEach((el) => { el.hidden = isInteractiveKind(selectedKind); });
+  document.querySelectorAll("[data-library-media-only]").forEach((el) => { el.hidden = isInteractiveKind(selectedKind) && !showVersioned; });
+  document.body.classList.toggle('is-versioned-web', showVersioned);
+  const webFormat = formatNav.querySelector('[data-kind="web"]');
+  if (webFormat) {
+    webFormat.querySelector('.format-count').textContent = String(showVersioned ? (showV3 ? publishedV3.length : publishedV2.length) : motions.filter(m => m.kind === 'web').length);
+    webFormat.querySelector('span:last-child').textContent = `当前批次 ${selectedWebRelease}`;
+  }
+  const webOption = kindSelect.querySelector('option[value="web"]');
+  if (webOption) webOption.textContent = `Web 组件 · ${selectedWebRelease}`;
+  syncReleaseSettings({speed:Number(speed.value),loop:loop.checked,background:previewBg.value,hover:autoplay.checked});
+  if (!showVersioned) clearReleaseCards();
   libraryView.hidden = isHome;
   document.querySelector("#webReleaseSection").hidden = isHome || selectedKind !== "web";
   document.querySelector("#v2Drafts").hidden = !showVersioned;
   document.querySelector("#v2Drafts").setAttribute("aria-label", `动效 ${selectedWebRelease}`);
   gallery.hidden = showVersioned;
-  category.disabled = showVersioned;
+  category.disabled = false;
   document.querySelector("#webReleaseTitle").textContent = showVersioned ? `动效 ${selectedWebRelease}` : "动效 v1 · 正式交付";
   document.querySelector("#webReleaseNote").textContent = showV3
     ? `${publishedV3.length} 个已上线动效 · 可交互预览与 HTML 下载`
@@ -1388,6 +1403,7 @@ function applyPreviewBackground(value, options = {}) {
   const label = color.toUpperCase();
   document.documentElement.style.setProperty("--preview-bg", color);
   syncWebBackgrounds();
+  syncReleaseSettings({background:color});
   previewBg.value = color;
   detailPreviewBg.value = color;
   previewBgLabel.textContent = label;
@@ -1793,11 +1809,12 @@ refresh.addEventListener("click", loadManifest);
 speed.addEventListener("input", () => {
   speedLabel.textContent = `${speed.value}x`;
   syncPreviewHosts();
+  syncReleaseSettings({speed:Number(speed.value)});
 });
 
 previewBg.addEventListener("input", (event) => applyPreviewBackground(event.target.value));
-autoplay.addEventListener("change", syncPreviewHosts);
-loop.addEventListener("change", syncPreviewHosts);
+autoplay.addEventListener("change", () => { syncPreviewHosts(); syncReleaseSettings({hover:autoplay.checked}); });
+loop.addEventListener("change", () => { syncPreviewHosts(); syncReleaseSettings({loop:loop.checked}); });
 fileInput.addEventListener("change", (event) => addLocalFiles(event.target.files));
 detailClose.addEventListener("click", () => detailDialog.close());
 detailPlay.addEventListener("click", () => {
@@ -1859,6 +1876,7 @@ document.querySelectorAll(".tab").forEach((button) => {
     document.querySelector(".tab.active").classList.remove("active");
     button.classList.add("active");
     gallery.classList.toggle("list", button.dataset.view === "list");
+    setReleaseView(button.dataset.view);
   });
 });
 
@@ -1901,72 +1919,10 @@ const releaseCanvasObserver = new ResizeObserver(entries => {
 
 function renderDrafts(items, version = "v2") {
   if (document.querySelector('#releaseDetailDialog')?.open) return;
-  const root = document.querySelector("#v2Drafts");
-  for (const canvas of root.querySelectorAll('.release-preview-canvas')) releaseCanvasObserver.unobserve(canvas);
-  root.replaceChildren();
-  if (!items.length) {
-    const message = document.createElement("p");
-    message.className = "release-placeholder";
-    message.textContent = version === "v3" && !publishedV3.length ? "v3 暂无动效" : `没有匹配的 ${version} 动效。`;
-    root.append(message);
-    return;
-  }
-  for (const item of items) {
-    const card = document.createElement("article");
-    card.className = "release-draft-card";
-    card.innerHTML = `<div class="draft-symbol" aria-hidden="true"></div><span class="draft-status">v2 · 仅本地</span><h3><button type="button" class="release-title-button"></button></h3><p></p><div class="release-card-actions"><button type="button" class="release-detail-button">查看详情</button></div>`;
-    card.querySelector(".draft-status").textContent = item.published ? `${version} · 已上线` : `${version} · 仅本地`;
-    card.querySelector(".draft-symbol").textContent = item.symbol;
-    if (item.published) {
-      const preview = document.createElement('iframe');
-      const canvas = document.createElement('div');
-      canvas.className = 'release-preview-canvas';
-      const scene = ['sipplay-prop-spotlight', 'sipplay-relic-journey', 'sipplay-invitation-code', 'sipplay-invitation-code-autumn', 'sipplay-gems-pack-popup', 'sipplay-welcome-gift-collect'].includes(item.id) ? [375, 812]
-        : ['sipplay-billionaire-button-lite', 'sipplay-ice-hockey-button-lite'].includes(item.id) ? [380, 220]
-        : item.id === 'sipplay-lifecycle-item-counter' ? [1040, 850]
-        : item.id === 'sipplay-cheers-popup' ? [500, 640]
-        : item.id === 'sipplay-auto-photos' ? [600, 760]
-        : item.id === 'sipplay-voice-input-wave' ? [269, 220]
-        : item.id === 'sipplay-character-select' ? [750, 504]
-        : item.id === 'sipplay-reward-celebration' ? [644, 644]
-        : item.id === 'sipplay-invite-ticket-v13' ? [1000, 480]
-        : item.id === 'sipplay-gem-bonus-composite' ? [1040, 660]
-        : item.id === 'sipplay-red-gold-chest-v3' ? [420, 510]
-        : item.id === 'sipplay-battlepass-pack-textured' ? [560, 558]
-        : item.id === 'sipplay-chest-two-state' ? [760, 685] : [260, 220];
-      canvas.dataset.sceneWidth = scene[0]; canvas.dataset.sceneHeight = scene[1];
-      preview.className = 'release-card-preview'; preview.title = `${item.name} · 交互预览`;
-      preview.width = scene[0]; preview.height = scene[1];
-      preview.style.width = `${scene[0]}px`; preview.style.height = `${scene[1]}px`;
-      preview.loading = 'lazy'; preview.scrolling = 'no';
-      const previewQuery = item.id === 'sipplay-invitation-code-autumn'
-        ? 'embed=1&fit=contain&v=canvas-manual2'
-        : 'compact=1&fit=contain&v=canvas-manual2';
-      const previewUrl = new URL(item.file, document.baseURI);
-      for (const [key, value] of new URLSearchParams(previewQuery)) {
-        if (!previewUrl.searchParams.has(key)) previewUrl.searchParams.set(key, value);
-      }
-      preview.src = previewUrl.href;
-      preview.tabIndex = -1; preview.setAttribute('aria-hidden', 'true');
-      const trigger = document.createElement('button'); trigger.type = 'button'; trigger.className = 'release-preview-open';
-      trigger.setAttribute('aria-label', `查看${item.name}详情`);
-      const hint = document.createElement('span'); hint.textContent = '查看详情'; hint.setAttribute('aria-hidden', 'true'); trigger.append(hint);
-      trigger.addEventListener('click', () => openReleaseDetail(item, version));
-      canvas.append(preview, trigger);
-      card.querySelector('.draft-symbol').replaceWith(canvas);
-      releaseCanvasObserver.observe(canvas);
-    }
-    card.querySelector('.release-title-button').textContent = item.name;
-    card.querySelector('.release-title-button').addEventListener('click', () => openReleaseDetail(item, version));
-    card.querySelector('.release-detail-button').addEventListener('click', () => openReleaseDetail(item, version));
-    card.querySelector("p").textContent = item.note;
-    if (item.download) {
-      const download = document.createElement('a'); download.href = item.download;
-      download.download = `Sipplay-${version}-${item.id.replace('sipplay-', '')}.html`; download.textContent = '下载 HTML ↓';
-      card.querySelector('.release-card-actions').append(download);
-    }
-    root.append(card);
-  }
+  renderReleaseCards(document.querySelector('#v2Drafts'), items, {
+    version, onOpen:openReleaseDetail,
+    view:document.querySelector('.tab.active')?.dataset.view || 'grid',
+  });
 }
 document.querySelectorAll("[data-web-release]").forEach(button => {
   button.addEventListener("click", () => {
@@ -1974,6 +1930,7 @@ document.querySelectorAll("[data-web-release]").forEach(button => {
     history.replaceState(null, '', `${location.pathname}${location.search}${selectedWebRelease === 'v1' ? '#web' : `#web-${selectedWebRelease}`}`);
     search.value = "";
     category.value = "all";
+    populateCategories();
     render();
   });
 });
@@ -2040,7 +1997,8 @@ async function openReleaseDetail(item, version = "v2") {
       }
     });
   });
-  frame.src = item.file; releaseDetailStage.append(loading, frame);
+  releaseDetailStage.append(loading, frame);
+  mountReleaseDetail(frame, item);
   if (!releaseDetailDialog.open) releaseDetailDialog.showModal();
   try {
     if (!releaseManifestPromises.has(version)) {
@@ -2074,7 +2032,7 @@ async function openReleaseDetail(item, version = "v2") {
 
 document.querySelector('#releaseDetailClose').addEventListener('click', () => releaseDetailDialog.close());
 releaseDetailDialog.addEventListener('click', event => { if (event.target === releaseDetailDialog) releaseDetailDialog.close(); });
-releaseDetailDialog.addEventListener('close', () => { releaseDetailEpoch++; releaseDetailStage.replaceChildren(); });
+releaseDetailDialog.addEventListener('close', () => { releaseDetailEpoch++; destroyReleaseDetail(); releaseDetailStage.replaceChildren(); });
 
 function renderStateMachinePanel(motion, getController) {
   const panel = document.querySelector("#dotLottieStateMachinePanel");
