@@ -481,6 +481,9 @@ const lazyHostObserver =
 if (window.matchMedia("(max-width: 820px)").matches) {
   sidebar.removeAttribute("open");
 }
+window.matchMedia('(max-width: 820px)').addEventListener('change', event => {
+  sidebar.open = !event.matches;
+});
 
 applyPreviewBackground(localStorage.getItem(previewBackgroundKey) || defaultPreviewBackground, {
   persist: false,
@@ -825,10 +828,10 @@ function render() {
   const webFormat = formatNav.querySelector('[data-kind="web"]');
   if (webFormat) {
     webFormat.querySelector('.format-count').textContent = String(showVersioned ? (showV3 ? publishedV3.length : publishedV2.length) : motions.filter(m => m.kind === 'web').length);
-    webFormat.querySelector('span:last-child').textContent = `当前批次 ${selectedWebRelease}`;
+    webFormat.querySelector('span:last-child').textContent = showVersioned ? `当前批次 ${selectedWebRelease}` : 'v1 · 另有 v2 / v3 批次';
   }
   const webOption = kindSelect.querySelector('option[value="web"]');
-  if (webOption) webOption.textContent = `Web 组件 · ${selectedWebRelease}`;
+  if (webOption) webOption.textContent = `Web 组件 · ${showVersioned ? selectedWebRelease : 'v1'}`;
   syncReleaseSettings({speed:Number(speed.value),loop:loop.checked,background:previewBg.value,hover:autoplay.checked});
   if (!showVersioned) clearReleaseCards();
   libraryView.hidden = isHome;
@@ -1721,6 +1724,7 @@ function addLocalFiles(files) {
     });
 
   motions = [...localItems, ...motions.filter((item) => item.category !== "临时预览")];
+  if (kindSelect.value === 'web' && selectedWebRelease !== 'v1') enterModule('all');
   populateKinds();
   populateCategories();
   category.value = "临时预览";
