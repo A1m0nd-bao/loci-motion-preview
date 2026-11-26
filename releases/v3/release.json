@@ -6,9 +6,9 @@
     {
       "id": "sipplay-auto-photos",
       "name": "Auto Photos · 主动收图引导",
-      "preview": "auto-photos/index.html?v=20261126",
-      "download": "auto-photos/auto-photos.html?v=20261126",
-      "source": "auto-photos/auto-photos.html?v=20261126",
+      "preview": "auto-photos/index.html?v=20261126-copy",
+      "download": "auto-photos/auto-photos.html?v=20261126-copy",
+      "source": "auto-photos/auto-photos.html?v=20261126-copy",
       "usage": "auto-photos/USAGE.md",
       "states": [
         "paused",
@@ -20,7 +20,7 @@
       ],
       "size": "313×240",
       "duration": 5.6,
-      "fileSize": 193306
+      "fileSize": 192909
     }
   ]
 }

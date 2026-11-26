@@ -1,7 +1,7 @@
 {
-  "originalBytes": 2241573,
-  "compressedBytes": 193306,
-  "reductionPercent": 91.38,
+  "originalBytes": 2241176,
+  "compressedBytes": 192909,
+  "reductionPercent": 91.39,
   "image": {
     "from": "PNG",
     "to": "WebP",
