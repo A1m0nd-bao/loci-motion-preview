@@ -1,15 +1,13 @@
-import { renderReleaseCards, releaseCategory, syncReleaseSettings, setReleaseView, clearReleaseCards, mountReleaseDetail, destroyReleaseDetail } from './release-library.js?v=unified-20261126';
 import { motionMotions } from "./motion/catalog.js?v=20261029-release-v1";
 import { renderFamilyPanel } from "./lottie-families.js?v=20261030-isolated";
 import { setupConvertedWindow, showConvertedEntry } from "./motion-lottie-window.js?v=20261030-isolated";
 import { webMotions } from "./web-components/catalog.js?v=20261029-release-v1";
-import { createWebController, copyExample, downloadExample, setupWebDetail, getWebValues, syncWebBackgrounds } from "./web-components/integration.js?v=20261029-release-v1";
+import { createWebController, copyExample, downloadExample, setupWebDetail, getWebValues, syncWebBackgrounds } from "./web-components/integration.js?v=web-peers-1";
 import { clearItemComments, mountItemComments } from "./comments/item-comments.js?v=item-comments-1";
 
 if (import.meta.env?.DEV) document.querySelector("#motionStudioLocal").hidden = false;
 
-const isInteractiveKind = kind => kind === "web" || kind === "motion";
-const isLocalPreview = ["localhost", "127.0.0.1", "[::1]"].includes(location.hostname);
+const isInteractiveKind = kind => kind === "web" || kind === "web-page" || kind === "motion";
 let selectedWebRelease = "v1";
 let selectedLottieColumn = "product";
 let selectedRefFilter = "all";
@@ -373,6 +371,41 @@ const publishedV3 = [
   }
 ];
 const v3Entries = [...publishedV3];
+const pageGroups = {
+  "基础控件": ["plus-arrow-toggle", "like-heart", "strength-cup", "mic-keyboard-toggle", "pin-toggle-v2", "image-arrow-toggle", "billionaire-button-lite", "ice-hockey-button-lite", "lifecycle-item-counter"],
+  "消息与输入": ["voice-input-wave", "paper-plane", "invitation-code", "invitation-code-autumn"],
+  "角色与引导": ["character-select", "auto-photos"],
+  "奖励与活动": ["gift-pop", "relic-journey", "paid-reward", "reward-ticket", "chest-burst", "confetti-fireworks", "ticket-tear", "reward-celebration", "chest-two-state", "maple-gift-pop", "reward-ticket-pumpkin", "autumn-transparent-leaves", "ticket-tear-autumn", "gems-pack-popup", "welcome-gift-collect", "battlepass-pack-textured", "invite-ticket-v13", "gem-bonus-composite", "red-gold-chest-v3", "cheers-popup"],
+};
+function pageCategory(item) {
+  const slug = String(item.id || "").replace(/^sipplay-/, "");
+  return item.category || Object.keys(pageGroups).find((name) => pageGroups[name].includes(slug)) || "其他";
+}
+function toPageMotion(item) {
+  const tags = String(item.tags || "").split(/\s+/).filter(Boolean);
+  return {
+    id: item.id,
+    name: item.name,
+    description: item.note || "",
+    category: pageCategory(item),
+    tags,
+    kind: "web-page",
+    kindLabel: "Web",
+    file: item.file,
+    download: item.download || item.file,
+    fileName: `${item.id}.html`,
+  };
+}
+function webVersionItems() {
+  if (selectedWebRelease === "v2") return v2Entries.map(toPageMotion);
+  if (selectedWebRelease === "v3") return v3Entries.map(toPageMotion);
+  return motions.filter((item) => item.kind === "web");
+}
+function webVersionCount(version = selectedWebRelease) {
+  if (version === "v2") return v2Entries.length;
+  if (version === "v3") return v3Entries.length;
+  return motions.filter((item) => item.kind === "web").length;
+}
 
 
 const gallery = document.querySelector("#gallery");
@@ -713,8 +746,8 @@ function populateCategories() {
   const selectedKind = kindSelect.value;
   const deliveryMotions = getDeliveryMotions();
   let source;
-  if (selectedKind === 'web' && selectedWebRelease !== 'v1') {
-    source = (selectedWebRelease === 'v3' ? v3Entries : v2Entries).map(item => ({category:releaseCategory(item)}));
+  if (selectedKind === "web") {
+    source = webVersionItems();
   } else if (selectedKind === "all") {
     source = deliveryMotions;
   } else if (selectedKind === "lottie") {
@@ -746,13 +779,6 @@ function render() {
   showConvertedEntry(!isHome && selectedKind === 'lottie');
   const selectedCategory = category.value;
   const isLottie = !isHome && selectedKind === "lottie";
-  const showV2 = !isHome && selectedKind === "web" && selectedWebRelease === "v2";
-  const showV3 = !isHome && selectedKind === "web" && selectedWebRelease === "v3";
-  const showVersioned = showV2 || showV3;
-  const filteredDrafts = (showV3 ? v3Entries : v2Entries).filter(item =>
-    (!query || `${item.name} ${item.note} ${item.tags} ${item.id}`.toLowerCase().includes(query)) &&
-    (selectedCategory === 'all' || releaseCategory(item) === selectedCategory));
-
   // Lottie reference column & filter controls
   const lottieReleaseSection = document.querySelector("#lottieReleaseSection");
   const lottieReferenceIntro = document.querySelector("#lottieReferenceIntro");
@@ -807,6 +833,12 @@ function render() {
 
     return matchesSearch && matchesKind && matchesCategory && matchesLottieColumn;
   });
+  if (!isHome && selectedKind === "web") {
+    visibleMotions = webVersionItems().filter((item) => {
+      const haystack = [item.name, item.id, item.file, item.description, item.category, ...(item.tags || [])].join(" ").toLowerCase();
+      return (!query || haystack.includes(query)) && (selectedCategory === "all" || item.category === selectedCategory);
+    });
+  }
 
   // Embedded component runtimes must be torn down when filters replace their cards.
   for (const host of gallery.querySelectorAll('[data-kind="web"]')) previewControllers.get(host)?.destroy?.();
@@ -817,39 +849,35 @@ function render() {
   previewControllers.delete(videoSpotlightPlayer);
   videoSpotlight.hidden = isHome || selectedKind !== "video" || visibleMotions.length === 0;
   videoSpotlightPlayer.replaceChildren();
-  count.textContent = String(showVersioned ? filteredDrafts.length : visibleMotions.length);
-  empty.hidden = showVersioned || visibleMotions.length > 0;
+  count.textContent = String(visibleMotions.length);
+  empty.hidden = visibleMotions.length > 0;
   homeView.hidden = !isHome;
   quickSection.hidden = isHome || isInteractiveKind(selectedKind);
   document.querySelector("#webLibraryIntro").hidden = isHome || selectedKind !== "web";
   document.querySelector("#motionLibraryIntro").hidden = isHome || selectedKind !== "motion";
-  document.querySelectorAll("[data-library-media-only]").forEach((el) => { el.hidden = isInteractiveKind(selectedKind) && !showVersioned; });
-  document.body.classList.toggle('is-versioned-web', showVersioned);
+  document.querySelectorAll("[data-library-media-only]").forEach((el) => { el.hidden = isInteractiveKind(selectedKind); });
   const webFormat = formatNav.querySelector('[data-kind="web"]');
   if (webFormat) {
-    webFormat.querySelector('.format-count').textContent = String(showVersioned ? (showV3 ? publishedV3.length : publishedV2.length) : motions.filter(m => m.kind === 'web').length);
-    webFormat.querySelector('span:last-child').textContent = showVersioned ? `当前批次 ${selectedWebRelease}` : 'v1 · 另有 v2 / v3 批次';
+    webFormat.querySelector('.format-count').textContent = String(webVersionCount());
+    webFormat.querySelector('span:last-child').textContent = `${selectedWebRelease} · ${webVersionCount()} 项`;
   }
   const webOption = kindSelect.querySelector('option[value="web"]');
-  if (webOption) webOption.textContent = `Web 组件 · ${showVersioned ? selectedWebRelease : 'v1'}`;
-  syncReleaseSettings({speed:Number(speed.value),loop:loop.checked,background:previewBg.value,hover:autoplay.checked});
-  if (!showVersioned) clearReleaseCards();
+  if (webOption) webOption.textContent = `Web 组件 · ${selectedWebRelease}`;
   libraryView.hidden = isHome;
   document.querySelector("#webReleaseSection").hidden = isHome || selectedKind !== "web";
-  document.querySelector("#v2Drafts").hidden = !showVersioned;
-  document.querySelector("#v2Drafts").setAttribute("aria-label", `动效 ${selectedWebRelease}`);
-  gallery.hidden = showVersioned;
+  document.querySelector("#v2Drafts").hidden = true;
+  gallery.hidden = false;
   category.disabled = false;
-  document.querySelector("#webReleaseTitle").textContent = showVersioned ? `动效 ${selectedWebRelease}` : "动效 v1 · 正式交付";
-  document.querySelector("#webReleaseNote").textContent = showV3
-    ? `${publishedV3.length} 个已上线动效 · 可交互预览与 HTML 下载`
-    : showV2
-    ? `${publishedV2.length} 个已上线动效 · 可交互预览与 HTML 下载${isLocalPreview && localDrafts.length ? ` · ${localDrafts.length} 个本地候选` : ""}`
-    : "23 个 Web 组件 · 19 项 / 38 个 Lottie JSON · 接入说明与组件 API";
-  document.querySelector("#v1Download").hidden = showVersioned;
-  document.querySelector("#v2Download").hidden = !showV2;
-  document.querySelectorAll("[data-web-release]").forEach(button => button.setAttribute("aria-pressed", String(button.dataset.webRelease === selectedWebRelease)));
-  if (showVersioned) renderDrafts(filteredDrafts, selectedWebRelease);
+  const versionCount = webVersionCount();
+  document.querySelector("#webReleaseTitle").textContent = `动效 ${selectedWebRelease}`;
+  document.querySelector("#webReleaseNote").textContent = `${versionCount} 个动效 · 悬停预览，打开详情可体验、复制或下载 HTML`;
+  document.querySelector("#v1Download").hidden = selectedWebRelease !== "v1";
+  document.querySelector("#v2Download").hidden = selectedWebRelease !== "v2";
+  document.querySelectorAll("[data-web-release]").forEach(button => {
+    button.setAttribute("aria-pressed", String(button.dataset.webRelease === selectedWebRelease));
+    const label = button.querySelector("span");
+    if (label) label.textContent = `${webVersionCount(button.dataset.webRelease)} 项`;
+  });
 
 
   if (isHome) {
@@ -866,7 +894,7 @@ function render() {
     .sort((a, b) => getUpdatedTime(b) - getUpdatedTime(a))
     .slice(0, 8);
 
-  if (!showVersioned) renderGalleryCards(visibleMotions, selectedKind);
+  renderGalleryCards(visibleMotions, selectedKind);
 
   for (const motion of quickMotions.filter((item) => !isInteractiveKind(item.kind))) {
     quickRail.append(createQuickCard(motion));
@@ -895,7 +923,7 @@ function renderGalleryCards(items, selectedKind) {
     if (items.length) {
       const heading = document.createElement("h2");
       heading.className = "web-source-heading";
-      heading.textContent = "sipplay / v1";
+      heading.textContent = `sipplay / ${selectedWebRelease}`;
       gallery.append(heading);
     }
     for (const motion of items) gallery.append(createCard(motion));
@@ -989,10 +1017,15 @@ function createCard(motion) {
     node.querySelector('[data-action="copy"]').textContent = "复制 HTML";
     openLink.textContent = "独立体验";
     downloadLink.textContent = "下载 HTML";
-    downloadLink.addEventListener("click", (event) => {
-      event.preventDefault();
-      downloadExample(motion);
-    });
+    if (motion.kind === "web-page") {
+      downloadLink.href = motion.download || motion.file;
+      downloadLink.download = `${motion.id}.html`;
+    } else {
+      downloadLink.addEventListener("click", (event) => {
+        event.preventDefault();
+        downloadExample(motion);
+      });
+    }
   }
 
   const tagValues = [motion.category, motion.interactionType, ...(motion.tags || [])].filter(Boolean);
@@ -1015,6 +1048,10 @@ function createCard(motion) {
     if (action === "pause") controller.pause?.();
     if (action === "detail") openDetail(motion);
     if (action === "copy") {
+      if (motion.kind === "web-page") {
+        await copyPageHtml(event.target, motion);
+        return;
+      }
       if (isInteractiveKind(motion.kind)) {
         await copyExample(event.target, motion);
         return;
@@ -1035,7 +1072,7 @@ function setupPreviewHost(host, motion) {
   host.dataset.loaded = "false";
   host.dataset.visible = "false";
   host.dataset.previewActive = "false";
-  host.dataset.kind = motion.kind;
+  host.dataset.kind = motion.kind === "web-page" ? "web" : motion.kind;
   host.dataset.src = motion.file;
   applyMediaSizing(host, motion);
   bindPreviewFocusPlayback(host, motion);
@@ -1054,7 +1091,8 @@ function setupPreviewHost(host, motion) {
 function handleHostVisibility(entries) {
   for (const entry of entries) {
     const host = entry.target;
-    const motion = motions.find((item) => item.file === host.dataset.src);
+    const motion = motions.find((item) => item.file === host.dataset.src)
+      || webVersionItems().find((item) => item.file === host.dataset.src);
     host.dataset.visible = entry.isIntersecting ? "true" : "false";
 
     if (entry.isIntersecting && motion) {
@@ -1134,9 +1172,9 @@ async function openDetail(motion, family = motion.variants ? motion : null) {
   detailController = null;
   detailHost.replaceChildren();
   detailOpen.href = motion.file;
-  detailDownload.href = motion.file;
-  detailDownload.download = getDownloadName(motion);
-  detailHost.dataset.kind = motion.kind;
+  detailDownload.href = motion.kind === "web-page" ? (motion.download || motion.file) : motion.file;
+  detailDownload.download = motion.kind === "web-page" ? `${motion.id}.html` : getDownloadName(motion);
+  detailHost.dataset.kind = motion.kind === "web-page" ? "web" : motion.kind;
   setupWebDetail(motion, () => detailController);
   renderFamilyPanel(family, motion, (variant, group) => openDetail(variant, group));
   renderStateMachinePanel(motion, () => detailController);
@@ -1168,8 +1206,57 @@ async function openDetail(motion, family = motion.variants ? motion : null) {
   if (!isInteractiveKind(motion.kind)) startTimelineLoop();
 }
 
+async function copyPageHtml(button, motion) {
+  const label = button.textContent;
+  try {
+    const response = await fetch(motion.download || motion.file);
+    if (!response.ok) throw new Error("html");
+    await navigator.clipboard.writeText(await response.text());
+    button.textContent = "已复制 HTML";
+  } catch {
+    button.textContent = "复制失败，请下载 HTML";
+  }
+  window.setTimeout(() => { if (button.isConnected) button.textContent = label; }, 1600);
+}
+
+function pagePreviewURL(file, detail) {
+  if (detail) return file;
+  const [path, query = ""] = String(file).split("?");
+  const params = new URLSearchParams(query);
+  if (!params.has("compact") && !params.has("embed")) {
+    params.set("compact", "1");
+    params.set("fit", "contain");
+  }
+  const text = params.toString();
+  return text ? `${path}?${text}` : path;
+}
+
+function createPagePreview(host, motion, options = {}) {
+  const frame = document.createElement("iframe");
+  frame.className = "web-component-frame";
+  frame.title = `${motion.name} · 预览`;
+  frame.tabIndex = options.detail ? 0 : -1;
+  frame.setAttribute("referrerpolicy", "no-referrer");
+  host.dataset.kind = "web";
+  host.append(frame);
+  const src = pagePreviewURL(motion.file, options.detail);
+  const show = () => { frame.src = src; };
+  show();
+  return {
+    element: frame,
+    play: show,
+    pause() {},
+    showPoster() {},
+    replay() { frame.src = "about:blank"; show(); },
+    setLoop() {},
+    setSpeed() {},
+    destroy() { frame.removeAttribute("src"); },
+  };
+}
+
 function createMediaController(host, motion, options = {}) {
   host.replaceChildren();
+  if (motion.kind === "web-page") return createPagePreview(host, motion, options);
   if (isInteractiveKind(motion.kind)) return createWebController(host, motion, options);
   if (motion.kind === "lottie") return createLottieController(host, motion, options);
   if (motion.kind === "gif") return createImageController(host, motion);
@@ -1411,7 +1498,6 @@ function applyPreviewBackground(value, options = {}) {
   const label = color.toUpperCase();
   document.documentElement.style.setProperty("--preview-bg", color);
   syncWebBackgrounds();
-  syncReleaseSettings({background:color});
   previewBg.value = color;
   detailPreviewBg.value = color;
   previewBgLabel.textContent = label;
@@ -1818,12 +1904,11 @@ refresh.addEventListener("click", loadManifest);
 speed.addEventListener("input", () => {
   speedLabel.textContent = `${speed.value}x`;
   syncPreviewHosts();
-  syncReleaseSettings({speed:Number(speed.value)});
 });
 
 previewBg.addEventListener("input", (event) => applyPreviewBackground(event.target.value));
-autoplay.addEventListener("change", () => { syncPreviewHosts(); syncReleaseSettings({hover:autoplay.checked}); });
-loop.addEventListener("change", () => { syncPreviewHosts(); syncReleaseSettings({loop:loop.checked}); });
+autoplay.addEventListener("change", syncPreviewHosts);
+loop.addEventListener("change", syncPreviewHosts);
 fileInput.addEventListener("change", (event) => addLocalFiles(event.target.files));
 detailClose.addEventListener("click", () => detailDialog.close());
 detailPlay.addEventListener("click", () => {
@@ -1842,6 +1927,7 @@ detailTimeline.addEventListener("input", (event) => seekDetailFrame(event.target
 
 detailCopy.addEventListener("click", async () => {
   if (!activeMotion) return;
+  if (activeMotion.kind === "web-page") { await copyPageHtml(detailCopy, activeMotion); return; }
   if (isInteractiveKind(activeMotion.kind)) { await copyExample(detailCopy, activeMotion, getWebValues()); return; }
   await navigator.clipboard.writeText(activeMotion.file);
   detailCopy.textContent = "已复制";
@@ -1851,6 +1937,7 @@ detailCopy.addEventListener("click", async () => {
 });
 
 detailDownload.addEventListener("click", (event) => {
+  if (activeMotion?.kind === "web-page") return;
   if (!isInteractiveKind(activeMotion?.kind)) return;
   event.preventDefault();
   downloadExample(activeMotion, getWebValues());
@@ -1886,7 +1973,6 @@ document.querySelectorAll(".tab").forEach((button) => {
     document.querySelector(".tab.active").classList.remove("active");
     button.classList.add("active");
     gallery.classList.toggle("list", button.dataset.view === "list");
-    setReleaseView(button.dataset.view);
   });
 });
 
@@ -1927,13 +2013,6 @@ const releaseCanvasObserver = new ResizeObserver(entries => {
   }
 });
 
-function renderDrafts(items, version = "v2") {
-  if (document.querySelector('#releaseDetailDialog')?.open) return;
-  renderReleaseCards(document.querySelector('#v2Drafts'), items, {
-    version, onOpen:openReleaseDetail,
-    view:document.querySelector('.tab.active')?.dataset.view || 'grid',
-  });
-}
 document.querySelectorAll("[data-web-release]").forEach(button => {
   button.addEventListener("click", () => {
     selectedWebRelease = button.dataset.webRelease;
@@ -2008,7 +2087,7 @@ async function openReleaseDetail(item, version = "v2") {
     });
   });
   releaseDetailStage.append(loading, frame);
-  mountReleaseDetail(frame, item);
+  frame.src = item.file;
   if (!releaseDetailDialog.open) releaseDetailDialog.showModal();
   const releaseComments = document.querySelector("#releaseComments");
   const previousComment = releaseComments?.dataset.term;
@@ -2046,7 +2125,7 @@ async function openReleaseDetail(item, version = "v2") {
 
 document.querySelector('#releaseDetailClose').addEventListener('click', () => releaseDetailDialog.close());
 releaseDetailDialog.addEventListener('click', event => { if (event.target === releaseDetailDialog) releaseDetailDialog.close(); });
-releaseDetailDialog.addEventListener('close', () => { releaseDetailEpoch++; destroyReleaseDetail(); releaseDetailStage.replaceChildren(); clearItemComments(document.querySelector("#releaseComments")); });
+releaseDetailDialog.addEventListener('close', () => { releaseDetailEpoch++; releaseDetailStage.replaceChildren(); clearItemComments(document.querySelector("#releaseComments")); });
 
 function renderStateMachinePanel(motion, getController) {
   const panel = document.querySelector("#dotLottieStateMachinePanel");

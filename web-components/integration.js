@@ -107,7 +107,8 @@ export function setupWebDetail(entry, getController) {
   const panel = document.querySelector("#webCodePanel");
   const controls = document.querySelector("#webParameters");
   const docs = document.querySelector("#webDocs");
-  const isWeb = entry.kind === "web" || entry.kind === "motion";
+  const isPage = entry.kind === "web-page";
+  const isWeb = entry.kind === "web" || entry.kind === "motion" || isPage;
   panel.hidden = controls.hidden = docs.hidden = !isWeb;
   docs.hidden = !isWeb || !entry.docs;
   document.querySelectorAll("#detailDialog [data-media-only]").forEach((el) => { el.hidden = isWeb; });
@@ -119,8 +120,16 @@ export function setupWebDetail(entry, getController) {
   document.querySelector("#detailDownload").textContent = isWeb ? "下载 HTML 示例" : "下载文件";
   controls.replaceChildren();
   const handoffPanel = document.querySelector("#webHandoffPanel");
-  if (handoffPanel) renderHandoff(handoffPanel, entry, () => currentValues);
+  if (handoffPanel && !isPage) renderHandoff(handoffPanel, entry, () => currentValues);
+  if (handoffPanel && isPage) handoffPanel.hidden = true;
   if (!isWeb) return;
+  if (isPage) {
+    currentValues = {};
+    document.querySelector("#webDescription").textContent = entry.description || "";
+    document.querySelector("#webCode").textContent = [entry.id, entry.description, entry.download || entry.file].filter(Boolean).join("\n\n");
+    document.querySelector("#webReset").onclick = () => getController()?.replay?.();
+    return;
+  }
   currentValues = normalizeValues(entry);
   docs.href = entry.docs;
   document.querySelector("#webDescription").textContent = entry.description;

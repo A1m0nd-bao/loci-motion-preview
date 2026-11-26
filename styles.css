@@ -2114,10 +2114,7 @@ code {
 .release-detail-usage pre code{padding:0;border:0;background:none;color:inherit;font:inherit;white-space:inherit}
 .release-detail-aside,.release-detail-body{overscroll-behavior:contain}
 
-/* Shared v2/v3 controls, preserving the flat gallery layout. */
-.is-versioned-web #webLibraryIntro{display:none}
-.is-versioned-web .web-release-section{margin-top:0;padding-top:0}
-.is-versioned-web .toolbar{margin:16px 0}
+/* Shared release-card rules. The Web window itself uses the same gallery for v1, v2, and v3. */
 .v2-drafts .release-draft-card{display:flex;flex-direction:column;min-width:0;padding:14px;border-radius:8px}
 .v2-drafts .release-preview-canvas{height:220px;border-radius:6px;background:var(--preview-bg)}
 .v2-drafts .release-preview-open{border-radius:6px}
