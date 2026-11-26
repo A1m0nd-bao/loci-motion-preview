@@ -1,4 +1,8 @@
-/** Fit a web motion document inside the shared gallery card or detail window. */
+/**
+ * Gallery cards contain-fit a designed scene inside a small host.
+ * The shared detail window is a real viewport: the iframe fills the stage
+ * and the page lays out and scrolls inside it. v1, v2, and v3 share that path.
+ */
 
 const PHONE_SCENES = new Set([
   "sipplay-prop-spotlight",
@@ -32,14 +36,17 @@ export function pageSceneSize(id) {
   return { width: 260, height: 220 };
 }
 
+/** Gallery cards scale a scene. Detail is a real iframe viewport, same for every version. */
+export function pagePreviewMode(detail = false) {
+  return detail ? "viewport" : "contain";
+}
+
 export function pagePreviewURL(file, detail = false) {
   const [path, query = ""] = String(file || "").split("?");
   const params = new URLSearchParams(query);
-  if (!detail) {
+  if (pagePreviewMode(detail) === "contain") {
     if (!params.has("compact") && !params.has("embed")) params.set("compact", "1");
     if (!params.has("fit")) params.set("fit", "contain");
-  } else if (!params.has("fit")) {
-    params.set("fit", "contain");
   }
   const text = params.toString();
   return text ? `${path}?${text}` : path;
@@ -48,16 +55,6 @@ export function pagePreviewURL(file, detail = false) {
 export function containScale(contentWidth, contentHeight, boundsWidth, boundsHeight) {
   if (!(contentWidth > 0) || !(contentHeight > 0) || !(boundsWidth > 0) || !(boundsHeight > 0)) return 1;
   return Math.min(boundsWidth / contentWidth, boundsHeight / contentHeight);
-}
-
-export function detailLayoutSize(scene) {
-  const width = Math.max(1, Number(scene?.width) || 260);
-  const height = Math.max(1, Number(scene?.height) || 220);
-  const chrome = Math.max(220, Math.round(height * 0.34));
-  return {
-    width: Math.max(width, 840),
-    height: height + chrome,
-  };
 }
 
 function clamp(value, min, max) {
@@ -136,16 +133,49 @@ function placeFrame(frame, host, content, { pad = 12, maxScale = 2, detail = fal
   frame.dataset.fitScale = String(scale);
 }
 
+function mountDetailViewport(frame, host) {
+  unwrapFrame(frame);
+  frame.classList.add("is-fitted", "is-viewport");
+  frame.removeAttribute("scrolling");
+  host.classList.add("is-page-viewport");
+  host.classList.remove("is-page-fit");
+  frame.style.width = "100%";
+  frame.style.height = "100%";
+  frame.style.maxWidth = "none";
+  frame.style.maxHeight = "none";
+  frame.style.position = "absolute";
+  frame.style.inset = "0";
+  frame.style.left = "0";
+  frame.style.top = "0";
+  frame.style.transform = "none";
+  delete frame.dataset.fitScale;
+  return () => {
+    host.classList.remove("is-page-viewport");
+    frame.classList.remove("is-fitted", "is-viewport");
+    frame.style.width = "";
+    frame.style.height = "";
+    frame.style.maxWidth = "";
+    frame.style.maxHeight = "";
+    frame.style.position = "";
+    frame.style.inset = "";
+    frame.style.left = "";
+    frame.style.top = "";
+    frame.style.transform = "";
+    delete frame.dataset.fitScale;
+  };
+}
+
 /**
- * Size the iframe to the designed document, then scale that box so the whole
- * scene stays inside the host. Gallery frames may shrink to measured content.
- * Detail frames only grow, so a vh-based page cannot collapse away from its controls.
+ * Gallery: size the iframe to the designed scene, then scale that box so it
+ * stays inside the card. Detail: the iframe is the page viewport and fills
+ * the stage. Taller documents scroll inside the frame. No transform scale.
  */
-export function fitWebFrame(frame, host, { scene, detail = false, fluid = false, maxScale = detail ? 2 : 1.6 } = {}) {
-  const initial = fluid ? null : (detail ? detailLayoutSize(scene || {}) : {
+export function fitWebFrame(frame, host, { scene, detail = false, fluid = false, maxScale = 1.6 } = {}) {
+  if (pagePreviewMode(detail) === "viewport") return mountDetailViewport(frame, host);
+  const initial = fluid ? null : {
     width: Math.max(80, Number(scene?.width) || 260),
     height: Math.max(80, Number(scene?.height) || 220),
-  });
+  };
   let box = initial ? { ...initial } : null;
   let raf = 0;
   frame.classList.add("is-fitted");

@@ -1,7 +1,7 @@
 import { exampleDocument } from "./examples.js?v=20261029-release-v1";
 import { exampleMarkup, normalizeValues } from "./catalog.js?v=20261029-release-v1";
 import { renderHandoff } from "./handoff-ui.js?v=20261029-release-v1";
-import { fitWebFrame, pageSceneSize } from "../page-preview.js";
+import { fitWebFrame, pageSceneSize } from "../page-preview.js?v=preview-viewport-20261126";
 
 const controllers = new Set();
 
