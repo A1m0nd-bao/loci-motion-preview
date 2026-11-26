@@ -26,7 +26,7 @@
 <script>
 const scene=document.querySelector('.scene'),done=document.querySelector('.done'),replay=document.querySelector('#replay');
 const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
-const duration=5200, animations=[]; let paused=false,slow=false,exit=null;
+const duration=3900, animations=[]; let paused=false,slow=false,exit=null;
 function track(selector,frames){const a=document.querySelector(selector).animate(frames,{duration,iterations:Infinity,fill:'both'});animations.push(a);return a}
 const leftFrames=[
 {offset:0,transform:'translate(-23px,9px) rotate(-6deg)',easing:'cubic-bezier(.4,0,.45,1)'},
@@ -48,8 +48,8 @@ const rightFrames=[
 {offset:.92,transform:'translate(23px,14px) rotate(6deg)'},{offset:1,transform:'translate(23px,14px) rotate(6deg)'}];
 if(!reduced){
 track('.left',leftFrames);track('.right',rightFrames);
-track('.core',[{opacity:.48,offset:0},{opacity:.54,offset:.19},{opacity:.62,offset:.235},{opacity:.52,offset:.35},{opacity:.57,offset:.58},{opacity:.48,offset:.82},{opacity:.48,offset:1}]);
-track('.pulse',[{opacity:0,offset:0},{opacity:0,offset:.20},{opacity:.14,offset:.225},{opacity:0,offset:.32},{opacity:.03,offset:.58},{opacity:0,offset:.8},{opacity:0,offset:1}]);
+track('.core',[{opacity:.48,offset:0},{opacity:.54,offset:.19},{opacity:.72,offset:.235},{opacity:.52,offset:.35},{opacity:.57,offset:.58},{opacity:.48,offset:.82},{opacity:.48,offset:1}]);
+track('.pulse',[{opacity:0,offset:0},{opacity:0,offset:.20},{opacity:.24,offset:.225},{opacity:0,offset:.32},{opacity:.03,offset:.58},{opacity:0,offset:.8},{opacity:0,offset:1}]);
 track('.star',[{opacity:0,transform:'scale(.2)',offset:0},{opacity:0,transform:'scale(.2)',offset:.212},{opacity:1,transform:'scale(2.1)',offset:.225},{opacity:0,transform:'scale(.6)',offset:.29},{opacity:0,offset:1}]);
 track('.ring',[{opacity:0,transform:'scale(.1)',offset:0},{opacity:0,transform:'scale(.1)',offset:.216},{opacity:.5,transform:'scale(.3)',offset:.225},{opacity:0,transform:'scale(1.25)',offset:.30},{opacity:0,offset:1}]);
 document.querySelectorAll('.spark').forEach((s,i)=>{let angle=[-58,2,60][i],dx=[-17,0,19][i],dy=[-13,-23,-12][i];const a=s.animate([{opacity:0,transform:`rotate(${angle}deg) scaleY(.1)`,offset:0},{opacity:0,transform:`rotate(${angle}deg) scaleY(.1)`,offset:.216},{opacity:.9,transform:`translate(${dx*.3}px,${dy*.3}px) rotate(${angle}deg) scaleY(.8)`,offset:.234},{opacity:0,transform:`translate(${dx}px,${dy}px) rotate(${angle}deg) scaleY(.3)`,offset:.30},{opacity:0,offset:1}],{duration,iterations:Infinity,fill:'both'});animations.push(a)});

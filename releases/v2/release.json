@@ -560,11 +560,11 @@
     {
       "id": "sipplay-cheers-popup",
       "name": "Sipplay Plus · 碰杯弹窗",
-      "preview": "cheers-popup/index.html?v=final-sync-20261125",
-      "download": "cheers-popup/cheers-popup.html?v=final-sync-20261125",
-      "source": "cheers-popup/cheers-popup.html?v=final-sync-20261125",
-      "package": "cheers-popup/source.zip?v=final-sync-20261125",
-      "usage": "cheers-popup/USAGE.md?v=final-sync-20261125",
+      "preview": "cheers-popup/index.html?v=cheers-3900-20261126",
+      "download": "cheers-popup/cheers-popup.html?v=cheers-3900-20261126",
+      "source": "cheers-popup/cheers-popup.html?v=cheers-3900-20261126",
+      "package": "cheers-popup/source.zip?v=cheers-3900-20261126",
+      "usage": "cheers-popup/USAGE.md?v=cheers-3900-20261126",
       "states": [
         "loop",
         "clink",
@@ -572,7 +572,9 @@
         "replay"
       ],
       "size": "434×506",
-      "fileSize": 377561
+      "fileSize": 377561,
+      "duration": 3.9,
+      "revision": "cheers-3900-20261126"
     }
   ],
   "handoff": {
@@ -583,6 +585,6 @@
     "sha256": "be8071db3cf252cf293c671e8bf51cc54bfe605a422c1cd37298feda1b78d8fa",
     "downloadUrl": "https://github.com/A1m0nd-bao/loci-motion-preview/releases/download/motion-v2-20261125/sipplay-motion-v2.zip"
   },
-  "catalogRevision": "2026-11-25-responsive-buttons",
-  "handoffSnapshotNote": "已发布交付包保持原冻结快照；本轮分别更新两个自适应按钮的网站预览与单文件下载。"
+  "catalogRevision": "cheers-3900-20261126",
+  "handoffSnapshotNote": "已发布 v2 总交付包保持原冻结快照；本轮更新碰杯弹窗 HTML、接入说明和单组件源码包，历史评审媒体未重录。"
 }

@@ -348,9 +348,9 @@ const publishedV2 = [
   {
     "id": "sipplay-cheers-popup",
     "name": "Sipplay Plus · 碰杯弹窗",
-    "note": "双手碰杯与星光循环，Done 关闭弹窗；附分层图、SVG 和评审视频。",
-    "file": "./releases/v2/cheers-popup/index.html?v=final-sync-20261125",
-    "download": "./releases/v2/cheers-popup/cheers-popup.html?v=final-sync-20261125",
+    "note": "3.9 秒碰杯循环 · 增强暖光，Done / Escape 关闭，支持重播。",
+    "file": "./releases/v2/cheers-popup/index.html?v=cheers-3900-20261126",
+    "download": "./releases/v2/cheers-popup/cheers-popup.html?v=cheers-3900-20261126",
     "symbol": "✦",
     "tags": "Sipplay Plus · 碰杯弹窗 道具 数量 碰杯 弹窗",
     "published": true
@@ -2044,7 +2044,7 @@ async function openReleaseDetail(item, version = "v2") {
   if (!releaseDetailDialog.open) releaseDetailDialog.showModal();
   try {
     if (!releaseManifestPromises.has(version)) {
-      releaseManifestPromises.set(version, fetch(`./releases/${version}/release.json?v=responsive-buttons-r3-20261125`).then(response => {
+      releaseManifestPromises.set(version, fetch(`./releases/${version}/release.json?v=cheers-3900-20261126`).then(response => {
         if (!response.ok) throw new Error('manifest'); return response.json();
       }).catch(error => { releaseManifestPromises.delete(version); throw error; }));
     }
