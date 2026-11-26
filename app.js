@@ -479,6 +479,9 @@ const lazyHostObserver =
 if (window.matchMedia("(max-width: 820px)").matches) {
   sidebar.removeAttribute("open");
 }
+window.matchMedia('(max-width: 820px)').addEventListener('change', event => {
+  sidebar.open = !event.matches;
+});
 
 applyPreviewBackground(localStorage.getItem(previewBackgroundKey) || defaultPreviewBackground, {
   persist: false,
@@ -1716,6 +1719,7 @@ function addLocalFiles(files) {
     });
 
   motions = [...localItems, ...motions.filter((item) => item.category !== "临时预览")];
+  if (kindSelect.value === 'web' && selectedWebRelease !== 'v1') enterModule('all');
   populateKinds();
   populateCategories();
   category.value = "临时预览";
