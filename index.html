@@ -5,7 +5,7 @@
     <link rel="icon" href="data:," />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>SipPlay Motion Library</title>
-    <link rel="stylesheet" href="./styles.css?v=preview-comments-20261127" />
+    <link rel="stylesheet" href="./styles.css?v=preview-comments-scroll-20261127" />
     <link rel="stylesheet" href="./lottie-families.css?v=20261030-isolated" />
     <link rel="stylesheet" href="./web-components/handoff.css?v=20261029-release-v1" />
     <script type="importmap">{"imports":{"motion":"./motion/vendor/motion.js"}}</script>
@@ -295,6 +295,7 @@
 
     <dialog id="detailDialog" class="detail-dialog" aria-labelledby="detailTitle">
       <div class="detail-shell">
+        <div class="detail-frame">
         <header class="detail-header">
           <div>
             <p class="eyebrow">Detail Preview</p>
@@ -372,6 +373,8 @@
               <p class="web-code-note">「复制 HTML」包含示例样式与初始化脚本；下载的 HTML 联网即可运行。Web 组件用于网页，不是 Lottie JSON。</p>
             </section>
           </aside>
+        </div>
+        <div class="detail-comments-slot" aria-hidden="true"></div>
         </div>
         <section id="detailComments" class="item-comments" hidden></section>
       </div>
