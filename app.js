@@ -9,12 +9,21 @@ import { fitWebFrame, pagePreviewURL, pageSceneSize } from "./page-preview.js?v=
 if (import.meta.env?.DEV) document.querySelector("#motionStudioLocal").hidden = false;
 
 const isInteractiveKind = kind => kind === "web" || kind === "web-page" || kind === "motion";
-let selectedWebRelease = "v1";
+let selectedWebRelease = "all";
 let selectedLottieColumn = "product";
 let selectedRefFilter = "all";
 
 const isReferenceItem = (item) => Boolean(item && (item.isReference || item.category === "精选参考"));
-const getDeliveryMotions = () => motions.filter((item) => !isReferenceItem(item));
+function isWebFormat(item) {
+  return item?.kind === "web" || item?.kind === "web-page";
+}
+function deliveryKindKey(item) {
+  return isWebFormat(item) ? "web" : (item.kind || "practice");
+}
+const getDeliveryMotions = () => {
+  const library = motions.filter((item) => !isReferenceItem(item) && !isWebFormat(item));
+  return orderDeliveryMotions([...library, ...publishedWebItems()]);
+};
 const publishedV2 = [
   {
     "id": "sipplay-plus-arrow-toggle",
@@ -382,7 +391,7 @@ function pageCategory(item) {
   const slug = String(item.id || "").replace(/^sipplay-/, "");
   return item.category || Object.keys(pageGroups).find((name) => pageGroups[name].includes(slug)) || "其他";
 }
-function toPageMotion(item) {
+function toPageMotion(item, webRelease) {
   const tags = String(item.tags || "").split(/\s+/).filter(Boolean);
   const scene = pageSceneSize(item.id);
   return {
@@ -398,17 +407,78 @@ function toPageMotion(item) {
     fileName: `${item.id}.html`,
     width: scene.width,
     height: scene.height,
+    webRelease,
   };
 }
-function webVersionItems() {
-  if (selectedWebRelease === "v2") return v2Entries.map(toPageMotion);
-  if (selectedWebRelease === "v3") return v3Entries.map(toPageMotion);
-  return motions.filter((item) => item.kind === "web");
+function isPublishedWebEntry(item) {
+  return Boolean(item) && item.published === true;
+}
+function uniqueWebItems(items) {
+  const seen = new Set();
+  const result = [];
+  for (const item of items) {
+    const key = item?.id || item?.file;
+    if (!key || seen.has(key)) continue;
+    seen.add(key);
+    result.push(item);
+  }
+  return result;
+}
+function pageMotionsFrom(entries, version, { publishedOnly = false } = {}) {
+  const source = publishedOnly ? entries.filter(isPublishedWebEntry) : entries;
+  return source.map((item) => toPageMotion(item, version));
+}
+function v1WebMotions() {
+  return motions
+    .filter((item) => item.kind === "web")
+    .map((item) => ({ ...item, webRelease: "v1" }));
+}
+function publishedWebItems() {
+  return uniqueWebItems([
+    ...pageMotionsFrom(v3Entries, "v3", { publishedOnly: true }),
+    ...pageMotionsFrom(v2Entries, "v2", { publishedOnly: true }),
+    ...v1WebMotions(),
+  ]);
+}
+let cachedWebPageMotions = null;
+function allWebPageMotions() {
+  if (!cachedWebPageMotions) {
+    cachedWebPageMotions = [
+      ...pageMotionsFrom(v3Entries, "v3"),
+      ...pageMotionsFrom(v2Entries, "v2"),
+    ];
+  }
+  return cachedWebPageMotions;
+}
+function findMotionByFile(file) {
+  return motions.find((item) => item.file === file)
+    || allWebPageMotions().find((item) => item.file === file);
+}
+function orderDeliveryMotions(items) {
+  const lottie = [];
+  const web = [];
+  const other = [];
+  for (const item of items) {
+    if (item.kind === "lottie") lottie.push(item);
+    else if (isWebFormat(item)) web.push(item);
+    else other.push(item);
+  }
+  return [...lottie, ...web, ...other];
+}
+function webReleaseHash(version = selectedWebRelease) {
+  return version === "all" ? "#web" : `#web-${version}`;
+}
+function webVersionItems(version = selectedWebRelease) {
+  if (version === "v2") return pageMotionsFrom(v2Entries, "v2");
+  if (version === "v3") return pageMotionsFrom(v3Entries, "v3");
+  if (version === "v1") return v1WebMotions();
+  return publishedWebItems();
 }
 function webVersionCount(version = selectedWebRelease) {
   if (version === "v2") return v2Entries.length;
   if (version === "v3") return v3Entries.length;
-  return motions.filter((item) => item.kind === "web").length;
+  if (version === "v1") return motions.filter((item) => item.kind === "web").length;
+  return publishedWebItems().length;
 }
 
 
@@ -572,7 +642,7 @@ function normalizeMotion(item) {
 function populateKinds() {
   const selected = kindSelect.value || "all";
   const deliveryMotions = getDeliveryMotions();
-  const counts = countBy(deliveryMotions, (item) => item.kind || "practice");
+  const counts = countBy(deliveryMotions, deliveryKindKey);
   const kinds = getOrderedKinds(counts);
 
   kindSelect.innerHTML = '<option value="all">全部格式</option>';
@@ -701,13 +771,15 @@ function enterModule(kind) {
   }
   activeKind = kind;
   kindSelect.value = kind;
-  history.replaceState(null, "", `${location.pathname}${location.search}${isInteractiveKind(kind) ? (kind === "web" && selectedWebRelease !== "v1" ? `#web-${selectedWebRelease}` : `#${kind}`) : ""}`);
+  history.replaceState(null, "", `${location.pathname}${location.search}${isInteractiveKind(kind) ? (kind === "web" ? webReleaseHash() : `#${kind}`) : ""}`);
+  window.scrollTo(0, 0);
   populateCategories();
   render();
 }
 
 function showHome() {
   history.replaceState(null, "", `${location.pathname}${location.search}`);
+  window.scrollTo(0, 0);
   currentView = "home";
   activeKind = "all";
   kindSelect.value = "all";
@@ -809,38 +881,48 @@ function render() {
 
   const deliveryMotions = getDeliveryMotions();
   document.body.classList.toggle("is-home-view", isHome);
-  visibleMotions = isHome ? deliveryMotions : motions.filter((item) => {
-    const haystack = [item.name, item.file, item.kindLabel, item.category, item.interactionType, ...(item.tags || [])]
-      .join(" ")
-      .toLowerCase();
-    const matchesSearch = !query || haystack.includes(query);
-    const matchesKind = selectedKind === "all" || item.kind === selectedKind;
-    const matchesCategory = selectedCategory === "all" || item.category === selectedCategory;
-
-    const isRef = isReferenceItem(item);
-    if (selectedKind === "all" && isRef) return false;
-
-    let matchesLottieColumn = true;
-    if (isLottie) {
-      if (selectedLottieColumn === "reference") {
-        matchesLottieColumn = isRef;
-        if (matchesLottieColumn && selectedRefFilter !== "all") {
-          if (selectedRefFilter === "sm") matchesLottieColumn = Boolean(item.hasStateMachine);
-          else if (selectedRefFilter === "guide") matchesLottieColumn = item.subcategory === "引导与微反馈";
-          else if (selectedRefFilter === "load") matchesLottieColumn = item.subcategory === "加载与形态变换";
-          else if (selectedRefFilter === "celebrate") matchesLottieColumn = item.subcategory === "庆典与特效";
-        }
-      } else {
-        matchesLottieColumn = !isRef;
-      }
-    }
-
-    return matchesSearch && matchesKind && matchesCategory && matchesLottieColumn;
-  });
-  if (!isHome && selectedKind === "web") {
+  if (isHome) {
+    visibleMotions = deliveryMotions;
+  } else if (selectedKind === "web") {
     visibleMotions = webVersionItems().filter((item) => {
       const haystack = [item.name, item.id, item.file, item.description, item.category, ...(item.tags || [])].join(" ").toLowerCase();
       return (!query || haystack.includes(query)) && (selectedCategory === "all" || item.category === selectedCategory);
+    });
+  } else if (selectedKind === "all") {
+    visibleMotions = deliveryMotions.filter((item) => {
+      const haystack = [item.name, item.id, item.file, item.kindLabel, item.description, item.category, item.interactionType, ...(item.tags || [])]
+        .join(" ")
+        .toLowerCase();
+      const matchesSearch = !query || haystack.includes(query);
+      const matchesCategory = selectedCategory === "all" || item.category === selectedCategory;
+      return matchesSearch && matchesCategory;
+    });
+  } else {
+    visibleMotions = motions.filter((item) => {
+      const haystack = [item.name, item.file, item.kindLabel, item.category, item.interactionType, ...(item.tags || [])]
+        .join(" ")
+        .toLowerCase();
+      const matchesSearch = !query || haystack.includes(query);
+      const matchesKind = item.kind === selectedKind;
+      const matchesCategory = selectedCategory === "all" || item.category === selectedCategory;
+
+      const isRef = isReferenceItem(item);
+      let matchesLottieColumn = true;
+      if (isLottie) {
+        if (selectedLottieColumn === "reference") {
+          matchesLottieColumn = isRef;
+          if (matchesLottieColumn && selectedRefFilter !== "all") {
+            if (selectedRefFilter === "sm") matchesLottieColumn = Boolean(item.hasStateMachine);
+            else if (selectedRefFilter === "guide") matchesLottieColumn = item.subcategory === "引导与微反馈";
+            else if (selectedRefFilter === "load") matchesLottieColumn = item.subcategory === "加载与形态变换";
+            else if (selectedRefFilter === "celebrate") matchesLottieColumn = item.subcategory === "庆典与特效";
+          }
+        } else {
+          matchesLottieColumn = !isRef;
+        }
+      }
+
+      return matchesSearch && matchesKind && matchesCategory && matchesLottieColumn;
     });
   }
 
@@ -860,20 +942,13 @@ function render() {
   document.querySelector("#webLibraryIntro").hidden = isHome || selectedKind !== "web";
   document.querySelector("#motionLibraryIntro").hidden = isHome || selectedKind !== "motion";
   document.querySelectorAll("[data-library-media-only]").forEach((el) => { el.hidden = isInteractiveKind(selectedKind); });
-  const webFormat = formatNav.querySelector('[data-kind="web"]');
-  if (webFormat) {
-    webFormat.querySelector('.format-count').textContent = String(webVersionCount());
-    webFormat.querySelector('span:last-child').textContent = `${selectedWebRelease} · ${webVersionCount()} 项`;
-  }
-  const webOption = kindSelect.querySelector('option[value="web"]');
-  if (webOption) webOption.textContent = `Web 组件 · ${selectedWebRelease}`;
   libraryView.hidden = isHome;
   document.querySelector("#webReleaseSection").hidden = isHome || selectedKind !== "web";
   document.querySelector("#v2Drafts").hidden = true;
   gallery.hidden = false;
   category.disabled = false;
   const versionCount = webVersionCount();
-  document.querySelector("#webReleaseTitle").textContent = `动效 ${selectedWebRelease}`;
+  document.querySelector("#webReleaseTitle").textContent = selectedWebRelease === "all" ? "全部 Web 动效" : `动效 ${selectedWebRelease}`;
   document.querySelector("#webReleaseNote").textContent = `${versionCount} 个动效 · 悬停预览，打开详情可体验、复制或下载 HTML`;
   document.querySelector("#v1Download").hidden = selectedWebRelease !== "v1";
   document.querySelector("#v2Download").hidden = selectedWebRelease !== "v2";
@@ -922,15 +997,48 @@ function getUpdatedTime(motion) {
   return Number.isFinite(time) ? time : 0;
 }
 
+function createWebBlockHeading(text) {
+  const heading = document.createElement("h2");
+  heading.className = "web-source-heading";
+  heading.textContent = text;
+  return heading;
+}
+
+function appendVersionedWebCards(items, labelFor) {
+  let previousVersion = "";
+  for (const motion of items) {
+    const version = motion.webRelease || "v1";
+    if (version !== previousVersion) {
+      gallery.append(createWebBlockHeading(labelFor(version)));
+      previousVersion = version;
+    }
+    gallery.append(createCard(motion));
+  }
+}
+
 function renderGalleryCards(items, selectedKind) {
   if (selectedKind === "web") {
-    if (items.length) {
-      const heading = document.createElement("h2");
-      heading.className = "web-source-heading";
-      heading.textContent = `sipplay / ${selectedWebRelease}`;
-      gallery.append(heading);
+    if (selectedWebRelease === "all") {
+      appendVersionedWebCards(items, (version) => `sipplay / ${version}`);
+      return;
     }
+    if (items.length) gallery.append(createWebBlockHeading(`sipplay / ${selectedWebRelease}`));
     for (const motion of items) gallery.append(createCard(motion));
+    return;
+  }
+
+  if (selectedKind === "all") {
+    let previousVersion = "";
+    for (const motion of items) {
+      if (isWebFormat(motion)) {
+        const version = motion.webRelease || "v1";
+        if (version !== previousVersion) {
+          gallery.append(createWebBlockHeading(`Web 组件 · ${version}`));
+          previousVersion = version;
+        }
+      }
+      gallery.append(createCard(motion));
+    }
     return;
   }
 
@@ -1095,8 +1203,7 @@ function setupPreviewHost(host, motion) {
 function handleHostVisibility(entries) {
   for (const entry of entries) {
     const host = entry.target;
-    const motion = motions.find((item) => item.file === host.dataset.src)
-      || webVersionItems().find((item) => item.file === host.dataset.src);
+    const motion = findMotionByFile(host.dataset.src);
     host.dataset.visible = entry.isIntersecting ? "true" : "false";
 
     if (entry.isIntersecting && motion) {
@@ -1870,7 +1977,7 @@ function moduleIcon(kind) {
 }
 
 function getOrderedKinds(counts) {
-  const order = ["lottie", "video", "gif", "rive", "practice", "web", "motion"];
+  const order = ["lottie", "web", "video", "gif", "rive", "practice", "motion"];
   return Object.keys(counts).sort((a, b) => {
     const left = order.indexOf(a);
     const right = order.indexOf(b);
@@ -2000,10 +2107,11 @@ document.querySelectorAll("[data-ref-filter]").forEach((btn) => {
 });
 
 loadManifest().then(() => {
-  if (['#web-v2', '#web-v3'].includes(location.hash)) { selectedWebRelease = location.hash.slice(5); enterModule('web'); }
+  const webHash = location.hash.match(/^#web(?:-(v1|v2|v3))?$/);
+  if (webHash) { selectedWebRelease = webHash[1] || "all"; enterModule("web"); }
   else if (location.hash === '#lottie-reference' || location.hash === '#reference') { selectedLottieColumn = 'reference'; enterModule('lottie'); }
   else if (location.hash === '#lottie' || location.hash === '#lottie-product') { selectedLottieColumn = 'product'; enterModule('lottie'); }
-  else if (["#web", "#motion"].includes(location.hash)) enterModule(location.hash.slice(1));
+  else if (location.hash === "#motion") enterModule("motion");
 });
 window.setInterval(loadManifest, 30000);
 
@@ -2018,7 +2126,8 @@ const releaseCanvasObserver = new ResizeObserver(entries => {
 document.querySelectorAll("[data-web-release]").forEach(button => {
   button.addEventListener("click", () => {
     selectedWebRelease = button.dataset.webRelease;
-    history.replaceState(null, '', `${location.pathname}${location.search}${selectedWebRelease === 'v1' ? '#web' : `#web-${selectedWebRelease}`}`);
+    history.replaceState(null, "", `${location.pathname}${location.search}${webReleaseHash()}`);
+    window.scrollTo(0, 0);
     search.value = "";
     category.value = "all";
     populateCategories();
